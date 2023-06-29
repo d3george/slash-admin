@@ -40,7 +40,7 @@
       "#/*": ["types/*"]
     }
   },
-  "include": ["src", "test", "types/**/*.ts", "**.ts", "**/*.json", "**.*js"],
+  "include": ["src", "test", "types/**/*.ts", "**.ts", "*.json", "**.*js"],
   "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
