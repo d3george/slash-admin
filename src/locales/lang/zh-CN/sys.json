@@ -1,0 +1,51 @@
+{
+  "sys": {
+    "login": {
+      "backSignIn": "返回",
+      "signInFormTitle": "登录",
+      "mobileSignInFormTitle": "手机登录",
+      "qrSignInFormTitle": "二维码登录",
+      "signUpFormTitle": "注册",
+      "forgetFormTitle": "重置密码",
+
+      "signInPrimaryTitle": "欢迎回来",
+      "signInSecondTitle": "开箱即用的中后台管理系统",
+      "signInDesc": "输入您的个人详细信息开始使用！",
+      "policy": "我同意xxx隐私政策",
+      "scanSign": "扫码后点击'确认'，即可完成登录",
+      "forgetFormSecondTitle": "请输入与您的帐户关联的电子邮件地址，我们将通过电子邮件向您发送重置密码的链接。",
+
+      "loginButton": "登录",
+      "registerButton": "注册",
+      "rememberMe": "记住我",
+      "forgetPassword": "忘记密码?",
+      "otherSignIn": "其他登录方式",
+      "sendSmsButton": "发送验证码",
+      "sendSmsText": "{{second}}秒后重新获取",
+      "sendEmailButton": "发送邮件",
+
+      "loginSuccessTitle": "登录成功",
+      "loginSuccessDesc": "欢迎回来",
+
+      "accountPlaceholder": "请输入账号",
+      "passwordPlaceholder": "请输入密码",
+      "confirmPasswordPlaceholder": "请输入确认密码",
+      "emaildPlaceholder": "请输入邮箱",
+      "smsPlaceholder": "请输入验证码",
+      "mobilePlaceholder": "请输入手机号码",
+      "policyPlaceholder": "勾选后才能注册",
+      "diffPwd": "两次输入密码不一致",
+
+      "userName": "账号",
+      "password": "密码",
+      "confirmPassword": "确认密码",
+      "email": "邮箱",
+      "smsCode": "短信验证码",
+      "mobile": "手机号码",
+
+      "registerAndAgree": "注册即我同意",
+      "termsOfService": " 服务条款 ",
+      "privacyPolicy": " 隐私政策 "
+    }
+  }
+}

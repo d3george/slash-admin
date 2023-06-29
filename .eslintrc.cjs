@@ -10,6 +10,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true, // 启用JSX
     },
+    extraFileExtensions: ['.json'],
   },
   settings: {
     // 识别 @ # alias

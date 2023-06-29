@@ -3,8 +3,15 @@ interface SvgIconProps {
   icon: string;
   color?: string;
   size?: string;
+  className?: string;
 }
-function SvgIcon({ prefix = 'icon', icon, color = 'currentColor', size = '1em' }: SvgIconProps) {
+function SvgIcon({
+  prefix = 'icon',
+  icon,
+  color = 'currentColor',
+  size = '1em',
+  className = '',
+}: SvgIconProps) {
   const symbolId = `#${prefix}-${icon}`;
   const svgStyle = {
     width: size,
@@ -14,7 +21,7 @@ function SvgIcon({ prefix = 'icon', icon, color = 'currentColor', size = '1em' }
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100"
-      className="inline-block h-[1em] w-[1em] overflow-hidden fill-current align-[-0.15em] outline-none"
+      className={`fill-current inline-block h-[1em] w-[1em] overflow-hidden align-[-0.15em] outline-none ${className}}`}
       style={svgStyle}
     >
       <use xlinkHref={symbolId} fill={color} color={color} />

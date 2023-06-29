@@ -1,0 +1,52 @@
+{
+  "sys": {
+    "login": {
+      "backSignIn": "Back sign in",
+      "mobileSignInFormTitle": "Mobile sign in",
+      "qrSignInFormTitle": "Qr code sign in",
+      "signInFormTitle": "Sign in",
+      "signUpFormTitle": "Sign up",
+      "forgetFormTitle": "Reset password",
+
+      "signInPrimaryTitle": "Hi, Welcome Back",
+      "signInSecondTitle": "Backstage management system",
+      "signInTitle": "",
+      "signInDesc": "Enter your personal details and get started!",
+      "policy": "I agree to the xxx Privacy Policy",
+      "scanSign": "scanning the code to complete the login",
+      "forgetFormSecondTitle": "Please enter the email address associated with your account and We will email you a link to reset your password.",
+
+      "loginButton": "Sign in",
+      "registerButton": "Sign up",
+      "rememberMe": "Remember me",
+      "forgetPassword": "Forget Password?",
+      "otherSignIn": "Sign in with",
+      "sendSmsButton": "Send SMS code",
+      "sendSmsText": "Reacquire in {{second}}s",
+      "sendEmailButton": "Send Email",
+
+      "loginSuccessTitle": "Login successful",
+      "loginSuccessDesc": "Welcome back",
+
+      "accountPlaceholder": "Please input username",
+      "passwordPlaceholder": "Please input password",
+      "confirmPasswordPlaceholder": "Please input confirm password",
+      "emaildPlaceholder": "Please input email",
+      "smsPlaceholder": "Please input sms code",
+      "mobilePlaceholder": "Please input mobile",
+      "policyPlaceholder": "Register after checking",
+      "diffPwd": "The two passwords are inconsistent",
+
+      "userName": "Username",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "email": "Email",
+      "smsCode": "SMS code",
+      "mobile": "Mobile",
+
+      "registerAndAgree": "By signing up, I agree to",
+      "termsOfService": " Terms of service ",
+      "privacyPolicy": " Privacy policy "
+    }
+  }
+}

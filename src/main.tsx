@@ -7,6 +7,8 @@ import 'virtual:svg-icons-register';
 
 import App from '@/App';
 
+import './locales/i18n';
+
 // 创建一个 client
 const queryClient = new QueryClient({
   defaultOptions: {
