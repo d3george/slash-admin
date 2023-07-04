@@ -20,7 +20,7 @@
     "i18next": "^23.2.3",
     "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",
-    "lodash": "^4.17.21",
+    "ramda": "^0.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.0.1",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
+    "@types/ramda": "^0.29.3",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
     "@types/react-router-dom": "^5.3.3",

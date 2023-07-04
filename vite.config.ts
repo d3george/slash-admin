@@ -37,9 +37,10 @@ export default defineConfig({
   server: {
     // 自动打开浏览器
     open: true,
+    port: 3001,
     proxy: {
       '/api': {
-        target: 'https://xxxxxx',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

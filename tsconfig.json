@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2022", // 编译后代码的目标版本（ECMAScript）。
-    "module": "ES2022", // 使用的模块系统类型。ESNext 支持更多特性，比如动态导入等。
-    "lib": ["ES2022", "DOM", "DOM.Iterable"], // 要包含的库文件。DOM、DOM.Iterable 和 ESNext 库文件是 TypeScript 开发中比较基础的依赖。
+    "target": "ESNext", // 编译后代码的目标版本（ECMAScript）。
+    "module": "ESNext", // 使用的模块系统类型。ESNext 支持更多特性，比如动态导入等。
+    "lib": ["ESNext", "DOM", "DOM.Iterable"], // 要包含的库文件。DOM、DOM.Iterable 和 ESNext 库文件是 TypeScript 开发中比较基础的依赖。
     "useDefineForClassFields": true,
     "skipLibCheck": true, // 跳过编译器对引入库文件的检查，以加快构建速度
     "allowJs": true, // // 允许编译JavaScript文件

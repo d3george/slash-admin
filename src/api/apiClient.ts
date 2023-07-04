@@ -1,6 +1,11 @@
+import { message as Message } from 'antd';
 import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
+import { isNil, isEmpty } from 'ramda';
 
-import { Result } from '#/axios';
+import { t } from '@/locales/i18n';
+
+import { Result } from '#/api';
+import { ResultEnum } from '#/enum';
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
@@ -26,12 +31,40 @@ axiosInstance.interceptors.request.use(
 
 // 响应拦截
 axiosInstance.interceptors.response.use(
-  (response: AxiosResponse) => {
-    // 对响应数据做点什么
-    return response.data;
+  (res: AxiosResponse<Result>) => {
+    if (!res.data) throw new Error(t('sys.api.apiRequestFailed'));
+
+    const { status, message, data } = res.data;
+    // 业务请求成功
+    const hasSuccess = data && Reflect.has(res.data, 'status') && status === ResultEnum.SUCCESS;
+    if (hasSuccess) {
+      let successMsg = message;
+      if (isNil(message) || isEmpty(message)) {
+        successMsg = t(`sys.api.operationSuccess`);
+      }
+
+      Message.success(successMsg);
+      return data;
+    }
+
+    // 业务请求错误
+    throw new Error(t('sys.api.apiRequestFailed'));
   },
-  (error: AxiosError) => {
+  (error: AxiosError<Result>) => {
+    const { response, message } = error || {};
+    let errMsg = '';
+    try {
+      errMsg = response?.data?.message || message;
+    } catch (error) {
+      throw new Error(error as unknown as string);
+    }
     // 对响应错误做点什么
+    if (isEmpty(errMsg)) {
+      // checkStatus
+      // errMsg = checkStatus(response.data.status);
+      errMsg = t('sys.api.errorMessage');
+    }
+    Message.error(errMsg);
     return Promise.reject(error);
   },
 );

@@ -1,22 +1,38 @@
-import { Button, Form, Input, Alert, Checkbox, Row, Col, Divider } from 'antd';
+import { Button, Form, Input, Alert, Checkbox, Row, Col, Divider, notification } from 'antd';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from 'react-icons/ai';
 
-import { LoginStateEnum, useLoginStateContext } from './useLogin';
+import { SignInReq } from '@/api/services/userService';
+import { useSignIn } from '@/store/userStore';
+
+import { LoginStateEnum, useLoginStateContext } from './providers/LoginStateProvider';
 
 function LoginForm() {
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
-  };
-
   const { t } = useTranslation();
-  const { loginState, setLoginState } = useLoginStateContext();
+  const [loading, setLoading] = useState(false);
 
+  const { loginState, setLoginState } = useLoginStateContext();
+  const signIn = useSignIn();
   if (loginState !== LoginStateEnum.LOGIN) return null;
+
+  const handleFinish = async ({ username, password }: SignInReq) => {
+    setLoading(true);
+    try {
+      await signIn({ username, password });
+      notification.info({
+        message: t('sys.login.loginSuccessTitle'),
+        description: `${t('sys.login.loginSuccessDesc')}: ${username}`,
+        duration: 3,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
       <div className="mb-4 text-2xl font-bold xl:text-3xl">{t('sys.login.signInFormTitle')}</div>
-      <Form name="normal_login" size="large" initialValues={{ remember: true }} onFinish={onFinish}>
+      <Form name="login" size="large" initialValues={{ remember: true }} onFinish={handleFinish}>
         <div className="mb-4 flex flex-col">
           <Alert
             description={`${t('sys.login.userName')}: demo@minimals.cc / ${t(
@@ -47,17 +63,12 @@ function LoginForm() {
               </Form.Item>
             </Col>
             <Col span={12} className="text-right">
-              <button
-                className="!text-black !underline"
-                onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)}
-              >
-                {t('sys.login.forgetPassword')}
-              </button>
+              <button className="!text-black !underline">{t('sys.login.forgetPassword')}</button>
             </Col>
           </Row>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="w-full !bg-black">
+          <Button type="primary" htmlType="submit" className="w-full !bg-black" loading={loading}>
             {t('sys.login.loginButton')}
           </Button>
         </Form.Item>

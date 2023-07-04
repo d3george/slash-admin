@@ -4,10 +4,10 @@ import { AppLocalePicker } from '@/components/app';
 
 import LoginForm from './LoginForm';
 import MobileForm from './MobileForm';
+import { LoginStateProvider } from './providers/LoginStateProvider';
 import QrCodeFrom from './QrCodeForm';
 import RegisterForm from './RegisterForm';
 import ResetForm from './ResetForm';
-import { LoginStateProvider } from './useLogin';
 
 function Login() {
   const { t } = useTranslation();

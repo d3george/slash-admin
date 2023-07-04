@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SvgIcon } from '@/components/icon';
 
 import { ReturnButton } from './components/ReturnButton';
-import { LoginStateEnum, useLoginStateContext } from './useLogin';
+import { LoginStateEnum, useLoginStateContext } from './providers/LoginStateProvider';
 
 function ResetForm() {
   const onFinish = (values: any) => {

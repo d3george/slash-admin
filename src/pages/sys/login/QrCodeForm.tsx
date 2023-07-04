@@ -2,7 +2,7 @@ import { QRCode } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { ReturnButton } from './components/ReturnButton';
-import { LoginStateEnum, useLoginStateContext } from './useLogin';
+import { LoginStateEnum, useLoginStateContext } from './providers/LoginStateProvider';
 
 function QrCodeFrom() {
   const { t } = useTranslation();
