@@ -6,12 +6,12 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
-      xs: '400px',
-      sm: '640px',
+      xs: '480px',
+      sm: '576px',
       md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px',
+      lg: '992px',
+      xl: '1200px',
+      '2xl': '1600px',
     },
     fontFamily: {
       sans: ['Public Sans', 'sans-serif'],
@@ -26,7 +26,11 @@ export default {
       yellow: '#ffc82c',
       gray: '#637381',
     },
-    extend: {},
+    extend: {
+      transitionProperty: {
+        height: 'height',
+      },
+    },
   },
   // corePlugins: {
   //   preflight: false,

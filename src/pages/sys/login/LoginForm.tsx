@@ -1,4 +1,4 @@
-import { Button, Form, Input, Alert, Checkbox, Row, Col, Divider, notification } from 'antd';
+import { Alert, Button, Checkbox, Col, Divider, Form, Input, Row, notification } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from 'react-icons/ai';

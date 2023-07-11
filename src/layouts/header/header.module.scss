@@ -1,0 +1,11 @@
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1101;
+  width: calc(100% - 280px);
+  height: 80px;
+  background-color: rgb(255 255 255 / 80%);
+  backdrop-filter: blur(6px);
+  transition: height 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms
+}

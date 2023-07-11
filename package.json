@@ -17,6 +17,7 @@
     "@vitejs/plugin-react": "^4.0.0",
     "antd": "^5.6.1",
     "axios": "^1.4.0",
+    "classnames": "^2.3.2",
     "i18next": "^23.2.3",
     "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
+    "@types/classnames": "^2.3.1",
     "@types/ramda": "^0.29.3",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
@@ -58,6 +60,7 @@
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "rollup-plugin-visualizer": "^5.9.2",
+    "sass": "^1.63.6",
     "stylelint": "^15.7.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-rational-order": "^0.1.2",

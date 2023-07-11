@@ -2,10 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
-import userService, { SignInReq } from '@/api/services/userService';
+import userService, { SignInReq, SignInRes } from '@/api/services/userService';
 import { getItem, setItem } from '@/utils/storage';
 
-import { UserToken, UserInfo } from '#/entity';
+import { UserInfo, UserToken } from '#/entity';
 import { StorageEnum } from '#/enum';
 
 type UserStore = {
@@ -43,7 +43,17 @@ export const useSignIn = () => {
   const navigatge = useNavigate();
 
   const signIn = async (data: SignInReq) => {
-    const res = await signInMutation.mutateAsync(data);
+    // TODO: remove
+    let res: SignInRes = {
+      user: { id: '111', email: 'demo@admin.com', password: '123', username: 'admin' },
+      accessToken: 'admin',
+      refreshToken: 'admin',
+    };
+    try {
+      res = await signInMutation.mutateAsync(data);
+    } catch (error) {
+      console.log(error);
+    }
     const { user, accessToken, refreshToken } = res;
     setUserToken({ accessToken, refreshToken });
     setUserInfo(user);

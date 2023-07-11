@@ -26,7 +26,9 @@ const queryClient = new QueryClient({
     },
   },
 });
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(
   <React.StrictMode>
     {/* 提供 client 至 App */}
     <QueryClientProvider client={queryClient}>

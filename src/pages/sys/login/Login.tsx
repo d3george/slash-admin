@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
+import { Navigate } from 'react-router-dom';
 
 import { AppLocalePicker } from '@/components/app';
+import { useUserToken } from '@/store/userStore';
 
 import LoginForm from './LoginForm';
 import MobileForm from './MobileForm';
@@ -11,6 +13,13 @@ import ResetForm from './ResetForm';
 
 function Login() {
   const { t } = useTranslation();
+  const token = useUserToken();
+
+  // 判断用户是否有权限
+  if (token.accessToken) {
+    // 如果有授权，则跳转到首页
+    return <Navigate to="/dashboard" replace />;
+  }
   return (
     <main className="relative flex min-h-screen flex-row">
       <div
