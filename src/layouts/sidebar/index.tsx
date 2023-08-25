@@ -7,7 +7,10 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '@/assets/icons/ic-logo.svg';
 import { SvgIcon } from '@/components/icon';
 
-function Sidebar() {
+type SidebarProps = {
+  closeSideBarDrawer?: () => void;
+};
+function Sidebar(props: SidebarProps) {
   // submenu keys of first level
   const rootSubmenuKeys = ['management'];
   const { t } = useTranslation();
@@ -17,6 +20,7 @@ function Sidebar() {
   const [openKeys, setOpenKeys] = useState(['dashboard']);
   const [selectedKeys, setSelectedKeys] = useState(['dashboard']);
   useEffect(() => {
+    console.log(pathname);
     setSelectedKeys([pathname]);
   }, [pathname, openKeys]);
 
@@ -31,6 +35,7 @@ function Sidebar() {
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
     navigate(key);
+    props?.closeSideBarDrawer?.();
   };
 
   const menuList: ItemType[] = [
@@ -39,12 +44,12 @@ function Sidebar() {
       label: `${t('sys.menu.overview')}`,
       children: [
         {
-          key: 'dashboard',
+          key: '/dashboard',
           label: `${t('sys.menu.app')}`,
           icon: <SvgIcon icon="ic-dashboard" size="24" className="mr-4" />,
         },
         {
-          key: 'analytics',
+          key: '/analytics',
           label: `${t('sys.menu.analytics')}`,
           icon: <SvgIcon icon="ic-analytics" size="24" className="mr-4" />,
         },
@@ -55,12 +60,12 @@ function Sidebar() {
       label: `${t('sys.menu.management')}`,
       children: [
         {
-          key: 'user',
+          key: '/user',
           label: `${t('sys.menu.user')}`,
           icon: <SvgIcon icon="ic-user" size="24" className="mr-4" />,
         },
         {
-          key: 'blog',
+          key: '/blog',
           label: `${t('sys.menu.blog')}`,
           icon: <SvgIcon icon="ic-blog" size="24" className="mr-4" />,
         },
@@ -69,7 +74,7 @@ function Sidebar() {
   ];
 
   return (
-    <div className="hidden h-screen w-64 border-r-[1px] border-dashed  border-r-[#919eab33] duration-300 ease-linear lg:block">
+    <div className="h-screen w-64 border-r-[1px] border-dashed  border-r-[#919eab33] duration-300 ease-linear">
       {/* hidden when screen < lg */}
 
       {/* <!-- SIDEBAR HEADER --> */}
@@ -86,6 +91,7 @@ function Sidebar() {
           className="!border-none"
           defaultOpenKeys={openKeys}
           defaultSelectedKeys={selectedKeys}
+          selectedKeys={selectedKeys}
           onOpenChange={onOpenChange}
           onClick={onClick}
         />
