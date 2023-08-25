@@ -92,6 +92,7 @@ function Sidebar(props: SidebarProps) {
           defaultOpenKeys={openKeys}
           defaultSelectedKeys={selectedKeys}
           selectedKeys={selectedKeys}
+          openKeys={openKeys}
           onOpenChange={onOpenChange}
           onClick={onClick}
         />
