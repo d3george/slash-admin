@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 
+import DashboardImg from '@/assets/images/dashboard.png';
 import { AppLocalePicker } from '@/components/app';
 import { useUserToken } from '@/store/userStore';
 
@@ -32,7 +33,7 @@ function Login() {
         <h3 className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">
           {t('sys.login.signInPrimaryTitle')}
         </h3>
-        <img className="max-w-[720px]" src="/src/assets/illustration/dashboard.png" alt="" />
+        <img className="max-w-[720px]" src={DashboardImg} alt="" />
         <div className="flex flex-row gap-[16px] text-2xl">{t('sys.login.signInSecondTitle')}</div>
       </div>
 

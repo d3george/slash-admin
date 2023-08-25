@@ -71,6 +71,14 @@
       "registerAndAgree": "By signing up, I agree to",
       "termsOfService": " Terms of service ",
       "privacyPolicy": " Privacy policy "
+    },
+    "menu": {
+      "overview": "OVERVIEW",
+      "app": "APP",
+      "analytics": "Analytics",
+      "management": "MANAGEMENT",
+      "user": "User",
+      "blog": "Blog"
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Button, Dropdown } from 'antd';
+import { Dropdown } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -38,9 +38,9 @@ function AppLocalePicker() {
       key={locale}
       menu={{ items: localeList, onClick: handleLocaleChange }}
     >
-      <Button type="text" className="flex cursor-pointer items-center justify-center">
-        <SvgIcon icon={`ic-locale_${locale}`} size="20" />
-      </Button>
+      <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover">
+        <SvgIcon icon={`ic-locale_${locale}`} size="24" />
+      </button>
     </Dropdown>
   );
 }

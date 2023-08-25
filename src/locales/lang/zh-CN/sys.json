@@ -70,6 +70,14 @@
       "registerAndAgree": "注册即我同意",
       "termsOfService": " 服务条款 ",
       "privacyPolicy": " 隐私政策 "
+    },
+    "menu": {
+      "overview": "概览",
+      "app": "应用",
+      "analytics": "分析",
+      "management": "管理",
+      "user": "用户",
+      "blog": "博客"
     }
   }
 }

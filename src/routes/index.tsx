@@ -1,12 +1,20 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom';
 
-import Blog from '@/pages/Blog';
-import Dashboard from '@/pages/Dashboard';
-import Page404 from '@/pages/Page404';
-import Login from '@/pages/sys/login/Login';
-import User from '@/pages/User';
+import Loading from '@/components/app/Loading';
 
-import AuthenticatedRoute from './AuthenticatedRoute';
+const lazyLoad = (Component: any) => (
+  <Suspense fallback={<Loading />}>
+    <Component />
+  </Suspense>
+);
+
+const Blog = lazy(() => import('@/pages/Blog'));
+const Dashboard = lazy(() => import('@/pages/Dashboard'));
+const Page404 = lazy(() => import('@/pages/Page404'));
+const Login = lazy(() => import('@/pages/sys/login/Login'));
+const AuthenticatedRoute = lazy(() => import('./AuthenticatedRoute'));
+const User = lazy(() => import('@/pages/User'));
 
 const routesForPublic: RouteObject[] = [];
 const routesForAuthenticatedOnly: RouteObject[] = [
@@ -15,9 +23,9 @@ const routesForAuthenticatedOnly: RouteObject[] = [
     element: <AuthenticatedRoute />,
     children: [
       { path: '/', element: <Navigate to="/dashboard" replace /> },
-      { path: 'dashboard', element: <Dashboard />, index: true },
-      { path: 'user', element: <User /> },
-      { path: 'blog', element: <Blog /> },
+      { path: 'dashboard', element: lazyLoad(Dashboard), index: true },
+      { path: 'user', element: lazyLoad(User) },
+      { path: 'blog', element: lazyLoad(Blog) },
     ],
   },
   {
