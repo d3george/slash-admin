@@ -9,7 +9,7 @@ function BasicLayout() {
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
-        <div className="hidden lg:block">
+        <div className="hidden border-r-[1px] border-dashed border-r-[#919eab33]  lg:block">
           <Sidebar />
         </div>
         {/* <!-- ===== Sidebar End ===== --> */}

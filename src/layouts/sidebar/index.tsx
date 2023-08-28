@@ -1,4 +1,5 @@
 import { Menu, MenuProps } from 'antd';
+import Sider from 'antd/es/layout/Sider';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,13 +18,47 @@ function Sidebar(props: SidebarProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const [openKeys, setOpenKeys] = useState(['dashboard']);
-  const [selectedKeys, setSelectedKeys] = useState(['dashboard']);
+  const menuList: ItemType[] = [
+    {
+      key: '/dashboard',
+      label: `${t('sys.menu.app')}`,
+      icon: <SvgIcon icon="ic-dashboard" size="24" className="mr-6" />,
+    },
+    {
+      key: 'management',
+      label: `${t('sys.menu.management')}`,
+      icon: <SvgIcon icon="ic-dashboard" size="24" className="mr-6" />,
+      children: [
+        {
+          key: '/user',
+          label: `${t('sys.menu.user')}`,
+          icon: <SvgIcon icon="ic-user" size="24" className="mr-6" />,
+        },
+        {
+          key: '/blog',
+          label: `${t('sys.menu.blog')}`,
+          icon: <SvgIcon icon="ic-blog" size="24" className="mr-6" />,
+        },
+      ],
+    },
+  ];
+
+  /**
+   * state
+   */
+  const [collapsed, setCollapsed] = useState(false);
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>(['/dashboard']);
   useEffect(() => {
-    console.log(pathname);
     setSelectedKeys([pathname]);
   }, [pathname, openKeys]);
 
+  useEffect(() => {
+    console.log('created');
+  }, []);
+  /**
+   * events
+   */
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     if (latestOpenKey && rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
@@ -32,49 +67,22 @@ function Sidebar(props: SidebarProps) {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
-
   const onClick: MenuProps['onClick'] = ({ key }) => {
     navigate(key);
     props?.closeSideBarDrawer?.();
   };
-
-  const menuList: ItemType[] = [
-    {
-      key: 'overview',
-      label: `${t('sys.menu.overview')}`,
-      children: [
-        {
-          key: '/dashboard',
-          label: `${t('sys.menu.app')}`,
-          icon: <SvgIcon icon="ic-dashboard" size="24" className="mr-4" />,
-        },
-        {
-          key: '/analytics',
-          label: `${t('sys.menu.analytics')}`,
-          icon: <SvgIcon icon="ic-analytics" size="24" className="mr-4" />,
-        },
-      ],
-    },
-    {
-      key: 'management',
-      label: `${t('sys.menu.management')}`,
-      children: [
-        {
-          key: '/user',
-          label: `${t('sys.menu.user')}`,
-          icon: <SvgIcon icon="ic-user" size="24" className="mr-4" />,
-        },
-        {
-          key: '/blog',
-          label: `${t('sys.menu.blog')}`,
-          icon: <SvgIcon icon="ic-blog" size="24" className="mr-4" />,
-        },
-      ],
-    },
-  ];
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
 
   return (
-    <div className="h-screen w-64 border-r-[1px] border-dashed  border-r-[#919eab33] duration-300 ease-linear">
+    <Sider
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+      collapsedWidth={90}
+      className="relative h-screen w-64 duration-300 ease-linear"
+    >
       {/* hidden when screen < lg */}
 
       {/* <!-- SIDEBAR HEADER --> */}
@@ -84,7 +92,7 @@ function Sidebar(props: SidebarProps) {
       {/* <!-- SIDEBAR HEADER --> */}
 
       {/* <!-- Sidebar Menu --> */}
-      <div className="pl-4">
+      <div className="pl-2">
         <Menu
           mode="inline"
           items={menuList}
@@ -98,7 +106,18 @@ function Sidebar(props: SidebarProps) {
         />
       </div>
       {/* <!-- Sidebar Menu --> */}
-    </div>
+
+      <button
+        onClick={toggleCollapsed}
+        className="absolute right-0 top-0 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full border-[1px]  border-dashed border-[#919eab33] text-center lg:block"
+      >
+        {collapsed ? (
+          <SvgIcon icon="ic-right-arrow" size="16" />
+        ) : (
+          <SvgIcon icon="ic-left-arrow" size="16" />
+        )}
+      </button>
+    </Sider>
   );
 }
 export default Sidebar;
