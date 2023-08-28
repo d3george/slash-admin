@@ -20,7 +20,7 @@ function LoginForm() {
     setLoading(true);
     try {
       await signIn({ username, password });
-      notification.info({
+      notification.success({
         message: t('sys.login.loginSuccessTitle'),
         description: `${t('sys.login.loginSuccessDesc')}: ${username}`,
         duration: 3,
