@@ -3,10 +3,14 @@ import { useMatches } from 'react-router-dom';
 function BreadCrumb() {
   const matches = useMatches();
 
+  console.log('matchs', matches);
+
   return (
-    <div>
+    <div className="flex">
       {matches.map((match) => (
-        <div>{match.pathname}</div>
+        <div key={match.pathname} className="ml-3">
+          {match.pathname}
+        </div>
       ))}
     </div>
   );
