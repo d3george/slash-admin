@@ -72,9 +72,9 @@
       "privacyPolicy": " 隐私政策 "
     },
     "menu": {
-      "overview": "概览",
-      "app": "应用",
-      "analytics": "分析",
+      "dashboard": "仪表",
+      "workbench": "工作台",
+      "analysis": "分析",
       "management": "管理",
       "user": "用户",
       "blog": "博客"

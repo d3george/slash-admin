@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
+import Content from './content';
 import Header from './header';
 import Sidebar from './sidebar';
 
@@ -21,11 +22,9 @@ function BasicLayout() {
           {/* <!-- ===== Header End ===== --> */}
 
           {/* <!-- ===== Main Content Start ===== --> */}
-          <main>
-            <div>
-              <Outlet />
-            </div>
-          </main>
+          <Content>
+            <Outlet />
+          </Content>
           {/* <!-- ===== Main Content End ===== --> */}
         </div>
         {/* <!-- ===== Content Area End ===== --> */}

@@ -73,10 +73,10 @@
       "privacyPolicy": " Privacy policy "
     },
     "menu": {
-      "overview": "OVERVIEW",
-      "app": "APP",
-      "analytics": "Analytics",
-      "management": "MANAGEMENT",
+      "dashboard": "Dashboard",
+      "workbench": "Workbench",
+      "analysis": "Analysis",
+      "management": "Management",
       "user": "User",
       "blog": "Blog"
     }
