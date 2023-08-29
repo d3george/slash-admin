@@ -1,7 +1,9 @@
 import { RouteObject } from 'react-router-dom';
 
 export interface RouteMeta {
-  title?: string;
+  // unique
+  key: string;
+  title: string;
   icon?: string;
   // show in tab
   hideTab?: boolean;
@@ -10,7 +12,10 @@ export interface RouteMeta {
   // need to auth,
   auth?: boolean;
 }
-export type AppRouteObject = RouteObject & {
+export type AppRouteObject = {
+  index?: boolean;
+  path?: RouteObject['path'];
+  element?: RouteObject['element'];
   children?: AppRouteObject[];
   meta?: RouteMeta;
 };
