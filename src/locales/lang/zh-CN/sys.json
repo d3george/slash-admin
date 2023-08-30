@@ -69,7 +69,8 @@
 
       "registerAndAgree": "注册即我同意",
       "termsOfService": " 服务条款 ",
-      "privacyPolicy": " 隐私政策 "
+      "privacyPolicy": " 隐私政策 ",
+      "logout": "退出"
     },
     "menu": {
       "dashboard": "仪表",
