@@ -7,10 +7,13 @@ import { SvgIcon } from '../icon';
 import type { MenuProps } from 'antd';
 
 type Locale = 'zh' | 'en';
+
+/**
+ * Locale Picker
+ */
 function AppLocalePicker() {
   const { i18n } = useTranslation();
   const [locale, setLocale] = useState<Locale>(() => {
-    // 获取当前语言
     return i18n.resolvedLanguage as Locale;
   });
 
@@ -28,7 +31,6 @@ function AppLocalePicker() {
   ];
   const handleLocaleChange: MenuProps['onClick'] = ({ key }) => {
     setLocale(key as Locale);
-    // 切换语言
     i18n.changeLanguage(key);
   };
   return (
@@ -38,7 +40,7 @@ function AppLocalePicker() {
       key={locale}
       menu={{ items: localeList, onClick: handleLocaleChange }}
     >
-      <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover">
+      <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover">
         <SvgIcon icon={`ic-locale_${locale}`} size="24" />
       </button>
     </Dropdown>

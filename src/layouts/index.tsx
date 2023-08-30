@@ -1,3 +1,4 @@
+import { theme } from 'antd';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
@@ -10,6 +11,9 @@ import Sidebar from './sidebar';
 function BasicLayout() {
   const [isLoading, setIsLoading] = useState(false);
   const { pathname } = useLocation();
+  const {
+    token: { colorBgBase },
+  } = theme.useToken();
 
   useEffect(() => {
     setTimeout(() => {
@@ -27,9 +31,9 @@ function BasicLayout() {
       <Progress isAnimating={isLoading} />
 
       {/* <!-- ===== Page Wrapper Start ===== --> */}
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex h-screen overflow-hidden" style={{ background: colorBgBase }}>
         {/* <!-- ===== Sidebar Start ===== --> */}
-        <div className="hidden border-r-[1px] border-dashed border-r-[#919eab33]  lg:block">
+        <div className="hidden lg:block">
           <Sidebar />
         </div>
         {/* <!-- ===== Sidebar End ===== --> */}

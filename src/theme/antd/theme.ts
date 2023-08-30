@@ -1,8 +1,9 @@
 import { ThemeConfig } from 'antd';
 
-const theme: ThemeConfig = {
+import { ThemeColorPresets } from '#/enum';
+
+const customAntdTheme: ThemeConfig = {
   token: {
-    colorPrimary: '#00a76f',
     colorSuccess: '#22c55e',
     colorWarning: '#ffab00',
     colorError: '#ff5630',
@@ -11,11 +12,17 @@ const theme: ThemeConfig = {
     wireframe: false,
     borderRadius: 4,
   },
-  components: {
-    Menu: {
-      controlItemBgActive: 'rgba(0, 234, 112, 0.08)',
-    },
-  },
 };
 
-export { theme };
+const colorPrimarys: {
+  [k in ThemeColorPresets]: string;
+} = {
+  default: '#00a76f',
+  cyan: '#078DEE',
+  purple: '#7635DC',
+  blue: '#2065D1',
+  orange: '#FDA92D',
+  red: '#FF3030',
+};
+
+export { customAntdTheme, colorPrimarys };

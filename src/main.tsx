@@ -1,7 +1,5 @@
-import { StyleProvider } from '@ant-design/cssinjs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ConfigProvider } from 'antd';
 import ReactDOM from 'react-dom/client';
 // eslint-disable-next-line import/no-unresolved
 import 'virtual:svg-icons-register';
@@ -9,7 +7,6 @@ import 'virtual:svg-icons-register';
 import App from '@/App';
 
 import './locales/i18n';
-import { theme } from './theme/antd/theme';
 import './theme/index.css';
 
 // 创建一个 client
@@ -30,10 +27,6 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={false} />
-    <ConfigProvider theme={theme}>
-      <StyleProvider hashPriority="high">
-        <App />
-      </StyleProvider>
-    </ConfigProvider>
+    <App />
   </QueryClientProvider>,
 );
