@@ -1,12 +1,31 @@
-import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+
+import { Progress } from '@/components/app';
 
 import Content from './content';
 import Header from './header';
 import Sidebar from './sidebar';
 
 function BasicLayout() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 50);
+    return () => setIsLoading(true);
+  }, [pathname]);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, []);
+
   return (
     <div>
+      <Progress isAnimating={isLoading} />
+
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
