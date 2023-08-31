@@ -2,6 +2,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import { Button, Card, Drawer, theme } from 'antd';
 import { CSSProperties, useState } from 'react';
 import { MdCircle } from 'react-icons/md';
+import screenfull from 'screenfull';
 
 import CyanBlur from '@/assets/images/cyan-blur.png';
 import RedBlur from '@/assets/images/red-blur.png';
@@ -52,8 +53,15 @@ function Settings() {
     padding: 0,
   };
 
+  const [isFullscreen, setIsFullscreen] = useState(screenfull.isFullscreen);
+  const toggleFullScreen = () => {
+    if (screenfull.isEnabled) {
+      screenfull.toggle();
+      setIsFullscreen(!isFullscreen);
+    }
+  };
   return (
-    <>
+    <button>
       <div className="animate-spin-slow">
         <button
           onClick={() => setDrawerOpen(true)}
@@ -81,8 +89,24 @@ function Settings() {
           </button>
         }
         footer={
-          <Button type="dashed" block size="large">
-            <span className="text-gray-400">FullScreen</span>
+          <Button type="dashed" block size="large" onClick={toggleFullScreen}>
+            <div className="flex items-center justify-center">
+              {isFullscreen ? (
+                <>
+                  <SvgIcon
+                    icon="ic-settings-exit-fullscreen"
+                    color={colorPrimary}
+                    className="!m-0"
+                  />
+                  <span className="ml-2">Exit FullScreen</span>
+                </>
+              ) : (
+                <>
+                  <SvgIcon icon="ic-settings-fullscreen" className="!m-0" />
+                  <span className="ml-2 text-gray">FullScreen</span>
+                </>
+              )}
+            </div>
           </Button>
         }
       >
@@ -136,7 +160,7 @@ function Settings() {
           </div>
         </div>
       </Drawer>
-    </>
+    </button>
   );
 }
 export default Settings;
