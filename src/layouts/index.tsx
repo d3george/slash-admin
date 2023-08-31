@@ -1,11 +1,11 @@
 import { theme } from 'antd';
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { Progress } from '@/components/app';
 import { useSettings } from '@/store/settingStore';
 
-import Content from './content';
+import ProContent from './content';
 import Header from './header';
 import Sidebar from './sidebar';
 import TopMenu from './sidebar/TopMenu';
@@ -16,7 +16,7 @@ function BasicLayout() {
   const [isLoading, setIsLoading] = useState(false);
   const { pathname } = useLocation();
   const {
-    token: { colorBgBase },
+    token: { colorBgBase, colorTextBase },
   } = theme.useToken();
 
   const { themeLayout } = useSettings();
@@ -33,11 +33,15 @@ function BasicLayout() {
   }, []);
 
   return (
-    <div>
+    <>
       <Progress isAnimating={isLoading} />
 
       {/* <!-- ===== Page Wrapper Start ===== --> */}
-      <div className="flex h-screen overflow-hidden" style={{ background: colorBgBase }}>
+      <div
+        className="flex h-screen overflow-hidden"
+        style={{ background: colorBgBase, color: colorTextBase }}
+      >
+        {/* <div className="flex h-screen overflow-hidden"> */}
         {/* <!-- ===== Sidebar Start ===== --> */}
         {themeLayout !== ThemeLayout.Horizontal ? (
           <div className="hidden lg:block">
@@ -55,15 +59,13 @@ function BasicLayout() {
           {themeLayout === ThemeLayout.Horizontal ? <TopMenu /> : null}
 
           {/* <!-- ===== Main Content Start ===== --> */}
-          <Content>
-            <Outlet />
-          </Content>
+          <ProContent />
           {/* <!-- ===== Main Content End ===== --> */}
         </div>
         {/* <!-- ===== Content Area End ===== --> */}
       </div>
       {/* <!-- ===== Page Wrapper End ===== --> */}
-    </div>
+    </>
   );
 }
 export default BasicLayout;

@@ -1,5 +1,5 @@
 function Workbench() {
-  return <div>dashboard</div>;
+  return <div>dashboard helloworld</div>;
 }
 
 export default Workbench;
