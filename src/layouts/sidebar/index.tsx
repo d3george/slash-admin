@@ -17,14 +17,14 @@ import { AppRouteObject } from '#/router';
 type SidebarProps = {
   closeSideBarDrawer?: () => void;
 };
-function Sidebar(props: SidebarProps) {
+function ProSider(props: SidebarProps) {
   const navigate = useNavigate();
   const matches = useMatches();
   const { pathname } = useLocation();
   const { t } = useTranslation();
 
   const {
-    token: { colorTextBase },
+    token: { colorTextBase, colorPrimary },
   } = theme.useToken();
 
   const settings = useSettings();
@@ -63,12 +63,14 @@ function Sidebar(props: SidebarProps) {
   const [menuMode, setMenuMode] = useState<MenuProps['mode']>('inline');
 
   useEffect(() => {
-    const openKeys = matches
-      .filter((match) => match.pathname !== '/')
-      .map((match) => match.pathname);
-    setOpenKeys(openKeys);
+    if (themeLayout === ThemeLayout.Vertical) {
+      const openKeys = matches
+        .filter((match) => match.pathname !== '/')
+        .map((match) => match.pathname);
+      setOpenKeys(openKeys);
+    }
     setSelectedKeys([pathname]);
-  }, [pathname, matches, collapsed]);
+  }, [pathname, matches, collapsed, themeLayout]);
 
   useEffect(() => {
     const menuRoutes = getMenuRoutes();
@@ -120,40 +122,49 @@ function Sidebar(props: SidebarProps) {
   };
 
   return (
-    <Sider
-      trigger={null}
-      collapsible
-      collapsed={collapsed}
-      collapsedWidth={90}
-      className="relative h-screen duration-300 ease-linear"
-    >
-      {/* hidden when screen < lg */}
-
-      <div className="h-screen">
-        <Logo className="mb-2 ml-8 mt-6 h-10 w-10" />
-
-        {/* <!-- Sidebar Menu --> */}
-        <Menu
-          mode={menuMode}
-          items={menuList}
-          className="h-full !border-none"
-          defaultOpenKeys={openKeys}
-          defaultSelectedKeys={selectedKeys}
-          selectedKeys={selectedKeys}
-          openKeys={openKeys}
-          onOpenChange={onOpenChange}
-          onClick={onClick}
-        />
-        {/* <!-- Sidebar Menu --> */}
+    <>
+      <div className="relative flex h-20 w-full items-center justify-center">
+        <Logo className="h-10 w-10" />
+        {themeLayout !== ThemeLayout.Mini ? (
+          <h1 className="ml-2 text-base font-semibold" style={{ color: colorPrimary }}>
+            Slash Admin
+          </h1>
+        ) : null}{' '}
+        <button
+          onClick={toggleCollapsed}
+          className="absolute right-0 top-6 z-10 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
+          style={{ color: colorTextBase, borderColor: colorTextBase }}
+        >
+          {collapsed ? <MenuUnfoldOutlined size={16} /> : <MenuFoldOutlined size={16} />}
+        </button>
       </div>
-      <button
-        onClick={toggleCollapsed}
-        className="absolute right-0 top-0 z-10 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
-        style={{ color: colorTextBase, borderColor: colorTextBase }}
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        collapsedWidth={90}
+        className="duration-300 ease-linear"
       >
-        {collapsed ? <MenuUnfoldOutlined size={16} /> : <MenuFoldOutlined size={16} />}
-      </button>
-    </Sider>
+        {/* hidden when screen < lg */}
+
+        <div className="h-full">
+          {/* <!-- Sidebar Menu --> */}
+          <Menu
+            mode={menuMode}
+            items={menuList}
+            className="!border-none"
+            defaultOpenKeys={openKeys}
+            defaultSelectedKeys={selectedKeys}
+            selectedKeys={selectedKeys}
+            openKeys={openKeys}
+            onOpenChange={onOpenChange}
+            onClick={onClick}
+            inlineCollapsed={false}
+          />
+          {/* <!-- Sidebar Menu --> */}
+        </div>
+      </Sider>
+    </>
   );
 }
-export default Sidebar;
+export default ProSider;

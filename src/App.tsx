@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from '@/router';
 
 import { useSettings } from './store/settingStore';
-import { colorPrimarys, customAntdTheme } from './theme/antd/theme';
+import { colorPrimarys, customAntdTheme, baseColor } from './theme/antd/theme';
 
 import { ThemeMode } from '#/enum';
 
@@ -18,7 +18,12 @@ function App() {
   const colorPrimary = colorPrimarys[themeColorPresets];
 
   return (
-    <ConfigProvider theme={{ token: { ...customAntdTheme.token, colorPrimary }, algorithm }}>
+    <ConfigProvider
+      theme={{
+        token: { ...customAntdTheme.token, colorPrimary, ...baseColor[themeMode] },
+        algorithm,
+      }}
+    >
       <StyleProvider hashPriority="high">
         <RouterProvider router={router} />
       </StyleProvider>

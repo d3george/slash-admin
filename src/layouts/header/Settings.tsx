@@ -19,7 +19,7 @@ const { useToken } = theme;
 function Settings() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const {
-    token: { colorPrimary, colorPrimaryBg, colorTextSecondary },
+    token: { colorPrimary, colorBgBase, colorTextSecondary },
   } = useToken();
 
   const settings = useSettings();
@@ -70,7 +70,7 @@ function Settings() {
 
   const layoutBackground = (layout: ThemeLayout) =>
     themeLayout === layout
-      ? `linear-gradient(135deg, ${colorPrimaryBg} 0%, ${colorPrimary} 100%)`
+      ? `linear-gradient(135deg, ${colorBgBase} 0%, ${colorPrimary} 100%)`
       : '#919eab';
 
   return (

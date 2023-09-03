@@ -1,36 +1,28 @@
-import { Drawer } from 'antd';
-import { CSSProperties, useState } from 'react';
+import { Drawer, theme } from 'antd';
+import { useState } from 'react';
 
-import CyanBlur from '@/assets/images/cyan-blur.png';
-import RedBlur from '@/assets/images/red-blur.png';
 import { AppLocalePicker } from '@/components/app';
 import Logo from '@/components/app/Logo';
 import { SvgIcon } from '@/components/icon';
 import { useSettings } from '@/store/settingStore';
 
-import Sidebar from '../sidebar';
+import ProSider from '../sidebar';
 
 import Settings from './Settings';
 import UserAvatar from './UserAvatar';
 
 import { ThemeLayout } from '#/enum';
 
-function Header() {
+function ProHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
+  const {
+    token: { colorBgBase },
+  } = theme.useToken();
 
-  const style: CSSProperties = {
-    backdropFilter: 'blur(20px)',
-    backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
-    backgroundRepeat: 'no-repeat, no-repeat',
-    backgroundPosition: 'right top, left bottom',
-    backgroundSize: '50, 50%',
-    transform: 'none',
-    transition: 'transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
-  };
   return (
     <>
-      <header className="bg-white sticky top-0 w-full">
+      <header className="bg-white sticky top-0 h-20 w-full" style={{ background: colorBgBase }}>
         <div className="shadow-2 flex flex-grow items-center justify-between px-4 py-4 text-gray md:px-6 2xl:px-11">
           <div className="flex items-center">
             {/* hidden when screen widht > lg, when click show Sidebar Drawer */}
@@ -68,12 +60,11 @@ function Header() {
         closeIcon={false}
         headerStyle={{ display: 'none' }}
         bodyStyle={{ padding: 0 }}
-        style={style}
         width="auto"
       >
-        <Sidebar closeSideBarDrawer={() => setDrawerOpen(false)} />
+        <ProSider closeSideBarDrawer={() => setDrawerOpen(false)} />
       </Drawer>
     </>
   );
 }
-export default Header;
+export default ProHeader;
