@@ -39,14 +39,6 @@ function BreadCrumb() {
     const paths = matches.filter((item) => item.pathname !== '/').map((item) => item.pathname);
 
     const pathRouteMetas = flattenedRoutes.filter((item) => paths.indexOf(item.key) !== -1);
-    // const rootRouteMeta = {
-    //   key: '/',
-    //   href: '',
-    //   title: t('sys.menu.dashboard'),
-    // };
-    // if (paths.indexOf('/dashboard') === -1) {
-    //   pathRouteMetas.unshift(rootRouteMeta);
-    // }
 
     const breadCrumbs = pathRouteMetas.map((routeMeta) => {
       const { key, title } = routeMeta;

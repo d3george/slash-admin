@@ -16,7 +16,7 @@ function BasicLayout() {
   const [isLoading, setIsLoading] = useState(false);
   const { pathname } = useLocation();
   const {
-    token: { colorBgElevated },
+    token: { colorBgElevated, colorTextBase },
   } = theme.useToken();
 
   const { themeLayout } = useSettings();
@@ -53,7 +53,12 @@ function BasicLayout() {
         {/* <!-- ===== Sidebar End ===== --> */}
 
         {/* <!-- ===== Content Area Start ===== --> */}
-        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <div
+          className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+          style={{
+            color: colorTextBase,
+          }}
+        >
           {/* <!-- ===== Header Start ===== --> */}
           <ProHeader />
           {/* <!-- ===== Header End ===== --> */}

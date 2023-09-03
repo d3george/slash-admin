@@ -159,7 +159,6 @@ function ProSider(props: SidebarProps) {
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             onClick={onClick}
-            inlineCollapsed={false}
           />
           {/* <!-- Sidebar Menu --> */}
         </div>
