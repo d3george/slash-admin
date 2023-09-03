@@ -2,7 +2,7 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Menu, MenuProps, theme } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
-import { useCallback, useEffect, useState } from 'react';
+import { CSSProperties, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
@@ -24,13 +24,16 @@ function ProSider(props: SidebarProps) {
   const { t } = useTranslation();
 
   const {
-    token: { colorTextBase, colorPrimary },
+    token: { colorTextBase, colorPrimary, colorBgElevated },
   } = theme.useToken();
 
   const settings = useSettings();
   const { themeLayout } = settings;
   const { setSettings } = useSettingActions();
 
+  const menuStyle: CSSProperties = {
+    background: colorBgElevated,
+  };
   // router -> menu
   const routeToMenu = useCallback(
     (items: AppRouteObject[]) => {
@@ -142,7 +145,7 @@ function ProSider(props: SidebarProps) {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        collapsedWidth={90}
+        collapsedWidth={100}
         className="duration-300 ease-linear"
       >
         {/* hidden when screen < lg */}
@@ -159,6 +162,7 @@ function ProSider(props: SidebarProps) {
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             onClick={onClick}
+            style={menuStyle}
           />
           {/* <!-- Sidebar Menu --> */}
         </div>

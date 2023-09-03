@@ -1,6 +1,6 @@
-import { Menu, MenuProps } from 'antd';
+import { Menu, MenuProps, theme } from 'antd';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect, CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 
@@ -14,7 +14,9 @@ function TopMenu() {
   const matches = useMatches();
   const { pathname } = useLocation();
   const { t } = useTranslation();
-
+  const {
+    token: { colorBgElevated },
+  } = theme.useToken();
   // router -> menu
   const routeToMenu = useCallback(
     (items: AppRouteObject[]) => {
@@ -69,18 +71,33 @@ function TopMenu() {
     navigate(key);
   };
 
+  const menuStyle: CSSProperties = {
+    background: colorBgElevated,
+  };
+  const shadowStyle: CSSProperties = {
+    margin: 'auto',
+    height: '24px',
+    borderRadius: '50%',
+    opacity: 0.48,
+    width: 'calc(100% - 48px)',
+    boxShadow: `#919eab29 0px 8px 16px 0px`,
+  };
   return (
-    <Menu
-      mode="horizontal"
-      items={menuList}
-      className="!border-none"
-      defaultOpenKeys={openKeys}
-      defaultSelectedKeys={selectedKeys}
-      selectedKeys={selectedKeys}
-      openKeys={openKeys}
-      onOpenChange={onOpenChange}
-      onClick={onClick}
-    />
+    <div className="relative mx-6">
+      <Menu
+        mode="horizontal"
+        items={menuList}
+        className="!border-none"
+        defaultOpenKeys={openKeys}
+        defaultSelectedKeys={selectedKeys}
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
+        onClick={onClick}
+        style={menuStyle}
+      />
+      <div className="absolute bottom-[-2px] left-0 right-0" style={shadowStyle} />
+    </div>
   );
 }
 

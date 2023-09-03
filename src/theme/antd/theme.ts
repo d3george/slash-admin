@@ -14,6 +14,7 @@ const customAntdTheme: ThemeConfig = {
     wireframe: false,
     borderRadius: 4,
   },
+  components: {},
 };
 
 const colorPrimarys: {
@@ -28,7 +29,11 @@ const colorPrimarys: {
 };
 
 const baseColor = {
-  dark: {},
+  dark: {
+    colorBgLayout: '#161c24',
+    colorBgContainer: '#212b36',
+    colorBgElevated: '#161c24',
+  },
   light: {},
 };
 

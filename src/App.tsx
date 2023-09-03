@@ -21,6 +21,7 @@ function App() {
     <ConfigProvider
       theme={{
         token: { ...customAntdTheme.token, colorPrimary, ...baseColor[themeMode] },
+        components: { ...customAntdTheme.components },
         algorithm,
       }}
     >

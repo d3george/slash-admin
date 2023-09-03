@@ -57,6 +57,7 @@ function BasicLayout() {
           className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
           style={{
             color: colorTextBase,
+            background: colorBgElevated,
           }}
         >
           {/* <!-- ===== Header Start ===== --> */}
