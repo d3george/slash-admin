@@ -1,8 +1,7 @@
-import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
-import userService, { SignInReq } from '@/api/services/userService';
+import { SignInReq } from '@/api/services/userService';
 import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserInfo, UserToken } from '#/entity';
@@ -43,12 +42,25 @@ export const useUserToken = () => useUserStore((state) => state.userToken);
 export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
-  const { setUserToken, setUserInfo } = useUserActions();
-  const signInMutation = useMutation(userService.signin);
   const navigatge = useNavigate();
+  const { setUserToken, setUserInfo } = useUserActions();
+
+  // const signInMutation = useMutation(userService.signin);
 
   const signIn = async (data: SignInReq) => {
-    const res = await signInMutation.mutateAsync(data);
+    // const res = await signInMutation.mutateAsync(data);
+    console.log(data);
+    const res = {
+      user: {
+        id: '996061ef-c4db-474e-a379-001efb36aeba',
+        email: '317010370@qq.com',
+        username: 'dsying',
+        createdAt: '2023-08-28T00:21:42.270Z',
+        updatedAt: '2023-08-28T03:49:46.000Z',
+      },
+      accessToken: 'accessToken',
+      refreshToken: 'refreshToken',
+    };
     const { user, accessToken, refreshToken } = res;
     setUserToken({ accessToken, refreshToken });
     setUserInfo(user);
