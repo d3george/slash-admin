@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 
 import DashboardImg from '@/assets/images/dashboard.png';
-import { AppLocalePicker } from '@/components/app';
+import LocalePicker from '@/components/locale-picker';
 import { useUserToken } from '@/store/userStore';
 
 import LoginForm from './LoginForm';
@@ -48,7 +48,7 @@ function Login() {
       </div>
 
       <div className="absolute right-0 top-0">
-        <AppLocalePicker />
+        <LocalePicker />
       </div>
     </main>
   );

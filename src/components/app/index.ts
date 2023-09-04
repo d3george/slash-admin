@@ -1,1 +1,0 @@
-export { AppLocalePicker } from './AppLocalePicker';

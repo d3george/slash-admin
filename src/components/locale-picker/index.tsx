@@ -11,7 +11,7 @@ type Locale = 'zh' | 'en';
 /**
  * Locale Picker
  */
-export function AppLocalePicker() {
+export default function LocalePicker() {
   const { i18n } = useTranslation();
   const [locale, setLocale] = useState<Locale>(() => {
     return i18n.resolvedLanguage as Locale;
