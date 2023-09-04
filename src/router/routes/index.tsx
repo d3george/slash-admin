@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import AuthRouter from './AuthRouter';
+import AuthRouter from '../components/AuthRouter';
 
 import { AppRouteObject } from '#/router';
 
