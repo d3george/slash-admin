@@ -1,15 +1,13 @@
-import { theme } from 'antd';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { useEffect, useState } from 'react';
 
 import { usePathname } from '@/router/hooks';
+import { useThemeToken } from '@/theme/hooks';
 
 export default function ProgressBar() {
   const pathname = usePathname();
-  const {
-    token: { colorPrimary },
-  } = theme.useToken();
+  const { colorPrimary } = useThemeToken();
 
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);

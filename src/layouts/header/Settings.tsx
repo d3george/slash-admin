@@ -1,5 +1,5 @@
 import { CloseOutlined } from '@ant-design/icons';
-import { Button, Card, Drawer, theme } from 'antd';
+import { Button, Card, Drawer } from 'antd';
 import { CSSProperties, useState } from 'react';
 import { MdCircle } from 'react-icons/md';
 import screenfull from 'screenfull';
@@ -9,18 +9,16 @@ import RedBlur from '@/assets/images/red-blur.png';
 import { SvgIcon } from '@/components/icon';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { colorPrimarys } from '@/theme/antd/theme';
+import { useThemeToken } from '@/theme/hooks';
 
 import { ThemeColorPresets, ThemeLayout, ThemeMode } from '#/enum';
 
-const { useToken } = theme;
 /**
  * App Setting
  */
 function Settings() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const {
-    token: { colorPrimary, colorBgBase, colorTextSecondary },
-  } = useToken();
+  const { colorPrimary, colorBgBase, colorTextSecondary } = useThemeToken();
 
   const settings = useSettings();
   const { themeMode, themeColorPresets, themeLayout } = settings;

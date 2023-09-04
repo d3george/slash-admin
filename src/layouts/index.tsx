@@ -1,7 +1,8 @@
-import { Layout, theme } from 'antd';
+import { Layout } from 'antd';
 
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
+import { useThemeToken } from '@/theme/hooks';
 
 import ProContent from './content';
 import ProHeader from './header';
@@ -11,9 +12,7 @@ import TopMenu from './sidebar/TopMenu';
 import { ThemeLayout } from '#/enum';
 
 function BasicLayout() {
-  const {
-    token: { colorBgElevated, colorTextBase },
-  } = theme.useToken();
+  const { colorBgElevated, colorTextBase } = useThemeToken();
 
   const { themeLayout } = useSettings();
 

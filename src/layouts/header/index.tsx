@@ -1,10 +1,11 @@
-import { Drawer, theme } from 'antd';
+import { Drawer } from 'antd';
 import { useState } from 'react';
 
 import { AppLocalePicker } from '@/components/app';
 import Logo from '@/components/app/Logo';
 import { SvgIcon } from '@/components/icon';
 import { useSettings } from '@/store/settingStore';
+import { useThemeToken } from '@/theme/hooks';
 
 import ProSider from '../sidebar';
 
@@ -16,9 +17,7 @@ import { ThemeLayout } from '#/enum';
 function ProHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
-  const {
-    token: { colorBgElevated },
-  } = theme.useToken();
+  const { colorBgElevated } = useThemeToken();
 
   return (
     <>

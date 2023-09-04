@@ -1,4 +1,4 @@
-import { Menu, MenuProps, theme } from 'antd';
+import { Menu, MenuProps } from 'antd';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback, useState, useEffect, CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,6 +6,7 @@ import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 
 import { SvgIcon } from '@/components/icon';
 import { getMenuRoutes } from '@/router/menus';
+import { useThemeToken } from '@/theme/hooks';
 
 import { AppRouteObject } from '#/router';
 
@@ -14,9 +15,8 @@ function TopMenu() {
   const matches = useMatches();
   const { pathname } = useLocation();
   const { t } = useTranslation();
-  const {
-    token: { colorBgElevated },
-  } = theme.useToken();
+
+  const { colorBgElevated } = useThemeToken();
   // router -> menu
   const routeToMenu = useCallback(
     (items: AppRouteObject[]) => {

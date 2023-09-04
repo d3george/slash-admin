@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { Divider, MenuProps, theme } from 'antd';
+import { Divider, MenuProps } from 'antd';
 import Dropdown, { DropdownProps } from 'antd/es/dropdown/dropdown';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,14 +8,12 @@ import { NavLink } from 'react-router-dom';
 import userService from '@/api/services/userService';
 import { useLoginStateContext } from '@/pages/sys/login/providers/LoginStateProvider';
 import { useUserInfo, useUserActions } from '@/store/userStore';
-
-const { useToken } = theme;
+import { useThemeToken } from '@/theme/hooks';
 
 /**
  * User Avatar Dropdown
  */
 function UserAvatar() {
-  const { token } = useToken();
   const { username, email } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
   const logoutMutation = useMutation(userService.logout);
@@ -30,11 +28,12 @@ function UserAvatar() {
     clearUserInfoAndToken();
     backToLogin();
   };
+  const { colorBgElevated, borderRadiusLG, boxShadowSecondary } = useThemeToken();
 
   const contentStyle: React.CSSProperties = {
-    backgroundColor: token.colorBgElevated,
-    borderRadius: token.borderRadiusLG,
-    boxShadow: token.boxShadowSecondary,
+    backgroundColor: colorBgElevated,
+    borderRadius: borderRadiusLG,
+    boxShadow: boxShadowSecondary,
   };
 
   const menuStyle: React.CSSProperties = {
