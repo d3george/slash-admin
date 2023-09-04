@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 // eslint-disable-next-line import/no-unresolved
 import 'virtual:svg-icons-register';
@@ -27,6 +28,8 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={false} />
-    <App />
+    <Suspense>
+      <App />
+    </Suspense>
   </QueryClientProvider>,
 );

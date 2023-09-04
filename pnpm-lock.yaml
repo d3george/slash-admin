@@ -7,9 +7,6 @@ dependencies:
   '@ant-design/icons':
     specifier: ^5.2.5
     version: 5.2.5(react-dom@18.2.0)(react@18.2.0)
-  '@tanem/react-nprogress':
-    specifier: ^5.0.48
-    version: 5.0.48(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-query':
     specifier: ^4.29.14
     version: 4.29.14(react-dom@18.2.0)(react@18.2.0)
@@ -37,6 +34,9 @@ dependencies:
   i18next-http-backend:
     specifier: ^2.2.1
     version: 2.2.1
+  nprogress:
+    specifier: ^0.2.0
+    version: 0.2.0
   ramda:
     specifier: ^0.29.0
     version: 0.29.0
@@ -75,6 +75,9 @@ devDependencies:
   '@types/classnames':
     specifier: ^2.3.1
     version: 2.3.1
+  '@types/nprogress':
+    specifier: ^0.2.0
+    version: 0.2.0
   '@types/ramda':
     specifier: ^0.29.3
     version: 0.29.3
@@ -1085,18 +1088,6 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /@tanem/react-nprogress@5.0.48(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-lmP6FKoGC7i77XBQkN5meD0fgL64KbRWdXVn/0O2hcDra9rx8EIvwidlUdDjaD2q8CqB58sXru8BSEieZysWCg==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.22.10
-      hoist-non-react-statics: 3.3.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
   /@tanstack/match-sorter-utils@8.8.4:
     resolution: {integrity: sha512-rKH8LjZiszWEvmi01NR72QWZ8m4xmXre0OOwlRGnjU01Eqz/QnN+cqpty2PJ0efHblq09+KilvyR7lsbzmXVEw==}
     engines: {node: '>=12'}
@@ -1205,6 +1196,10 @@ packages:
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/nprogress@0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
     dev: true
 
   /@types/prop-types@15.7.5:
@@ -3700,12 +3695,6 @@ packages:
     hasBin: true
     dev: true
 
-  /hoist-non-react-statics@3.3.2:
-    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
-    dependencies:
-      react-is: 16.13.1
-    dev: false
-
   /hosted-git-info@2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
     dev: true
@@ -4906,6 +4895,10 @@ packages:
     dependencies:
       path-key: 4.0.0
     dev: true
+
+  /nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
 
   /nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
