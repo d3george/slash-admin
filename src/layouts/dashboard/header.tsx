@@ -2,12 +2,12 @@ import { Drawer } from 'antd';
 import { useState } from 'react';
 
 import { SvgIcon } from '@/components/icon';
+import LocalePicker from '@/components/locale-picker';
 import Logo from '@/components/logo';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
 import AccountDropdown from '../_common/account-dropdown';
-import LanguageDropdown from '../_common/language-dropdown';
 import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/setting-button';
 
@@ -42,7 +42,7 @@ export default function Header() {
           </div>
 
           <div className="flex">
-            <LanguageDropdown />
+            <LocalePicker />
             <SettingButton />
             <AccountDropdown />
           </div>

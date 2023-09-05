@@ -1,11 +1,9 @@
-import { useMutation } from '@tanstack/react-query';
 import { Divider, MenuProps } from 'antd';
 import Dropdown, { DropdownProps } from 'antd/es/dropdown/dropdown';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import userService from '@/api/services/userService';
 import { useLoginStateContext } from '@/pages/sys/login/providers/LoginStateProvider';
 import { useUserInfo, useUserActions } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
@@ -16,12 +14,12 @@ import { useThemeToken } from '@/theme/hooks';
 export default function AccountDropdown() {
   const { username, email } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
-  const logoutMutation = useMutation(userService.logout);
   const { backToLogin } = useLoginStateContext();
   const { t } = useTranslation();
   const logout = () => {
     try {
-      logoutMutation.mutateAsync();
+      // todo const logoutMutation = useMutation(userService.logout);
+      // todo logoutMutation.mutateAsync();
     } catch (error) {
       console.log(error);
     }
