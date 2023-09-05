@@ -3,6 +3,8 @@ import { RouterProvider } from 'react-router-dom';
 import router from '@/router';
 import ThemeProvider from '@/theme';
 
+import { MotionLazy } from './components/animate/motion-lazy';
+
 function App() {
   const charAt = `
     ███████╗██╗      █████╗ ███████╗██╗  ██╗     █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
@@ -16,7 +18,9 @@ function App() {
 
   return (
     <ThemeProvider>
-      <RouterProvider router={router} />
+      <MotionLazy>
+        <RouterProvider router={router} />
+      </MotionLazy>
     </ThemeProvider>
   );
 }

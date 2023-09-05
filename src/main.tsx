@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 // eslint-disable-next-line import/no-unresolved
 import 'virtual:svg-icons-register';
 
@@ -26,10 +27,12 @@ const queryClient = new QueryClient({
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <ReactQueryDevtools initialIsOpen={false} />
-    <Suspense>
-      <App />
-    </Suspense>
-  </QueryClientProvider>,
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Suspense>
+        <App />
+      </Suspense>
+    </QueryClientProvider>
+  </HelmetProvider>,
 );
