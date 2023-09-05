@@ -2,19 +2,20 @@ import { Drawer } from 'antd';
 import { useState } from 'react';
 
 import { SvgIcon } from '@/components/icon';
-import LocalePicker from '@/components/locale-picker';
 import Logo from '@/components/logo';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
-import ProSider from '../sidebar';
+import AccountDropdown from '../_common/account-dropdown';
+import LanguageDropdown from '../_common/language-dropdown';
+import SearchBar from '../_common/search-bar';
+import SettingButton from '../_common/setting-button';
 
-import Settings from './Settings';
-import UserAvatar from './UserAvatar';
+import Nav from './nav';
 
 import { ThemeLayout } from '#/enum';
 
-function ProHeader() {
+export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
   const { colorBgElevated } = useThemeToken();
@@ -37,18 +38,13 @@ function ProHeader() {
               <Logo className="mr-4 h-10 w-10" />
             )}
 
-            <button className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full hover:bg-hover">
-              <SvgIcon icon="ic-search" size="20" />
-            </button>
-            <span className="flex h-6 cursor-pointer items-center justify-center rounded-md bg-hover px-2 py-0 text-xs font-bold">
-              ⌘K
-            </span>
+            <SearchBar />
           </div>
 
           <div className="flex">
-            <LocalePicker />
-            <Settings />
-            <UserAvatar />
+            <LanguageDropdown />
+            <SettingButton />
+            <AccountDropdown />
           </div>
         </div>
       </header>
@@ -61,9 +57,8 @@ function ProHeader() {
         bodyStyle={{ padding: 0 }}
         width="auto"
       >
-        <ProSider closeSideBarDrawer={() => setDrawerOpen(false)} />
+        <Nav closeSideBarDrawer={() => setDrawerOpen(false)} />
       </Drawer>
     </>
   );
 }
-export default ProHeader;

@@ -1,5 +1,7 @@
-import { lazy } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+
+import SimpleLayout from '@/layouts/simple';
 
 import AuthRouter from '../components/AuthRouter';
 
@@ -27,7 +29,21 @@ export const RootRoute: AppRouteObject = {
 };
 // login
 export const LoginRoute: AppRouteObject = { path: '/login', element: <Login /> };
-// 404
-export const PageNotFoundRoute: AppRouteObject = { path: '*', element: <Page404 /> };
+// error
+export const ErrorRoute: AppRouteObject = {
+  element: (
+    <SimpleLayout>
+      <Suspense>
+        <Outlet />
+      </Suspense>
+    </SimpleLayout>
+  ),
+  children: [{ path: '404', element: <Page404 /> }],
+};
 // Basic routing without permission
-export const asyncRoutes = [LoginRoute, RootRoute, PageNotFoundRoute];
+export const asyncRoutes = [
+  LoginRoute,
+  RootRoute,
+  ErrorRoute,
+  { path: '*', element: <Navigate to="/404" replace /> },
+];

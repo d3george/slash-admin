@@ -4,14 +4,14 @@ import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
-import ProContent from './content';
-import ProHeader from './header';
-import ProSider from './sidebar';
-import TopMenu from './sidebar/TopMenu';
+import Header from './header';
+import Main from './main';
+import Nav from './nav';
+import NavHorizontal from './nav-horizontal';
 
 import { ThemeLayout } from '#/enum';
 
-function BasicLayout() {
+function DashboardLayout() {
   const { colorBgElevated, colorTextBase } = useThemeToken();
 
   const { themeLayout } = useSettings();
@@ -30,7 +30,7 @@ function BasicLayout() {
               background: colorBgElevated,
             }}
           >
-            <ProSider />
+            <Nav />
           </div>
         ) : null}
         {/* <!-- ===== Sidebar End ===== --> */}
@@ -44,13 +44,13 @@ function BasicLayout() {
           }}
         >
           {/* <!-- ===== Header Start ===== --> */}
-          <ProHeader />
+          <Header />
           {/* <!-- ===== Header End ===== --> */}
 
-          {themeLayout === ThemeLayout.Horizontal ? <TopMenu /> : null}
+          {themeLayout === ThemeLayout.Horizontal ? <NavHorizontal /> : null}
 
           {/* <!-- ===== Main Content Start ===== --> */}
-          <ProContent />
+          <Main />
           {/* <!-- ===== Main Content End ===== --> */}
         </div>
         {/* <!-- ===== Content Area End ===== --> */}
@@ -59,4 +59,4 @@ function BasicLayout() {
     </>
   );
 }
-export default BasicLayout;
+export default DashboardLayout;

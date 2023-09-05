@@ -10,7 +10,7 @@ import { useThemeToken } from '@/theme/hooks';
 
 import { AppRouteObject } from '#/router';
 
-function TopMenu() {
+export default function NavHorizontal() {
   const navigate = useNavigate();
   const matches = useMatches();
   const { pathname } = useLocation();
@@ -100,5 +100,3 @@ function TopMenu() {
     </div>
   );
 }
-
-export default TopMenu;

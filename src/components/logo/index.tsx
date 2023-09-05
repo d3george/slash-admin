@@ -5,8 +5,8 @@ import { useThemeToken } from '@/theme/hooks';
 function Logo({ className = '' }: { className?: string }) {
   const { colorPrimary, colorPrimaryBg } = useThemeToken();
   return (
-    <NavLink to="/" className={className}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <NavLink to="/">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className={className}>
         <defs>
           <linearGradient id="BG1" x1="100%" x2="50%" y1="9.946%" y2="50%">
             <stop offset="0%" stopColor={colorPrimary} />

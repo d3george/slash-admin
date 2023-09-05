@@ -15,10 +15,10 @@ import { useThemeToken } from '@/theme/hooks';
 import { ThemeLayout } from '#/enum';
 import { AppRouteObject } from '#/router';
 
-type SidebarProps = {
+type Props = {
   closeSideBarDrawer?: () => void;
 };
-function ProSider(props: SidebarProps) {
+export default function Nav(props: Props) {
   const navigate = useNavigate();
   const matches = useMatches();
   const { pathname } = useLocation();
@@ -169,4 +169,3 @@ function ProSider(props: SidebarProps) {
     </>
   );
 }
-export default ProSider;

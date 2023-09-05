@@ -16,7 +16,7 @@ import { ThemeColorPresets, ThemeLayout, ThemeMode } from '#/enum';
 /**
  * App Setting
  */
-function Settings() {
+export default function SettingButton() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { colorPrimary, colorBgBase, colorTextSecondary } = useThemeToken();
 
@@ -73,7 +73,7 @@ function Settings() {
 
   return (
     <>
-      <div className="animate-spin-slow">
+      <div className="flex animate-spin-slow items-center justify-center">
         <button
           onClick={() => setDrawerOpen(true)}
           className=" flex h-10 w-10 transform-none cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover"
@@ -282,4 +282,3 @@ function Settings() {
     </>
   );
 }
-export default Settings;

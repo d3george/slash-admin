@@ -11,9 +11,9 @@ import { useUserInfo, useUserActions } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
 
 /**
- * User Avatar Dropdown
+ * Account Dropdown
  */
-function UserAvatar() {
+export default function AccountDropdown() {
   const { username, email } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
   const logoutMutation = useMutation(userService.logout);
@@ -76,5 +76,3 @@ function UserAvatar() {
     </Dropdown>
   );
 }
-
-export default UserAvatar;
