@@ -1,11 +1,13 @@
 import { CloseOutlined } from '@ant-design/icons';
 import { Button, Card, Drawer } from 'antd';
+import { m } from 'framer-motion';
 import { CSSProperties, useState } from 'react';
 import { MdCircle } from 'react-icons/md';
 import screenfull from 'screenfull';
 
 import CyanBlur from '@/assets/images/cyan-blur.png';
 import RedBlur from '@/assets/images/red-blur.png';
+import { varHover } from '@/components/animate/variants/action';
 import { SvgIcon } from '@/components/icon';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { colorPrimarys } from '@/theme/antd/theme';
@@ -73,13 +75,27 @@ export default function SettingButton() {
 
   return (
     <>
-      <div className="flex animate-spin-slow items-center justify-center">
-        <button
-          onClick={() => setDrawerOpen(true)}
-          className=" flex h-10 w-10 transform-none cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover"
+      <div className="flex items-center justify-center">
+        <m.div
+          animate={{
+            rotate: [0, drawerOpen ? 0 : 360],
+          }}
+          transition={{
+            duration: 12,
+            ease: 'linear',
+            repeat: Infinity,
+          }}
         >
-          <SvgIcon icon="ic-setting" size="24" />
-        </button>
+          <m.button
+            whileTap="tap"
+            whileHover="hover"
+            variants={varHover(1.05)}
+            onClick={() => setDrawerOpen(true)}
+            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-hover"
+          >
+            <SvgIcon icon="ic-setting" size="24" />
+          </m.button>
+        </m.div>
       </div>
       <Drawer
         placement="right"
