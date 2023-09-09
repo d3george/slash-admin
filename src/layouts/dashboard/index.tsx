@@ -1,5 +1,3 @@
-import { Layout } from 'antd';
-
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
@@ -21,7 +19,7 @@ function DashboardLayout() {
       <ProgressBar />
 
       {/* <!-- ===== Page Wrapper Start ===== --> */}
-      <Layout
+      <div
         className="flex h-screen overflow-hidden"
         style={{
           color: colorTextBase,
@@ -37,7 +35,7 @@ function DashboardLayout() {
         {/* <!-- ===== Sidebar End ===== --> */}
 
         {/* <!-- ===== Content Area Start ===== --> */}
-        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <div className="flex  flex-1 flex-col">
           {/* <!-- ===== Header Start ===== --> */}
           <Header />
           {/* <!-- ===== Header End ===== --> */}
@@ -49,7 +47,7 @@ function DashboardLayout() {
           {/* <!-- ===== Main Content End ===== --> */}
         </div>
         {/* <!-- ===== Content Area End ===== --> */}
-      </Layout>
+      </div>
       {/* <!-- ===== Page Wrapper End ===== --> */}
     </>
   );
