@@ -19,6 +19,7 @@ function SvgIcon({
     verticalAlign: 'middle',
     width: size,
     height: size,
+    color,
   };
   return (
     <svg
@@ -27,7 +28,7 @@ function SvgIcon({
       className={`fill-current inline-block h-[1em] w-[1em] overflow-hidden outline-none ${className}}`}
       style={svgStyle}
     >
-      <use xlinkHref={symbolId} fill={color} />
+      <use xlinkHref={symbolId} fill="currentColor" />
     </svg>
   );
 }
