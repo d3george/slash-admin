@@ -5,8 +5,8 @@ import { CSSProperties, useState } from 'react';
 import { MdCircle } from 'react-icons/md';
 import screenfull from 'screenfull';
 
-import CyanBlur from '@/assets/images/cyan-blur.png';
-import RedBlur from '@/assets/images/red-blur.png';
+import CyanBlur from '@/assets/images/background/cyan-blur.png';
+import RedBlur from '@/assets/images/background/red-blur.png';
 import { varHover } from '@/components/animate/variants/action';
 import { SvgIcon } from '@/components/icon';
 import { useSettingActions, useSettings } from '@/store/settingStore';

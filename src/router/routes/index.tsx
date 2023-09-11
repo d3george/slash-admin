@@ -7,7 +7,9 @@ import AuthRouter from '../components/AuthRouter';
 
 import { AppRouteObject } from '#/router';
 
+const Page403 = lazy(() => import('@/pages/sys/error/Page403'));
 const Page404 = lazy(() => import('@/pages/sys/error/Page404'));
+const Page500 = lazy(() => import('@/pages/sys/error/Page500'));
 const Login = lazy(() => import('@/pages/sys/login/Login'));
 
 // 基于 src/router/routes/modules 文件结构动态生成路由
@@ -38,7 +40,11 @@ export const ErrorRoute: AppRouteObject = {
       </Suspense>
     </SimpleLayout>
   ),
-  children: [{ path: '404', element: <Page404 /> }],
+  children: [
+    { path: '404', element: <Page404 /> },
+    { path: '403', element: <Page403 /> },
+    { path: '500', element: <Page500 /> },
+  ],
 };
 // Basic routing without permission
 export const asyncRoutes = [

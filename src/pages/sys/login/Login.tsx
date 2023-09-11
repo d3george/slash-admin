@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 
-import DashboardImg from '@/assets/images/dashboard.png';
+import DashboardImg from '@/assets/images/background/dashboard.png';
 import LocalePicker from '@/components/locale-picker';
 import { useUserToken } from '@/store/userStore';
 
@@ -27,7 +27,7 @@ function Login() {
         className="hidden grow flex-col items-center justify-center gap-[80px] bg-center  bg-no-repeat xl:flex"
         style={{
           background:
-            'linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) center center / cover no-repeat,url(/src/assets/background/overlay_2.jpg)',
+            'linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) center center / cover no-repeat,url(/src/assets/images/background/overlay_2.jpg)',
         }}
       >
         <h3 className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">Slash Admin</h3>
