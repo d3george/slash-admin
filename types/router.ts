@@ -18,4 +18,5 @@ export type AppRouteObject = {
   element?: RouteObject['element'];
   children?: AppRouteObject[];
   meta?: RouteMeta;
+  order?: number;
 };

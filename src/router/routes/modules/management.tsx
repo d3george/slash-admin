@@ -9,6 +9,7 @@ const IndexPage = lazy(() => import('@/pages/management/user'));
 const Blog = lazy(() => import('@/pages/management/blog'));
 
 const management: AppRouteObject = {
+  order: 2,
   path: 'management',
   element: (
     <Suspense fallback={<Loading />}>

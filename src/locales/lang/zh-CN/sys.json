@@ -78,7 +78,9 @@
       "analysis": "分析",
       "management": "管理",
       "user": "用户",
-      "blog": "博客"
+      "blog": "博客",
+      "components": "组件",
+      "animate": "动画"
     }
   }
 }

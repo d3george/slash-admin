@@ -1,3 +1,5 @@
+import { ascend } from 'ramda';
+
 import { AppRouteObject } from '#/router';
 
 const modules = import.meta.glob('../routes/modules/**/*.tsx', { eager: true });
@@ -14,13 +16,15 @@ Object.keys(modules).forEach((key) => {
  */
 export function getMenuRoutes() {
   const menuFilter = (items: AppRouteObject[]) => {
-    return items.filter((item) => {
-      const show = !item.meta?.hideMenu && item.path;
-      if (show && item.children) {
-        item.children = menuFilter(item.children);
-      }
-      return show;
-    });
+    return items
+      .filter((item) => {
+        const show = !item.meta?.hideMenu && item.path;
+        if (show && item.children) {
+          item.children = menuFilter(item.children);
+        }
+        return show;
+      })
+      .sort(ascend((item) => item.order!));
   };
 
   return menuFilter(menuModules);
