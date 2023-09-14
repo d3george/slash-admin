@@ -1,6 +1,13 @@
-import { CloseOutlined } from '@ant-design/icons';
-import { Button, Card, Drawer } from 'antd';
+import {
+  CloseOutlined,
+  DashOutlined,
+  LeftOutlined,
+  QuestionCircleOutlined,
+  RightOutlined,
+} from '@ant-design/icons';
+import { Button, Card, Drawer, Tooltip } from 'antd';
 import { m } from 'framer-motion';
+import { repeat } from 'ramda';
 import { CSSProperties, useState } from 'react';
 import { MdCircle } from 'react-icons/md';
 import screenfull from 'screenfull';
@@ -23,7 +30,7 @@ export default function SettingButton() {
   const { colorPrimary, colorBgBase, colorTextSecondary } = useThemeToken();
 
   const settings = useSettings();
-  const { themeMode, themeColorPresets, themeLayout } = settings;
+  const { themeMode, themeColorPresets, themeLayout, themeStretch } = settings;
   const { setSettings } = useSettingActions();
 
   const setThemeMode = (themeMode: ThemeMode) => {
@@ -44,6 +51,19 @@ export default function SettingButton() {
     setSettings({
       ...settings,
       themeLayout,
+    });
+  };
+
+  const [widthAnimate, setWidthAnimate] = useState(120);
+  const setThemeStretch = (themeStretch: boolean) => {
+    if (themeStretch) {
+      setWidthAnimate(120);
+    } else {
+      setWidthAnimate(50);
+    }
+    setSettings({
+      ...settings,
+      themeStretch,
     });
   };
 
@@ -73,6 +93,8 @@ export default function SettingButton() {
       ? `linear-gradient(135deg, ${colorBgBase} 0%, ${colorPrimary} 100%)`
       : '#919eab';
 
+  // < -------- >
+  const DashOutLinedRepeat = (n = 1) => repeat(<DashOutlined />, n);
   return (
     <>
       <div className="flex items-center justify-center">
@@ -138,6 +160,7 @@ export default function SettingButton() {
         }
       >
         <div className="flex flex-col gap-6 p-6">
+          {/* theme mode */}
           <div>
             <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
               Mode
@@ -166,6 +189,7 @@ export default function SettingButton() {
             </div>
           </div>
 
+          {/* theme layout */}
           <div>
             <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
               Layout
@@ -274,6 +298,54 @@ export default function SettingButton() {
             </div>
           </div>
 
+          {/* theme stretch */}
+          <div>
+            <div className=" mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+              <span className="mr-2">Stretch</span>
+              <Tooltip title="Only available at large resolutions > 1600px (xl)">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </div>
+
+            <Card
+              onClick={() => setThemeStretch(!themeStretch)}
+              className="flex h-20 w-full cursor-pointer items-center justify-center"
+              bodyStyle={{
+                width: '50%',
+                padding: 0,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {themeStretch ? (
+                <div
+                  className="flex w-full items-center justify-between"
+                  style={{
+                    color: colorPrimary,
+                    transition: 'width 300ms 0ms',
+                  }}
+                >
+                  <LeftOutlined />
+                  <div className="flex flex-grow border-b border-dashed" />
+                  <RightOutlined />
+                </div>
+              ) : (
+                <div
+                  className="flex w-1/2 items-center justify-between"
+                  style={{
+                    transition: 'width 300ms 0ms',
+                  }}
+                >
+                  <RightOutlined />
+                  <div className="flex-grow border-b border-dashed" />
+                  <LeftOutlined />
+                </div>
+              )}
+            </Card>
+          </div>
+
+          {/* theme presets */}
           <div>
             <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
               Presets

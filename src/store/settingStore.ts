@@ -8,6 +8,7 @@ type SettingsType = {
   themeColorPresets: ThemeColorPresets;
   themeMode: ThemeMode;
   themeLayout: ThemeLayout;
+  themeStretch: boolean;
 };
 type SettingStore = {
   settings: SettingsType;
@@ -23,6 +24,7 @@ const useSettingStore = create<SettingStore>((set) => ({
     themeColorPresets: ThemeColorPresets.Default,
     themeMode: ThemeMode.Light,
     themeLayout: ThemeLayout.Vertical,
+    themeStretch: false,
   },
   actions: {
     setSettings: (settings) => {

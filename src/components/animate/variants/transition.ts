@@ -1,5 +1,8 @@
 import { TranHoverType, TranEnterType, TranExitType } from '../types';
 
+// https://www.framer.com/motion/transition/
+// A transition defines how values animate from one state to another.
+
 export const varTranHover = (props?: TranHoverType) => {
   const duration = props?.duration || 0.32;
   const ease = props?.ease || [0.43, 0.13, 0.23, 0.96];
