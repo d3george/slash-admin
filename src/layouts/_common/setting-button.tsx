@@ -1,13 +1,11 @@
 import {
   CloseOutlined,
-  DashOutlined,
   LeftOutlined,
   QuestionCircleOutlined,
   RightOutlined,
 } from '@ant-design/icons';
 import { Button, Card, Drawer, Tooltip } from 'antd';
 import { m } from 'framer-motion';
-import { repeat } from 'ramda';
 import { CSSProperties, useState } from 'react';
 import { MdCircle } from 'react-icons/md';
 import screenfull from 'screenfull';
@@ -54,13 +52,7 @@ export default function SettingButton() {
     });
   };
 
-  const [widthAnimate, setWidthAnimate] = useState(120);
   const setThemeStretch = (themeStretch: boolean) => {
-    if (themeStretch) {
-      setWidthAnimate(120);
-    } else {
-      setWidthAnimate(50);
-    }
     setSettings({
       ...settings,
       themeStretch,
@@ -93,8 +85,6 @@ export default function SettingButton() {
       ? `linear-gradient(135deg, ${colorBgBase} 0%, ${colorPrimary} 100%)`
       : '#919eab';
 
-  // < -------- >
-  const DashOutLinedRepeat = (n = 1) => repeat(<DashOutlined />, n);
   return (
     <>
       <div className="flex items-center justify-center">
