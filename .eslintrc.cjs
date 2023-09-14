@@ -61,10 +61,15 @@ module.exports = {
     'space-before-function-paren': 'off',
     'class-methods-use-this': 'off',
 
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/interactive-supports-focus': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+
     // 不用手动引入react
     'react/react-in-jsx-scope': 'off',
     'react/button-has-type': 'off',
     'react/require-default-props': 'off',
+    'react/no-array-index-key': 'off',
 
     'import/first': 'warn',
     'import/newline-after-import': 'warn',

@@ -1,20 +1,49 @@
 import { m } from 'framer-motion';
+import { repeat } from 'ramda';
+import { useMemo } from 'react';
 
 import Cover3 from '@/assets/images/cover/cover_3.jpg';
+import getVariant from '@/components/animate/get-variant';
 import MotionContainer from '@/components/animate/motion-container';
-import { varBounce } from '@/components/animate/variants/bounce';
 
+const TEXT = 'SlashAdmin';
 type Props = {
+  isText: boolean;
+  isMulti: boolean;
   variant: string;
 };
-export default function ContainerView() {
+export default function ContainerView({ isText, variant, isMulti }: Props) {
+  const varients = useMemo(() => getVariant(variant), [variant]);
+  const imgs = useMemo(() => (isMulti ? repeat(Cover3, 5) : [Cover3]), [isMulti]);
+
   return (
-    <MotionContainer>
-      <m.img
-        src={Cover3}
-        style={{ objectFit: 'cover', width: '480px', height: '320px' }}
-        variants={varBounce().in}
-      />
-    </MotionContainer>
+    <div key={variant} className="overflow-hidden rounded-lg bg-gray-300 p-20">
+      {isText ? (
+        <MotionContainer className="flex h-80 items-center justify-center text-6xl font-bold">
+          {TEXT.split('').map((letter, index) => (
+            <m.div key={index} variants={varients} className="ml-1">
+              {letter}
+            </m.div>
+          ))}
+        </MotionContainer>
+      ) : (
+        <MotionContainer className="flex flex-col items-center gap-6">
+          {imgs.map((img, index) => (
+            <m.img
+              key={index}
+              src={img}
+              style={{
+                objectFit: 'cover',
+                width: '480px',
+                height: isMulti ? '72px' : '320px',
+                margin: 'auto',
+                borderRadius: '8px',
+              }}
+              variants={varients}
+            />
+          ))}
+        </MotionContainer>
+      )}
+    </div>
   );
 }
