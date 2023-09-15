@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import Cover3 from '@/assets/images/cover/cover_3.jpg';
 import MotionContainer from '@/components/animate/motion-container';
 import { getVariant } from '@/components/animate/variants';
+import { useThemeToken } from '@/theme/hooks';
 
 const TEXT = 'SlashAdmin';
 type Props = {
@@ -13,11 +14,16 @@ type Props = {
   variant: string;
 };
 export default function ContainerView({ isText, variant, isMulti }: Props) {
+  const { colorBgLayout } = useThemeToken();
   const varients = useMemo(() => getVariant(variant), [variant]);
   const imgs = useMemo(() => (isMulti ? repeat(Cover3, 5) : [Cover3]), [isMulti]);
 
   return (
-    <div key={variant} className="overflow-hidden rounded-lg bg-gray-300 p-20">
+    <div
+      key={variant}
+      className="overflow-hidden rounded-lg p-20"
+      style={{ backgroundColor: colorBgLayout }}
+    >
       {isText ? (
         <MotionContainer className="flex h-80 items-center justify-center text-6xl font-bold">
           {TEXT.split('').map((letter, index) => (
