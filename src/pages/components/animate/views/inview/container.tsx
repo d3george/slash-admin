@@ -3,8 +3,8 @@ import { repeat } from 'ramda';
 import { useMemo } from 'react';
 
 import Cover3 from '@/assets/images/cover/cover_3.jpg';
-import getVariant from '@/components/animate/get-variant';
 import MotionContainer from '@/components/animate/motion-container';
+import { getVariant } from '@/components/animate/variants';
 
 const TEXT = 'SlashAdmin';
 type Props = {
