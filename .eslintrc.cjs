@@ -70,6 +70,7 @@ module.exports = {
     'react/button-has-type': 'off',
     'react/require-default-props': 'off',
     'react/no-array-index-key': 'off',
+    'react/jsx-props-no-spreading': 'off',
 
     'import/first': 'warn',
     'import/newline-after-import': 'warn',

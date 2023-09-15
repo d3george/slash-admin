@@ -4,7 +4,7 @@ import BackgroundView from './views/background';
 import DialogView from './views/dialog';
 import Inview from './views/inview';
 import OtherView from './views/other';
-import ScrollView from './views/scrollview';
+import ScrollView from './views/scroll';
 
 export default function Animate() {
   const TABS: TabsProps['items'] = [
