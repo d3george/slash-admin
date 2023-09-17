@@ -80,7 +80,8 @@
       "user": "用户",
       "blog": "博客",
       "components": "组件",
-      "animate": "动画"
+      "animate": "动画",
+      "scroll": "滚动"
     }
   }
 }

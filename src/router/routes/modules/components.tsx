@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import Loading from '@/components/loading';
+import Scroll from '@/pages/components/scroll';
 
 import { AppRouteObject } from '#/router';
 
@@ -25,6 +26,11 @@ const components: AppRouteObject = {
       path: 'animate',
       element: <Animate />,
       meta: { title: 'sys.menu.animate', icon: 'ic-user', key: '/components/animate' },
+    },
+    {
+      path: 'scroll',
+      element: <Scroll />,
+      meta: { title: 'sys.menu.scroll', icon: 'ic-user', key: '/components/scroll' },
     },
   ],
 };

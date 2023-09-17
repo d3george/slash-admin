@@ -81,7 +81,8 @@
       "user": "User",
       "blog": "Blog",
       "components": "Components",
-      "animate": "Animate"
+      "animate": "Animate",
+      "scroll": "Scroll"
     }
   }
 }
