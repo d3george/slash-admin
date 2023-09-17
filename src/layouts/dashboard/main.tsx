@@ -8,7 +8,7 @@ import BreadCrumb from '../_common/bread-crumb';
 export default function Main() {
   const { themeStretch } = useSettings();
   return (
-    <Content className="px-4">
+    <Content className="overflow-auto px-4">
       {/* <!-- ===== Content Start ===== --> */}
       <BreadCrumb />
       <div
