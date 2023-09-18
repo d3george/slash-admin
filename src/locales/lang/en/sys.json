@@ -82,7 +82,9 @@
       "blog": "Blog",
       "components": "Components",
       "animate": "Animate",
-      "scroll": "Scroll"
+      "scroll": "Scroll",
+      "markdown": "Markdown",
+      "editor": "Editor"
     }
   }
 }

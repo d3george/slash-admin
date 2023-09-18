@@ -5,8 +5,9 @@ import Loading from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
 
-const Animate = lazy(() => import('@/pages/components/animate'));
-const Scroll = lazy(() => import('@/pages/components/scroll'));
+const AnimatePage = lazy(() => import('@/pages/components/animate'));
+const ScrollPage = lazy(() => import('@/pages/components/scroll'));
+const MarkdownPage = lazy(() => import('@/pages/components/markdown'));
 
 const components: AppRouteObject = {
   order: 3,
@@ -24,13 +25,18 @@ const components: AppRouteObject = {
     },
     {
       path: 'animate',
-      element: <Animate />,
+      element: <AnimatePage />,
       meta: { title: 'sys.menu.animate', icon: 'ic-user', key: '/components/animate' },
     },
     {
       path: 'scroll',
-      element: <Scroll />,
+      element: <ScrollPage />,
       meta: { title: 'sys.menu.scroll', icon: 'ic-user', key: '/components/scroll' },
+    },
+    {
+      path: 'markdown',
+      element: <MarkdownPage />,
+      meta: { title: 'sys.menu.markdown', icon: 'ic-user', key: '/components/markdown' },
     },
   ],
 };

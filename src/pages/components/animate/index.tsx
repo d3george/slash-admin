@@ -4,7 +4,7 @@ import BackgroundView from './views/background';
 import Inview from './views/inview';
 import ScrollView from './views/scroll';
 
-export default function Animate() {
+export default function AnimatePage() {
   const TABS: TabsProps['items'] = [
     { key: 'inview', label: 'In View', children: <Inview /> },
     { key: 'scroll', label: 'Scroll', children: <ScrollView /> },
