@@ -38,6 +38,7 @@
     "remark-gfm": "^3.0.1",
     "screenfull": "^6.0.2",
     "simplebar-react": "^3.2.4",
+    "styled-components": "^6.0.8",
     "vite": "^4.3.9",
     "zustand": "^4.3.8"
   },
