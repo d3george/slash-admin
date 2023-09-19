@@ -26,17 +26,17 @@ const components: AppRouteObject = {
     {
       path: 'animate',
       element: <AnimatePage />,
-      meta: { title: 'sys.menu.animate', icon: 'ic-user', key: '/components/animate' },
+      meta: { title: 'sys.menu.animate', key: '/components/animate' },
     },
     {
       path: 'scroll',
       element: <ScrollPage />,
-      meta: { title: 'sys.menu.scroll', icon: 'ic-user', key: '/components/scroll' },
+      meta: { title: 'sys.menu.scroll', key: '/components/scroll' },
     },
     {
       path: 'markdown',
       element: <MarkdownPage />,
-      meta: { title: 'sys.menu.markdown', icon: 'ic-user', key: '/components/markdown' },
+      meta: { title: 'sys.menu.markdown', key: '/components/markdown' },
     },
   ],
 };
