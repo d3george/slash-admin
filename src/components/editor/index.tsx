@@ -1,6 +1,5 @@
 /* eslint-disable import/order */
 import '@/utils/highlight';
-import 'react-quill/dist/quill.snow.css';
 import ReactQuill, { ReactQuillProps } from 'react-quill';
 import Toolbar, { formats } from './toolbar';
 import { useSettings } from '@/store/settingStore';

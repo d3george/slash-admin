@@ -53,6 +53,13 @@ const StyledEditor = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
     }
     & pre.ql-syntax {
       border-radius: 8px;
+      line-height: 1.57143;
+      font-size: 0.875rem;
+      font-family: 'Public Sans', sans-serif;
+      font-weight: 400;
+      padding: 16px;
+      border-radius: 8px;
+      background-color: rgb(22, 28, 36);
     }
   }
 `;

@@ -1,5 +1,3 @@
-// ----------------------------------------------------------------------
-
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
