@@ -21,6 +21,7 @@ const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
   };
 };
 const StyledMarkdown = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
+  display: grid;
   // Text
   h1 {
     ${(props) => getHeadingStyle(1, props.token)};

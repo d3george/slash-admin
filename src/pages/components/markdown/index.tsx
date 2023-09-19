@@ -1,5 +1,4 @@
-import { Row, Col, Card } from 'antd';
-import TextArea from 'antd/es/input/TextArea';
+import { Card } from 'antd';
 import { useState } from 'react';
 
 import Markdown from '@/components/markdown';
@@ -67,24 +66,10 @@ ReactDOM.render(
 `;
 
 export default function MarkdownPage() {
-  const [content, setContent] = useState(TEXT);
+  const [content] = useState(TEXT);
   return (
-    <Row justify="space-between" gutter={20}>
-      <Col xl={24} xxl={12}>
-        <Card title="Content">
-          <TextArea
-            value={content}
-            rows={40}
-            onChange={(e) => setContent(e.currentTarget.value)}
-            className="w-full !outline-none"
-          />
-        </Card>
-      </Col>
-      <Col xl={24} xxl={12} className="xl:mt-4 2xl:mt-0">
-        <Card title="Mardown content">
-          <Markdown>{content}</Markdown>
-        </Card>
-      </Col>
-    </Row>
+    <Card title="Mardown content">
+      <Markdown>{content}</Markdown>
+    </Card>
   );
 }
