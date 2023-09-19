@@ -8,6 +8,7 @@ import { AppRouteObject } from '#/router';
 const AnimatePage = lazy(() => import('@/pages/components/animate'));
 const ScrollPage = lazy(() => import('@/pages/components/scroll'));
 const MarkdownPage = lazy(() => import('@/pages/components/markdown'));
+const EditorPage = lazy(() => import('@/pages/components/editor'));
 
 const components: AppRouteObject = {
   order: 3,
@@ -37,6 +38,11 @@ const components: AppRouteObject = {
       path: 'markdown',
       element: <MarkdownPage />,
       meta: { title: 'sys.menu.markdown', key: '/components/markdown' },
+    },
+    {
+      path: 'editor',
+      element: <EditorPage />,
+      meta: { title: 'sys.menu.editor', key: '/components/editor' },
     },
   ],
 };

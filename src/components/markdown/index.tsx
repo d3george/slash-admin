@@ -1,4 +1,3 @@
-import 'highlight.js/styles/base16/tomorrow-night.css';
 import ReactMarkdown from 'react-markdown';
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 // markdown plugins
@@ -8,6 +7,7 @@ import remarkGfm from 'remark-gfm'; // add support for strikethrough, tables, ta
 
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
+import '@/utils/highlight';
 
 import StyledMarkdown from './styles';
 
