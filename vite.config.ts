@@ -37,6 +37,7 @@ export default defineConfig({
   server: {
     // 自动打开浏览器
     open: true,
+    host: true,
     port: 3001,
     proxy: {
       '/api': {
