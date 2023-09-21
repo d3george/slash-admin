@@ -1,47 +1,37 @@
 import { Dropdown } from 'antd';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
+import useLocale, { LANGUAGE_MAP } from '@/locales/useLocale';
 
 import { SvgIcon } from '../icon';
 
+import { LocalEnum } from '#/enum';
 import type { MenuProps } from 'antd';
 
-type Locale = 'zh' | 'en';
+type Locale = keyof typeof LocalEnum;
 
 /**
  * Locale Picker
  */
 export default function LocalePicker() {
-  const { i18n } = useTranslation();
-  const [locale, setLocale] = useState<Locale>(() => {
-    return i18n.resolvedLanguage as Locale;
+  const { setLocale, locale } = useLocale();
+
+  const localeList: MenuProps['items'] = Object.values(LANGUAGE_MAP).map((item) => {
+    return {
+      key: item.locale,
+      label: item.label,
+      icon: <SvgIcon icon={item.icon} size="20" className="rounded-md" />,
+    };
   });
 
-  const localeList: MenuProps['items'] = [
-    {
-      key: 'zh',
-      label: 'Chinese',
-      icon: <SvgIcon icon="ic-locale_zh" className="mr-2" size="20" />,
-    },
-    {
-      key: 'en',
-      label: 'English',
-      icon: <SvgIcon icon="ic-locale_en" className="mr-2" size="20" />,
-    },
-  ];
-  const handleLocaleChange: MenuProps['onClick'] = ({ key }) => {
-    setLocale(key as Locale);
-    i18n.changeLanguage(key);
-  };
   return (
     <Dropdown
       placement="bottomRight"
       trigger={['click']}
       key={locale}
-      menu={{ items: localeList, onClick: handleLocaleChange }}
+      menu={{ items: localeList, onClick: (e) => setLocale(e.key as Locale) }}
     >
       <button className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover">
-        <SvgIcon icon={`ic-locale_${locale}`} size="24" />
+        <SvgIcon icon={`ic-locale_${locale}`} size="24" className="rounded-md" />
       </button>
     </Dropdown>
   );

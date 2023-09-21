@@ -9,6 +9,7 @@ const AnimatePage = lazy(() => import('@/pages/components/animate'));
 const ScrollPage = lazy(() => import('@/pages/components/scroll'));
 const MarkdownPage = lazy(() => import('@/pages/components/markdown'));
 const EditorPage = lazy(() => import('@/pages/components/editor'));
+const MultiLanguagePage = lazy(() => import('@/pages/components/multi-language'));
 
 const components: AppRouteObject = {
   order: 3,
@@ -43,6 +44,11 @@ const components: AppRouteObject = {
       path: 'editor',
       element: <EditorPage />,
       meta: { title: 'sys.menu.editor', key: '/components/editor' },
+    },
+    {
+      path: 'i18n',
+      element: <MultiLanguagePage />,
+      meta: { title: 'sys.menu.i18n', key: '/components/i18n' },
     },
   ],
 };

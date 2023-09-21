@@ -8,6 +8,7 @@ export enum StorageEnum {
   User = 'user',
   Token = 'token',
   Settings = 'settings',
+  I18N = 'i18nextLng',
 }
 
 export enum ThemeMode {
@@ -28,4 +29,9 @@ export enum ThemeColorPresets {
   Blue = 'blue',
   Orange = 'orange',
   Red = 'red',
+}
+
+export enum LocalEnum {
+  en_US = 'en_US',
+  zh_CN = 'zh_CN',
 }

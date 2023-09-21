@@ -1,7 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
 
 import router from '@/router';
-import ThemeProvider from '@/theme';
+import AntdConfig from '@/theme';
 
 import { MotionLazy } from './components/animate/motion-lazy';
 
@@ -17,11 +17,11 @@ function App() {
   console.info(`%c${charAt}`, 'color: #5BE49B');
 
   return (
-    <ThemeProvider>
+    <AntdConfig>
       <MotionLazy>
         <RouterProvider router={router} />
       </MotionLazy>
-    </ThemeProvider>
+    </AntdConfig>
   );
 }
 
