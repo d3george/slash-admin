@@ -4,12 +4,13 @@ interface SvgIconProps {
   prefix?: string;
   icon: string;
   color?: string;
-  size?: string;
+  size?: string | number;
   className?: string;
 }
-function SvgIcon({
-  prefix = 'icon',
+
+export function SvgIcon({
   icon,
+  prefix = 'icon',
   color = 'currentColor',
   size = '1em',
   className = '',
@@ -32,5 +33,3 @@ function SvgIcon({
     </svg>
   );
 }
-
-export default SvgIcon;

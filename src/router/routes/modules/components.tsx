@@ -10,6 +10,7 @@ const ScrollPage = lazy(() => import('@/pages/components/scroll'));
 const MarkdownPage = lazy(() => import('@/pages/components/markdown'));
 const EditorPage = lazy(() => import('@/pages/components/editor'));
 const MultiLanguagePage = lazy(() => import('@/pages/components/multi-language'));
+const IconPage = lazy(() => import('@/pages/components/icon'));
 
 const components: AppRouteObject = {
   order: 3,
@@ -23,7 +24,12 @@ const components: AppRouteObject = {
   children: [
     {
       index: true,
-      element: <Navigate to="animate" replace />,
+      element: <Navigate to="icon" replace />,
+    },
+    {
+      path: 'icon',
+      element: <IconPage />,
+      meta: { title: 'sys.menu.icon', key: '/components/icon' },
     },
     {
       path: 'animate',
