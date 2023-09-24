@@ -1,7 +1,8 @@
-import { Card } from 'antd';
+import { Card, Typography } from 'antd';
 import { useState } from 'react';
 
 import Markdown from '@/components/markdown';
+import { useThemeToken } from '@/theme/hooks';
 
 const TEXT = `
 # h1
@@ -67,9 +68,19 @@ ReactDOM.render(
 
 export default function MarkdownPage() {
   const [content] = useState(TEXT);
+  const { colorPrimary } = useThemeToken();
   return (
-    <Card title="Mardown content">
-      <Markdown>{content}</Markdown>
-    </Card>
+    <>
+      <Typography.Link
+        href="https://github.com/remarkjs/react-markdown"
+        style={{ color: colorPrimary }}
+        className="mb-4 block"
+      >
+        https://github.com/remarkjs/react-markdown
+      </Typography.Link>
+      <Card title="Mardown content">
+        <Markdown>{content}</Markdown>
+      </Card>
+    </>
   );
 }

@@ -1,6 +1,7 @@
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Row, Typography } from 'antd';
 
 import Scrollbar from '@/components/scrollbar';
+import { useThemeToken } from '@/theme/hooks';
 
 const TEXT = `Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Quisque ut nisi.
  Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Vestibulum eu odio.
@@ -22,22 +23,32 @@ const TEXT = `Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. 
    Vivamus consectetuer hendrerit lacus. Nullam quis ante. Praesent turpis. 
    Praesent porttitor, nulla vitae posuere iaculis, arcu nisl dignissim dolor, a pretium mi sem ut ipsum.`;
 export default function ScrollbarView() {
+  const { colorPrimary } = useThemeToken();
   return (
-    <Row gutter={20}>
-      <Col span={12}>
-        <Card title="Vertical">
-          <div className="h-80">
-            <Scrollbar>{TEXT}</Scrollbar>
-          </div>
-        </Card>
-      </Col>
-      <Col span={12}>
-        <Card title="Horizontal">
-          <Scrollbar>
-            <div style={{ width: '200%' }}>{TEXT}</div>
-          </Scrollbar>
-        </Card>
-      </Col>
-    </Row>
+    <>
+      <Typography.Link
+        href="https://grsmto.github.io/simplebar/"
+        style={{ color: colorPrimary }}
+        className="mb-4 block"
+      >
+        https://grsmto.github.io/simplebar/
+      </Typography.Link>
+      <Row gutter={20}>
+        <Col span={12}>
+          <Card title="Vertical">
+            <div className="h-80">
+              <Scrollbar>{TEXT}</Scrollbar>
+            </div>
+          </Card>
+        </Col>
+        <Col span={12}>
+          <Card title="Horizontal">
+            <Scrollbar>
+              <div style={{ width: '200%' }}>{TEXT}</div>
+            </Scrollbar>
+          </Card>
+        </Col>
+      </Row>
+    </>
   );
 }

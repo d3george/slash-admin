@@ -1,8 +1,9 @@
-import { Card } from 'antd';
+import { Card, Typography } from 'antd';
 import { useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
 import ScrollProgress from '@/components/scroll-progress';
+import { useThemeToken } from '@/theme/hooks';
 
 const TEXT = `Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Quisque ut nisi.
  Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Vestibulum eu odio.
@@ -27,14 +28,24 @@ export default function ScrollProgressView() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const containerScroll = useScroll({ container: containerRef });
 
+  const { colorPrimary } = useThemeToken();
   return (
-    <Card title="ScrollProgress">
-      <ScrollProgress scrollYProgress={containerScroll.scrollYProgress} />
-      <div ref={containerRef} className="h-80 overflow-auto">
-        {[...Array(4)].map((_, index) => (
-          <div key={index}>{TEXT}</div>
-        ))}
-      </div>
-    </Card>
+    <>
+      <Typography.Link
+        href="https://www.framer.com/motion/"
+        style={{ color: colorPrimary }}
+        className="mb-4 block"
+      >
+        https://www.framer.com/motion/
+      </Typography.Link>
+      <Card title="ScrollProgress">
+        <ScrollProgress scrollYProgress={containerScroll.scrollYProgress} />
+        <div ref={containerRef} className="h-80 overflow-auto">
+          {[...Array(4)].map((_, index) => (
+            <div key={index}>{TEXT}</div>
+          ))}
+        </div>
+      </Card>
+    </>
   );
 }

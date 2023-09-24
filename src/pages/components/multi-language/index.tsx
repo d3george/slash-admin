@@ -1,7 +1,8 @@
-import { Card, Pagination, Radio, Space } from 'antd';
+import { Card, Pagination, Radio, Space, Typography } from 'antd';
 
 import { SvgIcon } from '@/components/icon';
 import useLocale from '@/locales/useLocale';
+import { useThemeToken } from '@/theme/hooks';
 
 import { LocalEnum } from '#/enum';
 
@@ -12,8 +13,16 @@ export default function MultiLanguagePage() {
     language: { icon, label },
   } = useLocale();
 
+  const { colorPrimary } = useThemeToken();
+
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+      <Typography.Link href="https://www.i18next.com/" style={{ color: colorPrimary }}>
+        https://www.i18next.com
+      </Typography.Link>
+      <Typography.Link href="https://ant.design/docs/react/i18n-cn" style={{ color: colorPrimary }}>
+        https://ant.design/docs/react/i18n-cn
+      </Typography.Link>
       <Card title="Flexible">
         <Radio.Group onChange={(e) => setLocale(e.target.value)} value={locale}>
           <Radio value={LocalEnum.en_US}>English</Radio>
