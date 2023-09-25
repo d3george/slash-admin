@@ -12,7 +12,9 @@ import type { UploadProps } from 'antd';
 const { Dragger } = AntdUpload;
 const { Text, Title } = Typography;
 
-type Props = Omit<UploadProps, 'itemRender'> & { thumbnail?: boolean };
+interface Props extends UploadProps {
+  thumbnail?: boolean;
+}
 
 const itemRender: (thumbnail: boolean) => ItemRender = (thumbnail) => {
   return function temp() {
@@ -21,10 +23,10 @@ const itemRender: (thumbnail: boolean) => ItemRender = (thumbnail) => {
     return <UploadListItem file={file} actions={actions} thumbnail={thumbnail} />;
   };
 };
-export default function Upload({ thumbnail = false, ...other }: Props) {
+export function Upload({ thumbnail = false, ...other }: Props) {
   const { colorPrimary } = useThemeToken();
   return (
-    <StyledUpload thumbnail={thumbnail}>
+    <StyledUpload $thumbnail={thumbnail}>
       <Dragger {...other} itemRender={itemRender(thumbnail)}>
         <div className="opacity-100 hover:opacity-80">
           <p className="m-auto max-w-[200px]">
