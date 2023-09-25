@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Iconify } from '../icon';
 
 import { StyledUploadAvatar } from './styles';
-import { getBase64 } from './utils';
+import { beforeAvatarUpload, getBase64 } from './utils';
 
 interface Props extends UploadProps {
   helperText?: React.ReactElement | string;
@@ -14,7 +14,6 @@ export function UploadAvatar({ helperText, ...other }: Props) {
   const [imageUrl, setImageUrl] = useState<string>();
   const [isHover, setIsHover] = useState(false);
   const handelHover = (hover: boolean) => {
-    console.log(hover);
     setIsHover(hover);
   };
 
@@ -64,6 +63,7 @@ export function UploadAvatar({ helperText, ...other }: Props) {
         listType="picture-circle"
         className="avatar-uploader !flex items-center justify-center opacity-50"
         {...other}
+        beforeUpload={beforeAvatarUpload}
         onChange={handleChange}
       >
         {renderContent}
