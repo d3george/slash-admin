@@ -85,7 +85,8 @@
       "scroll": "滚动",
       "markdown": "Markdown",
       "editor": "富文本",
-      "i18n": "多语言"
+      "i18n": "多语言",
+      "upload": "上传"
     }
   }
 }

@@ -86,7 +86,8 @@
       "scroll": "Scroll",
       "markdown": "Markdown",
       "editor": "Editor",
-      "i18n": "Multi Language"
+      "i18n": "Multi Language",
+      "upload": "Upload"
     }
   }
 }

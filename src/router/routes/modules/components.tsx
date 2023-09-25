@@ -11,6 +11,7 @@ const MarkdownPage = lazy(() => import('@/pages/components/markdown'));
 const EditorPage = lazy(() => import('@/pages/components/editor'));
 const MultiLanguagePage = lazy(() => import('@/pages/components/multi-language'));
 const IconPage = lazy(() => import('@/pages/components/icon'));
+const UploadPage = lazy(() => import('@/pages/components/upload'));
 
 const components: AppRouteObject = {
   order: 3,
@@ -55,6 +56,11 @@ const components: AppRouteObject = {
       path: 'i18n',
       element: <MultiLanguagePage />,
       meta: { title: 'sys.menu.i18n', key: '/components/i18n' },
+    },
+    {
+      path: 'upload',
+      element: <UploadPage />,
+      meta: { title: 'sys.menu.upload', key: '/components/upload' },
     },
   ],
 };
