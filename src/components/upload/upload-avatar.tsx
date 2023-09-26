@@ -45,7 +45,7 @@ export function UploadAvatar({ helperText, ...other }: Props) {
   );
   const renderContent = (
     <div
-      className="relative h-full w-full overflow-hidden rounded-full"
+      className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full"
       onMouseEnter={() => handelHover(true)}
       onMouseLeave={() => handelHover(false)}
     >
@@ -61,7 +61,7 @@ export function UploadAvatar({ helperText, ...other }: Props) {
         name="avatar"
         showUploadList={false}
         listType="picture-circle"
-        className="avatar-uploader !flex items-center justify-center opacity-50"
+        className="avatar-uploader !flex items-center justify-center opacity-70"
         {...other}
         beforeUpload={beforeAvatarUpload}
         onChange={handleChange}

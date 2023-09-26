@@ -1,4 +1,4 @@
-import { Card, Switch, Typography } from 'antd';
+import { Card, Space, Switch, Tabs, TabsProps, Typography } from 'antd';
 import { useState } from 'react';
 
 import { Upload, UploadAvatar } from '@/components/upload';
@@ -20,25 +20,34 @@ export default function UploadPage() {
     </Typography.Text>
   );
 
-  return (
-    <>
-      <Card title="Upload Multi File" extra={ThumbnailSwitch}>
+  const UploadFileTab = (
+    <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+      <Card title="Upload Multi File" className="w-full" extra={ThumbnailSwitch}>
         <Upload thumbnail={thumbnail} name="multi" />
       </Card>
       <Card title="Upload Single File" extra={ThumbnailSwitch}>
         <Upload thumbnail={thumbnail} maxCount={1} name="single" />
       </Card>
-      <Card
-        title="Upload Avatar"
-        bodyStyle={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <UploadAvatar helperText={helpText} />
-      </Card>
-    </>
+    </Space>
   );
+  const UploadAvatarTab = (
+    <Card
+      title="Upload Avatar"
+      bodyStyle={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <UploadAvatar helperText={helpText} />
+    </Card>
+  );
+
+  const TABS: TabsProps['items'] = [
+    { key: 'upload--file', label: 'Upload Single File', children: UploadFileTab },
+    { key: 'upload-avatar', label: 'Upload Avatar', children: UploadAvatarTab },
+  ];
+
+  return <Tabs items={TABS} />;
 }

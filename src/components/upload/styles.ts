@@ -15,6 +15,5 @@ export const StyledUploadAvatar = styled.div`
   .ant-upload,
   .ant-upload-select {
     border: none !important;
-    padding: 8px !important;
   }
 `;
