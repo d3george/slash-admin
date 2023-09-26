@@ -17,3 +17,12 @@ export const StyledUploadAvatar = styled.div`
     border: none !important;
   }
 `;
+
+export const StyledUploadBox = styled.div`
+  .ant-upload {
+    border: none !important;
+  }
+  .ant-upload-list {
+    display: none;
+  }
+`;

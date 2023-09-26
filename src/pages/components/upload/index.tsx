@@ -23,7 +23,9 @@ export default function UploadPage() {
   const boxPlaceHolder = (
     <div className="flex flex-col">
       <Iconify icon="eva:cloud-upload-fill" size={40} />
-      <Typography.Text type="secondary">Upload File</Typography.Text>
+      <Typography.Text type="secondary" className="">
+        Upload File
+      </Typography.Text>
     </div>
   );
   const UploadFileTab = (
