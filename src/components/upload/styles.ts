@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const StyledUpload = styled.div<{ $thumbnail: boolean }>`
+export const StyledUpload = styled.div<{ $thumbnail?: boolean }>`
   .ant-upload {
     border: none !important;
   }

@@ -1,7 +1,8 @@
-import { Card, Space, Switch, Tabs, TabsProps, Typography } from 'antd';
+import { Card, Col, Row, Space, Switch, Tabs, TabsProps, Typography } from 'antd';
 import { useState } from 'react';
 
-import { Upload, UploadAvatar } from '@/components/upload';
+import { Iconify } from '@/components/icon';
+import { Upload, UploadAvatar, UploadBox } from '@/components/upload';
 import { fBytes } from '@/utils/format-number';
 
 export default function UploadPage() {
@@ -19,7 +20,12 @@ export default function UploadPage() {
       <br /> max size of {fBytes(3145728)}
     </Typography.Text>
   );
-
+  const boxPlaceHolder = (
+    <div className="flex flex-col">
+      <Iconify icon="eva:cloud-upload-fill" size={40} />
+      <Typography.Text type="secondary">Upload File</Typography.Text>
+    </div>
+  );
   const UploadFileTab = (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
       <Card title="Upload Multi File" className="w-full" extra={ThumbnailSwitch}>
@@ -43,10 +49,21 @@ export default function UploadPage() {
       <UploadAvatar helperText={helpText} />
     </Card>
   );
+  const UploadBoxTab = (
+    <Row gutter={20}>
+      <Col span={2}>
+        <UploadBox />
+      </Col>
+      <Col span={16}>
+        <UploadBox placeholder={boxPlaceHolder} />
+      </Col>
+    </Row>
+  );
 
   const TABS: TabsProps['items'] = [
     { key: 'upload--file', label: 'Upload Single File', children: UploadFileTab },
     { key: 'upload-avatar', label: 'Upload Avatar', children: UploadAvatarTab },
+    { key: 'upload-box', label: 'Upload Box', children: UploadBoxTab },
   ];
 
   return <Tabs items={TABS} />;
