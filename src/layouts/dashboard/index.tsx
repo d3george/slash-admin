@@ -28,7 +28,10 @@ function DashboardLayout() {
       >
         {/* <!-- ===== Sidebar Start ===== --> */}
         {themeLayout !== ThemeLayout.Horizontal ? (
-          <div className="hidden h-full lg:block">
+          <div
+            className="hidden h-full lg:block"
+            style={{ borderRight: '1px dashed rgba(145, 158, 171, 0.2)' }}
+          >
             <Nav />
           </div>
         ) : null}

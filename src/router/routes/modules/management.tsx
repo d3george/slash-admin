@@ -25,12 +25,12 @@ const management: AppRouteObject = {
     {
       path: 'user',
       element: <IndexPage />,
-      meta: { title: 'sys.menu.user', icon: 'ic-user', key: '/management/user' },
+      meta: { title: 'sys.menu.user', key: '/management/user' },
     },
     {
       path: 'blog',
       element: <Blog />,
-      meta: { title: 'sys.menu.blog', icon: 'ic-blog', key: '/management/blog' },
+      meta: { title: 'sys.menu.blog', key: '/management/blog' },
     },
   ],
 };

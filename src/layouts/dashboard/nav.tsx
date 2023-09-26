@@ -125,7 +125,7 @@ export default function Nav(props: Props) {
   };
 
   return (
-    <div style={{ width: collapsed ? '100px' : '280px' }}>
+    <div style={{ width: collapsed ? '90px' : '260px' }}>
       <div className="relative flex h-20 items-center justify-center">
         <Logo className="h-10 w-10" />
         {themeLayout !== ThemeLayout.Mini ? (

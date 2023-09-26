@@ -16,7 +16,7 @@ const dashboard: AppRouteObject = {
       <Outlet />
     </Suspense>
   ),
-  meta: { title: 'sys.menu.dashboard', icon: 'ic-dashboard', key: '/dashboard' },
+  meta: { title: 'sys.menu.dashboard', icon: 'ic-analysis', key: '/dashboard' },
   children: [
     {
       index: true,
@@ -25,12 +25,12 @@ const dashboard: AppRouteObject = {
     {
       path: 'workbench',
       element: <IndexPage />,
-      meta: { title: 'sys.menu.workbench', icon: 'ic-workbench', key: '/dashboard/workbench' },
+      meta: { title: 'sys.menu.workbench', key: '/dashboard/workbench' },
     },
     {
       path: 'analysis',
       element: <Analysis />,
-      meta: { title: 'sys.menu.analysis', icon: 'ic-analysis', key: '/dashboard/analysis' },
+      meta: { title: 'sys.menu.analysis', key: '/dashboard/analysis' },
     },
   ],
 };
