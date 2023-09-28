@@ -19,7 +19,9 @@ const customAntdTheme: ThemeConfig = {
     borderRadius: 4,
     borderRadiusLG: 8,
   },
-  components: {},
+  components: {
+    Switch: {},
+  },
 };
 
 const colorPrimarys: {

@@ -52,8 +52,8 @@ export default {
       },
     },
   },
-  // corePlugins: {
-  //   preflight: false,
-  // },
+  corePlugins: {
+    preflight: false, // https://tailwindcss.com/docs/preflight#disabling-preflight
+  },
   plugins: [],
 };

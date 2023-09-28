@@ -19,7 +19,6 @@ import App from '@/App';
 import './locales/i18n';
 // tailwind css
 import './theme/index.css';
-
 // 创建一个 client
 const queryClient = new QueryClient({
   defaultOptions: {

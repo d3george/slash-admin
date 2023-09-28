@@ -35,7 +35,7 @@ export default function Header() {
                 <SvgIcon icon="ic-menu" size="24" />
               </button>
             ) : (
-              <Logo className="mr-4 h-10 w-10" />
+              <Logo />
             )}
 
             <SearchBar />

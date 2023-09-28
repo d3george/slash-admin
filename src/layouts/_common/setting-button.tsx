@@ -103,7 +103,7 @@ export default function SettingButton() {
             whileHover="hover"
             variants={varHover(1.05)}
             onClick={() => setDrawerOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-hover"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover"
           >
             <SvgIcon icon="ic-setting" size="24" />
           </m.button>

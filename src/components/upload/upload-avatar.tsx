@@ -34,11 +34,7 @@ export function UploadAvatar({ helperText, ...other }: Props) {
 
   const renderPreview = <img src={imageUrl} alt="" className="absolute rounded-full" />;
   const renderPlaceholder = (
-    <div
-      className={`absolute z-10 ${
-        imageUrl ? 'bg-hover opacity-100' : 'opacity-70  hover:opacity-50'
-      } `}
-    >
+    <div className={`absolute z-10 ${imageUrl ? 'opacity-100' : 'opacity-70  hover:opacity-50'} `}>
       <Iconify icon="solar:camera-add-bold" size={32} />
       <div className="mt-1 text-xs">Upload Phote</div>
     </div>
