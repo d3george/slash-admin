@@ -11,8 +11,13 @@ const customAntdTheme: ThemeConfig = {
     colorError: '#ff5630',
     colorInfo: '#00b8d9',
     colorInfoBg: '#CAFDF5',
+
+    // 线性化
     wireframe: false,
+
+    borderRadiusSM: 2,
     borderRadius: 4,
+    borderRadiusLG: 8,
   },
   components: {},
 };
