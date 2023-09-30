@@ -88,7 +88,9 @@
       "editor": "Editor",
       "i18n": "Multi Language",
       "upload": "Upload",
-      "chart": "Chart"
+      "chart": "Chart",
+      "functions": "Functions",
+      "clipboard": "Clipboard"
     }
   }
 }

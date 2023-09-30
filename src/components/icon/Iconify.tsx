@@ -4,11 +4,11 @@ import { styled } from 'styled-components';
 import type { IconProps } from '@iconify/react';
 
 interface Props extends IconProps {
-  size: IconProps['width'];
+  size?: IconProps['width'];
 }
 export function Iconify({ icon, size = '1em', ...other }: Props) {
   return (
-    <StyledIconify>
+    <StyledIconify className="anticon">
       <Icon icon={icon} width={size} height={size} {...other} />
     </StyledIconify>
   );
