@@ -12,6 +12,7 @@ const EditorPage = lazy(() => import('@/pages/components/editor'));
 const MultiLanguagePage = lazy(() => import('@/pages/components/multi-language'));
 const IconPage = lazy(() => import('@/pages/components/icon'));
 const UploadPage = lazy(() => import('@/pages/components/upload'));
+const ChartPage = lazy(() => import('@/pages/components/chart'));
 
 const components: AppRouteObject = {
   order: 3,
@@ -61,6 +62,11 @@ const components: AppRouteObject = {
       path: 'upload',
       element: <UploadPage />,
       meta: { title: 'sys.menu.upload', key: '/components/upload' },
+    },
+    {
+      path: 'chart',
+      element: <ChartPage />,
+      meta: { title: 'sys.menu.chart', key: '/components/chart' },
     },
   ],
 };

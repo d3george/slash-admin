@@ -87,7 +87,8 @@
       "markdown": "Markdown",
       "editor": "Editor",
       "i18n": "Multi Language",
-      "upload": "Upload"
+      "upload": "Upload",
+      "chart": "Chart"
     }
   }
 }
