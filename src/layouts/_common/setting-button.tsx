@@ -13,7 +13,7 @@ import screenfull from 'screenfull';
 import CyanBlur from '@/assets/images/background/cyan-blur.png';
 import RedBlur from '@/assets/images/background/red-blur.png';
 import { varHover } from '@/components/animate/variants/action';
-import { SvgIcon } from '@/components/icon';
+import { IconButton, SvgIcon } from '@/components/icon';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { colorPrimarys } from '@/theme/antd/theme';
 import { useThemeToken } from '@/theme/hooks';
@@ -103,9 +103,10 @@ export default function SettingButton() {
             whileHover="hover"
             variants={varHover(1.05)}
             onClick={() => setDrawerOpen(true)}
-            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-hover"
           >
-            <SvgIcon icon="ic-setting" size="24" />
+            <IconButton className="h-10 w-10">
+              <SvgIcon icon="ic-setting" size="24" />
+            </IconButton>
           </m.button>
         </m.div>
       </div>
@@ -120,12 +121,9 @@ export default function SettingButton() {
         maskStyle={{ backgroundColor: 'transparent' }}
         style={style}
         extra={
-          <button
-            onClick={() => setDrawerOpen(false)}
-            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover"
-          >
+          <IconButton onClick={() => setDrawerOpen(false)} className="h-9 w-9 hover:scale-105">
             <CloseOutlined className="text-gray-400" />
-          </button>
+          </IconButton>
         }
         footer={
           <Button type="dashed" block size="large" onClick={toggleFullScreen}>

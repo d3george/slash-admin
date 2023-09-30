@@ -1,14 +1,12 @@
-import { SvgIcon } from '@/components/icon';
+import { IconButton, SvgIcon } from '@/components/icon';
 
 export default function SearchBar() {
   return (
     <>
-      <button className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full hover:bg-hover">
+      <IconButton className="mr-1 h-9 w-9">
         <SvgIcon icon="ic-search" size="20" />
-      </button>
-      <span className="flex h-6 cursor-pointer items-center justify-center rounded-md bg-hover px-2 py-0 text-xs font-bold">
-        ⌘K
-      </span>
+      </IconButton>
+      <IconButton className="0 h-6 rounded-md bg-hover text-xs font-bold">⌘K</IconButton>
     </>
   );
 }

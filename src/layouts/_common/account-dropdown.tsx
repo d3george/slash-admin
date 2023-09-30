@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
+import { IconButton } from '@/components/icon';
 import { useLoginStateContext } from '@/pages/sys/login/providers/LoginStateProvider';
 import { useUserInfo, useUserActions } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
@@ -64,13 +65,13 @@ export default function AccountDropdown() {
 
   return (
     <Dropdown menu={{ items }} trigger={['click']} dropdownRender={dropdownRender}>
-      <button className=" flex h-10 w-10 transform-none cursor-pointer items-center justify-center rounded-full hover:scale-105 hover:bg-hover">
+      <IconButton className="h-10 w-10 transform-none px-0 hover:scale-105">
         <img
           className="h-8 w-8 rounded-full"
           src="https://api-prod-minimal-v510.vercel.app/assets/images/avatar/avatar_25.jpg"
           alt=""
         />
-      </button>
+      </IconButton>
     </Dropdown>
   );
 }
