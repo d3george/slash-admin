@@ -25,19 +25,22 @@ export default function useChart(options: ApexOptions) {
     // Colors
     colors: [
       theme.colorPrimary,
+      theme.colorWarning,
       theme.colorInfo,
       theme.colorError,
       theme.colorSuccess,
-      theme.colorWarning,
+      theme.colorWarningActive,
       theme.colorSuccessActive,
       theme.colorInfoActive,
-      theme.colorInfoActive,
+      theme.colorInfoText,
     ],
 
     // Chart
     chart: {
       toolbar: { show: false },
       zoom: { enabled: false },
+      foreColor: theme.colorTextDisabled,
+      fontFamily: theme.fontFamily,
     },
 
     // States
@@ -83,6 +86,7 @@ export default function useChart(options: ApexOptions) {
     // Grid
     grid: {
       strokeDashArray: 3,
+      borderColor: theme.colorSplit,
       xaxis: {
         lines: {
           show: false,
@@ -122,6 +126,9 @@ export default function useChart(options: ApexOptions) {
       itemMargin: {
         horizontal: 8,
       },
+      labels: {
+        colors: theme.colorText,
+      },
     },
 
     // plotOptions
@@ -160,13 +167,19 @@ export default function useChart(options: ApexOptions) {
       radar: {
         polygons: {
           fill: { colors: ['transparent'] },
+          strokeColors: theme.colorSplit,
+          connectorColors: theme.colorSplit,
         },
       },
 
       // polarArea
       polarArea: {
-        rings: {},
-        spokes: {},
+        rings: {
+          strokeColor: theme.colorSplit,
+        },
+        spokes: {
+          connectorColors: theme.colorSplit,
+        },
       },
     },
 
@@ -174,12 +187,14 @@ export default function useChart(options: ApexOptions) {
     responsive: [
       {
         // sm
+        breakpoint: theme.screenSM,
         options: {
           plotOptions: { bar: { columnWidth: '40%' } },
         },
       },
       {
         // md
+        breakpoint: theme.screenMD,
         options: {
           plotOptions: { bar: { columnWidth: '32%' } },
         },

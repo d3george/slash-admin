@@ -1,11 +1,19 @@
-import { Card } from 'antd';
+import { Card, Col, Row } from 'antd';
 
 import ChartArea from './view/chart-area';
 
 export default function ChartPage() {
   return (
-    <Card title="Area" size="small">
-      <ChartArea />
-    </Card>
+    <Row gutter={[8, 16]}>
+      <Col span={12}>
+        <Card title="Area">
+          <ChartArea />
+        </Card>
+      </Col>
+      <Col span={12} />
+
+      <Col span={12} />
+      <Col span={12} />
+    </Row>
   );
 }

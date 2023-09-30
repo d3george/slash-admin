@@ -25,7 +25,6 @@ export default function ChartArea() {
       },
     },
   });
-  console.log('🚀 ~ file: chart-area.tsx:29 ~ ChartArea ~ chartOptions:', chartOptions);
 
   return <Chart type="area" series={series} options={chartOptions} height={320} />;
 }
