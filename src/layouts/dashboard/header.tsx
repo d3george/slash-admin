@@ -35,7 +35,9 @@ export default function Header() {
             ) : (
               <Logo className="mr-2 text-xl" />
             )}
-            <BreadCrumb />
+            <div className="hidden md:block">
+              <BreadCrumb />
+            </div>
           </div>
 
           <div className="flex">
