@@ -90,13 +90,13 @@
       "chart": "图表",
       "functions": "功能",
       "clipboard": "剪贴板",
-      "menulevel": "Menu Level",
-      "menulevel_1a": "Menu Level 1a",
-      "menulevel_1b": "Menu Level 1b",
-      "menulevel_2a": "Menu Level 2a",
-      "menulevel_2b": "Menu Level 2b",
-      "menulevel_3a": "Menu Level 3a",
-      "menulevel_3b": "Menu Level 3b"
+      "menulevel": "多级菜单",
+      "menulevel_1a": "菜单 1a",
+      "menulevel_1b": "菜单 1b",
+      "menulevel_2a": "菜单 2a",
+      "menulevel_2b": "菜单 2b",
+      "menulevel_3a": "菜单 3a",
+      "menulevel_3b": "菜单 3b"
     }
   }
 }

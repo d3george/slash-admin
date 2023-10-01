@@ -7,7 +7,7 @@ import Loading from '@/components/loading';
 import { AppRouteObject } from '#/router';
 
 function MenuLevel({ title }: { title: string }) {
-  return <Typography.Title>Menu Levle: {title}</Typography.Title>;
+  return <Typography.Title>Menu Level: {title}</Typography.Title>;
 }
 
 const menulevel: AppRouteObject = {
