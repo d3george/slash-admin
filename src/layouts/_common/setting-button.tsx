@@ -97,17 +97,14 @@ export default function SettingButton() {
             ease: 'linear',
             repeat: Infinity,
           }}
+          whileTap="tap"
+          whileHover="hover"
+          variants={varHover(1.05)}
+          onClick={() => setDrawerOpen(true)}
         >
-          <m.button
-            whileTap="tap"
-            whileHover="hover"
-            variants={varHover(1.05)}
-            onClick={() => setDrawerOpen(true)}
-          >
-            <IconButton className="h-10 w-10">
-              <SvgIcon icon="ic-setting" size="24" />
-            </IconButton>
-          </m.button>
+          <IconButton className="h-10 w-10">
+            <SvgIcon icon="ic-setting" size="24" />
+          </IconButton>
         </m.div>
       </div>
       <Drawer
