@@ -8,6 +8,7 @@ import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
 import AccountDropdown from '../_common/account-dropdown';
+import BreadCrumb from '../_common/bread-crumb';
 import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/setting-button';
 
@@ -22,23 +23,23 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white sticky top-0 h-20 w-full" style={{ background: colorBgElevated }}>
-        <div className="shadow-2 flex flex-grow items-center justify-between px-4 py-4 text-gray md:px-6 2xl:px-11">
+      <header className="bg-white sticky top-0 w-full" style={{ background: colorBgElevated }}>
+        <div className="shadow-2 flex flex-grow items-center justify-between px-4 py-4 text-gray md:px-6 2xl:px-10">
           <div className="flex items-center">
             {/* hidden when screen widht > lg, when click show Sidebar Drawer */}
 
             {themeLayout !== ThemeLayout.Horizontal ? (
-              <IconButton onClick={() => setDrawerOpen(true)} className="h-9 w-9 lg:hidden">
+              <IconButton onClick={() => setDrawerOpen(true)} className="h-10 w-10 lg:hidden">
                 <SvgIcon icon="ic-menu" size="24" />
               </IconButton>
             ) : (
-              <Logo />
+              <Logo className="mr-2 text-xl" />
             )}
-
-            <SearchBar />
+            <BreadCrumb />
           </div>
 
           <div className="flex">
+            <SearchBar />
             <LocalePicker />
             <SettingButton />
             <AccountDropdown />

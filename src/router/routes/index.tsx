@@ -46,6 +46,8 @@ export const ErrorRoute: AppRouteObject = {
     { path: '500', element: <Page500 /> },
   ],
 };
+
+console.log('--->', RootRoute);
 // Basic routing without permission
 export const asyncRoutes = [
   LoginRoute,

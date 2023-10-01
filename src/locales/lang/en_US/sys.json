@@ -90,7 +90,14 @@
       "upload": "Upload",
       "chart": "Chart",
       "functions": "Functions",
-      "clipboard": "Clipboard"
+      "clipboard": "Clipboard",
+      "menulevel": "Menu Level",
+      "menulevel_1a": "Menu Level 1a",
+      "menulevel_1b": "Menu Level 1b",
+      "menulevel_2a": "Menu Level 2a",
+      "menulevel_2b": "Menu Level 2b",
+      "menulevel_3a": "Menu Level 3a",
+      "menulevel_3b": "Menu Level 3b"
     }
   }
 }

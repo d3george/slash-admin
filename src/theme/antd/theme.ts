@@ -20,7 +20,10 @@ const customAntdTheme: ThemeConfig = {
     borderRadiusLG: 8,
   },
   components: {
-    Switch: {},
+    Breadcrumb: {
+      fontSize: 12,
+      separatorMargin: 4,
+    },
   },
 };
 

@@ -98,7 +98,7 @@ export default function Nav(props: Props) {
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     if (latestOpenKey) {
-      setOpenKeys([latestOpenKey]);
+      setOpenKeys(keys);
     } else {
       setOpenKeys([]);
     }
@@ -126,8 +126,12 @@ export default function Nav(props: Props) {
 
   return (
     <div style={{ width: collapsed ? '90px' : '260px' }}>
-      <div className="relative flex h-20 items-center justify-center">
-        {themeLayout === ThemeLayout.Mini ? <Logo className="text-lg" /> : <Logo />}
+      <div className="relative flex h-20 items-center justify-center py-4">
+        {themeLayout === ThemeLayout.Mini ? (
+          <Logo className="text-lg" />
+        ) : (
+          <Logo className="text-4xl" />
+        )}
         <button
           onClick={toggleCollapsed}
           className="absolute right-0 top-6 z-10 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
