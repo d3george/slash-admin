@@ -1,3 +1,4 @@
+import { App as AntdApp } from 'antd';
 import { RouterProvider } from 'react-router-dom';
 
 import router from '@/router';
@@ -18,9 +19,11 @@ function App() {
 
   return (
     <AntdConfig>
-      <MotionLazy>
-        <RouterProvider router={router} />
-      </MotionLazy>
+      <AntdApp>
+        <MotionLazy>
+          <RouterProvider router={router} />
+        </MotionLazy>
+      </AntdApp>
     </AntdConfig>
   );
 }
