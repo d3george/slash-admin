@@ -23,7 +23,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white sticky top-0 w-full" style={{ background: colorBgElevated }}>
+      <header
+        className="bg-white sticky top-0 w-full"
+        style={{
+          background: colorBgElevated,
+          borderBottom:
+            themeLayout === ThemeLayout.Horizontal ? `1px dashed rgba(145, 158, 171, 0.2)` : '',
+        }}
+      >
         <div className="shadow-2 flex flex-grow items-center justify-between px-4 py-4 text-gray md:px-6 2xl:px-10">
           <div className="flex items-center">
             {/* hidden when screen widht > lg, when click show Sidebar Drawer */}

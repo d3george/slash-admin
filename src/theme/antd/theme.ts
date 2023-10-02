@@ -24,6 +24,11 @@ const customAntdTheme: ThemeConfig = {
       fontSize: 12,
       separatorMargin: 4,
     },
+    Menu: {
+      fontSize: 14,
+      colorFillAlter: 'transparent',
+      itemColor: 'rgb(145, 158, 171)',
+    },
   },
 };
 

@@ -42,9 +42,7 @@ export default function Nav(props: Props) {
           menuItem.key = meta.key;
           menuItem.label = t(meta?.title);
           if (meta.icon) {
-            menuItem.icon = (
-              <SvgIcon icon={meta.icon} className="ant-menu-item-icon mr-2" size="24px" />
-            );
+            menuItem.icon = <SvgIcon icon={meta.icon} className="ant-menu-item-icon" size="24" />;
           }
         }
         if (children) {

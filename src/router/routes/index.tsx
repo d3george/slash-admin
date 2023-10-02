@@ -47,7 +47,6 @@ export const ErrorRoute: AppRouteObject = {
   ],
 };
 
-console.log('--->', RootRoute);
 // Basic routing without permission
 export const asyncRoutes = [
   LoginRoute,

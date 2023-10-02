@@ -62,7 +62,7 @@ export default function NavHorizontal() {
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     if (latestOpenKey) {
-      setOpenKeys([latestOpenKey]);
+      setOpenKeys(keys);
     } else {
       setOpenKeys([]);
     }
