@@ -5,7 +5,6 @@ import { IconButton, SvgIcon } from '@/components/icon';
 import LocalePicker from '@/components/locale-picker';
 import Logo from '@/components/logo';
 import { useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/theme/hooks';
 
 import AccountDropdown from '../_common/account-dropdown';
 import BreadCrumb from '../_common/bread-crumb';
@@ -19,14 +18,12 @@ import { ThemeLayout } from '#/enum';
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
-  const { colorBgElevated } = useThemeToken();
 
   return (
     <>
       <header
-        className="bg-white sticky top-0 w-full"
+        className="w-full"
         style={{
-          background: colorBgElevated,
           borderBottom:
             themeLayout === ThemeLayout.Horizontal ? `1px dashed rgba(145, 158, 171, 0.2)` : '',
         }}
