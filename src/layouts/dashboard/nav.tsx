@@ -5,7 +5,6 @@ import { CSSProperties, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
-import { SvgIcon } from '@/components/icon';
 import Logo from '@/components/logo';
 import { getMenuRoutes } from '@/router/menus';
 import { useSettingActions, useSettings } from '@/store/settingStore';
@@ -39,10 +38,11 @@ export default function Nav(props: Props) {
         const menuItem: any = {};
         const { meta, children } = item;
         if (meta) {
-          menuItem.key = meta.key;
-          menuItem.label = t(meta?.title);
-          if (meta.icon) {
-            menuItem.icon = <SvgIcon icon={meta.icon} className="ant-menu-item-icon" size="24" />;
+          const { key, title, icon } = meta;
+          menuItem.key = key;
+          menuItem.label = t(title);
+          if (icon) {
+            menuItem.icon = icon;
           }
         }
         if (children) {

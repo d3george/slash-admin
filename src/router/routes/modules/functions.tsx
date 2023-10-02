@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { Iconify } from '@/components/icon';
 import Loading from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
@@ -15,7 +16,17 @@ const functions: AppRouteObject = {
       <Outlet />
     </Suspense>
   ),
-  meta: { title: 'sys.menu.functions', icon: 'ic-management', key: '/functions' },
+  meta: {
+    title: 'sys.menu.functions',
+    icon: (
+      <Iconify
+        icon="fluent-mdl2:functional-manager-dashboard"
+        className="ant-menu-item-icon"
+        size="24"
+      />
+    ),
+    key: '/functions',
+  },
   children: [
     {
       index: true,

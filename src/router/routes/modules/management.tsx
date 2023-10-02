@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { SvgIcon } from '@/components/icon';
 import Loading from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
@@ -16,7 +17,11 @@ const management: AppRouteObject = {
       <Outlet />
     </Suspense>
   ),
-  meta: { title: 'sys.menu.management', icon: 'ic-management', key: '/management' },
+  meta: {
+    title: 'sys.menu.management',
+    icon: <SvgIcon icon="ic-management" className="ant-menu-item-icon" size="24" />,
+    key: '/management',
+  },
   children: [
     {
       index: true,

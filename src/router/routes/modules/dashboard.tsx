@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { SvgIcon } from '@/components/icon';
 import Loading from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
@@ -16,7 +17,11 @@ const dashboard: AppRouteObject = {
       <Outlet />
     </Suspense>
   ),
-  meta: { title: 'sys.menu.dashboard', icon: 'ic-analysis', key: '/dashboard' },
+  meta: {
+    title: 'sys.menu.dashboard',
+    icon: <SvgIcon icon="ic-analysis" className="ant-menu-item-icon" size="24" />,
+    key: '/dashboard',
+  },
   children: [
     {
       index: true,

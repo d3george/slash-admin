@@ -4,7 +4,6 @@ import { useCallback, useState, useEffect, CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 
-import { SvgIcon } from '@/components/icon';
 import { getMenuRoutes } from '@/router/menus';
 import { useThemeToken } from '@/theme/hooks';
 
@@ -24,10 +23,11 @@ export default function NavHorizontal() {
         const menuItem: any = {};
         const { meta, children } = item;
         if (meta) {
-          menuItem.key = meta.key;
-          menuItem.label = t(meta?.title);
-          if (meta.icon) {
-            menuItem.icon = <SvgIcon icon={meta.icon} className="ant-menu-item-icon" size="24" />;
+          const { key, title, icon } = meta;
+          menuItem.key = key;
+          menuItem.label = t(title);
+          if (icon) {
+            menuItem.icon = icon;
           }
         }
         if (children) {

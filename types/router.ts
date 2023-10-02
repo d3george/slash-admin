@@ -1,10 +1,11 @@
+import { ReactNode } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 export interface RouteMeta {
   // unique
   key: string;
   title: string;
-  icon?: string;
+  icon?: ReactNode;
   // show in tab
   hideTab?: boolean;
   // show in menu

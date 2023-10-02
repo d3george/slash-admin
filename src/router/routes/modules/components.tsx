@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { Iconify } from '@/components/icon';
 import Loading from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
@@ -22,7 +23,17 @@ const components: AppRouteObject = {
       <Outlet />
     </Suspense>
   ),
-  meta: { title: 'sys.menu.components', icon: 'ic-management', key: '/components' },
+  meta: {
+    title: 'sys.menu.components',
+    icon: (
+      <Iconify
+        icon="ic:twotone-settings-input-component"
+        className="ant-menu-item-icon"
+        size="24"
+      />
+    ),
+    key: '/components',
+  },
   children: [
     {
       index: true,
