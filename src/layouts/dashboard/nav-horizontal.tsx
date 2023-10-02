@@ -83,7 +83,7 @@ export default function NavHorizontal() {
     boxShadow: `#919eab29 0px 8px 16px 0px`,
   };
   return (
-    <div className="relative mx-6">
+    <div className="relative w-screen">
       <Menu
         mode="horizontal"
         items={menuList}
