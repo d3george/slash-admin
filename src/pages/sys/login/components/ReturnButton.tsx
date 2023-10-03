@@ -9,7 +9,7 @@ export function ReturnButton({ onClick }: ReturnButtonProps) {
   const { t } = useTranslation();
   return (
     <Button block type="link" onClick={onClick}>
-      <div className="flex items-center justify-center text-black hover:underline">
+      <div className="flex items-center justify-center hover:underline">
         <MdArrowBackIosNew />
         <span className="text-sm">{t('sys.login.backSignIn')}</span>
       </div>

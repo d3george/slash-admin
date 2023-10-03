@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatches, Link } from 'react-router-dom';
 
-import { getMenuRoutes } from '@/router/menus';
+import { getMenuRoutes } from '@/router/utils';
 
 import { AppRouteObject, RouteMeta } from '#/router';
 

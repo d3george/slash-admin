@@ -31,6 +31,7 @@ const useUserStore = create<UserStore>((set) => ({
       setItem(StorageEnum.Token, userToken);
     },
     clearUserInfoAndToken() {
+      set({ userInfo: {}, userToken: {} });
       removeItem(StorageEnum.User);
       removeItem(StorageEnum.Token);
     },

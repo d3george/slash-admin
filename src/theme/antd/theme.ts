@@ -10,7 +10,6 @@ const customAntdTheme: ThemeConfig = {
     colorWarning: '#ffab00',
     colorError: '#ff5630',
     colorInfo: '#00b8d9',
-    colorInfoBg: '#CAFDF5',
 
     // 线性化
     wireframe: false,

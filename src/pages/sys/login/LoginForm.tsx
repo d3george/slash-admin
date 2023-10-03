@@ -1,4 +1,4 @@
-import { Alert, Button, Checkbox, Col, Divider, Form, Input, Row, notification } from 'antd';
+import { Alert, App, Button, Checkbox, Col, Divider, Form, Input, Row } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from 'react-icons/ai';
@@ -11,6 +11,7 @@ import { LoginStateEnum, useLoginStateContext } from './providers/LoginStateProv
 function LoginForm() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const { notification } = App.useApp();
 
   const { loginState, setLoginState } = useLoginStateContext();
   const signIn = useSignIn();
@@ -35,7 +36,7 @@ function LoginForm() {
       <Form name="login" size="large" initialValues={{ remember: true }} onFinish={handleFinish}>
         <div className="mb-4 flex flex-col">
           <Alert
-            description={`${t('sys.login.userName')}: demo@minimals.cc / ${t(
+            description={`${t('sys.login.userName')}: demo@gmail.com/ ${t(
               'sys.login.password',
             )}: demo1234`}
             type="info"
@@ -63,12 +64,12 @@ function LoginForm() {
               </Form.Item>
             </Col>
             <Col span={12} className="text-right">
-              <button className="!text-black !underline">{t('sys.login.forgetPassword')}</button>
+              <button className="!underline">{t('sys.login.forgetPassword')}</button>
             </Col>
           </Row>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="w-full !bg-black" loading={loading}>
+          <Button type="primary" htmlType="submit" className="w-full" loading={loading}>
             {t('sys.login.loginButton')}
           </Button>
         </Form.Item>
@@ -95,12 +96,12 @@ function LoginForm() {
           </Col>
         </Row>
 
-        <Divider className="!text-xs !text-[#00000073]">{t('sys.login.otherSignIn')}</Divider>
+        <Divider className="!text-xs">{t('sys.login.otherSignIn')}</Divider>
 
         <div className="flex cursor-pointer justify-around text-2xl">
-          <AiFillGithub className="hover:text-[#00A76F]" />
-          <AiFillWechat className="hover:text-[#00A76F]" />
-          <AiFillGoogleCircle className="hover:text-[#00A76F]" />
+          <AiFillGithub />
+          <AiFillWechat />
+          <AiFillGoogleCircle />
         </div>
       </Form>
     </>

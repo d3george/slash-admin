@@ -72,7 +72,7 @@ function MobileForm() {
           </Row>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="w-full !bg-black">
+          <Button type="primary" htmlType="submit" className="w-full">
             {t('sys.login.loginButton')}
           </Button>
         </Form.Item>

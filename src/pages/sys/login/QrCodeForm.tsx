@@ -14,7 +14,7 @@ function QrCodeFrom() {
       <div className="mb-4 text-2xl font-bold xl:text-3xl">{t('sys.login.qrSignInFormTitle')}</div>
       <div className="flex w-full flex-col items-center justify-center">
         <QRCode value="https://ant.design/" size={300} />
-        <p className="my-4 text-sm !text-[#00000073]">{t('sys.login.scanSign')}</p>
+        <p className="my-4 text-sm">{t('sys.login.scanSign')}</p>
       </div>
       <ReturnButton onClick={backToLogin} />
     </>
