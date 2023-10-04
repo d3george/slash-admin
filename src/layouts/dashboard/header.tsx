@@ -1,5 +1,5 @@
 import { Drawer } from 'antd';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 
 import { IconButton, SvgIcon } from '@/components/icon';
 import LocalePicker from '@/components/locale-picker';
@@ -13,25 +13,33 @@ import SettingButton from '../_common/setting-button';
 
 import Nav from './nav';
 
-import { ThemeLayout } from '#/enum';
+import { ThemeLayout, ThemeMode } from '#/enum';
 
-export default function Header() {
+type Props = {
+  className?: string;
+  offsetTop?: boolean;
+};
+export default function Header({ className, offsetTop = false }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { themeLayout } = useSettings();
+  const { themeLayout, themeMode } = useSettings();
 
+  const headerStyle: CSSProperties = {
+    position: themeLayout === ThemeLayout.Horizontal ? 'relative' : 'absolute',
+    borderBottom:
+      themeLayout === ThemeLayout.Horizontal ? `1px dashed rgba(145, 158, 171, 0.2)` : '',
+    backgroundColor:
+      themeMode === ThemeMode.Light ? 'rgba(255, 255, 255, 0.8)' : 'rgba(22, 28, 36, 0.8)',
+  };
   return (
     <>
-      <header
-        className="w-full"
-        style={{
-          borderBottom:
-            themeLayout === ThemeLayout.Horizontal ? `1px dashed rgba(145, 158, 171, 0.2)` : '',
-        }}
-      >
-        <div className="shadow-2 flex flex-grow items-center justify-between px-4 py-4 text-gray md:px-6 2xl:px-10">
-          <div className="flex items-center">
-            {/* hidden when screen widht > lg, when click show Sidebar Drawer */}
-
+      <header className={`z-20 w-full transition-height ${className}`} style={headerStyle}>
+        <div
+          className="shadow-2 flex flex-grow items-center justify-between px-4 text-gray backdrop-blur xl:px-6 2xl:px-10"
+          style={{
+            height: offsetTop ? '64px' : '80px',
+          }}
+        >
+          <div className="flex items-center ">
             {themeLayout !== ThemeLayout.Horizontal ? (
               <IconButton onClick={() => setDrawerOpen(true)} className="h-10 w-10 lg:hidden">
                 <SvgIcon icon="ic-menu" size="24" />

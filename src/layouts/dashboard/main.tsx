@@ -1,12 +1,18 @@
 import { Content } from 'antd/es/layout/layout';
+import { forwardRef } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { useSettings } from '@/store/settingStore';
 
-export default function Main() {
-  const { themeStretch } = useSettings();
+import { ThemeLayout } from '#/enum';
+
+const Main = forwardRef<HTMLDivElement, {}>((_, ref) => {
+  const { themeStretch, themeLayout } = useSettings();
   return (
-    <Content className="overflow-auto p-2">
+    <Content
+      ref={ref}
+      className={`overflow-auto p-2 ${themeLayout === ThemeLayout.Horizontal ? '' : 'pt-20'}`}
+    >
       {/* <!-- ===== Content Start ===== --> */}
       <div className={`mx-auto h-full w-full sm:px-2 ${themeStretch ? '' : 'xl:max-w-screen-xl'}`}>
         <Outlet />
@@ -14,4 +20,6 @@ export default function Main() {
       {/* <!-- ===== Content End ===== --> */}
     </Content>
   );
-}
+});
+
+export default Main;

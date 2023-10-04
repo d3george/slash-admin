@@ -132,10 +132,10 @@ export default function Nav(props: Props) {
         )}
         <button
           onClick={toggleCollapsed}
-          className="absolute right-0 top-6 z-10 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
-          style={{ color: colorTextBase, borderColor: colorTextBase }}
+          className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
+          style={{ color: colorTextBase, borderColor: colorTextBase, fontSize: 16 }}
         >
-          {collapsed ? <MenuUnfoldOutlined size={16} /> : <MenuFoldOutlined size={16} />}
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </button>
       </div>
 
