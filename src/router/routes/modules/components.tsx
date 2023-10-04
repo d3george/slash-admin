@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { Iconify } from '@/components/icon';
-import Loading from '@/components/loading';
+import { LineLoading } from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
 
@@ -19,7 +19,7 @@ const components: AppRouteObject = {
   order: 3,
   path: 'components',
   element: (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<LineLoading />}>
       <Outlet />
     </Suspense>
   ),
