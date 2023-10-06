@@ -4,30 +4,29 @@ import { ThemeColorPresets } from '#/enum';
 /**
  * Antd theme editor: https://ant.design/theme-editor-cn
  */
-const customAntdTheme: ThemeConfig = {
-  token: {
-    colorSuccess: '#22c55e',
-    colorWarning: '#ffab00',
-    colorError: '#ff5630',
-    colorInfo: '#00b8d9',
+const customThemeTokenConfig: ThemeConfig['token'] = {
+  colorSuccess: '#22c55e',
+  colorWarning: '#ffab00',
+  colorError: '#ff5630',
+  colorInfo: '#00b8d9',
 
-    // 线性化
-    wireframe: false,
+  // 线性化
+  wireframe: false,
 
-    borderRadiusSM: 2,
-    borderRadius: 4,
-    borderRadiusLG: 8,
+  borderRadiusSM: 2,
+  borderRadius: 4,
+  borderRadiusLG: 8,
+};
+
+const customComponentConfig: ThemeConfig['components'] = {
+  Breadcrumb: {
+    fontSize: 12,
+    separatorMargin: 4,
   },
-  components: {
-    Breadcrumb: {
-      fontSize: 12,
-      separatorMargin: 4,
-    },
-    Menu: {
-      fontSize: 14,
-      colorFillAlter: 'transparent',
-      itemColor: 'rgb(145, 158, 171)',
-    },
+  Menu: {
+    fontSize: 14,
+    colorFillAlter: 'transparent',
+    itemColor: 'rgb(145, 158, 171)',
   },
 };
 
@@ -42,13 +41,22 @@ const colorPrimarys: {
   red: '#FF3030',
 };
 
-const baseColor = {
+const themeModeToken: Record<'dark' | 'light', ThemeConfig> = {
   dark: {
-    colorBgLayout: '#161c24',
-    colorBgContainer: '#212b36',
-    colorBgElevated: '#161c24',
+    token: {
+      colorBgLayout: '#161c24',
+      colorBgContainer: '#212b36',
+      colorBgElevated: '#161c24',
+    },
+    components: {
+      Modal: {
+        headerBg: '#212b36',
+        contentBg: '#212b36',
+        footerBg: '#212b36',
+      },
+    },
   },
   light: {},
 };
 
-export { customAntdTheme, colorPrimarys, baseColor };
+export { customThemeTokenConfig, customComponentConfig, colorPrimarys, themeModeToken };

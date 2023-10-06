@@ -37,6 +37,7 @@
     "react-markdown": "^8.0.7",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.13.0",
+    "react-use": "^17.4.0",
     "rehype-highlight": "^6.0.0",
     "rehype-raw": "^6.0.0",
     "remark-gfm": "^3.0.1",

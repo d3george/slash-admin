@@ -1,7 +1,10 @@
 import { ascend } from 'ramda';
 
-import { AppRouteObject } from '#/router';
+import { AppRouteObject, RouteMeta } from '#/router';
 
+/**
+ * return menu routes
+ */
 export const menuFilter = (items: AppRouteObject[]) => {
   return items
     .filter((item) => {
@@ -34,4 +37,16 @@ export function getMenuModules() {
  */
 export function getMenuRoutes() {
   return menuFilter(getMenuModules());
+}
+
+/**
+ * return flatten routes
+ */
+export function flattenMenuRoutes(routes: AppRouteObject[]) {
+  return routes.reduce<RouteMeta[]>((prev, item) => {
+    const { meta, children } = item;
+    if (meta) prev.push(meta);
+    if (children) prev.push(...flattenMenuRoutes(children));
+    return prev;
+  }, []);
 }

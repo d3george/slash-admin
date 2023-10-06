@@ -5,7 +5,12 @@ import 'antd/dist/reset.css';
 import useLocale from '@/locales/useLocale';
 import { useSettings } from '@/store/settingStore';
 
-import { customAntdTheme, baseColor, colorPrimarys } from './antd/theme';
+import {
+  customThemeTokenConfig,
+  themeModeToken,
+  colorPrimarys,
+  customComponentConfig,
+} from './antd/theme';
 
 import { ThemeMode } from '#/enum';
 
@@ -24,8 +29,8 @@ export default function AntdConfig({ children }: Props) {
     <ConfigProvider
       locale={language.antdLocal}
       theme={{
-        token: { ...customAntdTheme.token, colorPrimary, ...baseColor[themeMode] },
-        components: { ...customAntdTheme.components },
+        token: { colorPrimary, ...customThemeTokenConfig, ...themeModeToken[themeMode].token },
+        components: { ...customComponentConfig, ...themeModeToken[themeMode].components },
         algorithm,
       }}
     >
