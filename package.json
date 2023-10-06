@@ -19,6 +19,7 @@
     "@vitejs/plugin-react": "^4.0.0",
     "antd": "^5.9.3",
     "apexcharts": "^3.43.0",
+    "autosuggest-highlight": "^3.3.4",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "framer-motion": "^10.16.4",
@@ -51,6 +52,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
+    "@types/autosuggest-highlight": "^3.2.0",
     "@types/classnames": "^2.3.1",
     "@types/nprogress": "^0.2.0",
     "@types/numeral": "^2.0.3",

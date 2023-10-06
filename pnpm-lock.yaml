@@ -25,6 +25,9 @@ dependencies:
   apexcharts:
     specifier: ^3.43.0
     version: 3.43.0
+  autosuggest-highlight:
+    specifier: ^3.3.4
+    version: 3.3.4
   axios:
     specifier: ^1.4.0
     version: 1.4.0
@@ -117,6 +120,9 @@ devDependencies:
   '@commitlint/config-conventional':
     specifier: ^17.6.5
     version: 17.6.5
+  '@types/autosuggest-highlight':
+    specifier: ^3.2.0
+    version: 3.2.0
   '@types/classnames':
     specifier: ^2.3.1
     version: 2.3.1
@@ -2379,6 +2385,10 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
+  /@types/autosuggest-highlight@3.2.0:
+    resolution: {integrity: sha512-bTcsL4YYypjhKfPaImxuoMPiTyiUp7VGKytMr15/413IoazrOIfV/gca2ysI/IW0ftZYCPI5xppRm6IVX1Efqw==}
+    dev: true
+
   /@types/classnames@2.3.1:
     resolution: {integrity: sha512-zeOWb0JGBoVmlQoznvqXbE0tEC/HONsnoUNH19Hc96NFsTAwTXbTqb8FMYkru1F/iqp7a18Ws3nWJvtA1sHD1A==}
     deprecated: This is a stub types definition. classnames provides its own type definitions, so you do not need this installed.
@@ -3096,6 +3106,12 @@ packages:
       postcss: 7.0.39
       postcss-value-parser: 4.2.0
     dev: true
+
+  /autosuggest-highlight@3.3.4:
+    resolution: {integrity: sha512-j6RETBD2xYnrVcoV1S5R4t3WxOlWZKyDQjkwnggDPSjF5L4jV98ZltBpvPvbkM1HtoSe5o+bNrTHyjPbieGeYA==}
+    dependencies:
+      remove-accents: 0.4.2
+    dev: false
 
   /available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
@@ -5870,10 +5886,6 @@ packages:
       object.assign: 4.1.4
       object.values: 1.1.7
     dev: true
-
-  /keyboardjs@2.7.0:
-    resolution: {integrity: sha512-3tiQuAoLM1M5Xyo/eQVaqsq9joByTRkB0Byga+0S7BYJvY4HIlfW0SofOj4a20YSAFjv0SIFU/lw+Qjp6KYHPA==}
-    dev: false
 
   /keyv@4.5.3:
     resolution: {integrity: sha512-QCiSav9WaX1PgETJ+SpNnx2PRRapJ/oRSXM4VO5OGYGSjrxbKPVFVhB3l2OCbLCk329N8qyAtsJjSjvVBWzEug==}

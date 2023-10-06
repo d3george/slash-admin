@@ -1,5 +1,7 @@
-import { GlobalToken, Input, InputRef, Modal, Typography } from 'antd';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { GlobalToken, Input, InputRef, Modal } from 'antd';
+import match from 'autosuggest-highlight/match';
+import parse from 'autosuggest-highlight/parse';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useBoolean, useEvent } from 'react-use';
 import { styled } from 'styled-components';
@@ -10,27 +12,30 @@ import { useRouter } from '@/router/hooks';
 import { flattenMenuRoutes, getMenuRoutes } from '@/router/utils';
 import { useThemeToken } from '@/theme/hooks';
 
-import { RouteMeta } from '#/router';
-
 export default function SearchBar() {
   const { t } = useTranslation();
   const { replace } = useRouter();
   const inputRef = useRef<InputRef>(null);
-  const [searchQuery, setSearchQuery] = useState('');
   const [search, toggle] = useBoolean(false);
   const themeToken = useThemeToken();
 
-  const [flattenedRoutes, setFlattenedRoutes] = useState<RouteMeta[]>([]);
-
   const flattenRoutes = useCallback(flattenMenuRoutes, []);
+  const flattenedRoutes = useMemo(() => {
+    const menuRoutes = getMenuRoutes();
+    return flattenRoutes(menuRoutes);
+  }, [flattenRoutes]);
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResult, setSearchResult] = useState(flattenedRoutes);
 
   useEffect(() => {
-    const menuRoutes = getMenuRoutes();
-    const result = flattenRoutes(menuRoutes);
-    console.log('result', result);
-
-    setFlattenedRoutes(result);
-  }, [flattenRoutes]);
+    const result = flattenedRoutes.filter(
+      (item) =>
+        t(item.title).toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
+        item.key.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1,
+    );
+    setSearchResult(result);
+  }, [searchQuery, t, flattenedRoutes]);
 
   const handleMetaK = (event: KeyboardEvent) => {
     // https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/metaKey
@@ -89,32 +94,63 @@ export default function SearchBar() {
         }
       >
         <Scrollbar>
-          {flattenedRoutes.map(({ key, title }) => (
-            <StyledListItemButton key={key} themeToken={themeToken}>
-              <button onClick={() => replace(key)}>
-                <div className="font-medium">{t(title)}</div>
-                <Typography.Text type="secondary">{key}</Typography.Text>
-              </button>
-            </StyledListItemButton>
-          ))}
+          {searchResult.map(({ key, title }) => {
+            const partsTitle = parse(t(title), match(t(title), searchQuery));
+            const partsKey = parse(key, match(key, searchQuery));
+            return (
+              <StyledListItemButton key={key} themetoken={themeToken}>
+                <button
+                  onClick={() => {
+                    replace(key);
+                    handleCancel();
+                  }}
+                >
+                  <div className="font-medium">
+                    {partsTitle.map((item) => (
+                      <span
+                        style={{
+                          color: item.highlight ? themeToken.colorPrimary : themeToken.colorText,
+                        }}
+                      >
+                        {item.text}
+                      </span>
+                    ))}
+                  </div>
+                  <div>
+                    {partsKey.map((item) => (
+                      <span
+                        style={{
+                          color: item.highlight
+                            ? themeToken.colorPrimary
+                            : themeToken.colorTextDescription,
+                        }}
+                      >
+                        {item.text}
+                      </span>
+                    ))}
+                  </div>
+                </button>
+              </StyledListItemButton>
+            );
+          })}
         </Scrollbar>
       </Modal>
     </>
   );
 }
 
-const StyledListItemButton = styled.div<{ themeToken: GlobalToken }>`
+const StyledListItemButton = styled.div<{ themetoken: GlobalToken }>`
   button {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 8px 16px;
     border-radius: 8px;
-    border-bottom: ${(props) => `1px dashed ${props.themeToken.colorSplit}`};
+    border-bottom: ${(props) => `1px dashed ${props.themetoken.colorSplit}`};
 
     &:hover {
-      border: ${(props) => `1px dashed ${props.themeToken.colorPrimary}`};
-      background-color: ${(props) => `${props.themeToken.colorPrimaryBg}`};
+      border: ${(props) => `1px dashed ${props.themetoken.colorPrimary}`};
+      background-color: ${(props) => `${props.themetoken.colorPrimaryBg}`};
     }
   }
 `;
