@@ -13,7 +13,7 @@ import { useThemeToken } from '@/theme/hooks';
  * Account Dropdown
  */
 export default function AccountDropdown() {
-  const { username, email } = useUserInfo();
+  const { username, email, avatar } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
   const { backToLogin } = useLoginStateContext();
   const { t } = useTranslation();
@@ -66,11 +66,7 @@ export default function AccountDropdown() {
   return (
     <Dropdown menu={{ items }} trigger={['click']} dropdownRender={dropdownRender}>
       <IconButton className="h-10 w-10 transform-none px-0 hover:scale-105">
-        <img
-          className="h-8 w-8 rounded-full"
-          src="https://api-prod-minimal-v510.vercel.app/assets/images/avatar/avatar_25.jpg"
-          alt=""
-        />
+        <img className="h-8 w-8 rounded-full" src={avatar} alt="" />
       </IconButton>
     </Dropdown>
   );

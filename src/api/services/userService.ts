@@ -12,7 +12,7 @@ export interface SignUpReq extends SignInReq {
 }
 export type SignInRes = UserToken & { user: UserInfo };
 
-enum Api {
+export enum UserApi {
   SignIn = '/auth/signin',
   SignUp = '/auth/signup',
   Logout = '/auth/logout',
@@ -20,10 +20,10 @@ enum Api {
   User = '/user/',
 }
 
-const signin = (data: SignInReq) => apiClient.post<SignInRes>({ url: Api.SignIn, data });
-const signup = (data: SignUpReq) => apiClient.post<SignInRes>({ url: Api.SignUp, data });
-const logout = () => apiClient.get({ url: Api.Logout });
-const findById = (id: string) => apiClient.get({ url: `${Api.User}${id}` });
+const signin = (data: SignInReq) => apiClient.post<SignInRes>({ url: UserApi.SignIn, data });
+const signup = (data: SignUpReq) => apiClient.post<SignInRes>({ url: UserApi.SignUp, data });
+const logout = () => apiClient.get({ url: UserApi.Logout });
+const findById = (id: string) => apiClient.get({ url: `${UserApi.User}${id}` });
 
 export default {
   signin,

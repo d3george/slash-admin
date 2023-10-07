@@ -19,6 +19,17 @@ import App from '@/App';
 import './locales/i18n';
 // tailwind css
 import './theme/index.css';
+
+const charAt = `
+    ███████╗██╗      █████╗ ███████╗██╗  ██╗ 
+    ██╔════╝██║     ██╔══██╗██╔════╝██║  ██║
+    ███████╗██║     ███████║███████╗███████║
+    ╚════██║██║     ██╔══██║╚════██║██╔══██║
+    ███████║███████╗██║  ██║███████║██║  ██║
+    ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+  `;
+console.info(`%c${charAt}`, 'color: #5BE49B');
+
 // 创建一个 client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,6 +43,13 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+// start service worker mock in development mode
+if (import.meta.env.MODE === 'development') {
+  const { worker } = await import('./_mock');
+  worker.start();
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(

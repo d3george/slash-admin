@@ -1,8 +1,9 @@
-import { Alert, App, Button, Checkbox, Col, Divider, Form, Input, Row } from 'antd';
+import { Alert, Button, Checkbox, Col, Divider, Form, Input, Row } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from 'react-icons/ai';
 
+import { USERLIST } from '@/_mock/assets';
 import { SignInReq } from '@/api/services/userService';
 import { useSignIn } from '@/store/userStore';
 
@@ -11,21 +12,16 @@ import { LoginStateEnum, useLoginStateContext } from './providers/LoginStateProv
 function LoginForm() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const { notification } = App.useApp();
 
   const { loginState, setLoginState } = useLoginStateContext();
   const signIn = useSignIn();
+
   if (loginState !== LoginStateEnum.LOGIN) return null;
 
   const handleFinish = async ({ username, password }: SignInReq) => {
     setLoading(true);
     try {
       await signIn({ username, password });
-      notification.success({
-        message: t('sys.login.loginSuccessTitle'),
-        description: `${t('sys.login.loginSuccessDesc')}: ${username}`,
-        duration: 3,
-      });
     } finally {
       setLoading(false);
     }
@@ -36,9 +32,14 @@ function LoginForm() {
       <Form name="login" size="large" initialValues={{ remember: true }} onFinish={handleFinish}>
         <div className="mb-4 flex flex-col">
           <Alert
-            description={`${t('sys.login.userName')}: demo@gmail.com/ ${t(
-              'sys.login.password',
-            )}: demo1234`}
+            description={
+              <>
+                {t('sys.login.userName')}:
+                <strong className="ml-1 font-bold text-gray">{USERLIST[0].username}</strong>
+                {` / ${t('sys.login.password')}`}:
+                <strong className=" ml-1 font-bold text-gray">{USERLIST[0].password}</strong>
+              </>
+            }
             type="info"
             showIcon
           />

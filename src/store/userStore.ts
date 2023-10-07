@@ -1,7 +1,11 @@
+import { useMutation } from '@tanstack/react-query';
+import { App } from 'antd';
+import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
-import { SignInReq } from '@/api/services/userService';
+import userService, { SignInReq } from '@/api/services/userService';
 import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserInfo, UserToken } from '#/entity';
@@ -43,29 +47,34 @@ export const useUserToken = () => useUserStore((state) => state.userToken);
 export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
+  const { t } = useTranslation();
   const navigatge = useNavigate();
+  const { notification } = App.useApp();
   const { setUserToken, setUserInfo } = useUserActions();
 
-  // const signInMutation = useMutation(userService.signin);
+  const signInMutation = useMutation(userService.signin);
 
   const signIn = async (data: SignInReq) => {
-    // const res = await signInMutation.mutateAsync(data);
-    console.log(data);
-    const res = {
-      user: {
-        id: '996061ef-c4db-474e-a379-001efb36aeba',
-        email: '317010370@qq.com',
-        username: 'dsying',
-        createdAt: '2023-08-28T00:21:42.270Z',
-        updatedAt: '2023-08-28T03:49:46.000Z',
-      },
-      accessToken: 'accessToken',
-      refreshToken: 'refreshToken',
-    };
-    const { user, accessToken, refreshToken } = res;
-    setUserToken({ accessToken, refreshToken });
-    setUserInfo(user);
-    navigatge('/dashboard', { replace: true });
+    try {
+      const res = await signInMutation.mutateAsync(data);
+      const { user, accessToken, refreshToken } = res;
+      setUserToken({ accessToken, refreshToken });
+      setUserInfo(user);
+      navigatge('/dashboard', { replace: true });
+
+      notification.success({
+        message: t('sys.login.loginSuccessTitle'),
+        description: `${t('sys.login.loginSuccessDesc')}: ${data.username}`,
+        duration: 3,
+      });
+    } catch (err) {
+      notification.error({
+        message: err.message,
+        duration: 3,
+      });
+    }
   };
-  return signIn;
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useCallback(signIn, []);
 };
