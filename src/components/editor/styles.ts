@@ -168,7 +168,19 @@ const StyledToolbar = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
       height: 20px;
     }
     & .ql-picker-label {
+      border-radius: 4px;
+      border-color: transparent !important;
+      background-color: ${(props) => props.token.colorBgContainerDisabled};
       color: ${(props) => props.token.colorTextBase};
+    }
+    & .ql-picker-options {
+      margin-top: 4px;
+      border: none;
+      max-height: 200px;
+      overflow: auto;
+      border-radius: 8px;
+      color: ${(props) => props.token.colorTextBase};
+      background-color: ${(props) => props.token.colorBgContainer};
     }
   }
 `;

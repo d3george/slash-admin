@@ -23,7 +23,7 @@ export default function AnimatePage() {
       >
         https://www.framer.com/motion/
       </Typography.Link>
-      <Tabs items={TABS} />;
+      <Tabs items={TABS} />
     </>
   );
 }
