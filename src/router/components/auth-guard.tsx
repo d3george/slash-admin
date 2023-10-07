@@ -1,3 +1,5 @@
+import { useCallback, useEffect } from 'react';
+
 import { useUserToken } from '@/store/userStore';
 
 import { useRouter } from '../hooks';
@@ -9,10 +11,15 @@ export default function AuthGuard({ children }: Props) {
   const router = useRouter();
   const { accessToken } = useUserToken();
 
-  if (!accessToken) {
-    router.replace('/login');
-    return null;
-  }
+  const check = useCallback(() => {
+    if (!accessToken) {
+      router.replace('/login');
+    }
+  }, [router, accessToken]);
+
+  useEffect(() => {
+    check();
+  }, [check]);
 
   return children;
 }
