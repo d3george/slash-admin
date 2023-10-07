@@ -27,7 +27,7 @@ export default function Editor({ id = 'slash-quill', sample = false, ...other }:
     },
   };
   return (
-    <StyledEditor token={token} thememode={themeMode}>
+    <StyledEditor $token={token} $thememode={themeMode}>
       <Toolbar id={id} isSimple={sample} />
       <ReactQuill
         modules={modules}

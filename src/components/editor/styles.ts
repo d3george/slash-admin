@@ -17,21 +17,21 @@ const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
   };
 };
 
-const StyledEditor = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
+const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
   h1 {
-    ${(props) => getHeadingStyle(1, props.token)};
+    ${(props) => getHeadingStyle(1, props.$token)};
   }
   h2 {
-    ${(props) => getHeadingStyle(2, props.token)};
+    ${(props) => getHeadingStyle(2, props.$token)};
   }
   h3 {
-    ${(props) => getHeadingStyle(3, props.token)};
+    ${(props) => getHeadingStyle(3, props.$token)};
   }
   h4 {
-    ${(props) => getHeadingStyle(4, props.token)};
+    ${(props) => getHeadingStyle(4, props.$token)};
   }
   h5 {
-    ${(props) => getHeadingStyle(5, props.token)};
+    ${(props) => getHeadingStyle(5, props.$token)};
   }
   overflow: hidden;
   position: relative;
@@ -64,7 +64,7 @@ const StyledEditor = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
   }
 `;
 
-const StyledToolbar = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
+const StyledToolbar = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
   & .ql-snow.ql-toolbar button:hover .ql-fill,
   .ql-snow .ql-toolbar button:hover .ql-fill,
   .ql-snow.ql-toolbar button:focus .ql-fill,
@@ -93,7 +93,7 @@ const StyledToolbar = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
   .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
-    fill: ${(props) => props.token.colorPrimary};
+    fill: ${(props) => props.$token.colorPrimary};
   }
   & .ql-snow.ql-toolbar button:hover,
   .ql-snow .ql-toolbar button:hover,
@@ -109,7 +109,7 @@ const StyledToolbar = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
   .ql-snow .ql-toolbar .ql-picker-item:hover,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
-    color: ${(props) => props.token.colorPrimary};
+    color: ${(props) => props.$token.colorPrimary};
   }
 
   & .ql-snow.ql-toolbar button:hover .ql-stroke,
@@ -140,15 +140,15 @@ const StyledToolbar = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
   .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
-    stroke: ${(props) => props.token.colorPrimary};
+    stroke: ${(props) => props.$token.colorPrimary};
   }
 
   & .ql-stroke {
-    stroke: ${(props) => props.token.colorTextBase};
+    stroke: ${(props) => props.$token.colorTextBase};
   }
   & .ql-fill,
   .ql-stroke.ql-fill {
-    fill: ${(props) => props.token.colorTextBase};
+    fill: ${(props) => props.$token.colorTextBase};
   }
 
   & .ql-toolbar.ql-snow {
@@ -170,8 +170,8 @@ const StyledToolbar = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
     & .ql-picker-label {
       border-radius: 4px;
       border-color: transparent !important;
-      background-color: ${(props) => props.token.colorBgContainerDisabled};
-      color: ${(props) => props.token.colorTextBase};
+      background-color: ${(props) => props.$token.colorBgContainerDisabled};
+      color: ${(props) => props.$token.colorTextBase};
     }
     & .ql-picker-options {
       margin-top: 4px;
@@ -179,8 +179,8 @@ const StyledToolbar = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
       max-height: 200px;
       overflow: auto;
       border-radius: 8px;
-      color: ${(props) => props.token.colorTextBase};
-      background-color: ${(props) => props.token.colorBgContainer};
+      color: ${(props) => props.$token.colorTextBase};
+      background-color: ${(props) => props.$token.colorBgContainer};
     }
   }
 `;

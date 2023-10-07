@@ -16,7 +16,7 @@ export default function Markdown({ children }: Props) {
   const token = useThemeToken();
   const { themeMode } = useSettings();
   return (
-    <StyledMarkdown token={token} thememode={themeMode}>
+    <StyledMarkdown $token={token} $thememode={themeMode}>
       <ReactMarkdown
         rehypePlugins={[rehypeHighlight, rehypeRaw]}
         remarkPlugins={[[remarkGfm, { singleTilde: false }]]}

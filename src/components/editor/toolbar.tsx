@@ -40,7 +40,7 @@ export default function Toolbar({ id, isSimple, ...other }: EditorToolbarProps) 
   const token = useThemeToken();
   const { themeMode } = useSettings();
   return (
-    <StyledToolbar token={token} thememode={themeMode} {...other}>
+    <StyledToolbar $token={token} $thememode={themeMode} {...other}>
       <div id={id}>
         <div className="ql-formats">
           <select className="ql-header" defaultValue="">

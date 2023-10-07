@@ -98,38 +98,40 @@ export default function SearchBar() {
             const partsTitle = parse(t(title), match(t(title), searchQuery));
             const partsKey = parse(key, match(key, searchQuery));
             return (
-              <StyledListItemButton key={key} themetoken={themeToken}>
-                <button
-                  onClick={() => {
-                    replace(key);
-                    handleCancel();
-                  }}
-                >
-                  <div className="font-medium">
-                    {partsTitle.map((item) => (
-                      <span
-                        style={{
-                          color: item.highlight ? themeToken.colorPrimary : themeToken.colorText,
-                        }}
-                      >
-                        {item.text}
-                      </span>
-                    ))}
-                  </div>
-                  <div>
-                    {partsKey.map((item) => (
-                      <span
-                        style={{
-                          color: item.highlight
-                            ? themeToken.colorPrimary
-                            : themeToken.colorTextDescription,
-                        }}
-                      >
-                        {item.text}
-                      </span>
-                    ))}
-                  </div>
-                </button>
+              <StyledListItemButton
+                key={key}
+                $themetoken={themeToken}
+                onClick={() => {
+                  replace(key);
+                  handleCancel();
+                }}
+              >
+                <div className="font-medium">
+                  {partsTitle.map((item) => (
+                    <span
+                      key={item.text}
+                      style={{
+                        color: item.highlight ? themeToken.colorPrimary : themeToken.colorText,
+                      }}
+                    >
+                      {item.text}
+                    </span>
+                  ))}
+                </div>
+                <div>
+                  {partsKey.map((item) => (
+                    <span
+                      key={item.text}
+                      style={{
+                        color: item.highlight
+                          ? themeToken.colorPrimary
+                          : themeToken.colorTextDescription,
+                      }}
+                    >
+                      {item.text}
+                    </span>
+                  ))}
+                </div>
               </StyledListItemButton>
             );
           })}
@@ -139,18 +141,16 @@ export default function SearchBar() {
   );
 }
 
-const StyledListItemButton = styled.div<{ themetoken: GlobalToken }>`
-  button {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 8px 16px;
-    border-radius: 8px;
-    border-bottom: ${(props) => `1px dashed ${props.themetoken.colorSplit}`};
+const StyledListItemButton = styled.div<{ $themetoken: GlobalToken }>`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border-bottom: ${(props) => `1px dashed ${props.$themetoken.colorSplit}`};
 
-    &:hover {
-      border: ${(props) => `1px dashed ${props.themetoken.colorPrimary}`};
-      background-color: ${(props) => `${props.themetoken.colorPrimaryBg}`};
-    }
+  &:hover {
+    border: ${(props) => `1px dashed ${props.$themetoken.colorPrimary}`};
+    background-color: ${(props) => `${props.$themetoken.colorPrimaryBg}`};
   }
 `;

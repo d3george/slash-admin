@@ -20,26 +20,26 @@ const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
     lineHeight: token[lineHeightHeading],
   };
 };
-const StyledMarkdown = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
+const StyledMarkdown = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
   display: grid;
   // Text
   h1 {
-    ${(props) => getHeadingStyle(1, props.token)};
+    ${(props) => getHeadingStyle(1, props.$token)};
   }
   h2 {
-    ${(props) => getHeadingStyle(2, props.token)};
+    ${(props) => getHeadingStyle(2, props.$token)};
   }
   h3 {
-    ${(props) => getHeadingStyle(3, props.token)};
+    ${(props) => getHeadingStyle(3, props.$token)};
   }
   h4 {
-    ${(props) => getHeadingStyle(4, props.token)};
+    ${(props) => getHeadingStyle(4, props.$token)};
   }
   h5 {
-    ${(props) => getHeadingStyle(5, props.token)};
+    ${(props) => getHeadingStyle(5, props.$token)};
   }
   a {
-    color: ${(props) => props.token.colorPrimary};
+    color: ${(props) => props.$token.colorPrimary};
   }
   img {
     border-radius: 4px;
@@ -107,7 +107,8 @@ const StyledMarkdown = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
     border-radius: 4px;
     white-space: pre;
     padding: 0px;
-    background-color: ${(props) => (props.thememode === ThemeMode.Light ? '#161c24' : '#919eab29')};
+    background-color: ${(props) =>
+      props.$thememode === ThemeMode.Light ? '#161c24' : '#919eab29'};
   }
 
   // Table
@@ -122,7 +123,7 @@ const StyledMarkdown = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
     }
     tbody tr:nth-of-type(odd) {
       background-color: ${(props) =>
-        props.thememode === ThemeMode.Light ? '#f4f6f8' : '#919eab1f '};
+        props.$thememode === ThemeMode.Light ? '#f4f6f8' : '#919eab1f '};
     }
   }
 
@@ -144,7 +145,7 @@ const StyledMarkdown = styled.div<{ token: GlobalToken; thememode: ThemeMode }>`
       }
       &:checked {
         &::before {
-          background-color: ${(props) => props.token.colorPrimary};
+          background-color: ${(props) => props.$token.colorPrimary};
         }
         &::after {
           content: '';

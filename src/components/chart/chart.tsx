@@ -12,7 +12,7 @@ function Chart(props: ApexChartProps) {
   const { themeMode } = useSettings();
   const theme = useThemeToken();
   return (
-    <StyledApexChart thememode={themeMode} theme={theme}>
+    <StyledApexChart $thememode={themeMode} $theme={theme}>
       <ApexChart {...props} />
     </StyledApexChart>
   );
