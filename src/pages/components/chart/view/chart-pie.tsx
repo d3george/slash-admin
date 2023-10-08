@@ -4,14 +4,9 @@ import useChart from '@/components/chart/useChart';
 const series = [44, 55, 13, 43];
 export default function ChartPie() {
   const chartOptions = useChart({
-    labels: ['Team A', 'Team B', 'Team C', 'Team D'],
+    labels: ['America', 'Asia', 'Europe', 'Africa'],
     legend: {
-      position: 'right',
-      offsetX: -20,
-      offsetY: 64,
-      itemMargin: {
-        vertical: 8,
-      },
+      horizontalAlign: 'center',
     },
     stroke: {
       show: false,

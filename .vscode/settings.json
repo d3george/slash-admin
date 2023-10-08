@@ -6,10 +6,19 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true,
   },
-  "stylelint.validate": ["css", "scss", "less", "postcss"],
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "less",
+    "postcss"
+  ],
   "npm.packageManager": "pnpm",
-  "i18n-ally.localesPaths": ["src/locales/lang"],
-  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.localesPaths": [
+    "src/locales/lang"
+  ],
+  "i18n-ally.enabledParsers": [
+    "json"
+  ],
   "i18n-ally.pathMatcher": "{locale}/{namespaces}.{ext}",
   "i18n-ally.keystyle": "flat",
   "i18n-ally.sortKeys": true,
