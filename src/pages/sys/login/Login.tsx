@@ -1,11 +1,12 @@
 import { Layout, Typography } from 'antd';
+import Color from 'color';
 import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 
 import DashboardImg from '@/assets/images/background/dashboard.png';
 import LocalePicker from '@/components/locale-picker';
-import { useSettings } from '@/store/settingStore';
 import { useUserToken } from '@/store/userStore';
+import { useThemeToken } from '@/theme/hooks';
 
 import LoginForm from './LoginForm';
 import MobileForm from './MobileForm';
@@ -14,12 +15,10 @@ import QrCodeFrom from './QrCodeForm';
 import RegisterForm from './RegisterForm';
 import ResetForm from './ResetForm';
 
-import { ThemeMode } from '#/enum';
-
 function Login() {
   const { t } = useTranslation();
   const token = useUserToken();
-  const { themeMode } = useSettings();
+  const { colorBgElevated } = useThemeToken();
 
   // 判断用户是否有权限
   if (token.accessToken) {
@@ -27,8 +26,7 @@ function Login() {
     return <Navigate to="/dashboard" replace />;
   }
 
-  const gradientBg =
-    themeMode === ThemeMode.Light ? 'rgba(255, 255, 255, 0.88)' : 'rgba(22, 28, 36, 0.94)';
+  const gradientBg = Color(colorBgElevated).alpha(0.9).toString();
   const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(/src/assets/images/background/overlay_2.jpg)`;
 
   return (

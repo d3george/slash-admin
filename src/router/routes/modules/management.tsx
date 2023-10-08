@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { SvgIcon } from '@/components/icon';
-import { LineLoading } from '@/components/loading';
+import { CircleLoading } from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
 
@@ -13,7 +13,7 @@ const management: AppRouteObject = {
   order: 2,
   path: 'management',
   element: (
-    <Suspense fallback={<LineLoading />}>
+    <Suspense fallback={<CircleLoading />}>
       <Outlet />
     </Suspense>
   ),

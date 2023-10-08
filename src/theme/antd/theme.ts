@@ -54,6 +54,7 @@ const themeModeToken: Record<'dark' | 'light', ThemeConfig> = {
         contentBg: '#212b36',
         footerBg: '#212b36',
       },
+      Notification: {},
     },
   },
   light: {},

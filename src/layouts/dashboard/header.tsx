@@ -1,10 +1,12 @@
 import { Drawer } from 'antd';
+import Color from 'color';
 import { CSSProperties, useState } from 'react';
 
 import { IconButton, SvgIcon } from '@/components/icon';
 import LocalePicker from '@/components/locale-picker';
 import Logo from '@/components/logo';
 import { useSettings } from '@/store/settingStore';
+import { useThemeToken } from '@/theme/hooks';
 
 import AccountDropdown from '../_common/account-dropdown';
 import BreadCrumb from '../_common/bread-crumb';
@@ -13,7 +15,7 @@ import SettingButton from '../_common/setting-button';
 
 import Nav from './nav';
 
-import { ThemeLayout, ThemeMode } from '#/enum';
+import { ThemeLayout } from '#/enum';
 
 type Props = {
   className?: string;
@@ -21,14 +23,16 @@ type Props = {
 };
 export default function Header({ className, offsetTop = false }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { themeLayout, themeMode } = useSettings();
+  const { themeLayout } = useSettings();
+  const { colorBgElevated, colorBorder } = useThemeToken();
 
   const headerStyle: CSSProperties = {
     position: themeLayout === ThemeLayout.Horizontal ? 'relative' : 'absolute',
     borderBottom:
-      themeLayout === ThemeLayout.Horizontal ? `1px dashed rgba(145, 158, 171, 0.2)` : '',
-    backgroundColor:
-      themeMode === ThemeMode.Light ? 'rgba(255, 255, 255, 0.8)' : 'rgba(22, 28, 36, 0.8)',
+      themeLayout === ThemeLayout.Horizontal
+        ? `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`
+        : '',
+    backgroundColor: Color(colorBgElevated).alpha(0.8).toString(),
   };
   return (
     <>
