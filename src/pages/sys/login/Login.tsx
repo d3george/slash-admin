@@ -30,23 +30,21 @@ function Login() {
   const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(/src/assets/images/background/overlay_2.jpg)`;
 
   return (
-    <Layout className="relative flex min-h-screen flex-row">
+    <Layout className="relative flex !min-h-screen !flex-row">
       <div
         className="hidden grow flex-col items-center justify-center gap-[80px] bg-center  bg-no-repeat xl:flex"
         style={{
           background: bg,
         }}
       >
-        <Typography.Text className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">
-          Slash Admin
-        </Typography.Text>
+        <div className="text-2xl font-bold leading-normal lg:text-3xl xl:text-4xl">Slash Admin</div>
         <img className="max-w-[720px]" src={DashboardImg} alt="" />
         <Typography.Text className="flex flex-row gap-[16px] text-2xl">
           {t('sys.login.signInSecondTitle')}
         </Typography.Text>
       </div>
 
-      <div className="mx-auto flex w-full !min-w-[400px] max-w-[480px] flex-col px-[16px] py-[120px] lg:px-[64px] lg:py-[240px]">
+      <div className="mx-auto flex w-full  max-w-[480px] flex-col px-[16px] py-[120px] lg:px-[64px] lg:py-[240px]">
         <LoginStateProvider>
           <LoginForm />
           <MobileForm />

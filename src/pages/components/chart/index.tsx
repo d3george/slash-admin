@@ -27,68 +27,68 @@ export default function ChartPage() {
         https://apexcharts.com
       </Typography.Link>
 
-      <Row gutter={[16, 16]}>
-        <Col span={12}>
+      <Row gutter={[16, 16]} justify="center">
+        <Col span={23} lg={12}>
           <Card title="Area">
             <ChartArea />
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Line">
             <ChartLine />
           </Card>
         </Col>
 
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Column Single">
             <ChartColumnSingle />
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Column Multiple">
             <ChartColumnMultiple />
           </Card>
         </Col>
 
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Column Stacked">
             <ChartColumnStacked />
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Column Negative">
             <ChartColumnNegative />
           </Card>
         </Col>
 
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Bar">
             <ChartBar />
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Column Mixed">
             <ChartMixed />
           </Card>
         </Col>
 
-        <Col span={12}>
+        <Col span={24} lg={12}>
           <Card title="Pie">
             <ChartPie />
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Donut">
             <ChartDonut />
           </Card>
         </Col>
 
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Radial Bar">
             <ChartRadial />
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Radar">
             <ChartRadar />
           </Card>
