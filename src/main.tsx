@@ -45,10 +45,9 @@ const queryClient = new QueryClient({
 });
 
 // start service worker mock in development mode
-if (import.meta.env.MODE === 'development') {
-  const { worker } = await import('./_mock');
-  await worker.start({ onUnhandledRequest: 'bypass' });
-}
+// if (import.meta.env.MODE === 'development') { //... }
+const { worker } = await import('./_mock');
+await worker.start({ onUnhandledRequest: 'bypass' });
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
