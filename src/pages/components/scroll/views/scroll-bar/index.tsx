@@ -33,15 +33,15 @@ export default function ScrollbarView() {
       >
         https://grsmto.github.io/simplebar/
       </Typography.Link>
-      <Row gutter={20}>
-        <Col span={12}>
+      <Row gutter={[16, 16]} justify="center">
+        <Col span={23} lg={12}>
           <Card title="Vertical">
             <div className="h-80">
               <Scrollbar>{TEXT}</Scrollbar>
             </div>
           </Card>
         </Col>
-        <Col span={12}>
+        <Col span={23} lg={12}>
           <Card title="Horizontal">
             <Scrollbar>
               <div style={{ width: '200%' }}>{TEXT}</div>
