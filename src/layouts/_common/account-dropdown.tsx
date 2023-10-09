@@ -54,12 +54,9 @@ export default function AccountDropdown() {
     { label: <NavLink to="/dashboard">{t('sys.menu.dashboard')}</NavLink>, key: '0' },
     { type: 'divider' },
     {
-      label: (
-        <button onClick={logout} className="font-bold text-orange">
-          {t('sys.login.logout')}
-        </button>
-      ),
+      label: <button className="font-bold text-orange">{t('sys.login.logout')}</button>,
       key: '3',
+      onClick: logout,
     },
   ];
 

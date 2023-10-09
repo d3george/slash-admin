@@ -6,7 +6,6 @@ type Props = {
   title: string;
   style?: CSSProperties;
 };
-const coverUrl = (cover: string) => `src/assets/images/glass/${cover}`;
 
 export default function AnalysisCard({ cover, subtitle, title, style }: Props) {
   return (
@@ -16,9 +15,7 @@ export default function AnalysisCard({ cover, subtitle, title, style }: Props) {
         ...style,
       }}
     >
-      <div>
-        <img src={coverUrl(cover)} alt="" />
-      </div>
+      <img src={cover} alt="" />
       <span className="text-3xl font-bold">{title}</span>
       <span className="text-sm">{subtitle}</span>
     </div>

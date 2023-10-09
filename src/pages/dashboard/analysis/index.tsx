@@ -1,6 +1,10 @@
 import { Card, Col, Row, Typography } from 'antd';
 import Color from 'color';
 
+import glass_bag from '@/assets/images/glass/ic_glass_bag.png';
+import glass_buy from '@/assets/images/glass/ic_glass_buy.png';
+import glass_message from '@/assets/images/glass/ic_glass_message.png';
+import glass_users from '@/assets/images/glass/ic_glass_users.png';
 import { Iconify } from '@/components/icon';
 import ChartBar from '@/pages/components/chart/view/chart-bar';
 import ChartMixed from '@/pages/components/chart/view/chart-mixed';
@@ -22,7 +26,7 @@ function Analysis() {
       <Row gutter={[16, 16]}>
         <Col lg={6} md={12} span={24}>
           <AnalysisCard
-            cover="ic_glass_bag.png"
+            cover={glass_bag}
             title="714k"
             subtitle="Weekly Sales"
             style={{
@@ -37,7 +41,7 @@ function Analysis() {
         </Col>
         <Col lg={6} md={12} span={24}>
           <AnalysisCard
-            cover="ic_glass_users.png"
+            cover={glass_users}
             title="1.35m"
             subtitle="New Users"
             style={{
@@ -50,7 +54,7 @@ function Analysis() {
         </Col>
         <Col lg={6} md={12} span={24}>
           <AnalysisCard
-            cover="ic_glass_buy.png"
+            cover={glass_buy}
             title="1.72m"
             subtitle="New Orders"
             style={{
@@ -65,7 +69,7 @@ function Analysis() {
         </Col>
         <Col lg={6} md={12} span={24}>
           <AnalysisCard
-            cover="ic_glass_message.png"
+            cover={glass_message}
             title="234"
             subtitle="Bug Reports"
             style={{

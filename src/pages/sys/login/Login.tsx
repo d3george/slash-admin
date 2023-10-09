@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 
 import DashboardImg from '@/assets/images/background/dashboard.png';
+import Overlay2 from '@/assets/images/background/overlay_2.jpg';
 import LocalePicker from '@/components/locale-picker';
 import { useUserToken } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
@@ -27,7 +28,7 @@ function Login() {
   }
 
   const gradientBg = Color(colorBgElevated).alpha(0.9).toString();
-  const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(/src/assets/images/background/overlay_2.jpg)`;
+  const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay2})`;
 
   return (
     <Layout className="relative flex !min-h-screen !w-full !flex-row">

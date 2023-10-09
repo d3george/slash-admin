@@ -15,6 +15,7 @@ import 'virtual:svg-icons-register';
 
 import App from '@/App';
 
+import { worker } from './_mock';
 // i18n
 import './locales/i18n';
 // tailwind css
@@ -44,12 +45,6 @@ const queryClient = new QueryClient({
   },
 });
 
-// 🥵 start service worker mock in development mode
-if (['development', 'production'].includes(import.meta.env.MODE)) {
-  const { worker } = await import('./_mock');
-  await worker.start({ onUnhandledRequest: 'bypass' });
-}
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
@@ -62,3 +57,6 @@ root.render(
     </QueryClientProvider>
   </HelmetProvider>,
 );
+
+// 🥵 start service worker mock in development mode
+worker.start({ onUnhandledRequest: 'bypass' });

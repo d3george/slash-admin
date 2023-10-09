@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import { Upload } from 'antd';
 import { RcFile, UploadChangeParam, UploadFile, UploadProps } from 'antd/es/upload';
 import { useState } from 'react';
@@ -28,7 +29,7 @@ export function UploadAvatar({ helperText, ...other }: Props) {
       });
     }
     if (info.file.status === 'error') {
-      setImageUrl('src/assets/images/characters/character_6.png');
+      setImageUrl(faker.image.avatar());
     }
   };
 

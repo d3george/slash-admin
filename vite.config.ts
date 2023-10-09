@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import topLevelAwait from 'vite-plugin-top-level-await';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,10 +22,6 @@ export default defineConfig({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
       // 指定symbolId格式
       symbolId: 'icon-[dir]-[name]',
-    }),
-    topLevelAwait({
-      promiseExportName: '__tla',
-      promiseImportName: (i) => `__tla_${i}`,
     }),
     visualizer({
       open: false,
@@ -51,5 +46,8 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
+  },
+  build: {
+    target: 'esnext',
   },
 });
