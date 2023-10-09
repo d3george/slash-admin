@@ -1,3 +1,5 @@
-export * from './iconify';
-export * from './svg-icon';
-export * from './icon-button';
+import IconButton from './icon-button';
+import Iconify from './iconify';
+import SvgIcon from './svg-icon';
+
+export { Iconify, SvgIcon, IconButton };

@@ -5,7 +5,7 @@ type Props = {
   className?: string;
   onClick?: () => void;
 };
-export function IconButton({ children, className, onClick }: Props) {
+export default function IconButton({ children, className, onClick }: Props) {
   return (
     <button
       className={`flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-hover ${className}`}

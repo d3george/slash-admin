@@ -8,7 +8,7 @@ interface SvgIconProps {
   className?: string;
 }
 
-export function SvgIcon({
+export default function SvgIcon({
   icon,
   prefix = 'icon',
   color = 'currentColor',
