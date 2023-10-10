@@ -13,11 +13,11 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - name: Checkout code
+      - name: Checkout 🛎️
         uses: actions/checkout@v3
 
       - name: Setup pnpm
@@ -31,17 +31,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install
+      - name: Install and Build 🔧
+        run: |
+          pnpm install
+          pnpm build
 
-      - name: Build
-        run: pnpm build
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
+          TOKEN: ${{ secrets.ACCESS_TOKEN }}
           FOLDER: dist
           CLEAN: true
 
