@@ -45,7 +45,7 @@ function Login() {
         </Typography.Text>
       </div>
 
-      <div className="mx-auto flex !h-screen w-full max-w-[480px] flex-col px-[16px] py-[120px] lg:px-[64px] lg:py-[240px]">
+      <div className="m-auto flex !h-screen w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
         <LoginStateProvider>
           <LoginForm />
           <MobileForm />

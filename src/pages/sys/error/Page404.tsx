@@ -24,9 +24,11 @@ export default function Page404() {
       </Helmet>
 
       <div className="m-auto max-w-[400px]">
-        <MotionContainer className="flex flex-col items-center justify-center">
+        <MotionContainer className="flex flex-col items-center justify-center px-2">
           <m.div variants={varBounce().in}>
-            <Typography.Title level={2}>Sorry, Page Not Found!</Typography.Title>
+            <Typography.Title level={3} className="text-center">
+              Sorry, Page Not Found!
+            </Typography.Title>
           </m.div>
 
           <m.div variants={varBounce().in}>
@@ -37,7 +39,13 @@ export default function Page404() {
           </m.div>
 
           <m.div variants={varBounce().in}>
-            <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" width={400} height={400}>
+            <svg
+              viewBox="0 0 480 360"
+              xmlns="http://www.w3.org/2000/svg"
+              width={400}
+              height={400}
+              className="w-full"
+            >
               <defs>
                 <linearGradient id="BG" x1="19.496%" x2="77.479%" y1="71.822%" y2="16.69%">
                   <stop offset="0%" stopColor={colorPrimary} />
