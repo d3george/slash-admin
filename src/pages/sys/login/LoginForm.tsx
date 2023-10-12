@@ -3,14 +3,16 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from 'react-icons/ai';
 
-import { USERLIST } from '@/_mock/assets';
+import { DEFAULT_USER } from '@/_mock/assets';
 import { SignInReq } from '@/api/services/userService';
 import { useSignIn } from '@/store/userStore';
+import { useThemeToken } from '@/theme/hooks';
 
 import { LoginStateEnum, useLoginStateContext } from './providers/LoginStateProvider';
 
 function LoginForm() {
   const { t } = useTranslation();
+  const themeToken = useThemeToken();
   const [loading, setLoading] = useState(false);
 
   const { loginState, setLoginState } = useLoginStateContext();
@@ -29,18 +31,31 @@ function LoginForm() {
   return (
     <>
       <div className="mb-4 text-2xl font-bold xl:text-3xl">{t('sys.login.signInFormTitle')}</div>
-      <Form name="login" size="large" initialValues={{ remember: true }} onFinish={handleFinish}>
+      <Form
+        name="login"
+        size="large"
+        initialValues={{
+          remember: true,
+          username: DEFAULT_USER.username,
+          password: DEFAULT_USER.password,
+        }}
+        onFinish={handleFinish}
+      >
         <div className="mb-4 flex flex-col">
           <Alert
+            type="info"
             description={
               <>
                 {t('sys.login.userName')}:
-                <strong className="ml-1 font-bold text-gray">{USERLIST[0].username}</strong>
+                <strong className="ml-1" style={{ color: themeToken.colorInfoTextHover }}>
+                  {DEFAULT_USER.username}
+                </strong>
                 {` / ${t('sys.login.password')}`}:
-                <strong className=" ml-1 font-bold text-gray">{USERLIST[0].password}</strong>
+                <strong className=" ml-1" style={{ color: themeToken.colorInfoTextHover }}>
+                  {DEFAULT_USER.password}
+                </strong>
               </>
             }
-            type="info"
             showIcon
           />
         </div>
