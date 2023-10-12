@@ -1,9 +1,10 @@
-import { GlobalToken, Input, InputRef, Modal } from 'antd';
+import { Empty, GlobalToken, Input, InputRef, Modal } from 'antd';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Color from 'color';
+import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useBoolean, useEvent } from 'react-use';
+import { useBoolean, useEvent, useKeyPressEvent } from 'react-use';
 import { styled } from 'styled-components';
 
 import { IconButton, SvgIcon } from '@/components/icon';
@@ -16,6 +17,8 @@ export default function SearchBar() {
   const { t } = useTranslation();
   const { replace } = useRouter();
   const inputRef = useRef<InputRef>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
   const [search, toggle] = useBoolean(false);
   const themeToken = useThemeToken();
 
@@ -25,8 +28,14 @@ export default function SearchBar() {
     return flattenRoutes(menuRoutes);
   }, [flattenRoutes]);
 
+  const activeStyle: CSSProperties = {
+    border: `1px dashed ${themeToken.colorPrimary}`,
+    backgroundColor: `${Color(themeToken.colorPrimary).alpha(0.2).toString()}`,
+  };
+
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResult, setSearchResult] = useState(flattenedRoutes);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
   useEffect(() => {
     const result = flattenedRoutes.filter(
@@ -38,26 +47,75 @@ export default function SearchBar() {
   }, [searchQuery, t, flattenedRoutes]);
 
   const handleMetaK = (event: KeyboardEvent) => {
-    // https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/metaKey
-    if (!search && event.metaKey && event.key === 'k') {
+    if (event.metaKey && event.key === 'k') {
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/metaKey
       handleOpen();
     }
   };
   useEvent('keydown', handleMetaK);
 
+  useKeyPressEvent('ArrowUp', (event) => {
+    if (!search) return;
+    event.preventDefault();
+    let nextIndex = selectedItemIndex - 1;
+    if (nextIndex < 0) {
+      nextIndex = searchResult.length - 1;
+    }
+    setSelectedItemIndex(nextIndex);
+    scrollSelectedItemIntoView(nextIndex);
+  });
+
+  useKeyPressEvent('ArrowDown', (event) => {
+    if (!search) return;
+    event.preventDefault();
+    let nextIndex = selectedItemIndex + 1;
+    if (nextIndex > searchResult.length - 1) {
+      nextIndex = 0;
+    }
+    setSelectedItemIndex(nextIndex);
+    scrollSelectedItemIntoView(nextIndex);
+  });
+
+  useKeyPressEvent('Enter', (event) => {
+    if (!search) return;
+    event.preventDefault();
+    handleSelect(searchResult[selectedItemIndex].key);
+    toggle(false);
+  });
+
   const handleOpen = () => {
     toggle(true);
     setSearchQuery('');
+    setSelectedItemIndex(0);
   };
   const handleCancel = () => {
     toggle(false);
-    setSearchQuery('');
   };
   const handleAfterOpenChange = (open: boolean) => {
     if (open) {
       // auto focus
       inputRef.current?.focus();
     }
+  };
+
+  const scrollSelectedItemIntoView = (index: number) => {
+    if (listRef.current) {
+      const selectedItem = listRef.current.children[index];
+      selectedItem.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  };
+
+  const handleHover = (index: number) => {
+    if (index === selectedItemIndex) return;
+    setSelectedItemIndex(index);
+  };
+
+  const handleSelect = (key: string) => {
+    replace(key);
+    handleCancel();
   };
 
   return (
@@ -75,7 +133,12 @@ export default function SearchBar() {
         footer={null}
         closeIcon={false}
         afterOpenChange={handleAfterOpenChange}
-        bodyStyle={{ height: '400px' }}
+        bodyStyle={{
+          height: '400px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
         title={
           <Input
             ref={inputRef}
@@ -93,49 +156,60 @@ export default function SearchBar() {
           />
         }
       >
-        <Scrollbar>
-          {searchResult.map(({ key, title }) => {
-            const partsTitle = parse(t(title), match(t(title), searchQuery));
-            const partsKey = parse(key, match(key, searchQuery));
-            return (
-              <StyledListItemButton
-                key={key}
-                $themetoken={themeToken}
-                onClick={() => {
-                  replace(key);
-                  handleCancel();
-                }}
-              >
-                <div className="font-medium">
-                  {partsTitle.map((item) => (
-                    <span
-                      key={item.text}
-                      style={{
-                        color: item.highlight ? themeToken.colorPrimary : themeToken.colorText,
-                      }}
-                    >
-                      {item.text}
-                    </span>
-                  ))}
-                </div>
-                <div>
-                  {partsKey.map((item) => (
-                    <span
-                      key={item.text}
-                      style={{
-                        color: item.highlight
-                          ? themeToken.colorPrimary
-                          : themeToken.colorTextDescription,
-                      }}
-                    >
-                      {item.text}
-                    </span>
-                  ))}
-                </div>
-              </StyledListItemButton>
-            );
-          })}
-        </Scrollbar>
+        {searchResult.length === 0 ? (
+          <Empty />
+        ) : (
+          <Scrollbar>
+            <div ref={listRef} className="py-2">
+              {searchResult.map(({ key, title }, index) => {
+                const partsTitle = parse(t(title), match(t(title), searchQuery));
+                const partsKey = parse(key, match(key, searchQuery));
+                return (
+                  <StyledListItemButton
+                    key={key}
+                    $themetoken={themeToken}
+                    style={index === selectedItemIndex ? activeStyle : {}}
+                    onClick={() => handleSelect(key)}
+                    onMouseMove={() => handleHover(index)}
+                  >
+                    <div className="flex justify-between">
+                      <div>
+                        <div className="font-medium">
+                          {partsTitle.map((item) => (
+                            <span
+                              key={item.text}
+                              style={{
+                                color: item.highlight
+                                  ? themeToken.colorPrimary
+                                  : themeToken.colorText,
+                              }}
+                            >
+                              {item.text}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="text-xs">
+                          {partsKey.map((item) => (
+                            <span
+                              key={item.text}
+                              style={{
+                                color: item.highlight
+                                  ? themeToken.colorPrimary
+                                  : themeToken.colorTextDescription,
+                              }}
+                            >
+                              {item.text}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </StyledListItemButton>
+                );
+              })}
+            </div>
+          </Scrollbar>
+        )}
       </Modal>
     </>
   );
@@ -144,13 +218,10 @@ export default function SearchBar() {
 const StyledListItemButton = styled.div<{ $themetoken: GlobalToken }>`
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   width: 100%;
   padding: 8px 16px;
   border-radius: 8px;
-  border-bottom: ${(props) => `1px dashed ${props.$themetoken.colorSplit}`};
-
-  &:hover {
-    border: ${(props) => `1px dashed ${props.$themetoken.colorPrimary}`};
-    background-color: ${(props) => `${props.$themetoken.colorPrimaryBg}`};
-  }
+  border-bottom: ${(props) => `1px dashed ${props.$themetoken.colorBorder}`};
+  color: ${(props) => `${props.$themetoken.colorTextSecondary}`};
 `;

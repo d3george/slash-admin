@@ -30,7 +30,7 @@ const functions: AppRouteObject = {
   children: [
     {
       index: true,
-      element: <Navigate to="copy" replace />,
+      element: <Navigate to="clipboard" replace />,
     },
     {
       path: 'clipboard',
