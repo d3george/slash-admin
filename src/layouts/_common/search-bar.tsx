@@ -5,7 +5,7 @@ import Color from 'color';
 import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useBoolean, useEvent, useKeyPressEvent } from 'react-use';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import { IconButton, SvgIcon } from '@/components/icon';
 import Scrollbar from '@/components/scrollbar';

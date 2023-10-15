@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import type { IconProps } from '@iconify/react';
 
