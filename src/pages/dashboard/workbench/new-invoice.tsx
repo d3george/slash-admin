@@ -102,8 +102,8 @@ export default function NewInvoice() {
         <Typography.Title level={5}>New Invoice</Typography.Title>
       </header>
       <main className="w-full">
-        <Scrollbar className="w-full">
-          <Table scroll={{ x: 300 }} columns={columns} dataSource={data} />
+        <Scrollbar>
+          <Table columns={columns} dataSource={data} />
         </Scrollbar>
       </main>
     </Card>
