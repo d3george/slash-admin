@@ -1,0 +1,15 @@
+/* editor */
+@import 'react-quill/dist/quill.snow.css';
+
+/* simplebar */
+@import 'simplebar-react/dist/simplebar.min.css';
+
+/* 将 Tailwind CSS 的基础样式（也称为 "base" 样式）导入到当前文件中，包括一些基本的 HTML 元素样式、重置元素默认样式等。 */
+@import 'tailwindcss/base';
+
+/* 导入 Tailwind CSS 的组件样式，包括预定义的按钮、表格、表单、卡片等组件样式。 */
+@import 'tailwindcss/components';
+
+/* 导入 Tailwind CSS 的实用类，这些类通常用于添加与布局、间距、响应式设计等相关的样式，使得可以快速构建出复杂的页面 */
+@import 'tailwindcss/utilities';
+

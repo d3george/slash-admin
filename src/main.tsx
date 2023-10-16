@@ -6,10 +6,6 @@ import { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 // react helmet
 import { HelmetProvider } from 'react-helmet-async';
-// editor
-import 'react-quill/dist/quill.snow.css';
-// simplebar
-import 'simplebar-react/dist/simplebar.min.css';
 // eslint-disable-next-line import/no-unresolved
 import 'virtual:svg-icons-register';
 

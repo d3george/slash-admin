@@ -13,9 +13,6 @@ export default {
       xl: '1200px',
       '2xl': '1600px',
     },
-    fontFamily: {
-      sans: ['Public Sans', 'sans-serif'],
-    },
     colors: {
       black: '#000000',
       green: '#00A76F',
@@ -53,6 +50,7 @@ export default {
     },
   },
   corePlugins: {
+    // Remove the Tailwind CSS preflight styles so it can use custom base style (src/theme/base.css)
     preflight: false, // https://tailwindcss.com/docs/preflight#disabling-preflight
   },
   plugins: [],
