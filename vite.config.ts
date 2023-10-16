@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,6 +18,8 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    // 同步tsconfig.json的path设置alias
+    tsconfigPaths(),
     createSvgIconsPlugin({
       // 指定需要缓存的图标文件夹
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
@@ -27,13 +30,6 @@ export default defineConfig({
       open: false,
     }),
   ],
-  resolve: {
-    // 配置别名
-    alias: {
-      '@': path.resolve(__dirname, '/src'),
-      '#': path.resolve(__dirname, '/types'),
-    },
-  },
   server: {
     // 自动打开浏览器
     open: true,
