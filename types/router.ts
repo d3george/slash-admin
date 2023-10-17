@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 export interface RouteMeta {
-  // unique
+  // antd menu selectedKeys
   key: string;
   title: string;
   icon?: ReactNode;
@@ -14,10 +14,7 @@ export interface RouteMeta {
   auth?: boolean;
 }
 export type AppRouteObject = {
-  index?: boolean;
-  path?: RouteObject['path'];
-  element?: RouteObject['element'];
-  children?: AppRouteObject[];
-  meta?: RouteMeta;
   order?: number;
-};
+  meta?: RouteMeta;
+  children?: AppRouteObject[];
+} & Omit<RouteObject, 'children'>;

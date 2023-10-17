@@ -96,7 +96,11 @@
       "menulevel_2a": "菜单 2a",
       "menulevel_2b": "菜单 2b",
       "menulevel_3a": "菜单 3a",
-      "menulevel_3b": "菜单 3b"
+      "menulevel_3b": "菜单 3b",
+      "frame": "外部链接",
+      "external_link": "外链",
+      "iframe": "内嵌",
+      "blank": "空白"
     }
   }
 }
