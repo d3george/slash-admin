@@ -1,43 +1,20 @@
 import { Menu, MenuProps } from 'antd';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
-import { useCallback, useState, useEffect, CSSProperties } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState, useEffect, CSSProperties } from 'react';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 
+import { useRouteToMenu } from '@/router/hooks';
 import { getMenuRoutes } from '@/router/utils';
 import { useThemeToken } from '@/theme/hooks';
-
-import { AppRouteObject } from '#/router';
 
 export default function NavHorizontal() {
   const navigate = useNavigate();
   const matches = useMatches();
   const { pathname } = useLocation();
-  const { t } = useTranslation();
 
   const { colorBgElevated } = useThemeToken();
-  // router -> menu
-  const routeToMenu = useCallback(
-    (items: AppRouteObject[]) => {
-      return items.map((item) => {
-        const menuItem: any = {};
-        const { meta, children } = item;
-        if (meta) {
-          const { key, title, icon } = meta;
-          menuItem.key = key;
-          menuItem.label = t(title);
-          if (icon) {
-            menuItem.icon = icon;
-          }
-        }
-        if (children) {
-          menuItem.children = routeToMenu(children);
-        }
-        return menuItem;
-      });
-    },
-    [t],
-  );
+
+  const routeToMenu = useRouteToMenu();
 
   /**
    * state

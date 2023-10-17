@@ -5,11 +5,15 @@ export interface RouteMeta {
   // antd menu selectedKeys
   key: string;
   title: string;
+  label?: ReactNode;
+  // menu icon
   icon?: ReactNode;
   // show in tab
   hideTab?: boolean;
   // show in menu
   hideMenu?: boolean;
+  // disable in menu
+  disabled?: boolean;
   // need to auth,
   auth?: boolean;
 }

@@ -10,6 +10,15 @@ const Iframe = lazy(() => import('@/pages/sys/iframe'));
 
 const others: AppRouteObject[] = [
   {
+    element: <div />,
+    meta: {
+      title: 'sys.menu.disabled',
+      icon: <SvgIcon icon="ic_disabled" className="ant-menu-item-icon" size="24" />,
+      disabled: true,
+      key: '/disabled',
+    },
+  },
+  {
     path: 'frame',
     meta: {
       title: 'sys.menu.frame',

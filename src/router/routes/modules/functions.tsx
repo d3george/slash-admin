@@ -18,13 +18,7 @@ const functions: AppRouteObject = {
   ),
   meta: {
     title: 'sys.menu.functions',
-    icon: (
-      <Iconify
-        icon="fluent-mdl2:functional-manager-dashboard"
-        className="ant-menu-item-icon"
-        size="24"
-      />
-    ),
+    icon: <Iconify icon="ic:twotone-featured-play-list" className="ant-menu-item-icon" size="24" />,
     key: '/functions',
   },
   children: [

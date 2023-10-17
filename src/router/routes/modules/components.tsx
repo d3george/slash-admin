@@ -25,13 +25,7 @@ const components: AppRouteObject = {
   ),
   meta: {
     title: 'sys.menu.components',
-    icon: (
-      <Iconify
-        icon="ic:twotone-settings-input-component"
-        className="ant-menu-item-icon"
-        size="24"
-      />
-    ),
+    icon: <Iconify icon="icon-park-solid:components" className="ant-menu-item-icon" size="24" />,
     key: '/components',
   },
   children: [
