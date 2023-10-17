@@ -12,7 +12,7 @@ const others: AppRouteObject[] = [
   {
     element: <div />,
     meta: {
-      title: 'sys.menu.disabled',
+      label: 'sys.menu.disabled',
       icon: <SvgIcon icon="ic_disabled" className="ant-menu-item-icon" size="24" />,
       disabled: true,
       key: '/disabled',
@@ -21,7 +21,7 @@ const others: AppRouteObject[] = [
   {
     path: 'frame',
     meta: {
-      title: 'sys.menu.frame',
+      label: 'sys.menu.frame',
       icon: <SvgIcon icon="ic_external" className="ant-menu-item-icon" size="24" />,
       key: '/frame',
     },
@@ -30,7 +30,7 @@ const others: AppRouteObject[] = [
         path: 'external_link',
         element: <ExternalLink to="https://ant.design/index-cn" />,
         meta: {
-          title: 'sys.menu.external_link',
+          label: 'sys.menu.external_link',
           key: '/frame/external_link',
         },
       },
@@ -38,7 +38,7 @@ const others: AppRouteObject[] = [
         path: 'iframe',
         element: <Iframe src="https://ant.design/index-cn" />,
         meta: {
-          title: 'sys.menu.iframe',
+          label: 'sys.menu.iframe',
           key: '/frame/iframe',
         },
       },
@@ -48,7 +48,7 @@ const others: AppRouteObject[] = [
     path: 'blank',
     element: <Card />,
     meta: {
-      title: 'sys.menu.blank',
+      label: 'sys.menu.blank',
       icon: <SvgIcon icon="ic_blank" className="ant-menu-item-icon" size="24" />,
       key: '/blank',
     },

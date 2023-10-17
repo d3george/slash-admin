@@ -30,17 +30,17 @@ export default function BreadCrumb() {
 
     let items: AppRouteObject[] | undefined = [...menuRoutes];
     const breadCrumbs = pathRouteMetas.map((routeMeta) => {
-      const { key, title } = routeMeta;
+      const { key, label } = routeMeta;
       items = items!.find((item) => item.meta?.key === key)?.children;
       const result: ItemType = {
         key,
-        title: t(title),
+        title: t(label),
       };
       if (items) {
         result.menu = {
           items: items.map((item) => ({
             key: item.meta?.key,
-            label: <Link to={item.meta!.key!}>{t(item.meta!.title)}</Link>,
+            label: <Link to={item.meta!.key!}>{t(item.meta!.label)}</Link>,
           })),
         };
       }

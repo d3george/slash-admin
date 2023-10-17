@@ -18,7 +18,7 @@ const dashboard: AppRouteObject = {
     </Suspense>
   ),
   meta: {
-    title: 'sys.menu.dashboard',
+    label: 'sys.menu.dashboard',
     icon: <SvgIcon icon="ic-analysis" className="ant-menu-item-icon" size="24" />,
     key: '/dashboard',
   },
@@ -30,12 +30,12 @@ const dashboard: AppRouteObject = {
     {
       path: 'workbench',
       element: <IndexPage />,
-      meta: { title: 'sys.menu.workbench', key: '/dashboard/workbench' },
+      meta: { label: 'sys.menu.workbench', key: '/dashboard/workbench' },
     },
     {
       path: 'analysis',
       element: <Analysis />,
-      meta: { title: 'sys.menu.analysis', key: '/dashboard/analysis' },
+      meta: { label: 'sys.menu.analysis', key: '/dashboard/analysis' },
     },
   ],
 };

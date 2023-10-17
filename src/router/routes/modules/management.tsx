@@ -18,7 +18,7 @@ const management: AppRouteObject = {
     </Suspense>
   ),
   meta: {
-    title: 'sys.menu.management',
+    label: 'sys.menu.management',
     icon: <SvgIcon icon="ic-management" className="ant-menu-item-icon" size="24" />,
     key: '/management',
   },
@@ -30,12 +30,12 @@ const management: AppRouteObject = {
     {
       path: 'user',
       element: <IndexPage />,
-      meta: { title: 'sys.menu.user', key: '/management/user' },
+      meta: { label: 'sys.menu.user', key: '/management/user' },
     },
     {
       path: 'blog',
       element: <Blog />,
-      meta: { title: 'sys.menu.blog', key: '/management/blog' },
+      meta: { label: 'sys.menu.blog', key: '/management/blog' },
     },
   ],
 };

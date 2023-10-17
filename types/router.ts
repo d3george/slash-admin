@@ -4,8 +4,7 @@ import { RouteObject } from 'react-router-dom';
 export interface RouteMeta {
   // antd menu selectedKeys
   key: string;
-  title: string;
-  label?: ReactNode;
+  label: string;
   // menu icon
   icon?: ReactNode;
   // show in tab

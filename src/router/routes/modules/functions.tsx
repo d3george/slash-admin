@@ -17,7 +17,7 @@ const functions: AppRouteObject = {
     </Suspense>
   ),
   meta: {
-    title: 'sys.menu.functions',
+    label: 'sys.menu.functions',
     icon: <Iconify icon="ic:twotone-featured-play-list" className="ant-menu-item-icon" size="24" />,
     key: '/functions',
   },
@@ -29,7 +29,7 @@ const functions: AppRouteObject = {
     {
       path: 'clipboard',
       element: <ClipboardPage />,
-      meta: { title: 'sys.menu.clipboard', key: '/functions/clipboard' },
+      meta: { label: 'sys.menu.clipboard', key: '/functions/clipboard' },
     },
   ],
 };

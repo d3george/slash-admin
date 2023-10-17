@@ -20,7 +20,7 @@ const menulevel: AppRouteObject = {
     </Suspense>
   ),
   meta: {
-    title: 'sys.menu.menulevel',
+    label: 'sys.menu.menulevel',
     icon: <SvgIcon icon="ic-menulevel" className="ant-menu-item-icon" size="24" />,
     key: '/menu_level',
   },
@@ -28,11 +28,11 @@ const menulevel: AppRouteObject = {
     {
       path: 'menu_level_1a',
       element: <MenuLevel title="1a" />,
-      meta: { title: 'sys.menu.menulevel_1a', key: '/menu_level/menu_level_1a' },
+      meta: { label: 'sys.menu.menulevel_1a', key: '/menu_level/menu_level_1a' },
     },
     {
       path: 'menu_level_1b',
-      meta: { title: 'sys.menu.menulevel_1b', key: '/menu_level/menu_level_1b' },
+      meta: { label: 'sys.menu.menulevel_1b', key: '/menu_level/menu_level_1b' },
       children: [
         {
           index: true,
@@ -41,11 +41,11 @@ const menulevel: AppRouteObject = {
         {
           path: 'menu_level_2a',
           element: <MenuLevel title="2a" />,
-          meta: { title: 'sys.menu.menulevel_2a', key: '/menu_level/menu_level_1b/menu_level_2a' },
+          meta: { label: 'sys.menu.menulevel_2a', key: '/menu_level/menu_level_1b/menu_level_2a' },
         },
         {
           path: 'menu_level_2b',
-          meta: { title: 'sys.menu.menulevel_2b', key: '/menu_level/menu_level_1b/menu_level_2b' },
+          meta: { label: 'sys.menu.menulevel_2b', key: '/menu_level/menu_level_1b/menu_level_2b' },
           children: [
             {
               index: true,
@@ -55,7 +55,7 @@ const menulevel: AppRouteObject = {
               path: 'menu_level_3a',
               element: <MenuLevel title="3a" />,
               meta: {
-                title: 'sys.menu.menulevel_3a',
+                label: 'sys.menu.menulevel_3a',
                 key: '/menu_level/menu_level_1b/menu_level_2b/menu_level_3a',
               },
             },
@@ -63,7 +63,7 @@ const menulevel: AppRouteObject = {
               path: 'menu_level_3b',
               element: <MenuLevel title="3b" />,
               meta: {
-                title: 'sys.menu.menulevel_3b',
+                label: 'sys.menu.menulevel_3b',
                 key: '/menu_level/menu_level_1b/menu_level_2b/menu_level_3b',
               },
             },

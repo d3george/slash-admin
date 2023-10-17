@@ -15,9 +15,9 @@ export function useRouteToMenu() {
         const menuItem: any = {};
         const { meta, children } = item;
         if (meta) {
-          const { key, title, icon, disabled } = meta;
+          const { key, label, icon, disabled } = meta;
           menuItem.key = key;
-          menuItem.label = t(title);
+          menuItem.label = t(label);
           menuItem.disabled = disabled;
           if (icon) {
             menuItem.icon = icon;
