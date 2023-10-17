@@ -14,11 +14,13 @@ Slash Admin is a modern admin dashboard template built with React 18, Vite, Ant 
 + https://admin.slashspaces.com/
 
 ![login.png](https://d3george.github.io/github-static/slash-admin/login.jpeg)
+![login_dark.png](https://d3george.github.io/github-static/slash-admin/login_dark.jpeg)
 ![analysis.png](https://d3george.github.io/github-static/slash-admin/analysis.png)
+![workbench.png](https://d3george.github.io/github-static/slash-admin/workbench.png)
 
 ## Features
 
-- Built using React 18, leveraging the benefits of hooks.
+- Built using React 18 hooks.
 - Powered by Vite for rapid development and hot module replacement.
 - Integrates Ant Design, providing a rich set of UI components and design patterns.
 - Written in TypeScript, offering type safety and an improved development experience.
@@ -37,7 +39,7 @@ Slash Admin is a modern admin dashboard template built with React 18, Vite, Ant 
 ### Get the Project Code
 
 ```bash
-git clone https://github.com/d3george/react-admin-template.git
+git clone https://github.com/d3george/slash-admin.git
 ```
 
 ### Install Dependencies
