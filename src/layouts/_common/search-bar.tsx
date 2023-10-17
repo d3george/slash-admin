@@ -44,6 +44,7 @@ export default function SearchBar() {
         item.key.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1,
     );
     setSearchResult(result);
+    setSelectedItemIndex(0);
   }, [searchQuery, t, flattenedRoutes]);
 
   const handleMetaK = (event: KeyboardEvent) => {
@@ -77,10 +78,13 @@ export default function SearchBar() {
   });
 
   useKeyPressEvent('Enter', (event) => {
-    if (!search) return;
+    if (!search || searchResult.length === 0) return;
     event.preventDefault();
-    handleSelect(searchResult[selectedItemIndex].key);
-    toggle(false);
+    const selectItem = searchResult[selectedItemIndex].key;
+    if (selectItem) {
+      handleSelect(selectItem);
+      toggle(false);
+    }
   });
 
   const handleOpen = () => {
