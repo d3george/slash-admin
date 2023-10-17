@@ -98,8 +98,9 @@
       "menulevel_2b": "Menu Level 2b",
       "menulevel_3a": "Menu Level 3a",
       "menulevel_3b": "Menu Level 3b",
-      "disabled": "Disabled",
-      "frame": "External",
+      "disabled": "Item Disabled",
+      "label": "Item Label",
+      "frame": "Item External",
       "external_link": "External Link",
       "iframe": "Iframe",
       "blank": "Blank"

@@ -51,20 +51,12 @@ export default function NavHorizontal() {
   const menuStyle: CSSProperties = {
     background: colorBgElevated,
   };
-  const shadowStyle: CSSProperties = {
-    margin: 'auto',
-    height: '24px',
-    borderRadius: '50%',
-    opacity: 0.48,
-    width: 'calc(100% - 48px)',
-    boxShadow: `#919eab29 0px 8px 16px 0px`,
-  };
   return (
-    <div className="relative w-screen">
+    <div className="w-screen">
       <Menu
         mode="horizontal"
         items={menuList}
-        className="!border-none"
+        className="!z-10 !border-none"
         defaultOpenKeys={openKeys}
         defaultSelectedKeys={selectedKeys}
         selectedKeys={selectedKeys}
@@ -73,7 +65,6 @@ export default function NavHorizontal() {
         onClick={onClick}
         style={menuStyle}
       />
-      <div className="absolute bottom-[-2px] left-0 right-0" style={shadowStyle} />
     </div>
   );
 }

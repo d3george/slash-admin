@@ -97,8 +97,9 @@
       "menulevel_2b": "菜单 2b",
       "menulevel_3a": "菜单 3a",
       "menulevel_3b": "菜单 3b",
-      "disabled": "禁用",
-      "frame": "外部链接",
+      "disabled": "项目禁用",
+      "label": "项目标签",
+      "frame": "项目外部链接",
       "external_link": "外链",
       "iframe": "内嵌",
       "blank": "空白"
