@@ -5,6 +5,7 @@ import {
   RightOutlined,
 } from '@ant-design/icons';
 import { Button, Card, Drawer, Tooltip } from 'antd';
+import Color from 'color';
 import { m } from 'framer-motion';
 import { CSSProperties, useState } from 'react';
 import { MdCircle } from 'react-icons/md';
@@ -25,7 +26,7 @@ import { ThemeColorPresets, ThemeLayout, ThemeMode } from '#/enum';
  */
 export default function SettingButton() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { colorPrimary, colorBgBase, colorTextSecondary } = useThemeToken();
+  const { colorPrimary, colorBgBase, colorTextSecondary, colorBgContainer } = useThemeToken();
 
   const settings = useSettings();
   const { themeMode, themeColorPresets, themeLayout, themeStretch } = settings;
@@ -63,10 +64,9 @@ export default function SettingButton() {
     backdropFilter: 'blur(20px)',
     backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
     backgroundRepeat: 'no-repeat, no-repeat',
+    backgroundColor: Color(colorBgContainer).alpha(0.9).toString(),
     backgroundPosition: 'right top, left bottom',
     backgroundSize: '50, 50%',
-    transform: 'none',
-    transition: 'transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
   };
   const bodyStyle: CSSProperties = {
     padding: 0,
