@@ -11,6 +11,7 @@ import { IconButton, SvgIcon } from '@/components/icon';
 import Scrollbar from '@/components/scrollbar';
 import { useRouter } from '@/router/hooks';
 import { flattenMenuRoutes, getMenuRoutes } from '@/router/utils';
+import ProTag from '@/theme/antd/components/tag';
 import { useThemeToken } from '@/theme/hooks';
 
 export default function SearchBar() {
@@ -134,7 +135,6 @@ export default function SearchBar() {
         open={search}
         centered
         onCancel={handleCancel}
-        footer={null}
         closeIcon={false}
         afterOpenChange={handleAfterOpenChange}
         bodyStyle={{
@@ -158,6 +158,23 @@ export default function SearchBar() {
               </IconButton>
             }
           />
+        }
+        footer={
+          <div className="flex">
+            <div className="flex">
+              <ProTag color="cyan">↑</ProTag>
+              <ProTag color="cyan">↓</ProTag>
+              <span>to navigate</span>
+            </div>
+            <div className="flex">
+              <ProTag color="cyan">↵</ProTag>
+              <span>to select</span>
+            </div>
+            <div className="flex">
+              <ProTag color="cyan">ESC</ProTag>
+              <span>to close</span>
+            </div>
+          </div>
         }
       >
         {searchResult.length === 0 ? (
