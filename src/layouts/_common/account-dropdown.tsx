@@ -52,6 +52,7 @@ export default function AccountDropdown() {
 
   const items: MenuProps['items'] = [
     { label: <NavLink to="/dashboard">{t('sys.menu.dashboard')}</NavLink>, key: '0' },
+    { label: <NavLink to="https://github.com/d3george/slash-admin">Github</NavLink>, key: '1' },
     { type: 'divider' },
     {
       label: <button className="font-bold text-orange">{t('sys.login.logout')}</button>,
