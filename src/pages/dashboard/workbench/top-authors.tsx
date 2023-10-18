@@ -3,7 +3,7 @@ import { Typography } from 'antd';
 import Color from 'color';
 
 import Card from '@/components/card';
-import { Iconify, SvgIcon } from '@/components/icon';
+import { Iconify } from '@/components/icon';
 import { useThemeToken } from '@/theme/hooks';
 
 export default function TopAuthor() {
@@ -53,7 +53,11 @@ export default function TopAuthor() {
                 background: Color(getTrophyIconColor(index).bg).alpha(0.4).toString(),
               }}
             >
-              <SvgIcon icon="ic_trophy" size={24} color={getTrophyIconColor(index).color} />
+              <Iconify
+                icon="solar:cup-star-bold"
+                size={24}
+                color={getTrophyIconColor(index).color}
+              />
             </div>
           </div>
         ))}

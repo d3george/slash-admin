@@ -25,7 +25,7 @@ const components: AppRouteObject = {
   ),
   meta: {
     label: 'sys.menu.components',
-    icon: <Iconify icon="icon-park-solid:components" className="ant-menu-item-icon" size="24" />,
+    icon: <Iconify icon="solar:widget-5-bold-duotone" className="ant-menu-item-icon" size="24" />,
     key: '/components',
   },
   children: [

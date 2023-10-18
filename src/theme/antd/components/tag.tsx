@@ -17,7 +17,7 @@ const StyledTag = styled.div`
     height: 24px;
     min-width: 24px;
     padding: 0 6px;
-    margin: 0;
+    margin: 0 6px;
     font-size: 0.75rem;
     font-weight: 700;
     border-width: 0;

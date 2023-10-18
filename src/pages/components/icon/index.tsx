@@ -23,11 +23,11 @@ export default function IconPage() {
         >
           https://iconify.design/
         </Typography.Link>
-        <Iconify icon="eva:color-palette-fill" size={24} color={colorPrimary} />
-        <Iconify icon="eva:color-palette-fill" size={24} color={colorInfo} />
-        <Iconify icon="eva:color-palette-fill" size={24} color={colorSuccess} />
-        <Iconify icon="eva:color-palette-fill" size={24} color={colorWarning} />
-        <Iconify icon="eva:color-palette-fill" size={24} color={colorError} />
+        <Iconify icon="solar:emoji-funny-square-bold-duotone" size={24} color={colorPrimary} />
+        <Iconify icon="solar:emoji-funny-square-bold-duotone" size={24} color={colorInfo} />
+        <Iconify icon="solar:emoji-funny-square-bold-duotone" size={24} color={colorSuccess} />
+        <Iconify icon="solar:emoji-funny-square-bold-duotone" size={24} color={colorWarning} />
+        <Iconify icon="solar:emoji-funny-square-bold-duotone" size={24} color={colorError} />
       </Card>
       <Card title="Svg Icons">
         <Typography.Text style={{ color: colorPrimary }} className="mb-4 block">

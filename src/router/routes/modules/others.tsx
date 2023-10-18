@@ -26,7 +26,7 @@ const others: AppRouteObject[] = [
       label: 'sys.menu.label',
       icon: <SvgIcon icon="ic_label" className="ant-menu-item-icon" size="24" />,
       suffix: (
-        <ProTag color="cyan" icon={<Iconify icon="solar:rocket-bold-duotone" size={14} />}>
+        <ProTag color="cyan" icon={<Iconify icon="solar:bell-bing-bold-duotone" size={14} />}>
           NEW
         </ProTag>
       ),

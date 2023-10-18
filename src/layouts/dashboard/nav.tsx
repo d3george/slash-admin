@@ -113,7 +113,7 @@ export default function Nav(props: Props) {
           className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
           style={{ color: colorTextBase, borderColor: colorTextBase, fontSize: 16 }}
         >
-          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          {collapsed ? <MenuUnfoldOutlined size={20} /> : <MenuFoldOutlined size={20} />}
         </button>
       </div>
 
