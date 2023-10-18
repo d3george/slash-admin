@@ -52,11 +52,11 @@ export default function UploadPage() {
     </Card>
   );
   const UploadBoxTab = (
-    <Row gutter={20}>
-      <Col span={2}>
+    <Row gutter={[16, 16]}>
+      <Col span={24} md={4}>
         <UploadBox />
       </Col>
-      <Col span={16}>
+      <Col span={24} md={20}>
         <UploadBox placeholder={boxPlaceHolder} />
       </Col>
     </Row>
