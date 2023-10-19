@@ -14,13 +14,11 @@ const FORMAT_AUDIO = ['wav', 'aif', 'mp3', 'aac'];
 const FORMAT_IMG = ['jpg', 'jpeg', 'gif', 'bmp', 'png', 'svg'];
 const FORMAT_VIDEO = ['m4v', 'avi', 'mpg', 'mp4', 'webm'];
 
-const iconUrl = (icon: string) => `src/assets/icons/${icon}.svg`;
-
 /**
- * 获取文件后缀
+ * 获取文件格式
  * @param fileName
  */
-export function fileFormat(fileName: string | undefined) {
+export function getFileFormat(fileName: string | undefined) {
   let format;
   switch (true) {
     case FORMAT_PDF.includes(fileTypeByName(fileName)):
@@ -66,48 +64,48 @@ export function fileFormat(fileName: string | undefined) {
  * 获取文件缩略图
  * @param fileName
  */
-export function fileThumb(fileName: string | undefined) {
+export function getFileThumb(fileName: string | undefined) {
   let thumb;
-  const format = fileFormat(fileName);
+  const format = getFileFormat(fileName);
   switch (format) {
     case 'txt':
-      thumb = iconUrl('ic_file_txt');
+      thumb = 'ic_file_txt';
       break;
     case 'zip':
-      thumb = iconUrl('ic_file_zip');
+      thumb = 'ic_file_zip';
       break;
     case 'audio':
-      thumb = iconUrl('ic_file_audio');
+      thumb = 'ic_file_audio';
       break;
     case 'video':
-      thumb = iconUrl('ic_file_video');
+      thumb = 'ic_file_video';
       break;
     case 'word':
-      thumb = iconUrl('ic_file_word');
+      thumb = 'ic_file_word';
       break;
     case 'excel':
-      thumb = iconUrl('ic_file_excel');
+      thumb = 'ic_file_excel';
       break;
     case 'ppt':
-      thumb = iconUrl('ic_file_ppt');
+      thumb = 'ic_file_ppt';
       break;
     case 'pdf':
-      thumb = iconUrl('ic_file_pdf');
+      thumb = 'ic_file_pdf';
       break;
     case 'psd':
-      thumb = iconUrl('ic_file_psd');
+      thumb = 'ic_file_psd';
       break;
     case 'ai':
-      thumb = iconUrl('ic_file_ai');
+      thumb = 'ic_file_ai';
       break;
     case 'img':
-      thumb = iconUrl('ic_file_img');
+      thumb = 'ic_file_img';
       break;
     case 'folder':
-      thumb = iconUrl('ic_folder');
+      thumb = 'ic_folder';
       break;
     default:
-      thumb = iconUrl('ic_file');
+      thumb = 'ic_file';
   }
   return thumb;
 }
@@ -132,4 +130,10 @@ export function getBase64(img: RcFile, callback: (url: string) => void) {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result as string));
   reader.readAsDataURL(img);
+}
+
+export function getBlobUrl(imgFile: RcFile) {
+  const fileBlob = new Blob([imgFile]);
+  const thumbnailUrl = URL.createObjectURL(fileBlob);
+  return thumbnailUrl;
 }

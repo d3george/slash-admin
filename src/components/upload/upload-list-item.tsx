@@ -1,12 +1,13 @@
-import { Card, Image, Tooltip, Typography } from 'antd';
+import { Card, Tooltip, Typography, Image } from 'antd';
 import { ItemRender } from 'antd/es/upload/interface';
 import { m } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 import { varFade } from '@/components/animate/variants';
-import { Iconify } from '@/components/icon';
+import { Iconify, SvgIcon } from '@/components/icon';
 import { fBytes } from '@/utils/format-number';
 
-import { fileFormat, fileThumb } from './utils';
+import { getBlobUrl, getFileFormat, getFileThumb } from './utils';
 
 type Props = {
   file: Parameters<ItemRender>['1'];
@@ -16,9 +17,16 @@ type Props = {
 
 export default function UploadListItem({ file, actions, thumbnail = false }: Props) {
   const { name, size } = file;
-  const thumb = fileThumb(name);
-  const format = fileFormat(name);
-  console.log('file', file);
+  const thumb = getFileThumb(name);
+  const format = getFileFormat(name);
+  const [imgThumbUrl, setImgThumbUrl] = useState('');
+
+  useEffect(() => {
+    // TODO: mock upload sucess, you should delete 'error' in the production environment
+    if (['done', 'error'].includes(file.status!) && format === 'img') {
+      setImgThumbUrl(getBlobUrl(file.originFileObj!));
+    }
+  }, [file, format]);
 
   const closeButton = (
     <button
@@ -35,7 +43,11 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
       style={{ width: 80, height: 80, marginTop: '8px', marginRight: '8px' }}
     >
       <Tooltip title={name}>
-        <Image src={thumb} preview={format === 'img'} width={40} height={40} />
+        {format === 'img' ? (
+          <Image src={imgThumbUrl} preview={false} width={40} height={40} />
+        ) : (
+          <SvgIcon icon={thumb} size={40} />
+        )}
       </Tooltip>
       <div className="absolute right-0 top-0">{closeButton}</div>
     </Card>
@@ -45,7 +57,11 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
       bodyStyle={{ display: 'flex', alignItems: 'center', padding: '8px 12px' }}
       style={{ marginTop: '8px' }}
     >
-      <Image src={thumb} preview={false} width={32} height={32} />
+      {format === 'img' ? (
+        <Image src={imgThumbUrl} preview={false} width={32} height={32} />
+      ) : (
+        <SvgIcon icon={thumb} size={32} />
+      )}
       <div className="ml-4 flex flex-col">
         <Typography.Text className="!text-sm !font-medium">{name}</Typography.Text>
         <Typography.Text type="secondary" className="!text-xs">
