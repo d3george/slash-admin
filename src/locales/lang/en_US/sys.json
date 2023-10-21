@@ -103,7 +103,8 @@
       "frame": "Item External",
       "external_link": "External Link",
       "iframe": "Iframe",
-      "blank": "Blank"
+      "blank": "Blank",
+      "calendar": "Calendar"
     }
   }
 }

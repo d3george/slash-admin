@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import { CircleLoading } from '@/components/loading';
 import SimpleLayout from '@/layouts/simple';
 
 import { AppRouteObject } from '#/router';
@@ -15,7 +16,7 @@ const Page500 = lazy(() => import('@/pages/sys/error/Page500'));
 export const mainRoutes: AppRouteObject = {
   element: (
     <SimpleLayout>
-      <Suspense>
+      <Suspense fallback={<CircleLoading />}>
         <Outlet />
       </Suspense>
     </SimpleLayout>

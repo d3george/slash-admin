@@ -6,10 +6,20 @@ import ProTag from '@/theme/antd/components/tag';
 
 import { AppRouteObject } from '#/router';
 
-const ExternalLink = lazy(() => import('@/pages/sys/iframe/external-link'));
-const Iframe = lazy(() => import('@/pages/sys/iframe'));
+const ExternalLink = lazy(() => import('@/pages/sys/others/iframe/external-link'));
+const Iframe = lazy(() => import('@/pages/sys/others/iframe'));
+const Calendar = lazy(() => import('@/pages/sys/others/calendar'));
 
 const others: AppRouteObject[] = [
+  {
+    path: 'calendar',
+    element: <Calendar />,
+    meta: {
+      label: 'sys.menu.calendar',
+      icon: <Iconify icon="solar:calendar-bold-duotone" size={24} />,
+      key: '/calendar',
+    },
+  },
   {
     element: <div />,
     meta: {

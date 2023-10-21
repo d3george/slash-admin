@@ -1,7 +1,8 @@
 import Color from 'color';
 import { useScroll } from 'framer-motion';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 
+import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
@@ -71,7 +72,7 @@ function DashboardLayout() {
           background: colorBgElevated,
         }}
       >
-        {layout}
+        <Suspense fallback={<CircleLoading />}>{layout}</Suspense>
       </div>
     </>
   );
