@@ -14,6 +14,9 @@ dependencies:
   '@fullcalendar/common':
     specifier: ^5.11.5
     version: 5.11.5
+  '@fullcalendar/core':
+    specifier: ^6.1.9
+    version: 6.1.9
   '@fullcalendar/daygrid':
     specifier: ^6.1.9
     version: 6.1.9(@fullcalendar/core@6.1.9)
