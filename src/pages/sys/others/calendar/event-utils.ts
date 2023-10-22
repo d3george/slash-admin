@@ -1,55 +1,60 @@
 import { faker } from '@faker-js/faker';
 import { EventInput } from '@fullcalendar/core';
-
-const todayStr = new Date();
-type ColorSet =
-  | '#00a76f'
-  | '#8e33ff'
-  | '#00b8d9'
-  | '#003768'
-  | '#22c55e'
-  | '#ffab00'
-  | '#ff5630'
-  | '#7a0916';
+import dayjs from 'dayjs';
 
 export const INITIAL_EVENTS: EventInput[] = [
   {
-    title: faker.lorem.text(),
-    start: todayStr,
+    id: faker.string.uuid(),
+    title: faker.lorem.words({ min: 2, max: 5 }),
+    start: dayjs().toISOString(),
+    end: dayjs().add(10, 'hour').toISOString(),
     color: '#7a0916',
   },
   {
-    title: faker.lorem.text(),
-    start: '2023-10-22',
-    end: '2023-10-25',
-    allDay: true,
+    id: faker.string.uuid(),
+    title: faker.lorem.words({ min: 2, max: 5 }),
+    start: dayjs().add(1, 'day').toISOString(),
+    end: dayjs().add(3, 'day').toISOString(),
+    allDay: faker.datatype.boolean(),
     color: '#00b8d9',
   },
   {
-    title: faker.lorem.text(),
-    start: '2023-10-25',
-    end: '2023-10-27',
-    allDay: true,
+    id: faker.string.uuid(),
+    title: faker.lorem.words({ min: 2, max: 5 }),
+    start: dayjs().add(3, 'day').toISOString(),
+    end: dayjs().add(5, 'day').toISOString(),
+    allDay: faker.datatype.boolean(),
     color: '#ff5630',
   },
   {
-    title: faker.lorem.text(),
-    start: '2023-10-27',
-    end: '2023-10-28',
-    allDay: true,
+    id: faker.string.uuid(),
+    title: faker.lorem.words({ min: 2, max: 5 }),
+    start: dayjs().add(7, 'day').toISOString(),
+    end: dayjs().add(8, 'day').toISOString(),
+    allDay: faker.datatype.boolean(),
     color: '#ffab00',
   },
   {
-    title: faker.lorem.text(),
-    start: '2023-10-28',
-    end: '2023-10-29',
-    allDay: true,
+    id: faker.string.uuid(),
+    title: faker.lorem.words({ min: 2, max: 5 }),
+    start: dayjs().add(7, 'day').toISOString(),
+    end: dayjs().add(8, 'day').toISOString(),
+    allDay: faker.datatype.boolean(),
+    color: '#ffab00',
+  },
+  {
+    id: faker.string.uuid(),
+    title: faker.lorem.words({ min: 2, max: 5 }),
+    start: dayjs().add(8, 'day').toISOString(),
+    end: dayjs().add(9, 'day').toISOString(),
+    allDay: faker.datatype.boolean(),
     color: '#8e33ff',
   },
   {
-    title: faker.lorem.text(),
-    start: '2023-10-19',
-    end: '2023-10-22',
+    id: faker.string.uuid(),
+    title: faker.lorem.words({ min: 2, max: 5 }),
+    start: dayjs().add(10, 'day').toISOString(),
+    end: dayjs().add(11, 'day').toISOString(),
     color: '#00a76f',
   },
 ];
