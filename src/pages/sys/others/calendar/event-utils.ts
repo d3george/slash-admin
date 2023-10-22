@@ -1,54 +1,55 @@
+import { faker } from '@faker-js/faker';
 import { EventInput } from '@fullcalendar/core';
 
-let eventGuid = 0;
-const todayStr = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
+const todayStr = new Date();
+type ColorSet =
+  | '#00a76f'
+  | '#8e33ff'
+  | '#00b8d9'
+  | '#003768'
+  | '#22c55e'
+  | '#ffab00'
+  | '#ff5630'
+  | '#7a0916';
 
 export const INITIAL_EVENTS: EventInput[] = [
   {
-    id: createEventId(),
-    title: 'All-day event',
+    title: faker.lorem.text(),
     start: todayStr,
+    color: '#7a0916',
   },
   {
-    id: createEventId(),
-    title: 'Timed event',
-    start: `${todayStr}T12:00:00`,
-  },
-  { id: '1', title: 'event 1', date: '2023-10-01' },
-  {
-    title: 'event 2',
-    start: '2023-10-01',
-    end: '2023-10-05',
+    title: faker.lorem.text(),
+    start: '2023-10-22',
+    end: '2023-10-25',
     allDay: true,
-    HostName: 'William',
+    color: '#00b8d9',
   },
   {
-    title: 'event 3',
-    start: '2023-10-05',
-    end: '2023-10-07',
+    title: faker.lorem.text(),
+    start: '2023-10-25',
+    end: '2023-10-27',
     allDay: true,
+    color: '#ff5630',
   },
   {
-    title: 'event 4',
-    start: '2023-10-05',
-    end: '2023-10-07',
+    title: faker.lorem.text(),
+    start: '2023-10-27',
+    end: '2023-10-28',
     allDay: true,
+    color: '#ffab00',
   },
   {
-    title: 'event 5',
-    start: '2023-10-05',
-    end: '2023-10-07',
+    title: faker.lorem.text(),
+    start: '2023-10-28',
+    end: '2023-10-29',
     allDay: true,
+    color: '#8e33ff',
   },
   {
-    title: 'event 6',
-    start: '2023-10-05',
-    end: '2023-10-07',
-    allDay: true,
+    title: faker.lorem.text(),
+    start: '2023-10-19',
+    end: '2023-10-22',
+    color: '#00a76f',
   },
 ];
-
-export function createEventId() {
-  // eslint-disable-next-line no-plusplus
-  return String(eventGuid++);
-}
