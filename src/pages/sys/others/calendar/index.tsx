@@ -2,15 +2,16 @@ import { faker } from '@faker-js/faker';
 import { DateSelectArg, EventClickArg, EventInput } from '@fullcalendar/core';
 //  fullcalendar plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // 提供 dayGridMonth, dayGridWeek, dayGridDay, dayGrid 视图
-import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction'; // 如果需要 click select drag 这些action 则需要该依赖
+import interactionPlugin from '@fullcalendar/interaction'; // 如果需要 click select drag 这些action 则需要该依赖
 import listPlugin from '@fullcalendar/list'; // 提供 listWeek view
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid'; // 提供 timeGridWeek, timeGridDay, timeGrid 视图
 import dayjs from 'dayjs';
-import { useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import Card from '@/components/card';
 import { useSettings } from '@/store/settingStore';
+import useReponsive from '@/theme/hooks/use-reponsive';
 
 import CalendarEvent from './calendar-event';
 import CalendarEventForm, { CalendarEventFormFieldType } from './calendar-event-form';
@@ -37,13 +38,18 @@ export default function Calendar() {
   const [eventFormType, setEventFormType] = useState<'add' | 'edit'>('add');
 
   const { themeMode } = useSettings();
+  const { currentScrren } = useReponsive();
 
+  useEffect(() => {
+    if (['sm', 'xs'].includes(currentScrren!)) {
+      setView('listWeek');
+    }
+  }, [currentScrren]);
   /**
    * calendar header events
    */
   const handleMove = (action: HandleMoveArg) => {
     const calendarApi = fullCalendarRef.current!.getApi();
-    console.log('date', calendarApi.getDate());
     switch (action) {
       case 'prev':
         calendarApi.prev();
@@ -60,18 +66,19 @@ export default function Calendar() {
     setDate(calendarApi.getDate());
   };
   const handleViewTypeChange = (view: ViewType) => {
-    const calendarApi = fullCalendarRef.current!.getApi();
-    calendarApi.changeView(view);
     setView(view);
   };
+
+  useLayoutEffect(() => {
+    const calendarApi = fullCalendarRef.current!.getApi();
+    setTimeout(() => {
+      calendarApi.changeView(view);
+    });
+  }, [view]);
 
   /**
    * calendar grid events
    */
-  // click some day
-  const handleDateClick = (dateClickInfo: DateClickArg) => {
-    console.log('dateClick', dateClickInfo);
-  };
   // select date range
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     const calendarApi = selectInfo.view.calendar;
@@ -91,7 +98,7 @@ export default function Calendar() {
   /**
    * calendar event events
    */
-  // event click
+  // click event and open modal
   const handleEventClick = (arg: EventClickArg) => {
     const { title, extendedProps, allDay, start, end, backgroundColor, id } = arg.event;
     setOpen(true);
@@ -100,19 +107,23 @@ export default function Calendar() {
       id,
       title,
       allDay,
-      start: dayjs(start),
-      end: dayjs(end),
       color: backgroundColor,
       description: extendedProps.description,
     };
-    console.log('newEventValue', newEventValue);
+    if (start) {
+      newEventValue.start = dayjs(start);
+    }
+
+    if (end) {
+      newEventValue.end = dayjs(end);
+    }
     setEventInitValue(newEventValue);
   };
   const handleCancel = () => {
     setEventInitValue(DefaultEventInitValue);
     setOpen(false);
   };
-
+  // edit event
   const handleEdit = (values: CalendarEventFormFieldType) => {
     const { id, title = '', description, start, end, allDay = false, color } = values;
     const calendarApi = fullCalendarRef.current!.getApi();
@@ -130,12 +141,11 @@ export default function Calendar() {
     if (start) newEvent.start = start.toDate();
     if (end) newEvent.end = end.toDate();
 
-    console.log('editEvent', id, oldEvent, newEvent);
     // 刷新日历显示
     oldEvent?.remove();
     calendarApi.addEvent(newEvent);
   };
-
+  // create event
   const handleCreate = (values: CalendarEventFormFieldType) => {
     const calendarApi = fullCalendarRef.current!.getApi();
     const { title = '', description, start, end, allDay = false, color } = values;
@@ -152,31 +162,32 @@ export default function Calendar() {
     if (start) newEvent.start = start.toDate();
     if (end) newEvent.end = end.toDate();
 
-    console.log('createEvent', newEvent);
     // 刷新日历显示
     calendarApi.addEvent(newEvent);
   };
-
+  // delete event
   const handleDelete = (id: string) => {
     const calendarApi = fullCalendarRef.current!.getApi();
     const oldEvent = calendarApi.getEventById(id);
     oldEvent?.remove();
   };
+
   return (
-    <Card>
+    <Card className="h-full w-full">
       <div className="h-full w-full">
         <StyledCalendar $themeMode={themeMode}>
           <CalendarHeader
             now={date}
             view={view}
             onMove={handleMove}
+            onCreate={() => setOpen(true)}
             onViewTypeChange={handleViewTypeChange}
           />
           <FullCalendar
             ref={fullCalendarRef}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
             initialDate={date}
-            initialView={view}
+            initialView={['sm', 'xs'].includes(currentScrren!) ? 'listWeek' : view}
             events={INITIAL_EVENTS}
             eventContent={CalendarEvent}
             editable
@@ -184,7 +195,6 @@ export default function Calendar() {
             selectMirror
             dayMaxEvents
             headerToolbar={false}
-            dateClick={handleDateClick}
             select={handleDateSelect}
             eventClick={handleEventClick}
           />

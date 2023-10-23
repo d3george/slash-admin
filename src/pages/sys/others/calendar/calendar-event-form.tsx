@@ -24,6 +24,17 @@ type Props = {
   initValues: CalendarEventFormFieldType;
 };
 
+const COLORS = [
+  '#00a76f',
+  '#8e33ff',
+  '#00b8d9',
+  '#003768',
+  '#22c55e',
+  '#ffab00',
+  '#ff5630',
+  '#7a0916',
+];
+
 export default function CalendarEventForm({
   type,
   open,
@@ -38,8 +49,8 @@ export default function CalendarEventForm({
 
   useEffect(() => {
     // 当 initValues 改变时，手动更新表单的值
-    console.log('initValues', initValues);
-    form.setFieldsValue(initValues);
+    const { color = COLORS[0], ...others } = initValues;
+    form.setFieldsValue({ ...others, color });
   }, [initValues, form]);
 
   // eslint-disable-next-line react/function-component-definition, react/no-unstable-nested-components
@@ -84,15 +95,7 @@ export default function CalendarEventForm({
             form.resetFields();
 
             const { id } = initValues;
-            const { color, ...other } = values;
-
-            const event = { ...other, id };
-            if (typeof color === 'string') {
-              event.color = color;
-            } else {
-              event.color = `#${color.toHex()}`;
-            }
-
+            const event = { ...values, id };
             if (type === 'add') onCreate(event);
             if (type === 'edit') onEdit(event);
             onCancel();
@@ -139,21 +142,16 @@ export default function CalendarEventForm({
           <DatePicker showTime className="w-full" format="YYYY-MM-DD HH:mm:ss" />
         </Form.Item>
 
-        <Form.Item<CalendarEventFormFieldType> label="Color" name="color">
+        <Form.Item<CalendarEventFormFieldType>
+          label="Color"
+          name="color"
+          getValueFromEvent={(e) => e.toHexString()}
+        >
           <ColorPicker
             presets={[
               {
                 label: 'Recommended',
-                colors: [
-                  '#00a76f',
-                  '#8e33ff',
-                  '#00b8d9',
-                  '#003768',
-                  '#22c55e',
-                  '#ffab00',
-                  '#ff5630',
-                  '#7a0916',
-                ],
+                colors: COLORS,
               },
             ]}
           />

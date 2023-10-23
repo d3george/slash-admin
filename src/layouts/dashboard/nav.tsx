@@ -1,6 +1,7 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
+import Color from 'color';
 import { CSSProperties, useEffect, useState } from 'react';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
@@ -20,7 +21,7 @@ export default function Nav(props: Props) {
   const matches = useMatches();
   const { pathname } = useLocation();
 
-  const { colorTextBase, colorBgElevated } = useThemeToken();
+  const { colorTextBase, colorBgElevated, colorBorder } = useThemeToken();
 
   const settings = useSettings();
   const { themeLayout } = settings;
@@ -101,7 +102,13 @@ export default function Nav(props: Props) {
   };
 
   return (
-    <div style={{ width: collapsed ? '90px' : '260px' }}>
+    <div
+      className="flex h-full flex-col "
+      style={{
+        width: collapsed ? '90px' : '260px',
+        borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
+      }}
+    >
       <div className="relative flex h-20 items-center justify-center py-4">
         {themeLayout === ThemeLayout.Mini ? (
           <Logo className="text-lg" />
@@ -117,21 +124,22 @@ export default function Nav(props: Props) {
         </button>
       </div>
 
-      {/* <!-- Sidebar Menu --> */}
-      <Menu
-        mode={menuMode}
-        items={menuList}
-        className="!border-none"
-        defaultOpenKeys={openKeys}
-        defaultSelectedKeys={selectedKeys}
-        selectedKeys={selectedKeys}
-        openKeys={openKeys}
-        onOpenChange={onOpenChange}
-        onClick={onClick}
-        style={menuStyle}
-        inlineCollapsed={collapsed}
-      />
-      {/* <!-- Sidebar Menu --> */}
+      <div className="h-full overflow-y-scroll">
+        {/* <!-- Sidebar Menu --> */}
+        <Menu
+          mode={menuMode}
+          items={menuList}
+          className="h-full !border-none"
+          defaultOpenKeys={openKeys}
+          defaultSelectedKeys={selectedKeys}
+          selectedKeys={selectedKeys}
+          openKeys={openKeys}
+          onOpenChange={onOpenChange}
+          onClick={onClick}
+          style={menuStyle}
+          inlineCollapsed={collapsed}
+        />
+      </div>
     </div>
   );
 }

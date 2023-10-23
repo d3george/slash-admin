@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { ThemeMode } from '#/enum';
 
 export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
+  width: 100%;
+  height: 100%;
   .fc {
+    width: 100%;
+    height: 100%;
     /* override fullcalendar css variables */
     --fc-border-color: rgba(145, 158, 171, 0.16);
     --fc-now-indicator-color: #ff5630;

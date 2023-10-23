@@ -18,8 +18,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // 在请求被发送之前做些什么
-    console.log(config);
-
     config.headers.Authorization = 'Bearer Token';
     return config;
   },

@@ -1,4 +1,3 @@
-import Color from 'color';
 import { useScroll } from 'framer-motion';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 
@@ -15,7 +14,7 @@ import NavHorizontal from './nav-horizontal';
 import { ThemeLayout } from '#/enum';
 
 function DashboardLayout() {
-  const { colorBgElevated, colorTextBase, colorBorder } = useThemeToken();
+  const { colorBgElevated, colorTextBase } = useThemeToken();
   const { themeLayout } = useSettings();
   const mainEl = useRef(null);
 
@@ -37,10 +36,7 @@ function DashboardLayout() {
 
   const verticalLayout = (
     <>
-      <div
-        className="hidden h-full lg:block"
-        style={{ borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}` }}
-      >
+      <div className="hidden h-full lg:block">
         <Nav />
       </div>
 
