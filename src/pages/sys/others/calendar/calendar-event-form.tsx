@@ -86,6 +86,7 @@ export default function CalendarEventForm({
     <Modal
       open={open}
       title={title}
+      centered
       onCancel={onCancel}
       footer={ModalFooter}
       onOk={() => {
@@ -105,7 +106,13 @@ export default function CalendarEventForm({
           });
       }}
     >
-      <Form form={form} labelCol={{ span: 4 }} wrapperCol={{ span: 18 }} initialValues={initValues}>
+      <Form
+        form={form}
+        size="small"
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 18 }}
+        initialValues={initValues}
+      >
         <Form.Item<CalendarEventFormFieldType>
           label="Titile"
           name="title"
@@ -129,7 +136,7 @@ export default function CalendarEventForm({
         <Form.Item<CalendarEventFormFieldType>
           label="Start date"
           name="start"
-          rules={[{ required: true, message: 'Please input title!' }]}
+          rules={[{ required: true, message: 'Please input start date!' }]}
         >
           <DatePicker showTime className="w-full" format="YYYY-MM-DD HH:mm:ss" />
         </Form.Item>
@@ -137,7 +144,7 @@ export default function CalendarEventForm({
         <Form.Item<CalendarEventFormFieldType>
           label="End date"
           name="end"
-          rules={[{ required: true, message: 'Please input title!' }]}
+          rules={[{ required: true, message: 'Please input end date!' }]}
         >
           <DatePicker showTime className="w-full" format="YYYY-MM-DD HH:mm:ss" />
         </Form.Item>
