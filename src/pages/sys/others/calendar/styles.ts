@@ -101,6 +101,11 @@ export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
 
     /* view list */
     .fc-list {
+      .fc-list-day {
+        th {
+          z-index: 100;
+        }
+      }
       .fc-list-day-text,
       .fc-list-day-side-text {
         line-height: 1.57143;
