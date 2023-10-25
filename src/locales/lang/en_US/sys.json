@@ -104,7 +104,8 @@
       "external_link": "External Link",
       "iframe": "Iframe",
       "blank": "Blank",
-      "calendar": "Calendar"
+      "calendar": "Calendar",
+      "kanban": "Kanban"
     }
   }
 }

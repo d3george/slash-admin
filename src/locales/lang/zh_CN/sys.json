@@ -103,7 +103,8 @@
       "external_link": "外链",
       "iframe": "内嵌",
       "blank": "空白",
-      "calendar": "日历"
+      "calendar": "日历",
+      "kanban": "看板"
     }
   }
 }
