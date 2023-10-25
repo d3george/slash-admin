@@ -1,4 +1,3 @@
-import { CSSProperties } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
@@ -14,14 +13,6 @@ type Props = {
 
 export default function KanbanTask({ index, task }: Props) {
   const { themeMode } = useSettings();
-
-  const style: CSSProperties = {
-    backgroundColor: themeMode === ThemeMode.Light ? '#fff' : 'rgb(22, 28, 36)',
-    boxShadow:
-      themeMode === ThemeMode.Light
-        ? 'rgba(145, 158, 171, 0.16) 0px 1px 2px 0px'
-        : 'rgba(0, 0, 0, 0.16) 0px 1px 2px 0px',
-  };
 
   return (
     <Draggable draggableId={task.id} index={index}>
