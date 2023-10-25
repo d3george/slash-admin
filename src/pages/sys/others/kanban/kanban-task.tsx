@@ -32,6 +32,7 @@ export default function KanbanTask({ index, task }: Props) {
 }
 
 const Container = styled.div<{ $isDragging: boolean; $themeMode: ThemeMode }>`
+  width: 280px;
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
