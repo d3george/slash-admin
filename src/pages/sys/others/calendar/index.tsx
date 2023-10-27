@@ -11,7 +11,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import Card from '@/components/card';
 import { useSettings } from '@/store/settingStore';
-import useReponsive from '@/theme/hooks/use-reponsive';
+import { useResponsive } from '@/theme/hooks';
 
 import CalendarEvent from './calendar-event';
 import CalendarEventForm, { CalendarEventFormFieldType } from './calendar-event-form';
@@ -38,13 +38,13 @@ export default function Calendar() {
   const [eventFormType, setEventFormType] = useState<'add' | 'edit'>('add');
 
   const { themeMode } = useSettings();
-  const { currentScrren } = useReponsive();
+  const { screenMap } = useResponsive();
 
   useEffect(() => {
-    if (['sm', 'xs'].includes(currentScrren!)) {
+    if (screenMap.xs) {
       setView('listWeek');
     }
-  }, [currentScrren]);
+  }, [screenMap]);
   /**
    * calendar header events
    */
@@ -187,7 +187,7 @@ export default function Calendar() {
             ref={fullCalendarRef}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
             initialDate={date}
-            initialView={['sm', 'xs'].includes(currentScrren!) ? 'listWeek' : view}
+            initialView={screenMap.xs ? 'listWeek' : view}
             events={INITIAL_EVENTS}
             eventContent={CalendarEvent}
             editable

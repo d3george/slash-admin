@@ -6,7 +6,7 @@ import { IconButton, SvgIcon } from '@/components/icon';
 import LocalePicker from '@/components/locale-picker';
 import Logo from '@/components/logo';
 import { useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/theme/hooks';
+import { useResponsive, useThemeToken } from '@/theme/hooks';
 
 import AccountDropdown from '../_common/account-dropdown';
 import BreadCrumb from '../_common/bread-crumb';
@@ -14,6 +14,7 @@ import NoticeButton from '../_common/notice';
 import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/setting-button';
 
+import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
 import Nav from './nav';
 
 import { ThemeLayout } from '#/enum';
@@ -26,15 +27,29 @@ export default function Header({ className, offsetTop = false }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeLayout } = useSettings();
   const { colorBgElevated, colorBorder } = useThemeToken();
+  const { screenMap } = useResponsive();
 
   const headerStyle: CSSProperties = {
-    position: themeLayout === ThemeLayout.Horizontal ? 'relative' : 'absolute',
+    position: themeLayout === ThemeLayout.Horizontal ? 'relative' : 'fixed',
     borderBottom:
       themeLayout === ThemeLayout.Horizontal
         ? `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`
         : '',
     backgroundColor: Color(colorBgElevated).alpha(0.8).toString(),
   };
+
+  if (themeLayout === ThemeLayout.Horizontal) {
+    headerStyle.width = '100vw';
+  } else if (screenMap.md) {
+    headerStyle.right = '0px';
+    headerStyle.left = 'auto';
+    headerStyle.width = `calc(100% - ${
+      themeLayout === ThemeLayout.Vertical ? NAV_WIDTH : NAV_COLLAPSED_WIDTH
+    }`;
+  } else {
+    headerStyle.width = '100vw';
+  }
+
   return (
     <>
       <header className={`z-20 w-full ${className}`} style={headerStyle}>
@@ -45,9 +60,9 @@ export default function Header({ className, offsetTop = false }: Props) {
             transition: 'height 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           }}
         >
-          <div className="flex items-center ">
+          <div className="flex items-baseline">
             {themeLayout !== ThemeLayout.Horizontal ? (
-              <IconButton onClick={() => setDrawerOpen(true)} className="h-10 w-10 lg:hidden">
+              <IconButton onClick={() => setDrawerOpen(true)} className="h-10 w-10 md:hidden">
                 <SvgIcon icon="ic-menu" size="24" />
               </IconButton>
             ) : (

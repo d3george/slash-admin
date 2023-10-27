@@ -11,6 +11,8 @@ import { getMenuRoutes } from '@/router/utils';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
+import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
+
 import { ThemeLayout } from '#/enum';
 
 type Props = {
@@ -103,9 +105,9 @@ export default function Nav(props: Props) {
 
   return (
     <div
-      className="flex h-full flex-col "
+      className="flex h-full flex-col"
       style={{
-        width: collapsed ? '90px' : '260px',
+        width: collapsed ? NAV_COLLAPSED_WIDTH : NAV_WIDTH,
         borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
       }}
     >
@@ -117,7 +119,7 @@ export default function Nav(props: Props) {
         )}
         <button
           onClick={toggleCollapsed}
-          className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray lg:block"
+          className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray md:block"
           style={{ color: colorTextBase, borderColor: colorTextBase, fontSize: 16 }}
         >
           {collapsed ? <MenuUnfoldOutlined size={20} /> : <MenuFoldOutlined size={20} />}

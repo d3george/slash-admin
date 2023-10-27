@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { ReactNode, useMemo } from 'react';
 
 import { IconButton, Iconify } from '@/components/icon';
-import useReponsive from '@/theme/hooks/use-reponsive';
+import { useResponsive } from '@/theme/hooks';
 
 export type HandleMoveArg = 'next' | 'prev' | 'today';
 export type ViewType = 'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listWeek';
@@ -22,7 +22,7 @@ type Props = {
   onViewTypeChange: (view: ViewType) => void;
 };
 export default function CalendarHeader({ now, view, onMove, onCreate, onViewTypeChange }: Props) {
-  const { currentScrren } = useReponsive();
+  const { screenMap } = useResponsive();
 
   const items = useMemo<ViewTypeMenu[]>(
     () => [
@@ -72,7 +72,7 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 
   return (
     <div className="relative flex items-center justify-between py-5">
-      {!['sm', 'xs'].includes(currentScrren!) && (
+      {screenMap.lg && (
         <Dropdown menu={{ items, onClick: handleMenuClick }}>
           <Button type="text" size="small">
             {viewTypeMenu(view)}

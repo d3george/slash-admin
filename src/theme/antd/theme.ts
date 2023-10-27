@@ -6,7 +6,7 @@ import { ThemeColorPresets } from '#/enum';
  */
 const customThemeTokenConfig: ThemeConfig['token'] = {
   colorSuccess: '#22c55e',
-  colorWarning: '#ffab00',
+  colorWarning: '#ff7849',
   colorError: '#ff5630',
   colorInfo: '#00b8d9',
 

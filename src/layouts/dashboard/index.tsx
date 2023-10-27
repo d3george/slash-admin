@@ -36,14 +36,11 @@ function DashboardLayout() {
 
   const verticalLayout = (
     <>
-      <div className="hidden h-full lg:block">
+      <Header offsetTop={offsetTop} />
+      <div className="z-50 hidden h-full flex-shrink-0 md:block">
         <Nav />
       </div>
-
-      <div className="relative flex flex-1 flex-col">
-        <Header offsetTop={offsetTop} />
-        <Main ref={mainEl} />
-      </div>
+      <Main ref={mainEl} />
     </>
   );
 

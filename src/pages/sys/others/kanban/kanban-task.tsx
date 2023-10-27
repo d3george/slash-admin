@@ -1,4 +1,6 @@
+import { memo } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
+import { useLogger } from 'react-use';
 import styled from 'styled-components';
 
 import { Task } from '@/pages/sys/others/kanban/types';
@@ -11,7 +13,8 @@ type Props = {
   task: Task;
 };
 
-export default function KanbanTask({ index, task }: Props) {
+function KanbanTask({ index, task }: Props) {
+  useLogger('Task', task);
   const { themeMode } = useSettings();
 
   return (
@@ -31,15 +34,19 @@ export default function KanbanTask({ index, task }: Props) {
   );
 }
 
+// 在这里使用memo很重要，因为drag column时，不应该重复渲染内部的task
+export default memo(KanbanTask);
+
 const Container = styled.div<{ $isDragging: boolean; $themeMode: ThemeMode }>`
-  width: 280px;
+  width: 248px;
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 12px;
   background-color: ${(props) => {
     if (props.$themeMode === ThemeMode.Light) {
-      return props.$isDragging ? 'rgba(255, 255, 255, 0.68)' : 'rgb(255, 255, 255)';
+      return props.$isDragging ? 'rgba(255, 255, 255, 0.48)' : 'rgb(255, 255, 255)';
     }
     return props.$isDragging ? 'rgba(22, 28, 36, 0.48)' : 'rgb(22, 28, 36)';
   }};
