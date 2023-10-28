@@ -23,7 +23,7 @@ export default function TaskDetail({ task }: Props) {
     attachments,
     comments = [],
   } = task;
-  const { colorInfo, colorWarning, colorSuccess, colorBgContainerDisabled } = useThemeToken();
+  const { colorInfo, colorWarning, colorSuccess } = useThemeToken();
   return (
     <>
       <Container>
