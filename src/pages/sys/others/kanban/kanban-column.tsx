@@ -6,7 +6,7 @@ import { useEvent } from 'react-use';
 
 import { Iconify } from '@/components/icon';
 import KanbanTask from '@/pages/sys/others/kanban/kanban-task';
-import { Column, DragType, Task } from '@/pages/sys/others/kanban/types';
+import { Column, DragType, Task, TaskPriority } from '@/pages/sys/others/kanban/types';
 import { useSettings } from '@/store/settingStore';
 
 import { ThemeMode } from '#/enum';
@@ -45,7 +45,7 @@ export default function KanbanColumn({
       key: '1',
       label: (
         <div
-          className="text-gray"
+          className="flex items-center text-gray"
           onClick={() => {
             setRenamingTask(true);
           }}
@@ -58,7 +58,7 @@ export default function KanbanColumn({
     {
       key: '2',
       label: (
-        <div className="text-gray" onClick={() => clearColumn(column.id)}>
+        <div className="flex items-center text-gray" onClick={() => clearColumn(column.id)}>
           <Iconify icon="solar:eraser-bold" />
           <span className="ml-2">clear</span>
         </div>
@@ -67,7 +67,7 @@ export default function KanbanColumn({
     {
       key: '3',
       label: (
-        <div className="text-warning" onClick={() => deleteColumn(column.id)}>
+        <div className="flex items-center text-warning" onClick={() => deleteColumn(column.id)}>
           <Iconify icon="solar:trash-bin-trash-bold" />
           <span className="ml-2">delete</span>
         </div>
@@ -83,7 +83,9 @@ export default function KanbanColumn({
       if (addTaskInputVal) {
         createTask(column.id, {
           id: faker.string.uuid(),
-          content: addTaskInputVal,
+          title: addTaskInputVal,
+          reporter: faker.image.avatarGitHub(),
+          priority: faker.helpers.enumValue(TaskPriority),
         });
       }
       setAddingTask(false);
@@ -133,7 +135,7 @@ export default function KanbanColumn({
                 placement="bottomRight"
                 trigger={['click']}
               >
-                <Button shape="circle" type="text">
+                <Button shape="circle" type="text" className="!text-gray">
                   <Iconify icon="dashicons:ellipsis" />
                 </Button>
               </Dropdown>
@@ -152,7 +154,7 @@ export default function KanbanColumn({
 
             <footer className="w-[248px]">
               {addingTask ? (
-                <Input ref={addTaskInputRef} size="large" placeholder="Add Task" autoFocus />
+                <Input ref={addTaskInputRef} size="large" placeholder="Task Name" autoFocus />
               ) : (
                 <Button
                   onClick={(e) => {

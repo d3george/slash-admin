@@ -258,7 +258,7 @@ export default function Kanban() {
 
         <div className="ml-[1.6rem] mt-[0.25rem] min-w-[280px]">
           {addingColumn ? (
-            <Input ref={inputRef} size="large" placeholder="Add Column" autoFocus />
+            <Input ref={inputRef} size="large" placeholder="Column Name" autoFocus />
           ) : (
             <Button
               onClick={(e) => {
