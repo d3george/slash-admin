@@ -6,6 +6,7 @@ import { CSSProperties, useEffect, useState } from 'react';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/logo';
+import Scrollbar from '@/components/scrollbar';
 import { useRouteToMenu } from '@/router/hooks';
 import { getMenuRoutes } from '@/router/utils';
 import { useSettingActions, useSettings } from '@/store/settingStore';
@@ -126,7 +127,7 @@ export default function Nav(props: Props) {
         </button>
       </div>
 
-      <div className="h-full overflow-y-scroll">
+      <Scrollbar className="h-full">
         {/* <!-- Sidebar Menu --> */}
         <Menu
           mode={menuMode}
@@ -141,7 +142,7 @@ export default function Nav(props: Props) {
           style={menuStyle}
           inlineCollapsed={collapsed}
         />
-      </div>
+      </Scrollbar>
     </div>
   );
 }
