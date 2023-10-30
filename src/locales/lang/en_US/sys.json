@@ -78,7 +78,11 @@
       "workbench": "Workbench",
       "analysis": "Analysis",
       "management": "Management",
-      "user": "User",
+      "user": {
+        "index": "User",
+        "profile": "Profile",
+        "account": "Account"
+      },
       "blog": "Blog",
       "components": "Components",
       "icon": "Icon",
@@ -91,13 +95,19 @@
       "chart": "Chart",
       "functions": "Functions",
       "clipboard": "Clipboard",
-      "menulevel": "Menu Level",
-      "menulevel_1a": "Menu Level 1a",
-      "menulevel_1b": "Menu Level 1b",
-      "menulevel_2a": "Menu Level 2a",
-      "menulevel_2b": "Menu Level 2b",
-      "menulevel_3a": "Menu Level 3a",
-      "menulevel_3b": "Menu Level 3b",
+      "menulevel": {
+        "index": "Menu Level",
+        "1a": "Menu Level 1a",
+        "1b": {
+          "index": "Menu Level 1b",
+          "2a": "Menu Level 2a",
+          "2b": {
+            "index": "Menu Level 2b",
+            "3a": "Menu Level 3a",
+            "3b": "Menu Level 3b"
+          }
+        }
+      },
       "disabled": "Item Disabled",
       "label": "Item Label",
       "frame": "Item External",

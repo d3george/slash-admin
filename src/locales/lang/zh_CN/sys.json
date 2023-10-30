@@ -77,7 +77,11 @@
       "workbench": "工作台",
       "analysis": "分析",
       "management": "管理",
-      "user": "用户",
+      "user": {
+        "index": "用户",
+        "profile": "个人资料",
+        "account": "账户"
+      },
       "blog": "博客",
       "components": "组件",
       "icon": "图标",
@@ -90,13 +94,19 @@
       "chart": "图表",
       "functions": "功能",
       "clipboard": "剪贴板",
-      "menulevel": "多级菜单",
-      "menulevel_1a": "菜单 1a",
-      "menulevel_1b": "菜单 1b",
-      "menulevel_2a": "菜单 2a",
-      "menulevel_2b": "菜单 2b",
-      "menulevel_3a": "菜单 3a",
-      "menulevel_3b": "菜单 3b",
+      "menulevel": {
+        "index": "多级菜单",
+        "1a": "多级菜单 1a",
+        "1b": {
+          "index": "多级菜单 1b",
+          "2a": "多级菜单 2a",
+          "2b": {
+            "index": "多级菜单 2b",
+            "3a": "多级菜单 3a",
+            "3b": "多级菜单 3b"
+          }
+        }
+      },
       "disabled": "项目禁用",
       "label": "项目标签",
       "frame": "项目外部链接",
