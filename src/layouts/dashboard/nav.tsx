@@ -127,7 +127,7 @@ export default function Nav(props: Props) {
         </button>
       </div>
 
-      <Scrollbar className="h-full">
+      <Scrollbar>
         {/* <!-- Sidebar Menu --> */}
         <Menu
           mode={menuMode}
