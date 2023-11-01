@@ -1,11 +1,23 @@
 import { faker } from '@faker-js/faker';
-import { Row, Col, Typography, Timeline } from 'antd';
+import { Row, Col, Typography, Timeline, Table, Space, Avatar, Progress } from 'antd';
+import { ColumnsType } from 'antd/es/table';
 
+import { fakeAvatars } from '@/_mock/utils';
 import Card from '@/components/card';
 import { IconButton, Iconify, SvgIcon } from '@/components/icon';
+import Scrollbar from '@/components/scrollbar';
 import { useUserInfo } from '@/store/userStore';
 import ProTag from '@/theme/antd/components/tag';
 import { useThemeToken } from '@/theme/hooks';
+
+interface DataType {
+  avatar: string;
+  name: string;
+  date: string;
+  leader: string;
+  team: string[];
+  status: number;
+}
 
 export default function ProfileTab() {
   const { username } = useUserInfo();
@@ -90,14 +102,71 @@ export default function ProfileTab() {
     },
   ];
 
-  // const ProjectItems = [
-  //   {
-  //     avatar: faker.image.urlPlaceholder(),
-  //     name: faker.company.name(),
-  //     createAt: faker.date.past(),
-  //     leader: faker.person.fullName(),
-  //   },
-  // ];
+  const fakeProjectItems = () => {
+    const arr: DataType[] = [];
+    for (let i = 0; i <= 25; i += 1) {
+      arr.push({
+        avatar: faker.image.urlPicsumPhotos(),
+        name: faker.company.buzzPhrase(),
+        date: faker.date.past().toDateString(),
+        leader: faker.person.fullName(),
+        team: fakeAvatars(faker.number.int({ min: 2, max: 5 })),
+        status: faker.number.int({ min: 50, max: 99 }),
+      });
+    }
+    return arr;
+  };
+
+  const ProjectColumns: ColumnsType<DataType> = [
+    {
+      title: 'NAME',
+      dataIndex: 'name',
+      render: (_, record) => (
+        <div className="flex items-center">
+          <img src={record.avatar} alt="" className="h-9 w-9 rounded-full" />
+          <div className="ml-2 flex flex-col">
+            <span className="font-semibold">{record.name}</span>
+            <span className="text-xs opacity-50">{record.date}</span>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: 'LEADER',
+      dataIndex: 'leader',
+      render: (val) => <span className="opacity-50">{val}</span>,
+    },
+    {
+      title: 'TEAM',
+      dataIndex: 'team',
+      render: (val) => (
+        <Avatar.Group>
+          {val.map((item: string) => (
+            <Avatar src={item} />
+          ))}
+        </Avatar.Group>
+      ),
+    },
+    {
+      title: 'STATUS',
+      dataIndex: 'status',
+      render: (val) => (
+        <Progress percent={val} strokeColor={theme.colorPrimary} trailColor="transparent" />
+      ),
+    },
+    {
+      title: 'ACTIONS',
+      dataIndex: 'action',
+      render: () => (
+        <Space size="middle">
+          <IconButton>
+            <Iconify icon="fontisto:more-v-a" />
+          </IconButton>
+        </Space>
+      ),
+    },
+  ];
+
   return (
     <>
       <Row gutter={[16, 16]}>
@@ -267,6 +336,22 @@ export default function ProfileTab() {
               style={{ color: theme.colorPrimaryText }}
             >
               View all members
+            </div>
+          </Card>
+        </Col>
+      </Row>
+      <Row gutter={[16, 16]} className="mt-4">
+        <Col span={24}>
+          <Card className="flex-col !items-start">
+            <Typography.Title level={5}>Projects</Typography.Title>
+            <div className="!mt-4 w-full">
+              <Scrollbar>
+                <Table
+                  rowSelection={{ type: 'checkbox' }}
+                  columns={ProjectColumns}
+                  dataSource={fakeProjectItems()}
+                />
+              </Scrollbar>
             </div>
           </Card>
         </Col>
