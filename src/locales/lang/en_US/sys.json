@@ -73,6 +73,14 @@
       "privacyPolicy": " Privacy policy ",
       "logout": "Logout"
     },
+    "tab": {
+      "refresh": "Refresh",
+      "close": "Close",
+      "closeOthers": "Close Others",
+      "closeAll": "close All",
+      "closeLeft": "Close Left",
+      "closeRight": "Close Right"
+    },
     "menu": {
       "dashboard": "Dashboard",
       "workbench": "Workbench",

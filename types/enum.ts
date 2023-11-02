@@ -35,3 +35,12 @@ export enum LocalEnum {
   en_US = 'en_US',
   zh_CN = 'zh_CN',
 }
+
+export enum MultiTabOperation {
+  REFRESH = 'refresh',
+  CLOSE = 'close',
+  CLOSEOTHERS = 'closeOthers',
+  CLOSEALL = 'closeAll',
+  CLOSELEFT = 'closeLeft',
+  CLOSERIGHT = 'closeRight',
+}

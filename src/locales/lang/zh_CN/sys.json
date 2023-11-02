@@ -72,6 +72,14 @@
       "privacyPolicy": " 隐私政策 ",
       "logout": "退出"
     },
+    "tab": {
+      "refresh": "刷新",
+      "close": "关闭标签页",
+      "closeOthers": "关闭其它标签页",
+      "closeAll": "关闭所有标签页",
+      "closeLeft": "关闭左侧标签页",
+      "closeRight": "关闭右侧标签页"
+    },
     "menu": {
       "dashboard": "仪表",
       "workbench": "工作台",

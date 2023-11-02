@@ -2,15 +2,14 @@ import { Empty, GlobalToken, Input, InputRef, Modal } from 'antd';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import Color from 'color';
-import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useBoolean, useEvent, useKeyPressEvent } from 'react-use';
 import styled from 'styled-components';
 
 import { IconButton, SvgIcon } from '@/components/icon';
 import Scrollbar from '@/components/scrollbar';
-import { useRouter } from '@/router/hooks';
-import { flattenMenuRoutes, getMenuRoutes } from '@/router/utils';
+import { useFlattenedRoutes, useRouter } from '@/router/hooks';
 import ProTag from '@/theme/antd/components/tag';
 import { useThemeToken } from '@/theme/hooks';
 
@@ -23,11 +22,7 @@ export default function SearchBar() {
   const [search, toggle] = useBoolean(false);
   const themeToken = useThemeToken();
 
-  const flattenRoutes = useCallback(flattenMenuRoutes, []);
-  const flattenedRoutes = useMemo(() => {
-    const menuRoutes = getMenuRoutes();
-    return flattenRoutes(menuRoutes);
-  }, [flattenRoutes]);
+  const flattenedRoutes = useFlattenedRoutes();
 
   const activeStyle: CSSProperties = {
     border: `1px dashed ${themeToken.colorPrimary}`,

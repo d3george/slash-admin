@@ -1,11 +1,11 @@
 import { Content } from 'antd/es/layout/layout';
 import { forwardRef } from 'react';
-import { Outlet } from 'react-router-dom';
 
 import { useSettings } from '@/store/settingStore';
 import { useResponsive } from '@/theme/hooks';
 
 import { NAV_WIDTH, NAV_COLLAPSED_WIDTH } from './config';
+import MultiTabs from './multi-tabs';
 
 import { ThemeLayout } from '#/enum';
 
@@ -35,7 +35,7 @@ const Main = forwardRef<HTMLDivElement, {}>((_, ref) => {
           themeStretch ? '' : 'xl:max-w-screen-xl'
         }`}
       >
-        <Outlet />
+        <MultiTabs />
       </div>
       {/* <!-- ===== Content End ===== --> */}
     </Content>
