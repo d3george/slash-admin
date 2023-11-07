@@ -14,7 +14,8 @@ export default function Iconify({ icon, size = '1em', className = '', ...other }
   );
 }
 
-const StyledIconify = styled.span`
+const StyledIconify = styled.div`
+  display: inline-flex;
   vertical-align: middle;
   svg {
     display: inline-block;

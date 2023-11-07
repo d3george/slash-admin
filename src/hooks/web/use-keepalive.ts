@@ -8,6 +8,7 @@ export type KeepAliveTab = RouteMeta & {
   children: any;
 };
 export default function useKeepAlive() {
+  const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
   const { push } = useRouter();
   // tabs
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
@@ -25,17 +26,14 @@ export default function useKeepAlive() {
     (path = activeTabRoutePath) => {
       if (tabs.length === 1) return;
       const deleteTabIndex = tabs.findIndex((item) => item.key === path);
-      if (tabs[deleteTabIndex].key === activeTabRoutePath) {
-        if (deleteTabIndex > 0) {
-          push(tabs[deleteTabIndex - 1].key);
-        } else {
-          push(tabs[deleteTabIndex + 1].key);
-        }
+      if (deleteTabIndex > 0) {
+        push(tabs[deleteTabIndex - 1].key);
+      } else {
+        push(tabs[deleteTabIndex + 1].key);
       }
 
-      const newTabs = Array.from(tabs);
-      newTabs.splice(deleteTabIndex, 1);
-      setTabs([...newTabs]);
+      tabs.splice(deleteTabIndex, 1);
+      setTabs([...tabs]);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [activeTabRoutePath],
@@ -57,7 +55,8 @@ export default function useKeepAlive() {
   const closeAll = useCallback(() => {
     // setTabs([tabHomePage]);
     setTabs([]);
-    push('/dashboard/workbench');
+    push(HOMEPAGE);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [push]);
 
   /**
@@ -66,11 +65,11 @@ export default function useKeepAlive() {
   const closeLeft = useCallback(
     (path: string) => {
       const currentTabIndex = tabs.findIndex((item) => item.key === path);
-      const newTabs = Array.from(tabs);
-      newTabs.splice(0, currentTabIndex);
+      const newTabs = tabs.slice(currentTabIndex);
       setTabs(newTabs);
+      push(path);
     },
-    [tabs],
+    [push, tabs],
   );
 
   /**
@@ -79,11 +78,11 @@ export default function useKeepAlive() {
   const closeRight = useCallback(
     (path: string) => {
       const currentTabIndex = tabs.findIndex((item) => item.key === path);
-      const newTabs = Array.from(tabs);
-      newTabs.splice(currentTabIndex + 1, -1);
+      const newTabs = tabs.slice(0, currentTabIndex);
       setTabs(newTabs);
+      push(path);
     },
-    [tabs],
+    [push, tabs],
   );
 
   /**
@@ -105,23 +104,22 @@ export default function useKeepAlive() {
   );
 
   useEffect(() => {
-    if (currentRouteMeta) {
-      const existed = tabs.find((item) => item.key === currentRouteMeta.key);
-
-      if (!existed) {
-        setTabs((prev) => [
-          ...prev,
-          { ...currentRouteMeta, children: currentRouteMeta.outlet, timeStamp: getKey() },
-        ]);
-      }
-
-      setActiveTabRoutePath(currentRouteMeta.key);
+    if (!currentRouteMeta) return;
+    const existed = tabs.find((item) => item.key === currentRouteMeta.key);
+    if (!existed) {
+      setTabs((prev) => [
+        ...prev,
+        { ...currentRouteMeta, children: currentRouteMeta.outlet, timeStamp: getKey() },
+      ]);
     }
+
+    setActiveTabRoutePath(currentRouteMeta.key);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRouteMeta]);
 
   return {
     tabs,
+    setTabs,
     activeTabRoutePath,
     closeTab,
     closeOthersTab,

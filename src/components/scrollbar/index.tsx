@@ -1,5 +1,5 @@
 import { forwardRef, memo } from 'react';
-import SimpleBar, { Props as SimplebarProps } from 'simplebar-react';
+import SimpleBar, { type Props as SimplebarProps } from 'simplebar-react';
 /**
  * https://www.npmjs.com/package/simplebar-react?activeTab=readme
  */

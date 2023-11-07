@@ -59,6 +59,9 @@ dependencies:
   axios:
     specifier: ^1.4.0
     version: 1.5.1
+  classnames:
+    specifier: ^2.3.2
+    version: 2.3.2
   color:
     specifier: ^4.2.3
     version: 4.2.3
