@@ -127,7 +127,11 @@ export default function Nav(props: Props) {
         </button>
       </div>
 
-      <Scrollbar>
+      <Scrollbar
+        style={{
+          height: 'calc(100vh - 70px)',
+        }}
+      >
         {/* <!-- Sidebar Menu --> */}
         <Menu
           mode={menuMode}

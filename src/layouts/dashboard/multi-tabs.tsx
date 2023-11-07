@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { Iconify } from '@/components/icon';
-import Scrollbar from '@/components/scrollbar';
 import useKeepAlive, { KeepAliveTab } from '@/hooks/web/use-keepalive';
 import { useRouter } from '@/router/hooks';
 import { useThemeToken } from '@/theme/hooks';
@@ -15,7 +14,7 @@ import { MultiTabOperation } from '#/enum';
 export default function MultiTabs() {
   const { t } = useTranslation();
   const { push } = useRouter();
-  const scrollBarRef = useRef<any>();
+  const scrollRef = useRef<HTMLElement>();
   const [hoveringTabKey, setHoveringTabKey] = useState('');
   const [openDropdownTabKey, setopenDropdownTabKey] = useState('');
   const themeToken = useThemeToken();
@@ -150,7 +149,7 @@ export default function MultiTabs() {
           onOpenChange={(open) => onOpenChange(open, tab)}
         >
           <div
-            className="relative mx-px flex select-none items-center px-4 py-1"
+            className="relative mx-px flex cursor-auto select-none items-center px-4 py-1"
             style={calcTabStyle(tab)}
             onMouseEnter={() => {
               if (tab.key === activeTabRoutePath) return;
@@ -218,33 +217,35 @@ export default function MultiTabs() {
 
   const renderTabBar: TabsProps['renderTabBar'] = () => {
     return (
-      <Scrollbar ref={scrollBarRef} className="w-full">
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="tabsDroppable" direction="horizontal">
-            {(provided) => (
-              <div ref={provided.innerRef} {...provided.droppableProps} className="flex">
-                {tabs.map((tab, index) => (
-                  <div className="flex-shrink-0">
-                    <Draggable key={tab.key} draggableId={tab.key} index={index}>
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="w-auto"
-                        >
-                          {renderTabLabel(tab)}
-                        </div>
-                      )}
-                    </Draggable>
-                  </div>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </Scrollbar>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="tabsDroppable" direction="horizontal">
+          {(provided) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className="hide-scrollbar mb-2 flex w-full"
+            >
+              {tabs.map((tab, index) => (
+                <div className="flex-shrink-0" key={tab.key} onClick={() => push(tab.key)}>
+                  <Draggable key={tab.key} draggableId={tab.key} index={index}>
+                    {(provided) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className="w-auto"
+                      >
+                        {renderTabLabel(tab)}
+                      </div>
+                    )}
+                  </Draggable>
+                </div>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     );
   };
 
@@ -257,7 +258,6 @@ export default function MultiTabs() {
         activeKey={activeTabRoutePath}
         items={tabItems}
         renderTabBar={renderTabBar}
-        onChange={(activeKey) => push(activeKey)}
       />
     </StyledMultiTabs>
   );
@@ -268,7 +268,28 @@ const StyledMultiTabs = styled.div`
   .anticon {
     margin: 0px !important;
   }
-  .simplebar-track {
-    display: none;
+  .ant-tabs {
+    height: 100%;
+    .ant-tabs-content {
+      height: 100%;
+    }
+    .ant-tabs-tabpane {
+      height: 100%;
+      & > div {
+        height: 100%;
+      }
+    }
+  }
+
+  /* 隐藏滚动条 */
+  .hide-scrollbar {
+    overflow: scroll;
+    flex-shrink: 0;
+    scrollbar-width: none; /* 隐藏滚动条 Firefox */
+    -ms-overflow-style: none; /* 隐藏滚动条 IE/Edge */
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* 隐藏滚动条 Chrome/Safari/Opera */
   }
 `;
