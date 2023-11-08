@@ -1,5 +1,5 @@
 import { Dropdown, MenuProps, Tabs, TabsProps } from 'antd';
-import { CSSProperties, useCallback, useMemo, useRef, useState } from 'react';
+import { CSSProperties, useCallback, useMemo, useState } from 'react';
 import { DragDropContext, Draggable, Droppable, OnDragEndResponder } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -14,7 +14,6 @@ import { MultiTabOperation } from '#/enum';
 export default function MultiTabs() {
   const { t } = useTranslation();
   const { push } = useRouter();
-  const scrollRef = useRef<HTMLElement>();
   const [hoveringTabKey, setHoveringTabKey] = useState('');
   const [openDropdownTabKey, setopenDropdownTabKey] = useState('');
   const themeToken = useThemeToken();
@@ -149,7 +148,7 @@ export default function MultiTabs() {
           onOpenChange={(open) => onOpenChange(open, tab)}
         >
           <div
-            className="relative mx-px flex cursor-auto select-none items-center px-4 py-1"
+            className="relative mx-px flex cursor-move select-none items-center px-4 py-1"
             style={calcTabStyle(tab)}
             onMouseEnter={() => {
               if (tab.key === activeTabRoutePath) return;
