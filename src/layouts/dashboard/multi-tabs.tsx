@@ -1,5 +1,5 @@
 import { Dropdown, MenuProps, Tabs, TabsProps } from 'antd';
-import { CSSProperties, useCallback, useMemo, useState } from 'react';
+import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DragDropContext, Draggable, Droppable, OnDragEndResponder } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -14,6 +14,7 @@ import { MultiTabOperation } from '#/enum';
 export default function MultiTabs() {
   const { t } = useTranslation();
   const { push } = useRouter();
+  const scrollContainer = useRef<HTMLDivElement>(null);
   const [hoveringTabKey, setHoveringTabKey] = useState('');
   const [openDropdownTabKey, setopenDropdownTabKey] = useState('');
   const themeToken = useThemeToken();
@@ -30,6 +31,9 @@ export default function MultiTabs() {
     closeRight,
   } = useKeepAlive();
 
+  /**
+   * tab dropdown下拉选
+   */
   const menuItems = useMemo<MenuProps['items']>(
     () => [
       {
@@ -82,6 +86,9 @@ export default function MultiTabs() {
     [openDropdownTabKey, t, tabs],
   );
 
+  /**
+   * tab dropdown click
+   */
   const menuClick = useCallback(
     (menuInfo: any, tab: KeepAliveTab) => {
       const { key, domEvent } = menuInfo;
@@ -112,6 +119,9 @@ export default function MultiTabs() {
     [refreshTab, closeTab, closeOthersTab, closeAll, closeLeft, closeRight],
   );
 
+  /**
+   * 当前显示dorpdown的tab
+   */
   const onOpenChange = (open: boolean, tab: KeepAliveTab) => {
     if (open) {
       setopenDropdownTabKey(tab.key);
@@ -120,6 +130,9 @@ export default function MultiTabs() {
     }
   };
 
+  /**
+   * tab样式
+   */
   const calcTabStyle: (tab: KeepAliveTab) => CSSProperties = useCallback(
     (tab) => {
       const isActive = tab.key === activeTabRoutePath || tab.key === hoveringTabKey;
@@ -139,6 +152,10 @@ export default function MultiTabs() {
     },
     [activeTabRoutePath, hoveringTabKey, themeToken],
   );
+
+  /**
+   * 渲染单个tab
+   */
   const renderTabLabel = useCallback(
     (tab: KeepAliveTab) => {
       return (
@@ -189,6 +206,9 @@ export default function MultiTabs() {
     ],
   );
 
+  /**
+   * 所有tab
+   */
   const tabItems = useMemo(() => {
     return tabs?.map((tab) => ({
       label: renderTabLabel(tab),
@@ -198,6 +218,9 @@ export default function MultiTabs() {
     }));
   }, [tabs, renderTabLabel]);
 
+  /**
+   * 拖拽结束事件
+   */
   const onDragEnd: OnDragEndResponder = ({ destination, source }) => {
     // 拖拽到非法非 droppable区域
     if (!destination) {
@@ -214,32 +237,38 @@ export default function MultiTabs() {
     setTabs(newTabs);
   };
 
+  /**
+   * 渲染 tabbar
+   */
   const renderTabBar: TabsProps['renderTabBar'] = () => {
     return (
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="tabsDroppable" direction="horizontal">
           {(provided) => (
-            <div
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              className="hide-scrollbar mb-2 flex w-full"
-            >
-              {tabs.map((tab, index) => (
-                <div className="flex-shrink-0" key={tab.key} onClick={() => push(tab.key)}>
-                  <Draggable key={tab.key} draggableId={tab.key} index={index}>
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className="w-auto"
-                      >
-                        {renderTabLabel(tab)}
-                      </div>
-                    )}
-                  </Draggable>
-                </div>
-              ))}
+            <div ref={provided.innerRef} {...provided.droppableProps} className="flex w-full">
+              <div ref={scrollContainer} className="hide-scrollbar mb-2 flex w-full px-1">
+                {tabs.map((tab, index) => (
+                  <div
+                    id={`tab-${index}`}
+                    className="flex-shrink-0"
+                    key={tab.key}
+                    onClick={() => push(tab.key)}
+                  >
+                    <Draggable key={tab.key} draggableId={tab.key} index={index}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className="w-auto"
+                        >
+                          {renderTabLabel(tab)}
+                        </div>
+                      )}
+                    </Draggable>
+                  </div>
+                ))}
+              </div>
               {provided.placeholder}
             </div>
           )}
@@ -247,6 +276,20 @@ export default function MultiTabs() {
       </DragDropContext>
     );
   };
+
+  useEffect(() => {
+    if (!scrollContainer || !scrollContainer.current) {
+      return;
+    }
+    const index = tabs.findIndex((tab) => tab.key === activeTabRoutePath);
+    const currentTabElement = scrollContainer.current.querySelector(`#tab-${index}`);
+    if (currentTabElement) {
+      currentTabElement.scrollIntoView({
+        block: 'nearest',
+        behavior: 'smooth',
+      });
+    }
+  }, [activeTabRoutePath, tabs]);
 
   return (
     <StyledMultiTabs>
@@ -264,6 +307,7 @@ export default function MultiTabs() {
 
 const StyledMultiTabs = styled.div`
   height: 100%;
+  margin-top: 2px;
   .anticon {
     margin: 0px !important;
   }
