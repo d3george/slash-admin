@@ -78,7 +78,7 @@ export default function useKeepAlive() {
   const closeRight = useCallback(
     (path: string) => {
       const currentTabIndex = tabs.findIndex((item) => item.key === path);
-      const newTabs = tabs.slice(0, currentTabIndex);
+      const newTabs = tabs.slice(0, currentTabIndex + 1);
       setTabs(newTabs);
       push(path);
     },

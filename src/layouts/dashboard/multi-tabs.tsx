@@ -165,7 +165,7 @@ export default function MultiTabs() {
           onOpenChange={(open) => onOpenChange(open, tab)}
         >
           <div
-            className="relative mx-px flex cursor-move select-none items-center px-4 py-1"
+            className="relative mx-px flex select-none items-center px-4 py-1"
             style={calcTabStyle(tab)}
             onMouseEnter={() => {
               if (tab.key === activeTabRoutePath) return;
@@ -177,7 +177,7 @@ export default function MultiTabs() {
             <Iconify
               icon="ion:close-outline"
               size={20}
-              className="opacity-50"
+              className="cursor-pointer opacity-50"
               onClick={(e) => {
                 e.stopPropagation();
                 closeTab(tab.key);
