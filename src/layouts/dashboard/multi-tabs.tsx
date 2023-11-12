@@ -176,7 +176,7 @@ export default function MultiTabs() {
             <div>{t(tab.label)}</div>
             <Iconify
               icon="ion:close-outline"
-              size={20}
+              size={18}
               className="cursor-pointer opacity-50"
               onClick={(e) => {
                 e.stopPropagation();

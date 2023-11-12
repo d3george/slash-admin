@@ -83,6 +83,10 @@ export default function SearchBar() {
     }
   });
 
+  useKeyPressEvent('Escape', () => {
+    handleCancel();
+  });
+
   const handleOpen = () => {
     toggle(true);
     setSearchQuery('');
@@ -127,8 +131,9 @@ export default function SearchBar() {
         <IconButton className="0 h-6 rounded-md bg-hover text-xs font-bold">⌘K</IconButton>
       </div>
       <Modal
-        open={search}
         centered
+        keyboard
+        open={search}
         onCancel={handleCancel}
         closeIcon={false}
         afterOpenChange={handleAfterOpenChange}
