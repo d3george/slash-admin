@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import { Iconify } from '@/components/icon';
 import { Upload, UploadAvatar, UploadBox } from '@/components/upload';
-import { fBytes } from '@/utils/format-number';
 
 export default function UploadPage() {
   const [thumbnail, setThumbnail] = useState<boolean>(false);
@@ -14,12 +13,6 @@ export default function UploadPage() {
 
   const ThumbnailSwitch = <Switch size="small" checked={thumbnail} onChange={onChange} />;
 
-  const helpText = (
-    <Typography.Text type="secondary" style={{ fontSize: 12 }}>
-      Allowed *.jpeg, *.jpg, *.png, *.gif
-      <br /> max size of {fBytes(3145728)}
-    </Typography.Text>
-  );
   const boxPlaceHolder = (
     <div className="flex flex-col">
       <Iconify icon="eva:cloud-upload-fill" size={40} />
@@ -48,7 +41,7 @@ export default function UploadPage() {
         alignItems: 'center',
       }}
     >
-      <UploadAvatar helperText={helpText} />
+      <UploadAvatar />
     </Card>
   );
   const UploadBoxTab = (

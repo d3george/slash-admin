@@ -7,6 +7,7 @@ import { CircleLoading } from '@/components/loading';
 import { AppRouteObject } from '#/router';
 
 const ProfilePage = lazy(() => import('@/pages/management/user/profile/index'));
+const AccountPage = lazy(() => import('@/pages/management/user/account/index'));
 const Blog = lazy(() => import('@/pages/management/blog'));
 
 const management: AppRouteObject = {
@@ -42,7 +43,7 @@ const management: AppRouteObject = {
         },
         {
           path: 'account',
-          element: <ProfilePage />,
+          element: <AccountPage />,
           meta: { label: 'sys.menu.user.account', key: '/management/user/account' },
         },
       ],

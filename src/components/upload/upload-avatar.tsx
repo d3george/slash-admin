@@ -1,6 +1,8 @@
-import { Upload } from 'antd';
+import { Typography, Upload } from 'antd';
 import { UploadChangeParam, UploadFile, UploadProps } from 'antd/es/upload';
 import { useState } from 'react';
+
+import { fBytes } from '@/utils/format-number';
 
 import { Iconify } from '../icon';
 
@@ -8,10 +10,12 @@ import { StyledUploadAvatar } from './styles';
 import { beforeAvatarUpload, getBlobUrl } from './utils';
 
 interface Props extends UploadProps {
+  defaultAvatar?: string;
   helperText?: React.ReactElement | string;
 }
-export function UploadAvatar({ helperText, ...other }: Props) {
-  const [imageUrl, setImageUrl] = useState<string>();
+export function UploadAvatar({ helperText, defaultAvatar = '', ...other }: Props) {
+  const [imageUrl, setImageUrl] = useState<string>(defaultAvatar);
+
   const [isHover, setIsHover] = useState(false);
   const handelHover = (hover: boolean) => {
     setIsHover(hover);
@@ -28,23 +32,38 @@ export function UploadAvatar({ helperText, ...other }: Props) {
   };
 
   const renderPreview = <img src={imageUrl} alt="" className="absolute rounded-full" />;
+
   const renderPlaceholder = (
-    <div className={`absolute z-10 ${imageUrl ? 'opacity-100' : 'opacity-70  hover:opacity-50'} `}>
+    <div
+      style={{
+        backgroundColor: !imageUrl || isHover ? 'rgba(22, 28, 36, 0.64)' : 'transparent',
+        color: '#fff',
+      }}
+      className="absolute z-10 flex h-full w-full flex-col items-center justify-center"
+    >
       <Iconify icon="solar:camera-add-bold" size={32} />
       <div className="mt-1 text-xs">Upload Phote</div>
     </div>
   );
+
   const renderContent = (
     <div
       className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full"
       onMouseEnter={() => handelHover(true)}
       onMouseLeave={() => handelHover(false)}
     >
-      {imageUrl && renderPreview}
-      {(!imageUrl || isHover) && renderPlaceholder}
+      {imageUrl ? renderPreview : null}
+      {!imageUrl || isHover ? renderPlaceholder : null}
     </div>
   );
-  const renderHelpText = <div className="text-center">{helperText && helperText}</div>;
+
+  const defaultHelperText = (
+    <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+      Allowed *.jpeg, *.jpg, *.png, *.gif
+      <br /> max size of {fBytes(3145728)}
+    </Typography.Text>
+  );
+  const renderHelpText = <div className="text-center">{helperText || defaultHelperText}</div>;
 
   return (
     <StyledUploadAvatar>
@@ -52,7 +71,7 @@ export function UploadAvatar({ helperText, ...other }: Props) {
         name="avatar"
         showUploadList={false}
         listType="picture-circle"
-        className="avatar-uploader !flex items-center justify-center opacity-70"
+        className="avatar-uploader !flex items-center justify-center"
         {...other}
         beforeUpload={beforeAvatarUpload}
         onChange={handleChange}
