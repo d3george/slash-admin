@@ -21,8 +21,8 @@ export default function MultiTabs() {
 
   const {
     tabs,
-    setTabs,
     activeTabRoutePath,
+    setTabs,
     closeTab,
     refreshTab,
     closeOthersTab,

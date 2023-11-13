@@ -78,7 +78,7 @@ export default function ProjectsTab() {
   return (
     <Row gutter={[16, 16]}>
       {items.map((item) => (
-        <Col span={24} md={12}>
+        <Col span={24} md={12} key={item.name}>
           <Card className="w-full flex-col">
             <header className="flex w-full items-center">
               {item.icon}
@@ -123,8 +123,8 @@ export default function ProjectsTab() {
               </div>
               <div className="flex w-full ">
                 <Avatar.Group maxCount={4}>
-                  {item.members.map((memberAvatar) => (
-                    <Avatar src={memberAvatar} />
+                  {item.members.map((memberAvatar, index) => (
+                    <Avatar src={memberAvatar} key={index} />
                   ))}
                 </Avatar.Group>
                 <div className="ml-auto flex items-center opacity-50">

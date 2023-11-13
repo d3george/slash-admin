@@ -11,6 +11,7 @@ import ProTag from '@/theme/antd/components/tag';
 import { useThemeToken } from '@/theme/hooks';
 
 interface DataType {
+  key: string;
   avatar: string;
   name: string;
   date: string;
@@ -106,6 +107,7 @@ export default function ProfileTab() {
     const arr: DataType[] = [];
     for (let i = 0; i <= 25; i += 1) {
       arr.push({
+        key: faker.string.uuid(),
         avatar: faker.image.urlPicsumPhotos(),
         name: faker.company.buzzPhrase(),
         date: faker.date.past().toDateString(),

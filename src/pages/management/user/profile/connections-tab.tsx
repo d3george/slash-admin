@@ -71,7 +71,7 @@ export default function ConnectionsTab() {
   return (
     <Row gutter={[16, 16]}>
       {items.map((item) => (
-        <Col span={24} md={12} lg={8}>
+        <Col span={24} md={12} lg={8} key={item.name}>
           <Card className="w-full flex-col items-center">
             <img alt="" src={item.avatar} className="h-20 w-20 rounded-full" />
 
@@ -80,7 +80,9 @@ export default function ConnectionsTab() {
 
             <div className="mt-4 flex gap-4">
               {item.tags.map((tag) => (
-                <ProTag color={faker.color.rgb()}>{tag}</ProTag>
+                <ProTag color={faker.color.rgb()} key={tag}>
+                  {tag}
+                </ProTag>
               ))}
             </div>
 

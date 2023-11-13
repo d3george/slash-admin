@@ -47,7 +47,7 @@ export default function TeamsTab() {
   return (
     <Row gutter={[16, 16]}>
       {items.map((item) => (
-        <Col span={24} md={12}>
+        <Col span={24} md={12} key={item.name}>
           <Card className="w-full flex-col">
             <header className="flex w-full items-center">
               {item.icon}
@@ -65,13 +65,15 @@ export default function TeamsTab() {
             <main className="my-4 opacity-70">{item.desc}</main>
             <footer className="flex w-full items-center">
               <Avatar.Group maxCount={4}>
-                {item.members.map((memberAvatar) => (
-                  <Avatar src={memberAvatar} />
+                {item.members.map((memberAvatar, index) => (
+                  <Avatar src={memberAvatar} key={index} />
                 ))}
               </Avatar.Group>
               <div className="ml-auto flex items-center">
                 {item.tags.map((tag) => (
-                  <ProTag color={faker.color.rgb()}>{tag}</ProTag>
+                  <ProTag color={faker.color.rgb()} key={tag}>
+                    {tag}
+                  </ProTag>
                 ))}
               </div>
             </footer>
