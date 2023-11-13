@@ -1,5 +1,6 @@
 import { Content } from 'antd/es/layout/layout';
 import { forwardRef } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { useSettings } from '@/store/settingStore';
 import { useResponsive } from '@/theme/hooks';
@@ -10,7 +11,7 @@ import MultiTabs from './multi-tabs';
 import { ThemeLayout } from '#/enum';
 
 const Main = forwardRef<HTMLDivElement, {}>((_, ref) => {
-  const { themeStretch, themeLayout } = useSettings();
+  const { themeStretch, themeLayout, multiTab } = useSettings();
   const { screenMap } = useResponsive();
 
   let mainWith = '100%';
@@ -29,15 +30,13 @@ const Main = forwardRef<HTMLDivElement, {}>((_, ref) => {
       style={{ width: mainWith }}
       className={`flex overflow-auto p-2 ${themeLayout === ThemeLayout.Horizontal ? '' : 'pt-20'}`}
     >
-      {/* <!-- ===== Content Start ===== --> */}
       <div
         className={`m-auto h-full w-full flex-grow sm:px-2 ${
           themeStretch ? '' : 'xl:max-w-screen-xl'
         }`}
       >
-        <MultiTabs />
+        {multiTab ? <MultiTabs /> : <Outlet />}
       </div>
-      {/* <!-- ===== Content End ===== --> */}
     </Content>
   );
 });

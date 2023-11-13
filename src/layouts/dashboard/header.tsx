@@ -25,7 +25,7 @@ type Props = {
 };
 export default function Header({ className, offsetTop = false }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { themeLayout } = useSettings();
+  const { themeLayout, breadCrumb } = useSettings();
   const { colorBgElevated, colorBorder } = useThemeToken();
   const { screenMap } = useResponsive();
 
@@ -68,9 +68,7 @@ export default function Header({ className, offsetTop = false }: Props) {
             ) : (
               <Logo className="mr-2 text-xl" />
             )}
-            <div className="hidden md:block">
-              <BreadCrumb />
-            </div>
+            <div className="hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div>
           </div>
 
           <div className="flex">

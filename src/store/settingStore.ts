@@ -9,6 +9,8 @@ type SettingsType = {
   themeMode: ThemeMode;
   themeLayout: ThemeLayout;
   themeStretch: boolean;
+  breadCrumb: boolean;
+  multiTab: boolean;
 };
 type SettingStore = {
   settings: SettingsType;
@@ -25,6 +27,8 @@ const useSettingStore = create<SettingStore>((set) => ({
     themeMode: ThemeMode.Light,
     themeLayout: ThemeLayout.Vertical,
     themeStretch: false,
+    breadCrumb: true,
+    multiTab: true,
   },
   actions: {
     setSettings: (settings) => {

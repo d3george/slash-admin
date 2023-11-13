@@ -246,7 +246,7 @@ export default function MultiTabs() {
         <Droppable droppableId="tabsDroppable" direction="horizontal">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps} className="flex w-full">
-              <div ref={scrollContainer} className="hide-scrollbar mb-2 flex w-full px-1">
+              <div ref={scrollContainer} className="hide-scrollbar mb-2 flex w-full pr-1">
                 {tabs.map((tab, index) => (
                   <div
                     id={`tab-${index}`}

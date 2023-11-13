@@ -4,7 +4,7 @@ import {
   QuestionCircleOutlined,
   RightOutlined,
 } from '@ant-design/icons';
-import { Button, Card, Drawer, Tooltip } from 'antd';
+import { Button, Card, Drawer, Switch, Tooltip } from 'antd';
 import Color from 'color';
 import { m } from 'framer-motion';
 import { CSSProperties, useState } from 'react';
@@ -26,10 +26,12 @@ import { ThemeColorPresets, ThemeLayout, ThemeMode } from '#/enum';
  */
 export default function SettingButton() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { colorPrimary, colorBgBase, colorTextSecondary, colorBgContainer } = useThemeToken();
+  const { colorPrimary, colorBgBase, colorTextSecondary, colorTextTertiary, colorBgContainer } =
+    useThemeToken();
 
   const settings = useSettings();
-  const { themeMode, themeColorPresets, themeLayout, themeStretch } = settings;
+  const { themeMode, themeColorPresets, themeLayout, themeStretch, breadCrumb, multiTab } =
+    settings;
   const { setSettings } = useSettingActions();
 
   const setThemeMode = (themeMode: ThemeMode) => {
@@ -57,6 +59,20 @@ export default function SettingButton() {
     setSettings({
       ...settings,
       themeStretch,
+    });
+  };
+
+  const setBreadCrumn = (checked: boolean) => {
+    setSettings({
+      ...settings,
+      breadCrumb: checked,
+    });
+  };
+
+  const setMultiTab = (checked: boolean) => {
+    setSettings({
+      ...settings,
+      multiTab: checked,
     });
   };
 
@@ -147,7 +163,7 @@ export default function SettingButton() {
         <div className="flex flex-col gap-6 p-6">
           {/* theme mode */}
           <div>
-            <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+            <div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
               Mode
             </div>
             <div className="flex flex-row gap-4">
@@ -176,7 +192,7 @@ export default function SettingButton() {
 
           {/* theme layout */}
           <div>
-            <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+            <div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
               Layout
             </div>
             <div className="grid grid-cols-3 gap-4">
@@ -285,7 +301,7 @@ export default function SettingButton() {
 
           {/* theme stretch */}
           <div>
-            <div className=" mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+            <div className=" mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
               <span className="mr-2">Stretch</span>
               <Tooltip title="Only available at large resolutions > 1600px (xl)">
                 <QuestionCircleOutlined />
@@ -332,7 +348,7 @@ export default function SettingButton() {
 
           {/* theme presets */}
           <div>
-            <div className="mb-3 text-xs font-semibold" style={{ color: colorTextSecondary }}>
+            <div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
               Presets
             </div>
             <div className="grid grid-cols-3 gap-x-4 gap-y-3">
@@ -348,6 +364,37 @@ export default function SettingButton() {
                   </div>
                 </Card>
               ))}
+            </div>
+          </div>
+
+          {/* Page config */}
+          <div>
+            <div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
+              Page
+            </div>
+            <div className="flex flex-col gap-2">
+              <div
+                className="flex items-center justify-between"
+                style={{ color: colorTextTertiary }}
+              >
+                <div>BreadCrumb</div>
+                <Switch
+                  size="small"
+                  checked={breadCrumb}
+                  onChange={(checked) => setBreadCrumn(checked)}
+                />
+              </div>
+              <div
+                className="flex items-center justify-between"
+                style={{ color: colorTextTertiary }}
+              >
+                <div>Multi Tab</div>
+                <Switch
+                  size="small"
+                  checked={multiTab}
+                  onChange={(checked) => setMultiTab(checked)}
+                />
+              </div>
             </div>
           </div>
         </div>
