@@ -15,7 +15,7 @@ export default function BannerCard() {
 
   return (
     <Row
-      className="rounded-2xl p-10"
+      className="!mx-0 rounded-2xl p-10"
       gutter={[16, 16]}
       justify="space-between"
       style={{ background: bg }}

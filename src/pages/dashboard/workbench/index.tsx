@@ -18,7 +18,7 @@ function Workbench() {
           <BannerCard />
         </Col>
         <Col span={24} md={8}>
-          <Space direction="vertical" size="large" className="w-full">
+          <Space direction="vertical" size="middle" className="h-full w-full">
             <Conversion />
             <Applications />
           </Space>
