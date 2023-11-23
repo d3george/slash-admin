@@ -1,5 +1,6 @@
 import { useScroll } from 'framer-motion';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { useFullscreen, useToggle } from 'react-use';
 
 import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
@@ -35,10 +36,14 @@ function DashboardLayout() {
     onOffSetTop();
   }, [onOffSetTop]);
 
+  const [show, toggle] = useToggle(false);
+  useFullscreen(mainEl, show, { onClose: () => toggle(false) });
+  const MultiTab = multiTab ? <MultiTabs offsetTop={offsetTop} onFullScreen={toggle} /> : '';
+
   const verticalLayout = (
     <>
       <Header offsetTop={offsetTop} />
-      {multiTab ? <MultiTabs offsetTop={offsetTop} /> : ''}
+      {MultiTab}
       <div className="z-50 hidden h-full flex-shrink-0 md:block">
         <Nav />
       </div>
@@ -50,9 +55,8 @@ function DashboardLayout() {
     <div className="relative flex flex-1 flex-col">
       <Header />
       <NavHorizontal />
-      {multiTab ? <MultiTabs offsetTop={offsetTop} /> : ''}
-      <MultiTabs offsetTop={offsetTop} />
-      <Main />
+      {MultiTab}
+      <Main ref={mainEl} />
     </div>
   );
 

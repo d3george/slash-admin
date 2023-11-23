@@ -24,8 +24,9 @@ import { MultiTabOperation, ThemeLayout } from '#/enum';
 
 type Props = {
   offsetTop?: boolean;
+  onFullScreen: (nextVal?: any) => void;
 };
-export default function MultiTabs({ offsetTop = false }: Props) {
+export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
   const { t } = useTranslation();
   const { push } = useRouter();
   const scrollContainer = useRef<HTMLDivElement>(null);
@@ -132,12 +133,13 @@ export default function MultiTabs({ offsetTop = false }: Props) {
           closeAll();
           break;
         case MultiTabOperation.FULLSCREEN:
+          onFullScreen();
           break;
         default:
           break;
       }
     },
-    [refreshTab, closeTab, closeOthersTab, closeAll, closeLeft, closeRight],
+    [refreshTab, closeTab, closeOthersTab, closeAll, closeLeft, closeRight, onFullScreen],
   );
 
   /**
