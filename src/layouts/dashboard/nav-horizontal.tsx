@@ -7,6 +7,8 @@ import { useRouteToMenu } from '@/router/hooks';
 import { getMenuRoutes } from '@/router/utils';
 import { useThemeToken } from '@/theme/hooks';
 
+import { NAV_HORIZONTAL_HEIGHT } from './config';
+
 export default function NavHorizontal() {
   const navigate = useNavigate();
   const matches = useMatches();
@@ -52,7 +54,7 @@ export default function NavHorizontal() {
     background: colorBgElevated,
   };
   return (
-    <div className="w-screen">
+    <div className="w-screen" style={{ height: NAV_HORIZONTAL_HEIGHT }}>
       <Menu
         mode="horizontal"
         items={menuList}

@@ -1,4 +1,5 @@
 import { Dropdown, MenuProps, Tabs, TabsProps } from 'antd';
+import Color from 'color';
 import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DragDropContext, Draggable, Droppable, OnDragEndResponder } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
@@ -7,11 +8,24 @@ import styled from 'styled-components';
 import { Iconify } from '@/components/icon';
 import useKeepAlive, { KeepAliveTab } from '@/hooks/web/use-keepalive';
 import { useRouter } from '@/router/hooks';
-import { useThemeToken } from '@/theme/hooks';
+import { useSettings } from '@/store/settingStore';
+import { useResponsive, useThemeToken } from '@/theme/hooks';
 
-import { MultiTabOperation } from '#/enum';
+import {
+  NAV_WIDTH,
+  NAV_COLLAPSED_WIDTH,
+  HEADER_HEIGHT,
+  OFFSET_HEADER_HEIGHT,
+  MULTI_TABS_HEIGHT,
+  NAV_HORIZONTAL_HEIGHT,
+} from './config';
 
-export default function MultiTabs() {
+import { MultiTabOperation, ThemeLayout } from '#/enum';
+
+type Props = {
+  offsetTop?: boolean;
+};
+export default function MultiTabs({ offsetTop = false }: Props) {
   const { t } = useTranslation();
   const { push } = useRouter();
   const scrollContainer = useRef<HTMLDivElement>(null);
@@ -221,7 +235,6 @@ export default function MultiTabs() {
       label: renderTabLabel(tab),
       key: tab.key,
       closable: tabs.length > 1, // 保留一个
-      children: <div key={tab.timeStamp}>{tab.children}</div>,
     }));
   }, [tabs, renderTabLabel]);
 
@@ -247,40 +260,68 @@ export default function MultiTabs() {
   /**
    * 渲染 tabbar
    */
+  const { themeLayout } = useSettings();
+  const { colorBgElevated, colorBorder } = useThemeToken();
+  const { screenMap } = useResponsive();
+
+  const multiTabsStyle: CSSProperties = {
+    position: 'fixed',
+    top: offsetTop ? OFFSET_HEADER_HEIGHT : HEADER_HEIGHT,
+    height: MULTI_TABS_HEIGHT,
+    borderBottom: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
+    backgroundColor: Color(colorBgElevated).alpha(0.8).toString(),
+    transition: 'top 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+  };
+
+  if (themeLayout === ThemeLayout.Horizontal) {
+    multiTabsStyle.width = '100vw';
+    multiTabsStyle.top = (offsetTop ? OFFSET_HEADER_HEIGHT : HEADER_HEIGHT) + NAV_HORIZONTAL_HEIGHT;
+    multiTabsStyle.paddingTop = 4;
+  } else if (screenMap.md) {
+    multiTabsStyle.right = '0px';
+    multiTabsStyle.left = 'auto';
+    multiTabsStyle.width = `calc(100% - ${
+      themeLayout === ThemeLayout.Vertical ? NAV_WIDTH : NAV_COLLAPSED_WIDTH
+    }px`;
+  } else {
+    multiTabsStyle.width = '100vw';
+  }
   const renderTabBar: TabsProps['renderTabBar'] = () => {
     return (
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="tabsDroppable" direction="horizontal">
-          {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps} className="flex w-full">
-              <div ref={scrollContainer} className="hide-scrollbar mb-2 flex w-full pr-1">
-                {tabs.map((tab, index) => (
-                  <div
-                    id={`tab-${index}`}
-                    className="flex-shrink-0"
-                    key={tab.key}
-                    onClick={() => push(tab.key)}
-                  >
-                    <Draggable key={tab.key} draggableId={tab.key} index={index}>
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="w-auto"
-                        >
-                          {renderTabLabel(tab)}
-                        </div>
-                      )}
-                    </Draggable>
-                  </div>
-                ))}
+      <div style={multiTabsStyle} className="z-20 w-full px-2">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="tabsDroppable" direction="horizontal">
+            {(provided) => (
+              <div ref={provided.innerRef} {...provided.droppableProps} className="flex w-full">
+                <div ref={scrollContainer} className="hide-scrollbar mb-2 flex w-full pr-1">
+                  {tabs.map((tab, index) => (
+                    <div
+                      id={`tab-${index}`}
+                      className="flex-shrink-0"
+                      key={tab.key}
+                      onClick={() => push(tab.key)}
+                    >
+                      <Draggable key={tab.key} draggableId={tab.key} index={index}>
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="w-auto"
+                          >
+                            {renderTabLabel(tab)}
+                          </div>
+                        )}
+                      </Draggable>
+                    </div>
+                  ))}
+                </div>
+                {provided.placeholder}
               </div>
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
     );
   };
 
@@ -333,7 +374,6 @@ export default function MultiTabs() {
 }
 
 const StyledMultiTabs = styled.div`
-  height: 100%;
   margin-top: 2px;
   .anticon {
     margin: 0px !important;
@@ -347,6 +387,14 @@ const StyledMultiTabs = styled.div`
       height: 100%;
       & > div {
         height: 100%;
+      }
+    }
+    .ant-tabs-content-holder {
+      width: 0px;
+      height: 0px;
+      .ant-tabs-content {
+        width: 0px;
+        height: 0px;
       }
     }
   }
