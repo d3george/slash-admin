@@ -37,7 +37,6 @@ const dashboard: AppRouteObject = {
     {
       path: 'analysis',
       element: <Analysis />,
-      order: 1,
       meta: { label: 'sys.menu.analysis', key: '/dashboard/analysis' },
     },
   ],
