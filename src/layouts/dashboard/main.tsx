@@ -15,6 +15,7 @@ const Main = forwardRef<HTMLDivElement, {}>((_, ref) => {
 
   const mainStyle: CSSProperties = {
     paddingTop: HEADER_HEIGHT + (multiTab ? MULTI_TABS_HEIGHT : 0),
+    transition: 'padding 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     width: '100%',
   };
   if (themeLayout === ThemeLayout.Horizontal) {

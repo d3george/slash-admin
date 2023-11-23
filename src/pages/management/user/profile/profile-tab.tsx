@@ -35,35 +35,35 @@ export default function ProfileTab() {
   const ConnectionsItems = [
     {
       avatar: faker.image.avatarLegacy(),
-      name: faker.name.fullName(),
+      name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },
 
     {
       avatar: faker.image.avatarLegacy(),
-      name: faker.name.fullName(),
+      name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },
 
     {
       avatar: faker.image.avatarLegacy(),
-      name: faker.name.fullName(),
+      name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },
 
     {
       avatar: faker.image.avatarLegacy(),
-      name: faker.name.fullName(),
+      name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },
 
     {
       avatar: faker.image.avatarLegacy(),
-      name: faker.name.fullName(),
+      name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },

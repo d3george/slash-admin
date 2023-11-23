@@ -297,11 +297,7 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
           <Droppable droppableId="tabsDroppable" direction="horizontal">
             {(provided) => (
               <div ref={provided.innerRef} {...provided.droppableProps} className="flex w-full">
-                <div
-                  ref={scrollContainer}
-                  className="hide-scrollbar mb-2 flex w-full pr-1"
-                  style={{ transform: 'translateZ(0)' }}
-                >
+                <div ref={scrollContainer} className="hide-scrollbar mb-2 flex w-full pr-1">
                   {tabs.map((tab, index) => (
                     <div
                       id={`tab-${index}`}
