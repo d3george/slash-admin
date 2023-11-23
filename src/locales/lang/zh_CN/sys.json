@@ -73,6 +73,7 @@
       "logout": "退出"
     },
     "tab": {
+      "fullscreen": "内容全屏",
       "refresh": "刷新",
       "close": "关闭标签页",
       "closeOthers": "关闭其它标签页",

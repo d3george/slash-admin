@@ -37,6 +37,11 @@ export default function MultiTabs() {
   const menuItems = useMemo<MenuProps['items']>(
     () => [
       {
+        label: t(`sys.tab.${MultiTabOperation.FULLSCREEN}`),
+        key: MultiTabOperation.FULLSCREEN,
+        icon: <Iconify icon="material-symbols:fullscreen" size={18} />,
+      },
+      {
         label: t(`sys.tab.${MultiTabOperation.REFRESH}`),
         key: MultiTabOperation.REFRESH,
         icon: <Iconify icon="mdi:reload" size={18} />,
@@ -111,6 +116,8 @@ export default function MultiTabs() {
           break;
         case MultiTabOperation.CLOSEALL:
           closeAll();
+          break;
+        case MultiTabOperation.FULLSCREEN:
           break;
         default:
           break;
@@ -195,14 +202,14 @@ export default function MultiTabs() {
       );
     },
     [
-      menuItems,
-      calcTabStyle,
       t,
+      menuItems,
       activeTabRoutePath,
       hoveringTabKey,
       tabs.length,
       menuClick,
       closeTab,
+      calcTabStyle,
     ],
   );
 
@@ -277,6 +284,9 @@ export default function MultiTabs() {
     );
   };
 
+  /**
+   * 路由变化时，滚动到指定tab
+   */
   useEffect(() => {
     if (!scrollContainer || !scrollContainer.current) {
       return;
@@ -290,6 +300,23 @@ export default function MultiTabs() {
       });
     }
   }, [activeTabRoutePath, tabs]);
+
+  /**
+   * scrollContainer 监听wheel事件
+   */
+  useEffect(() => {
+    function handleMouseWheel(event: WheelEvent) {
+      event.preventDefault();
+      scrollContainer.current!.scrollLeft += event.deltaY;
+    }
+
+    scrollContainer.current!.addEventListener('mouseenter', () => {
+      scrollContainer.current!.addEventListener('wheel', handleMouseWheel);
+    });
+    scrollContainer.current!.addEventListener('mouseleave', () => {
+      scrollContainer.current!.removeEventListener('wheel', handleMouseWheel);
+    });
+  }, []);
 
   return (
     <StyledMultiTabs>

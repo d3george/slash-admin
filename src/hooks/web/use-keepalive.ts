@@ -103,6 +103,8 @@ export default function useKeepAlive() {
     [activeTabRoutePath],
   );
 
+  const fullscreenTab = useCallback(() => {}, []);
+
   useEffect(() => {
     if (!currentRouteMeta) return;
     const existed = tabs.find((item) => item.key === currentRouteMeta.key);
@@ -119,14 +121,15 @@ export default function useKeepAlive() {
 
   return {
     tabs,
-    setTabs,
     activeTabRoutePath,
+    setTabs,
     closeTab,
     closeOthersTab,
     refreshTab,
     closeAll,
     closeLeft,
     closeRight,
+    fullscreenTab,
   };
 }
 

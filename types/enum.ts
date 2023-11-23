@@ -37,6 +37,7 @@ export enum LocalEnum {
 }
 
 export enum MultiTabOperation {
+  FULLSCREEN = 'fullscreen',
   REFRESH = 'refresh',
   CLOSE = 'close',
   CLOSEOTHERS = 'closeOthers',

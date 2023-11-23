@@ -74,10 +74,11 @@
       "logout": "Logout"
     },
     "tab": {
+      "fullscreen": "FullScreen",
       "refresh": "Refresh",
       "close": "Close",
       "closeOthers": "Close Others",
-      "closeAll": "close All",
+      "closeAll": "Close All",
       "closeLeft": "Close Left",
       "closeRight": "Close Right"
     },
