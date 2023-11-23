@@ -12,7 +12,11 @@ export interface RouteMeta {
   suffix?: ReactNode;
   // show in tab
   hideTab?: boolean;
-  // show in menu
+  /**
+   * Show in menu
+   *
+   * @default false
+   */
   hideMenu?: boolean;
   // disable in menu
   disabled?: boolean;
