@@ -165,6 +165,8 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
         borderStyle: 'solid',
         borderColor: themeToken.colorBorderSecondary,
         backgroundColor: themeToken.colorBgLayout,
+        transition:
+          'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       };
 
       if (isActive) {
@@ -295,7 +297,11 @@ export default function MultiTabs({ offsetTop = false, onFullScreen }: Props) {
           <Droppable droppableId="tabsDroppable" direction="horizontal">
             {(provided) => (
               <div ref={provided.innerRef} {...provided.droppableProps} className="flex w-full">
-                <div ref={scrollContainer} className="hide-scrollbar mb-2 flex w-full pr-1">
+                <div
+                  ref={scrollContainer}
+                  className="hide-scrollbar mb-2 flex w-full pr-1"
+                  style={{ transform: 'translateZ(0)' }}
+                >
                   {tabs.map((tab, index) => (
                     <div
                       id={`tab-${index}`}
