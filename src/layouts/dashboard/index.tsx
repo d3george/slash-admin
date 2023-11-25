@@ -1,6 +1,5 @@
 import { useScroll } from 'framer-motion';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
-import { useFullscreen, useToggle } from 'react-use';
 
 import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
@@ -9,7 +8,6 @@ import { useThemeToken } from '@/theme/hooks';
 
 import Header from './header';
 import Main from './main';
-import MultiTabs from './multi-tabs';
 import Nav from './nav';
 import NavHorizontal from './nav-horizontal';
 
@@ -17,10 +15,13 @@ import { ThemeLayout } from '#/enum';
 
 function DashboardLayout() {
   const { colorBgElevated, colorTextBase } = useThemeToken();
-  const { themeLayout, multiTab } = useSettings();
+  const { themeLayout } = useSettings();
   const mainEl = useRef(null);
 
   const { scrollY } = useScroll({ container: mainEl });
+  /**
+   * y轴是否滚动
+   */
   const [offsetTop, setOffsetTop] = useState(false);
   const onOffSetTop = useCallback(() => {
     scrollY.on('change', (scrollHeight) => {
@@ -36,18 +37,13 @@ function DashboardLayout() {
     onOffSetTop();
   }, [onOffSetTop]);
 
-  const [show, toggle] = useToggle(false);
-  useFullscreen(mainEl, show, { onClose: () => toggle(false) });
-  const MultiTab = multiTab ? <MultiTabs offsetTop={offsetTop} onFullScreen={toggle} /> : '';
-
   const verticalLayout = (
     <>
       <Header offsetTop={offsetTop} />
-      {MultiTab}
       <div className="z-50 hidden h-full flex-shrink-0 md:block">
         <Nav />
       </div>
-      <Main ref={mainEl} />
+      <Main ref={mainEl} offsetTop={offsetTop} />
     </>
   );
 
@@ -55,8 +51,7 @@ function DashboardLayout() {
     <div className="relative flex flex-1 flex-col">
       <Header />
       <NavHorizontal />
-      {MultiTab}
-      <Main ref={mainEl} />
+      <Main ref={mainEl} offsetTop={offsetTop} />
     </div>
   );
 

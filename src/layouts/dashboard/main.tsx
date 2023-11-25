@@ -6,10 +6,14 @@ import { useSettings } from '@/store/settingStore';
 import { useResponsive } from '@/theme/hooks';
 
 import { NAV_WIDTH, NAV_COLLAPSED_WIDTH, HEADER_HEIGHT, MULTI_TABS_HEIGHT } from './config';
+import MultiTabs from './multi-tabs';
 
 import { ThemeLayout } from '#/enum';
 
-const Main = forwardRef<HTMLDivElement, {}>((_, ref) => {
+type Props = {
+  offsetTop?: boolean;
+};
+const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
   const { themeStretch, themeLayout, multiTab } = useSettings();
   const { screenMap } = useResponsive();
 
@@ -28,6 +32,7 @@ const Main = forwardRef<HTMLDivElement, {}>((_, ref) => {
   } else {
     mainStyle.width = '100vw';
   }
+
   return (
     <Content ref={ref} style={mainStyle} className="flex overflow-auto">
       <div
@@ -35,7 +40,7 @@ const Main = forwardRef<HTMLDivElement, {}>((_, ref) => {
           themeStretch ? '' : 'xl:max-w-screen-xl'
         }`}
       >
-        <Outlet />
+        {multiTab ? <MultiTabs offsetTop={offsetTop} /> : <Outlet />}
       </div>
     </Content>
   );
