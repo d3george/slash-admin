@@ -160,7 +160,7 @@ export default function SearchBar() {
           />
         }
         footer={
-          <div className="flex">
+          <div className="flex flex-wrap">
             <div className="flex">
               <ProTag color="cyan">↑</ProTag>
               <ProTag color="cyan">↓</ProTag>
