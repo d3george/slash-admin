@@ -283,7 +283,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
     top: offsetTop ? OFFSET_HEADER_HEIGHT - 2 : HEADER_HEIGHT,
     left: 0,
     height: MULTI_TABS_HEIGHT,
-    backgroundColor: Color(colorBgElevated).alpha(0.8).toString(),
+    backgroundColor: Color(colorBgElevated).alpha(1).toString(),
     borderBottom: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
     transition: 'top 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   };
@@ -306,7 +306,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
           <Droppable droppableId="tabsDroppable" direction="horizontal">
             {(provided) => (
               <div ref={provided.innerRef} {...provided.droppableProps} className="flex w-full">
-                <div ref={scrollContainer} className="hide-scrollbar flex w-full">
+                <div ref={scrollContainer} className="hide-scrollbar flex w-full px-2">
                   {tabs.map((tab, index) => (
                     <div
                       id={`tab-${index}`}

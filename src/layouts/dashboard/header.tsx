@@ -35,7 +35,7 @@ export default function Header({ className = '', offsetTop = false }: Props) {
       themeLayout === ThemeLayout.Horizontal
         ? `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`
         : '',
-    backgroundColor: Color(colorBgElevated).alpha(0.8).toString(),
+    backgroundColor: Color(colorBgElevated).alpha(1).toString(),
   };
 
   if (themeLayout === ThemeLayout.Horizontal) {
