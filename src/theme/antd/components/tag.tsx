@@ -10,7 +10,7 @@ export default function ProTag(props: TagProps) {
 }
 
 const StyledTag = styled.div`
-  display: flex;
+  display: inline-flex;
   .ant-tag {
     border-radius: 6px;
     cursor: default;

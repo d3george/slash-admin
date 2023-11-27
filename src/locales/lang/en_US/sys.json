@@ -92,6 +92,12 @@
         "profile": "Profile",
         "account": "Account"
       },
+      "system": {
+        "index": "System",
+        "organization": "Organization",
+        "role": "Role",
+        "menu": "Menu"
+      },
       "blog": "Blog",
       "components": "Components",
       "icon": "Icon",

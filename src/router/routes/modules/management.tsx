@@ -6,8 +6,11 @@ import { CircleLoading } from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
 
-const ProfilePage = lazy(() => import('@/pages/management/user/profile/index'));
-const AccountPage = lazy(() => import('@/pages/management/user/account/index'));
+const ProfilePage = lazy(() => import('@/pages/management/user/profile'));
+const AccountPage = lazy(() => import('@/pages/management/user/account'));
+
+const OrganizationPage = lazy(() => import('@/pages/management/system/organization'));
+
 const Blog = lazy(() => import('@/pages/management/blog'));
 
 const management: AppRouteObject = {
@@ -45,6 +48,17 @@ const management: AppRouteObject = {
           path: 'account',
           element: <AccountPage />,
           meta: { label: 'sys.menu.user.account', key: '/management/user/account' },
+        },
+      ],
+    },
+    {
+      path: 'system',
+      meta: { label: 'sys.menu.system.index', key: '/management/system' },
+      children: [
+        {
+          path: 'organization',
+          element: <OrganizationPage />,
+          meta: { label: 'sys.menu.system.organization', key: '/management/system/organization' },
         },
       ],
     },

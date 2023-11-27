@@ -91,6 +91,12 @@
         "profile": "个人资料",
         "account": "账户"
       },
+      "system": {
+        "index": "系统",
+        "organization": "组织",
+        "role": "角色",
+        "menu": "菜单"
+      },
       "blog": "博客",
       "components": "组件",
       "icon": "图标",

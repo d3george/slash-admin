@@ -3,12 +3,12 @@ import { rest } from 'msw';
 
 import { UserApi } from '@/api/services/userService';
 
-import { USERLIST } from './assets';
+import { USER_LIST } from './assets';
 
 const signIn = rest.post(`/api${UserApi.SignIn}`, async (req, res, ctx) => {
   const { username, password } = await req.json();
 
-  const user = USERLIST.find((item) => item.username === username);
+  const user = USER_LIST.find((item) => item.username === username);
 
   if (!user || user.password !== password) {
     return res(
