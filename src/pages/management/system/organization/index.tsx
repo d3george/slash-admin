@@ -15,7 +15,7 @@ import {
 } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 import { TableRowSelection } from 'antd/es/table/interface';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import orgService from '@/api/services/orgService';
 import { IconButton, Iconify } from '@/components/icon';
@@ -103,6 +103,14 @@ export default function OrganizationPage() {
       ...prev,
       show: true,
       title: 'Create New',
+      formValue: {
+        ...prev.formValue,
+        id: '',
+        name: '',
+        order: 1,
+        desc: '',
+        status: 'enable',
+      },
     }));
   };
 
@@ -183,6 +191,10 @@ type OrganizationModalProps = {
 
 function OrganizationModal({ title, show, formValue, onOk, onCancel }: OrganizationModalProps) {
   const [form] = Form.useForm();
+  console.log('formValue', formValue);
+  useEffect(() => {
+    form.setFieldsValue({ ...formValue });
+  }, [formValue, form]);
   return (
     <Modal title={title} open={show} onOk={onOk} onCancel={onCancel}>
       <Form
