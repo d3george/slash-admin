@@ -2,25 +2,34 @@ import Color from 'color';
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled from 'styled-components';
 
+import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
 import { Organization } from '#/entity';
+import { ThemeMode } from '#/enum';
 
 type Props = {
   organizations?: Organization[];
 };
 export default function OrganizationChart({ organizations = [] }: Props) {
-  const { colorPrimaryTextActive, colorPrimary, colorPrimaryBorder } = useThemeToken();
+  const themeToken = useThemeToken();
+  const { themeMode } = useSettings();
   return (
     <Tree
       lineWidth="1px"
-      lineColor={colorPrimaryBorder}
+      lineColor={
+        themeMode === ThemeMode.Light ? themeToken.colorPrimaryBorder : themeToken.colorPrimary
+      }
       lineBorderRadius="24px"
       label={
         <StyledNode
-          $textColor={colorPrimaryTextActive}
-          $backgroundColor={Color(colorPrimary).alpha(0.08).toString()}
-          $borderColor={Color(colorPrimaryBorder).alpha(0.24).toString()}
+          $textColor={
+            themeMode === ThemeMode.Light
+              ? themeToken.colorPrimaryTextActive
+              : themeToken.colorPrimaryText
+          }
+          $backgroundColor={Color(themeToken.colorPrimary).alpha(0.08).toString()}
+          $borderColor={Color(themeToken.colorPrimaryBorder).alpha(0.24).toString()}
         >
           Root
         </StyledNode>
@@ -39,15 +48,20 @@ type OrganizationChartTreeNodeProps = {
 function OrganizationChartTreeNode({
   organization: { name, children },
 }: OrganizationChartTreeNodeProps) {
-  const { colorPrimaryTextActive, colorPrimary, colorPrimaryBorder } = useThemeToken();
+  const themeToken = useThemeToken();
+  const { themeMode } = useSettings();
 
   return (
     <TreeNode
       label={
         <StyledNode
-          $textColor={colorPrimaryTextActive}
-          $backgroundColor={Color(colorPrimary).alpha(0.08).toString()}
-          $borderColor={Color(colorPrimaryBorder).alpha(0.24).toString()}
+          $textColor={
+            themeMode === ThemeMode.Light
+              ? themeToken.colorPrimaryTextActive
+              : themeToken.colorPrimaryText
+          }
+          $backgroundColor={Color(themeToken.colorPrimary).alpha(0.08).toString()}
+          $borderColor={Color(themeToken.colorPrimaryBorder).alpha(0.24).toString()}
         >
           {name}
         </StyledNode>
