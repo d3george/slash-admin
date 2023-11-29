@@ -130,7 +130,13 @@
       "iframe": "Iframe",
       "blank": "Blank",
       "calendar": "Calendar",
-      "kanban": "Kanban"
+      "kanban": "Kanban",
+      "error": {
+        "index": "Error Page",
+        "403": "403",
+        "404": "404",
+        "500": "500"
+      }
     }
   }
 }
