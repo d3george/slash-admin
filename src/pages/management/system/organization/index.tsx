@@ -21,6 +21,8 @@ import orgService from '@/api/services/orgService';
 import { IconButton, Iconify } from '@/components/icon';
 import ProTag from '@/theme/antd/components/tag';
 
+import OrganizationChart from './organization-chart';
+
 import { Organization } from '#/entity';
 
 type SearchFormFieldType = Pick<Organization, 'name' | 'status'>;
@@ -176,6 +178,10 @@ export default function OrganizationPage() {
         />
       </Card>
 
+      <Card title="Organization Chart">
+        <OrganizationChart organizations={data} />
+      </Card>
+
       <OrganizationModal {...organizationModalPros} />
     </Space>
   );
@@ -191,7 +197,6 @@ type OrganizationModalProps = {
 
 function OrganizationModal({ title, show, formValue, onOk, onCancel }: OrganizationModalProps) {
   const [form] = Form.useForm();
-  console.log('formValue', formValue);
   useEffect(() => {
     form.setFieldsValue({ ...formValue });
   }, [formValue, form]);
