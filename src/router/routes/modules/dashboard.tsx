@@ -6,8 +6,6 @@ import { CircleLoading } from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
-
 const HomePage = lazy(() => import(`@/pages/dashboard/workbench`));
 const Analysis = lazy(() => import('@/pages/dashboard/analysis'));
 
@@ -32,7 +30,7 @@ const dashboard: AppRouteObject = {
     {
       path: 'workbench',
       element: <HomePage />,
-      meta: { label: 'sys.menu.workbench', key: HOMEPAGE },
+      meta: { label: 'sys.menu.workbench', key: '/dashboard/workbench' },
     },
     {
       path: 'analysis',

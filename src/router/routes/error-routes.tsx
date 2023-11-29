@@ -11,9 +11,10 @@ const Page404 = lazy(() => import('@/pages/sys/error/Page404'));
 const Page500 = lazy(() => import('@/pages/sys/error/Page500'));
 
 /**
- * main routes
+ * error routes
+ * 403, 404, 500
  */
-export const mainRoutes: AppRouteObject = {
+export const ErrorRoutes: AppRouteObject = {
   element: (
     <SimpleLayout>
       <Suspense fallback={<CircleLoading />}>
@@ -22,8 +23,8 @@ export const mainRoutes: AppRouteObject = {
     </SimpleLayout>
   ),
   children: [
-    { path: '404', element: <Page404 /> },
     { path: '403', element: <Page403 /> },
+    { path: '404', element: <Page404 /> },
     { path: '500', element: <Page500 /> },
   ],
 };

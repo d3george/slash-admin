@@ -7,17 +7,18 @@ import { getMenuModules } from '../utils';
 
 import { AppRouteObject } from '#/router';
 
-const moduleList = getMenuModules();
+const menuModuleRoutes = getMenuModules();
 
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 /**
- * main routes
+ * dynamic routes
  */
-export const moduleRoutes: AppRouteObject = {
+export const DynamicRoutes: AppRouteObject = {
   path: '/',
   element: (
     <AuthGuard>
       <DashboardLayout />
     </AuthGuard>
   ),
-  children: [{ index: true, element: <Navigate to="dashboard" replace /> }, ...moduleList],
+  children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...menuModuleRoutes],
 };
