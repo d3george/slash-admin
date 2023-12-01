@@ -10,10 +10,11 @@ import { AppRouteObject } from '#/router';
 const menuModuleRoutes = getMenuModules();
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+
 /**
  * dynamic routes
  */
-export const DynamicRoutes: AppRouteObject = {
+export const menuRoutes: AppRouteObject = {
   path: '/',
   element: (
     <AuthGuard>

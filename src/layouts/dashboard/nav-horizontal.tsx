@@ -3,8 +3,8 @@ import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useState, useEffect, CSSProperties } from 'react';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 
-import { useRouteToMenu } from '@/router/hooks';
-import { getMenuRoutes } from '@/router/utils';
+import { useRouteToMenuFn, usePermissionRoutes } from '@/router/hooks';
+import { menuFilter } from '@/router/utils';
 import { useThemeToken } from '@/theme/hooks';
 
 import { NAV_HORIZONTAL_HEIGHT } from './config';
@@ -16,7 +16,8 @@ export default function NavHorizontal() {
 
   const { colorBgElevated } = useThemeToken();
 
-  const routeToMenu = useRouteToMenu();
+  const routeToMenuFn = useRouteToMenuFn();
+  const permissionRoutes = usePermissionRoutes();
 
   /**
    * state
@@ -30,10 +31,10 @@ export default function NavHorizontal() {
   }, [pathname, matches]);
 
   useEffect(() => {
-    const menuRoutes = getMenuRoutes();
-    const menus = routeToMenu(menuRoutes);
+    const menuRoutes = menuFilter(permissionRoutes);
+    const menus = routeToMenuFn(menuRoutes);
     setMenuList(menus);
-  }, [routeToMenu]);
+  }, [permissionRoutes, routeToMenuFn]);
 
   /**
    * events

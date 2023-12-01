@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { DynamicRoutes } from './dynamic-routes';
 import { ErrorRoutes } from './error-routes';
+import { menuRoutes } from './menu-routes';
 
 import { AppRouteObject } from '#/router';
 
@@ -15,4 +15,4 @@ export const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {
   element: <Navigate to="/404" replace />,
 };
 
-export const routes = [LoginRoute, DynamicRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];
+export const staticRoutes = [LoginRoute, menuRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];

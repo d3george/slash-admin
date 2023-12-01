@@ -1,7 +1,6 @@
 import { App as AntdApp } from 'antd';
-import { RouterProvider } from 'react-router-dom';
 
-import router from '@/router';
+import Router from '@/router/index';
 import AntdConfig from '@/theme/antd';
 
 import { MotionLazy } from './components/animate/motion-lazy';
@@ -11,7 +10,7 @@ function App() {
     <AntdConfig>
       <AntdApp>
         <MotionLazy>
-          <RouterProvider router={router} />
+          <Router />
         </MotionLazy>
       </AntdApp>
     </AntdConfig>

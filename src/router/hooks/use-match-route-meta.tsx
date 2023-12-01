@@ -8,7 +8,7 @@ import { useRouter } from './use-router';
 import { RouteMeta } from '#/router';
 
 /**
- * 返回当前路由信息
+ * 返回当前路由Meta信息
  */
 export function useMatchRouteMeta() {
   const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;

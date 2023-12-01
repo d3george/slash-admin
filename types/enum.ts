@@ -45,3 +45,9 @@ export enum MultiTabOperation {
   CLOSELEFT = 'closeLeft',
   CLOSERIGHT = 'closeRight',
 }
+
+export enum PermissionType {
+  CATALOGUE = 'catalogue',
+  MENU = 'menu',
+  BUTTON = 'button',
+}

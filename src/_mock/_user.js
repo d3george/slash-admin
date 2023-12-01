@@ -3,7 +3,7 @@ import { rest } from 'msw';
 
 import { UserApi } from '@/api/services/userService';
 
-import { USER_LIST } from './assets';
+import { PERMISSION_LIST, USER_LIST } from './assets';
 
 const signIn = rest.post(`/api${UserApi.SignIn}`, async (req, res, ctx) => {
   const { username, password } = await req.json();
@@ -31,6 +31,7 @@ const signIn = rest.post(`/api${UserApi.SignIn}`, async (req, res, ctx) => {
           username,
           createdAt: faker.date.anytime(),
           updatedAt: faker.date.recent(),
+          permissions: PERMISSION_LIST,
         },
         accessToken: faker.string.uuid(),
         refreshToken: faker.string.uuid(),

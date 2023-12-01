@@ -35,8 +35,9 @@ export function getMenuModules() {
 /**
  * return the routes will be used in sidebar menu
  */
-export function getMenuRoutes() {
-  return menuFilter(getMenuModules());
+export function getMenuRoutes(appRouteObjects: AppRouteObject[]) {
+  // return menuFilter(getMenuModules());
+  return menuFilter(appRouteObjects);
 }
 
 /**

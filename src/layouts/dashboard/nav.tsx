@@ -7,8 +7,8 @@ import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/logo';
 import Scrollbar from '@/components/scrollbar';
-import { useRouteToMenu } from '@/router/hooks';
-import { getMenuRoutes } from '@/router/utils';
+import { useRouteToMenuFn, usePermissionRoutes } from '@/router/hooks';
+import { menuFilter } from '@/router/utils';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
@@ -34,7 +34,8 @@ export default function Nav(props: Props) {
     background: colorBgElevated,
   };
 
-  const routeToMenu = useRouteToMenu();
+  const routeToMenuFn = useRouteToMenuFn();
+  const permissionRoutes = usePermissionRoutes();
 
   /**
    * state
@@ -56,10 +57,10 @@ export default function Nav(props: Props) {
   }, [pathname, matches, collapsed, themeLayout]);
 
   useEffect(() => {
-    const menuRoutes = getMenuRoutes();
-    const menus = routeToMenu(menuRoutes);
+    const menuRoutes = menuFilter(permissionRoutes);
+    const menus = routeToMenuFn(menuRoutes);
     setMenuList(menus);
-  }, [routeToMenu]);
+  }, [permissionRoutes, routeToMenuFn]);
 
   useEffect(() => {
     if (themeLayout === ThemeLayout.Vertical) {

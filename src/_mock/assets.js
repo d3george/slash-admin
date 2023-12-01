@@ -1,5 +1,7 @@
 import { faker } from '@faker-js/faker';
 
+import { PermissionType } from '#/enum';
+
 /**
  * User data mock
  */
@@ -44,6 +46,72 @@ export const ORG_LIST = [
       { id: '3-1', name: 'R&D Department', status: 'disable', desc: '', order: 1 },
       { id: '3-2', name: 'Marketing Department', status: 'enable', desc: '', order: 2 },
       { id: '3-3', name: 'Finance Department', status: 'enable', desc: '', order: 3 },
+    ],
+  },
+];
+
+/**
+ * User permission mock
+ */
+export const PERMISSION_LIST = [
+  {
+    type: PermissionType.CATALOGUE,
+    path: 'components',
+    order: 3,
+    meta: {
+      label: 'sys.menu.components',
+      // icon: 'solar:widget-5-bold-duotone',
+      key: '/components',
+    },
+    children: [
+      {
+        type: PermissionType.MENU,
+        path: 'icon',
+        component: 'components/icon',
+        meta: { label: 'sys.menu.icon', key: '/components/icon' },
+      },
+      {
+        type: PermissionType.MENU,
+        path: 'animate',
+        component: 'components/animate',
+        meta: { label: 'sys.menu.animate', key: '/components/animate' },
+      },
+      {
+        type: PermissionType.MENU,
+        path: 'scroll',
+        component: 'components/scroll',
+        meta: { label: 'sys.menu.scroll', key: '/components/scroll' },
+      },
+      {
+        type: PermissionType.MENU,
+        path: 'markdown',
+        component: 'components/markdown',
+        meta: { label: 'sys.menu.markdown', key: '/components/markdown' },
+      },
+      {
+        type: PermissionType.MENU,
+        path: 'editor',
+        component: 'components/editor',
+        meta: { label: 'sys.menu.editor', key: '/components/editor' },
+      },
+      {
+        type: PermissionType.MENU,
+        path: 'i18n',
+        component: 'components/multi-language',
+        meta: { label: 'sys.menu.i18n', key: '/components/i18n' },
+      },
+      {
+        type: PermissionType.MENU,
+        path: 'upload',
+        component: 'components/upload',
+        meta: { label: 'sys.menu.upload', key: '/components/upload' },
+      },
+      {
+        type: PermissionType.MENU,
+        path: 'chart',
+        component: 'components/chart',
+        meta: { label: 'sys.menu.chart', key: '/components/chart' },
+      },
     ],
   },
 ];

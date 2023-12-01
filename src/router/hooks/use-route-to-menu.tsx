@@ -2,6 +2,7 @@ import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Iconify } from '@/components/icon';
 import { useSettings } from '@/store/settingStore';
 
 import { ThemeLayout } from '#/enum';
@@ -10,10 +11,10 @@ import { AppRouteObject } from '#/router';
 /**
  *   routes -> menus
  */
-export function useRouteToMenu() {
+export function useRouteToMenuFn() {
   const { t } = useTranslation();
   const { themeLayout } = useSettings();
-  const routeToMenu = useCallback(
+  const routeToMenuFn = useCallback(
     (items: AppRouteObject[]) => {
       return items
         .filter((item) => !item.meta?.hideMenu)
@@ -35,16 +36,20 @@ export function useRouteToMenu() {
               </div>
             );
             if (icon) {
-              menuItem.icon = icon;
+              if (typeof icon === 'string') {
+                menuItem.icon = <Iconify icon={icon} size={24} className="" />;
+              } else {
+                menuItem.icon = icon;
+              }
             }
           }
           if (children) {
-            menuItem.children = routeToMenu(children);
+            menuItem.children = routeToMenuFn(children);
           }
           return menuItem as ItemType;
         });
     },
     [t, themeLayout],
   );
-  return routeToMenu;
+  return routeToMenuFn;
 }
