@@ -60,7 +60,7 @@ export const PERMISSION_LIST = [
     order: 3,
     meta: {
       label: 'sys.menu.components',
-      // icon: 'solar:widget-5-bold-duotone',
+      icon: 'solar:widget-5-bold-duotone',
       key: '/components',
     },
     children: [

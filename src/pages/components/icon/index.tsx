@@ -30,9 +30,13 @@ export default function IconPage() {
         <Iconify icon="solar:emoji-funny-square-bold-duotone" size={24} color={colorError} />
       </Card>
       <Card title="Svg Icons">
-        <Typography.Text style={{ color: colorPrimary }} className="mb-4 block">
+        <Typography.Link
+          href="https://github.com/vbenjs/vite-plugin-svg-icons"
+          style={{ color: colorPrimary }}
+          className="mb-4 block"
+        >
           使用svg 雪碧图
-        </Typography.Text>
+        </Typography.Link>
         <SvgIcon icon="ic-workbench" size={24} color={colorPrimary} />
         <SvgIcon icon="ic-workbench" size={24} color={colorInfo} />
         <SvgIcon icon="ic-workbench" size={24} color={colorSuccess} />

@@ -2,7 +2,7 @@ import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Iconify } from '@/components/icon';
+import { Iconify, SvgIcon } from '@/components/icon';
 import { useSettings } from '@/store/settingStore';
 
 import { ThemeLayout } from '#/enum';
@@ -37,7 +37,11 @@ export function useRouteToMenuFn() {
             );
             if (icon) {
               if (typeof icon === 'string') {
-                menuItem.icon = <Iconify icon={icon} size={24} className="" />;
+                if (icon.startsWith('ic')) {
+                  menuItem.icon = <SvgIcon icon={icon} size={24} className="ant-menu-item-icon" />;
+                } else {
+                  menuItem.icon = <Iconify icon={icon} size={24} className="ant-menu-item-icon" />;
+                }
               } else {
                 menuItem.icon = icon;
               }
