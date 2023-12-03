@@ -1,5 +1,4 @@
 import { PermissionType } from './enum';
-import { RouteMeta } from './router';
 
 export interface UserToken {
   accessToken?: string;
@@ -25,21 +24,15 @@ export interface Organization {
 }
 
 export interface Permission {
+  id: string;
+  parentId: string;
+  name: string;
+  label: string;
   type: PermissionType;
-  /**
-   * router path
-   * @description do not start with `/`
-   */
-  path: string;
-  /**
-   * compont path
-   * @description do not start with `/`
-   * @example
-   *  if component is `components/icon`
-   *  so componet real path will be `/src/pages/components/icon`
-   */
-  component: string;
+  route: string;
   order?: number;
-  meta: RouteMeta;
+  icon?: string;
+  component?: string;
+  hide?: boolean;
   children?: Permission[];
 }

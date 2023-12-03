@@ -2,29 +2,37 @@ import { ReactNode } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 export interface RouteMeta {
-  // antd menu selectedKeys
+  /**
+   * antd menu selectedKeys
+   */
   key: string;
-  // menu label
+  /**
+   * menu label, i18n
+   */
   label: string;
-  // menu prefix icon
+  /**
+   * menu prefix icon
+   */
   icon?: ReactNode;
-  // menu suffix icon
+  /**
+   * menu suffix icon
+   */
   suffix?: ReactNode;
-  // show in tab
-  hideTab?: boolean;
   /**
    * Show in menu
-   *
-   * @default false
    */
   hideMenu?: boolean;
-  // disable in menu
+  /**
+   * disable in menu
+   */
   disabled?: boolean;
-  // need to auth,
-  auth?: boolean;
-  // react router outlet
+  /**
+   * react router outlet
+   */
   outlet?: any;
-  // use to refresh tab
+  /**
+   * use to refresh tab
+   */
   timeStamp?: string;
 }
 export type AppRouteObject = {

@@ -13,7 +13,7 @@ import { AppRouteObject } from '#/router';
 const menuModuleRoutes = getMenuModules();
 
 /**
- * 根据权限返回动态路由表
+ * return routes about permission
  */
 export function usePermissionRoutes() {
   const permissions = useUserPermission();
@@ -24,14 +24,25 @@ export function usePermissionRoutes() {
   }, [permissions]);
 }
 
-function transformPermissionToMenuRoutes(permissions: Permission[]) {
-  return permissions.map(({ path, type, order, meta, component, children = [] }) => {
+/**
+ * transform Permission[] to  AppRouteObject[]
+ * @param permissions
+ * @param parent
+ */
+function transformPermissionToMenuRoutes(permissions: Permission[], parent?: Permission) {
+  return permissions.map((permission) => {
+    const { route, type, label, icon, order, hide, component, children = [] } = permission;
     const appRoute: AppRouteObject = {
-      path,
-      meta,
+      order,
+      path: route,
+      meta: { label, key: `/${permission.route}` },
     };
 
-    if (order) appRoute.order = order;
+    if (parent) {
+      appRoute.meta!.key = `/${parent.route}/${permission.route}`;
+    }
+    if (icon) appRoute.meta!.icon = icon;
+    if (hide) appRoute.meta!.hideMenu = true;
 
     if (type === PermissionType.CATALOGUE) {
       appRoute.element = (
@@ -39,11 +50,11 @@ function transformPermissionToMenuRoutes(permissions: Permission[]) {
           <Outlet />
         </Suspense>
       );
-      appRoute.children = transformPermissionToMenuRoutes(children);
+      appRoute.children = transformPermissionToMenuRoutes(children, permission);
       if (!isEmpty(children)) {
         appRoute.children.unshift({
           index: true,
-          element: <Navigate to={children[0].path} replace />,
+          element: <Navigate to={children[0].route} replace />,
         });
       }
     } else if (type === PermissionType.MENU) {
