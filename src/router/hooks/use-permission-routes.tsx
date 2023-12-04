@@ -9,6 +9,16 @@ import { Permission } from '#/entity';
 import { PermissionType } from '#/enum';
 import { AppRouteObject } from '#/router';
 
+// 使用 import.meta.glob 获取所有路由组件
+const pages = import.meta.glob('/src/pages/**/*.tsx');
+
+console.log('pages', pages);
+// 构建绝对路径的函数
+function resolveComponent(path: string) {
+  console.log('path', path);
+  return pages[`/src/pages${path}`];
+}
+
 /**
  * return routes about permission
  */
@@ -73,8 +83,7 @@ function transformPermissionToMenuRoutes(
         });
       }
     } else if (type === PermissionType.MENU) {
-      const componentPath = `/src/pages${component}`;
-      const Element = lazy(() => import(componentPath));
+      const Element = lazy(resolveComponent(component!) as any);
       appRoute.element = <Element />;
     }
 
