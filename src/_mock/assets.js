@@ -70,7 +70,7 @@ const DASHBOARD_PERMISSION = {
       name: 'Workbench',
       type: PermissionType.MENU,
       route: 'workbench',
-      component: '/dashboard/workbench',
+      component: '/dashboard/workbench/index.tsx',
     },
     {
       id: '9710971640510357',
@@ -79,7 +79,7 @@ const DASHBOARD_PERMISSION = {
       name: 'Analysis',
       type: PermissionType.MENU,
       route: 'analysis',
-      component: '/dashboard/analysis',
+      component: '/dashboard/analysis/index.tsx',
     },
   ],
 };
@@ -100,7 +100,7 @@ const COMPONENTS_PERMISSION = {
       name: 'Icon',
       type: PermissionType.MENU,
       route: 'icon',
-      component: '/components/icon',
+      component: '/components/icon/index.tsx',
     },
     {
       id: '6755238352318767',
@@ -109,7 +109,7 @@ const COMPONENTS_PERMISSION = {
       name: 'Animate',
       type: PermissionType.MENU,
       route: 'animate',
-      component: '/components/animate',
+      component: '/components/animate/index.tsx',
     },
     {
       id: '9992476513546805',
@@ -118,7 +118,7 @@ const COMPONENTS_PERMISSION = {
       name: 'Scroll',
       type: PermissionType.MENU,
       route: 'scroll',
-      component: '/components/scroll',
+      component: '/components/scroll/index.tsx',
     },
     {
       id: '1755562695856395',
@@ -127,7 +127,7 @@ const COMPONENTS_PERMISSION = {
       name: 'Markdown',
       type: PermissionType.MENU,
       route: 'markdown',
-      component: '/components/markdown',
+      component: '/components/markdown/index.tsx',
     },
     {
       id: '2122547769468069',
@@ -136,7 +136,7 @@ const COMPONENTS_PERMISSION = {
       name: 'Editor',
       type: PermissionType.MENU,
       route: 'editor',
-      component: '/components/editor',
+      component: '/components/editor/index.tsx',
     },
     {
       id: '2501920741714350',
@@ -145,7 +145,7 @@ const COMPONENTS_PERMISSION = {
       name: 'Multi Language',
       type: PermissionType.MENU,
       route: 'i18n',
-      component: '/components/multi-language',
+      component: '/components/multi-language/index.tsx',
     },
     {
       id: '2013577074467956',
@@ -154,7 +154,7 @@ const COMPONENTS_PERMISSION = {
       name: 'upload',
       type: PermissionType.MENU,
       route: 'Upload',
-      component: '/components/upload',
+      component: '/components/upload/index.tsx',
     },
     {
       id: '7749726274771764',
@@ -163,7 +163,7 @@ const COMPONENTS_PERMISSION = {
       name: 'Chart',
       type: PermissionType.MENU,
       route: 'chart',
-      component: '/components/chart',
+      component: '/components/chart/index.tsx',
     },
   ],
 };
@@ -184,7 +184,7 @@ const FUNCTIONS_PERMISSION = {
       name: 'Clipboard',
       type: PermissionType.MENU,
       route: 'clipboard',
-      component: '/functions/clipboard',
+      component: '/functions/clipboard/index.tsx',
     },
   ],
 };
@@ -205,7 +205,7 @@ const MENU_LEVEL_PERMISSION = {
       name: 'Menu Level 1a',
       type: PermissionType.MENU,
       route: 'menu-level-1a',
-      component: '/menu-level/menu-level-1a',
+      component: '/menu-level/menu-level-1a/index.tsx',
     },
     {
       id: '7572529636800586',
@@ -222,7 +222,7 @@ const MENU_LEVEL_PERMISSION = {
           name: 'Menu Level 2a',
           type: PermissionType.MENU,
           route: 'menu-level-2a',
-          component: '/menu-level/menu-level-1b/menu-level-2a',
+          component: '/menu-level/menu-level-1b/menu-level-2a/index.tsx',
         },
         {
           id: '4873136353891364',
@@ -239,7 +239,7 @@ const MENU_LEVEL_PERMISSION = {
               name: 'Menu Level 3a',
               type: PermissionType.MENU,
               route: 'menu-level-3a',
-              component: '/menu-level/menu-level-1b/menu-level-2b/menu-level-3a',
+              component: '/menu-level/menu-level-1b/menu-level-2b/menu-level-3a/index.tsx',
             },
             {
               id: '3298034742548454',
@@ -248,7 +248,7 @@ const MENU_LEVEL_PERMISSION = {
               name: 'Menu Level 3b',
               type: PermissionType.MENU,
               route: 'menu-level-3b',
-              component: '/menu-level/menu-level-1b/menu-level-2b/menu-level-3b',
+              component: '/menu-level/menu-level-1b/menu-level-2b/menu-level-3b/index.tsx',
             },
           ],
         },
