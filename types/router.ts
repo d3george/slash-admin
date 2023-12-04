@@ -19,9 +19,13 @@ export interface RouteMeta {
    */
   suffix?: ReactNode;
   /**
-   * Show in menu
+   * hide in menu
    */
   hideMenu?: boolean;
+  /**
+   * hide in multi tab
+   */
+  hideTab?: boolean;
   /**
    * disable in menu
    */

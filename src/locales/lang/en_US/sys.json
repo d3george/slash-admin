@@ -95,8 +95,8 @@
       "system": {
         "index": "System",
         "organization": "Organization",
-        "role": "Role",
-        "menu": "Menu"
+        "permission": "Permission",
+        "role": "Role"
       },
       "blog": "Blog",
       "components": "Components",

@@ -94,8 +94,8 @@
       "system": {
         "index": "系统",
         "organization": "组织",
-        "role": "角色",
-        "menu": "菜单"
+        "permission": "权限",
+        "role": "角色"
       },
       "blog": "博客",
       "components": "组件",

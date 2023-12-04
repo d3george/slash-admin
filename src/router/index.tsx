@@ -20,7 +20,7 @@ const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {
 
 export default function Router() {
   const permissionRoutes = usePermissionRoutes();
-  const menuRoutes: AppRouteObject = {
+  const asyncRoutes: AppRouteObject = {
     path: '/',
     element: (
       <AuthGuard>
@@ -30,7 +30,8 @@ export default function Router() {
     children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...permissionRoutes],
   };
 
-  const routes = [LoginRoute, menuRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];
+  const routes = [LoginRoute, asyncRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];
+  console.log('routes', routes);
 
   const router = createHashRouter(routes as unknown as RouteObject[]);
   return <RouterProvider router={router} />;

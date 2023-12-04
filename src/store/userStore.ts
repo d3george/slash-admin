@@ -11,6 +11,8 @@ import { getItem, removeItem, setItem } from '@/utils/storage';
 import { UserInfo, UserToken } from '#/entity';
 import { StorageEnum } from '#/enum';
 
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+
 type UserStore = {
   userInfo: Partial<UserInfo>;
   userToken: UserToken;
@@ -61,7 +63,7 @@ export const useSignIn = () => {
       const { user, accessToken, refreshToken } = res;
       setUserToken({ accessToken, refreshToken });
       setUserInfo(user);
-      navigatge('/dashboard', { replace: true });
+      navigatge(HOMEPAGE, { replace: true });
 
       notification.success({
         message: t('sys.login.loginSuccessTitle'),

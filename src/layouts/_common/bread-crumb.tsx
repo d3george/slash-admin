@@ -47,6 +47,8 @@ export default function BreadCrumb() {
       return result;
     });
     setBreadCrumbs(breadCrumbs);
+
+    console.log('matchs', matches);
   }, [matches, flattenedRoutes, t, permissionRoutes]);
 
   return <Breadcrumb items={breadCrumbs} className="!text-sm" />;

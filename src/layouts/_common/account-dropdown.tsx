@@ -6,13 +6,17 @@ import { NavLink } from 'react-router-dom';
 
 import { IconButton } from '@/components/icon';
 import { useLoginStateContext } from '@/pages/sys/login/providers/LoginStateProvider';
+import { useRouter } from '@/router/hooks';
 import { useUserInfo, useUserActions } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
+
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 /**
  * Account Dropdown
  */
 export default function AccountDropdown() {
+  const { replace } = useRouter();
   const { username, email, avatar } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
   const { backToLogin } = useLoginStateContext();
@@ -21,11 +25,13 @@ export default function AccountDropdown() {
     try {
       // todo const logoutMutation = useMutation(userService.logout);
       // todo logoutMutation.mutateAsync();
+      clearUserInfoAndToken();
+      backToLogin();
     } catch (error) {
       console.log(error);
+    } finally {
+      replace('/login');
     }
-    clearUserInfoAndToken();
-    backToLogin();
   };
   const { colorBgElevated, borderRadiusLG, boxShadowSecondary } = useThemeToken();
 
@@ -51,7 +57,7 @@ export default function AccountDropdown() {
   );
 
   const items: MenuProps['items'] = [
-    { label: <NavLink to="/dashboard">{t('sys.menu.dashboard')}</NavLink>, key: '0' },
+    { label: <NavLink to={HOMEPAGE}>{t('sys.menu.dashboard')}</NavLink>, key: '0' },
     {
       label: <NavLink to="/management/user/profile">{t('sys.menu.user.profile')}</NavLink>,
       key: '1',

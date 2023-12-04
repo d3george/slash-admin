@@ -1,4 +1,4 @@
-import { PermissionType } from './enum';
+import { BasicStatus, PermissionType } from './enum';
 
 export interface UserToken {
   accessToken?: string;
@@ -30,6 +30,7 @@ export interface Permission {
   label: string;
   type: PermissionType;
   route: string;
+  status: BasicStatus;
   order?: number;
   icon?: string;
   component?: string;

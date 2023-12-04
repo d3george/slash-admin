@@ -8,6 +8,8 @@ import MotionContainer from '@/components/animate/motion-container';
 import { varBounce } from '@/components/animate/variants/bounce';
 import { useThemeToken } from '@/theme/hooks';
 
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+
 export default function Page404() {
   const {
     colorBgBase,
@@ -105,7 +107,7 @@ export default function Page404() {
           </m.div>
 
           <NavLink
-            to="/dashboard"
+            to={HOMEPAGE}
             style={{ background: colorTextBase, color: colorBgBase }}
             className="rounded-md p-4"
           >

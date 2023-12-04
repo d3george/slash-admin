@@ -16,8 +16,8 @@ import { ThemeLayout } from '#/enum';
 function DashboardLayout() {
   const { colorBgElevated, colorTextBase } = useThemeToken();
   const { themeLayout } = useSettings();
-  const mainEl = useRef(null);
 
+  const mainEl = useRef(null);
   const { scrollY } = useScroll({ container: mainEl });
   /**
    * y轴是否滚动

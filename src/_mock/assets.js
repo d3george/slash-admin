@@ -53,6 +53,36 @@ export const ORG_LIST = [
 /**
  * User permission mock
  */
+const DASHBOARD_PERMISSION = {
+  id: '9100714781927703',
+  parentId: '',
+  label: 'sys.menu.dashboard',
+  name: 'Dashboard',
+  icon: 'ic-analysis',
+  type: PermissionType.CATALOGUE,
+  route: 'dashboard',
+  order: 1,
+  children: [
+    {
+      id: '8426999229400979',
+      parentId: '9100714781927703',
+      label: 'sys.menu.workbench',
+      name: 'Workbench',
+      type: PermissionType.MENU,
+      route: 'workbench',
+      component: '/dashboard/workbench',
+    },
+    {
+      id: '9710971640510357',
+      parentId: '9100714781927703',
+      label: 'sys.menu.analysis',
+      name: 'Analysis',
+      type: PermissionType.MENU,
+      route: 'analysis',
+      component: '/dashboard/analysis',
+    },
+  ],
+};
 const COMPONENTS_PERMISSION = {
   id: '2271615060673773',
   parentId: '',
@@ -137,5 +167,99 @@ const COMPONENTS_PERMISSION = {
     },
   ],
 };
+const FUNCTIONS_PERMISSION = {
+  id: '8132044808088488',
+  parentId: '',
+  label: 'sys.menu.functions',
+  name: 'functions',
+  icon: 'solar:plain-2-bold-duotone',
+  type: PermissionType.CATALOGUE,
+  route: 'functions',
+  order: 4,
+  children: [
+    {
+      id: '3667930780705750',
+      parentId: '8132044808088488',
+      label: 'sys.menu.clipboard',
+      name: 'Clipboard',
+      type: PermissionType.MENU,
+      route: 'clipboard',
+      component: '/functions/clipboard',
+    },
+  ],
+};
+const MENU_LEVEL_PERMISSION = {
+  id: '0194818428516575',
+  parentId: '',
+  label: 'sys.menu.menulevel.index',
+  name: 'Menu Level',
+  icon: 'ic-menulevel',
+  type: PermissionType.CATALOGUE,
+  route: 'menu-level',
+  order: 5,
+  children: [
+    {
+      id: '0144431332471389',
+      parentId: '0194818428516575',
+      label: 'sys.menu.menulevel.1a',
+      name: 'Menu Level 1a',
+      type: PermissionType.MENU,
+      route: 'menu-level-1a',
+      component: '/menu-level/menu-level-1a',
+    },
+    {
+      id: '7572529636800586',
+      parentId: '0194818428516575',
+      label: 'sys.menu.menulevel.1b.index',
+      name: 'Menu Level 1b',
+      type: PermissionType.CATALOGUE,
+      route: 'menu-level-1b',
+      children: [
+        {
+          id: '3653745576583237',
+          parentId: '7572529636800586',
+          label: 'sys.menu.menulevel.1b.2a',
+          name: 'Menu Level 2a',
+          type: PermissionType.MENU,
+          route: 'menu-level-2a',
+          component: '/menu-level/menu-level-1b/menu-level-2a',
+        },
+        {
+          id: '4873136353891364',
+          parentId: '7572529636800586',
+          label: 'sys.menu.menulevel.1b.2b.index',
+          name: 'Menu Level 2b',
+          type: PermissionType.CATALOGUE,
+          route: 'menu-level-2b',
+          children: [
+            {
+              id: '4233029726998055',
+              parentId: '4873136353891364',
+              label: 'sys.menu.menulevel.1b.2b.3a',
+              name: 'Menu Level 3a',
+              type: PermissionType.MENU,
+              route: 'menu-level-3a',
+              component: '/menu-level/menu-level-1b/menu-level-2b/menu-level-3a',
+            },
+            {
+              id: '3298034742548454',
+              parentId: '4873136353891364',
+              label: 'sys.menu.menulevel.1b.2b.3b',
+              name: 'Menu Level 3b',
+              type: PermissionType.MENU,
+              route: 'menu-level-3b',
+              component: '/menu-level/menu-level-1b/menu-level-2b/menu-level-3b',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
 
-export const PERMISSION_LIST = [COMPONENTS_PERMISSION];
+export const PERMISSION_LIST = [
+  DASHBOARD_PERMISSION,
+  COMPONENTS_PERMISSION,
+  FUNCTIONS_PERMISSION,
+  MENU_LEVEL_PERMISSION,
+];

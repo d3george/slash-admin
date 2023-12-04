@@ -10,6 +10,7 @@ const ProfilePage = lazy(() => import('@/pages/management/user/profile'));
 const AccountPage = lazy(() => import('@/pages/management/user/account'));
 
 const OrganizationPage = lazy(() => import('@/pages/management/system/organization'));
+const PermissioPage = lazy(() => import('@/pages/management/system/permission'));
 
 const Blog = lazy(() => import('@/pages/management/blog'));
 
@@ -59,6 +60,11 @@ const management: AppRouteObject = {
           path: 'organization',
           element: <OrganizationPage />,
           meta: { label: 'sys.menu.system.organization', key: '/management/system/organization' },
+        },
+        {
+          path: 'permission',
+          element: <PermissioPage />,
+          meta: { label: 'sys.menu.system.permission', key: '/management/system/permission' },
         },
       ],
     },
