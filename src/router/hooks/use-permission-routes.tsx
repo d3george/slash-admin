@@ -73,7 +73,7 @@ function transformPermissionToMenuRoutes(
         });
       }
     } else if (type === PermissionType.MENU) {
-      const componentPath = `/src/pages/${component}`;
+      const componentPath = `/src/pages${component}`;
       const Element = lazy(() => import(componentPath));
       appRoute.element = <Element />;
     }
