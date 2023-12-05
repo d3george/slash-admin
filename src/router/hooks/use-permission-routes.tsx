@@ -1,4 +1,4 @@
-import { chain, isEmpty } from 'ramda';
+import { isEmpty } from 'ramda';
 import { Suspense, lazy, useMemo } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ import { Iconify } from '@/components/icon';
 import { CircleLoading } from '@/components/loading';
 import { useUserPermission } from '@/store/userStore';
 import ProTag from '@/theme/antd/components/tag';
+import { flattenTrees } from '@/utils/tree';
 
 import { Permission } from '#/entity';
 import { BasicStatus, PermissionType } from '#/enum';
@@ -125,16 +126,4 @@ function getCompleteRoute(permission: Permission, flattenedPermissions: Permissi
   }
 
   return currentRoute;
-}
-
-/**
- * Flatten an array containing a tree structure
- * @param {Permission[]} trees - An array containing a tree structure
- * @returns {Permission[]} - Flattened array
- */
-function flattenTrees(trees: Permission[] = []): Permission[] {
-  return chain((permission) => {
-    const children = permission.children || [];
-    return [permission, ...flattenTrees(children)];
-  }, trees);
 }

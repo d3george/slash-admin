@@ -3,12 +3,6 @@ import { faker } from '@faker-js/faker';
 import { BasicStatus, PermissionType } from '#/enum';
 
 /**
- * User data mock
- */
-export const DEFAULT_USER = { username: 'demo@gmail.com', password: 'demo1234' };
-export const USER_LIST = [DEFAULT_USER];
-
-/**
  * Organization data mock
  */
 export const ORG_LIST = [
@@ -83,7 +77,6 @@ const DASHBOARD_PERMISSION = {
     },
   ],
 };
-
 const MANAGEMENT_PERMISSION = {
   id: '0901673425580518',
   parentId: '',
@@ -147,6 +140,24 @@ const MANAGEMENT_PERMISSION = {
           type: PermissionType.MENU,
           route: 'permission',
           component: '/management/system/permission/index.tsx',
+        },
+        {
+          id: '1689241785490759',
+          parentId: '0249937641030250',
+          label: 'sys.menu.system.role',
+          name: 'Role',
+          type: PermissionType.MENU,
+          route: 'role',
+          component: '/management/system/role/index.tsx',
+        },
+        {
+          id: '0157880245365433',
+          parentId: '0249937641030250',
+          label: 'sys.menu.system.user',
+          name: 'User',
+          type: PermissionType.MENU,
+          route: 'user',
+          component: '/management/system/user/index.tsx',
         },
       ],
     },
@@ -459,3 +470,53 @@ export const PERMISSION_LIST = [
   ERRORS_PERMISSION,
   ...OTHERS_PERMISSION,
 ];
+
+/**
+ * User role mock
+ */
+const ADMIN_ROLE = {
+  id: '4281707933534332',
+  name: 'Admin',
+  label: 'admin',
+  status: BasicStatus.ENABLE,
+  order: 1,
+  desc: 'Super Admin',
+  permission: PERMISSION_LIST,
+};
+const TEST_ROLE = {
+  id: '9931665660771476',
+  name: 'Test',
+  label: 'test',
+  status: BasicStatus.ENABLE,
+  order: 2,
+  desc: 'test',
+  permission: [DASHBOARD_PERMISSION, COMPONENTS_PERMISSION, FUNCTIONS_PERMISSION],
+};
+export const ROLE_LIST = [ADMIN_ROLE, TEST_ROLE];
+
+/**
+ * User data mock
+ */
+export const DEFAULT_USER = {
+  id: faker.string.uuid(),
+  username: 'admin@gmail.com',
+  email: faker.internet.email(),
+  avatar: faker.image.avatarLegacy(),
+  createdAt: faker.date.anytime(),
+  updatedAt: faker.date.recent(),
+  password: 'demo1234',
+  role: ADMIN_ROLE,
+  permissions: ADMIN_ROLE.permission,
+};
+export const TEST_USER = {
+  id: faker.string.uuid(),
+  username: 'test@gmail.com',
+  password: 'demo1234',
+  email: faker.internet.email(),
+  avatar: faker.image.avatarLegacy(),
+  createdAt: faker.date.anytime(),
+  updatedAt: faker.date.recent(),
+  role: TEST_ROLE,
+  permissions: TEST_ROLE.permission,
+};
+export const USER_LIST = [DEFAULT_USER, TEST_USER];

@@ -11,6 +11,8 @@ export interface UserInfo {
   username: string;
   password?: string;
   avatar?: string;
+  role?: Role;
+  status?: BasicStatus;
   permissions?: Permission[];
 }
 
@@ -30,7 +32,7 @@ export interface Permission {
   label: string;
   type: PermissionType;
   route: string;
-  status: BasicStatus;
+  status?: BasicStatus;
   order?: number;
   icon?: string;
   component?: string;
@@ -38,4 +40,14 @@ export interface Permission {
   frameSrc?: string;
   newFeature?: boolean;
   children?: Permission[];
+}
+
+export interface Role {
+  id: string;
+  name: string;
+  label: string;
+  status: BasicStatus;
+  order?: number;
+  desc?: string;
+  permission?: Permission[];
 }

@@ -96,7 +96,8 @@
         "index": "System",
         "organization": "Organization",
         "permission": "Permission",
-        "role": "Role"
+        "role": "Role",
+        "user": "User"
       },
       "blog": "Blog",
       "components": "Components",
