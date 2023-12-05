@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import { PermissionType } from '#/enum';
+import { BasicStatus, PermissionType } from '#/enum';
 
 /**
  * User data mock
@@ -80,6 +80,75 @@ const DASHBOARD_PERMISSION = {
       type: PermissionType.MENU,
       route: 'analysis',
       component: '/dashboard/analysis/index.tsx',
+    },
+  ],
+};
+
+const MANAGEMENT_PERMISSION = {
+  id: '0901673425580518',
+  parentId: '',
+  label: 'sys.menu.management',
+  name: 'Management',
+  icon: 'ic-management',
+  type: PermissionType.CATALOGUE,
+  route: 'management',
+  order: 2,
+  children: [
+    {
+      id: '2781684678535711',
+      parentId: '0901673425580518',
+      label: 'sys.menu.user.index',
+      name: 'User',
+      type: PermissionType.CATALOGUE,
+      route: 'user',
+      children: [
+        {
+          id: '4754063958766648',
+          parentId: '2781684678535711',
+          label: 'sys.menu.user.profile',
+          name: 'Profile',
+          type: PermissionType.MENU,
+          route: 'profile',
+          component: '/management/user/profile/index.tsx',
+        },
+        {
+          id: '2516598794787938',
+          parentId: '2781684678535711',
+          label: 'sys.menu.user.account',
+          name: 'Account',
+          type: PermissionType.MENU,
+          route: 'account',
+          component: '/management/user/account/index.tsx',
+        },
+      ],
+    },
+    {
+      id: '0249937641030250',
+      parentId: '0901673425580518',
+      label: 'sys.menu.system.index',
+      name: 'System',
+      type: PermissionType.CATALOGUE,
+      route: 'system',
+      children: [
+        {
+          id: '1985890042972842',
+          parentId: '0249937641030250',
+          label: 'sys.menu.system.organization',
+          name: 'Organization',
+          type: PermissionType.MENU,
+          route: 'organization',
+          component: '/management/system/organization/index.tsx',
+        },
+        {
+          id: '4359580910369984',
+          parentId: '0249937641030250',
+          label: 'sys.menu.system.permission',
+          name: 'Permission',
+          type: PermissionType.MENU,
+          route: 'permission',
+          component: '/management/system/permission/index.tsx',
+        },
+      ],
     },
   ],
 };
@@ -256,10 +325,137 @@ const MENU_LEVEL_PERMISSION = {
     },
   ],
 };
+const ERRORS_PERMISSION = {
+  id: '9406067785553476',
+  parentId: '',
+  label: 'sys.menu.error.index',
+  name: 'Error',
+  icon: 'bxs:error-alt',
+  type: PermissionType.CATALOGUE,
+  route: 'error',
+  order: 6,
+  children: [
+    {
+      id: '8557056851997154',
+      parentId: '9406067785553476',
+      label: 'sys.menu.error.403',
+      name: '403',
+      type: PermissionType.MENU,
+      route: '403',
+      component: '/sys/error/Page403.tsx',
+    },
+    {
+      id: '5095669208159005',
+      parentId: '9406067785553476',
+      label: 'sys.menu.error.404',
+      name: '404',
+      type: PermissionType.MENU,
+      route: '404',
+      component: '/sys/error/Page404.tsx',
+    },
+    {
+      id: '0225992135973772',
+      parentId: '9406067785553476',
+      label: 'sys.menu.error.500',
+      name: '500',
+      type: PermissionType.MENU,
+      route: '500',
+      component: '/sys/error/Page500.tsx',
+    },
+  ],
+};
+const OTHERS_PERMISSION = [
+  {
+    id: '3981225257359246',
+    parentId: '',
+    label: 'sys.menu.calendar',
+    name: 'Calendar',
+    icon: 'solar:calendar-bold-duotone',
+    type: PermissionType.MENU,
+    route: 'calendar',
+    component: '/sys/others/calendar/index.tsx',
+  },
+  {
+    id: '3513985683886393',
+    parentId: '',
+    label: 'sys.menu.kanban',
+    name: 'kanban',
+    icon: 'solar:clipboard-bold-duotone',
+    type: PermissionType.MENU,
+    route: 'kanban',
+    component: '/sys/others/kanban/index.tsx',
+  },
+  {
+    id: '5455837930804461',
+    parentId: '',
+    label: 'sys.menu.disabled',
+    name: 'Disabled',
+    icon: 'solar:calendar-bold-duotone',
+    type: PermissionType.MENU,
+    route: 'disabled',
+    status: BasicStatus.DISABLE,
+    component: '/sys/others/calendar/index.tsx',
+  },
+  {
+    id: '7728048658221587',
+    parentId: '',
+    label: 'sys.menu.label',
+    name: 'Label',
+    icon: 'ic_label',
+    type: PermissionType.MENU,
+    route: 'label',
+    newFeature: true,
+    component: '/sys/others/blank.tsx',
+  },
+  {
+    id: '5733704222120995',
+    parentId: '',
+    label: 'sys.menu.frame',
+    name: 'Frame',
+    icon: 'ic_external',
+    type: PermissionType.CATALOGUE,
+    route: 'frame',
+    children: [
+      {
+        id: '9884486809510480',
+        parentId: '5733704222120995',
+        label: 'sys.menu.external_link',
+        name: 'External Link',
+        type: PermissionType.MENU,
+        route: 'external_link',
+        component: '/sys/others/iframe/external-link.tsx',
+        frameSrc: 'https://ant.design/',
+      },
+      {
+        id: '9299640886731819',
+        parentId: '5733704222120995',
+        label: 'sys.menu.iframe',
+        name: 'Iframe',
+        type: PermissionType.MENU,
+        route: 'frame',
+        component: '/sys/others/iframe/index.tsx',
+        frameSrc: 'https://ant.design/',
+      },
+    ],
+  },
+  {
+    id: '0941594969900756',
+    parentId: '',
+    label: 'sys.menu.blank',
+    name: 'Disabled',
+    icon: 'ic_blank',
+    type: PermissionType.MENU,
+    route: 'blank',
+    component: '/sys/others/blank.tsx',
+  },
+];
 
 export const PERMISSION_LIST = [
   DASHBOARD_PERMISSION,
+  MANAGEMENT_PERMISSION,
   COMPONENTS_PERMISSION,
   FUNCTIONS_PERMISSION,
   MENU_LEVEL_PERMISSION,
+  ERRORS_PERMISSION,
+  ...OTHERS_PERMISSION,
 ];

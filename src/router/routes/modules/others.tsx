@@ -85,7 +85,7 @@ const others: AppRouteObject[] = [
         path: 'external_link',
         element: (
           <Wrapper>
-            <ExternalLink to="https://ant.design/index-cn" />
+            <ExternalLink src="https://ant.design/index-cn" />
           </Wrapper>
         ),
         meta: {

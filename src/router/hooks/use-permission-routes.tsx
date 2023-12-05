@@ -2,20 +2,20 @@ import { chain, isEmpty } from 'ramda';
 import { Suspense, lazy, useMemo } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { Iconify } from '@/components/icon';
 import { CircleLoading } from '@/components/loading';
 import { useUserPermission } from '@/store/userStore';
+import ProTag from '@/theme/antd/components/tag';
 
 import { Permission } from '#/entity';
-import { PermissionType } from '#/enum';
+import { BasicStatus, PermissionType } from '#/enum';
 import { AppRouteObject } from '#/router';
 
 // 使用 import.meta.glob 获取所有路由组件
 const pages = import.meta.glob('/src/pages/**/*.tsx');
 
-console.log('pages', pages);
 // 构建绝对路径的函数
 function resolveComponent(path: string) {
-  console.log('path', path);
   return pages[`/src/pages${path}`];
 }
 
@@ -31,7 +31,6 @@ export function usePermissionRoutes() {
       permissions || [],
       flattenedPermissions,
     );
-    console.log(permissionRoutes);
     return [...permissionRoutes];
   }, [permissions]);
 }
@@ -53,6 +52,9 @@ function transformPermissionToMenuRoutes(
       icon,
       order,
       hide,
+      status,
+      frameSrc,
+      newFeature,
       component,
       parentId,
       children = [],
@@ -60,11 +62,23 @@ function transformPermissionToMenuRoutes(
 
     const appRoute: AppRouteObject = {
       path: route,
-      meta: { label, key: getCompleteRoute(permission, flattenedPermissions), hideMenu: !!hide },
+      meta: {
+        label,
+        key: getCompleteRoute(permission, flattenedPermissions),
+        hideMenu: !!hide,
+        disabled: status === BasicStatus.DISABLE,
+      },
     };
 
     if (order) appRoute.order = order;
     if (icon) appRoute.meta!.icon = icon;
+    if (frameSrc) appRoute.meta!.frameSrc = frameSrc;
+    if (newFeature)
+      appRoute.meta!.suffix = (
+        <ProTag color="cyan" icon={<Iconify icon="solar:bell-bing-bold-duotone" size={14} />}>
+          NEW
+        </ProTag>
+      );
 
     if (type === PermissionType.CATALOGUE) {
       appRoute.meta!.hideTab = true;
@@ -84,7 +98,11 @@ function transformPermissionToMenuRoutes(
       }
     } else if (type === PermissionType.MENU) {
       const Element = lazy(resolveComponent(component!) as any);
-      appRoute.element = <Element />;
+      if (frameSrc) {
+        appRoute.element = <Element src={frameSrc} />;
+      } else {
+        appRoute.element = <Element />;
+      }
     }
 
     return appRoute;

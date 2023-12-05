@@ -35,5 +35,7 @@ export interface Permission {
   icon?: string;
   component?: string;
   hide?: boolean;
+  frameSrc?: string;
+  newFeature?: boolean;
   children?: Permission[];
 }

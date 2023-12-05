@@ -38,6 +38,10 @@ export interface RouteMeta {
    * use to refresh tab
    */
   timeStamp?: string;
+  /**
+   * external link and iframe need
+   */
+  frameSrc?: string;
 }
 export type AppRouteObject = {
   order?: number;

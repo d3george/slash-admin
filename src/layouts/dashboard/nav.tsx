@@ -59,8 +59,6 @@ export default function Nav(props: Props) {
   useEffect(() => {
     const menuRoutes = menuFilter(permissionRoutes);
     const menus = routeToMenuFn(menuRoutes);
-
-    console.log('menus', menus);
     setMenuList(menus);
   }, [permissionRoutes, routeToMenuFn]);
 
