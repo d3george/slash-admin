@@ -57,7 +57,7 @@ function Login() {
         </LoginStateProvider>
       </div>
 
-      <div className="absolute right-0 top-0">
+      <div className="absolute right-2 top-0">
         <LocalePicker />
       </div>
     </Layout>

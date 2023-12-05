@@ -206,18 +206,17 @@ function OrganizationModal({ title, show, formValue, onOk, onCancel }: Organizat
         initialValues={formValue}
         form={form}
         labelCol={{ span: 4 }}
-        wrapperCol={{ span: 14 }}
+        wrapperCol={{ span: 18 }}
         layout="horizontal"
-        style={{ maxWidth: 600 }}
       >
         <Form.Item<Organization> label="Name" name="name" required>
           <Input />
         </Form.Item>
         <Form.Item<Organization> label="Order" name="order" required>
-          <InputNumber />
+          <InputNumber style={{ width: '100%' }} />
         </Form.Item>
         <Form.Item<Organization> label="Status" name="status" required>
-          <Radio.Group optionType="button">
+          <Radio.Group optionType="button" buttonStyle="solid">
             <Radio value="enable"> Enable </Radio>
             <Radio value="disable"> Disable </Radio>
           </Radio.Group>

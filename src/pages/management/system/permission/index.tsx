@@ -1,18 +1,45 @@
-import { Popconfirm } from 'antd';
+import { Button, Card, Popconfirm } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 import { isNil } from 'ramda';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconButton, Iconify, SvgIcon } from '@/components/icon';
 import { useUserPermission } from '@/store/userStore';
 import ProTag from '@/theme/antd/components/tag';
 
+import PermissionModal, { type PermissionModalProps } from './permission-modal';
+
 import { Permission } from '#/entity';
 import { BasicStatus, PermissionType } from '#/enum';
 
+const defaultPermissionValue: Permission = {
+  id: '',
+  parentId: '',
+  name: '',
+  label: '',
+  route: '',
+  component: '',
+  icon: '',
+  hide: false,
+  status: BasicStatus.ENABLE,
+  type: PermissionType.CATALOGUE,
+};
 export default function PermissionPage() {
   const permissions = useUserPermission();
   const { t } = useTranslation();
+
+  const [permissionModalProps, setPermissionModalProps] = useState<PermissionModalProps>({
+    formValue: { ...defaultPermissionValue },
+    title: 'New',
+    show: false,
+    onOk: () => {
+      setPermissionModalProps((prev) => ({ ...prev, show: false }));
+    },
+    onCancel: () => {
+      setPermissionModalProps((prev) => ({ ...prev, show: false }));
+    },
+  });
   const columns: ColumnsType<Permission> = [
     {
       title: 'Name',
@@ -39,6 +66,10 @@ export default function PermissionPage() {
       },
     },
     {
+      title: 'Component',
+      dataIndex: 'component',
+    },
+    {
       title: 'Status',
       dataIndex: 'status',
       align: 'center',
@@ -55,9 +86,9 @@ export default function PermissionPage() {
       key: 'operation',
       align: 'center',
       width: 100,
-      render: (_) => (
+      render: (_, record) => (
         <div className="flex w-full justify-center text-gray">
-          <IconButton onClick={() => {}}>
+          <IconButton onClick={() => onEdit(record)}>
             <Iconify icon="solar:pen-bold-duotone" size={18} />
           </IconButton>
           <Popconfirm title="Delete the Permission" okText="Yes" cancelText="No" placement="left">
@@ -69,14 +100,42 @@ export default function PermissionPage() {
       ),
     },
   ];
+
+  const onCreate = () => {
+    setPermissionModalProps((prev) => ({
+      ...prev,
+      show: true,
+      ...defaultPermissionValue,
+    }));
+  };
+
+  const onEdit = (formValue: Permission) => {
+    setPermissionModalProps((prev) => ({
+      ...prev,
+      show: true,
+      title: 'Edit',
+      formValue,
+    }));
+  };
   return (
-    <Table
-      rowKey="id"
-      size="small"
-      scroll={{ x: 'max-content' }}
-      pagination={false}
-      columns={columns}
-      dataSource={permissions}
-    />
+    <Card
+      title="Permission List"
+      extra={
+        <Button type="primary" onClick={onCreate}>
+          New
+        </Button>
+      }
+    >
+      <Table
+        rowKey="id"
+        size="small"
+        scroll={{ x: 'max-content' }}
+        pagination={false}
+        columns={columns}
+        dataSource={permissions}
+      />
+
+      <PermissionModal {...permissionModalProps} />
+    </Card>
   );
 }

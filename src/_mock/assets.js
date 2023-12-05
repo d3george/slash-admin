@@ -390,7 +390,7 @@ const OTHERS_PERMISSION = [
     parentId: '',
     label: 'sys.menu.disabled',
     name: 'Disabled',
-    icon: 'solar:calendar-bold-duotone',
+    icon: 'ic_disabled',
     type: PermissionType.MENU,
     route: 'disabled',
     status: BasicStatus.DISABLE,
