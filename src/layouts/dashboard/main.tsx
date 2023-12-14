@@ -1,7 +1,6 @@
 import { Content } from 'antd/es/layout/layout';
 import { CSSProperties, forwardRef } from 'react';
 import { Outlet } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { useSettings } from '@/store/settingStore';
 import { useResponsive } from '@/theme/hooks';
@@ -35,27 +34,16 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
   }
 
   return (
-    <Content ref={ref} style={mainStyle}>
-      <MainWrapper>
-        <div
-          className={`m-auto h-full w-full flex-grow sm:p-2 ${
-            themeStretch ? '' : 'xl:max-w-screen-xl'
-          }`}
-        >
-          {multiTab ? <MultiTabs offsetTop={offsetTop} /> : <Outlet />}
-        </div>
-      </MainWrapper>
+    <Content ref={ref} style={mainStyle} className="flex overflow-auto">
+      <div
+        className={`m-auto h-full w-full flex-grow sm:p-2 ${
+          themeStretch ? '' : 'xl:max-w-screen-xl'
+        }`}
+      >
+        {multiTab ? <MultiTabs offsetTop={offsetTop} /> : <Outlet />}
+      </div>
     </Content>
   );
 });
 
 export default Main;
-
-const MainWrapper = styled.div`
-  height: 100%;
-  display: flex;
-  overflow: auto;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
