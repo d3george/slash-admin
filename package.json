@@ -106,6 +106,7 @@
     "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
     "stylelint-order": "^6.0.3",
     "tailwindcss": "^3.3.3",
+    "terser": "^5.26.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "vite-plugin-svg-icons": "^2.0.1",
