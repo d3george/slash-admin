@@ -45,7 +45,7 @@ export default function Header({ className = '', offsetTop = false }: Props) {
     headerStyle.left = 'auto';
     headerStyle.width = `calc(100% - ${
       themeLayout === ThemeLayout.Vertical ? NAV_WIDTH : NAV_COLLAPSED_WIDTH
-    }px`;
+    }px)`;
   } else {
     headerStyle.width = '100vw';
   }
