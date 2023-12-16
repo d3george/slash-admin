@@ -46,17 +46,17 @@ export default defineConfig({
   build: {
     target: 'esnext',
     minify: 'terser',
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            // 让每个插件都打包成独立的文件
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
-          }
-          return null;
-        },
-      },
-    },
+    // rollupOptions: {
+    //   output: {
+    //     manualChunks(id) {
+    //       if (id.includes('node_modules')) {
+    //         // 让每个插件都打包成独立的文件
+    //         return id.toString().split('node_modules/')[1].split('/')[0].toString();
+    //       }
+    //       return null;
+    //     },
+    //   },
+    // },
     terserOptions: {
       compress: {
         // 生产环境移除console
