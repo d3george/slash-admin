@@ -55,7 +55,7 @@ function LoginForm() {
                 </div>
 
                 <div className="flex">
-                  <ProTag className="flex-shrink-0">Tdmin {t('sys.login.userName')}:</ProTag>
+                  <ProTag className="flex-shrink-0">Test {t('sys.login.userName')}:</ProTag>
                   <strong className="ml-1" style={{ color: themeToken.colorInfoTextHover }}>
                     <span>{TEST_USER.username}</span>
                   </strong>
