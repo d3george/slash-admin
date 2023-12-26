@@ -65,7 +65,7 @@ pnpm dev
 运行以下命令以构建生产版本：
 
 ```bash
-pnom build
+pnpm build
 ```
 
 构建后的文件将位于 `dist` 目录中。
