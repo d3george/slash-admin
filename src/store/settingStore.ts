@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { create } from 'zustand';
 
 import { getItem, removeItem, setItem } from '@/utils/storage';
@@ -43,3 +44,12 @@ const useSettingStore = create<SettingStore>((set) => ({
 
 export const useSettings = () => useSettingStore((state) => state.settings);
 export const useSettingActions = () => useSettingStore((state) => state.actions);
+export const useColorScheme = () => {
+  const { themeMode } = useSettings();
+  useEffect(() => {
+    const html = document.querySelector('html');
+    if (html) {
+      html.style.colorScheme = themeMode;
+    }
+  }, [themeMode]);
+};
