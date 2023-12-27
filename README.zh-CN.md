@@ -69,3 +69,20 @@ pnpm build
 ```
 
 构建后的文件将位于 `dist` 目录中。
+
+### 容器化部署
+可以按照你自己的要求修改 Dockerfile 和 docker-compose.yaml
+
+```
+docker-compose up -d
+```
+
+访问 [http://localhost:3001](http://localhost:3001) 查看您的应用程序。
+
+如果系统中没有docker-compose，运行以下脚本来安装
+```
+VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*\d')
+sudo curl -L "https://ghproxy.com/https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+```
