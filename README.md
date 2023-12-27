@@ -67,3 +67,20 @@ Run the following command to build the production version:
 ```bash
 pnpm build
 ```
+
+### deploy as docker
+you can edit Dockerfile and docker-compose.yaml
+
+```
+docker-compose up -d
+```
+
+Visit [http://localhost:3001](http://localhost:3001) to view your application.
+
+install docker-compose use below scripts
+```
+VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*\d')
+sudo curl -L "https://ghproxy.com/https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+```
