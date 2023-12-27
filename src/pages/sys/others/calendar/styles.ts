@@ -5,6 +5,13 @@ import { ThemeMode } from '#/enum';
 export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
   width: 100%;
   height: 100%;
+  overflow: auto;
+  -ms-overflow-style: none; /* 适用于Internet Explorer, Edge */
+  scrollbar-width: none; /* 适用于Firefox */
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* 适用于Chrome、Safari和Opera */
+  }
   .fc {
     width: 100%;
     height: 100%;
