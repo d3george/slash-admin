@@ -42,7 +42,7 @@ export function UploadAvatar({ helperText, defaultAvatar = '', ...other }: Props
       className="absolute z-10 flex h-full w-full flex-col items-center justify-center"
     >
       <Iconify icon="solar:camera-add-bold" size={32} />
-      <div className="mt-1 text-xs">Upload Phote</div>
+      <div className="mt-1 text-xs">Upload Photo</div>
     </div>
   );
 
