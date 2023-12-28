@@ -68,19 +68,33 @@ Run the following command to build the production version:
 pnpm build
 ```
 
-### deploy as docker
-you can edit Dockerfile and docker-compose.yaml
+## Docker deployment
 
+
+### Build image and Run container
+#### build image
+Enter the project root directory in the terminal and execute the following command to build the Docker image:
+```
+docker build -t your-image-name .
+```
+Make sure to replace `your-image-name` with your own image name 
+
+#### run container
+Run your application in the Docker container using the following command:
+```
+docker run -p 3001:80 your-image-name
+```
+This will run your application on port `80`(exposed in `Dockerfile`) of the container and map it to port `3001` on your host.
+
+Now you can access http://localhost:3001 to view the deployed applications.
+
+### use docker-compose.yaml
+Enter the project root directory in the terminal and execute the following command to start Docker Compose:
 ```
 docker-compose up -d
 ```
+Docker Compose will build an image based on the configuration defined by 'docker-compose. yaml' and run the container in the background.
 
-Visit [http://localhost:3001](http://localhost:3001) to view your application.
+After the container runs successfully, it can also be accessed through http://localhost:3001 To view the deployed applications.
 
-install docker-compose use below scripts
-```
-VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*\d')
-sudo curl -L "https://ghproxy.com/https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
-sudo chmod +x /usr/local/bin/docker-compose
-```
