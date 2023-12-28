@@ -98,3 +98,18 @@ docker-compose up -d
 Docker Compose 根据`docker-compose.yaml`定义的配置构建镜像并在后台运行容器.
 
 容器运行成功后，同样可以通过访问 http://localhost:3001来查看部署的应用。
+
+参考[.commitlint.config.js](./commitlint.config.js)
+
+- `feat` 新功能
+- `fix` 修复bug
+- `docs` 文档注释
+- `style` 代码格式(不影响代码运行的变动)
+- `refactor` 重构
+- `perf` 性能优化
+- `revert` 回滚commit
+- `test` 测试相关
+- `chore` 构建过程或辅助工具的变动
+- `ci` 修改CI配置、脚本
+- `types` 类型定义文件修改
+- `wip` 开发中

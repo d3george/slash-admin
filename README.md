@@ -98,3 +98,19 @@ Docker Compose will build an image based on the configuration defined by 'docker
 After the container runs successfully, it can also be accessed through http://localhost:3001 To view the deployed applications.
 
 
+## Git Contribution submission specification
+
+reference[.commitlint.config.js](./commitlint.config.js)
+
+- `feat` new features
+- `fix`  fix the
+- `docs` documentation or comments
+- `style` code format (changes that do not affect code execution)
+- `refactor` refactor
+- `perf` performance optimization
+- `revert` revert commit
+- `test` test related
+- `chore` changes in the construction process or auxiliary tools
+- `ci` modify CI configuration and scripts
+- `types` type definition file changes
+- `wip` in development
