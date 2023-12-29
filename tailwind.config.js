@@ -29,6 +29,8 @@ export default {
       error: '#ff5630',
       info: '#00b8d9',
 
+      code: '#d63384',
+
       'gray-100': '#F9FAFB',
       'gray-200': '#F4F6F8',
       'gray-300': '#DFE3E8',
