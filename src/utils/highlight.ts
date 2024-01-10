@@ -8,6 +8,10 @@ declare global {
   interface Window {
     hljs: any;
   }
+
+  interface Document {
+    startViewTransition: (callback: () => void) => void;
+  }
 }
 
 hljs.configure({

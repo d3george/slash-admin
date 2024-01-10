@@ -8,6 +8,7 @@ import { Button, Card, Drawer, Switch, Tooltip } from 'antd';
 import Color from 'color';
 import { m } from 'framer-motion';
 import { CSSProperties, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { MdCircle } from 'react-icons/md';
 import screenfull from 'screenfull';
 
@@ -35,10 +36,21 @@ export default function SettingButton() {
   const { setSettings } = useSettingActions();
 
   const setThemeMode = (themeMode: ThemeMode) => {
-    setSettings({
-      ...settings,
-      themeMode,
-    });
+    if (!document.startViewTransition) {
+      setSettings({
+        ...settings,
+        themeMode,
+      });
+    } else {
+      document.startViewTransition(() => {
+        flushSync(() => {
+          setSettings({
+            ...settings,
+            themeMode,
+          });
+        });
+      });
+    }
   };
 
   const setThemeColorPresets = (themeColorPresets: ThemeColorPresets) => {

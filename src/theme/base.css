@@ -2,6 +2,23 @@
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
+@keyframes clip {
+  from {
+    clip-path: ellipse(120px 120px at 100% 0);
+  }
+
+  to{
+    clip-path: ellipse(100% 100% at 100% 0);
+  }
+}
+
+::view-transition-old(root){
+  animation: none;
+}
+
+::view-transition-new(root) {
+  animation: clip .5s ease-in;
+}
 
 *,
 ::before,
