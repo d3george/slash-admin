@@ -14,7 +14,7 @@ export default function useKeepAlive() {
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
 
   // active tab
-  const [activeTabRoutePath, setActiveTabRoutePath] = useState<string>();
+  const [activeTabRoutePath, setActiveTabRoutePath] = useState<string>('');
 
   // current route meta
   const currentRouteMeta = useMatchRouteMeta();
@@ -45,8 +45,11 @@ export default function useKeepAlive() {
   const closeOthersTab = useCallback(
     (path = activeTabRoutePath) => {
       setTabs((prev) => prev.filter((item) => item.key === path));
+      if (path !== activeTabRoutePath) {
+        push(path);
+      }
     },
-    [activeTabRoutePath],
+    [activeTabRoutePath, push],
   );
 
   /**
