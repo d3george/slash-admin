@@ -38,32 +38,22 @@ function DashboardLayout() {
     onOffSetTop();
   }, [onOffSetTop]);
 
-  const verticalLayout = (
-    <>
-      <Header offsetTop={offsetTop} />
-      <div className="z-50 hidden h-full flex-shrink-0 md:block">
-        <Nav />
-      </div>
-      <Main ref={mainEl} offsetTop={offsetTop} />
-    </>
-  );
-
-  const horizontalLayout = (
-    <div className="relative flex flex-1 flex-col">
-      <Header />
-      <NavHorizontal />
-      <Main ref={mainEl} offsetTop={offsetTop} />
+  const navVertical = (
+    <div className="z-50 hidden h-full flex-shrink-0 md:block">
+      <Nav />
     </div>
   );
 
-  const layout = themeLayout !== ThemeLayout.Horizontal ? verticalLayout : horizontalLayout;
+  const nav = themeLayout === ThemeLayout.Horizontal ? <NavHorizontal /> : navVertical;
 
   return (
     <StyleWrapper $themeMode={themeMode}>
       <ProgressBar />
 
       <div
-        className="flex h-screen overflow-hidden"
+        className={`flex h-screen overflow-hidden ${
+          themeLayout === ThemeLayout.Horizontal ? 'flex-col' : ''
+        }`}
         style={{
           color: colorTextBase,
           background: colorBgElevated,
@@ -71,7 +61,11 @@ function DashboardLayout() {
             'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         }}
       >
-        <Suspense fallback={<CircleLoading />}>{layout}</Suspense>
+        <Suspense fallback={<CircleLoading />}>
+          <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
+          {nav}
+          <Main ref={mainEl} offsetTop={offsetTop} />
+        </Suspense>
       </div>
     </StyleWrapper>
   );
