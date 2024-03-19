@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
 
 import { useThemeToken } from '@/theme/hooks';
@@ -20,7 +19,6 @@ export default function SimpleLayout({ children }: Props) {
     >
       <HeaderSimple />
       {children}
-      <Analytics />
     </div>
   );
 }
