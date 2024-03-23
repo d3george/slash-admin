@@ -434,6 +434,7 @@ const OTHERS_PERMISSION = [
         name: 'External Link',
         type: PermissionType.MENU,
         route: 'external_link',
+        hideTab: true,
         component: '/sys/others/iframe/external-link.tsx',
         frameSrc: 'https://ant.design/',
       },
