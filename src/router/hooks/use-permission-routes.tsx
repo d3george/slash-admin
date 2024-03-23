@@ -53,6 +53,7 @@ function transformPermissionToMenuRoutes(
       icon,
       order,
       hide,
+      hideTab,
       status,
       frameSrc,
       newFeature,
@@ -67,6 +68,7 @@ function transformPermissionToMenuRoutes(
         label,
         key: getCompleteRoute(permission, flattenedPermissions),
         hideMenu: !!hide,
+        hideTab,
         disabled: status === BasicStatus.DISABLE,
       },
     };
