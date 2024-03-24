@@ -38,7 +38,7 @@ export function useMatchRouteMeta() {
       let pathname = lastRoute?.pathname;
       if (pathname?.endsWith('/')) {
         // 处理pathname多了一个/的情况
-        pathname = pathname.substring(0, pathname.length - 2);
+        pathname = pathname.substring(0, pathname.length - 1);
       }
       const partKey = item.key.split('/');
       const routerKey = pathname?.split('/') || []; // 这里分割后进行比较
