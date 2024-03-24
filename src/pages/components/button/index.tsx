@@ -1,6 +1,6 @@
 import { Button, Card, message } from 'antd';
 
-import { AuthWrapper } from '@/components/authPermission2';
+import { AuthWrapper } from '@/components/authPermission';
 
 export default function showButtonPermission() {
   const handleClick = () => {
