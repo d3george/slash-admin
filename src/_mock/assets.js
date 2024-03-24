@@ -2,6 +2,9 @@ import { faker } from '@faker-js/faker';
 
 import { BasicStatus, PermissionType } from '#/enum';
 
+const ADMIN_BUTTON_PERMISSION = ['ADD', 'DELETE', 'CHANGE', 'SEARCH'];
+const TEST_BUTTON_PERMISSION = ['SEARCH'];
+
 /**
  * Organization data mock
  */
@@ -173,6 +176,15 @@ const COMPONENTS_PERMISSION = {
   route: 'components',
   order: 3,
   children: [
+    {
+      id: '0579995445365433',
+      parentId: '2271615060673773',
+      label: 'sys.menu.buttonPermission',
+      name: 'buttonPermission',
+      type: PermissionType.MENU,
+      route: 'buttonPermission',
+      component: '/components/button/index.tsx',
+    },
     {
       id: '2478488238255411',
       parentId: '2271615060673773',
@@ -460,7 +472,15 @@ const OTHERS_PERMISSION = [
     component: '/sys/others/blank.tsx',
   },
 ];
-
+export const BUTTON_PERMISSION = {
+  id: '0579995445365433',
+  parentId: '',
+  label: 'sys.menu.permission.user',
+  name: 'buttonPermission',
+  type: PermissionType.MENU,
+  route: 'buttonPermission',
+  component: '/management/button/index.tsx',
+};
 export const PERMISSION_LIST = [
   DASHBOARD_PERMISSION,
   MANAGEMENT_PERMISSION,
@@ -482,6 +502,7 @@ const ADMIN_ROLE = {
   order: 1,
   desc: 'Super Admin',
   permission: PERMISSION_LIST,
+  buttonPermission: ADMIN_BUTTON_PERMISSION,
 };
 const TEST_ROLE = {
   id: '9931665660771476',
@@ -491,6 +512,7 @@ const TEST_ROLE = {
   order: 2,
   desc: 'test',
   permission: [DASHBOARD_PERMISSION, COMPONENTS_PERMISSION, FUNCTIONS_PERMISSION],
+  buttonPermission: TEST_BUTTON_PERMISSION,
 };
 export const ROLE_LIST = [ADMIN_ROLE, TEST_ROLE];
 
@@ -507,6 +529,7 @@ export const DEFAULT_USER = {
   password: 'demo1234',
   role: ADMIN_ROLE,
   permissions: ADMIN_ROLE.permission,
+  buttonPermissions: ADMIN_ROLE.buttonPermission,
 };
 export const TEST_USER = {
   id: faker.string.uuid(),
@@ -518,5 +541,6 @@ export const TEST_USER = {
   updatedAt: faker.date.recent(),
   role: TEST_ROLE,
   permissions: TEST_ROLE.permission,
+  buttonPermissions: TEST_ROLE.buttonPermission,
 };
 export const USER_LIST = [DEFAULT_USER, TEST_USER];
