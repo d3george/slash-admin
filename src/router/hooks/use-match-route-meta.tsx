@@ -30,9 +30,34 @@ export function useMatchRouteMeta() {
     console.log('matchs1', matchs, flattenedRoutes);
     const lastRoute = matchs.at(-1);
 
-    const currentRouteMeta = flattenedRoutes.find(
-      (item) => item.key === lastRoute?.pathname || `${item.key}/` === lastRoute?.pathname,
-    );
+    const currentRouteMeta = flattenedRoutes.find((item) => {
+      if (!item.key.includes(':')) {
+        // 不适用动态路由的情况
+        return item.key === lastRoute?.pathname || `${item.key}/` === lastRoute?.pathname;
+      }
+      let pathname = lastRoute?.pathname;
+      if (pathname?.endsWith('/')) {
+        // 处理pathname多了一个/的情况
+        pathname = pathname.substring(0, pathname.length - 2);
+      }
+      const partKey = item.key.split('/');
+      const routerKey = pathname?.split('/') || []; // 这里分割后进行比较
+      const m = partKey.length;
+      const n = routerKey?.length;
+      if (m !== n) {
+        // 长度不同直接返回
+        return false;
+      }
+      for (let i = 0; i < m; i += 1) {
+        if (!partKey[i].startsWith(':')) {
+          // 这里对不是:开头的情况进行比较,是的话就不处理，但这里如果有::id的错误路由就不好处理
+          if (partKey[i] !== routerKey[i]) {
+            return false;
+          }
+        }
+      }
+      return true;
+    });
     if (currentRouteMeta) {
       if (!currentRouteMeta.hideTab) {
         currentRouteMeta.outlet = children;
