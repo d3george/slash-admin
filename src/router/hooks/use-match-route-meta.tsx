@@ -34,10 +34,8 @@ export function useMatchRouteMeta() {
       (item) => item.key === lastRoute?.pathname || `${item.key}/` === lastRoute?.pathname,
     );
     if (currentRouteMeta) {
-      if (!currentRouteMeta.hideTab) {
-        currentRouteMeta.outlet = children;
-        setMatchRouteMeta(currentRouteMeta);
-      }
+      currentRouteMeta.outlet = children;
+      setMatchRouteMeta(currentRouteMeta);
     } else {
       push(HOMEPAGE);
     }

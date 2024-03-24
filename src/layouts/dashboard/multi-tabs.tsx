@@ -187,6 +187,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
    */
   const renderTabLabel = useCallback(
     (tab: KeepAliveTab) => {
+      if (tab.hideTab) return null;
       return (
         <Dropdown
           trigger={['contextMenu']}

@@ -459,6 +459,7 @@ const OTHERS_PERMISSION = [
     type: PermissionType.MENU,
     route: 'blank',
     component: '/sys/others/blank.tsx',
+    hideTab: true,
   },
 ];
 
