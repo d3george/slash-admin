@@ -101,6 +101,7 @@
         "user_detail": "User Detail"
       },
       "blog": "Blog",
+      "buttonPermission": "ButtonPermission",
       "components": "Components",
       "icon": "Icon",
       "animate": "Animate",

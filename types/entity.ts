@@ -14,6 +14,7 @@ export interface UserInfo {
   role?: Role;
   status?: BasicStatus;
   permissions?: Permission[];
+  buttonPermissions?: string[];
 }
 
 export interface Organization {
@@ -51,4 +52,5 @@ export interface Role {
   order?: number;
   desc?: string;
   permission?: Permission[];
+  buttonPermission?: string[];
 }
