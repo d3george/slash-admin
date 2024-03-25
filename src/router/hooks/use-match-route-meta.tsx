@@ -49,7 +49,7 @@ export function useMatchRouteMeta() {
         return false;
       }
       for (let i = 0; i < m; i += 1) {
-        if (!partKey[i].startsWith(':')) {
+        if (!partKey[i].startsWith(':') && routerKey[i] !== '') {
           // 这里对不是:开头的情况进行比较,是的话就不处理，但这里如果有::id的错误路由就不好处理
           if (partKey[i] !== routerKey[i]) {
             return false;
