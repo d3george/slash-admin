@@ -34,6 +34,5 @@ export default function Router() {
 
   const router = createHashRouter(routes as unknown as RouteObject[]);
 
-  console.log('router', router);
   return <RouterProvider router={router} />;
 }
