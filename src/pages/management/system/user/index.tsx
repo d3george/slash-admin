@@ -3,16 +3,20 @@ import Table, { ColumnsType } from 'antd/es/table';
 
 import { USER_LIST } from '@/_mock/assets';
 import { IconButton, Iconify } from '@/components/icon';
+import { usePathname, useRouter } from '@/router/hooks';
 import ProTag from '@/theme/antd/components/tag';
 import { useThemeToken } from '@/theme/hooks';
 
-import { Role, UserInfo } from '#/entity';
+import type { Role, UserInfo } from '#/entity';
 import { BasicStatus } from '#/enum';
 
 const USERS: UserInfo[] = USER_LIST;
 
 export default function RolePage() {
   const { colorTextSecondary } = useThemeToken();
+  const { push } = useRouter();
+  const pathname = usePathname();
+
   const columns: ColumnsType<UserInfo> = [
     {
       title: 'Name',
@@ -55,8 +59,15 @@ export default function RolePage() {
       key: 'operation',
       align: 'center',
       width: 100,
-      render: () => (
+      render: (_, record) => (
         <div className="flex w-full justify-center text-gray">
+          <IconButton
+            onClick={() => {
+              push(`${pathname}/${record.id}`);
+            }}
+          >
+            <Iconify icon="mdi:card-account-details" size={18} />
+          </IconButton>
           <IconButton onClick={() => {}}>
             <Iconify icon="solar:pen-bold-duotone" size={18} />
           </IconButton>
@@ -70,13 +81,11 @@ export default function RolePage() {
     },
   ];
 
-  const onCreate = () => {};
-
   return (
     <Card
       title="User List"
       extra={
-        <Button type="primary" onClick={onCreate}>
+        <Button type="primary" onClick={() => {}}>
           New
         </Button>
       }

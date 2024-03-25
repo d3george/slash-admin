@@ -122,6 +122,10 @@ function transformPermissionToMenuRoutes(
 function getCompleteRoute(permission: Permission, flattenedPermissions: Permission[], route = '') {
   const currentRoute = route ? `/${permission.route}${route}` : `/${permission.route}`;
 
+  if (permission.route.match(':')) {
+    console.log('currentRoute', currentRoute);
+  }
+
   if (permission.parentId) {
     const parentPermission = flattenedPermissions.find((p) => p.id === permission.parentId)!;
     return getCompleteRoute(parentPermission, flattenedPermissions, currentRoute);
