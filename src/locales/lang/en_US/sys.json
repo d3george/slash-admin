@@ -97,7 +97,8 @@
         "organization": "Organization",
         "permission": "Permission",
         "role": "Role",
-        "user": "User"
+        "user": "User",
+        "user_detail": "User Detail"
       },
       "blog": "Blog",
       "buttonPermission": "ButtonPermission",

@@ -38,6 +38,7 @@ export interface Permission {
   icon?: string;
   component?: string;
   hide?: boolean;
+  hideTab?: boolean;
   frameSrc?: string;
   newFeature?: boolean;
   children?: Permission[];

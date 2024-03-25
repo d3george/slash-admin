@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMatches, useOutlet } from 'react-router-dom';
+import { Params, useMatches, useOutlet } from 'react-router-dom';
 
 import { useFlattenedRoutes } from './use-flattened-routes';
 import { useRouter } from './use-router';
@@ -27,17 +27,17 @@ export function useMatchRouteMeta() {
 
   useEffect(() => {
     // 获取当前匹配的路由
-    console.log('matchs1', matchs, flattenedRoutes);
     const lastRoute = matchs.at(-1);
+    if (!lastRoute) return;
 
-    const currentRouteMeta = flattenedRoutes.find(
-      (item) => item.key === lastRoute?.pathname || `${item.key}/` === lastRoute?.pathname,
-    );
+    const { pathname, params } = lastRoute;
+    const currentRouteMeta = flattenedRoutes.find((item) => {
+      const replacedKey = replaceDynamicParams(item.key, params);
+      return replacedKey === pathname || `${replacedKey}/` === pathname;
+    });
     if (currentRouteMeta) {
-      if (!currentRouteMeta.hideTab) {
-        currentRouteMeta.outlet = children;
-        setMatchRouteMeta(currentRouteMeta);
-      }
+      currentRouteMeta.outlet = children;
+      setMatchRouteMeta(currentRouteMeta);
     } else {
       push(HOMEPAGE);
     }
@@ -46,3 +46,27 @@ export function useMatchRouteMeta() {
 
   return matchRouteMeta;
 }
+
+/**
+ * replace `user/:id`  to `/user/1234512345`
+ */
+const replaceDynamicParams = (menuKey: string, params: Params<string>) => {
+  let replacedPathName = menuKey;
+
+  // 解析路由路径中的参数名称
+  const paramNames = menuKey.match(/:\w+/g);
+
+  if (paramNames) {
+    paramNames.forEach((paramName) => {
+      // 去掉冒号，获取参数名称
+      const paramKey = paramName.slice(1);
+      // 检查params对象中是否有这个参数
+      if (params[paramKey]) {
+        // 使用params中的值替换路径中的参数
+        replacedPathName = replacedPathName.replace(paramName, params[paramKey]!);
+      }
+    });
+  }
+
+  return replacedPathName;
+};
