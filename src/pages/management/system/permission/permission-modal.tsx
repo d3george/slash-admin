@@ -1,6 +1,7 @@
-import { Form, Modal, Input, InputNumber, Radio, TreeSelect } from 'antd';
+import { Form, Input, InputNumber, Modal, Radio, Select, TreeSelect } from 'antd';
 import { useEffect } from 'react';
 
+import { pagesSelect } from '@/router/hooks/use-permission-routes';
 import { useUserPermission } from '@/store/userStore';
 
 import { Permission } from '#/entity';
@@ -77,7 +78,7 @@ export default function PermissionModal({
           name="component"
           required={formValue.type === PermissionType.MENU}
         >
-          <Input />
+          <Select allowClear options={pagesSelect} />
         </Form.Item>
 
         <Form.Item<Permission> label="Icon" name="icon" tooltip="local icon should start with ic">

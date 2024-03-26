@@ -6,9 +6,9 @@ import { CircleLoading } from '@/components/loading';
 
 import { AppRouteObject } from '#/router';
 
-const Page403 = lazy(() => import('@/pages/sys/error/Page403'));
-const Page404 = lazy(() => import('@/pages/sys/error/Page404'));
-const Page500 = lazy(() => import('@/pages/sys/error/Page500'));
+const Page403 = lazy(() => import('@/pages/sys/error/page403'));
+const Page404 = lazy(() => import('@/pages/sys/error/page404'));
+const Page500 = lazy(() => import('@/pages/sys/error/page500'));
 
 const errors: AppRouteObject[] = [
   {

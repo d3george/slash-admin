@@ -12,12 +12,24 @@ import { Permission } from '#/entity';
 import { BasicStatus, PermissionType } from '#/enum';
 import { AppRouteObject } from '#/router';
 
-// 使用 import.meta.glob 获取所有路由组件
-const pages = import.meta.glob('/src/pages/**/*.tsx');
+const entryPath = '/src/pages';
 
+// 使用 import.meta.glob 获取所有路由组件
+const pages = import.meta.glob('/src/pages/**/index.tsx');
+export const pagesSelect = Object.entries(pages).map(([path]) => {
+  const pagePath = path.replace(entryPath, '');
+  const split = pagePath
+    .replace(/\/index\.tsx$/, '')
+    .split('/')
+    .filter((r) => !!r);
+  return {
+    label: `${split.join('_')}`,
+    value: pagePath,
+  };
+});
 // 构建绝对路径的函数
 function resolveComponent(path: string) {
-  return pages[`/src/pages${path}`];
+  return pages[`${entryPath}${path}`];
 }
 
 /**

@@ -54,7 +54,7 @@ export default function Header({ className = '', offsetTop = false }: Props) {
     <>
       <header className={`z-20 w-full ${className}`} style={headerStyle}>
         <div
-          className="flex flex-grow items-center justify-between px-4 text-gray backdrop-blur xl:px-6 2xl:px-10"
+          className="flex flex-grow items-center justify-between px-4 text-gray xl:px-6 2xl:px-10"
           style={{
             height: offsetTop ? OFFSET_HEADER_HEIGHT : HEADER_HEIGHT,
             transition: 'height 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',

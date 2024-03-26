@@ -166,7 +166,7 @@ const MANAGEMENT_PERMISSION = {
           name: 'User Detail',
           type: PermissionType.MENU,
           route: 'user/:id',
-          component: '/management/system/user/detail.tsx',
+          component: '/management/system/user/detail/index.tsx',
           hide: true,
         },
       ],
@@ -363,7 +363,7 @@ const ERRORS_PERMISSION = {
       name: '403',
       type: PermissionType.MENU,
       route: '403',
-      component: '/sys/error/Page403.tsx',
+      component: '/sys/error/page403/index.tsx',
     },
     {
       id: '5095669208159005',
@@ -372,7 +372,7 @@ const ERRORS_PERMISSION = {
       name: '404',
       type: PermissionType.MENU,
       route: '404',
-      component: '/sys/error/Page404.tsx',
+      component: '/sys/error/page404/index.tsx',
     },
     {
       id: '0225992135973772',
@@ -381,7 +381,7 @@ const ERRORS_PERMISSION = {
       name: '500',
       type: PermissionType.MENU,
       route: '500',
-      component: '/sys/error/Page500.tsx',
+      component: '/sys/error/page500/index.tsx',
     },
   ],
 };
@@ -426,7 +426,7 @@ const OTHERS_PERMISSION = [
     type: PermissionType.MENU,
     route: 'label',
     newFeature: true,
-    component: '/sys/others/blank.tsx',
+    component: '/sys/others/blank/index.tsx',
   },
   {
     id: '5733704222120995',
@@ -445,7 +445,7 @@ const OTHERS_PERMISSION = [
         type: PermissionType.MENU,
         route: 'external_link',
         hideTab: true,
-        component: '/sys/others/iframe/external-link.tsx',
+        component: '/sys/others/iframe/external-link/index.tsx',
         frameSrc: 'https://ant.design/',
       },
       {
@@ -468,7 +468,7 @@ const OTHERS_PERMISSION = [
     icon: 'ic_blank',
     type: PermissionType.MENU,
     route: 'blank',
-    component: '/sys/others/blank.tsx',
+    component: '/sys/others/blank/index.tsx',
   },
 ];
 
