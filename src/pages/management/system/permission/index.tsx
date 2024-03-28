@@ -107,6 +107,7 @@ export default function PermissionPage() {
       show: true,
       ...defaultPermissionValue,
       title: 'New',
+      formValue: { ...defaultPermissionValue },
     }));
   };
 
