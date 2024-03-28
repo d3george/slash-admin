@@ -1,6 +1,7 @@
-import { Form, Modal, Input, InputNumber, Radio, TreeSelect } from 'antd';
-import { useEffect } from 'react';
+import { AutoComplete, Form, Input, InputNumber, Modal, Radio, TreeSelect } from 'antd';
+import { useCallback, useEffect, useState } from 'react';
 
+import { pagesSelect } from '@/router/hooks/use-permission-routes';
 import { useUserPermission } from '@/store/userStore';
 
 import { Permission } from '#/entity';
@@ -23,10 +24,42 @@ export default function PermissionModal({
 }: PermissionModalProps) {
   const [form] = Form.useForm();
   const permissions = useUserPermission();
+  const [compOptions, setCompOptions] = useState(pagesSelect);
+
+  const getParentNameById = useCallback(
+    (parentId: string, data: Permission[] | undefined = permissions) => {
+      let name = '';
+      if (!data || !parentId) return name;
+      for (let i = 0; i < data.length; i += 1) {
+        if (data[i].id === parentId) {
+          name = data[i].name;
+        } else if (data[i].children) {
+          name = getParentNameById(parentId, data[i].children);
+        }
+        if (name) {
+          break;
+        }
+      }
+      return name;
+    },
+    [permissions],
+  );
+
+  const updateCompOptions = (name: string) => {
+    setCompOptions(
+      pagesSelect.filter((path) => {
+        return path.value.includes(name.toLowerCase());
+      }),
+    );
+  };
 
   useEffect(() => {
     form.setFieldsValue({ ...formValue });
-  }, [formValue, form]);
+    if (formValue.parentId) {
+      const parentName = getParentNameById(formValue.parentId);
+      updateCompOptions(parentName);
+    }
+  }, [formValue, form, getParentNameById]);
 
   return (
     <Modal title={title} open={show} onOk={onOk} onCancel={onCancel}>
@@ -65,6 +98,9 @@ export default function PermissionModal({
               children: 'children',
             }}
             treeData={permissions}
+            onChange={(_value, labelList) => {
+              updateCompOptions(labelList[0] as string);
+            }}
           />
         </Form.Item>
 
@@ -72,12 +108,24 @@ export default function PermissionModal({
           <Input />
         </Form.Item>
 
-        <Form.Item<Permission>
-          label="Component"
-          name="component"
-          required={formValue.type === PermissionType.MENU}
+        <Form.Item
+          noStyle
+          shouldUpdate={(prevValues, currentValues) => prevValues.type !== currentValues.type}
         >
-          <Input />
+          {({ getFieldValue }) => {
+            if (getFieldValue('type') === PermissionType.MENU) {
+              return (
+                <Form.Item<Permission>
+                  label="Component"
+                  name="component"
+                  required={formValue.type === PermissionType.MENU}
+                >
+                  <AutoComplete options={compOptions} placeholder="Please input component path" />
+                </Form.Item>
+              );
+            }
+            return null;
+          }}
         </Form.Item>
 
         <Form.Item<Permission> label="Icon" name="icon" tooltip="local icon should start with ic">
