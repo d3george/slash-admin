@@ -118,11 +118,10 @@ export default function PermissionModal({
                 <Form.Item<Permission>
                   label="Component"
                   name="component"
-                  required={formValue.type === PermissionType.MENU}
+                  required={getFieldValue('type') === PermissionType.MENU}
                 >
                   <AutoComplete
                     options={compOptions}
-                    placeholder="Please input component path"
                     filterOption={(input, option) =>
                       ((option?.label || '') as string).toLowerCase().includes(input.toLowerCase())
                     }
