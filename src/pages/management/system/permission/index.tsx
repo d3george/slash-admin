@@ -106,6 +106,7 @@ export default function PermissionPage() {
       ...prev,
       show: true,
       ...defaultPermissionValue,
+      title: 'New',
     }));
   };
 
