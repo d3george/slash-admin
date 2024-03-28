@@ -120,7 +120,13 @@ export default function PermissionModal({
                   name="component"
                   required={formValue.type === PermissionType.MENU}
                 >
-                  <AutoComplete options={compOptions} placeholder="Please input component path" />
+                  <AutoComplete
+                    options={compOptions}
+                    placeholder="Please input component path"
+                    filterOption={(input, option) =>
+                      ((option?.label || '') as string).toLowerCase().includes(input.toLowerCase())
+                    }
+                  />
                 </Form.Item>
               );
             }
