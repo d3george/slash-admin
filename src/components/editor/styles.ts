@@ -33,6 +33,9 @@ const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
   h5 {
     ${(props) => getHeadingStyle(5, props.$token)};
   }
+  img {
+    display: inline;
+  }
   overflow: hidden;
   position: relative;
   border-radius: 8px;
