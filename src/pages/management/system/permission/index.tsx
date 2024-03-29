@@ -88,6 +88,9 @@ export default function PermissionPage() {
       width: 100,
       render: (_, record) => (
         <div className="flex w-full justify-center text-gray">
+          <IconButton onClick={() => onCreate(record.id)}>
+            <Iconify icon="gridicons:add-outline" size={18} />
+          </IconButton>
           <IconButton onClick={() => onEdit(record)}>
             <Iconify icon="solar:pen-bold-duotone" size={18} />
           </IconButton>
@@ -101,13 +104,13 @@ export default function PermissionPage() {
     },
   ];
 
-  const onCreate = () => {
+  const onCreate = (parentId?: string) => {
     setPermissionModalProps((prev) => ({
       ...prev,
       show: true,
       ...defaultPermissionValue,
       title: 'New',
-      formValue: { ...defaultPermissionValue },
+      formValue: { ...defaultPermissionValue, parentId: parentId ?? '' },
     }));
   };
 
@@ -123,7 +126,7 @@ export default function PermissionPage() {
     <Card
       title="Permission List"
       extra={
-        <Button type="primary" onClick={onCreate}>
+        <Button type="primary" onClick={() => onCreate()}>
           New
         </Button>
       }
