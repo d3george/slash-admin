@@ -87,7 +87,7 @@ export default function PermissionPage() {
       align: 'center',
       width: 100,
       render: (_, record) => (
-        <div className="flex w-full justify-center text-gray">
+        <div className="flex w-full justify-end text-gray">
           {record?.type === PermissionType.CATALOGUE && (
             <IconButton onClick={() => onCreate(record.id)}>
               <Iconify icon="gridicons:add-outline" size={18} />
