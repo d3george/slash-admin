@@ -11,7 +11,7 @@ import ProTag from '@/theme/antd/components/tag';
 import PermissionModal, { type PermissionModalProps } from './permission-modal';
 
 import { Permission } from '#/entity';
-import { BasicStatus, MenuComponent, PermissionType } from '#/enum';
+import { BasicStatus, PermissionType } from '#/enum';
 
 const defaultPermissionValue: Permission = {
   id: '',
@@ -88,7 +88,7 @@ export default function PermissionPage() {
       width: 100,
       render: (_, record) => (
         <div className="flex w-full justify-center text-gray">
-          {record?.component !== MenuComponent.BLANK && (
+          {record?.type === PermissionType.CATALOGUE && (
             <IconButton onClick={() => onCreate(record.id)}>
               <Iconify icon="gridicons:add-outline" size={18} />
             </IconButton>
