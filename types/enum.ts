@@ -56,7 +56,3 @@ export enum PermissionType {
   MENU,
   BUTTON,
 }
-
-export enum MenuComponent {
-  BLANK = '/sys/others/blank.tsx'
-}
