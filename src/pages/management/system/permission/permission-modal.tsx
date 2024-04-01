@@ -97,6 +97,7 @@ export default function PermissionModal({
               value: 'id',
               children: 'children',
             }}
+            allowClear
             treeData={permissions}
             onChange={(_value, labelList) => {
               updateCompOptions(labelList[0] as string);
