@@ -1,6 +1,8 @@
+import { isEmpty } from 'ramda';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useMatchRouteMeta, useRouter } from '@/router/hooks';
+import { replaceDynamicParams } from '@/router/hooks/use-match-route-meta';
 
 import type { RouteMeta } from '#/router';
 
@@ -57,7 +59,6 @@ export default function useKeepAlive() {
    * Close all tabs then navigate to the home page
    */
   const closeAll = useCallback(() => {
-    // setTabs([tabHomePage]);
     setTabs([]);
     push(HOMEPAGE);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,7 +99,7 @@ export default function useKeepAlive() {
         const index = prev.findIndex((item) => item.key === path);
 
         if (index >= 0) {
-          prev[index].timeStamp = getKey();
+          prev[index].timeStamp = getTimeStamp();
         }
 
         return [...prev];
@@ -109,15 +110,21 @@ export default function useKeepAlive() {
 
   useEffect(() => {
     if (!currentRouteMeta) return;
-    const existed = tabs.find((item) => item.key === currentRouteMeta.key);
+    let { key } = currentRouteMeta;
+    const { outlet: children, params = {} } = currentRouteMeta;
+
+    if (!isEmpty(params)) {
+      key = replaceDynamicParams(key, params);
+    }
+    const existed = tabs.find((item) => item.key === key);
     if (!existed) {
       setTabs((prev) => [
         ...prev,
-        { ...currentRouteMeta, children: currentRouteMeta.outlet, timeStamp: getKey() },
+        { ...currentRouteMeta, key, children, timeStamp: getTimeStamp() },
       ]);
     }
 
-    setActiveTabRoutePath(currentRouteMeta.key);
+    setActiveTabRoutePath(key);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRouteMeta]);
 
@@ -134,6 +141,6 @@ export default function useKeepAlive() {
   };
 }
 
-function getKey() {
+function getTimeStamp() {
   return new Date().getTime().toString();
 }

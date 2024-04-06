@@ -509,8 +509,8 @@ export const ROLE_LIST = [ADMIN_ROLE, TEST_ROLE];
  * User data mock
  */
 export const DEFAULT_USER = {
-  id: faker.string.uuid(),
-  username: 'admin@gmail.com',
+  id: 'b34719e1-ce46-457e-9575-99505ecee828',
+  username: 'admin',
   email: faker.internet.email(),
   avatar: faker.image.avatarLegacy(),
   createdAt: faker.date.anytime(),
@@ -520,8 +520,8 @@ export const DEFAULT_USER = {
   permissions: ADMIN_ROLE.permission,
 };
 export const TEST_USER = {
-  id: faker.string.uuid(),
-  username: 'test@gmail.com',
+  id: 'efaa20ea-4dc5-47ee-a200-8a899be29494',
+  username: 'test',
   password: 'demo1234',
   email: faker.internet.email(),
   avatar: faker.image.avatarLegacy(),

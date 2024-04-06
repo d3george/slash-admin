@@ -1,10 +1,11 @@
+import { isEmpty } from 'ramda';
 import { useEffect, useState } from 'react';
 import { Params, useMatches, useOutlet } from 'react-router-dom';
 
 import { useFlattenedRoutes } from './use-flattened-routes';
 import { useRouter } from './use-router';
 
-import { RouteMeta } from '#/router';
+import type { RouteMeta } from '#/router';
 
 /**
  * 返回当前路由Meta信息
@@ -37,7 +38,10 @@ export function useMatchRouteMeta() {
     });
     if (currentRouteMeta) {
       currentRouteMeta.outlet = children;
-      setMatchRouteMeta(currentRouteMeta);
+      if (!isEmpty(params)) {
+        currentRouteMeta.params = params;
+      }
+      setMatchRouteMeta({ ...currentRouteMeta });
     } else {
       push(HOMEPAGE);
     }
@@ -50,7 +54,7 @@ export function useMatchRouteMeta() {
 /**
  * replace `user/:id`  to `/user/1234512345`
  */
-const replaceDynamicParams = (menuKey: string, params: Params<string>) => {
+export const replaceDynamicParams = (menuKey: string, params: Params<string>) => {
   let replacedPathName = menuKey;
 
   // 解析路由路径中的参数名称

@@ -1,14 +1,16 @@
 import { Dropdown, MenuProps, Tabs, TabsProps } from 'antd';
 import Color from 'color';
-import { CSSProperties, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { CSSProperties, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DragDropContext, Draggable, Droppable, OnDragEndResponder } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { useToggle, useFullscreen } from 'react-use';
 import styled from 'styled-components';
 
+import { USER_LIST } from '@/_mock/assets';
 import { Iconify } from '@/components/icon';
 import useKeepAlive, { KeepAliveTab } from '@/hooks/web/use-keepalive';
 import { useRouter } from '@/router/hooks';
+import { replaceDynamicParams } from '@/router/hooks/use-match-route-meta';
 import { useSettings } from '@/store/settingStore';
 import { useResponsive, useThemeToken } from '@/theme/hooks';
 
@@ -49,6 +51,27 @@ export default function MultiTabs({ offsetTop = false }: Props) {
     closeLeft,
     closeRight,
   } = useKeepAlive();
+
+  /**
+   * Special Tab Label Render
+   *
+   * @example
+   * /user/:id --> `A-UserDetail`
+   */
+  const SpecialTabRenderMap: Record<string, (tab: KeepAliveTab) => ReactNode> = useMemo(
+    () => ({
+      'sys.menu.system.user_detail': (tab: KeepAliveTab) => {
+        const userId = tab.params?.id;
+        const defaultLabel = t(tab.label);
+        if (userId) {
+          const user = USER_LIST.find((item) => item.id === userId);
+          return `${user?.username}-${defaultLabel}`;
+        }
+        return defaultLabel;
+      },
+    }),
+    [t],
+  );
 
   /**
    * tab dropdown下拉选
@@ -203,7 +226,9 @@ export default function MultiTabs({ offsetTop = false }: Props) {
             }}
             onMouseLeave={() => setHoveringTabKey('')}
           >
-            <div>{t(tab.label)}</div>
+            <div>
+              {SpecialTabRenderMap[tab.label] ? SpecialTabRenderMap[tab.label](tab) : t(tab.label)}
+            </div>
             <Iconify
               icon="ion:close-outline"
               size={18}
@@ -233,6 +258,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
       menuClick,
       closeTab,
       calcTabStyle,
+      SpecialTabRenderMap,
     ],
   );
 
@@ -300,6 +326,12 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   } else {
     multiTabsStyle.width = '100vw';
   }
+
+  const handleTabClick = ({ key, params = {} }: KeepAliveTab) => {
+    const tabKey = replaceDynamicParams(key, params);
+    push(tabKey);
+  };
+
   const renderTabBar: TabsProps['renderTabBar'] = () => {
     return (
       <div style={multiTabsStyle} className="z-20 w-full">
@@ -313,7 +345,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
                       id={`tab-${index}`}
                       className="flex-shrink-0"
                       key={tab.key}
-                      onClick={() => push(tab.key)}
+                      onClick={() => handleTabClick(tab)}
                     >
                       <Draggable key={tab.key} draggableId={tab.key} index={index}>
                         {(provided) => (

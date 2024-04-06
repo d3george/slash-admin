@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { RouteObject } from 'react-router-dom';
+import { Params, RouteObject } from 'react-router-dom';
 
 export interface RouteMeta {
   /**
@@ -42,6 +42,12 @@ export interface RouteMeta {
    * external link and iframe need
    */
   frameSrc?: string;
+  /**
+   * dynamic route params
+   * 
+   * @example /user/:id
+   */
+  params?:  Params<string>
 }
 export type AppRouteObject = {
   order?: number;
