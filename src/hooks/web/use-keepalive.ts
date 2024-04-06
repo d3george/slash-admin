@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { useMatchRouteMeta, useRouter } from '@/router/hooks';
 
-import { RouteMeta } from '#/router';
+import type { RouteMeta } from '#/router';
 
 export type KeepAliveTab = RouteMeta & {
   children: any;
@@ -10,6 +10,7 @@ export type KeepAliveTab = RouteMeta & {
 export default function useKeepAlive() {
   const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
   const { push } = useRouter();
+
   // tabs
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
 

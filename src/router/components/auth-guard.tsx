@@ -1,5 +1,7 @@
 import { useCallback, useEffect } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
+import PageError from '@/pages/sys/error/PageError';
 import { useUserToken } from '@/store/userStore';
 
 import { useRouter } from '../hooks';
@@ -21,5 +23,5 @@ export default function AuthGuard({ children }: Props) {
     check();
   }, [check]);
 
-  return children;
+  return <ErrorBoundary FallbackComponent={PageError}>{children}</ErrorBoundary>;
 }
