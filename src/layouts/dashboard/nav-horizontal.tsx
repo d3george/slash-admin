@@ -42,12 +42,7 @@ export default function NavHorizontal() {
    * events
    */
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
-    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-    if (latestOpenKey) {
-      setOpenKeys(keys);
-    } else {
-      setOpenKeys([]);
-    }
+    setOpenKeys(keys);
   };
   const onClick: MenuProps['onClick'] = ({ key }) => {
     // 从扁平化的路由信息里面匹配当前点击的那个
