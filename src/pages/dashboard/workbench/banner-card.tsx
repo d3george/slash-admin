@@ -29,7 +29,7 @@ export default function BannerCard() {
           <h4>Welcome back 👋 </h4>
           <h4>{username}</h4>
         </div>
-        <p
+        <div
           style={{ color: themeToken.colorPrimaryTextActive }}
           className="mx-auto mb-6 mt-4 max-w-sm text-sm opacity-80 md:mx-0"
         >
@@ -46,7 +46,7 @@ export default function BannerCard() {
               👉 https://blog.slashspaces.com
             </a>
           </div>
-        </p>
+        </div>
         <button
           className="font-mediumtext-black m-auto flex items-center justify-center rounded-md px-2 py-1 shadow-none md:m-0"
           style={{ backgroundColor: themeToken.colorPrimary, color: '#fff' }}
