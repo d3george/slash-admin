@@ -49,7 +49,6 @@ function DashboardLayout() {
   return (
     <StyleWrapper $themeMode={themeMode}>
       <ProgressBar />
-
       <div
         className={`flex h-screen overflow-hidden ${
           themeLayout === ThemeLayout.Horizontal ? 'flex-col' : ''

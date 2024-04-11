@@ -66,9 +66,9 @@ export default function Header({ className = '', offsetTop = false }: Props) {
                 <SvgIcon icon="ic-menu" size="24" />
               </IconButton>
             ) : (
-              <Logo className="mr-2 text-xl" />
+              <Logo />
             )}
-            <div className="hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div>
+            <div className="ml-4 hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div>
           </div>
 
           <div className="flex">

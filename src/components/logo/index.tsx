@@ -2,14 +2,17 @@ import { NavLink } from 'react-router-dom';
 
 import { useThemeToken } from '@/theme/hooks';
 
-function Logo({ className = '' }: { className?: string }) {
+import { Iconify } from '../icon';
+
+interface Props {
+  size?: number | string;
+}
+function Logo({ size = 50 }: Props) {
   const { colorPrimary } = useThemeToken();
 
   return (
-    <NavLink to="/" className="no-underline">
-      <button className={`font-semibold ${className}`} style={{ color: colorPrimary }}>
-        Logo
-      </button>
+    <NavLink to="/">
+      <Iconify icon="solar:code-square-bold" color={colorPrimary} size={size} />
     </NavLink>
   );
 }

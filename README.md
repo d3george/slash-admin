@@ -1,8 +1,11 @@
 <div align="center"> 
 <br> 
 <br>
-<h1>Slash Admin 
-</h1>
+<img src="./src/assets/images/logo.png" height="140" />
+<h1> Slash Admin </h1>
+<p style="font-size: 14px">
+  Slash Admin is a modern admin dashboard template built with React 18, Vite, Ant Design, and TypeScript. It is designed to help developers quickly create powerful admin management systems.
+</p>
 </div>
 
 **English** | [中文](./README.zh-CN.md)
@@ -12,9 +15,6 @@
   <img style="width:300px" src="https://d3george.github.io/github-static/pay/weixin.jpg" >
   <img style="width:300px" src="https://d3george.github.io/github-static/pay/buymeacoffee.png" />
 </div>
-
-## Introduction
-Slash Admin is a modern admin dashboard template built with React 18, Vite, Ant Design, and TypeScript. It is designed to help developers quickly create powerful admin management systems.
 
 ## Preview
 + https://admin.slashspaces.com/

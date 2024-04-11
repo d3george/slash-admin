@@ -24,7 +24,7 @@ export default function Nav(props: Props) {
   const matches = useMatches();
   const { pathname } = useLocation();
 
-  const { colorTextBase, colorBgElevated, colorBorder } = useThemeToken();
+  const { colorPrimary, colorTextBase, colorBgElevated, colorBorder } = useThemeToken();
 
   const settings = useSettings();
   const { themeLayout } = settings;
@@ -122,9 +122,14 @@ export default function Nav(props: Props) {
     >
       <div className="relative flex h-20 items-center justify-center py-4">
         {themeLayout === ThemeLayout.Mini ? (
-          <Logo className="text-lg" />
+          <Logo />
         ) : (
-          <Logo className="text-4xl" />
+          <div className="flex items-center gap-2">
+            <Logo />
+            <span className="text-xl font-bold" style={{ color: colorPrimary }}>
+              Slash Admin
+            </span>
+          </div>
         )}
         <button
           onClick={toggleCollapsed}
