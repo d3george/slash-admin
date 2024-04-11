@@ -9,7 +9,7 @@ import { ResultEnum } from '#/enum';
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_API as string,
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 50000,
   headers: { 'Content-Type': 'application/json;charset=utf-8' },
 });
