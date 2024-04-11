@@ -117,6 +117,11 @@ export default function useKeepAlive() {
       key = replaceDynamicParams(key, params);
     }
     const existed = tabs.find((item) => item.key === key);
+
+    tabs.forEach((item, i) => {
+      item.hideTab && tabs.splice(i, 1);
+    });
+
     if (!existed) {
       setTabs((prev) => [
         ...prev,
