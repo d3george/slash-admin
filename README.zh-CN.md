@@ -7,7 +7,11 @@
 
 **中文** | [English](./README.md)
 
-<a href="https://www.buymeacoffee.com/kevin_ouu" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+## 赞助 
+<div style="display: flex; gap: 50px"> 
+  <img style="width:300px" src="https://d3george.github.io/github-static/pay/weixin.jpg" >
+  <img style="width:300px" src="https://d3george.github.io/github-static/pay/buymeacoffee.png" />
+</div>
 
 ## 简介
 

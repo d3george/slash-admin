@@ -7,7 +7,11 @@
 
 **English** | [中文](./README.zh-CN.md)
 
-<a href="https://www.buymeacoffee.com/kevin_ouu" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+##  Sponsor
+<div style="display: flex; gap: 50px"> 
+  <img style="width:300px" src="https://d3george.github.io/github-static/pay/weixin.jpg" >
+  <img style="width:300px" src="https://d3george.github.io/github-static/pay/buymeacoffee.png" />
+</div>
 
 ## Introduction
 Slash Admin is a modern admin dashboard template built with React 18, Vite, Ant Design, and TypeScript. It is designed to help developers quickly create powerful admin management systems.
