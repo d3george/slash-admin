@@ -7,6 +7,8 @@
 
 **中文** | [English](./README.md)
 
+<a href="https://www.buymeacoffee.com/kevin_ouu" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ## 简介
 
 Slash Admin 是一个现代化的后台管理模板，基于 React 18、Vite、Ant Design 和 TypeScript 构建。它旨在帮助开发人员快速搭建功能强大的后台管理系统。
