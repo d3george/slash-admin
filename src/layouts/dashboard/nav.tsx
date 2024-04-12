@@ -2,9 +2,12 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import Color from 'color';
+import { m } from 'framer-motion';
 import { CSSProperties, useEffect, useState } from 'react';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
+import MotionContainer from '@/components/animate/motion-container';
+import { varSlide } from '@/components/animate/variants';
 import Logo from '@/components/logo';
 import Scrollbar from '@/components/scrollbar';
 import { useRouteToMenuFn, usePermissionRoutes, useFlattenedRoutes } from '@/router/hooks';
@@ -15,6 +18,8 @@ import { useThemeToken } from '@/theme/hooks';
 import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
 
 import { ThemeLayout } from '#/enum';
+
+const slideInLeft = varSlide({ distance: 10 }).inLeft;
 
 type Props = {
   closeSideBarDrawer?: () => void;
@@ -121,12 +126,16 @@ export default function Nav(props: Props) {
       }}
     >
       <div className="relative flex h-20 items-center justify-center py-4">
-        <Logo />
-        {themeLayout !== ThemeLayout.Mini && (
-          <span className="text-xl font-bold" style={{ color: colorPrimary }}>
-            Slash Admin
-          </span>
-        )}
+        <MotionContainer className="flex items-center">
+          <Logo />
+          {themeLayout !== ThemeLayout.Mini && (
+            <m.div variants={slideInLeft}>
+              <span className="ml-2 text-xl font-bold" style={{ color: colorPrimary }}>
+                Slash Admin
+              </span>
+            </m.div>
+          )}
+        </MotionContainer>
         <button
           onClick={toggleCollapsed}
           className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray md:block"
