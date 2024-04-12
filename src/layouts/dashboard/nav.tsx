@@ -121,15 +121,11 @@ export default function Nav(props: Props) {
       }}
     >
       <div className="relative flex h-20 items-center justify-center py-4">
-        {themeLayout === ThemeLayout.Mini ? (
-          <Logo />
-        ) : (
-          <div className="flex items-center gap-2">
-            <Logo />
-            <span className="text-xl font-bold" style={{ color: colorPrimary }}>
-              Slash Admin
-            </span>
-          </div>
+        <Logo />
+        {themeLayout !== ThemeLayout.Mini && (
+          <span className="text-xl font-bold" style={{ color: colorPrimary }}>
+            Slash Admin
+          </span>
         )}
         <button
           onClick={toggleCollapsed}
@@ -158,6 +154,7 @@ export default function Nav(props: Props) {
           onClick={onClick}
           style={menuStyle}
           inlineCollapsed={collapsed}
+          inlineIndent={50}
         />
       </Scrollbar>
     </div>
