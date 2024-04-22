@@ -84,12 +84,14 @@ function transformPermissionToMenuRoutes(
     if (order) appRoute.order = order;
     if (icon) appRoute.meta!.icon = icon;
     if (frameSrc) appRoute.meta!.frameSrc = frameSrc;
-    if (newFeature)
+
+    if (newFeature) {
       appRoute.meta!.suffix = (
         <ProTag color="cyan" icon={<Iconify icon="solar:bell-bing-bold-duotone" size={14} />}>
           NEW
         </ProTag>
       );
+    }
 
     if (type === PermissionType.CATALOGUE) {
       appRoute.meta!.hideTab = true;
@@ -101,6 +103,7 @@ function transformPermissionToMenuRoutes(
         );
       }
       appRoute.children = transformPermissionToMenuRoutes(children, flattenedPermissions);
+
       if (!isEmpty(children)) {
         appRoute.children.unshift({
           index: true,
@@ -112,7 +115,11 @@ function transformPermissionToMenuRoutes(
       if (frameSrc) {
         appRoute.element = <Element src={frameSrc} />;
       } else {
-        appRoute.element = <Element />;
+        appRoute.element = (
+          <Suspense fallback={<CircleLoading />}>
+            <Element />
+          </Suspense>
+        );
       }
     }
 

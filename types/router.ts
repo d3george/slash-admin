@@ -44,10 +44,10 @@ export interface RouteMeta {
   frameSrc?: string;
   /**
    * dynamic route params
-   * 
+   *
    * @example /user/:id
    */
-  params?:  Params<string>
+  params?: Params<string>;
 }
 export type AppRouteObject = {
   order?: number;
