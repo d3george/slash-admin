@@ -27,16 +27,17 @@ export default function useKeepAlive() {
    */
   const closeTab = useCallback(
     (path = activeTabRoutePath) => {
-      if (tabs.length === 1) return;
-      const deleteTabIndex = tabs.findIndex((item) => item.key === path);
+      const tempTabs = [...tabs];
+      if (tempTabs.length === 1) return;
+      const deleteTabIndex = tempTabs.findIndex((item) => item.key === path);
       if (deleteTabIndex > 0) {
-        push(tabs[deleteTabIndex - 1].key);
+        push(tempTabs[deleteTabIndex - 1].key);
       } else {
-        push(tabs[deleteTabIndex + 1].key);
+        push(tempTabs[deleteTabIndex + 1].key);
       }
 
-      tabs.splice(deleteTabIndex, 1);
-      setTabs([...tabs]);
+      tempTabs.splice(deleteTabIndex, 1);
+      setTabs(tempTabs);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [activeTabRoutePath],
@@ -109,6 +110,8 @@ export default function useKeepAlive() {
   );
 
   useEffect(() => {
+    setTabs((prev) => prev.filter((item) => !item.hideTab));
+
     if (!currentRouteMeta) return;
     let { key } = currentRouteMeta;
     const { outlet: children, params = {} } = currentRouteMeta;
@@ -117,6 +120,7 @@ export default function useKeepAlive() {
       key = replaceDynamicParams(key, params);
     }
     const existed = tabs.find((item) => item.key === key);
+
     if (!existed) {
       setTabs((prev) => [
         ...prev,
