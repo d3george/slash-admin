@@ -57,7 +57,7 @@ export default function PermissionPage() {
       title: 'Icon',
       dataIndex: 'icon',
       width: 60,
-      render: (icon) => {
+      render: (icon: string) => {
         if (isNil(icon)) return '';
         if (icon.startsWith('ic')) {
           return <SvgIcon icon={icon} size={18} className="ant-menu-item-icon" />;
