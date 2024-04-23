@@ -40,6 +40,9 @@
 - 使用 Zustand 进行状态管理
 - 使用 React-Query 进行数据获取
 
+## 文档
+[文档地址](https://docs-admin.slashspaces.com/)
+
 ## 快速开始
 
 ### 获取项目代码
