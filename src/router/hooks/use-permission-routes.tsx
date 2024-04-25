@@ -32,6 +32,11 @@ function resolveComponent(path: string) {
  * return routes about permission
  */
 export function usePermissionRoutes() {
+  // 切换回静态路由
+  // return useMemo(() => {
+  //   return getRoutesFromModules();
+  // }, []);
+
   const permissions = useUserPermission();
 
   return useMemo(() => {

@@ -20,7 +20,7 @@ export const menuFilter = (items: AppRouteObject[]) => {
 /**
  * 基于 src/router/routes/modules 文件结构动态生成路由
  */
-export function getMenuModules() {
+export function getRoutesFromModules() {
   const menuModules: AppRouteObject[] = [];
 
   const modules = import.meta.glob('./routes/modules/**/*.tsx', { eager: true });

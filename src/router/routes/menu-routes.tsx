@@ -3,11 +3,11 @@ import { Navigate } from 'react-router-dom';
 import DashboardLayout from '@/layouts/dashboard';
 
 import AuthGuard from '../components/auth-guard';
-import { getMenuModules } from '../utils';
+import { getRoutesFromModules } from '../utils';
 
 import { AppRouteObject } from '#/router';
 
-const menuModuleRoutes = getMenuModules();
+const menuModuleRoutes = getRoutesFromModules();
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
