@@ -1,0 +1,92 @@
+{
+  "projectName": "slash-admin",
+  "projectOwner": "d3george",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": ["README.md"],
+  "imageSize": 72,
+  "commit": false,
+  "commitConvention": "eslint",
+  "contributors": [
+    {
+      "login": "d3george",
+      "name": "kevin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/143698843?v=4",
+      "profile": "https://blog.slashspaces.com/",
+      "contributions": ["design", "tool", "code", "bug", "doc"]
+    },
+    {
+      "login": "ydiego",
+      "name": "YDiego",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13268002?v=4",
+      "profile": "https://github.com/ydiego",
+      "contributions": ["code", "bug"]
+    },
+    {
+      "login": "aifuxi",
+      "name": "付小晨",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65325004?v=4",
+      "profile": "https://fuxiaochen.com/",
+      "contributions": ["code", "bug"]
+    },
+    {
+      "login": "xinmans",
+      "name": "xinmans",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2713008?v=4",
+      "profile": "https://github.com/xinmans",
+      "contributions": ["code", "tool"]
+    },
+    {
+      "login": "stitchLau",
+      "name": "stitch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52861440?v=4",
+      "profile": "https://github.com/stitchLau",
+      "contributions": ["code", "bug"]
+    },
+    {
+      "login": "ntscshen",
+      "name": "ntscshen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21041458?v=4",
+      "profile": "https://github.com/ntscshen",
+      "contributions": ["tool"]
+    },
+    {
+      "login": "298977887",
+      "name": "298977887",
+      "avatar_url": "https://avatars.githubusercontent.com/u/127030474?v=4",
+      "profile": "https://github.com/298977887",
+      "contributions": ["code"]
+    },
+    {
+      "login": "eternallycyf",
+      "name": "eternallycyf",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63464198?v=4",
+      "profile": "https://www.yuque.com/eternallycyf",
+      "contributions": ["tool"]
+    },
+    {
+      "login": "hugepizza",
+      "name": "lei",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23519941?v=4",
+      "profile": "https://github.com/hugepizza",
+      "contributions": ["bug"]
+    },
+    {
+      "login": "fliu2476",
+      "name": "fliu2476",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19582252?v=4",
+      "profile": "https://github.com/fliu2476",
+      "contributions": ["bug"]
+    },
+    {
+      "login": "chenyuxi2002",
+      "name": "tzcat8",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59554586?v=4",
+      "profile": "https://github.com/chenyuxi2002",
+      "contributions": ["doc"]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "linkToUsage": true
+}
+
