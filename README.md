@@ -152,15 +152,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/chenyuxi2002"><img src="https://avatars.githubusercontent.com/u/59554586?v=4?s=72" width="72px;" alt="tzcat8"/><br /><sub><b>tzcat8</b></sub></a><br /><a href="https://github.com/d3george/slash-admin/commits?author=chenyuxi2002" title="Documentation">📖</a></td>
     </tr>
   </tbody>
-  <tfoot>
-    <tr>
-      <td align="center" size="13px" colspan="7">
-        <img src="https://raw.githubusercontent.com/all-contributors/all-contributors-cli/1b8533af435da9854653492b1327a23a4dbd0a10/assets/logo-small.svg">
-          <a href="https://all-contributors.js.org/docs/en/bot/usage">All Contributors</a>
-        </img>
-      </td>
-    </tr>
-  </tfoot>
 </table>
 
 <!-- markdownlint-restore -->
