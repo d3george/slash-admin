@@ -1,0 +1,63 @@
+name: Update All Contributors
+on:
+  pull_request_target:
+    branches:
+      - main
+    types: [closed]  # Trigger only when PR is closed and merged
+
+jobs:
+  test-pat:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }} # 确保使用PR的最新提交的内容和commit
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Echo Token Length  # 添加一个步骤来检查 token 长度
+        run: echo "Token Length is ${#PERSONAL_ACCESS_TOKEN}"
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Setup Git
+        run: |
+          git config --global user.email "ntscshen@163.com"
+          git config --global user.name "ntscshen"
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/d3george/slash-admin.git
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Switch to main branch and pull latest
+        run: |
+          git fetch --all
+          git checkout -f main
+          git pull origin main
+
+      - name: Add Contributor
+        run: |
+          export GITHUB_ACTOR=${{ github.event.pull_request.user.login }}
+          node .github/workflows/scripts/updateContributors.js
+        env:
+          GITHUB_ACTOR: ${{ github.event.pull_request.user.login }} # 使用PR创建者的用户名
+
+      - name: Push changes to remote
+        run: git push origin main
+
+
