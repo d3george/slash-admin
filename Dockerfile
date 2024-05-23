@@ -7,7 +7,7 @@ COPY . ./
 # config node options
 ENV NODE_OPTIONS=--max_old_space_size=8192
 # config pnpm, install dependencies and build
-RUN npm install pnpm -g && \
+RUN npm install pnpm@8.x -g && \
     pnpm install && \
     pnpm build
 RUN echo "build successful  🎉 🎉 🎉"
