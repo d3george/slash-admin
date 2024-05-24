@@ -1,5 +1,5 @@
 # Stage 1: build stage
-FROM node:16-alpine as build-stage
+FROM node:22-alpine as build-stage
 # make the 'app' folder the current working directory
 WORKDIR /app
 # copy project files and folders to the current working directory (i.e. 'app' folder)
@@ -7,7 +7,7 @@ COPY . ./
 # config node options
 ENV NODE_OPTIONS=--max_old_space_size=8192
 # config pnpm, install dependencies and build
-RUN npm install pnpm -g && \
+RUN npm install pnpm@9.x -g && \
     pnpm install && \
     pnpm build
 RUN echo "build successful  🎉 🎉 🎉"
