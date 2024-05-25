@@ -10,7 +10,7 @@ RUN npm install pnpm@9.x -g && \
     pnpm install --frozen-lockfile
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . ./
-# Run the build command to build the project
+# build the project
 RUN pnpm build
 RUN echo "build successful  🎉 🎉 🎉"
 
