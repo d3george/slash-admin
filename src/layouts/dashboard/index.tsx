@@ -1,6 +1,7 @@
 import { useScroll } from 'framer-motion';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import throttle from 'throttleit';
 
 import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
@@ -12,7 +13,7 @@ import Main from './main';
 import Nav from './nav';
 import NavHorizontal from './nav-horizontal';
 
-import { ThemeLayout, ThemeMode } from '#/enum';
+import { ThemeLayout, ThemeMode, throttleTime } from '#/enum';
 
 function DashboardLayout() {
   const { colorBgElevated, colorTextBase } = useThemeToken();
@@ -20,23 +21,28 @@ function DashboardLayout() {
 
   const mainEl = useRef(null);
   const { scrollY } = useScroll({ container: mainEl });
+
+  // 节流包装函数，使用useRef存储，确保每次渲染不会被重新创建
+  const throttledHandleScroll = useRef(
+    throttle((scrollHeight) => {
+      setOffsetTop(scrollHeight > 0);
+    }, throttleTime.TIME),
+  ).current;
   /**
    * y轴是否滚动
    */
   const [offsetTop, setOffsetTop] = useState(false);
-  const onOffSetTop = useCallback(() => {
-    scrollY.on('change', (scrollHeight) => {
-      if (scrollHeight > 0) {
-        setOffsetTop(true);
-      } else {
-        setOffsetTop(false);
-      }
-    });
-  }, [scrollY]);
+  const handleScroll = useCallback(() => {
+    throttledHandleScroll(scrollY.get());
+  }, [throttledHandleScroll, scrollY]);
 
   useEffect(() => {
-    onOffSetTop();
-  }, [onOffSetTop]);
+    const unsubscribe = scrollY.on('change', handleScroll);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [scrollY, handleScroll]);
 
   const navVertical = (
     <div className="z-50 hidden h-full flex-shrink-0 md:block">

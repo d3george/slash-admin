@@ -56,3 +56,7 @@ export enum PermissionType {
   MENU,
   BUTTON,
 }
+
+export enum throttleTime {
+  TIME = 150,
+}

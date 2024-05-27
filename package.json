@@ -61,6 +61,7 @@
     "screenfull": "^6.0.2",
     "simplebar-react": "^3.2.4",
     "styled-components": "^6.0.9",
+    "throttleit": "^2.0.0",
     "vite": "^4.4.11",
     "zustand": "^4.4.3"
   },
