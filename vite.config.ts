@@ -1,3 +1,4 @@
+import { Agent } from 'https';
 import path from 'path';
 
 import react from '@vitejs/plugin-react';
@@ -40,6 +41,8 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
+        // https://github.com/vitejs/vite/discussions/8998#discussioncomment-4408695
+        agent: new Agent({ keepAlive: true, keepAliveMsecs: 20000 }),
       },
     },
   },
