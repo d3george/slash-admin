@@ -54,14 +54,16 @@ export default function Nav(props: Props) {
   const [menuMode, setMenuMode] = useState<MenuProps['mode']>('inline');
 
   useEffect(() => {
-    if (themeLayout === ThemeLayout.Vertical) {
-      const openKeys = matches
-        .filter((match) => match.pathname !== '/')
-        .map((match) => match.pathname);
-      setOpenKeys(openKeys);
+    if (menuList?.length > 0) {
+      if (themeLayout === ThemeLayout.Vertical) {
+        const openKeys = matches
+          .filter((match) => match.pathname !== '/')
+          .map((match) => match.pathname);
+        setOpenKeys(openKeys);
+      }
+      setSelectedKeys([pathname]);
     }
-    setSelectedKeys([pathname]);
-  }, [pathname, matches, collapsed, themeLayout]);
+  }, [menuList,pathname, matches, collapsed, themeLayout]);
 
   useEffect(() => {
     const menuRoutes = menuFilter(permissionRoutes);
