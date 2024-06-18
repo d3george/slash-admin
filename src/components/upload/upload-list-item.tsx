@@ -54,7 +54,13 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
   );
   const cardList = (
     <Card
-      bodyStyle={{ display: 'flex', alignItems: 'center', padding: '8px 12px' }}
+      styles={{
+        body: {
+          display: 'flex',
+          alignItems: 'center',
+          padding: '8px 12px',
+        },
+      }}
       style={{ marginTop: '8px' }}
     >
       {format === 'img' ? (

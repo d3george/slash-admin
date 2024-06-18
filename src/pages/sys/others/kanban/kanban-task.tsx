@@ -32,9 +32,6 @@ function KanbanTask({ index, task }: Props) {
     backgroundPosition: 'right top, left bottom',
     backgroundSize: '50, 50%',
   };
-  const bodyStyle: CSSProperties = {
-    padding: 0,
-  };
 
   const { id, title, comments = [], attachments = [], priority, assignee } = task;
   return (
@@ -121,8 +118,10 @@ function KanbanTask({ index, task }: Props) {
         open={drawerOpen}
         closable={false}
         width={420}
-        bodyStyle={bodyStyle}
-        maskStyle={{ backgroundColor: 'transparent' }}
+        styles={{
+          body: { padding: 0 },
+          mask: { backgroundColor: 'transparent' },
+        }}
         style={style}
       >
         <TaskDetail task={task} />

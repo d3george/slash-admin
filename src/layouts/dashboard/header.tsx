@@ -91,8 +91,15 @@ export default function Header({ className = '', offsetTop = false }: Props) {
         onClose={() => setDrawerOpen(false)}
         open={drawerOpen}
         closeIcon={false}
-        headerStyle={{ display: 'none' }}
-        bodyStyle={{ padding: 0, overflow: 'hidden' }}
+        styles={{
+          header: {
+            display: 'none',
+          },
+          body: {
+            padding: 0,
+            overflow: 'hidden',
+          },
+        }}
         width="auto"
       >
         <Nav closeSideBarDrawer={() => setDrawerOpen(false)} />

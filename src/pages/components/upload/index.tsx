@@ -34,11 +34,13 @@ export default function UploadPage() {
   const UploadAvatarTab = (
     <Card
       title="Upload Avatar"
-      bodyStyle={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+      styles={{
+        body: {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
       }}
     >
       <UploadAvatar />
