@@ -18,6 +18,9 @@ export default function NavHorizontal() {
 
   const routeToMenuFn = useRouteToMenuFn();
   const permissionRoutes = usePermissionRoutes();
+  const menuRoutes = menuFilter(permissionRoutes);
+  const menus = routeToMenuFn(menuRoutes);
+
   // 获取拍平后的路由菜单
   const flattenedRoutes = useFlattenedRoutes();
 
@@ -26,17 +29,11 @@ export default function NavHorizontal() {
    */
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>(['']);
-  const [menuList, setMenuList] = useState<ItemType[]>([]);
+  const [menuList] = useState<ItemType[]>(menus);
 
   useEffect(() => {
     setSelectedKeys([pathname]);
   }, [pathname, matches]);
-
-  useEffect(() => {
-    const menuRoutes = menuFilter(permissionRoutes);
-    const menus = routeToMenuFn(menuRoutes);
-    setMenuList(menus);
-  }, [permissionRoutes, routeToMenuFn]);
 
   /**
    * events

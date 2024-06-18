@@ -41,6 +41,8 @@ export default function Nav(props: Props) {
 
   const routeToMenuFn = useRouteToMenuFn();
   const permissionRoutes = usePermissionRoutes();
+  const menuRoutes = menuFilter(permissionRoutes);
+  const menus = routeToMenuFn(menuRoutes);
   // 获取拍平后的路由菜单
   const flattenedRoutes = useFlattenedRoutes();
 
@@ -50,7 +52,7 @@ export default function Nav(props: Props) {
   const [collapsed, setCollapsed] = useState(false);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>(['']);
-  const [menuList, setMenuList] = useState<ItemType[]>([]);
+  const [menuList] = useState<ItemType[]>(menus);
   const [menuMode, setMenuMode] = useState<MenuProps['mode']>('inline');
 
   useEffect(() => {
@@ -63,13 +65,7 @@ export default function Nav(props: Props) {
       }
       setSelectedKeys([pathname]);
     }
-  }, [menuList,pathname, matches, collapsed, themeLayout]);
-
-  useEffect(() => {
-    const menuRoutes = menuFilter(permissionRoutes);
-    const menus = routeToMenuFn(menuRoutes);
-    setMenuList(menus);
-  }, [permissionRoutes, routeToMenuFn]);
+  }, [menuList, pathname, matches, themeLayout]);
 
   useEffect(() => {
     if (themeLayout === ThemeLayout.Vertical) {
@@ -165,7 +161,6 @@ export default function Nav(props: Props) {
           onClick={onClick}
           style={menuStyle}
           inlineCollapsed={collapsed}
-          inlineIndent={50}
         />
       </Scrollbar>
     </div>
