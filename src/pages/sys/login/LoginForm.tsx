@@ -93,7 +93,12 @@ function LoginForm() {
               </Form.Item>
             </Col>
             <Col span={12} className="text-right">
-              <button className="!underline">{t('sys.login.forgetPassword')}</button>
+              <button
+                className="!underline"
+                onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)}
+              >
+                {t('sys.login.forgetPassword')}
+              </button>
             </Col>
           </Row>
         </Form.Item>
