@@ -1,6 +1,5 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
-import { ItemType } from 'antd/es/menu/hooks/useItems';
 import Color from 'color';
 import { m } from 'framer-motion';
 import { CSSProperties, useEffect, useState } from 'react';
@@ -42,7 +41,8 @@ export default function Nav(props: Props) {
   const routeToMenuFn = useRouteToMenuFn();
   const permissionRoutes = usePermissionRoutes();
   const menuRoutes = menuFilter(permissionRoutes);
-  const menus = routeToMenuFn(menuRoutes);
+  const menuList = routeToMenuFn(menuRoutes);
+
   // 获取拍平后的路由菜单
   const flattenedRoutes = useFlattenedRoutes();
 
@@ -51,21 +51,16 @@ export default function Nav(props: Props) {
    */
   const [collapsed, setCollapsed] = useState(false);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
-  const [selectedKeys, setSelectedKeys] = useState<string[]>(['']);
-  const [menuList] = useState<ItemType[]>(menus);
   const [menuMode, setMenuMode] = useState<MenuProps['mode']>('inline');
 
   useEffect(() => {
-    if (menuList?.length > 0) {
-      if (themeLayout === ThemeLayout.Vertical) {
-        const openKeys = matches
-          .filter((match) => match.pathname !== '/')
-          .map((match) => match.pathname);
-        setOpenKeys(openKeys);
-      }
-      setSelectedKeys([pathname]);
+    if (themeLayout === ThemeLayout.Vertical) {
+      const openKeys = matches
+        .filter((match) => match.pathname !== '/')
+        .map((match) => match.pathname);
+      setOpenKeys(openKeys);
     }
-  }, [menuList, pathname, matches, themeLayout]);
+  }, [matches, themeLayout]);
 
   useEffect(() => {
     if (themeLayout === ThemeLayout.Vertical) {
@@ -154,8 +149,8 @@ export default function Nav(props: Props) {
           items={menuList}
           className="h-full !border-none"
           defaultOpenKeys={openKeys}
-          defaultSelectedKeys={selectedKeys}
-          selectedKeys={selectedKeys}
+          defaultSelectedKeys={[pathname]}
+          selectedKeys={[pathname]}
           openKeys={openKeys}
           onOpenChange={onOpenChange}
           onClick={onClick}
