@@ -5,6 +5,7 @@ import Toolbar, { formats } from './toolbar';
 import { useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 import { StyledEditor } from './styles';
+import { useEffect, useState } from 'react';
 
 interface Props extends ReactQuillProps {
   sample?: boolean;
@@ -12,6 +13,10 @@ interface Props extends ReactQuillProps {
 export default function Editor({ id = 'slash-quill', sample = false, ...other }: Props) {
   const token = useThemeToken();
   const { themeMode } = useSettings();
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    setEnabled(true);
+  });
   const modules = {
     toolbar: {
       container: `#${id}`,
@@ -29,12 +34,14 @@ export default function Editor({ id = 'slash-quill', sample = false, ...other }:
   return (
     <StyledEditor $token={token} $thememode={themeMode}>
       <Toolbar id={id} isSimple={sample} />
-      <ReactQuill
-        modules={modules}
-        formats={formats}
-        {...other}
-        placeholder="Write something awesome..."
-      />
+      {enabled ? (
+        <ReactQuill
+          modules={modules}
+          formats={formats}
+          {...other}
+          placeholder="Write something awesome..."
+        />
+      ) : null}
     </StyledEditor>
   );
 }
