@@ -125,10 +125,15 @@ export default function SearchBar() {
   return (
     <>
       <div className="flex items-center justify-center">
-        <IconButton className="h-10 w-10" onClick={handleOpen}>
-          <SvgIcon icon="ic-search" size="20" />
+        <IconButton className="h-8 rounded-xl bg-hover py-2 text-xs font-bold" onClick={handleOpen}>
+          <div className="flex items-center justify-center gap-2">
+            <SvgIcon icon="ic-search" size="20" />
+            <span className="flex h-6 items-center justify-center rounded-md bg-[#fff] px-1.5 font-bold text-gray-800">
+              {' '}
+              ⌘K{' '}
+            </span>
+          </div>
         </IconButton>
-        <IconButton className="0 h-6 rounded-md bg-hover text-xs font-bold">⌘K</IconButton>
       </div>
       <Modal
         centered
