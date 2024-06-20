@@ -12,13 +12,13 @@ import TotalCard from './total-card';
 
 function Workbench() {
   return (
-    <>
+    <div className="p-2">
       <Row gutter={[16, 16]} justify="center">
-        <Col span={24} md={16}>
+        <Col span={24} lg={16}>
           <BannerCard />
         </Col>
-        <Col span={24} md={8}>
-          <Space direction="vertical" size="middle" className="h-full w-full">
+        <Col span={24} lg={8}>
+          <Space direction="vertical" size="large" className="h-full w-full justify-center">
             <Conversion />
             <Applications />
           </Space>
@@ -67,10 +67,10 @@ function Workbench() {
       </Row>
 
       <Row gutter={[16, 16]} className="mt-4" justify="center">
-        <Col span={23} md={12} lg={16}>
+        <Col span={24} md={12} lg={16}>
           <NewInvoice />
         </Col>
-        <Col span={23} md={12} lg={8}>
+        <Col span={24} md={12} lg={8}>
           <TopRelated />
         </Col>
       </Row>
@@ -84,7 +84,7 @@ function Workbench() {
           <TopAuthor />
         </Col>
       </Row>
-    </>
+    </div>
   );
 }
 

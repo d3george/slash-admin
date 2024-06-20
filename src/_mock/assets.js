@@ -29,19 +29,7 @@ export const ORG_LIST = [
       { id: '2-2', name: 'Marketing Department', status: 'enable', desc: '', order: 2 },
       { id: '2-3', name: 'Finance Department', status: 'enable', desc: '', order: 3 },
     ],
-  },
-  {
-    id: '3',
-    name: 'Northwest Branch',
-    status: 'enable',
-    desc: faker.lorem.words(),
-    order: 3,
-    children: [
-      { id: '3-1', name: 'R&D Department', status: 'disable', desc: '', order: 1 },
-      { id: '3-2', name: 'Marketing Department', status: 'enable', desc: '', order: 2 },
-      { id: '3-3', name: 'Finance Department', status: 'enable', desc: '', order: 3 },
-    ],
-  },
+  }
 ];
 
 /**

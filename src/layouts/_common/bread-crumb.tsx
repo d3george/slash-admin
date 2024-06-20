@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatches, Link } from 'react-router-dom';
 
+import { Iconify } from '@/components/icon';
 import { useFlattenedRoutes, usePermissionRoutes } from '@/router/hooks';
 import { menuFilter } from '@/router/utils';
 
@@ -49,5 +50,11 @@ export default function BreadCrumb() {
     setBreadCrumbs(breadCrumbs);
   }, [matches, flattenedRoutes, t, permissionRoutes]);
 
-  return <Breadcrumb items={breadCrumbs} className="!text-sm" />;
+  return (
+    <Breadcrumb
+      items={breadCrumbs}
+      className="!text-sm"
+      separator={<Iconify icon="ph:dot-duotone" />}
+    />
+  );
 }

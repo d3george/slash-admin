@@ -21,9 +21,9 @@ import AnalysisTrafficCard from './analysis-traffic-card';
 function Analysis() {
   const theme = useThemeToken();
   return (
-    <>
-      <Typography.Title level={4}>Hi, Welcome back 👋</Typography.Title>
-      <Row gutter={[16, 16]}>
+    <div className="p-2">
+      <Typography.Title level={2}>Hi, Welcome back 👋</Typography.Title>
+      <Row gutter={[16, 16]} justify="center">
         <Col lg={6} md={12} span={24}>
           <AnalysisCard
             cover={glass_bag}
@@ -83,12 +83,12 @@ function Analysis() {
       </Row>
 
       <Row gutter={[16, 16]} className="mt-8" justify="center">
-        <Col span={23} lg={12} xl={16}>
+        <Col span={24} lg={12} xl={16}>
           <Card title="Website Visits">
             <ChartMixed />
           </Card>
         </Col>
-        <Col span={23} lg={12} xl={8}>
+        <Col span={24} lg={12} xl={8}>
           <Card title="Current Visits">
             <ChartPie />
           </Card>
@@ -96,12 +96,12 @@ function Analysis() {
       </Row>
 
       <Row gutter={[16, 16]} className="mt-8" justify="center">
-        <Col span={23} lg={12} xl={16}>
+        <Col span={24} lg={12} xl={16}>
           <Card title="Conversion Rates">
             <ChartBar />
           </Card>
         </Col>
-        <Col span={23} lg={12} xl={8}>
+        <Col span={24} lg={12} xl={8}>
           <Card title="Current Subject">
             <ChartRadar />
           </Card>
@@ -166,7 +166,7 @@ function Analysis() {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
   );
 }
 

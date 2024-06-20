@@ -16,7 +16,7 @@ export default function BannerCard() {
 
   return (
     <Row
-      className="!mx-0 rounded-2xl p-10"
+      className="!mx-0 rounded-2xl p-7"
       gutter={[16, 16]}
       justify="space-between"
       style={{ background: bg }}
@@ -39,7 +39,7 @@ export default function BannerCard() {
             <a
               href="https://blog.slashspaces.com"
               target="_blank"
-              className="text-base font-bold"
+              className="text-base opacity-80"
               style={{ color: themeToken.colorPrimaryTextActive }}
               rel="noreferrer"
             >
@@ -48,12 +48,12 @@ export default function BannerCard() {
           </div>
         </div>
         <button
-          className="font-mediumtext-black m-auto flex items-center justify-center rounded-md px-2 py-1 shadow-none md:m-0"
+          className="font-mediumtext-black m-auto flex items-center justify-center rounded-lg px-2 py-1 shadow-none md:m-0"
           style={{ backgroundColor: themeToken.colorPrimary, color: '#fff' }}
           onClick={() => window.open('https://discord.gg/fXemAXVNDa')}
         >
           <Iconify icon="carbon:logo-discord" size={24} />
-          <span className="ml-2">Open Discord</span>
+          <span className="ml-2 font-black">Join Discord</span>
         </button>
       </Col>
 
