@@ -153,14 +153,18 @@ export function MultiTabsProvider({ children }: PropsWithChildren) {
     setTabs((prev) => prev.filter((item) => !item.hideTab));
 
     if (!currentRouteMeta) return;
-    const { outlet: children } = currentRouteMeta;
+    let { key } = currentRouteMeta;
+    const { outlet: children, params = {} } = currentRouteMeta;
 
-    const isExisted = tabs.find((item) => item.key === activeTabRoutePath);
+    if (!isEmpty(params)) {
+      key = replaceDynamicParams(key, params);
+    }
+    const isExisted = tabs.find((item) => item.key === key);
 
     if (!isExisted) {
       setTabs((prev) => [
         ...prev,
-        { ...currentRouteMeta, key: activeTabRoutePath, children, timeStamp: getTimeStamp() },
+        { ...currentRouteMeta, key, children, timeStamp: getTimeStamp() },
       ]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
