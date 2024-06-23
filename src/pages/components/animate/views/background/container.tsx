@@ -1,5 +1,5 @@
 import { m } from 'framer-motion';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import Cover3 from '@/assets/images/cover/cover_3.jpg';
 import MotionContainer from '@/components/animate/motion-container';
@@ -14,9 +14,6 @@ export default function ContainerView({ variant }: Props) {
   const varients = useMemo(() => getVariant(variant), [variant]);
   const isKenburns = variant.includes('kenburns');
 
-  useEffect(() => {
-    console.log(varients);
-  });
   return (
     <div
       key={variant}

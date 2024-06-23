@@ -6,7 +6,6 @@ import glass_buy from '@/assets/images/glass/ic_glass_buy.png';
 import glass_message from '@/assets/images/glass/ic_glass_message.png';
 import glass_users from '@/assets/images/glass/ic_glass_users.png';
 import { Iconify } from '@/components/icon';
-import useKeepAlive from '@/hooks/web/use-keepalive';
 import ChartBar from '@/pages/components/chart/view/chart-bar';
 import ChartMixed from '@/pages/components/chart/view/chart-mixed';
 import ChartPie from '@/pages/components/chart/view/chart-pie';
@@ -21,10 +20,8 @@ import AnalysisTrafficCard from './analysis-traffic-card';
 
 function Analysis() {
   const theme = useThemeToken();
-  const { closeTab } = useKeepAlive();
   return (
     <div className="p-2">
-      <button onClick={() => closeTab()}>close tab</button>
       <Typography.Title level={2}>Hi, Welcome back 👋</Typography.Title>
       <Row gutter={[16, 16]} justify="center">
         <Col lg={6} md={12} span={24}>

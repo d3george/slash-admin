@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 import { USER_LIST } from '@/_mock/assets';
 import { Iconify } from '@/components/icon';
-import useKeepAlive, { KeepAliveTab } from '@/hooks/web/use-keepalive';
 import { useRouter } from '@/router/hooks';
 import { replaceDynamicParams } from '@/router/hooks/use-current-route-meta';
 import { useSettings } from '@/store/settingStore';
@@ -21,7 +20,9 @@ import {
   OFFSET_HEADER_HEIGHT,
   MULTI_TABS_HEIGHT,
   NAV_HORIZONTAL_HEIGHT,
-} from './config';
+} from '../config';
+
+import { useMultiTabsContext, type KeepAliveTab } from './multi-tabs-provider';
 
 import { MultiTabOperation, ThemeLayout } from '#/enum';
 
@@ -43,13 +44,14 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   const {
     tabs,
     activeTabRoutePath,
+    setTabs,
     closeTab,
     refreshTab,
     closeOthersTab,
     closeAll,
     closeLeft,
     closeRight,
-  } = useKeepAlive();
+  } = useMultiTabsContext();
 
   /**
    * Special Tab Label Render
@@ -294,6 +296,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
     const newTabs = Array.from(tabs);
     const [movedTab] = newTabs.splice(source.index, 1);
     newTabs.splice(destination.index, 0, movedTab);
+    setTabs(newTabs);
   };
 
   /**

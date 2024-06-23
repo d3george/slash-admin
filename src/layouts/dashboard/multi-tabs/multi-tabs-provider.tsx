@@ -1,26 +1,54 @@
 import { isEmpty } from 'ramda';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { useCurrentRouteMeta, useRouter } from '@/router/hooks';
 import { replaceDynamicParams } from '@/router/hooks/use-current-route-meta';
 
 import type { RouteMeta } from '#/router';
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
-
 export type KeepAliveTab = RouteMeta & {
   children: any;
 };
-export default function useKeepAlive() {
-  console.log('useKeepAlive');
+type MultiTabsContextType = {
+  tabs: KeepAliveTab[];
+  activeTabRoutePath?: string;
+  setTabs: (tabs: KeepAliveTab[]) => void;
+  closeTab: (path?: string) => void;
+  closeOthersTab: (path?: string) => void;
+  closeAll: () => void;
+  closeLeft: (path: string) => void;
+  closeRight: (path: string) => void;
+  refreshTab: (path: string) => void;
+};
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+
+const MultiTabsContext = createContext<MultiTabsContextType>({
+  tabs: [],
+  activeTabRoutePath: '',
+  setTabs: () => {},
+  closeTab: () => {},
+  closeOthersTab: () => {},
+  closeAll: () => {},
+  closeLeft: () => {},
+  closeRight: () => {},
+  refreshTab: () => {},
+});
+
+export function MultiTabsProvider({ children }: PropsWithChildren) {
   const { push } = useRouter();
-
-  // current route meta
-  const currentRouteMeta = useCurrentRouteMeta();
-
   // tabs
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
 
+  // current route meta
+  const currentRouteMeta = useCurrentRouteMeta();
   // active tab
   const activeTabRoutePath = useMemo(() => {
     if (!currentRouteMeta) return '';
@@ -138,17 +166,34 @@ export default function useKeepAlive() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRouteMeta]);
 
-  return {
-    tabs,
-    activeTabRoutePath,
-    setTabs,
-    closeTab,
-    closeOthersTab,
-    refreshTab,
-    closeAll,
-    closeLeft,
-    closeRight,
-  };
+  const defaultValue: MultiTabsContextType = useMemo(
+    () => ({
+      tabs,
+      activeTabRoutePath,
+      setTabs,
+      closeTab,
+      closeOthersTab,
+      refreshTab,
+      closeAll,
+      closeLeft,
+      closeRight,
+    }),
+    [
+      activeTabRoutePath,
+      closeAll,
+      closeLeft,
+      closeOthersTab,
+      closeRight,
+      closeTab,
+      refreshTab,
+      tabs,
+    ],
+  );
+  return <MultiTabsContext.Provider value={defaultValue}>{children}</MultiTabsContext.Provider>;
+}
+
+export function useMultiTabsContext() {
+  return useContext(MultiTabsContext);
 }
 
 function getTimeStamp() {
