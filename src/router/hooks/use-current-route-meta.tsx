@@ -1,18 +1,17 @@
 import { isEmpty } from 'ramda';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { Params, useMatches, useOutlet } from 'react-router-dom';
 
 import { useFlattenedRoutes } from './use-flattened-routes';
 import { useRouter } from './use-router';
 
-import type { RouteMeta } from '#/router';
-
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 /**
  * 返回当前路由Meta信息
  */
-export function useMatchRouteMeta() {
-  const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
-  const [matchRouteMeta, setMatchRouteMeta] = useState<RouteMeta>();
+export function useCurrentRouteMeta() {
+  // const pathname = usePathname();
+  const { push } = useRouter();
 
   // 获取路由组件实例
   const children = useOutlet();
@@ -23,32 +22,30 @@ export function useMatchRouteMeta() {
   // 获取拍平后的路由菜单
   const flattenedRoutes = useFlattenedRoutes();
 
-  // const pathname = usePathname();
-  const { push } = useRouter();
-
-  useEffect(() => {
+  const currentRouteMeta = useMemo(() => {
     // 获取当前匹配的路由
     const lastRoute = matchs.at(-1);
-    if (!lastRoute) return;
+    if (!lastRoute) return null;
 
     const { pathname, params } = lastRoute;
     const currentRouteMeta = flattenedRoutes.find((item) => {
       const replacedKey = replaceDynamicParams(item.key, params);
       return replacedKey === pathname || `${replacedKey}/` === pathname;
     });
+
     if (currentRouteMeta) {
       currentRouteMeta.outlet = children;
       if (!isEmpty(params)) {
         currentRouteMeta.params = params;
       }
-      setMatchRouteMeta({ ...currentRouteMeta });
     } else {
       push(HOMEPAGE);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [matchs]);
 
-  return matchRouteMeta;
+    return currentRouteMeta;
+  }, [children, flattenedRoutes, matchs, push]);
+
+  return currentRouteMeta;
 }
 
 /**

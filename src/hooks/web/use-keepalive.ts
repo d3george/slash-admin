@@ -1,26 +1,36 @@
 import { isEmpty } from 'ramda';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { useMatchRouteMeta, useRouter } from '@/router/hooks';
-import { replaceDynamicParams } from '@/router/hooks/use-match-route-meta';
+import { useCurrentRouteMeta, useRouter } from '@/router/hooks';
+import { replaceDynamicParams } from '@/router/hooks/use-current-route-meta';
 
 import type { RouteMeta } from '#/router';
+
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export type KeepAliveTab = RouteMeta & {
   children: any;
 };
 export default function useKeepAlive() {
-  const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+  console.log('useKeepAlive');
   const { push } = useRouter();
+
+  // current route meta
+  const currentRouteMeta = useCurrentRouteMeta();
 
   // tabs
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
 
   // active tab
-  const [activeTabRoutePath, setActiveTabRoutePath] = useState<string>('');
+  const activeTabRoutePath = useMemo(() => {
+    if (!currentRouteMeta) return '';
 
-  // current route meta
-  const currentRouteMeta = useMatchRouteMeta();
+    const { key, params = {} } = currentRouteMeta;
+    if (!isEmpty(params)) {
+      return replaceDynamicParams(key, params);
+    }
+    return key;
+  }, [currentRouteMeta]);
 
   /**
    * Close specified tab
@@ -29,7 +39,10 @@ export default function useKeepAlive() {
     (path = activeTabRoutePath) => {
       const tempTabs = [...tabs];
       if (tempTabs.length === 1) return;
+
       const deleteTabIndex = tempTabs.findIndex((item) => item.key === path);
+      if (deleteTabIndex === -1) return;
+
       if (deleteTabIndex > 0) {
         push(tempTabs[deleteTabIndex - 1].key);
       } else {
@@ -39,8 +52,7 @@ export default function useKeepAlive() {
       tempTabs.splice(deleteTabIndex, 1);
       setTabs(tempTabs);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [activeTabRoutePath],
+    [activeTabRoutePath, push, tabs],
   );
 
   /**
@@ -113,22 +125,16 @@ export default function useKeepAlive() {
     setTabs((prev) => prev.filter((item) => !item.hideTab));
 
     if (!currentRouteMeta) return;
-    let { key } = currentRouteMeta;
-    const { outlet: children, params = {} } = currentRouteMeta;
+    const { outlet: children } = currentRouteMeta;
 
-    if (!isEmpty(params)) {
-      key = replaceDynamicParams(key, params);
-    }
-    const existed = tabs.find((item) => item.key === key);
+    const isExisted = tabs.find((item) => item.key === activeTabRoutePath);
 
-    if (!existed) {
+    if (!isExisted) {
       setTabs((prev) => [
         ...prev,
-        { ...currentRouteMeta, key, children, timeStamp: getTimeStamp() },
+        { ...currentRouteMeta, key: activeTabRoutePath, children, timeStamp: getTimeStamp() },
       ]);
     }
-
-    setActiveTabRoutePath(key);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRouteMeta]);
 

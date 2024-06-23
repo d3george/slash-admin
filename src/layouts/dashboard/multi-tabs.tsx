@@ -10,7 +10,7 @@ import { USER_LIST } from '@/_mock/assets';
 import { Iconify } from '@/components/icon';
 import useKeepAlive, { KeepAliveTab } from '@/hooks/web/use-keepalive';
 import { useRouter } from '@/router/hooks';
-import { replaceDynamicParams } from '@/router/hooks/use-match-route-meta';
+import { replaceDynamicParams } from '@/router/hooks/use-current-route-meta';
 import { useSettings } from '@/store/settingStore';
 import { useResponsive, useThemeToken } from '@/theme/hooks';
 
@@ -43,7 +43,6 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   const {
     tabs,
     activeTabRoutePath,
-    setTabs,
     closeTab,
     refreshTab,
     closeOthersTab,
@@ -295,7 +294,6 @@ export default function MultiTabs({ offsetTop = false }: Props) {
     const newTabs = Array.from(tabs);
     const [movedTab] = newTabs.splice(source.index, 1);
     newTabs.splice(destination.index, 0, movedTab);
-    setTabs(newTabs);
   };
 
   /**
