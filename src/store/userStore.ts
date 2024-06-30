@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
@@ -50,9 +49,8 @@ export const useUserPermission = () => useUserStore((state) => state.userInfo.pe
 export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
-  const { t } = useTranslation();
   const navigatge = useNavigate();
-  const { notification, message } = App.useApp();
+  const { message } = App.useApp();
   const { setUserToken, setUserInfo } = useUserActions();
 
   const signInMutation = useMutation(userService.signin);
