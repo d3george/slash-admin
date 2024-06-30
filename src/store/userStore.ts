@@ -64,12 +64,6 @@ export const useSignIn = () => {
       setUserToken({ accessToken, refreshToken });
       setUserInfo(user);
       navigatge(HOMEPAGE, { replace: true });
-
-      notification.success({
-        message: t('sys.login.loginSuccessTitle'),
-        description: `${t('sys.login.loginSuccessDesc')}: ${data.username}`,
-        duration: 3,
-      });
     } catch (err) {
       message.warning({
         content: err.message,
