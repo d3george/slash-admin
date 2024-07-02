@@ -264,6 +264,15 @@ const FUNCTIONS_PERMISSION = {
       route: 'clipboard',
       component: '/functions/clipboard/index.tsx',
     },
+    {
+      id: '3667930780705751',
+      parentId: '8132044808088488',
+      label: 'sys.menu.token_expired',
+      name: 'Token Expired',
+      type: PermissionType.MENU,
+      route: 'token-expired',
+      component: '/functions/token-expired/index.tsx',
+    },
   ],
 };
 const MENU_LEVEL_PERMISSION = {

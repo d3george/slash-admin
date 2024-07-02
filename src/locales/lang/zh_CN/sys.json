@@ -111,6 +111,7 @@
       "chart": "图表",
       "functions": "功能",
       "clipboard": "剪贴板",
+      "token_expired": "Token失效",
       "menulevel": {
         "index": "多级菜单",
         "1a": "多级菜单 1a",

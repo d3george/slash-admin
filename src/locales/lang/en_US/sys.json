@@ -112,6 +112,7 @@
       "chart": "Chart",
       "functions": "Functions",
       "clipboard": "Clipboard",
+      "token_expired": "Token Expired",
       "menulevel": {
         "index": "Menu Level",
         "1a": "Menu Level 1a",

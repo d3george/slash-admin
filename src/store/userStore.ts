@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
-import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
@@ -70,6 +69,7 @@ export const useSignIn = () => {
     }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  return useCallback(signIn, []);
+  return signIn;
 };
+
+export default useUserStore;

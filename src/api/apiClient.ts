@@ -1,8 +1,8 @@
 import { message as Message } from 'antd';
 import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
-import { isEmpty } from 'ramda';
 
 import { t } from '@/locales/i18n';
+import userStore from '@/store/userStore';
 
 import { Result } from '#/api';
 import { ResultEnum } from '#/enum';
@@ -44,19 +44,14 @@ axiosInstance.interceptors.response.use(
   },
   (error: AxiosError<Result>) => {
     const { response, message } = error || {};
-    let errMsg = '';
-    try {
-      errMsg = response?.data?.message || message;
-    } catch (error) {
-      throw new Error(error as unknown as string);
-    }
-    // 对响应错误做点什么
-    if (isEmpty(errMsg)) {
-      // checkStatus
-      // errMsg = checkStatus(response.data.status);
-      errMsg = t('sys.api.errorMessage');
-    }
+
+    const errMsg = response?.data?.message || message || t('sys.api.errorMessage');
     Message.error(errMsg);
+
+    const status = response?.status;
+    if (status === 401) {
+      userStore.getState().actions.clearUserInfoAndToken();
+    }
     return Promise.reject(error);
   },
 );
