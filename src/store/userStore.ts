@@ -52,7 +52,9 @@ export const useSignIn = () => {
   const { message } = App.useApp();
   const { setUserToken, setUserInfo } = useUserActions();
 
-  const signInMutation = useMutation(userService.signin);
+  const signInMutation = useMutation({
+    mutationFn: userService.signin,
+  });
 
   const signIn = async (data: SignInReq) => {
     try {

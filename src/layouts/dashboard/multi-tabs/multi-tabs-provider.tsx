@@ -102,7 +102,6 @@ export function MultiTabsProvider({ children }: PropsWithChildren) {
   const closeAll = useCallback(() => {
     setTabs([]);
     push(HOMEPAGE);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [push]);
 
   /**

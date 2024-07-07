@@ -4,7 +4,9 @@ import { Card, Row, Col, Typography, Button } from 'antd';
 import demoService from '@/api/services/demoService';
 
 export default function TokenExpired() {
-  const tokenExpiredMutation = useMutation(demoService.mockTokenExpired);
+  const tokenExpiredMutation = useMutation({
+    mutationFn: demoService.mockTokenExpired,
+  });
   const mockTokenExpired = () => {
     tokenExpiredMutation.mutate();
   };

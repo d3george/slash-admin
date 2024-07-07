@@ -1,4 +1,3 @@
-import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -7,6 +6,7 @@ import { useSettings } from '@/store/settingStore';
 
 import { ThemeLayout } from '#/enum';
 import { AppRouteObject } from '#/router';
+import type { ItemType } from 'antd/es/menu/interface';
 
 /**
  *   routes -> menus

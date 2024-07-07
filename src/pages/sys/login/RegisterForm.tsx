@@ -9,7 +9,9 @@ import { LoginStateEnum, useLoginStateContext } from './providers/LoginStateProv
 
 function RegisterForm() {
   const { t } = useTranslation();
-  const signUpMutation = useMutation(userService.signup);
+  const signUpMutation = useMutation({
+    mutationFn: userService.signup,
+  });
 
   const { loginState, backToLogin } = useLoginStateContext();
   if (loginState !== LoginStateEnum.REGISTER) return null;
