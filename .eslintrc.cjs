@@ -75,7 +75,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
 
     'import/first': 'warn',
-    'import/namespace': 'warn',
     'import/newline-after-import': 'warn',
     'import/no-duplicates': 'warn',
     'import/no-extraneous-dependencies': 'off',

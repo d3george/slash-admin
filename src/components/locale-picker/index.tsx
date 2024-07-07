@@ -27,7 +27,6 @@ export default function LocalePicker() {
     <Dropdown
       placement="bottomRight"
       trigger={['click']}
-      key={locale}
       menu={{ items: localeList, onClick: (e) => setLocale(e.key as Locale) }}
     >
       <IconButton className="h-10 w-10 hover:scale-105">
