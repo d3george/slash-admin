@@ -1,11 +1,12 @@
 import { faker } from '@faker-js/faker';
 import { EventInput } from '@fullcalendar/core';
 import { ColorPicker, DatePicker, Form, Input, Modal, Switch } from 'antd';
-import { ModalFooterRender } from 'antd/es/modal/interface';
 import { Dayjs } from 'dayjs';
 import { useEffect } from 'react';
 
 import { IconButton, Iconify } from '@/components/icon';
+
+import type { ModalProps } from 'antd/es/modal/interface';
 
 export type CalendarEventFormFieldType = Pick<EventInput, 'title' | 'allDay' | 'color'> & {
   id: string;
@@ -53,8 +54,8 @@ export default function CalendarEventForm({
     form.setFieldsValue({ ...others, color });
   }, [initValues, form]);
 
-  // eslint-disable-next-line react/function-component-definition, react/no-unstable-nested-components
-  const ModalFooter: ModalFooterRender = (_, { OkBtn, CancelBtn }) => {
+  // eslint-disable-next-line react/no-unstable-nested-components, react/function-component-definition
+  const ModalFooter: ModalProps['footer'] = (_, { OkBtn, CancelBtn }) => {
     return (
       <div>
         {type === 'edit' ? (

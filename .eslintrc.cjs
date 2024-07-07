@@ -4,7 +4,7 @@ module.exports = {
   /* 解析器 */
   parser: '@typescript-eslint/parser', // 指定ESLint解析器
   parserOptions: {
-    project: './tsconfig.json', // tsconfig.json的路径
+    project: './tsconfig.eslint.json',
     ecmaVersion: 'latest',
     sourceType: 'module',
     ecmaFeatures: {

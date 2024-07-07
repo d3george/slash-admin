@@ -156,7 +156,7 @@ export default function SearchBar() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search..."
-            bordered={false}
+            variant="borderless"
             autoFocus
             prefix={<SvgIcon icon="ic-search" size="20" />}
             suffix={

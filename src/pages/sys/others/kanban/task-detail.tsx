@@ -56,7 +56,7 @@ export default function TaskDetail({ task }: Props) {
 
         <div className="item">
           <div className="label">Due Date</div>
-          <DatePicker bordered={false} value={dayjs(date)} />
+          <DatePicker variant="borderless" value={dayjs(date)} />
         </div>
 
         <div className="item">

@@ -90,7 +90,7 @@ function KanbanTask({ index, task }: Props) {
               <Select
                 defaultValue="To do"
                 size="large"
-                bordered={false}
+                variant="borderless"
                 dropdownStyle={{
                   width: 'auto',
                 }}
