@@ -1,5 +1,5 @@
 import { Menu, MenuProps } from 'antd';
-import { useState, useEffect, CSSProperties } from 'react';
+import { useState, useEffect, CSSProperties, useMemo } from 'react';
 import { useNavigate, useMatches, useLocation } from 'react-router-dom';
 
 import { useRouteToMenuFn, usePermissionRoutes, useFlattenedRoutes } from '@/router/hooks';
@@ -17,8 +17,10 @@ export default function NavHorizontal() {
 
   const routeToMenuFn = useRouteToMenuFn();
   const permissionRoutes = usePermissionRoutes();
-  const menuRoutes = menuFilter(permissionRoutes);
-  const menuList = routeToMenuFn(menuRoutes);
+  const menuList = useMemo(() => {
+    const menuRoutes = menuFilter(permissionRoutes);
+    return routeToMenuFn(menuRoutes);
+  }, [routeToMenuFn, permissionRoutes]);
 
   // 获取拍平后的路由菜单
   const flattenedRoutes = useFlattenedRoutes();

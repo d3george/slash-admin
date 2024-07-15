@@ -2,7 +2,7 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 import Color from 'color';
 import { m } from 'framer-motion';
-import { CSSProperties, useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useMemo, useState } from 'react';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import MotionContainer from '@/components/animate/motion-container';
@@ -40,8 +40,10 @@ export default function Nav(props: Props) {
 
   const routeToMenuFn = useRouteToMenuFn();
   const permissionRoutes = usePermissionRoutes();
-  const menuRoutes = menuFilter(permissionRoutes);
-  const menuList = routeToMenuFn(menuRoutes);
+  const menuList = useMemo(() => {
+    const menuRoutes = menuFilter(permissionRoutes);
+    return routeToMenuFn(menuRoutes);
+  }, [routeToMenuFn, permissionRoutes]);
 
   // 获取拍平后的路由菜单
   const flattenedRoutes = useFlattenedRoutes();
