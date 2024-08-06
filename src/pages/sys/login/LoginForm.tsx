@@ -86,19 +86,21 @@ function LoginForm() {
           <Input.Password type="password" placeholder={t('sys.login.password')} />
         </Form.Item>
         <Form.Item>
-          <Row>
+          <Row align="middle">
             <Col span={12}>
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>{t('sys.login.rememberMe')}</Checkbox>
               </Form.Item>
             </Col>
             <Col span={12} className="text-right">
-              <button
+              <Button
+                type="link"
                 className="!underline"
                 onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)}
+                size="small"
               >
                 {t('sys.login.forgetPassword')}
-              </button>
+              </Button>
             </Col>
           </Row>
         </Form.Item>
