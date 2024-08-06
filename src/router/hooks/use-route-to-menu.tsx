@@ -27,7 +27,7 @@ export function useRouteToMenuFn() {
             menuItem.disabled = disabled;
             menuItem.label = (
               <div
-                className={`inline-flex w-full items-center ${
+                className={`inline-flex items-center ${
                   themeLayout === ThemeLayout.Horizontal ? 'justify-start' : 'justify-between'
                 } `}
               >
