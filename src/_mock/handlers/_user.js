@@ -34,7 +34,7 @@ const userList = http.get('/api/user', async () => {
     Array.from({ length: 10 }).map(() => ({
       fullname: faker.person.fullName(),
       email: faker.internet.email(),
-      avatar: faker.image.avatar(),
+      avatar: faker.image.avatarGitHub(),
       address: faker.location.streetAddress(),
     })),
     {

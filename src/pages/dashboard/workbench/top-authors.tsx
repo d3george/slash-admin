@@ -36,7 +36,7 @@ export default function TopAuthor() {
       <main className="w-full">
         {new Array(3).fill('').map((_, index) => (
           <div key={index} className="mb-4 flex">
-            <img src={faker.image.avatar()} alt="" className="h-10 w-10 rounded-full" />
+            <img src={faker.image.avatarGitHub()} alt="" className="h-10 w-10 rounded-full" />
             <div className="ml-2 flex flex-col">
               <span>{faker.person.fullName()}</span>
               <div className="flex items-center  text-gray">

@@ -34,35 +34,35 @@ export default function ProfileTab() {
 
   const ConnectionsItems = [
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },
 
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },
 
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },
 
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
     },
 
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       connections: `${faker.number.int(100)} Connections`,
       connected: faker.datatype.boolean(),
@@ -230,7 +230,7 @@ export default function ProfileTab() {
                       <div className="mt-2 flex items-center gap-2">
                         <img
                           alt=""
-                          src={faker.image.avatarLegacy()}
+                          src={faker.image.avatarGitHub()}
                           className="h-8 w-8 rounded-full"
                         />
                         <span className="font-medium opacity-60">

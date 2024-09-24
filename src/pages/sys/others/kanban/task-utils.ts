@@ -7,7 +7,7 @@ const fakeComment = (count: number): TaskComment[] => {
   for (let index = 0; index < count; index += 1) {
     result.push({
       username: faker.person.fullName(),
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       content: faker.lorem.lines({ min: 1, max: 3 }),
       time: faker.date.past(),
     });
@@ -26,7 +26,7 @@ const fakeAttachment = (count: number) => {
 const fakeAssignee = (count: number) => {
   const result = [];
   for (let index = 0; index < count; index += 1) {
-    result.push(faker.image.avatarLegacy());
+    result.push(faker.image.avatarGitHub());
   }
   return result;
 };
@@ -51,7 +51,7 @@ export const initialData: DndDataType = {
     'task-1': {
       id: 'task-1',
       title: faker.lorem.words(3),
-      reporter: faker.image.avatarLegacy(),
+      reporter: faker.image.avatarGitHub(),
       priority: TaskPriority.LOW,
       tags: [],
       comments: [],
@@ -60,7 +60,7 @@ export const initialData: DndDataType = {
     'task-2': {
       id: 'task-2',
       title: faker.lorem.words(3),
-      reporter: faker.image.avatarLegacy(),
+      reporter: faker.image.avatarGitHub(),
       assignee: fakeAssignee(1),
       date: faker.date.future(),
       priority: TaskPriority.HIGH,
@@ -71,7 +71,7 @@ export const initialData: DndDataType = {
     'task-3': {
       id: 'task-3',
       title: faker.lorem.words(4),
-      reporter: faker.image.avatarLegacy(),
+      reporter: faker.image.avatarGitHub(),
       assignee: fakeAssignee(2),
       priority: TaskPriority.MEDIUM,
       date: faker.date.future(),
@@ -82,7 +82,7 @@ export const initialData: DndDataType = {
     'task-4': {
       id: 'task-4',
       title: faker.lorem.words(5),
-      reporter: faker.image.avatar(),
+      reporter: faker.image.avatarGitHub(),
       assignee: fakeAssignee(3),
       priority: TaskPriority.MEDIUM,
       tags: fakeTag(3),
@@ -94,7 +94,7 @@ export const initialData: DndDataType = {
     'task-5': {
       id: 'task-5',
       title: faker.lorem.words(4),
-      reporter: faker.image.avatar(),
+      reporter: faker.image.avatarGitHub(),
       priority: TaskPriority.HIGH,
       assignee: fakeAssignee(4),
       tags: fakeTag(4),
@@ -106,7 +106,7 @@ export const initialData: DndDataType = {
     'task-6': {
       id: 'task-6',
       title: faker.lorem.words(5),
-      reporter: faker.image.avatar(),
+      reporter: faker.image.avatarGitHub(),
       priority: TaskPriority.LOW,
 
       assignee: fakeAssignee(5),

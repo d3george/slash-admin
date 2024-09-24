@@ -8,7 +8,7 @@ import ProTag from '@/theme/antd/components/tag';
 export default function ConnectionsTab() {
   const items = [
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       title: 'UI Designer',
       tags: ['Figma', 'Sketch'],
@@ -18,7 +18,7 @@ export default function ConnectionsTab() {
       connected: true,
     },
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       title: 'Developer',
       tags: ['Angular', 'React'],
@@ -28,7 +28,7 @@ export default function ConnectionsTab() {
       connected: false,
     },
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       title: 'Developer',
       tags: ['Html', 'React'],
@@ -38,7 +38,7 @@ export default function ConnectionsTab() {
       connected: false,
     },
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       title: 'UI/UX Designer',
       tags: ['Figma', 'Sketch', 'Photoshop'],
@@ -48,7 +48,7 @@ export default function ConnectionsTab() {
       connected: false,
     },
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       title: 'Full Stack Developer',
       tags: ['React', 'Html', 'Node.js'],
@@ -58,7 +58,7 @@ export default function ConnectionsTab() {
       connected: true,
     },
     {
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatarGitHub(),
       name: faker.person.fullName(),
       title: 'SEO',
       tags: ['Analysis', 'Writing'],
