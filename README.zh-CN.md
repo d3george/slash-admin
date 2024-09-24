@@ -2,11 +2,21 @@
 <br> 
 <br>
 <img src="./src/assets/images/logo.png" height="140" />
-<h1> Slash Admin </h1>
-<span style="font-size: 14px">
-  Slash Admin 是一款现代化的后台管理模板，基于 React 18、Vite、Ant Design 和 TypeScript 构建。它旨在帮助开发人员快速搭建功能强大的后台管理系统。
-</span>
-
+<h3> Slash Admin </h3>
+  <p>
+    <p style="font-size: 14px">
+      Slash Admin 是一款现代化的后台管理模板，基于 React 18、Vite、Ant Design 和 TypeScript 构建。它旨在帮助开发人员快速搭建功能强大的后台管理系统。
+    </p>
+    <br />
+    <br />
+    <a href="https://admin.slashspaces.com/">Preview</a>
+    ·
+    <a href="https://discord.gg/fXemAXVNDa">Discord</a>
+    ·
+    <a href="https://docs-admin.slashspaces.com/">Document</a>
+    <br />
+    <br />
+    <a href="https://trendshift.io/repositories/6387" target="_blank"><img src="https://trendshift.io/api/badge/repositories/6387" alt="d3george%2Fslash-admin | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 </div>
 
 **中文** | [English](./README.md)
@@ -14,7 +24,7 @@
 ## 赞助 
 <div style="display: flex; gap: 50px"> 
   <img style="width:300px" src="https://d3george.github.io/github-static/pay/weixin.jpg" >
-  <img style="width:300px" src="https://d3george.github.io/github-static/pay/buymeacoffee.png" />
+  <img style="width:280px" src="https://d3george.github.io/github-static/pay/buymeacoffee.png" />
 </div>
 
 
@@ -39,9 +49,6 @@
 - 基于 MSW 和 Faker.js 的Mock方案
 - 使用 Zustand 进行状态管理
 - 使用 React-Query 进行数据获取
-
-## 文档
-[文档地址](https://docs-admin.slashspaces.com/)
 
 ## 快速开始
 
