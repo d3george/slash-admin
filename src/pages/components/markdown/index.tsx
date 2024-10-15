@@ -60,7 +60,7 @@ ReactDOM.render(
 
 <br/>
 
-![cover](https://res.cloudinary.com/trinhmai/image/upload/v1660897321/_minimal_mock/_Cover/cover_19.jpg)
+![cover](src/assets/images/cover/cover_3.jpg)
 
 > A block quote with ~~strikethrough~~ and a URL: [https://reactjs.org](https://reactjs.org).
 
