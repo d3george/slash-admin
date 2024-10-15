@@ -1,5 +1,4 @@
-import { Breadcrumb } from 'antd';
-import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
+import { Breadcrumb, type BreadcrumbProps, type GetProp } from 'antd';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatches, Link } from 'react-router-dom';
@@ -10,13 +9,15 @@ import { menuFilter } from '@/router/utils';
 
 import { AppRouteObject } from '#/router';
 
+type MenuItem = GetProp<BreadcrumbProps, 'items'>[number];
+
 /**
  * 动态面包屑解决方案：https://github.com/MinjieChang/myblog/issues/29
  */
 export default function BreadCrumb() {
   const { t } = useTranslation();
   const matches = useMatches();
-  const [breadCrumbs, setBreadCrumbs] = useState<ItemType[]>([]);
+  const [breadCrumbs, setBreadCrumbs] = useState<MenuItem[]>([]);
 
   const flattenedRoutes = useFlattenedRoutes();
   const permissionRoutes = usePermissionRoutes();
@@ -33,7 +34,7 @@ export default function BreadCrumb() {
       items = items!
         .find((item) => item.meta?.key === key)
         ?.children?.filter((item) => !item.meta?.hideMenu);
-      const result: ItemType = {
+      const result: MenuItem = {
         key,
         title: t(label),
       };

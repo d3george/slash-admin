@@ -6,7 +6,9 @@ import { useSettings } from '@/store/settingStore';
 
 import { ThemeLayout } from '#/enum';
 import { AppRouteObject } from '#/router';
-import type { ItemType } from 'antd/es/menu/interface';
+import type { GetProp, MenuProps } from 'antd';
+
+type MenuItem = GetProp<MenuProps, 'items'>[number];
 
 /**
  *   routes -> menus
@@ -50,7 +52,7 @@ export function useRouteToMenuFn() {
           if (children) {
             menuItem.children = routeToMenuFn(children);
           }
-          return menuItem as ItemType;
+          return menuItem as MenuItem;
         });
     },
     [t, themeLayout],

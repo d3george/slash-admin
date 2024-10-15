@@ -65,10 +65,12 @@ function KanbanTask({ index, task }: Props) {
 
                   {assignee?.length && (
                     <Avatar.Group
-                      maxCount={3}
-                      maxStyle={{
-                        color: themeToken.colorPrimary,
-                        backgroundColor: themeToken.colorPrimaryBg,
+                      max={{
+                        count: 3,
+                        style: {
+                          color: themeToken.colorPrimary,
+                          backgroundColor: themeToken.colorPrimaryBg,
+                        },
                       }}
                     >
                       {assignee.map((url) => (
