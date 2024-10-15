@@ -60,8 +60,6 @@ ReactDOM.render(
 
 <br/>
 
-![cover](src/assets/images/cover/cover_3.jpg)
-
 > A block quote with ~~strikethrough~~ and a URL: [https://reactjs.org](https://reactjs.org).
 
 `;
