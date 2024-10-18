@@ -1,10 +1,11 @@
-import { useCallback, useEffect } from 'react';
+import { lazy, useCallback, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import PageError from '@/pages/sys/error/PageError';
 import { useUserToken } from '@/store/userStore';
 
 import { useRouter } from '../hooks';
+
+const PageError = lazy(() => import('@/pages/sys/error/PageError'));
 
 type Props = {
   children: React.ReactNode;
