@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-
-import { getItem, removeItem, setItem } from '@/utils/storage';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from '#/enum';
 
@@ -21,25 +20,33 @@ type SettingStore = {
   };
 };
 
-const useSettingStore = create<SettingStore>((set) => ({
-  settings: getItem<SettingsType>(StorageEnum.Settings) || {
-    themeColorPresets: ThemeColorPresets.Default,
-    themeMode: ThemeMode.Light,
-    themeLayout: ThemeLayout.Vertical,
-    themeStretch: false,
-    breadCrumb: true,
-    multiTab: true,
-  },
-  actions: {
-    setSettings: (settings) => {
-      set({ settings });
-      setItem(StorageEnum.Settings, settings);
+const useSettingStore = create<SettingStore>()(
+  persist(
+    (set) => ({
+      settings: {
+        themeColorPresets: ThemeColorPresets.Default,
+        themeMode: ThemeMode.Light,
+        themeLayout: ThemeLayout.Vertical,
+        themeStretch: false,
+        breadCrumb: true,
+        multiTab: true,
+      },
+      actions: {
+        setSettings: (settings) => {
+          set({ settings });
+        },
+        clearSettings() {
+          useSettingStore.persist.clearStorage();
+        },
+      },
+    }),
+    {
+      name: StorageEnum.Settings, // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
+      partialize: (state) => ({ [StorageEnum.Settings]: state.settings }),
     },
-    clearSettings() {
-      removeItem(StorageEnum.Settings);
-    },
-  },
-}));
+  ),
+);
 
 export const useSettings = () => useSettingStore((state) => state.settings);
 export const useSettingActions = () => useSettingStore((state) => state.actions);

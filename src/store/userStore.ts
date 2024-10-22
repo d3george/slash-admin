@@ -2,9 +2,9 @@ import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 import userService, { SignInReq } from '@/api/services/userService';
-import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserInfo, UserToken } from '#/entity';
 import { StorageEnum } from '#/enum';
@@ -22,25 +22,33 @@ type UserStore = {
   };
 };
 
-const useUserStore = create<UserStore>((set) => ({
-  userInfo: getItem<UserInfo>(StorageEnum.User) || {},
-  userToken: getItem<UserToken>(StorageEnum.Token) || {},
-  actions: {
-    setUserInfo: (userInfo) => {
-      set({ userInfo });
-      setItem(StorageEnum.User, userInfo);
+const useUserStore = create<UserStore>()(
+  persist(
+    (set) => ({
+      userInfo: {},
+      userToken: {},
+      actions: {
+        setUserInfo: (userInfo) => {
+          set({ userInfo });
+        },
+        setUserToken: (userToken) => {
+          set({ userToken });
+        },
+        clearUserInfoAndToken() {
+          set({ userInfo: {}, userToken: {} });
+        },
+      },
+    }),
+    {
+      name: 'userStore', // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
+      partialize: (state) => ({
+        [StorageEnum.UserInfo]: state.userInfo,
+        [StorageEnum.TokenToken]: state.userToken,
+      }),
     },
-    setUserToken: (userToken) => {
-      set({ userToken });
-      setItem(StorageEnum.Token, userToken);
-    },
-    clearUserInfoAndToken() {
-      set({ userInfo: {}, userToken: {} });
-      removeItem(StorageEnum.User);
-      removeItem(StorageEnum.Token);
-    },
-  },
-}));
+  ),
+);
 
 export const useUserInfo = () => useUserStore((state) => state.userInfo);
 export const useUserToken = () => useUserStore((state) => state.userToken);
