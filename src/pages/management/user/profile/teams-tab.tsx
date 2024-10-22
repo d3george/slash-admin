@@ -64,7 +64,7 @@ export default function TeamsTab() {
             </header>
             <main className="my-4 opacity-70">{item.desc}</main>
             <footer className="flex w-full items-center">
-              <Avatar.Group maxCount={4}>
+              <Avatar.Group max={{ count: 4 }}>
                 {item.members.map((memberAvatar, index) => (
                   <Avatar src={memberAvatar} key={index} />
                 ))}
