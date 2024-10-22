@@ -44,7 +44,7 @@ const useUserStore = create<UserStore>()(
       storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
       partialize: (state) => ({
         [StorageEnum.UserInfo]: state.userInfo,
-        [StorageEnum.TokenToken]: state.userToken,
+        [StorageEnum.UserToken]: state.userToken,
       }),
     },
   ),
