@@ -56,6 +56,7 @@ export default function PermissionModal({
   );
 
   const updateCompOptions = (name: string) => {
+    if (!name) return;
     setCompOptions(
       PAGE_SELECT_OPTIONS.filter((path) => {
         return path.value.includes(name.toLowerCase());
@@ -76,7 +77,7 @@ export default function PermissionModal({
       <Form
         initialValues={formValue}
         form={form}
-        labelCol={{ span: 4 }}
+        labelCol={{ span: 6 }}
         wrapperCol={{ span: 18 }}
         layout="horizontal"
       >
