@@ -2,7 +2,7 @@ import { Empty, GlobalToken, Input, InputRef, Modal } from 'antd';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import Color from 'color';
-import { CSSProperties, useEffect, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useBoolean, useEvent, useKeyPressEvent } from 'react-use';
 import styled from 'styled-components';
@@ -30,18 +30,20 @@ export default function SearchBar() {
   };
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResult, setSearchResult] = useState(flattenedRoutes);
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
-  useEffect(() => {
-    const result = flattenedRoutes.filter(
+  const searchResult = useMemo(() => {
+    return flattenedRoutes.filter(
       (item) =>
-        t(item.label).toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 ||
-        item.key.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1,
+        t(item.label).toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.key.toLowerCase().includes(searchQuery.toLowerCase()),
     );
-    setSearchResult(result);
-    setSelectedItemIndex(0);
   }, [searchQuery, t, flattenedRoutes]);
+
+  // 在搜索结果变化时重置选中索引
+  useEffect(() => {
+    setSelectedItemIndex(0);
+  }, [searchResult.length]);
 
   const handleMetaK = (event: KeyboardEvent) => {
     if (event.metaKey && event.key === 'k') {
