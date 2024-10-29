@@ -1,11 +1,21 @@
 import { AutoComplete, Form, Input, InputNumber, Modal, Radio, TreeSelect } from 'antd';
 import { useCallback, useEffect, useState } from 'react';
 
-import { pagesSelect } from '@/router/hooks/use-permission-routes';
 import { useUserPermission } from '@/store/userStore';
 
 import { Permission } from '#/entity';
 import { BasicStatus, PermissionType } from '#/enum';
+
+// Constants
+const ENTRY_PATH = '/src/pages';
+const PAGES = import.meta.glob('/src/pages/**/*.tsx');
+const PAGE_SELECT_OPTIONS = Object.entries(PAGES).map(([path]) => {
+  const pagePath = path.replace(ENTRY_PATH, '');
+  return {
+    label: pagePath,
+    value: pagePath,
+  };
+});
 
 export type PermissionModalProps = {
   formValue: Permission;
@@ -24,7 +34,7 @@ export default function PermissionModal({
 }: PermissionModalProps) {
   const [form] = Form.useForm();
   const permissions = useUserPermission();
-  const [compOptions, setCompOptions] = useState(pagesSelect);
+  const [compOptions, setCompOptions] = useState(PAGE_SELECT_OPTIONS);
 
   const getParentNameById = useCallback(
     (parentId: string, data: Permission[] | undefined = permissions) => {
@@ -47,7 +57,7 @@ export default function PermissionModal({
 
   const updateCompOptions = (name: string) => {
     setCompOptions(
-      pagesSelect.filter((path) => {
+      PAGE_SELECT_OPTIONS.filter((path) => {
         return path.value.includes(name.toLowerCase());
       }),
     );
