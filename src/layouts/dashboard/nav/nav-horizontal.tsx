@@ -6,7 +6,7 @@ import { useRouteToMenuFn, usePermissionRoutes, useFlattenedRoutes } from '@/rou
 import { menuFilter } from '@/router/utils';
 import { useThemeToken } from '@/theme/hooks';
 
-import { NAV_HORIZONTAL_HEIGHT } from './config';
+import { NAV_HORIZONTAL_HEIGHT } from '../config';
 
 export default function NavHorizontal() {
   const navigate = useNavigate();

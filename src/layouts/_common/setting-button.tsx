@@ -30,8 +30,15 @@ export default function SettingButton() {
     useThemeToken();
 
   const settings = useSettings();
-  const { themeMode, themeColorPresets, themeLayout, themeStretch, breadCrumb, multiTab } =
-    settings;
+  const {
+    themeMode,
+    themeColorPresets,
+    themeLayout,
+    themeStretch,
+    breadCrumb,
+    multiTab,
+    darkSidebar,
+  } = settings;
   const { setSettings } = useSettingActions();
 
   const setThemeMode = (themeMode: ThemeMode) => {
@@ -73,6 +80,13 @@ export default function SettingButton() {
     setSettings({
       ...settings,
       multiTab: checked,
+    });
+  };
+
+  const setDarkSidebar = (checked: boolean) => {
+    setSettings({
+      ...settings,
+      darkSidebar: checked,
     });
   };
 
@@ -400,6 +414,17 @@ export default function SettingButton() {
                   size="small"
                   checked={multiTab}
                   onChange={(checked) => setMultiTab(checked)}
+                />
+              </div>
+              <div
+                className="flex items-center justify-between"
+                style={{ color: colorTextTertiary }}
+              >
+                <div>Dark Sidebar</div>
+                <Switch
+                  size="small"
+                  checked={darkSidebar}
+                  onChange={(checked) => setDarkSidebar(checked)}
                 />
               </div>
             </div>

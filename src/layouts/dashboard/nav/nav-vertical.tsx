@@ -14,7 +14,7 @@ import { menuFilter } from '@/router/utils';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
-import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config';
+import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from '../config';
 
 import { ThemeLayout } from '#/enum';
 
@@ -23,7 +23,7 @@ const slideInLeft = varSlide({ distance: 10 }).inLeft;
 type Props = {
   closeSideBarDrawer?: () => void;
 };
-export default function Nav(props: Props) {
+export default function NavVertical(props: Props) {
   const navigate = useNavigate();
   const matches = useMatches();
   const { pathname } = useLocation();
@@ -113,53 +113,55 @@ export default function Nav(props: Props) {
   };
 
   return (
-    <div
-      className="flex h-full flex-col"
-      style={{
-        width: collapsed ? NAV_COLLAPSED_WIDTH : NAV_WIDTH,
-        borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
-      }}
-    >
-      <div className="relative flex h-20 items-center justify-center py-4">
-        <MotionContainer className="flex items-center">
-          <Logo />
-          {themeLayout !== ThemeLayout.Mini && (
-            <m.div variants={slideInLeft}>
-              <span className="ml-2 text-xl font-bold" style={{ color: colorPrimary }}>
-                Slash Admin
-              </span>
-            </m.div>
-          )}
-        </MotionContainer>
-        <button
-          onClick={toggleCollapsed}
-          className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray md:block"
-          style={{ color: colorTextBase, borderColor: colorTextBase, fontSize: 16 }}
-        >
-          {collapsed ? <MenuUnfoldOutlined size={20} /> : <MenuFoldOutlined size={20} />}
-        </button>
-      </div>
-
-      <Scrollbar
+    <div className='"z-50 hidden h-full flex-shrink-0 md:block'>
+      <div
+        className="flex h-full flex-col"
         style={{
-          height: 'calc(100vh - 70px)',
+          width: collapsed ? NAV_COLLAPSED_WIDTH : NAV_WIDTH,
+          borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
         }}
       >
-        {/* <!-- Sidebar Menu --> */}
-        <Menu
-          mode={menuMode}
-          items={menuList}
-          className="h-full !border-none"
-          defaultOpenKeys={openKeys}
-          defaultSelectedKeys={[pathname]}
-          selectedKeys={[pathname]}
-          openKeys={openKeys}
-          onOpenChange={onOpenChange}
-          onClick={onClick}
-          style={menuStyle}
-          inlineCollapsed={collapsed}
-        />
-      </Scrollbar>
+        <div className="relative flex h-20 items-center justify-center py-4">
+          <MotionContainer className="flex items-center">
+            <Logo />
+            {themeLayout !== ThemeLayout.Mini && (
+              <m.div variants={slideInLeft}>
+                <span className="ml-2 text-xl font-bold" style={{ color: colorPrimary }}>
+                  Slash Admin
+                </span>
+              </m.div>
+            )}
+          </MotionContainer>
+          <button
+            onClick={toggleCollapsed}
+            className="absolute right-0 top-7 z-50 hidden h-6 w-6 translate-x-1/2 cursor-pointer select-none rounded-full text-center !text-gray md:block"
+            style={{ color: colorTextBase, borderColor: colorTextBase, fontSize: 16 }}
+          >
+            {collapsed ? <MenuUnfoldOutlined size={20} /> : <MenuFoldOutlined size={20} />}
+          </button>
+        </div>
+
+        <Scrollbar
+          style={{
+            height: 'calc(100vh - 70px)',
+          }}
+        >
+          {/* <!-- Sidebar Menu --> */}
+          <Menu
+            mode={menuMode}
+            items={menuList}
+            className="h-full !border-none"
+            defaultOpenKeys={openKeys}
+            defaultSelectedKeys={[pathname]}
+            selectedKeys={[pathname]}
+            openKeys={openKeys}
+            onOpenChange={onOpenChange}
+            onClick={onClick}
+            style={menuStyle}
+            inlineCollapsed={collapsed}
+          />
+        </Scrollbar>
+      </div>
     </div>
   );
 }

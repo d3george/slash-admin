@@ -15,7 +15,7 @@ import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/setting-button';
 
 import { NAV_COLLAPSED_WIDTH, NAV_WIDTH, HEADER_HEIGHT, OFFSET_HEADER_HEIGHT } from './config';
-import Nav from './nav';
+import Nav from './nav/nav-vertical';
 
 import { ThemeLayout } from '#/enum';
 

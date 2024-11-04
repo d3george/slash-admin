@@ -10,7 +10,6 @@ import { useThemeToken } from '@/theme/hooks';
 import Header from './header';
 import Main from './main';
 import Nav from './nav';
-import NavHorizontal from './nav-horizontal';
 
 import { ThemeLayout, ThemeMode } from '#/enum';
 
@@ -38,16 +37,8 @@ function DashboardLayout() {
     onOffSetTop();
   }, [onOffSetTop]);
 
-  const navVertical = (
-    <div className="z-50 hidden h-full flex-shrink-0 md:block">
-      <Nav />
-    </div>
-  );
-
-  const nav = themeLayout === ThemeLayout.Horizontal ? <NavHorizontal /> : navVertical;
-
   return (
-    <StyleWrapper $themeMode={themeMode}>
+    <ScrollbarStyleWrapper $themeMode={themeMode}>
       <ProgressBar />
       <div
         className={`flex h-screen overflow-hidden ${
@@ -62,16 +53,16 @@ function DashboardLayout() {
       >
         <Suspense fallback={<CircleLoading />}>
           <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
-          {nav}
+          <Nav />
           <Main ref={mainEl} offsetTop={offsetTop} />
         </Suspense>
       </div>
-    </StyleWrapper>
+    </ScrollbarStyleWrapper>
   );
 }
 export default DashboardLayout;
 
-const StyleWrapper = styled.div<{ $themeMode?: ThemeMode }>`
+const ScrollbarStyleWrapper = styled.div<{ $themeMode?: ThemeMode }>`
   /* 设置滚动条的整体样式 */
   ::-webkit-scrollbar {
     width: 8px; /* 设置滚动条宽度 */
