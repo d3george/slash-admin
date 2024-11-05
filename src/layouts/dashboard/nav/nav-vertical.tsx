@@ -2,7 +2,7 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Menu, MenuProps } from 'antd';
 import Color from 'color';
 import { m } from 'framer-motion';
-import { CSSProperties, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useMatches, useNavigate } from 'react-router-dom';
 
 import MotionContainer from '@/components/animate/motion-container';
@@ -14,7 +14,7 @@ import { menuFilter } from '@/router/utils';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
-import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from '../config';
+import { NAV_COLLAPSED_WIDTH, NAV_WIDTH, HEADER_HEIGHT } from '../config';
 
 import { ThemeLayout } from '#/enum';
 
@@ -31,21 +31,18 @@ export default function NavVertical(props: Props) {
   const { colorPrimary, colorTextBase, colorBgElevated, colorBorder } = useThemeToken();
 
   const settings = useSettings();
+  console.log('nav vertical render');
   const { themeLayout } = settings;
   const { setSettings } = useSettingActions();
 
-  const menuStyle: CSSProperties = {
-    background: colorBgElevated,
-  };
-
   const routeToMenuFn = useRouteToMenuFn();
   const permissionRoutes = usePermissionRoutes();
+
   const menuList = useMemo(() => {
     const menuRoutes = menuFilter(permissionRoutes);
     return routeToMenuFn(menuRoutes);
   }, [routeToMenuFn, permissionRoutes]);
 
-  // 获取拍平后的路由菜单
   const flattenedRoutes = useFlattenedRoutes();
 
   /**
@@ -53,27 +50,19 @@ export default function NavVertical(props: Props) {
    */
   const [collapsed, setCollapsed] = useState(false);
   const [openKeys, setOpenKeys] = useState<string[]>([]);
-  const [menuMode, setMenuMode] = useState<MenuProps['mode']>('inline');
-
-  useEffect(() => {
-    if (themeLayout === ThemeLayout.Vertical) {
-      const openKeys = matches
-        .filter((match) => match.pathname !== '/')
-        .map((match) => match.pathname);
-      setOpenKeys(openKeys);
-    }
-  }, [matches, themeLayout]);
 
   useEffect(() => {
     if (themeLayout === ThemeLayout.Vertical) {
       setCollapsed(false);
-      setMenuMode('inline');
-    }
-    if (themeLayout === ThemeLayout.Mini) {
+
+      const openKeys = matches
+        .filter((match) => match.pathname !== '/')
+        .map((match) => match.pathname);
+      setOpenKeys(openKeys);
+    } else if (themeLayout === ThemeLayout.Mini) {
       setCollapsed(true);
-      setMenuMode('inline');
     }
-  }, [themeLayout]);
+  }, [themeLayout, matches]);
 
   /**
    * events
@@ -121,7 +110,11 @@ export default function NavVertical(props: Props) {
           borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
         }}
       >
-        <div className="relative flex h-20 items-center justify-center py-4">
+        {/* <!-- Logo --> */}
+        <div
+          style={{ height: `${HEADER_HEIGHT}px` }}
+          className="relative flex items-center justify-center py-4"
+        >
           <MotionContainer className="flex items-center">
             <Logo />
             {themeLayout !== ThemeLayout.Mini && (
@@ -141,14 +134,10 @@ export default function NavVertical(props: Props) {
           </button>
         </div>
 
-        <Scrollbar
-          style={{
-            height: 'calc(100vh - 70px)',
-          }}
-        >
-          {/* <!-- Sidebar Menu --> */}
+        {/* <!-- Sidebar Menu --> */}
+        <Scrollbar style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)` }}>
           <Menu
-            mode={menuMode}
+            mode="inline"
             items={menuList}
             className="h-full !border-none"
             defaultOpenKeys={openKeys}
@@ -157,7 +146,7 @@ export default function NavVertical(props: Props) {
             openKeys={openKeys}
             onOpenChange={onOpenChange}
             onClick={onClick}
-            style={menuStyle}
+            style={{ backgroundColor: colorBgElevated }}
             inlineCollapsed={collapsed}
           />
         </Scrollbar>
