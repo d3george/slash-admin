@@ -1,8 +1,13 @@
 import { Menu, MenuProps } from 'antd';
-import { useMemo, useState } from 'react';
-import { useNavigate, useMatches } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { useRouteToMenuFn, usePermissionRoutes, useFlattenedRoutes } from '@/router/hooks';
+import {
+  useRouteToMenuFn,
+  usePermissionRoutes,
+  useFlattenedRoutes,
+  usePathname,
+} from '@/router/hooks';
 import { menuFilter } from '@/router/utils';
 import { useThemeToken } from '@/theme/hooks';
 
@@ -10,7 +15,7 @@ import { NAV_HORIZONTAL_HEIGHT } from '../config';
 
 export default function NavHorizontal() {
   const navigate = useNavigate();
-  const matches = useMatches();
+  const pathname = usePathname();
   const { colorBgElevated } = useThemeToken();
 
   const routeToMenuFn = useRouteToMenuFn();
@@ -22,13 +27,10 @@ export default function NavHorizontal() {
     return routeToMenuFn(menuRoutes);
   }, [routeToMenuFn, permissionRoutes]);
 
-  const [currentOpenKeys, setCurrentOpenKeys] = useState<string[]>(() => {
-    return matches.filter((match) => match.pathname !== '/').map((match) => match.pathname);
-  });
-  const onClick: MenuProps['onClick'] = ({ key, keyPath }) => {
-    const nextLink = flattenedRoutes?.find((el) => el.key === key);
-    setCurrentOpenKeys(keyPath);
+  const selectedKeys = useMemo(() => [pathname], [pathname]);
 
+  const onClick: MenuProps['onClick'] = ({ key }) => {
+    const nextLink = flattenedRoutes?.find((el) => el.key === key);
     // Handle special case for external links in menu items
     // For external links: skip internal routing, avoid adding new tab in current project,
     // prevent selecting current route, and open link in new browser tab
@@ -45,7 +47,7 @@ export default function NavHorizontal() {
         mode="horizontal"
         items={menuList}
         defaultOpenKeys={[]}
-        defaultSelectedKeys={currentOpenKeys}
+        selectedKeys={selectedKeys}
         onClick={onClick}
         className="!z-10 !border-none"
         style={{ background: colorBgElevated }}
