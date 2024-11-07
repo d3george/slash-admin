@@ -24,7 +24,6 @@ type Props = {
   closeSideBarDrawer?: () => void;
 };
 export default function NavVertical(props: Props) {
-  console.log('NavVertical');
   const navigate = useNavigate();
   const matches = useMatches();
   const { colorBgElevated, colorBorder } = useThemeToken();
