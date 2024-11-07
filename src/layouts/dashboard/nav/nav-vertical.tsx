@@ -1,6 +1,6 @@
 import { Menu, MenuProps } from 'antd';
 import Color from 'color';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useMatches, useNavigate } from 'react-router-dom';
 
 import Scrollbar from '@/components/scrollbar';
@@ -37,27 +37,32 @@ export default function NavVertical(props: Props) {
   const permissionRoutes = usePermissionRoutes();
   const flattenedRoutes = useFlattenedRoutes();
 
-  const [collapsed, setCollapsed] = useState(themeLayout === ThemeLayout.Mini);
+  const collapsed = useMemo(() => themeLayout === ThemeLayout.Mini, [themeLayout]);
+
   const menuList = useMemo(() => {
     const menuRoutes = menuFilter(permissionRoutes);
     return routeToMenuFn(menuRoutes);
   }, [routeToMenuFn, permissionRoutes]);
 
   const selectedKeys = useMemo(() => [pathname], [pathname]);
-  const openKeys = useMemo(() => {
-    const keys = matches
-      .filter((match) => match.pathname !== '/')
-      .filter((match) => match.pathname !== pathname)
-      .map((match) => match.pathname);
-    return keys;
-  }, [matches, pathname]);
+
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (!collapsed) {
+      const keys = matches
+        .filter((match) => match.pathname !== '/')
+        .filter((match) => match.pathname !== pathname)
+        .map((match) => match.pathname);
+      setOpenKeys(keys);
+    }
+  }, [matches, pathname, collapsed]);
 
   const handleToggleCollapsed = () => {
     setSettings({
       ...settings,
       themeLayout: collapsed ? ThemeLayout.Vertical : ThemeLayout.Mini,
     });
-    setCollapsed(!collapsed);
   };
 
   const onClick: MenuProps['onClick'] = ({ key, keyPath }) => {
@@ -73,6 +78,12 @@ export default function NavVertical(props: Props) {
 
     navigate(key);
     props?.closeSideBarDrawer?.();
+  };
+
+  const handleOpenChange: MenuProps['onOpenChange'] = (keys) => {
+    if (!collapsed) {
+      setOpenKeys(keys);
+    }
   };
 
   return (
@@ -94,6 +105,7 @@ export default function NavVertical(props: Props) {
           style={{ backgroundColor: colorBgElevated }}
           className="h-full !border-none"
           onClick={onClick}
+          onOpenChange={handleOpenChange}
         />
       </Scrollbar>
     </div>
