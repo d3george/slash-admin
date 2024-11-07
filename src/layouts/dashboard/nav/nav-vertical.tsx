@@ -24,6 +24,7 @@ type Props = {
   closeSideBarDrawer?: () => void;
 };
 export default function NavVertical(props: Props) {
+  console.log('NavVertical');
   const navigate = useNavigate();
   const matches = useMatches();
   const { colorBgElevated, colorBorder } = useThemeToken();
@@ -47,15 +48,12 @@ export default function NavVertical(props: Props) {
   const selectedKeys = useMemo(() => [pathname], [pathname]);
 
   const [openKeys, setOpenKeys] = useState<string[]>([]);
-
   useEffect(() => {
-    if (!collapsed) {
-      const keys = matches
-        .filter((match) => match.pathname !== '/')
-        .filter((match) => match.pathname !== pathname)
-        .map((match) => match.pathname);
-      setOpenKeys(keys);
-    }
+    if (collapsed) return;
+    const keys = matches
+      .filter((match) => match.pathname !== '/' && match.pathname !== pathname)
+      .map((match) => match.pathname);
+    setOpenKeys(keys);
   }, [matches, pathname, collapsed]);
 
   const handleToggleCollapsed = () => {
@@ -65,12 +63,8 @@ export default function NavVertical(props: Props) {
     });
   };
 
-  const onClick: MenuProps['onClick'] = ({ key, keyPath }) => {
-    console.log('click', key, keyPath);
-    const nextLink = flattenedRoutes?.find((el) => el.key === key);
-    // Handle special case for external links in menu items
-    // For external links: skip internal routing, avoid adding new tab in current project,
-    // prevent selecting current route, and open link in new browser tab
+  const onClick: MenuProps['onClick'] = ({ key }) => {
+    const nextLink = flattenedRoutes?.find((e) => e.key === key);
     if (nextLink?.hideTab && nextLink?.frameSrc) {
       window.open(nextLink?.frameSrc, '_blank');
       return;
@@ -81,9 +75,7 @@ export default function NavVertical(props: Props) {
   };
 
   const handleOpenChange: MenuProps['onOpenChange'] = (keys) => {
-    if (!collapsed) {
-      setOpenKeys(keys);
-    }
+    setOpenKeys(keys);
   };
 
   return (
@@ -100,12 +92,12 @@ export default function NavVertical(props: Props) {
           mode="inline"
           inlineCollapsed={collapsed}
           items={menuList}
-          {...(!collapsed && { openKeys })}
           selectedKeys={selectedKeys}
+          {...(!collapsed && { openKeys })}
           style={{ backgroundColor: colorBgElevated }}
           className="h-full !border-none"
-          onClick={onClick}
           onOpenChange={handleOpenChange}
+          onClick={onClick}
         />
       </Scrollbar>
     </div>
