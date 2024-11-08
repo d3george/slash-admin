@@ -15,7 +15,7 @@ import SearchBar from '../_common/search-bar';
 import SettingButton from '../_common/setting-button';
 
 import { NAV_COLLAPSED_WIDTH, NAV_WIDTH, HEADER_HEIGHT, OFFSET_HEADER_HEIGHT } from './config';
-import Nav from './nav/nav-vertical';
+import NavVertical from './nav/nav-vertical';
 
 import { ThemeLayout } from '#/enum';
 
@@ -102,7 +102,7 @@ export default function Header({ className = '', offsetTop = false }: Props) {
         }}
         width="auto"
       >
-        <Nav closeSideBarDrawer={() => setDrawerOpen(false)} />
+        <NavVertical closeSideBarDrawer={() => setDrawerOpen(false)} />
       </Drawer>
     </>
   );

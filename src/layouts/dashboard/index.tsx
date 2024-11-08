@@ -47,9 +47,9 @@ function DashboardLayout() {
     <ScrollbarStyleWrapper $themeMode={themeMode}>
       <ProgressBar />
       <Layout className={layoutClassName}>
-        <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
         <Suspense fallback={<CircleLoading />}>
           <Layout>
+            <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
             <Nav />
             <Main ref={mainEl} offsetTop={offsetTop} />
           </Layout>

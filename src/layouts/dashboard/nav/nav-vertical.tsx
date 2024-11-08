@@ -97,6 +97,7 @@ export default function NavVertical(props: Props) {
       width={NAV_WIDTH}
       theme={sidebarTheme}
       style={{
+        height: '100vh',
         borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
       }}
     >
