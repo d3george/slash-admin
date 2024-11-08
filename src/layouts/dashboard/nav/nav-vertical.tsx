@@ -100,7 +100,6 @@ export default function NavVertical(props: Props) {
       <Scrollbar>
         <Menu
           mode="inline"
-          inlineCollapsed={collapsed}
           items={menuList}
           selectedKeys={selectedKeys}
           {...(!collapsed && { openKeys })}

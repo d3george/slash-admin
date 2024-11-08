@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import { useScroll } from 'framer-motion';
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { CircleLoading } from '@/components/loading';
@@ -17,19 +17,17 @@ import { ThemeLayout, ThemeMode } from '#/enum';
 function DashboardLayout() {
   const { themeLayout, themeMode } = useSettings();
 
-  const mainEl = useRef(null);
+  const mainEl = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({ container: mainEl });
+
   /**
-   * y轴是否滚动
+   *  Tracks if content is scrolled
    */
   const [offsetTop, setOffsetTop] = useState(false);
+
   const onOffSetTop = useCallback(() => {
     scrollY.on('change', (scrollHeight) => {
-      if (scrollHeight > 0) {
-        setOffsetTop(true);
-      } else {
-        setOffsetTop(false);
-      }
+      setOffsetTop(scrollHeight > 0);
     });
   }, [scrollY]);
 
@@ -37,15 +35,18 @@ function DashboardLayout() {
     onOffSetTop();
   }, [onOffSetTop]);
 
+  // Memoize layout className
+  const layoutClassName = useMemo(() => {
+    return cn(
+      'flex h-screen overflow-hidden',
+      themeLayout === ThemeLayout.Horizontal ? 'flex-col' : 'flex-row',
+    );
+  }, [themeLayout]);
+
   return (
     <ScrollbarStyleWrapper $themeMode={themeMode}>
       <ProgressBar />
-      <Layout
-        className={cn(
-          'flex h-screen overflow-hidden',
-          themeLayout === ThemeLayout.Horizontal ? 'flex-col' : 'flex-row',
-        )}
-      >
+      <Layout className={layoutClassName}>
         <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
         <Suspense fallback={<CircleLoading />}>
           <Layout>
@@ -59,36 +60,50 @@ function DashboardLayout() {
 }
 export default DashboardLayout;
 
+// Move styles to a separate constant
+const scrollbarStyles = {
+  dark: {
+    track: '#2c2c2c',
+    thumb: '#6b6b6b',
+    thumbHover: '#939393',
+  },
+  light: {
+    track: '#FAFAFA',
+    thumb: '#C1C1C1',
+    thumbHover: '#7D7D7D',
+  },
+};
+
 const ScrollbarStyleWrapper = styled.div<{ $themeMode?: ThemeMode }>`
-  /* 设置滚动条的整体样式 */
   ::-webkit-scrollbar {
-    width: 8px; /* 设置滚动条宽度 */
+    width: 8px;
   }
 
-  /* 设置滚动条轨道的样式 */
   ::-webkit-scrollbar-track {
     border-radius: 8px;
-    background: ${(props) => (props.$themeMode === ThemeMode.Dark ? '#2c2c2c' : '#FAFAFA')};
+    background: ${({ $themeMode }) =>
+      $themeMode === ThemeMode.Dark ? scrollbarStyles.dark.track : scrollbarStyles.light.track};
   }
 
-  /* 设置滚动条滑块的样式 */
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: ${(props) => (props.$themeMode === ThemeMode.Dark ? '#6b6b6b' : '#C1C1C1')};
+    background: ${({ $themeMode }) =>
+      $themeMode === ThemeMode.Dark ? scrollbarStyles.dark.thumb : scrollbarStyles.light.thumb};
   }
 
-  /* 设置菜单滚动条样式 */
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${({ $themeMode }) =>
+      $themeMode === ThemeMode.Dark
+        ? scrollbarStyles.dark.thumbHover
+        : scrollbarStyles.light.thumbHover};
+  }
+
   .simplebar-scrollbar::before {
-    background: ${(props) => (props.$themeMode === ThemeMode.Dark ? '#6b6b6b' : '#C1C1C1')};
+    background: ${({ $themeMode }) =>
+      $themeMode === ThemeMode.Dark ? scrollbarStyles.dark.thumb : scrollbarStyles.light.thumb};
   }
 
-  /* 设置菜单滚动条透明度统一 */
   .simplebar-scrollbar.simplebar-visible:before {
     opacity: 1;
-  }
-
-  /* 设置鼠标悬停在滚动条上的样式 */
-  ::-webkit-scrollbar-thumb:hover {
-    background: ${(props) => (props.$themeMode === ThemeMode.Dark ? '#939393' : '##7D7D7D')};
   }
 `;
