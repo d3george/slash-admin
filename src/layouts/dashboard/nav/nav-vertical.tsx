@@ -1,4 +1,4 @@
-import { Menu, MenuProps } from 'antd';
+import { Layout, Menu, MenuProps } from 'antd';
 import Color from 'color';
 import { useEffect, useMemo, useState } from 'react';
 import { useMatches, useNavigate } from 'react-router-dom';
@@ -14,23 +14,26 @@ import { menuFilter } from '@/router/utils';
 import { useSettingActions, useSettings } from '@/store/settingStore';
 import { useThemeToken } from '@/theme/hooks';
 
-import { NAV_COLLAPSED_WIDTH, NAV_WIDTH, HEADER_HEIGHT } from '../config';
+import { NAV_WIDTH } from '../config';
 
 import NavLogo from './nva-logo';
 
 import { ThemeLayout } from '#/enum';
 
+const { Sider } = Layout;
+
 type Props = {
   closeSideBarDrawer?: () => void;
 };
 export default function NavVertical(props: Props) {
+  console.log('NavVertical');
   const navigate = useNavigate();
   const matches = useMatches();
-  const { colorBgElevated, colorBorder } = useThemeToken();
   const pathname = usePathname();
 
+  const { colorBorder, colorBgElevated } = useThemeToken();
   const settings = useSettings();
-  const { themeLayout } = settings;
+  const { themeLayout, themeMode } = settings;
   const { setSettings } = useSettingActions();
 
   const routeToMenuFn = useRouteToMenuFn();
@@ -47,13 +50,15 @@ export default function NavVertical(props: Props) {
   const selectedKeys = useMemo(() => [pathname], [pathname]);
 
   const [openKeys, setOpenKeys] = useState<string[]>([]);
+  // 首次加载时设置 openKeys
   useEffect(() => {
-    if (collapsed) return;
-    const keys = matches
-      .filter((match) => match.pathname !== '/' && match.pathname !== pathname)
-      .map((match) => match.pathname);
-    setOpenKeys(keys);
-  }, [matches, pathname, collapsed]);
+    if (!collapsed) {
+      const keys = matches
+        .filter((match) => match.pathname !== '/' && match.pathname !== pathname)
+        .map((match) => match.pathname);
+      setOpenKeys(keys);
+    }
+  }, [collapsed, matches, pathname]);
 
   const handleToggleCollapsed = () => {
     setSettings({
@@ -74,31 +79,39 @@ export default function NavVertical(props: Props) {
   };
 
   const handleOpenChange: MenuProps['onOpenChange'] = (keys) => {
+    if (collapsed) return;
     setOpenKeys(keys);
   };
 
   return (
-    <div
+    <Sider
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+      width={NAV_WIDTH}
+      theme={themeMode}
       style={{
-        width: collapsed ? NAV_COLLAPSED_WIDTH : NAV_WIDTH,
+        background: colorBgElevated,
         borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
       }}
     >
       <NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />
 
-      <Scrollbar style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)` }}>
+      <Scrollbar>
         <Menu
           mode="inline"
           inlineCollapsed={collapsed}
           items={menuList}
           selectedKeys={selectedKeys}
           {...(!collapsed && { openKeys })}
-          style={{ backgroundColor: colorBgElevated }}
-          className="h-full !border-none"
           onOpenChange={handleOpenChange}
+          className="!border-none"
+          style={{
+            background: colorBgElevated,
+          }}
           onClick={onClick}
         />
       </Scrollbar>
-    </div>
+    </Sider>
   );
 }

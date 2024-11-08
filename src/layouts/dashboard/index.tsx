@@ -1,3 +1,4 @@
+import { Layout } from 'antd';
 import { useScroll } from 'framer-motion';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -5,7 +6,7 @@ import styled from 'styled-components';
 import { CircleLoading } from '@/components/loading';
 import ProgressBar from '@/components/progress-bar';
 import { useSettings } from '@/store/settingStore';
-import { useThemeToken } from '@/theme/hooks';
+import { cn } from '@/utils';
 
 import Header from './header';
 import Main from './main';
@@ -14,7 +15,6 @@ import Nav from './nav';
 import { ThemeLayout, ThemeMode } from '#/enum';
 
 function DashboardLayout() {
-  const { colorBgElevated, colorTextBase } = useThemeToken();
   const { themeLayout, themeMode } = useSettings();
 
   const mainEl = useRef(null);
@@ -40,23 +40,20 @@ function DashboardLayout() {
   return (
     <ScrollbarStyleWrapper $themeMode={themeMode}>
       <ProgressBar />
-      <div
-        className={`flex h-screen overflow-hidden ${
-          themeLayout === ThemeLayout.Horizontal ? 'flex-col' : ''
-        }`}
-        style={{
-          color: colorTextBase,
-          background: colorBgElevated,
-          transition:
-            'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-        }}
+      <Layout
+        className={cn(
+          'flex h-screen overflow-hidden',
+          themeLayout === ThemeLayout.Horizontal ? 'flex-col' : 'flex-row',
+        )}
       >
+        <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
         <Suspense fallback={<CircleLoading />}>
-          <Header offsetTop={themeLayout === ThemeLayout.Vertical ? offsetTop : undefined} />
-          <Nav />
-          <Main ref={mainEl} offsetTop={offsetTop} />
+          <Layout>
+            <Nav />
+            <Main ref={mainEl} offsetTop={offsetTop} />
+          </Layout>
         </Suspense>
-      </div>
+      </Layout>
     </ScrollbarStyleWrapper>
   );
 }

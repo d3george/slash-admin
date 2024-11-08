@@ -32,6 +32,7 @@
     "autosuggest-highlight": "^3.3.4",
     "axios": "^1.5.1",
     "classnames": "^2.3.2",
+    "clsx": "^2.1.1",
     "color": "^4.2.3",
     "dayjs": "^1.11.10",
     "framer-motion": "^10.16.4",
@@ -61,6 +62,7 @@
     "screenfull": "^6.0.2",
     "simplebar-react": "^3.2.4",
     "styled-components": "^6.0.9",
+    "tailwind-merge": "^2.5.4",
     "zustand": "^4.4.3"
   },
   "devDependencies": {

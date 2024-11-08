@@ -3,7 +3,8 @@ import { CSSProperties, forwardRef } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { useSettings } from '@/store/settingStore';
-import { useResponsive } from '@/theme/hooks';
+import { useResponsive, useThemeToken } from '@/theme/hooks';
+import { cn } from '@/utils';
 
 import { NAV_WIDTH, NAV_COLLAPSED_WIDTH, HEADER_HEIGHT, MULTI_TABS_HEIGHT } from './config';
 import MultiTabs from './multi-tabs';
@@ -16,10 +17,12 @@ type Props = {
 };
 const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
   const { themeStretch, themeLayout, multiTab } = useSettings();
+  const { colorBgElevated } = useThemeToken();
   const { screenMap } = useResponsive();
 
   const mainStyle: CSSProperties = {
     paddingTop: HEADER_HEIGHT + (multiTab ? MULTI_TABS_HEIGHT : 0),
+    background: colorBgElevated,
     transition: 'padding 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     width: '100%',
   };
@@ -37,9 +40,11 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
   return (
     <Content ref={ref} style={mainStyle} className="flex overflow-auto">
       <div
-        className={`m-auto h-full w-full flex-grow sm:p-2 ${
-          themeStretch ? '' : 'xl:max-w-screen-xl'
-        }`}
+        className={cn(
+          'm-auto h-full w-full flex-grow sm:p-2',
+          themeStretch ? '' : 'xl:max-w-screen-xl',
+          themeLayout === ThemeLayout.Horizontal ? 'flex-col' : 'flex-row',
+        )}
       >
         {multiTab ? (
           <MultiTabsProvider>
