@@ -15,7 +15,8 @@ type Props = {
 };
 export default function NavLogo({ collapsed, onToggle }: Props) {
   const { themeLayout } = useSettings();
-  const { colorPrimary, colorBorder, colorTextSecondary, colorBgContainer } = useThemeToken();
+  const { colorPrimary, colorTextSecondary, colorBgContainer, colorBorderSecondary } =
+    useThemeToken();
   return (
     <div
       style={{ height: `${HEADER_HEIGHT}px` }}
@@ -36,7 +37,7 @@ export default function NavLogo({ collapsed, onToggle }: Props) {
         )}
         style={{
           fontSize: 16,
-          border: `1px solid ${colorBorder}`,
+          border: `1px solid ${colorBorderSecondary}`,
           backgroundColor: colorBgContainer,
         }}
       >
