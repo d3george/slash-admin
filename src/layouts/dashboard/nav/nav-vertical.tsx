@@ -26,12 +26,11 @@ type Props = {
   closeSideBarDrawer?: () => void;
 };
 export default function NavVertical(props: Props) {
-  console.log('NavVertical');
   const navigate = useNavigate();
   const matches = useMatches();
   const pathname = usePathname();
 
-  const { colorBorder, colorBgElevated } = useThemeToken();
+  const { colorBorder } = useThemeToken();
   const settings = useSettings();
   const { themeLayout, themeMode, darkSidebar } = settings;
   const { setSettings } = useSettingActions();
