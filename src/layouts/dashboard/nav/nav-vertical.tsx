@@ -18,7 +18,7 @@ import { NAV_WIDTH } from '../config';
 
 import NavLogo from './nva-logo';
 
-import { ThemeLayout } from '#/enum';
+import { ThemeLayout, ThemeMode } from '#/enum';
 
 const { Sider } = Layout;
 
@@ -33,7 +33,7 @@ export default function NavVertical(props: Props) {
 
   const { colorBorder, colorBgElevated } = useThemeToken();
   const settings = useSettings();
-  const { themeLayout, themeMode } = settings;
+  const { themeLayout, themeMode, darkSidebar } = settings;
   const { setSettings } = useSettingActions();
 
   const routeToMenuFn = useRouteToMenuFn();
@@ -83,15 +83,21 @@ export default function NavVertical(props: Props) {
     setOpenKeys(keys);
   };
 
+  const sidebarTheme = useMemo(() => {
+    if (themeMode === ThemeMode.Dark) {
+      return darkSidebar ? 'light' : 'dark';
+    }
+    return darkSidebar ? 'dark' : 'light';
+  }, [themeMode, darkSidebar]);
+
   return (
     <Sider
       trigger={null}
       collapsible
       collapsed={collapsed}
       width={NAV_WIDTH}
-      theme={themeMode}
+      theme={sidebarTheme}
       style={{
-        background: colorBgElevated,
         borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
       }}
     >
@@ -101,13 +107,11 @@ export default function NavVertical(props: Props) {
         <Menu
           mode="inline"
           items={menuList}
+          theme={sidebarTheme}
           selectedKeys={selectedKeys}
           {...(!collapsed && { openKeys })}
           onOpenChange={handleOpenChange}
           className="!border-none"
-          style={{
-            background: colorBgElevated,
-          }}
           onClick={onClick}
         />
       </Scrollbar>

@@ -51,6 +51,12 @@ const themeModeToken: Record<'dark' | 'light', ThemeConfig> = {
       colorBgElevated: '#161c24',
     },
     components: {
+      Layout: {
+        siderBg: '#161c24',
+      },
+      Menu: {
+        darkItemBg: '#161c24',
+      },
       Modal: {
         headerBg: '#212b36',
         contentBg: '#212b36',
@@ -59,7 +65,16 @@ const themeModeToken: Record<'dark' | 'light', ThemeConfig> = {
       Notification: {},
     },
   },
-  light: {},
+  light: {
+    components: {
+      Layout: {
+        siderBg: '#161c24',
+      },
+      Menu: {
+        darkItemBg: '#161c24',
+      },
+    },
+  },
 };
 
 export { customThemeTokenConfig, customComponentConfig, colorPrimarys, themeModeToken };
