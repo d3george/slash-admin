@@ -131,8 +131,8 @@ export default function ProjectsTab() {
 							</div>
 							<div className="flex w-full ">
 								<Avatar.Group max={{ count: 4 }}>
-									{item.members.map((memberAvatar, index) => (
-										<Avatar src={memberAvatar} key={index} />
+									{item.members.map((memberAvatar) => (
+										<Avatar src={memberAvatar} key={memberAvatar} />
 									))}
 								</Avatar.Group>
 								<div className="ml-auto flex items-center opacity-50">

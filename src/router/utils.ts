@@ -26,11 +26,11 @@ export function getRoutesFromModules() {
 	const modules = import.meta.glob("./routes/modules/**/*.tsx", {
 		eager: true,
 	});
-	Object.keys(modules).forEach((key) => {
+	for (const key in modules) {
 		const mod = (modules as any)[key].default || {};
 		const modList = Array.isArray(mod) ? [...mod] : [mod];
 		menuModules.push(...modList);
-	});
+	}
 	return menuModules;
 }
 
