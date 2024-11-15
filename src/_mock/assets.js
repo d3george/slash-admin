@@ -578,7 +578,6 @@ if (import.meta.hot) {
 
 		const { DEFAULT_USER, TEST_USER, PERMISSION_LIST } = newModule;
 
-		// 使用 getState() 和 setState() 直接操作 store
 		const {
 			userInfo,
 			actions: { setUserInfo },
@@ -589,7 +588,6 @@ if (import.meta.hot) {
 		const newUserInfo =
 			userInfo.username === DEFAULT_USER.username ? DEFAULT_USER : TEST_USER;
 
-		// 使用 store.actions 更新状态
 		setUserInfo(newUserInfo);
 
 		console.log("[HMR] User permissions updated:", {
