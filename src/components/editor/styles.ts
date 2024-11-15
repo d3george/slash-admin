@@ -1,20 +1,20 @@
-import { GlobalToken } from 'antd';
-import styled from 'styled-components';
+import type { GlobalToken } from "antd";
+import styled from "styled-components";
 
-import { ThemeMode } from '#/enum';
+import type { ThemeMode } from "#/enum";
 
 type KeyofToken = keyof GlobalToken;
 const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
-  const fontSizeHeading: KeyofToken = `fontSizeHeading${level}`;
-  const lineHeightHeading: KeyofToken = `lineHeightHeading${level}`;
+	const fontSizeHeading: KeyofToken = `fontSizeHeading${level}`;
+	const lineHeightHeading: KeyofToken = `lineHeightHeading${level}`;
 
-  return {
-    margin: 0,
-    color: token.colorTextHeading,
-    fontWeight: 800,
-    fontSize: token[fontSizeHeading],
-    lineHeight: token[lineHeightHeading],
-  };
+	return {
+		margin: 0,
+		color: token.colorTextHeading,
+		fontWeight: 800,
+		fontSize: token[fontSizeHeading],
+		lineHeight: token[lineHeightHeading],
+	};
 };
 
 const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
@@ -67,7 +67,10 @@ const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
   }
 `;
 
-const StyledToolbar = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
+const StyledToolbar = styled.div<{
+	$token: GlobalToken;
+	$thememode: ThemeMode;
+}>`
   & .ql-snow.ql-toolbar button:hover .ql-fill,
   .ql-snow .ql-toolbar button:hover .ql-fill,
   .ql-snow.ql-toolbar button:focus .ql-fill,

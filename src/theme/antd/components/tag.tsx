@@ -1,12 +1,12 @@
-import { Tag, TagProps } from 'antd';
-import styled from 'styled-components';
+import { Tag, type TagProps } from "antd";
+import styled from "styled-components";
 
 export default function ProTag(props: TagProps) {
-  return (
-    <StyledTag>
-      <Tag {...props} />
-    </StyledTag>
-  );
+	return (
+		<StyledTag>
+			<Tag {...props} />
+		</StyledTag>
+	);
 }
 
 const StyledTag = styled.div`

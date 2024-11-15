@@ -1,0 +1,14 @@
+# Use this to lint and format
+pre-commit:
+  parallel: true
+  commands:
+    check:
+      # Runs formatter, linter and import sorting to the requested files.
+      run: npx @biomejs/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      stage_fixed: true
+
+# Use this to validate commit messages
+commit-msg:
+  commands:
+    "lint commit message":
+      run: npx commitlint --edit {1}

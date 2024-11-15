@@ -1,146 +1,146 @@
 {
-  "sys": {
-    "api": {
-      "operationSuccess": "Operation Success",
-      "operationFailed": "Operation failed",
-      "errorTip": "Error Tip",
-      "successTip": "Success Tip",
-      "errorMessage": "The operation failed, the system is abnormal!",
-      "timeoutMessage": "Login timed out, please log in again!",
-      "apiTimeoutMessage": "The interface request timed out, please refresh the page and try again!",
-      "apiRequestFailed": "The interface request failed, please try again later!",
-      "networkException": "network anomaly",
-      "networkExceptionMsg": "Please check if your network connection is normal! The network is abnormal",
+	"sys": {
+		"api": {
+			"operationSuccess": "Operation Success",
+			"operationFailed": "Operation failed",
+			"errorTip": "Error Tip",
+			"successTip": "Success Tip",
+			"errorMessage": "The operation failed, the system is abnormal!",
+			"timeoutMessage": "Login timed out, please log in again!",
+			"apiTimeoutMessage": "The interface request timed out, please refresh the page and try again!",
+			"apiRequestFailed": "The interface request failed, please try again later!",
+			"networkException": "network anomaly",
+			"networkExceptionMsg": "Please check if your network connection is normal! The network is abnormal",
 
-      "errMsg401": "The user does not have permission (token, user name, password error)!",
-      "errMsg403": "The user is authorized, but access is forbidden!",
-      "errMsg404": "Network request error, the resource was not found!",
-      "errMsg405": "Network request error, request method not allowed!",
-      "errMsg408": "Network request timed out!",
-      "errMsg500": "Server error, please contact the administrator!",
-      "errMsg501": "The network is not implemented!",
-      "errMsg502": "Network Error!",
-      "errMsg503": "The service is unavailable, the server is temporarily overloaded or maintained!",
-      "errMsg504": "Network timeout!",
-      "errMsg505": "The http version does not support the request!"
-    },
-    "login": {
-      "backSignIn": "Back sign in",
-      "mobileSignInFormTitle": "Mobile sign in",
-      "qrSignInFormTitle": "Qr code sign in",
-      "signInFormTitle": "Sign in",
-      "signUpFormTitle": "Sign up",
-      "forgetFormTitle": "Reset password",
+			"errMsg401": "The user does not have permission (token, user name, password error)!",
+			"errMsg403": "The user is authorized, but access is forbidden!",
+			"errMsg404": "Network request error, the resource was not found!",
+			"errMsg405": "Network request error, request method not allowed!",
+			"errMsg408": "Network request timed out!",
+			"errMsg500": "Server error, please contact the administrator!",
+			"errMsg501": "The network is not implemented!",
+			"errMsg502": "Network Error!",
+			"errMsg503": "The service is unavailable, the server is temporarily overloaded or maintained!",
+			"errMsg504": "Network timeout!",
+			"errMsg505": "The http version does not support the request!"
+		},
+		"login": {
+			"backSignIn": "Back sign in",
+			"mobileSignInFormTitle": "Mobile sign in",
+			"qrSignInFormTitle": "Qr code sign in",
+			"signInFormTitle": "Sign in",
+			"signUpFormTitle": "Sign up",
+			"forgetFormTitle": "Reset password",
 
-      "signInPrimaryTitle": "Hi, Welcome Back",
-      "signInSecondTitle": "Backstage management system",
-      "signInTitle": "",
-      "signInDesc": "Enter your personal details and get started!",
-      "policy": "I agree to the xxx Privacy Policy",
-      "scanSign": "scanning the code to complete the login",
-      "forgetFormSecondTitle": "Please enter the email address associated with your account and We will email you a link to reset your password.",
+			"signInPrimaryTitle": "Hi, Welcome Back",
+			"signInSecondTitle": "Backstage management system",
+			"signInTitle": "",
+			"signInDesc": "Enter your personal details and get started!",
+			"policy": "I agree to the xxx Privacy Policy",
+			"scanSign": "scanning the code to complete the login",
+			"forgetFormSecondTitle": "Please enter the email address associated with your account and We will email you a link to reset your password.",
 
-      "loginButton": "Sign in",
-      "registerButton": "Sign up",
-      "rememberMe": "Remember me",
-      "forgetPassword": "Forget Password?",
-      "otherSignIn": "Sign in with",
-      "sendSmsButton": "Send SMS code",
-      "sendSmsText": "Reacquire in {{second}}s",
-      "sendEmailButton": "Send Email",
+			"loginButton": "Sign in",
+			"registerButton": "Sign up",
+			"rememberMe": "Remember me",
+			"forgetPassword": "Forget Password?",
+			"otherSignIn": "Sign in with",
+			"sendSmsButton": "Send SMS code",
+			"sendSmsText": "Reacquire in {{second}}s",
+			"sendEmailButton": "Send Email",
 
-      "loginSuccessTitle": "Login successful",
-      "loginSuccessDesc": "Welcome back",
+			"loginSuccessTitle": "Login successful",
+			"loginSuccessDesc": "Welcome back",
 
-      "accountPlaceholder": "Please input username",
-      "passwordPlaceholder": "Please input password",
-      "confirmPasswordPlaceholder": "Please input confirm password",
-      "emaildPlaceholder": "Please input email",
-      "smsPlaceholder": "Please input sms code",
-      "mobilePlaceholder": "Please input mobile",
-      "policyPlaceholder": "Register after checking",
-      "diffPwd": "The two passwords are inconsistent",
+			"accountPlaceholder": "Please input username",
+			"passwordPlaceholder": "Please input password",
+			"confirmPasswordPlaceholder": "Please input confirm password",
+			"emaildPlaceholder": "Please input email",
+			"smsPlaceholder": "Please input sms code",
+			"mobilePlaceholder": "Please input mobile",
+			"policyPlaceholder": "Register after checking",
+			"diffPwd": "The two passwords are inconsistent",
 
-      "userName": "Username",
-      "password": "Password",
-      "confirmPassword": "Confirm Password",
-      "email": "Email",
-      "smsCode": "SMS code",
-      "mobile": "Mobile",
+			"userName": "Username",
+			"password": "Password",
+			"confirmPassword": "Confirm Password",
+			"email": "Email",
+			"smsCode": "SMS code",
+			"mobile": "Mobile",
 
-      "registerAndAgree": "By signing up, I agree to",
-      "termsOfService": " Terms of service ",
-      "privacyPolicy": " Privacy policy ",
-      "logout": "Logout"
-    },
-    "tab": {
-      "fullscreen": "FullScreen",
-      "refresh": "Refresh",
-      "close": "Close",
-      "closeOthers": "Close Others",
-      "closeAll": "Close All",
-      "closeLeft": "Close Left",
-      "closeRight": "Close Right"
-    },
-    "menu": {
-      "dashboard": "Dashboard",
-      "workbench": "Workbench",
-      "analysis": "Analysis",
-      "management": "Management",
-      "user": {
-        "index": "User",
-        "profile": "Profile",
-        "account": "Account"
-      },
-      "system": {
-        "index": "System",
-        "organization": "Organization",
-        "permission": "Permission",
-        "role": "Role",
-        "user": "User",
-        "user_detail": "User Detail"
-      },
-      "blog": "Blog",
-      "components": "Components",
-      "icon": "Icon",
-      "animate": "Animate",
-      "scroll": "Scroll",
-      "markdown": "Markdown",
-      "editor": "Editor",
-      "i18n": "Multi Language",
-      "upload": "Upload",
-      "chart": "Chart",
-      "functions": "Functions",
-      "clipboard": "Clipboard",
-      "token_expired": "Token Expired",
-      "menulevel": {
-        "index": "Menu Level",
-        "1a": "Menu Level 1a",
-        "1b": {
-          "index": "Menu Level 1b",
-          "2a": "Menu Level 2a",
-          "2b": {
-            "index": "Menu Level 2b",
-            "3a": "Menu Level 3a",
-            "3b": "Menu Level 3b"
-          }
-        }
-      },
-      "disabled": "Item Disabled",
-      "label": "Item Label",
-      "frame": "Item External",
-      "external_link": "External Link",
-      "iframe": "Iframe",
-      "blank": "Blank",
-      "calendar": "Calendar",
-      "kanban": "Kanban",
-      "error": {
-        "index": "Error Page",
-        "403": "403",
-        "404": "404",
-        "500": "500"
-      }
-    },
-    "docs": "Document"
-  }
+			"registerAndAgree": "By signing up, I agree to",
+			"termsOfService": " Terms of service ",
+			"privacyPolicy": " Privacy policy ",
+			"logout": "Logout"
+		},
+		"tab": {
+			"fullscreen": "FullScreen",
+			"refresh": "Refresh",
+			"close": "Close",
+			"closeOthers": "Close Others",
+			"closeAll": "Close All",
+			"closeLeft": "Close Left",
+			"closeRight": "Close Right"
+		},
+		"menu": {
+			"dashboard": "Dashboard",
+			"workbench": "Workbench",
+			"analysis": "Analysis",
+			"management": "Management",
+			"user": {
+				"index": "User",
+				"profile": "Profile",
+				"account": "Account"
+			},
+			"system": {
+				"index": "System",
+				"organization": "Organization",
+				"permission": "Permission",
+				"role": "Role",
+				"user": "User",
+				"user_detail": "User Detail"
+			},
+			"blog": "Blog",
+			"components": "Components",
+			"icon": "Icon",
+			"animate": "Animate",
+			"scroll": "Scroll",
+			"markdown": "Markdown",
+			"editor": "Editor",
+			"i18n": "Multi Language",
+			"upload": "Upload",
+			"chart": "Chart",
+			"functions": "Functions",
+			"clipboard": "Clipboard",
+			"token_expired": "Token Expired",
+			"menulevel": {
+				"index": "Menu Level",
+				"1a": "Menu Level 1a",
+				"1b": {
+					"index": "Menu Level 1b",
+					"2a": "Menu Level 2a",
+					"2b": {
+						"index": "Menu Level 2b",
+						"3a": "Menu Level 3a",
+						"3b": "Menu Level 3b"
+					}
+				}
+			},
+			"disabled": "Item Disabled",
+			"label": "Item Label",
+			"frame": "Item External",
+			"external_link": "External Link",
+			"iframe": "Iframe",
+			"blank": "Blank",
+			"calendar": "Calendar",
+			"kanban": "Kanban",
+			"error": {
+				"index": "Error Page",
+				"403": "403",
+				"404": "404",
+				"500": "500"
+			}
+		},
+		"docs": "Document"
+	}
 }

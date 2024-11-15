@@ -1,26 +1,29 @@
-import { GlobalToken } from 'antd';
+import type { GlobalToken } from "antd";
 /**
  * https://styled-components.com/
  * vscode plugin: https://github.com/styled-components/vscode-styled-components
  */
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { ThemeMode } from '#/enum';
+import { ThemeMode } from "#/enum";
 
 type KeyofToken = keyof GlobalToken;
 const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
-  const fontSizeHeading: KeyofToken = `fontSizeHeading${level}`;
-  const lineHeightHeading: KeyofToken = `lineHeightHeading${level}`;
+	const fontSizeHeading: KeyofToken = `fontSizeHeading${level}`;
+	const lineHeightHeading: KeyofToken = `lineHeightHeading${level}`;
 
-  return {
-    margin: 0,
-    color: token.colorTextHeading,
-    fontWeight: 800,
-    fontSize: token[fontSizeHeading],
-    lineHeight: token[lineHeightHeading],
-  };
+	return {
+		margin: 0,
+		color: token.colorTextHeading,
+		fontWeight: 800,
+		fontSize: token[fontSizeHeading],
+		lineHeight: token[lineHeightHeading],
+	};
 };
-const StyledMarkdown = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
+const StyledMarkdown = styled.div<{
+	$token: GlobalToken;
+	$thememode: ThemeMode;
+}>`
   display: grid;
   // Text
   h1 {
@@ -108,7 +111,7 @@ const StyledMarkdown = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }
     white-space: pre;
     padding: 0px;
     background-color: ${(props) =>
-      props.$thememode === ThemeMode.Light ? '#161c24' : '#919eab29'};
+			props.$thememode === ThemeMode.Light ? "#161c24" : "#919eab29"};
   }
 
   // Table
@@ -123,7 +126,7 @@ const StyledMarkdown = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }
     }
     tbody tr:nth-of-type(odd) {
       background-color: ${(props) =>
-        props.$thememode === ThemeMode.Light ? '#f4f6f8' : '#919eab1f '};
+				props.$thememode === ThemeMode.Light ? "#f4f6f8" : "#919eab1f "};
     }
   }
 

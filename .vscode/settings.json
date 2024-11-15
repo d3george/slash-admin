@@ -1,27 +1,30 @@
 {
-  "typescript.tsdk": "./node_modules/typescript/lib",
-  "editor.tabSize": 2,
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
-  },
-  "stylelint.validate": [
-    "css",
-    "scss",
-    "less",
-    "postcss"
-  ],
-  "npm.packageManager": "pnpm",
-  "i18n-ally.localesPaths": [
-    "src/locales/lang"
-  ],
-  "i18n-ally.enabledParsers": [
-    "json"
-  ],
-  "i18n-ally.pathMatcher": "{locale}/{namespaces}.{ext}",
-  "i18n-ally.keystyle": "flat",
-  "i18n-ally.sortKeys": true,
-  "i18n-ally.sourceLanguage": "en_US",
-  "i18n-ally.displayLanguage": "zh_CN",
+	"typescript.tsdk": "./node_modules/typescript/lib",
+	"editor.tabSize": 2,
+	"editor.formatOnSave": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.fixAll.stylelint": "explicit"
+	},
+	"stylelint.validate": ["css", "scss", "less", "postcss"],
+	"npm.packageManager": "pnpm",
+	"i18n-ally.localesPaths": ["src/locales/lang"],
+	"i18n-ally.enabledParsers": ["json"],
+	"i18n-ally.pathMatcher": "{locale}/{namespaces}.{ext}",
+	"i18n-ally.keystyle": "flat",
+	"i18n-ally.sortKeys": true,
+	"i18n-ally.sourceLanguage": "en_US",
+	"i18n-ally.displayLanguage": "zh_CN",
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
 }

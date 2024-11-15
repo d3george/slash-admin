@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
-import { useSearchParams as _useSearchParams } from 'react-router-dom';
+import { useMemo } from "react";
+import { useSearchParams as _useSearchParams } from "react-router-dom";
 
 export function useSearchParams() {
-  const [searchParams] = _useSearchParams();
+	const [searchParams] = _useSearchParams();
 
-  return useMemo(() => searchParams, [searchParams]);
+	return useMemo(() => searchParams, [searchParams]);
 }

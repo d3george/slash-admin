@@ -1,28 +1,30 @@
-import { lazy, useCallback, useEffect } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import { lazy, useCallback, useEffect } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
-import { useUserToken } from '@/store/userStore';
+import { useUserToken } from "@/store/userStore";
 
-import { useRouter } from '../hooks';
+import { useRouter } from "../hooks";
 
-const PageError = lazy(() => import('@/pages/sys/error/PageError'));
+const PageError = lazy(() => import("@/pages/sys/error/PageError"));
 
 type Props = {
-  children: React.ReactNode;
+	children: React.ReactNode;
 };
 export default function AuthGuard({ children }: Props) {
-  const router = useRouter();
-  const { accessToken } = useUserToken();
+	const router = useRouter();
+	const { accessToken } = useUserToken();
 
-  const check = useCallback(() => {
-    if (!accessToken) {
-      router.replace('/login');
-    }
-  }, [router, accessToken]);
+	const check = useCallback(() => {
+		if (!accessToken) {
+			router.replace("/login");
+		}
+	}, [router, accessToken]);
 
-  useEffect(() => {
-    check();
-  }, [check]);
+	useEffect(() => {
+		check();
+	}, [check]);
 
-  return <ErrorBoundary FallbackComponent={PageError}>{children}</ErrorBoundary>;
+	return (
+		<ErrorBoundary FallbackComponent={PageError}>{children}</ErrorBoundary>
+	);
 }
