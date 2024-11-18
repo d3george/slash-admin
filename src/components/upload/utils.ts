@@ -1,4 +1,6 @@
+import { message } from "antd";
 import type { RcFile } from "antd/es/upload";
+import { toast } from "sonner";
 
 // Define more types here
 const FORMAT_PDF = ["pdf"];
@@ -114,16 +116,19 @@ export function fileTypeByName(fileName = "") {
 }
 
 export function beforeAvatarUpload(file: RcFile) {
-	const errorMsg: string[] = [];
 	const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
 	if (!isJpgOrPng) {
-		errorMsg.push("You can only upload JPG/PNG file!");
+		toast.error("You can only upload JPG/PNG file!", {
+			position: "top-center",
+		});
 	}
 	const isLt2M = file.size / 1024 / 1024 < 2;
 	if (!isLt2M) {
-		errorMsg.push("Image must smaller than 2MB!");
+		toast.error("Image must smaller than 2MB!", {
+			position: "top-center",
+		});
 	}
-	return errorMsg;
+	return isJpgOrPng && isLt2M;
 }
 
 export function getBase64(img: RcFile, callback: (url: string) => void) {

@@ -60,6 +60,7 @@
 		"reset-css": "^5.0.2",
 		"screenfull": "^6.0.2",
 		"simplebar-react": "^3.2.4",
+		"sonner": "^1.7.0",
 		"styled-components": "^6.0.9",
 		"tailwind-merge": "^2.5.4",
 		"zustand": "^4.4.3"

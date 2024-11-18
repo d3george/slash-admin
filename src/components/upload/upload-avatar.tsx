@@ -1,6 +1,5 @@
-import { Typography, Upload, message } from "antd";
+import { Typography, Upload } from "antd";
 import type {
-	RcFile,
 	UploadChangeParam,
 	UploadFile,
 	UploadProps,
@@ -83,26 +82,15 @@ export function UploadAvatar({
 		<div className="text-center">{helperText || defaultHelperText}</div>
 	);
 
-	const [messageApi, contextHolder] = message.useMessage();
-
-	const beforeUpload = (file: RcFile) => {
-		const errorMsg = beforeAvatarUpload(file);
-		if (errorMsg.length > 0) {
-			messageApi.error(errorMsg.join("\n"));
-		}
-		return errorMsg.length === 0;
-	};
-
 	return (
 		<StyledUploadAvatar>
-			{contextHolder}
 			<Upload
 				name="avatar"
 				showUploadList={false}
 				listType="picture-circle"
 				className="avatar-uploader !flex items-center justify-center"
 				{...other}
-				beforeUpload={beforeUpload}
+				beforeUpload={beforeAvatarUpload}
 				onChange={handleChange}
 			>
 				{renderContent}

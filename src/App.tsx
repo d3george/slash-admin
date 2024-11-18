@@ -6,6 +6,7 @@ import Router from "@/router/index";
 import AntdConfig from "@/theme/antd";
 
 import { MotionLazy } from "./components/animate/motion-lazy";
+import Toast from "./components/toast";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 						<link rel="icon" href={Logo} />
 					</Helmet>
 
+					<Toast />
 					<Router />
 				</MotionLazy>
 			</AntdApp>
