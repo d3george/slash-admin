@@ -17,8 +17,8 @@ function App() {
 						<title>Slash Admin</title>
 						<link rel="icon" href={Logo} />
 					</Helmet>
-
 					<Toast />
+
 					<Router />
 				</MotionLazy>
 			</AntdApp>

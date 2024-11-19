@@ -279,6 +279,15 @@ const COMPONENTS_PERMISSION = {
 			route: "chart",
 			component: "/components/chart/index.tsx",
 		},
+		{
+			id: "2013577074467957",
+			parentId: "2271615060673773",
+			label: "sys.menu.toast",
+			name: "Toast",
+			type: PermissionType.MENU,
+			route: "toast",
+			component: "/components/toast/index.tsx",
+		},
 	],
 };
 const FUNCTIONS_PERMISSION = {

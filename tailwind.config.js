@@ -24,10 +24,10 @@ export default {
 			gray: "#637381",
 			hover: "#63738114",
 
-			success: "#22c55e",
-			warning: "#ff7849",
-			error: "#ff5630",
-			info: "#00b8d9",
+			success: "#22C55E",
+			warning: "#FFAB00",
+			error: "#FF5630",
+			info: "#00B8D9",
 
 			code: "#d63384",
 

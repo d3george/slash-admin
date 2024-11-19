@@ -4,6 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { Iconify } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
 
+import ToastPage from "@/pages/components/toast";
 import type { AppRouteObject } from "#/router";
 
 const AnimatePage = lazy(() => import("@/pages/components/animate"));
@@ -80,6 +81,11 @@ const components: AppRouteObject = {
 			path: "chart",
 			element: <ChartPage />,
 			meta: { label: "sys.menu.chart", key: "/components/chart" },
+		},
+		{
+			path: "toast",
+			element: <ToastPage />,
+			meta: { label: "sys.menu.toast", key: "/components/toast" },
 		},
 	],
 };
