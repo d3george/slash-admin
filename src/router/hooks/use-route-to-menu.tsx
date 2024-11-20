@@ -3,7 +3,10 @@ import { useTranslation } from "react-i18next";
 
 import { Iconify, SvgIcon } from "@/components/icon";
 
+import { useSettings } from "@/store/settingStore";
+import { cn } from "@/utils";
 import type { GetProp, MenuProps } from "antd";
+import { ThemeLayout } from "#/enum";
 import type { AppRouteObject } from "#/router";
 
 type MenuItem = GetProp<MenuProps, "items">[number];
@@ -18,24 +21,12 @@ const renderIcon = (icon: string | React.ReactNode): React.ReactNode => {
 	);
 };
 
-const renderLabel = (
-	label: string,
-	suffix: React.ReactNode,
-	t: (key: string) => string,
-) => {
-	return (
-		<div className="flex items-center">
-			<div>{t(label)}</div>
-			{suffix}
-		</div>
-	);
-};
-
 /**
  *   routes -> menus
  */
 export function useRouteToMenuFn() {
 	const { t } = useTranslation();
+	const { themeLayout } = useSettings();
 
 	const routeToMenuFn = useCallback(
 		(items: AppRouteObject[]): MenuItem[] => {
@@ -48,7 +39,19 @@ export function useRouteToMenuFn() {
 					const menuItem: Partial<MenuItem> = {
 						key: meta.key,
 						disabled: meta.disabled,
-						label: renderLabel(meta.label, meta.suffix, t),
+						label: (
+							<div
+								className={cn(
+									"inline-flex items-center",
+									themeLayout === ThemeLayout.Horizontal
+										? "justify-start"
+										: "justify-between",
+								)}
+							>
+								<div className="">{t(meta.label)}</div>
+								{meta.suffix}
+							</div>
+						),
 						...(meta.icon && { icon: renderIcon(meta.icon) }),
 						...(children && { children: routeToMenuFn(children) }),
 					};
@@ -56,7 +59,7 @@ export function useRouteToMenuFn() {
 					return menuItem as MenuItem;
 				});
 		},
-		[t],
+		[t, themeLayout],
 	);
 	return routeToMenuFn;
 }
