@@ -1,16 +1,13 @@
-import { App, Button, Col, Row, Switch, Typography } from "antd";
+import { Button, Col, Row, Switch, Typography } from "antd";
 
 import Card from "@/components/card";
 import { useThemeToken } from "@/theme/hooks";
+import { toast } from "sonner";
 
 export default function NotificationsTab() {
-	const { notification } = App.useApp();
 	const { colorBgContainerDisabled, colorTextSecondary } = useThemeToken();
 	const handleClick = () => {
-		notification.success({
-			message: "Update success!",
-			duration: 3,
-		});
+		toast.success("Update success!");
 	};
 	return (
 		<Card className="!h-auto flex-col">

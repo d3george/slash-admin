@@ -1,6 +1,7 @@
-import { App, Button, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 
 import Card from "@/components/card";
+import { toast } from "sonner";
 
 type FieldType = {
 	oldPassword?: string;
@@ -8,17 +9,13 @@ type FieldType = {
 	confirmPassword?: string;
 };
 export default function SecurityTab() {
-	const { notification } = App.useApp();
 	const initFormValues = {
 		oldPassword: "",
 		newPassword: "",
 		confirmPassword: "",
 	};
 	const handleClick = () => {
-		notification.success({
-			message: "Update success!",
-			duration: 3,
-		});
+		toast.success("Update success!");
 	};
 
 	return (

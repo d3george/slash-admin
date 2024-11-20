@@ -1,9 +1,10 @@
 import { faker } from "@faker-js/faker";
-import { App, Button, Col, Form, Input, Row, Space, Switch } from "antd";
+import { Button, Col, Form, Input, Row, Space, Switch } from "antd";
 
 import Card from "@/components/card";
 import { UploadAvatar } from "@/components/upload";
 import { useUserInfo } from "@/store/userStore";
+import { toast } from "sonner";
 
 type FieldType = {
 	name?: string;
@@ -15,7 +16,6 @@ type FieldType = {
 	about: string;
 };
 export default function GeneralTab() {
-	const { notification } = App.useApp();
 	const { avatar, username, email } = useUserInfo();
 	const initFormValues = {
 		name: username,
@@ -27,10 +27,7 @@ export default function GeneralTab() {
 		about: faker.lorem.paragraphs(),
 	};
 	const handleClick = () => {
-		notification.success({
-			message: "Update success!",
-			duration: 3,
-		});
+		toast.success("Update success!");
 	};
 	return (
 		<Row gutter={[16, 16]}>

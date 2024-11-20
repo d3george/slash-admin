@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { App } from "antd";
 import { useNavigate } from "react-router-dom";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 import userService, { type SignInReq } from "@/api/services/userService";
 
+import { toast } from "sonner";
 import type { UserInfo, UserToken } from "#/entity";
 import { StorageEnum } from "#/enum";
 
@@ -58,7 +58,6 @@ export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
 	const navigatge = useNavigate();
-	const { message } = App.useApp();
 	const { setUserToken, setUserInfo } = useUserActions();
 
 	const signInMutation = useMutation({
@@ -72,10 +71,10 @@ export const useSignIn = () => {
 			setUserToken({ accessToken, refreshToken });
 			setUserInfo(user);
 			navigatge(HOMEPAGE, { replace: true });
+			toast.success("Sign in success!");
 		} catch (err) {
-			message.warning({
-				content: err.message,
-				duration: 3,
+			toast.error(err.message, {
+				position: "top-center",
 			});
 		}
 	};

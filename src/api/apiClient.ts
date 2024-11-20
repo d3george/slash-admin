@@ -1,4 +1,3 @@
-import { message as Message } from "antd";
 import axios, {
 	type AxiosRequestConfig,
 	type AxiosError,
@@ -8,6 +7,7 @@ import axios, {
 import { t } from "@/locales/i18n";
 import userStore from "@/store/userStore";
 
+import { toast } from "sonner";
 import type { Result } from "#/api";
 import { ResultEnum } from "#/enum";
 
@@ -52,7 +52,9 @@ axiosInstance.interceptors.response.use(
 
 		const errMsg =
 			response?.data?.message || message || t("sys.api.errorMessage");
-		Message.error(errMsg);
+		toast.error(errMsg, {
+			position: "top-center",
+		});
 
 		const status = response?.status;
 		if (status === 401) {

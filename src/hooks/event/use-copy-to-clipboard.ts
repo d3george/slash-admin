@@ -1,5 +1,5 @@
-import { App } from "antd";
 import { useState } from "react";
+import { toast } from "sonner";
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +14,6 @@ type ReturnType = {
 
 export function useCopyToClipboard(): ReturnType {
 	const [copiedText, setCopiedText] = useState<CopiedValue>(null);
-	const { notification } = App.useApp();
 
 	const copyFn: CopyFn = async (text) => {
 		if (!navigator?.clipboard) {
@@ -26,9 +25,7 @@ export function useCopyToClipboard(): ReturnType {
 		try {
 			await navigator.clipboard.writeText(text);
 			setCopiedText(text);
-			notification.success({
-				message: "Copied!",
-			});
+			toast.success("Copied!");
 			return true;
 		} catch (error) {
 			console.warn("Copy failed", error);
