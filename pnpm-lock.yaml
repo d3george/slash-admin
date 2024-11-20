@@ -231,15 +231,9 @@ importers:
       rollup-plugin-visualizer:
         specifier: ^5.9.2
         version: 5.12.0(rollup@4.27.0)
-      sass:
-        specifier: ^1.69.3
-        version: 1.81.0
       tailwindcss:
         specifier: ^3.3.3
         version: 3.4.15(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.6.3))
-      terser:
-        specifier: ^5.26.0
-        version: 5.36.0
       ts-node:
         specifier: ^10.9.1
         version: 10.9.2(@types/node@20.5.1)(typescript@5.6.3)
@@ -4987,6 +4981,7 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
+    optional: true
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
 
@@ -5641,7 +5636,8 @@ snapshots:
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.2)
 
-  buffer-from@1.1.2: {}
+  buffer-from@1.1.2:
+    optional: true
 
   cache-base@1.0.1:
     dependencies:
@@ -5711,6 +5707,7 @@ snapshots:
   chokidar@4.0.1:
     dependencies:
       readdirp: 4.0.2
+    optional: true
 
   class-utils@0.3.6:
     dependencies:
@@ -5760,7 +5757,8 @@ snapshots:
 
   comma-separated-tokens@2.0.3: {}
 
-  commander@2.20.3: {}
+  commander@2.20.3:
+    optional: true
 
   commander@4.1.1: {}
 
@@ -6520,7 +6518,8 @@ snapshots:
 
   image-size@0.5.5: {}
 
-  immutable@5.0.2: {}
+  immutable@5.0.2:
+    optional: true
 
   import-fresh@3.3.0:
     dependencies:
@@ -8099,7 +8098,8 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  readdirp@4.0.2: {}
+  readdirp@4.0.2:
+    optional: true
 
   redent@3.0.0:
     dependencies:
@@ -8269,6 +8269,7 @@ snapshots:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.0
+    optional: true
 
   scheduler@0.23.2:
     dependencies:
@@ -8393,6 +8394,7 @@ snapshots:
     dependencies:
       buffer-from: 1.1.2
       source-map: 0.6.1
+    optional: true
 
   source-map-url@0.4.1: {}
 
@@ -8653,6 +8655,7 @@ snapshots:
       acorn: 8.14.0
       commander: 2.20.3
       source-map-support: 0.5.21
+    optional: true
 
   text-extensions@1.9.0: {}
 
