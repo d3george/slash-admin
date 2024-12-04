@@ -40,7 +40,17 @@ export default function Router() {
 
 	const routes = [LoginRoute, asyncRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];
 
-	const router = createHashRouter(routes as unknown as RouteObject[]);
+	const router = createHashRouter(routes as unknown as RouteObject[], {
+		future: {
+			v7_fetcherPersist: true,
+			v7_normalizeFormMethod: true,
+			v7_partialHydration: true,
+			v7_relativeSplatPath: true,
+			v7_skipActionErrorRevalidation: true,
+		},
+	});
 
-	return <RouterProvider router={router} />;
+	return (
+		<RouterProvider router={router} future={{ v7_startTransition: true }} />
+	);
 }
