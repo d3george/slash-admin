@@ -1,6 +1,6 @@
 import { isEmpty } from "ramda";
 import { Suspense, lazy, useMemo } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router";
 
 import { Iconify } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";

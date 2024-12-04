@@ -1,10 +1,6 @@
 import { lazy } from "react";
-import {
-	Navigate,
-	type RouteObject,
-	RouterProvider,
-	createHashRouter,
-} from "react-router-dom";
+import { Navigate, type RouteObject, createHashRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
 
 import DashboardLayout from "@/layouts/dashboard";
 import AuthGuard from "@/router/components/auth-guard";

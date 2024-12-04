@@ -1,7 +1,7 @@
 import { Layout, Menu, type MenuProps } from "antd";
 import Color from "color";
 import { useEffect, useMemo, useState } from "react";
-import { useMatches, useNavigate } from "react-router-dom";
+import { useMatches, useNavigate } from "react-router";
 
 import Scrollbar from "@/components/scrollbar";
 import {

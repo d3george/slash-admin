@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Params, RouteObject } from "react-router-dom";
+import type { Params, RouteObject } from "react-router";
 
 export interface RouteMeta {
 	/**

@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
 			},
 		},
 		optimizeDeps: {
-			include: ["react", "react-dom", "react-router-dom", "antd"],
+			include: ["react", "react-dom", "react-router", "antd"],
 		},
 		esbuild: {
 			drop: isProduction ? ["console", "debugger"] : [],
@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) => {
 			rollupOptions: {
 				output: {
 					manualChunks: {
-						"vendor-react": ["react", "react-dom", "react-router-dom"],
+						"vendor-react": ["react", "react-dom", "react-router"],
 						"vendor-antd": ["antd", "@ant-design/icons", "@ant-design/cssinjs"],
 						"vendor-charts": ["apexcharts", "react-apexcharts"],
 						"vendor-utils": ["axios", "dayjs", "i18next", "zustand"],

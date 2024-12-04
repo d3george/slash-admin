@@ -1,6 +1,6 @@
 import { Content } from "antd/es/layout/layout";
 import { type CSSProperties, forwardRef } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 
 import { useSettings } from "@/store/settingStore";
 import { useResponsive, useThemeToken } from "@/theme/hooks";

@@ -1,6 +1,6 @@
 import { isEmpty } from "ramda";
 import { useEffect, useState } from "react";
-import { type Params, useMatches, useOutlet } from "react-router-dom";
+import { type Params, useMatches, useOutlet } from "react-router";
 
 import { useFlattenedRoutes } from "./use-flattened-routes";
 import { useRouter } from "./use-router";

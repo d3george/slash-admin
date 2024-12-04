@@ -1,7 +1,7 @@
 import { Layout, Typography } from "antd";
 import Color from "color";
 import { useTranslation } from "react-i18next";
-import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router";
 
 import DashboardImg from "@/assets/images/background/dashboard.png";
 import Overlay2 from "@/assets/images/background/overlay_2.jpg";

@@ -1,6 +1,6 @@
 import { Typography } from "antd";
 import { Suspense } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router";
 
 import { SvgIcon } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";

@@ -1,7 +1,7 @@
 import { Typography } from "antd";
 import { m } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 import Character6 from "@/assets/images/characters/character_6.png";
 import MotionContainer from "@/components/animate/motion-container";

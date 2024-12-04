@@ -2,7 +2,7 @@ import { Divider, type MenuProps } from "antd";
 import Dropdown, { type DropdownProps } from "antd/es/dropdown/dropdown";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 import { IconButton } from "@/components/icon";
 import { useLoginStateContext } from "@/pages/sys/login/providers/LoginStateProvider";

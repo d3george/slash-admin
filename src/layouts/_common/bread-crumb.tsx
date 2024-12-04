@@ -1,7 +1,7 @@
 import { Breadcrumb, type BreadcrumbProps, type GetProp } from "antd";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useMatches } from "react-router-dom";
+import { Link, useMatches } from "react-router";
 
 import { Iconify } from "@/components/icon";
 import { useFlattenedRoutes, usePermissionRoutes } from "@/router/hooks";
