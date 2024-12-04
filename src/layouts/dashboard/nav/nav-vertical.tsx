@@ -83,7 +83,7 @@ export default function NavVertical(props: Props) {
 	};
 
 	const handleOpenChange: MenuProps["onOpenChange"] = (keys) => {
-		if (collapsed) return;
+		// 关闭时也触发一次，刚好设置为 []
 		setOpenKeys(keys);
 	};
 
@@ -114,7 +114,7 @@ export default function NavVertical(props: Props) {
 					items={menuList}
 					theme={sidebarTheme}
 					selectedKeys={selectedKeys}
-					{...(!collapsed && { openKeys })}
+					openKeys={openKeys}
 					onOpenChange={handleOpenChange}
 					className="!border-none"
 					onClick={onClick}
