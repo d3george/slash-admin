@@ -354,6 +354,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
 		backgroundColor: Color(colorBgElevated).alpha(1).toString(),
 		borderBottom: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
 		transition: "top 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+		width: "100%",
 	};
 
 	if (themeLayout === ThemeLayout.Horizontal) {
@@ -364,8 +365,6 @@ export default function MultiTabs({ offsetTop = false }: Props) {
 		multiTabsStyle.width = `calc(100% - ${
 			themeLayout === ThemeLayout.Vertical ? NAV_WIDTH : NAV_COLLAPSED_WIDTH
 		}px`;
-	} else {
-		multiTabsStyle.width = "100vw";
 	}
 
 	const handleTabClick = ({ key, params = {} }: KeepAliveTab) => {

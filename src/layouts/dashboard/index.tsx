@@ -1,6 +1,7 @@
 import { Layout } from "antd";
 import { useScroll } from "framer-motion";
 import {
+	type CSSProperties,
 	Suspense,
 	useCallback,
 	useEffect,
@@ -19,10 +20,13 @@ import Header from "./header";
 import Main from "./main";
 import Nav from "./nav";
 
+import { useResponsive } from "@/theme/hooks";
 import { ThemeLayout, ThemeMode } from "#/enum";
+import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from "./config";
 
 function DashboardLayout() {
 	const { themeLayout, themeMode } = useSettings();
+	const { screenMap } = useResponsive();
 
 	const mainEl = useRef<HTMLDivElement>(null);
 	const { scrollY } = useScroll({ container: mainEl });
@@ -42,7 +46,6 @@ function DashboardLayout() {
 		onOffSetTop();
 	}, [onOffSetTop]);
 
-	// Memoize layout className
 	const layoutClassName = useMemo(() => {
 		return cn(
 			"flex h-screen overflow-hidden",
@@ -50,12 +53,23 @@ function DashboardLayout() {
 		);
 	}, [themeLayout]);
 
+	const customStyle: CSSProperties = {
+		transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+		paddingLeft: screenMap.md
+			? themeLayout === ThemeLayout.Horizontal
+				? 0
+				: themeLayout === ThemeLayout.Mini
+					? NAV_COLLAPSED_WIDTH
+					: NAV_WIDTH
+			: 0,
+	};
+
 	return (
 		<ScrollbarStyleWrapper $themeMode={themeMode}>
 			<ProgressBar />
 			<Layout className={layoutClassName}>
 				<Suspense fallback={<CircleLoading />}>
-					<Layout>
+					<Layout style={customStyle} className="flex !flex-col">
 						<Header
 							offsetTop={
 								themeLayout === ThemeLayout.Vertical ? offsetTop : undefined

@@ -16,7 +16,7 @@ export function useResponsive() {
 	const screenEnum: ScreenSizeMap = {
 		xs: screenXS,
 		sm: screenSM,
-		md: screenMD,
+		md: screenMD, // 768
 		lg: screenLG,
 		xl: screenXL,
 		xxl: screenXXL,
