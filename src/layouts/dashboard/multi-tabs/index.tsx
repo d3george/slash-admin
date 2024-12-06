@@ -28,6 +28,7 @@ import { useResponsive, useThemeToken } from "@/theme/hooks";
 
 import {
 	HEADER_HEIGHT,
+	LAYOUT_TRANSITION,
 	MULTI_TABS_HEIGHT,
 	NAV_COLLAPSED_WIDTH,
 	NAV_HORIZONTAL_HEIGHT,
@@ -222,8 +223,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
 				borderStyle: "solid",
 				borderColor: themeToken.colorBorderSecondary,
 				backgroundColor: themeToken.colorBgLayout,
-				transition:
-					"color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+				transition: `color ${LAYOUT_TRANSITION}, background ${LAYOUT_TRANSITION}`,
 			};
 
 			if (isActive) {
@@ -353,7 +353,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
 		height: MULTI_TABS_HEIGHT,
 		backgroundColor: Color(colorBgElevated).alpha(1).toString(),
 		borderBottom: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
-		transition: "top 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+		transition: `top ${LAYOUT_TRANSITION}, width ${LAYOUT_TRANSITION}`,
 	};
 
 	if (themeLayout === ThemeLayout.Horizontal) {
@@ -486,10 +486,10 @@ export default function MultiTabs({ offsetTop = false }: Props) {
 
 const StyledMultiTabs = styled.div`
   height: 100%;
-  margin-top: 2px;
-  .anticon {
-    margin: 0px !important;
-  }
+	margin-top: 2px; 
+	.anticon {
+		margin: 0px !important; 
+	}
   .ant-tabs {
     height: 100%;
     .ant-tabs-content {

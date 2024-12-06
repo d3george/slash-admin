@@ -16,6 +16,7 @@ import SettingButton from "../_common/setting-button";
 
 import {
 	HEADER_HEIGHT,
+	LAYOUT_TRANSITION,
 	NAV_COLLAPSED_WIDTH,
 	NAV_WIDTH,
 	OFFSET_HEADER_HEIGHT,
@@ -23,16 +24,17 @@ import {
 import NavVertical from "./nav/nav-vertical";
 
 import { ThemeLayout } from "#/enum";
+import { useScrollTop } from "./scroll-context";
 
 type Props = {
 	className?: string;
-	offsetTop?: boolean;
 };
-export default function Header({ className = "", offsetTop = false }: Props) {
+export default function Header({ className = "" }: Props) {
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const { themeLayout, breadCrumb } = useSettings();
 	const { colorBgElevated, colorBorder } = useThemeToken();
 	const { screenMap } = useResponsive();
+	const { offsetTop } = useScrollTop();
 
 	const headerStyle: CSSProperties = {
 		position: themeLayout === ThemeLayout.Horizontal ? "relative" : "fixed",
@@ -41,6 +43,7 @@ export default function Header({ className = "", offsetTop = false }: Props) {
 				? `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`
 				: "",
 		backgroundColor: Color(colorBgElevated).alpha(1).toString(),
+		transition: `height ${LAYOUT_TRANSITION}`,
 	};
 
 	if (themeLayout === ThemeLayout.Horizontal) {
@@ -62,7 +65,6 @@ export default function Header({ className = "", offsetTop = false }: Props) {
 					className="flex flex-grow items-center justify-between px-4 text-gray backdrop-blur xl:px-6 2xl:px-10"
 					style={{
 						height: offsetTop ? OFFSET_HEADER_HEIGHT : HEADER_HEIGHT,
-						transition: "height 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
 					}}
 				>
 					<div className="flex items-baseline">

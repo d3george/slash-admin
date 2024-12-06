@@ -1,13 +1,5 @@
 import { Layout } from "antd";
-import { useScroll } from "framer-motion";
-import {
-	Suspense,
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
+import { Suspense, useMemo } from "react";
 import styled from "styled-components";
 
 import { CircleLoading } from "@/components/loading";
@@ -20,27 +12,10 @@ import Main from "./main";
 import Nav from "./nav";
 
 import { ThemeLayout, ThemeMode } from "#/enum";
+import { ScrollProvider } from "./scroll-context";
 
 function DashboardLayout() {
 	const { themeLayout, themeMode } = useSettings();
-
-	const mainEl = useRef<HTMLDivElement>(null);
-	const { scrollY } = useScroll({ container: mainEl });
-
-	/**
-	 *  Tracks if content is scrolled
-	 */
-	const [offsetTop, setOffsetTop] = useState(false);
-
-	const onOffSetTop = useCallback(() => {
-		scrollY.on("change", (scrollHeight) => {
-			setOffsetTop(scrollHeight > 0);
-		});
-	}, [scrollY]);
-
-	useEffect(() => {
-		onOffSetTop();
-	}, [onOffSetTop]);
 
 	// Memoize layout className
 	const layoutClassName = useMemo(() => {
@@ -56,13 +31,11 @@ function DashboardLayout() {
 			<Layout className={layoutClassName}>
 				<Suspense fallback={<CircleLoading />}>
 					<Layout>
-						<Header
-							offsetTop={
-								themeLayout === ThemeLayout.Vertical ? offsetTop : undefined
-							}
-						/>
-						<Nav />
-						<Main ref={mainEl} offsetTop={offsetTop} />
+						<ScrollProvider>
+							<Header />
+							<Nav />
+							<Main />
+						</ScrollProvider>
 					</Layout>
 				</Suspense>
 			</Layout>

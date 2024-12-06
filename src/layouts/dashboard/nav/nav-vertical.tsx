@@ -14,7 +14,7 @@ import { menuFilter } from "@/router/utils";
 import { useSettingActions, useSettings } from "@/store/settingStore";
 import { useThemeToken } from "@/theme/hooks";
 
-import { NAV_WIDTH } from "../config";
+import { LAYOUT_TRANSITION, NAV_WIDTH } from "../config";
 
 import NavLogo from "./nva-logo";
 
@@ -104,6 +104,7 @@ export default function NavVertical(props: Props) {
 			style={{
 				height: "100vh",
 				borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
+				transition: `all ${LAYOUT_TRANSITION}, background 0ms`,
 			}}
 		>
 			<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />

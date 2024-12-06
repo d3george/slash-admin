@@ -5,8 +5,9 @@ import { useSettings } from "@/store/settingStore";
 import { useThemeToken } from "@/theme/hooks";
 import { cn } from "@/utils";
 
-import { HEADER_HEIGHT } from "../config";
+import { HEADER_HEIGHT, LAYOUT_TRANSITION } from "../config";
 
+import type { CSSProperties } from "react";
 import { ThemeLayout } from "#/enum";
 
 type Props = {
@@ -21,6 +22,13 @@ export default function NavLogo({ collapsed, onToggle }: Props) {
 		colorBgContainer,
 		colorBorderSecondary,
 	} = useThemeToken();
+
+	const logoTextStyle: CSSProperties = {
+		color: colorPrimary,
+		width: collapsed ? 0 : "auto",
+		transition: `all ${LAYOUT_TRANSITION}`,
+	};
+
 	return (
 		<div
 			style={{ height: `${HEADER_HEIGHT}px` }}
@@ -29,10 +37,7 @@ export default function NavLogo({ collapsed, onToggle }: Props) {
 			<div className="flex items-center">
 				<Logo />
 				{themeLayout !== ThemeLayout.Mini && (
-					<span
-						className="ml-2 text-xl font-bold"
-						style={{ color: colorPrimary }}
-					>
+					<span className="ml-2 text-xl font-bold" style={logoTextStyle}>
 						Slash Admin
 					</span>
 				)}
