@@ -353,7 +353,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
 		height: MULTI_TABS_HEIGHT,
 		backgroundColor: Color(colorBgElevated).alpha(1).toString(),
 		borderBottom: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
-		transition: "top 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+		transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
 		width: "100%",
 	};
 

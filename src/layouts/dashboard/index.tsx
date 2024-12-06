@@ -102,6 +102,7 @@ const scrollbarStyles = {
 const ScrollbarStyleWrapper = styled.div<{ $themeMode?: ThemeMode }>`
   ::-webkit-scrollbar {
     width: 8px;
+    top: 32px;
   }
 
   ::-webkit-scrollbar-track {

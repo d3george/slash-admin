@@ -3,13 +3,13 @@ import { type CSSProperties, forwardRef } from "react";
 import { Outlet } from "react-router";
 
 import { useSettings } from "@/store/settingStore";
-import { useThemeToken } from "@/theme/hooks";
 import { cn } from "@/utils";
 
 import { MULTI_TABS_HEIGHT } from "./config";
 import MultiTabs from "./multi-tabs";
 import { MultiTabsProvider } from "./multi-tabs/multi-tabs-provider";
 
+import { useThemeToken } from "@/theme/hooks";
 import { ThemeLayout } from "#/enum";
 
 type Props = {
@@ -20,12 +20,10 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
 	const { colorBgElevated } = useThemeToken();
 
 	const mainStyle: CSSProperties = {
+		paddingTop: multiTab ? MULTI_TABS_HEIGHT : 0,
 		background: colorBgElevated,
+		transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
 		width: "100%",
-		paddingTop:
-			themeLayout === ThemeLayout.Horizontal && multiTab
-				? MULTI_TABS_HEIGHT
-				: 0,
 	};
 
 	return (
