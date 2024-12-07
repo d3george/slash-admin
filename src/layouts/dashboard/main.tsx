@@ -27,21 +27,23 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
 	};
 
 	return (
-		<Content ref={ref} style={mainStyle} className="flex overflow-auto">
-			<div
-				className={cn(
-					"m-auto h-full w-full flex-grow sm:p-2",
-					themeStretch ? "" : "xl:max-w-screen-xl",
-					themeLayout === ThemeLayout.Horizontal ? "flex-col" : "flex-row",
-				)}
-			>
-				{multiTab ? (
-					<MultiTabsProvider>
-						<MultiTabs offsetTop={offsetTop} />
-					</MultiTabsProvider>
-				) : (
-					<Outlet />
-				)}
+		<Content style={mainStyle} className="flex">
+			<div className="flex-grow overflow-auto size-full" ref={ref}>
+				<div
+					className={cn(
+						"m-auto size-full flex-grow sm:p-2",
+						themeStretch ? "" : "xl:max-w-screen-xl",
+						themeLayout === ThemeLayout.Horizontal ? "flex-col" : "flex-row",
+					)}
+				>
+					{multiTab ? (
+						<MultiTabsProvider>
+							<MultiTabs offsetTop={offsetTop} />
+						</MultiTabsProvider>
+					) : (
+						<Outlet />
+					)}
+				</div>
 			</div>
 		</Content>
 	);

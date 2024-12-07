@@ -53,7 +53,9 @@ function DashboardLayout() {
 		);
 	}, [themeLayout]);
 
-	const customStyle: CSSProperties = {
+	const secondLayoutStyle: CSSProperties = {
+		display: "flex",
+		flexDirection: "column",
 		transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
 		paddingLeft: screenMap.md
 			? themeLayout === ThemeLayout.Horizontal
@@ -69,11 +71,9 @@ function DashboardLayout() {
 			<ProgressBar />
 			<Layout className={layoutClassName}>
 				<Suspense fallback={<CircleLoading />}>
-					<Layout style={customStyle} className="flex !flex-col">
+					<Layout style={secondLayoutStyle}>
 						<Header
-							offsetTop={
-								themeLayout === ThemeLayout.Vertical ? offsetTop : undefined
-							}
+							offsetTop={themeLayout !== ThemeLayout.Horizontal && offsetTop}
 						/>
 						<Nav />
 						<Main ref={mainEl} offsetTop={offsetTop} />
