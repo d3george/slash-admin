@@ -18,7 +18,6 @@ import { cn } from "@/utils";
 import { ThemeLayout } from "#/enum";
 import {
 	HEADER_HEIGHT,
-	MULTI_TABS_HEIGHT,
 	NAV_COLLAPSED_WIDTH,
 	NAV_WIDTH,
 	OFFSET_HEADER_HEIGHT,
