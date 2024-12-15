@@ -7,7 +7,7 @@ import { cn } from "@/utils";
 
 import { MULTI_TABS_HEIGHT } from "./config";
 import MultiTabs from "./multi-tabs";
-import { MultiTabsProvider } from "./multi-tabs/multi-tabs-provider";
+import { MultiTabsProvider } from "./multi-tabs/providers/multi-tabs-provider";
 
 import { useThemeToken } from "@/theme/hooks";
 import { ThemeLayout } from "#/enum";
