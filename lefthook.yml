@@ -1,14 +1,26 @@
-# Use this to lint and format
+# SKIP CI in commit message to skip hooks
+skip_output:
+  - meta
+  - success
+  - summary
+
 pre-commit:
   parallel: true
   commands:
-    "biome check(lint + format)":
-      # Runs formatter, linter and import sorting to the requested files.
-      run: npx @biomejs/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+    format:
+      glob: "*.{js,jsx,ts,tsx,json,md}"
+      run: npx @biomejs/biome format --write --no-errors-on-unmatched {staged_files}
       stage_fixed: true
+    lint:
+      glob: "*.{js,jsx,ts,tsx}"
+      run: npx @biomejs/biome lint --no-errors-on-unmatched {staged_files}
+    check-types:
+      glob: "*.{ts,tsx}"
+      run: npx tsc --noEmit
 
-# Use this to validate commit messages
 commit-msg:
   commands:
-    "commit-msg lint":
+    commitlint:
       run: npx commitlint --edit {1}
+      # 允许空提交信息
+      skip: merge|rebase

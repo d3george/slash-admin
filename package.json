@@ -95,5 +95,8 @@
 	},
 	"msw": {
 		"workerDirectory": "public"
+	},
+	"commitlint": {
+		"extends": ["@commitlint/config-conventional"]
 	}
 }
