@@ -101,7 +101,7 @@ export default function NavVertical(props: Props) {
 			collapsed={collapsed}
 			width={NAV_WIDTH}
 			theme={sidebarTheme}
-			className="!fixed left-0 top-0 h-screen z-50"
+			className="!fixed left-0 top-0 h-screen"
 			style={{
 				borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
 			}}

@@ -1,7 +1,7 @@
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import { useCallback, useEffect } from "react";
-
+import { useEffect } from "react";
+import { createGlobalStyle } from "styled-components";
 import { usePathname } from "@/router/hooks";
 import { useThemeToken } from "@/theme/hooks";
 
@@ -10,28 +10,23 @@ NProgress.configure({
 	showSpinner: false,
 });
 
+const NProgressStyle = createGlobalStyle<{ $background: string }>`
+	#nprogress .bar {
+		background: ${(props) => props.$background} !important;
+		box-shadow: 0 0 2px ${(props) => props.$background} !important;
+	}
+	#nprogress .peg {
+		box-shadow: 0 0 10px ${(props) => props.$background}, 0 0 5px ${(props) => props.$background} !important;
+	}
+`;
+
 export default function ProgressBar() {
 	const pathname = usePathname();
 	const { colorPrimary } = useThemeToken();
 
-	const updateProgressBarStyle = useCallback(() => {
-		const nprogress = document.getElementById("nprogress");
-		if (!nprogress) return;
-
-		const bar = nprogress.querySelector<HTMLElement>(".bar");
-		const peg = nprogress.querySelector<HTMLElement>(".peg");
-
-		if (!bar || !peg) return;
-
-		bar.style.background = colorPrimary;
-		bar.style.boxShadow = `0 0 2px ${colorPrimary}`;
-		peg.style.boxShadow = `0 0 10px ${colorPrimary}, 0 0 5px ${colorPrimary}`;
-	}, [colorPrimary]);
-
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		NProgress.start();
-		updateProgressBarStyle();
 
 		// 路由变化完成时
 		const timer = setTimeout(() => {
@@ -42,7 +37,7 @@ export default function ProgressBar() {
 			clearTimeout(timer);
 			NProgress.done();
 		};
-	}, [pathname, updateProgressBarStyle]);
+	}, [pathname]);
 
-	return null;
+	return <NProgressStyle $background={colorPrimary} />;
 }
