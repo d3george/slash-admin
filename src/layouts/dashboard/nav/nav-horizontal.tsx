@@ -49,7 +49,7 @@ export default function NavHorizontal() {
 				defaultOpenKeys={[]}
 				selectedKeys={selectedKeys}
 				onClick={onClick}
-				className="!z-10 !border-none"
+				className="!border-none"
 				style={{ background: colorBgElevated }}
 			/>
 		</div>
