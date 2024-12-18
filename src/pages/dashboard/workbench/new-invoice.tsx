@@ -1,10 +1,9 @@
-import { Space, Typography } from "antd";
+import { Space, Tag, Typography } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 
 import Card from "@/components/card";
 import { IconButton, Iconify } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
-import ProTag from "@/theme/antd/components/tag";
 
 interface DataType {
 	key: string;
@@ -42,7 +41,7 @@ export default function NewInvoice() {
 				let color = "success";
 				if (status === "Progress") color = "gold";
 				if (status === "Out of Date") color = "red";
-				return <ProTag color={color}>{status}</ProTag>;
+				return <Tag color={color}>{status}</Tag>;
 			},
 		},
 		{

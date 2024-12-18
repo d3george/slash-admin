@@ -16,7 +16,7 @@ import worker from "./_mock";
 // i18n
 import "./locales/i18n";
 // tailwind css
-import "./theme/index.css";
+import "./theme/styles/index.css";
 
 const charAt = `
     ███████╗██╗      █████╗ ███████╗██╗  ██╗ 

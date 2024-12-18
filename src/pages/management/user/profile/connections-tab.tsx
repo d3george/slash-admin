@@ -1,9 +1,8 @@
 import { faker } from "@faker-js/faker";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, Tag } from "antd";
 
 import Card from "@/components/card";
 import { Iconify } from "@/components/icon";
-import ProTag from "@/theme/antd/components/tag";
 
 export default function ConnectionsTab() {
 	const items = [
@@ -82,9 +81,9 @@ export default function ConnectionsTab() {
 
 						<div className="mt-4 flex gap-4">
 							{item.tags.map((tag) => (
-								<ProTag color={faker.color.rgb()} key={tag}>
+								<Tag color={faker.color.rgb()} key={tag}>
 									{tag}
-								</ProTag>
+								</Tag>
 							))}
 						</div>
 

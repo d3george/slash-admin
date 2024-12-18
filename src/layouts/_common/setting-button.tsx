@@ -16,8 +16,8 @@ import RedBlur from "@/assets/images/background/red-blur.png";
 import { varHover } from "@/components/animate/variants/action";
 import { IconButton, SvgIcon } from "@/components/icon";
 import { useSettingActions, useSettings } from "@/store/settingStore";
-import { colorPrimarys } from "@/theme/antd/theme";
 import { useThemeToken } from "@/theme/hooks";
+import { presetsColors } from "@/theme/core";
 
 import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
 
@@ -409,7 +409,7 @@ export default function SettingButton() {
 							Presets
 						</div>
 						<div className="grid grid-cols-3 gap-x-4 gap-y-3">
-							{Object.entries(colorPrimarys).map(([preset, color]) => (
+							{Object.entries(presetsColors).map(([preset, color]) => (
 								<Card
 									key={preset}
 									className="flex h-14 w-full cursor-pointer items-center justify-center"
@@ -421,7 +421,7 @@ export default function SettingButton() {
 										setThemeColorPresets(preset as ThemeColorPresets)
 									}
 								>
-									<div style={{ color }}>
+									<div style={{ color: color.main }}>
 										<MdCircle
 											style={{
 												fontSize: themeColorPresets === preset ? 24 : 12,

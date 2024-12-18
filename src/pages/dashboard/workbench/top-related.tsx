@@ -1,11 +1,10 @@
-import { Typography } from "antd";
+import { Tag, Typography } from "antd";
 
 import Card from "@/components/card";
 import { Iconify } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
-import ProRate from "@/theme/antd/components/rage";
-import ProTag from "@/theme/antd/components/tag";
 import { useThemeToken } from "@/theme/hooks";
+import { Rate } from "antd";
 
 const dataSource = [
 	{
@@ -83,14 +82,14 @@ export default function TopRelated() {
 									<span className="mx-1 text-xs font-light">
 										{item.platform}
 									</span>
-									<ProTag color={item.type === "free" ? "green" : "red"}>
+									<Tag color={item.type === "free" ? "green" : "red"}>
 										{item.type}
-									</ProTag>
+									</Tag>
 								</div>
 							</div>
 
 							<div className="ml-auto flex flex-col self-center">
-								<ProRate allowHalf disabled defaultValue={item.star} />
+								<Rate allowHalf disabled defaultValue={item.star} />
 								<span className="mt-1 text-right text-xs text-gray-400">
 									{item.reviews}reviews
 								</span>

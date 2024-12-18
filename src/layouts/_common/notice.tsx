@@ -1,12 +1,11 @@
 import { faker } from "@faker-js/faker";
-import { Badge, Button, Drawer, Space, Tabs, type TabsProps } from "antd";
+import { Badge, Button, Drawer, Space, Tabs, Tag, type TabsProps } from "antd";
 import Color from "color";
 import { type CSSProperties, type ReactNode, useState } from "react";
 
 import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
 import { IconButton, Iconify, SvgIcon } from "@/components/icon";
-import ProTag from "@/theme/antd/components/tag";
 import { useThemeToken } from "@/theme/hooks";
 
 export default function NoticeButton() {
@@ -265,7 +264,7 @@ function NoticeTab() {
 			label: (
 				<div className="flex">
 					<span>All</span>
-					<ProTag color="processing">22</ProTag>
+					<Tag color="processing">22</Tag>
 				</div>
 			),
 			children: tabChildren,
@@ -275,7 +274,7 @@ function NoticeTab() {
 			label: (
 				<div className="flex">
 					<span>Unread</span>
-					<ProTag color="error">12</ProTag>
+					<Tag color="error">12</Tag>
 				</div>
 			),
 			children: tabChildren,
@@ -285,7 +284,7 @@ function NoticeTab() {
 			label: (
 				<div className="flex">
 					<span>Archived</span>
-					<ProTag color="green">10</ProTag>
+					<Tag color="green">10</Tag>
 				</div>
 			),
 			children: tabChildren,

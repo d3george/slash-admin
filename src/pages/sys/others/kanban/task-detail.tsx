@@ -5,13 +5,13 @@ import {
 	Input,
 	Radio,
 	Space,
+	Tag,
 	Typography,
 } from "antd";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
 import { SvgIcon } from "@/components/icon";
-import ProTag from "@/theme/antd/components/tag";
 import { useThemeToken } from "@/theme/hooks";
 
 import type { Task } from "./types";
@@ -55,9 +55,9 @@ export default function TaskDetail({ task }: Props) {
 					<div className="label">Tag</div>
 					<Space wrap>
 						{tags.map((tag) => (
-							<ProTag key={tag} color={colorInfo}>
+							<Tag key={tag} color={colorInfo}>
 								{tag}
-							</ProTag>
+							</Tag>
 						))}
 					</Space>
 				</div>

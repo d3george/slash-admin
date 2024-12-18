@@ -1,11 +1,10 @@
 import { faker } from "@faker-js/faker";
-import { Avatar, Col, Divider, Row } from "antd";
+import { Avatar, Col, Divider, Row, Tag } from "antd";
 import dayjs from "dayjs";
 
 import { fakeAvatars } from "@/_mock/utils";
 import Card from "@/components/card";
 import { IconButton, Iconify } from "@/components/icon";
-import ProTag from "@/theme/antd/components/tag";
 
 export default function ProjectsTab() {
 	const items = [
@@ -125,9 +124,9 @@ export default function ProjectsTab() {
 									<span className="ml-2 opacity-50">{item.allHours}</span>
 								</span>
 
-								<ProTag color="warning">
+								<Tag color="warning">
 									{item.deadline.diff(dayjs(), "day")} days left
-								</ProTag>
+								</Tag>
 							</div>
 							<div className="flex w-full ">
 								<Avatar.Group max={{ count: 4 }}>

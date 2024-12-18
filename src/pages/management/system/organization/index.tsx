@@ -12,6 +12,7 @@ import {
 	Row,
 	Select,
 	Space,
+	Tag,
 } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import type { TableRowSelection } from "antd/es/table/interface";
@@ -19,7 +20,6 @@ import { useEffect, useState } from "react";
 
 import orgService from "@/api/services/orgService";
 import { IconButton, Iconify } from "@/components/icon";
-import ProTag from "@/theme/antd/components/tag";
 
 import OrganizationChart from "./organization-chart";
 
@@ -55,9 +55,7 @@ export default function OrganizationPage() {
 			align: "center",
 			width: 120,
 			render: (status) => (
-				<ProTag color={status === "enable" ? "success" : "error"}>
-					{status}
-				</ProTag>
+				<Tag color={status === "enable" ? "success" : "error"}>{status}</Tag>
 			),
 		},
 		{ title: "Desc", dataIndex: "desc", align: "center", width: 300 },
@@ -163,10 +161,10 @@ export default function OrganizationPage() {
 							>
 								<Select>
 									<Select.Option value="enable">
-										<ProTag color="success">Enable</ProTag>
+										<Tag color="success">Enable</Tag>
 									</Select.Option>
 									<Select.Option value="disable">
-										<ProTag color="error">Disable</ProTag>
+										<Tag color="error">Disable</Tag>
 									</Select.Option>
 								</Select>
 							</Form.Item>

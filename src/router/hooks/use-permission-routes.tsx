@@ -5,12 +5,12 @@ import { Navigate, Outlet } from "react-router";
 import { Iconify } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
 import { useUserPermission } from "@/store/userStore";
-import ProTag from "@/theme/antd/components/tag";
 import { flattenTrees } from "@/utils/tree";
 
 import type { Permission } from "#/entity";
 import { BasicStatus, PermissionType } from "#/enum";
 import type { AppRouteObject } from "#/router";
+import { Tag } from "antd";
 
 const ENTRY_PATH = "/src/pages";
 const PAGES = import.meta.glob("/src/pages/**/*.tsx");
@@ -49,12 +49,12 @@ function buildCompleteRoute(
 // Components
 function NewFeatureTag() {
 	return (
-		<ProTag
-			color="cyan"
-			icon={<Iconify icon="solar:bell-bing-bold-duotone" size={14} />}
-		>
-			NEW
-		</ProTag>
+		<Tag color="cyan" className="!ml-2">
+			<div className="flex items-center gap-1">
+				<Iconify icon="solar:bell-bing-bold-duotone" size={12} />
+				<span className="ms-1">NEW</span>
+			</div>
+		</Tag>
 	);
 }
 

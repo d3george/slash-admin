@@ -66,7 +66,6 @@ export default function MultiTabs({
 	}));
 
 	const onDragEnd: OnDragEndResponder = ({ destination, source }) => {
-		console.log("onDragEnd", destination, source);
 		if (!destination) return;
 		if (
 			destination.droppableId === source.droppableId &&
@@ -75,11 +74,9 @@ export default function MultiTabs({
 			return;
 		}
 
-		console.log("Before reorder:", tabs);
 		const newTabs = Array.from(tabs);
 		const [movedTab] = newTabs.splice(source.index, 1);
 		newTabs.splice(destination.index, 0, movedTab);
-		console.log("After reorder:", newTabs);
 
 		setTabs([...newTabs]);
 	};

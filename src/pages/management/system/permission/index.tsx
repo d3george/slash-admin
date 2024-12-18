@@ -1,4 +1,4 @@
-import { Button, Card, Popconfirm } from "antd";
+import { Button, Card, Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import { isNil } from "ramda";
 import { useState } from "react";
@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 
 import { IconButton, Iconify, SvgIcon } from "@/components/icon";
 import { useUserPermission } from "@/store/userStore";
-import ProTag from "@/theme/antd/components/tag";
 
 import PermissionModal, { type PermissionModalProps } from "./permission-modal";
 
@@ -53,7 +52,7 @@ export default function PermissionPage() {
 			dataIndex: "type",
 			width: 60,
 			render: (_, record) => (
-				<ProTag color="processing">{PermissionType[record.type]}</ProTag>
+				<Tag color="processing">{PermissionType[record.type]}</Tag>
 			),
 		},
 		{
@@ -80,9 +79,9 @@ export default function PermissionPage() {
 			align: "center",
 			width: 120,
 			render: (status) => (
-				<ProTag color={status === BasicStatus.DISABLE ? "error" : "success"}>
+				<Tag color={status === BasicStatus.DISABLE ? "error" : "success"}>
 					{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
-				</ProTag>
+				</Tag>
 			),
 		},
 		{ title: "Order", dataIndex: "order", width: 60 },

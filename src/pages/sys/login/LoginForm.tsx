@@ -1,4 +1,14 @@
-import { Alert, Button, Checkbox, Col, Divider, Form, Input, Row } from "antd";
+import {
+	Alert,
+	Button,
+	Checkbox,
+	Col,
+	Divider,
+	Form,
+	Input,
+	Row,
+	Tag,
+} from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from "react-icons/ai";
@@ -6,7 +16,6 @@ import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from "react-icons/ai";
 import { DEFAULT_USER, TEST_USER } from "@/_mock/assets";
 import type { SignInReq } from "@/api/services/userService";
 import { useSignIn } from "@/store/userStore";
-import ProTag from "@/theme/antd/components/tag";
 import { useThemeToken } from "@/theme/hooks";
 
 import {
@@ -53,9 +62,9 @@ function LoginForm() {
 						description={
 							<div className="flex flex-col">
 								<div className="flex">
-									<ProTag className="flex-shrink-0">
+									<Tag className="flex-shrink-0">
 										Admin {t("sys.login.userName")}:
-									</ProTag>
+									</Tag>
 									<strong
 										className="ml-1"
 										style={{ color: themeToken.colorInfoTextHover }}
@@ -65,9 +74,9 @@ function LoginForm() {
 								</div>
 
 								<div className="flex">
-									<ProTag className="flex-shrink-0">
+									<Tag className="flex-shrink-0">
 										Test {t("sys.login.userName")}:
-									</ProTag>
+									</Tag>
 									<strong
 										className="ml-1"
 										style={{ color: themeToken.colorInfoTextHover }}
@@ -77,9 +86,9 @@ function LoginForm() {
 								</div>
 
 								<div>
-									<ProTag className="flex-shrink-0">
+									<Tag className="flex-shrink-0">
 										{t("sys.login.password")}:
-									</ProTag>
+									</Tag>
 									<strong
 										className=" ml-1"
 										style={{ color: themeToken.colorInfoTextHover }}

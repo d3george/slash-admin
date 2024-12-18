@@ -1,10 +1,9 @@
 import { faker } from "@faker-js/faker";
-import { Avatar, Col, Row } from "antd";
+import { Avatar, Col, Row, Tag } from "antd";
 
 import { fakeAvatars } from "@/_mock/utils";
 import Card from "@/components/card";
 import { IconButton, Iconify } from "@/components/icon";
-import ProTag from "@/theme/antd/components/tag";
 
 export default function TeamsTab() {
 	const items = [
@@ -71,9 +70,9 @@ export default function TeamsTab() {
 							</Avatar.Group>
 							<div className="ml-auto flex items-center">
 								{item.tags.map((tag) => (
-									<ProTag color={faker.color.rgb()} key={tag}>
+									<Tag color={faker.color.rgb()} key={tag}>
 										{tag}
-									</ProTag>
+									</Tag>
 								))}
 							</div>
 						</footer>

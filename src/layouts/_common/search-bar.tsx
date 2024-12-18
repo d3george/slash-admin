@@ -1,4 +1,11 @@
-import { Empty, type GlobalToken, Input, type InputRef, Modal } from "antd";
+import {
+	Empty,
+	type GlobalToken,
+	Input,
+	type InputRef,
+	Modal,
+	Tag,
+} from "antd";
 import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 import Color from "color";
@@ -16,7 +23,6 @@ import styled from "styled-components";
 import { IconButton, SvgIcon } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
 import { useFlattenedRoutes, useRouter } from "@/router/hooks";
-import ProTag from "@/theme/antd/components/tag";
 import { useThemeToken } from "@/theme/hooks";
 
 export default function SearchBar() {
@@ -183,16 +189,16 @@ export default function SearchBar() {
 				footer={
 					<div className="flex flex-wrap">
 						<div className="flex">
-							<ProTag color="cyan">↑</ProTag>
-							<ProTag color="cyan">↓</ProTag>
+							<Tag color="cyan">↑</Tag>
+							<Tag color="cyan">↓</Tag>
 							<span>to navigate</span>
 						</div>
 						<div className="flex">
-							<ProTag color="cyan">↵</ProTag>
+							<Tag color="cyan">↵</Tag>
 							<span>to select</span>
 						</div>
 						<div className="flex">
-							<ProTag color="cyan">ESC</ProTag>
+							<Tag color="cyan">ESC</Tag>
 							<span>to close</span>
 						</div>
 					</div>

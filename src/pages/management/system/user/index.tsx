@@ -1,10 +1,9 @@
-import { Button, Card, Popconfirm } from "antd";
+import { Button, Card, Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 
 import { USER_LIST } from "@/_mock/assets";
 import { IconButton, Iconify } from "@/components/icon";
 import { usePathname, useRouter } from "@/router/hooks";
-import ProTag from "@/theme/antd/components/tag";
 import { useThemeToken } from "@/theme/hooks";
 
 import type { Role, UserInfo } from "#/entity";
@@ -45,7 +44,7 @@ export default function RolePage() {
 			dataIndex: "role",
 			align: "center",
 			width: 120,
-			render: (role: Role) => <ProTag color="cyan">{role.name}</ProTag>,
+			render: (role: Role) => <Tag color="cyan">{role.name}</Tag>,
 		},
 		{
 			title: "Status",
@@ -53,9 +52,9 @@ export default function RolePage() {
 			align: "center",
 			width: 120,
 			render: (status) => (
-				<ProTag color={status === BasicStatus.DISABLE ? "error" : "success"}>
+				<Tag color={status === BasicStatus.DISABLE ? "error" : "success"}>
 					{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
-				</ProTag>
+				</Tag>
 			),
 		},
 		{

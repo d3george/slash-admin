@@ -6,6 +6,7 @@ import {
 	Row,
 	Space,
 	Table,
+	Tag,
 	Timeline,
 	Typography,
 } from "antd";
@@ -16,7 +17,6 @@ import Card from "@/components/card";
 import { IconButton, Iconify, SvgIcon } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
 import { useUserInfo } from "@/store/userStore";
-import ProTag from "@/theme/antd/components/tag";
 import { useThemeToken } from "@/theme/hooks";
 
 interface DataType {
@@ -107,32 +107,32 @@ export default function ProfileTab() {
 			avatar: <Iconify icon="devicon:react" size={36} />,
 			name: "React Developers",
 			members: `${faker.number.int(100)} Members`,
-			tag: <ProTag color="warning">Developer</ProTag>,
+			tag: <Tag color="warning">Developer</Tag>,
 		},
 		{
 			avatar: <Iconify icon="devicon:figma" size={36} />,
 			name: "UI Designer",
 			members: `${faker.number.int(100)} Members`,
-			tag: <ProTag color="cyan">Designer</ProTag>,
+			tag: <Tag color="cyan">Designer</Tag>,
 		},
 		{
 			avatar: <Iconify icon="logos:jest" size={36} />,
 			name: "Test Team",
 			members: `${faker.number.int(100)} Members`,
-			tag: <ProTag color="success">Test</ProTag>,
+			tag: <Tag color="success">Test</Tag>,
 		},
 		{
 			avatar: <Iconify icon="logos:nestjs" size={36} />,
 			name: "Nest.js Developers",
 			members: `${faker.number.int(100)} Members`,
-			tag: <ProTag color="warning">Developer</ProTag>,
+			tag: <Tag color="warning">Developer</Tag>,
 		},
 
 		{
 			avatar: <Iconify icon="logos:twitter" size={36} />,
 			name: "Digital Marketing",
 			members: `${faker.number.int(100)} Members`,
-			tag: <ProTag>Marketing</ProTag>,
+			tag: <Tag>Marketing</Tag>,
 		},
 	];
 

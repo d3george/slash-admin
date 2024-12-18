@@ -3,9 +3,9 @@ import { Suspense, lazy } from "react";
 import Card from "@/components/card";
 import { Iconify, SvgIcon } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
-import ProTag from "@/theme/antd/components/tag";
 
 import type { AppRouteObject } from "#/router";
+import { Tag } from "antd";
 
 const ExternalLink = lazy(
 	() => import("@/pages/sys/others/iframe/external-link"),
@@ -72,12 +72,12 @@ const others: AppRouteObject[] = [
 				<SvgIcon icon="ic_label" className="ant-menu-item-icon" size="24" />
 			),
 			suffix: (
-				<ProTag
+				<Tag
 					color="cyan"
 					icon={<Iconify icon="solar:bell-bing-bold-duotone" size={14} />}
 				>
 					NEW
-				</ProTag>
+				</Tag>
 			),
 			key: "/label",
 		},
