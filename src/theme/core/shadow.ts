@@ -1,5 +1,5 @@
-import { alpha } from "@/utils/color";
-import type { ThemeTokens } from "#/theme";
+import type { ThemeTokens } from "../../../types/theme";
+import { alpha } from "../../utils/color";
 import { commonColors, paletteColors } from "./color";
 
 const { gray, primary, secondary, info, success, warning, error } =
