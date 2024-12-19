@@ -1,7 +1,7 @@
-import { ThemeColorPresets } from "#/enum";
-import type { ColorScale, Palette, ThemeColors } from "#/theme";
+import { ThemeColorPresets } from "../../../types/enum";
+import type { ColorScale, Palette, ThemeColors } from "../../../types/theme";
 
-const commonColors = {
+export const commonColors = {
 	white: "#FFFFFF",
 	black: "#000000",
 };
@@ -59,7 +59,7 @@ export const presetsColors: Record<ThemeColorPresets, ColorScale> = {
  *  + dark : 700
  *  + darker : 900
  */
-const paletteColors: Palette = {
+export const paletteColors: Palette = {
 	primary: presetsColors[ThemeColorPresets.Default],
 	secondary: {
 		lighter: "#D6E4FF",

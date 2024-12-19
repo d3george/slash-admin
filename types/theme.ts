@@ -120,10 +120,29 @@ export interface ThemeTokens {
 
 	// 阴影
 	shadows: {
+		// 基础阴影
+		none: string;
 		sm: string;
+		base: string;
 		md: string;
 		lg: string;
 		xl: string;
+		"2xl": string;
+		"3xl": string;
+		inner: string;
+
+		// 组件阴影
+		dialog: string;
+		card: string;
+		dropdown: string;
+
+		// 主题色阴影
+		primary: string;
+		secondary: string;
+		info: string;
+		success: string;
+		warning: string;
+		error: string;
 	};
 
 	// 断点

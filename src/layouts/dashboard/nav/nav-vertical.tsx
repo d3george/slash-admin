@@ -16,7 +16,7 @@ import { useThemeToken } from "@/theme/hooks";
 
 import { NAV_WIDTH } from "../config";
 
-import NavLogo from "./nva-logo";
+import NavLogo from "./nav-logo";
 
 import { ThemeLayout, ThemeMode } from "#/enum";
 

@@ -6,7 +6,6 @@
 		"useDefineForClassFields": true,
 		"skipLibCheck": true, // 跳过编译器对引入库文件的检查，以加快构建速度
 		"allowJs": true, // 允许编译JavaScript文件
-
 		/* Bundler mode */
 		"moduleResolution": "bundler",
 		"sourceMap": true, // 输出 *.map 文件提供源码映射
@@ -23,7 +22,6 @@
 		// 开启后，在导入 CommonJS 模块时不需要再使用默认导出才能正确引入，也不需要手动处理 require() 和 module.exports。
 		// 这使得导入和使用 CommonJS 模块的过程变得更加简洁方便。
 		"esModuleInterop": true,
-
 		/* Linting */
 		"strict": true, // 启用所有严格类型检查选项
 		"strictNullChecks": true, // 对空值进行严格检查
@@ -32,10 +30,8 @@
 		"noUnusedParameters": true, // 消除未使用参数产生的警告
 		"noFallthroughCasesInSwitch": true, // 避免 switch 语句掉入陷阱
 		"useUnknownInCatchVariables": false, // 为 true 时，在 catch 块中声明的变量类型会被视为 unknown 而非默认的 any。
-
 		// https://vitejs.dev/guide/features#client-types
 		"types": ["vite/client"],
-
 		"baseUrl": ".",
 		/* alias */
 		"paths": {
@@ -43,6 +39,6 @@
 			"#/*": ["types/*"]
 		}
 	},
-	"include": ["src", "types"],
+	"include": ["src", "types", "tailwind.config.ts"],
 	"exclude": ["node_modules", "dist"]
 }

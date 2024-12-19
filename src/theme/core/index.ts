@@ -1,4 +1,5 @@
 import type { ThemeTokens } from "#/theme";
+import { lightShadowTokens } from "./shadow";
 
 export * from "./color";
 export * from "./typography";
@@ -28,19 +29,14 @@ export const baseThemeTokens: Omit<ThemeTokens, "colors" | "typography"> = {
 		xl: 12,
 		full: 9999,
 	},
-	shadows: {
-		sm: "0px 1px 2px 0px rgba(0, 0, 0, 0.05)",
-		md: "0px 1px 3px 0px rgba(0, 0, 0, 0.05)",
-		lg: "0px 1px 4px 0px rgba(0, 0, 0, 0.05)",
-		xl: "0px 1px 5px 0px rgba(0, 0, 0, 0.05)",
-	},
+	shadows: lightShadowTokens,
 	screens: {
-		xs: 480,
-		sm: 576,
-		md: 768,
-		lg: 992,
-		xl: 1200,
-		"2xl": 1600,
+		xs: 480, // => @media (min-width: 480px) { ... }
+		sm: 576, // => @media (min-width: 576px) { ... }
+		md: 768, // => @media (min-width: 768px) { ... }
+		lg: 992, // => @media (min-width: 992px) { ... }
+		xl: 1200, // => @media (min-width: 1200px) { ... }
+		"2xl": 1600, // => @media (min-width: 1600px) { ... }
 	},
 	zIndex: {
 		drawer: 1000,
