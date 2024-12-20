@@ -93,6 +93,10 @@
 		"vite-plugin-svg-icons": "^2.0.1",
 		"vite-tsconfig-paths": "^5.0.1"
 	},
+	"engines": {
+		"node": "20.*"
+	},
+	"packageManager": "pnpm@9.1.0",
 	"msw": {
 		"workerDirectory": "public"
 	},

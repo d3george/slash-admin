@@ -1,0 +1,9 @@
+/* editor */
+@import "react-quill/dist/quill.snow.css";
+/* simplebar */
+@import "simplebar-react/dist/simplebar.min.css";
+
+/* tailwind */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";

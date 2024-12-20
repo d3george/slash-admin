@@ -21,6 +21,7 @@ export const lightShadowTokens: ThemeTokens["shadows"] = {
 	dialog: `box-shadow: -40px 40px 80px -8px ${alpha(black, 0.24)}`,
 	card: `box-shadow: 0 0 2px 0 ${alpha(gray.main, 0.2)}, 0 12px 24px -4px ${alpha(gray.main, 0.12)}`,
 	dropdown: `box-shadow: 0 0 2px 0 ${alpha(gray.main, 0.24)}, -20px 20px 40px -4px ${alpha(gray.main, 0.24)}`,
+
 	primary: `box-shadow: 0 8px 16px 0 ${alpha(primary.main, 0.24)}`,
 	secondary: `box-shadow: 0 8px 16px 0 ${alpha(secondary.main, 0.24)}`,
 	info: `box-shadow: 0 8px 16px 0 ${alpha(info.main, 0.24)}`,
@@ -44,6 +45,7 @@ export const darkShadowTokens: ThemeTokens["shadows"] = {
 	dialog: `box-shadow: -40px 40px 80px -8px ${alpha(black, 0.24)}`,
 	card: `box-shadow: 0 0 2px 0 ${alpha(black, 0.2)}, 0 12px 24px -4px ${alpha(black, 0.12)}`,
 	dropdown: `box-shadow: 0 0 2px 0 ${alpha(black, 0.24)}, -20px 20px 40px -4px ${alpha(black, 0.24)}`,
+
 	primary: `box-shadow: 0 8px 16px 0 ${alpha(primary.main, 0.24)}`,
 	secondary: `box-shadow: 0 8px 16px 0 ${alpha(secondary.main, 0.24)}`,
 	info: `box-shadow: 0 8px 16px 0 ${alpha(info.main, 0.24)}`,
