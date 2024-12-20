@@ -1,12 +1,11 @@
 import { ThemeColorPresets } from "../../../types/enum";
-import type { ColorScale, Palette, ThemeColors } from "../../../types/theme";
 
 export const commonColors = {
 	white: "#FFFFFF",
 	black: "#000000",
 };
 
-export const presetsColors: Record<ThemeColorPresets, ColorScale> = {
+export const presetsColors = {
 	[ThemeColorPresets.Default]: {
 		lighter: "#C8FAD6",
 		light: "#5BE49B",
@@ -59,7 +58,7 @@ export const presetsColors: Record<ThemeColorPresets, ColorScale> = {
  *  + dark : 700
  *  + darker : 900
  */
-export const paletteColors: Palette = {
+export const paletteColors = {
 	primary: presetsColors[ThemeColorPresets.Default],
 	secondary: {
 		lighter: "#D6E4FF",
@@ -97,19 +96,19 @@ export const paletteColors: Palette = {
 		darker: "#003768",
 	},
 	gray: {
-		lightest: "#F9FAFB",
-		lighter: "#F4F6F8",
-		light: "#DFE3E8",
-		lightMedium: "#C4CDD5",
-		main: "#919EAB",
-		darkMedium: "#637381",
-		dark: "#454F5B",
-		darker: "#1C252E",
-		darkest: "#141A21",
+		100: "#F9FAFB",
+		200: "#F4F6F8",
+		300: "#DFE3E8",
+		400: "#C4CDD5",
+		500: "#919EAB",
+		600: "#637381",
+		700: "#454F5B",
+		800: "#1C252E",
+		900: "#141A21",
 	},
 };
 
-export const lightColorTokens: ThemeColors = {
+export const lightColorTokens = {
 	palette: paletteColors,
 	common: commonColors,
 	text: {
@@ -124,7 +123,7 @@ export const lightColorTokens: ThemeColors = {
 	},
 };
 
-export const darkColorTokens: ThemeColors = {
+export const darkColorTokens = {
 	palette: paletteColors,
 	common: commonColors,
 	text: {

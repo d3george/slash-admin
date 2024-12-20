@@ -1,49 +1,51 @@
-import type { UILibraryAdapter } from "#/theme";
+import useLocale from "@/locales/useLocale";
+import { StyleProvider } from "@ant-design/cssinjs";
 import type { ThemeConfig } from "antd";
 import { App, ConfigProvider, theme } from "antd";
-import { StyleProvider } from "@ant-design/cssinjs";
-import useLocale from "@/locales/useLocale";
 import { ThemeMode } from "#/enum";
-import { darkColorTokens } from "../core";
+import type { UILibraryAdapter } from "#/theme";
+import { baseThemeTokens } from "../tokens/base";
+import { darkColorTokens, lightColorTokens, presetsColors } from "../tokens/color";
 
-export const AntdAdapter: UILibraryAdapter = ({ tokens, mode, children }) => {
+import { useSettings } from "@/store/settingStore";
+import { typographyTokens } from "../tokens/typography";
+
+export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 	const { language } = useLocale();
-	const algorithm =
-		mode === ThemeMode.Light ? theme.defaultAlgorithm : theme.darkAlgorithm;
+	const { themeColorPresets } = useSettings();
+	const algorithm = mode === ThemeMode.Light ? theme.defaultAlgorithm : theme.darkAlgorithm;
 
-	const {
-		colors: { palette, background, text },
-		typography: { fontSize },
-		borderRadius,
-		spacing,
-	} = tokens;
+	const colorTokens = mode === ThemeMode.Light ? lightColorTokens : darkColorTokens;
+
+	const primaryColorToken = presetsColors[themeColorPresets];
+
 	const token: ThemeConfig["token"] = {
-		colorPrimary: palette.primary.main,
-		colorSuccess: palette.success.main,
-		colorWarning: palette.warning.main,
-		colorError: palette.error.main,
-		colorInfo: palette.info.main,
+		colorPrimary: primaryColorToken.main,
+		colorSuccess: colorTokens.palette.success.main,
+		colorWarning: colorTokens.palette.warning.main,
+		colorError: colorTokens.palette.error.main,
+		colorInfo: colorTokens.palette.info.main,
 
-		colorBgLayout: background.default,
-		colorBgContainer: background.paper,
-		colorBgElevated: background.default,
+		colorBgLayout: colorTokens.background.default,
+		colorBgContainer: colorTokens.background.paper,
+		colorBgElevated: colorTokens.background.default,
 
 		wireframe: false,
 
-		borderRadiusSM: borderRadius.sm,
-		borderRadius: borderRadius.base,
-		borderRadiusLG: borderRadius.lg,
+		borderRadiusSM: Number(baseThemeTokens.borderRadius.sm),
+		borderRadius: Number(baseThemeTokens.borderRadius.base),
+		borderRadiusLG: Number(baseThemeTokens.borderRadius.lg),
 	};
 
 	const components: ThemeConfig["components"] = {
 		Breadcrumb: {
-			fontSize: fontSize.xs,
-			separatorMargin: spacing[1],
+			fontSize: Number(typographyTokens.fontSize.xs),
+			separatorMargin: Number(baseThemeTokens.spacing[1]),
 		},
 		Menu: {
-			fontSize: fontSize.sm,
+			fontSize: Number(typographyTokens.fontSize.sm),
 			colorFillAlter: "transparent",
-			itemColor: text.secondary,
+			itemColor: colorTokens.text.secondary,
 			motionDurationMid: "0.125s",
 			motionDurationSlow: "0.125s",
 			darkItemBg: darkColorTokens.background.default,
@@ -59,11 +61,11 @@ export const AntdAdapter: UILibraryAdapter = ({ tokens, mode, children }) => {
 			theme={{ algorithm, token, components }}
 			tag={{
 				style: {
-					borderRadius: borderRadius.md,
+					borderRadius: Number(baseThemeTokens.borderRadius.md),
 					fontWeight: 700,
-					padding: `0 ${spacing[1]}px`,
-					margin: `0 ${spacing[1]}px`,
-					fontSize: fontSize.xs,
+					padding: `0 ${Number(baseThemeTokens.spacing[1])}px`,
+					margin: `0 ${Number(baseThemeTokens.spacing[1])}px`,
+					fontSize: Number(typographyTokens.fontSize.xs),
 					borderWidth: 0,
 				},
 			}}

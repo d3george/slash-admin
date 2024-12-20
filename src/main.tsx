@@ -14,8 +14,10 @@ import "virtual:svg-icons-register";
 import worker from "./_mock";
 // i18n
 import "./locales/i18n";
-// global css
+// css
 import "./global.css";
+import "./theme/theme.css";
+
 // root component
 import App from "./app";
 
@@ -42,9 +44,7 @@ const queryClient = new QueryClient({
 	},
 });
 
-const root = ReactDOM.createRoot(
-	document.getElementById("root") as HTMLElement,
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
 	<HelmetProvider>

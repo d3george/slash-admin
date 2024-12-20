@@ -1,56 +1,43 @@
-import { createContext, useEffect, useMemo } from "react";
-import type { ThemeTokens, UILibraryAdapter } from "#/theme";
-
-import {
-	baseThemeTokens,
-	darkColorTokens,
-	lightColorTokens,
-	presetsColors,
-	typographyTokens,
-} from "./core";
 import { useSettings } from "@/store/settingStore";
+import { hexToRgbString } from "@/utils/theme";
+import { useEffect } from "react";
 import { ThemeMode } from "#/enum";
-
-interface ThemeContextValue {
-	tokens: ThemeTokens;
-}
-
-const ThemeContext = createContext<ThemeContextValue | null>(null);
+import type { UILibraryAdapter } from "#/theme";
+import { presetsColors } from "./tokens/color";
 
 interface ThemeProviderProps {
 	children: React.ReactNode;
-	adapter: UILibraryAdapter;
+	adapters?: UILibraryAdapter[];
 }
 
-export function ThemeProvider({ children, adapter }: ThemeProviderProps) {
+export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
 	const { themeMode, themeColorPresets } = useSettings();
 
-	const tokens = useMemo(() => {
-		const colorTokens =
-			themeMode === ThemeMode.Light ? lightColorTokens : darkColorTokens;
-		return {
-			...baseThemeTokens,
-			colors: {
-				...colorTokens,
-				palette: {
-					...colorTokens.palette,
-					primary: presetsColors[themeColorPresets],
-				},
-			},
-			typography: typographyTokens,
-		} as ThemeTokens;
-	}, [themeMode, themeColorPresets]);
-
-	// Update HTML class name to support Tailwind dark mode
+	// 更新 HTML class 以支持 Tailwind 暗模式
 	useEffect(() => {
 		const root = window.document.documentElement;
 		root.classList.remove(ThemeMode.Light, ThemeMode.Dark);
 		root.classList.add(themeMode);
 	}, [themeMode]);
 
-	return (
-		<ThemeContext.Provider value={{ tokens }}>
-			{adapter({ tokens, mode: themeMode, children })}
-		</ThemeContext.Provider>
+	// 动态更新主题色
+	useEffect(() => {
+		const root = window.document.documentElement;
+		const primaryColors = presetsColors[themeColorPresets];
+		for (const [key, value] of Object.entries(primaryColors)) {
+			root.style.setProperty(`--colors-palette-primary-${key}`, hexToRgbString(value));
+		}
+	}, [themeColorPresets]);
+
+	// 包装子组件与适配器
+	const wrappedWithAdapters = adapters.reduce(
+		(children, Adapter) => (
+			<Adapter key={Adapter.name} mode={themeMode}>
+				{children}
+			</Adapter>
+		),
+		children,
 	);
+
+	return wrappedWithAdapters;
 }

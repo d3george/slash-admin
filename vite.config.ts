@@ -1,5 +1,6 @@
 import path from "node:path";
 
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import react from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig, loadEnv } from "vite";
@@ -16,6 +17,9 @@ export default defineConfig(({ mode }) => {
 		base,
 		plugins: [
 			react(),
+			vanillaExtractPlugin({
+				identifiers: ({ debugId }) => `${debugId}`,
+			}),
 			tsconfigPaths(),
 			createSvgIconsPlugin({
 				iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
@@ -60,11 +64,7 @@ export default defineConfig(({ mode }) => {
 						"vendor-antd": ["antd", "@ant-design/icons", "@ant-design/cssinjs"],
 						"vendor-charts": ["apexcharts", "react-apexcharts"],
 						"vendor-utils": ["axios", "dayjs", "i18next", "zustand"],
-						"vendor-ui": [
-							"framer-motion",
-							"styled-components",
-							"@iconify/react",
-						],
+						"vendor-ui": ["framer-motion", "styled-components", "@iconify/react"],
 					},
 				},
 			},

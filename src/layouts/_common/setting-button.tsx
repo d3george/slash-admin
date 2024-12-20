@@ -1,9 +1,4 @@
-import {
-	CloseOutlined,
-	LeftOutlined,
-	QuestionCircleOutlined,
-	RightOutlined,
-} from "@ant-design/icons";
+import { CloseOutlined, LeftOutlined, QuestionCircleOutlined, RightOutlined } from "@ant-design/icons";
 import { Button, Card, Drawer, Switch, Tooltip } from "antd";
 import Color from "color";
 import { m } from "framer-motion";
@@ -17,7 +12,7 @@ import { varHover } from "@/components/animate/variants/action";
 import { IconButton, SvgIcon } from "@/components/icon";
 import { useSettingActions, useSettings } from "@/store/settingStore";
 import { useThemeToken } from "@/theme/hooks";
-import { presetsColors } from "@/theme/core";
+import { presetsColors } from "@/theme/tokens/color";
 
 import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
 
@@ -26,24 +21,10 @@ import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
  */
 export default function SettingButton() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
-	const {
-		colorPrimary,
-		colorBgBase,
-		colorTextSecondary,
-		colorTextTertiary,
-		colorBgContainer,
-	} = useThemeToken();
+	const { colorPrimary, colorBgBase, colorTextSecondary, colorTextTertiary, colorBgContainer } = useThemeToken();
 
 	const settings = useSettings();
-	const {
-		themeMode,
-		themeColorPresets,
-		themeLayout,
-		themeStretch,
-		breadCrumb,
-		multiTab,
-		darkSidebar,
-	} = settings;
+	const { themeMode, themeColorPresets, themeLayout, themeStretch, breadCrumb, multiTab, darkSidebar } = settings;
 	const { setSettings } = useSettingActions();
 
 	const setThemeMode = (themeMode: ThemeMode) => {
@@ -113,9 +94,7 @@ export default function SettingButton() {
 	};
 
 	const layoutBackground = (layout: ThemeLayout) =>
-		themeLayout === layout
-			? `linear-gradient(135deg, ${colorBgBase} 0%, ${colorPrimary} 100%)`
-			: "#919eab";
+		themeLayout === layout ? `linear-gradient(135deg, ${colorBgBase} 0%, ${colorPrimary} 100%)` : "#919eab";
 
 	return (
 		<>
@@ -152,10 +131,7 @@ export default function SettingButton() {
 				}}
 				style={style}
 				extra={
-					<IconButton
-						onClick={() => setDrawerOpen(false)}
-						className="h-9 w-9 hover:scale-105"
-					>
+					<IconButton onClick={() => setDrawerOpen(false)} className="h-9 w-9 hover:scale-105">
 						<CloseOutlined className="text-gray-400" />
 					</IconButton>
 				}
@@ -164,11 +140,7 @@ export default function SettingButton() {
 						<div className="flex items-center justify-center">
 							{isFullscreen ? (
 								<>
-									<SvgIcon
-										icon="ic-settings-exit-fullscreen"
-										color={colorPrimary}
-										className="!m-0"
-									/>
+									<SvgIcon icon="ic-settings-exit-fullscreen" color={colorPrimary} className="!m-0" />
 									<span className="ml-2">Exit FullScreen</span>
 								</>
 							) : (
@@ -184,10 +156,7 @@ export default function SettingButton() {
 				<div className="flex flex-col gap-6 p-6">
 					{/* theme mode */}
 					<div>
-						<div
-							className="mb-3 text-base font-semibold"
-							style={{ color: colorTextSecondary }}
-						>
+						<div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
 							Mode
 						</div>
 						<div className="flex flex-row gap-4">
@@ -216,16 +185,13 @@ export default function SettingButton() {
 
 					{/* theme layout */}
 					<div>
-						<div
-							className="mb-3 text-base font-semibold"
-							style={{ color: colorTextSecondary }}
-						>
+						<div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
 							Layout
 						</div>
 						<div className="grid grid-cols-3 gap-4">
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Vertical)}
-								className="h-14 cursor-pointer"
+								className="h-12 cursor-pointer"
 								style={{ flexGrow: 1, flexShrink: 0 }}
 								styles={{
 									body: {
@@ -268,7 +234,7 @@ export default function SettingButton() {
 							</Card>
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Horizontal)}
-								className="h-14 cursor-pointer"
+								className="h-12 cursor-pointer"
 								style={{ flexGrow: 1, flexShrink: 0 }}
 								styles={{
 									body: {
@@ -312,7 +278,7 @@ export default function SettingButton() {
 							</Card>
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Mini)}
-								className="h-14 cursor-pointer"
+								className="h-12 cursor-pointer"
 								style={{ flexGrow: 1, flexShrink: 0 }}
 								styles={{
 									body: {
@@ -350,10 +316,7 @@ export default function SettingButton() {
 
 					{/* theme stretch */}
 					<div>
-						<div
-							className=" mb-3 text-base font-semibold"
-							style={{ color: colorTextSecondary }}
-						>
+						<div className=" mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
 							<span className="mr-2">Stretch</span>
 							<Tooltip title="Only available at large resolutions > 1600px (xl)">
 								<QuestionCircleOutlined />
@@ -402,24 +365,18 @@ export default function SettingButton() {
 
 					{/* theme presets */}
 					<div>
-						<div
-							className="mb-3 text-base font-semibold"
-							style={{ color: colorTextSecondary }}
-						>
+						<div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
 							Presets
 						</div>
 						<div className="grid grid-cols-3 gap-x-4 gap-y-3">
 							{Object.entries(presetsColors).map(([preset, color]) => (
 								<Card
 									key={preset}
-									className="flex h-14 w-full cursor-pointer items-center justify-center"
+									className="flex h-12 w-full cursor-pointer items-center justify-center"
 									style={{
-										backgroundColor:
-											themeColorPresets === preset ? `${color}14` : "",
+										backgroundColor: themeColorPresets === preset ? `${color}14` : "",
 									}}
-									onClick={() =>
-										setThemeColorPresets(preset as ThemeColorPresets)
-									}
+									onClick={() => setThemeColorPresets(preset as ThemeColorPresets)}
 								>
 									<div style={{ color: color.main }}>
 										<MdCircle
@@ -435,45 +392,21 @@ export default function SettingButton() {
 
 					{/* Page config */}
 					<div>
-						<div
-							className="mb-3 text-base font-semibold"
-							style={{ color: colorTextSecondary }}
-						>
+						<div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
 							Page
 						</div>
 						<div className="flex flex-col gap-2">
-							<div
-								className="flex items-center justify-between"
-								style={{ color: colorTextTertiary }}
-							>
+							<div className="flex items-center justify-between" style={{ color: colorTextTertiary }}>
 								<div>BreadCrumb</div>
-								<Switch
-									size="small"
-									checked={breadCrumb}
-									onChange={(checked) => setBreadCrumn(checked)}
-								/>
+								<Switch size="small" checked={breadCrumb} onChange={(checked) => setBreadCrumn(checked)} />
 							</div>
-							<div
-								className="flex items-center justify-between"
-								style={{ color: colorTextTertiary }}
-							>
+							<div className="flex items-center justify-between" style={{ color: colorTextTertiary }}>
 								<div>Multi Tab</div>
-								<Switch
-									size="small"
-									checked={multiTab}
-									onChange={(checked) => setMultiTab(checked)}
-								/>
+								<Switch size="small" checked={multiTab} onChange={(checked) => setMultiTab(checked)} />
 							</div>
-							<div
-								className="flex items-center justify-between"
-								style={{ color: colorTextTertiary }}
-							>
+							<div className="flex items-center justify-between" style={{ color: colorTextTertiary }}>
 								<div>Dark Sidebar</div>
-								<Switch
-									size="small"
-									checked={darkSidebar}
-									onChange={(checked) => setDarkSidebar(checked)}
-								/>
+								<Switch size="small" checked={darkSidebar} onChange={(checked) => setDarkSidebar(checked)} />
 							</div>
 						</div>
 					</div>

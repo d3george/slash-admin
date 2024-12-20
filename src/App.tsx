@@ -5,12 +5,12 @@ import Router from "@/router/index";
 
 import { MotionLazy } from "./components/animate/motion-lazy";
 import Toast from "./components/toast";
-import { ThemeProvider } from "./theme/theme-provider";
 import { AntdAdapter } from "./theme/adapter/antd.adapter";
+import { ThemeProvider } from "./theme/theme-provider";
 
 function App() {
 	return (
-		<ThemeProvider adapter={AntdAdapter}>
+		<ThemeProvider adapters={[AntdAdapter]}>
 			<MotionLazy>
 				<Helmet>
 					<title>Slash Admin</title>

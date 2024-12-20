@@ -12,17 +12,13 @@ import TotalCard from "./total-card";
 
 function Workbench() {
 	return (
-		<div className="p-2">
+		<div className="p-2 bg-primary-lighter">
 			<Row gutter={[16, 16]} justify="center">
 				<Col span={24} lg={16}>
 					<BannerCard />
 				</Col>
 				<Col span={24} lg={8}>
-					<Space
-						direction="vertical"
-						size="large"
-						className="h-full w-full justify-center"
-					>
+					<Space direction="vertical" size="large" className="h-full w-full justify-center">
 						<Conversion />
 						<Applications />
 					</Space>
