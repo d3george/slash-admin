@@ -378,7 +378,7 @@ export default function SettingButton() {
 									}}
 									onClick={() => setThemeColorPresets(preset as ThemeColorPresets)}
 								>
-									<div style={{ color: color.main }}>
+									<div style={{ color: color.default }}>
 										<MdCircle
 											style={{
 												fontSize: themeColorPresets === preset ? 24 : 12,

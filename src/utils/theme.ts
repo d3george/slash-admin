@@ -13,22 +13,22 @@ export const hexToRgbString = (hex: string) => {
 };
 
 /**
- * 转换为 CSS 变量
- * @param key 变量名 如：colors.palette.primary
- * @returns CSS 变量 如：--colors-palette-primary
+ * convert to CSS vars
+ * @param key example: `colors.palette.primary`
+ * @returns example: `--colors-palette-primary`
  */
 export const toCssVar = (key: string) => {
 	return `--${key.split(".").join("-")}`;
 };
 
 /**
- * 转换为 CSS 变量
- * @param key 变量名 如：`colors.palette.primary`
- * @param variants 变量值 如：
+ * convert to CSS vars
+ * @param key example: `colors.palette.primary`
+ * @param variants example:
  * `
  * ["lighter", "light", "main", "dark", "darker"]
  * `
- * 默认值为 defaultVariants
+ * default value is defaultVariants
  * @returns
  * ```js
  * {
@@ -40,10 +40,11 @@ export const toCssVar = (key: string) => {
  * }
  * ```
  */
-export const toCssVars = (key: string, variants: string[] = defaultVariants) => {
+export const toCssVars = (key: string) => {
+	const variants = getVariants(key);
 	const result = variants.reduce(
 		(acc, variant) => {
-			const variantKey = variant === "main" ? "DEFAULT" : variant;
+			const variantKey = variant === "default" ? "DEFAULT" : variant;
 			acc[variantKey] = `var(${toCssVar(`${key}-${variant}`)})`;
 			return acc;
 		},
@@ -52,4 +53,28 @@ export const toCssVars = (key: string, variants: string[] = defaultVariants) => 
 	return result;
 };
 
-export const defaultVariants = Object.keys(themeTokens.colors.palette.primary);
+/**
+ * get variants
+ * @param keyPath example: `colors.palette.primary`
+ * @returns example: `["lighter", "light", "main", "dark", "darker"]`
+ */
+export const getVariants = (keyPath: string) => {
+	const keys = keyPath.split(".");
+	const val = keys.reduce((obj: any, key) => {
+		if (obj && typeof obj === "object") {
+			return obj[key];
+		}
+		return;
+	}, themeTokens);
+
+	return val ? Object.keys(val) : [];
+};
+
+/**
+ * remove px unit
+ * @param value example: "16px"
+ * @returns example: 16
+ */
+export const removePx = (value: string) => {
+	return Number(value.replace("px", ""));
+};

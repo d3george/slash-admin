@@ -6,7 +6,7 @@ export const typographyTokens = {
 	fontSize: {
 		xs: "12",
 		sm: "14",
-		base: "16",
+		default: "16",
 		lg: "18",
 		xl: "20",
 	},

@@ -14,36 +14,20 @@ const config: Config = {
 			warning: toCssVars("colors.palette.warning"),
 			error: toCssVars("colors.palette.error"),
 			info: toCssVars("colors.palette.info"),
-			gray: toCssVars("colors.palette.gray", ["100", "200", "300", "400", "500", "600", "700", "800", "900"]),
+			gray: toCssVars("colors.palette.gray"),
 			hover: color(paletteColors.gray[500]).alpha(0.1).rgb().string(),
-			text: toCssVars("colors.text", ["primary", "secondary", "disabled"]),
-			bg: toCssVars("colors.background", ["default", "paper", "neutral"]),
+			text: toCssVars("colors.text"),
+			bg: toCssVars("colors.background"),
 		},
 
-		screens: Object.entries(baseThemeTokens.screens).reduce(
-			(acc, [key, value]) => {
-				acc[key] = `${value}px`;
-				return acc;
-			},
-			{} as Record<string, string>,
-		),
-		spacing: Object.entries(baseThemeTokens.spacing).reduce(
-			(acc, [key, value]) => {
-				acc[key] = `${value}px`;
-				return acc;
-			},
-			{} as Record<string, string>,
-		),
+		screens: baseThemeTokens.screens,
+		spacing: toCssVars("spacing"),
 		extend: {
-			borderRadius: Object.entries(baseThemeTokens.borderRadius).reduce(
-				(acc, [key, value]) => {
-					acc[key] = `${value}px`;
-					return acc;
-				},
-				{} as Record<string, string>,
-			),
+			borderRadius: toCssVars("borderRadius"),
+			boxShadow: toCssVars("shadows"),
 		},
 	},
+
 	plugins: [],
 };
 

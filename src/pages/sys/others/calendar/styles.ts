@@ -19,12 +19,9 @@ export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
     --fc-border-color: rgba(145, 158, 171, 0.16);
     --fc-now-indicator-color: #ff5630;
     --fc-today-bg-color: rgba(145, 158, 171, 0.08);
-    --fc-page-bg-color: ${(props) =>
-			props.$themeMode === ThemeMode.Light ? "#ffffff" : "#161c24"};
+    --fc-page-bg-color: ${(props) => (props.$themeMode === ThemeMode.Light ? "#ffffff" : "#161c24")};
     --fc-neutral-bg-color: ${(props) =>
-			props.$themeMode === ThemeMode.Light
-				? "#F4F6F8"
-				: "rgba(145, 158, 171, 0.12)"};
+			props.$themeMode === ThemeMode.Light ? "#F4F6F8" : "rgba(145, 158, 171, 0.12)"};
     --fc-list-event-hover-bg-color: rgba(145, 158, 171, 0.08);
     --fc-highlight-color: rgba(145, 158, 171, 0.08);
 
@@ -124,16 +121,10 @@ export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
       }
 
       .fc-list-event-time {
-        color: ${(props) =>
-					props.$themeMode === ThemeMode.Light
-						? "rgb(99, 115, 129)"
-						: "rgb(145, 158, 171)"};
+        color: ${(props) => (props.$themeMode === ThemeMode.Light ? "rgb(99, 115, 129)" : "rgb(145, 158, 171)")};
       }
       .fc-event-title {
-        color: ${(props) =>
-					props.$themeMode === ThemeMode.Dark
-						? "rgb(255, 255, 255)"
-						: "rgb(33, 43, 54)"};
+        color: ${(props) => (props.$themeMode === ThemeMode.Dark ? "rgb(255, 255, 255)" : "rgb(33, 43, 54)")};
       }
       .fc-list-table {
         th,

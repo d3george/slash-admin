@@ -1,6 +1,6 @@
 import Chart from "@/components/chart/chart";
 import useChart from "@/components/chart/useChart";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 
 const series = [
 	{
@@ -17,13 +17,12 @@ const series = [
 	},
 ];
 export default function ChartRadar() {
-	const { colorText } = useThemeToken();
 	const chartOptions = useChart({
 		stroke: {
 			width: 2,
 		},
 		fill: {
-			opacity: 0.48,
+			opacity: 0.1,
 		},
 		legend: {
 			floating: true,
@@ -35,19 +34,17 @@ export default function ChartRadar() {
 			labels: {
 				style: {
 					colors: [
-						colorText,
-						colorText,
-						colorText,
-						colorText,
-						colorText,
-						colorText,
+						themeVars.colors.text.secondary,
+						themeVars.colors.text.secondary,
+						themeVars.colors.text.secondary,
+						themeVars.colors.text.secondary,
+						themeVars.colors.text.secondary,
+						themeVars.colors.text.secondary,
 					],
 				},
 			},
 		},
 	});
 
-	return (
-		<Chart type="radar" series={series} options={chartOptions} height={320} />
-	);
+	return <Chart type="radar" series={series} options={chartOptions} height={320} />;
 }

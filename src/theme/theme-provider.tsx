@@ -1,5 +1,5 @@
 import { useSettings } from "@/store/settingStore";
-import { hexToRgbString } from "@/utils/theme";
+import Color from "color";
 import { useEffect } from "react";
 import { ThemeMode } from "#/enum";
 import type { UILibraryAdapter } from "#/theme";
@@ -13,23 +13,24 @@ interface ThemeProviderProps {
 export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
 	const { themeMode, themeColorPresets } = useSettings();
 
-	// 更新 HTML class 以支持 Tailwind 暗模式
+	// Update HTML class to support Tailwind dark mode
 	useEffect(() => {
 		const root = window.document.documentElement;
 		root.classList.remove(ThemeMode.Light, ThemeMode.Dark);
 		root.classList.add(themeMode);
 	}, [themeMode]);
 
-	// 动态更新主题色
+	// Dynamically update theme color related CSS variables
 	useEffect(() => {
 		const root = window.document.documentElement;
 		const primaryColors = presetsColors[themeColorPresets];
 		for (const [key, value] of Object.entries(primaryColors)) {
-			root.style.setProperty(`--colors-palette-primary-${key}`, hexToRgbString(value));
+			root.style.setProperty(`--colors-palette-primary-${key}`, value);
 		}
+		root.style.setProperty("--shadows-primary", `box-shadow: 0 8px 16px 0 ${Color(primaryColors.default).alpha(0.24)}`);
 	}, [themeColorPresets]);
 
-	// 包装子组件与适配器
+	// Wrap children with adapters
 	const wrappedWithAdapters = adapters.reduce(
 		(children, Adapter) => (
 			<Adapter key={Adapter.name} mode={themeMode}>

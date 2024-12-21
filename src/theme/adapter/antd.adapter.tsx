@@ -8,6 +8,7 @@ import { baseThemeTokens } from "../tokens/base";
 import { darkColorTokens, lightColorTokens, presetsColors } from "../tokens/color";
 
 import { useSettings } from "@/store/settingStore";
+import { removePx } from "@/utils/theme";
 import { typographyTokens } from "../tokens/typography";
 
 export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
@@ -20,11 +21,11 @@ export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 	const primaryColorToken = presetsColors[themeColorPresets];
 
 	const token: ThemeConfig["token"] = {
-		colorPrimary: primaryColorToken.main,
-		colorSuccess: colorTokens.palette.success.main,
-		colorWarning: colorTokens.palette.warning.main,
-		colorError: colorTokens.palette.error.main,
-		colorInfo: colorTokens.palette.info.main,
+		colorPrimary: primaryColorToken.default,
+		colorSuccess: colorTokens.palette.success.default,
+		colorWarning: colorTokens.palette.warning.default,
+		colorError: colorTokens.palette.error.default,
+		colorInfo: colorTokens.palette.info.default,
 
 		colorBgLayout: colorTokens.background.default,
 		colorBgContainer: colorTokens.background.paper,
@@ -32,18 +33,18 @@ export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 
 		wireframe: false,
 
-		borderRadiusSM: Number(baseThemeTokens.borderRadius.sm),
-		borderRadius: Number(baseThemeTokens.borderRadius.base),
-		borderRadiusLG: Number(baseThemeTokens.borderRadius.lg),
+		borderRadiusSM: removePx(baseThemeTokens.borderRadius.sm),
+		borderRadius: removePx(baseThemeTokens.borderRadius.default),
+		borderRadiusLG: removePx(baseThemeTokens.borderRadius.lg),
 	};
 
 	const components: ThemeConfig["components"] = {
 		Breadcrumb: {
-			fontSize: Number(typographyTokens.fontSize.xs),
-			separatorMargin: Number(baseThemeTokens.spacing[1]),
+			fontSize: removePx(typographyTokens.fontSize.xs),
+			separatorMargin: removePx(baseThemeTokens.spacing[1]),
 		},
 		Menu: {
-			fontSize: Number(typographyTokens.fontSize.sm),
+			fontSize: removePx(typographyTokens.fontSize.sm),
 			colorFillAlter: "transparent",
 			itemColor: colorTokens.text.secondary,
 			motionDurationMid: "0.125s",
@@ -61,11 +62,11 @@ export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 			theme={{ algorithm, token, components }}
 			tag={{
 				style: {
-					borderRadius: Number(baseThemeTokens.borderRadius.md),
+					borderRadius: removePx(baseThemeTokens.borderRadius.md),
 					fontWeight: 700,
-					padding: `0 ${Number(baseThemeTokens.spacing[1])}px`,
-					margin: `0 ${Number(baseThemeTokens.spacing[1])}px`,
-					fontSize: Number(typographyTokens.fontSize.xs),
+					padding: `0 ${baseThemeTokens.spacing[1]}`,
+					margin: `0 ${baseThemeTokens.spacing[1]}`,
+					fontSize: removePx(typographyTokens.fontSize.xs),
 					borderWidth: 0,
 				},
 			}}
