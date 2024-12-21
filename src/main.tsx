@@ -19,7 +19,7 @@ import "./global.css";
 import "./theme/theme.css";
 
 // root component
-import App from "./app";
+import App from "./App";
 
 const charAt = `
     ███████╗██╗      █████╗ ███████╗██╗  ██╗ 
