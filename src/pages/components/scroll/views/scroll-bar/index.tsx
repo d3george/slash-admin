@@ -18,7 +18,7 @@ export default function ScrollbarView() {
 			<Row gutter={[16, 16]} justify="center">
 				<Col span={23} lg={12}>
 					<Card title="Vertical">
-						<div className="h-80">
+						<div style={{ height: "420px" }}>
 							<Scrollbar>{TEXT}</Scrollbar>
 						</div>
 					</Card>

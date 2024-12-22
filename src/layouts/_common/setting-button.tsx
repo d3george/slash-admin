@@ -349,7 +349,7 @@ export default function SettingButton() {
 									}}
 								>
 									<LeftOutlined />
-									<div className="flex flex-grow border-b border-dashed" />
+									<div className="flex flex-grow border-b border-dashed border-gray-500" />
 									<RightOutlined />
 								</div>
 							) : (

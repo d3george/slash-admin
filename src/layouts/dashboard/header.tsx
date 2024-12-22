@@ -28,7 +28,7 @@ export default function Header({ offsetTop = false }: Props) {
 	const headerStyle: CSSProperties = {
 		borderBottom:
 			themeLayout === ThemeLayout.Horizontal
-				? `1px dashed rgba(${themeVars.colors.palette.gray["300Channel"]}, 0.6)`
+				? `1px dashed rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.2)`
 				: "",
 		backgroundColor: `rgba(${themeVars.colors.background.defaultChannel}, 0.9)`,
 		width: "100%",

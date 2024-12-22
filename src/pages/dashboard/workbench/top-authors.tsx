@@ -9,19 +9,19 @@ export default function TopAuthor() {
 		switch (index) {
 			case 1:
 				return {
-					color: themeVars.colors.palette.info.light,
+					color: themeVars.colors.palette.info.default,
 					bg: `rgba(${themeVars.colors.palette.info.defaultChannel}, .4)`,
 				};
 			case 2: {
 				return {
-					color: themeVars.colors.palette.error.light,
+					color: themeVars.colors.palette.error.default,
 					bg: `rgba(${themeVars.colors.palette.error.defaultChannel}, .4)`,
 				};
 			}
 			default:
 				return {
-					color: themeVars.colors.palette.primary.light,
-					bg: `rgba(${themeVars.colors.palette.primary.defaultChannel}, .4)`,
+					color: themeVars.colors.palette.success.default,
+					bg: `rgba(${themeVars.colors.palette.success.defaultChannel}, .4)`,
 				};
 		}
 	};
