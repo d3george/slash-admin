@@ -3,7 +3,12 @@ import { removePx } from "@/utils/theme";
 import type { ApexOptions } from "apexcharts";
 import { mergeDeepRight } from "ramda";
 
+import { useSettings } from "@/store/settingStore";
+import { paletteColors, presetsColors } from "@/theme/tokens/color";
+
 export default function useChart(options: ApexOptions) {
+	const { themeColorPresets } = useSettings();
+
 	const LABEL_TOTAL = {
 		show: true,
 		label: "Total",
@@ -22,15 +27,17 @@ export default function useChart(options: ApexOptions) {
 	const baseOptions: ApexOptions = {
 		// Colors
 		colors: [
-			themeVars.colors.palette.primary.default,
-			themeVars.colors.palette.warning.default,
-			themeVars.colors.palette.info.default,
-			themeVars.colors.palette.error.default,
-			themeVars.colors.palette.success.default,
-			themeVars.colors.palette.warning.lighter,
-			themeVars.colors.palette.success.lighter,
-			themeVars.colors.palette.info.lighter,
-			themeVars.colors.palette.error.lighter,
+			presetsColors[themeColorPresets].default,
+
+			paletteColors.info.default,
+			paletteColors.warning.default,
+			paletteColors.error.default,
+			paletteColors.success.default,
+
+			paletteColors.warning.light,
+			paletteColors.info.light,
+			paletteColors.error.light,
+			paletteColors.success.light,
 		],
 
 		// Chart

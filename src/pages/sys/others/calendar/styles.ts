@@ -1,3 +1,4 @@
+import { themeVars } from "@/theme/theme.css";
 import styled from "styled-components";
 
 import { ThemeMode } from "#/enum";
@@ -16,20 +17,19 @@ export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
     width: 100%;
     height: 100%;
     /* override fullcalendar css variables */
-    --fc-border-color: rgba(145, 158, 171, 0.16);
-    --fc-now-indicator-color: #ff5630;
-    --fc-today-bg-color: rgba(145, 158, 171, 0.08);
+    --fc-border-color: rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.16);
+    --fc-now-indicator-color: ${themeVars.colors.palette.primary.darker};
+    --fc-today-bg-color: rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.08);
     --fc-page-bg-color: ${(props) => (props.$themeMode === ThemeMode.Light ? "#ffffff" : "#161c24")};
-    --fc-neutral-bg-color: ${(props) =>
-			props.$themeMode === ThemeMode.Light ? "#F4F6F8" : "rgba(145, 158, 171, 0.12)"};
-    --fc-list-event-hover-bg-color: rgba(145, 158, 171, 0.08);
-    --fc-highlight-color: rgba(145, 158, 171, 0.08);
+    --fc-neutral-bg-color: ${themeVars.colors.background.default};
+    --fc-list-event-hover-bg-color: rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.08);
+    --fc-highlight-color: rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.08);
 
     a {
       color: ${(props) => (props.$themeMode === ThemeMode.Dark ? "#ffffff" : "#212b36")};
     }
     .fc-col-header {
-      box-shadow: rgba(145, 158, 171, 0.2) 0px -1px 0px inset;
+      box-shadow: ${themeVars.shadows.inner};
       th {
         border-color: transparent;
       }
@@ -121,10 +121,10 @@ export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
       }
 
       .fc-list-event-time {
-        color: ${(props) => (props.$themeMode === ThemeMode.Light ? "rgb(99, 115, 129)" : "rgb(145, 158, 171)")};
+        color: ${themeVars.colors.palette.gray["500Channel"]};
       }
       .fc-event-title {
-        color: ${(props) => (props.$themeMode === ThemeMode.Dark ? "rgb(255, 255, 255)" : "rgb(33, 43, 54)")};
+        color: ${themeVars.colors.text.primary};
       }
       .fc-list-table {
         th,

@@ -1,9 +1,10 @@
 import { useSettings } from "@/store/settingStore";
+import { hexToRgbString } from "@/utils/theme";
 import Color from "color";
 import { useEffect } from "react";
 import { ThemeMode } from "#/enum";
-import type { UILibraryAdapter } from "#/theme";
 import { presetsColors } from "./tokens/color";
+import type { UILibraryAdapter } from "./type";
 
 interface ThemeProviderProps {
 	children: React.ReactNode;
@@ -26,6 +27,7 @@ export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
 		const primaryColors = presetsColors[themeColorPresets];
 		for (const [key, value] of Object.entries(primaryColors)) {
 			root.style.setProperty(`--colors-palette-primary-${key}`, value);
+			root.style.setProperty(`--colors-palette-primary-${key}Channel`, hexToRgbString(value));
 		}
 		root.style.setProperty("--shadows-primary", `box-shadow: 0 8px 16px 0 ${Color(primaryColors.default).alpha(0.24)}`);
 	}, [themeColorPresets]);

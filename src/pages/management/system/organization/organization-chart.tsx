@@ -1,45 +1,18 @@
-import Color from "color";
+import { themeVars } from "@/theme/theme.css";
 import { Tree, TreeNode } from "react-organizational-chart";
 import styled from "styled-components";
-
-import { useSettings } from "@/store/settingStore";
-import { useThemeToken } from "@/theme/hooks";
-
 import type { Organization } from "#/entity";
-import { ThemeMode } from "#/enum";
 
 type Props = {
 	organizations?: Organization[];
 };
 export default function OrganizationChart({ organizations = [] }: Props) {
-	const themeToken = useThemeToken();
-	const { themeMode } = useSettings();
 	return (
 		<Tree
 			lineWidth="1px"
-			lineColor={
-				themeMode === ThemeMode.Light
-					? themeToken.colorPrimaryBorder
-					: themeToken.colorPrimary
-			}
+			lineColor={themeVars.colors.palette.primary.default}
 			lineBorderRadius="24px"
-			label={
-				<StyledNode
-					$textColor={
-						themeMode === ThemeMode.Light
-							? themeToken.colorPrimaryTextActive
-							: themeToken.colorPrimaryText
-					}
-					$backgroundColor={Color(themeToken.colorPrimary)
-						.alpha(0.08)
-						.toString()}
-					$borderColor={Color(themeToken.colorPrimaryBorder)
-						.alpha(0.24)
-						.toString()}
-				>
-					Root
-				</StyledNode>
-			}
+			label={<StyledNode>Root</StyledNode>}
 		>
 			{organizations.map((org) => (
 				<OrganizationChartTreeNode key={org.id} organization={org} />
@@ -51,32 +24,9 @@ export default function OrganizationChart({ organizations = [] }: Props) {
 type OrganizationChartTreeNodeProps = {
 	organization: Organization;
 };
-function OrganizationChartTreeNode({
-	organization: { name, children },
-}: OrganizationChartTreeNodeProps) {
-	const themeToken = useThemeToken();
-	const { themeMode } = useSettings();
-
+function OrganizationChartTreeNode({ organization: { name, children } }: OrganizationChartTreeNodeProps) {
 	return (
-		<TreeNode
-			label={
-				<StyledNode
-					$textColor={
-						themeMode === ThemeMode.Light
-							? themeToken.colorPrimaryTextActive
-							: themeToken.colorPrimaryText
-					}
-					$backgroundColor={Color(themeToken.colorPrimary)
-						.alpha(0.08)
-						.toString()}
-					$borderColor={Color(themeToken.colorPrimaryBorder)
-						.alpha(0.24)
-						.toString()}
-				>
-					{name}
-				</StyledNode>
-			}
-		>
+		<TreeNode label={<StyledNode>{name}</StyledNode>}>
 			{children?.map((org) => (
 				<OrganizationChartTreeNode key={org.id} organization={org} />
 			))}
@@ -84,12 +34,7 @@ function OrganizationChartTreeNode({
 	);
 }
 
-type StyledNodeProps = {
-	$textColor: string;
-	$backgroundColor: string;
-	$borderColor: string;
-};
-const StyledNode = styled.div<StyledNodeProps>`
+const StyledNode = styled.div`
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   overflow: hidden;
   position: relative;
@@ -98,7 +43,7 @@ const StyledNode = styled.div<StyledNodeProps>`
   border-radius: 12px;
   display: inline-flex;
   text-transform: capitalize;
-  color: ${(props) => props.$textColor};
-  background-color: ${(props) => props.$backgroundColor};
-  border: 1px solid ${(props) => props.$borderColor};
+  color: ${themeVars.colors.palette.primary.darker};
+  background-color: ${`rgba(${themeVars.colors.palette.primary.lightChannel}, 0.08)`};
+  border: 1px solid ${`rgba(${themeVars.colors.palette.primary.darkerChannel}, 0.24)`};
 `;

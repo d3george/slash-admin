@@ -9,7 +9,7 @@ globalStyle(`${chartWrapper} .apexcharts-tooltip`, {
 	color: themeVars.colors.text.primary,
 	borderRadius: themeVars.borderRadius.lg,
 	backdropFilter: "blur(6px)",
-	backgroundColor: themeVars.colors.background.paper,
+	backgroundColor: `rgba(${themeVars.colors.background.paperChannel}, 0.8)`,
 	boxShadow: themeVars.shadows.card,
 });
 
@@ -30,7 +30,7 @@ globalStyle(`${chartWrapper} .apexcharts-xaxistooltip`, {
 });
 
 globalStyle(`${chartWrapper} .apexcharts-xaxistooltip::before`, {
-	borderBottomColor: themeVars.colors.palette.gray[500],
+	borderBottomColor: `rgba(${themeVars.colors.background.paperChannel}, 0.8)`,
 });
 
 globalStyle(`${chartWrapper} .apexcharts-xaxistooltip::after`, {

@@ -3,13 +3,13 @@ import { themeTokens } from "../theme/type";
 
 /**
  * @example
- * #FF0000 -> "255 0 0"
- * #00FF00 -> "0 255 0"
- * #0000FF -> "0 0 255"
+ * #FF0000 -> "255, 0, 0"
+ * #00FF00 -> "0, 255, 0"
+ * #0000FF -> "0, 0, 255"
  */
 export const hexToRgbString = (hex: string) => {
 	const rgb = color(hex).rgb().array();
-	return rgb.join(" ");
+	return rgb.join(",");
 };
 
 /**
@@ -54,7 +54,7 @@ export const toCssVars = (key: string) => {
 };
 
 /**
- * get variants
+ * get variants in {@link themeTokens}
  * @param keyPath example: `colors.palette.primary`
  * @returns example: `["lighter", "light", "main", "dark", "darker"]`
  */

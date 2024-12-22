@@ -3,9 +3,9 @@ import { StyleProvider } from "@ant-design/cssinjs";
 import type { ThemeConfig } from "antd";
 import { App, ConfigProvider, theme } from "antd";
 import { ThemeMode } from "#/enum";
-import type { UILibraryAdapter } from "#/theme";
 import { baseThemeTokens } from "../tokens/base";
 import { darkColorTokens, lightColorTokens, presetsColors } from "../tokens/color";
+import type { UILibraryAdapter } from "../type";
 
 import { useSettings } from "@/store/settingStore";
 import { removePx } from "@/utils/theme";

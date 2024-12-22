@@ -1,3 +1,5 @@
+import type { ThemeMode } from "#/enum";
+
 export const themeTokens = {
 	colors: {
 		palette: {
@@ -44,15 +46,15 @@ export const themeTokens = {
 				darker: null,
 			},
 			gray: {
-				100: null,
-				200: null,
-				300: null,
-				400: null,
-				500: null,
-				600: null,
-				700: null,
-				800: null,
-				900: null,
+				"100": null,
+				"200": null,
+				"300": null,
+				"400": null,
+				"500": null,
+				"600": null,
+				"700": null,
+				"800": null,
+				"900": null,
 			},
 		},
 		common: {
@@ -158,4 +160,18 @@ export const themeTokens = {
 	},
 };
 
-export type ThemeTokens = typeof themeTokens;
+export type UILibraryAdapterProps = {
+	mode: ThemeMode;
+	children: React.ReactNode;
+};
+export type UILibraryAdapter = React.FC<UILibraryAdapterProps>;
+
+// is leaf object
+export type IsLeafObject<T> = T extends object ? (T[keyof T] extends null | string ? true : false) : false;
+
+// add channel
+export type AddChannelToLeaf<T> = T extends object
+	? IsLeafObject<T> extends true
+		? T & { [K in keyof T as `${string & K}Channel`]: string } // only add channel to leaf
+		: { [K in keyof T]: AddChannelToLeaf<T[K]> } // recursive other level
+	: T;

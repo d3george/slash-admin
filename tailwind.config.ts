@@ -16,6 +16,7 @@ const config: Config = {
 			info: toCssVars("colors.palette.info"),
 			gray: toCssVars("colors.palette.gray"),
 			hover: color(paletteColors.gray[500]).alpha(0.1).rgb().string(),
+			// hover: "rgba(var(--colors-palette-gray-500Channel), 0.1)",
 			text: toCssVars("colors.text"),
 			bg: toCssVars("colors.background"),
 		},
