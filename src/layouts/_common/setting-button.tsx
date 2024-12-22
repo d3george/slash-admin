@@ -1,6 +1,5 @@
 import { CloseOutlined, LeftOutlined, QuestionCircleOutlined, RightOutlined } from "@ant-design/icons";
 import { Button, Card, Drawer, Switch, Tooltip } from "antd";
-import Color from "color";
 import { m } from "framer-motion";
 import { type CSSProperties, useState } from "react";
 import { MdCircle } from "react-icons/md";
@@ -11,9 +10,9 @@ import RedBlur from "@/assets/images/background/red-blur.png";
 import { varHover } from "@/components/animate/variants/action";
 import { IconButton, SvgIcon } from "@/components/icon";
 import { useSettingActions, useSettings } from "@/store/settingStore";
-import { useThemeToken } from "@/theme/hooks";
 import { presetsColors } from "@/theme/tokens/color";
 
+import { themeVars } from "@/theme/theme.css";
 import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
 
 /**
@@ -21,7 +20,6 @@ import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
  */
 export default function SettingButton() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
-	const { colorPrimary, colorBgBase, colorTextSecondary, colorTextTertiary, colorBgContainer } = useThemeToken();
 
 	const settings = useSettings();
 	const { themeMode, themeColorPresets, themeLayout, themeStretch, breadCrumb, multiTab, darkSidebar } = settings;
@@ -80,7 +78,7 @@ export default function SettingButton() {
 		backdropFilter: "blur(20px)",
 		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundColor: Color(colorBgContainer).alpha(0.9).toString(),
+		backgroundColor: `rgba(${themeVars.colors.background.paperChannel}, 0.9)`,
 		backgroundPosition: "right top, left bottom",
 		backgroundSize: "50, 50%",
 	};
@@ -94,7 +92,9 @@ export default function SettingButton() {
 	};
 
 	const layoutBackground = (layout: ThemeLayout) =>
-		themeLayout === layout ? `linear-gradient(135deg, ${colorBgBase} 0%, ${colorPrimary} 100%)` : "#919eab";
+		themeLayout === layout
+			? `linear-gradient(135deg, ${themeVars.colors.background.neutral} 0%, ${themeVars.colors.palette.primary.default} 100%)`
+			: themeVars.colors.palette.gray[500];
 
 	return (
 		<>
@@ -140,7 +140,11 @@ export default function SettingButton() {
 						<div className="flex items-center justify-center">
 							{isFullscreen ? (
 								<>
-									<SvgIcon icon="ic-settings-exit-fullscreen" color={colorPrimary} className="!m-0" />
+									<SvgIcon
+										icon="ic-settings-exit-fullscreen"
+										color={themeVars.colors.palette.primary.default}
+										className="!m-0"
+									/>
 									<span className="ml-2">Exit FullScreen</span>
 								</>
 							) : (
@@ -156,7 +160,7 @@ export default function SettingButton() {
 				<div className="flex flex-col gap-6 p-6">
 					{/* theme mode */}
 					<div>
-						<div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
+						<div className="mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
 							Mode
 						</div>
 						<div className="flex flex-row gap-4">
@@ -167,7 +171,7 @@ export default function SettingButton() {
 								<SvgIcon
 									icon="ic-settings-mode-sun"
 									size="24"
-									color={themeMode === ThemeMode.Light ? colorPrimary : ""}
+									color={themeMode === ThemeMode.Light ? themeVars.colors.palette.primary.default : ""}
 								/>
 							</Card>
 							<Card
@@ -177,7 +181,7 @@ export default function SettingButton() {
 								<SvgIcon
 									icon="ic-settings-mode-moon"
 									size="24"
-									color={themeMode === ThemeMode.Dark ? colorPrimary : ""}
+									color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ""}
 								/>
 							</Card>
 						</div>
@@ -185,7 +189,7 @@ export default function SettingButton() {
 
 					{/* theme layout */}
 					<div>
-						<div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
+						<div className="mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
 							Layout
 						</div>
 						<div className="grid grid-cols-3 gap-4">
@@ -316,7 +320,7 @@ export default function SettingButton() {
 
 					{/* theme stretch */}
 					<div>
-						<div className=" mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
+						<div className=" mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
 							<span className="mr-2">Stretch</span>
 							<Tooltip title="Only available at large resolutions > 1600px (xl)">
 								<QuestionCircleOutlined />
@@ -340,7 +344,7 @@ export default function SettingButton() {
 								<div
 									className="flex w-full items-center justify-between"
 									style={{
-										color: colorPrimary,
+										color: themeVars.colors.palette.primary.default,
 										transition: "width 300ms 0ms",
 									}}
 								>
@@ -365,7 +369,7 @@ export default function SettingButton() {
 
 					{/* theme presets */}
 					<div>
-						<div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
+						<div className="mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
 							Presets
 						</div>
 						<div className="grid grid-cols-3 gap-x-4 gap-y-3">
@@ -392,19 +396,19 @@ export default function SettingButton() {
 
 					{/* Page config */}
 					<div>
-						<div className="mb-3 text-base font-semibold" style={{ color: colorTextSecondary }}>
+						<div className="mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
 							Page
 						</div>
 						<div className="flex flex-col gap-2">
-							<div className="flex items-center justify-between" style={{ color: colorTextTertiary }}>
+							<div className="flex items-center justify-between" style={{ color: themeVars.colors.text.disabled }}>
 								<div>BreadCrumb</div>
 								<Switch size="small" checked={breadCrumb} onChange={(checked) => setBreadCrumn(checked)} />
 							</div>
-							<div className="flex items-center justify-between" style={{ color: colorTextTertiary }}>
+							<div className="flex items-center justify-between" style={{ color: themeVars.colors.text.disabled }}>
 								<div>Multi Tab</div>
 								<Switch size="small" checked={multiTab} onChange={(checked) => setMultiTab(checked)} />
 							</div>
-							<div className="flex items-center justify-between" style={{ color: colorTextTertiary }}>
+							<div className="flex items-center justify-between" style={{ color: themeVars.colors.text.disabled }}>
 								<div>Dark Sidebar</div>
 								<Switch size="small" checked={darkSidebar} onChange={(checked) => setDarkSidebar(checked)} />
 							</div>

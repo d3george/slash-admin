@@ -17,6 +17,7 @@ const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
 	};
 };
 
+// TODO: replace with useTheme
 const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
   h1 {
     ${(props) => getHeadingStyle(1, props.$token)};

@@ -1,15 +1,9 @@
-import { Typography, Upload } from "antd";
-import type {
-	UploadChangeParam,
-	UploadFile,
-	UploadProps,
-} from "antd/es/upload";
-import { useState } from "react";
-
+import { themeVars } from "@/theme/theme.css";
 import { fBytes } from "@/utils/format-number";
-
+import { Typography, Upload } from "antd";
+import type { UploadChangeParam, UploadFile, UploadProps } from "antd/es/upload";
+import { useState } from "react";
 import { Iconify } from "../icon";
-
 import { StyledUploadAvatar } from "./styles";
 import { beforeAvatarUpload, getBlobUrl } from "./utils";
 
@@ -17,11 +11,7 @@ interface Props extends UploadProps {
 	defaultAvatar?: string;
 	helperText?: React.ReactElement | string;
 }
-export function UploadAvatar({
-	helperText,
-	defaultAvatar = "",
-	...other
-}: Props) {
+export function UploadAvatar({ helperText, defaultAvatar = "", ...other }: Props) {
 	const [imageUrl, setImageUrl] = useState<string>(defaultAvatar);
 
 	const [isHover, setIsHover] = useState(false);
@@ -29,9 +19,7 @@ export function UploadAvatar({
 		setIsHover(hover);
 	};
 
-	const handleChange: UploadProps["onChange"] = (
-		info: UploadChangeParam<UploadFile>,
-	) => {
+	const handleChange: UploadProps["onChange"] = (info: UploadChangeParam<UploadFile>) => {
 		if (info.file.status === "uploading") {
 			return;
 		}
@@ -43,16 +31,12 @@ export function UploadAvatar({
 		}
 	};
 
-	const renderPreview = (
-		<img src={imageUrl} alt="" className="absolute rounded-full" />
-	);
+	const renderPreview = <img src={imageUrl} alt="" className="absolute rounded-full" />;
 
 	const renderPlaceholder = (
 		<div
 			style={{
-				backgroundColor:
-					!imageUrl || isHover ? "rgba(22, 28, 36, 0.64)" : "transparent",
-				color: "#fff",
+				backgroundColor: !imageUrl || isHover ? themeVars.colors.background.neutral : "transparent",
 			}}
 			className="absolute z-10 flex h-full w-full flex-col items-center justify-center"
 		>
@@ -78,9 +62,7 @@ export function UploadAvatar({
 			<br /> max size of {fBytes(3145728)}
 		</Typography.Text>
 	);
-	const renderHelpText = (
-		<div className="text-center">{helperText || defaultHelperText}</div>
-	);
+	const renderHelpText = <div className="text-center">{helperText || defaultHelperText}</div>;
 
 	return (
 		<StyledUploadAvatar>

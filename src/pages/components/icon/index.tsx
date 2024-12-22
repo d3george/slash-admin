@@ -2,18 +2,16 @@ import { StepBackwardOutlined } from "@ant-design/icons";
 import { Card, Space, Typography } from "antd";
 
 import { Iconify, SvgIcon } from "@/components/icon";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 
 export default function IconPage() {
-	const { colorPrimary, colorInfo, colorSuccess, colorWarning, colorError } =
-		useThemeToken();
 	return (
 		<Space direction="vertical" style={{ display: "flex" }}>
 			<Card title="Antd Icons">
 				<span className="mr-1">For more info</span>
 				<Typography.Link
 					href="https://ant.design/components/icon-cn"
-					style={{ color: colorPrimary }}
+					style={{ color: themeVars.colors.palette.primary.default }}
 				>
 					click here
 				</Typography.Link>
@@ -28,13 +26,8 @@ export default function IconPage() {
 				</div>
 			</Card>
 			<Card title="Iconify Icons">
-				<span className="mr-1">
-					Simply beautiful open source icons. For more info
-				</span>
-				<Typography.Link
-					href="https://iconify.design/"
-					style={{ color: colorPrimary }}
-				>
+				<span className="mr-1">Simply beautiful open source icons. For more info</span>
+				<Typography.Link href="https://iconify.design/" style={{ color: themeVars.colors.palette.primary.default }}>
 					click here
 				</Typography.Link>
 
@@ -46,27 +39,27 @@ export default function IconPage() {
 					<Iconify
 						icon="solar:emoji-funny-square-bold-duotone"
 						size={24}
-						color={colorPrimary}
+						color={themeVars.colors.palette.primary.default}
 					/>
 					<Iconify
 						icon="solar:emoji-funny-square-bold-duotone"
 						size={24}
-						color={colorInfo}
+						color={themeVars.colors.palette.info.default}
 					/>
 					<Iconify
 						icon="solar:emoji-funny-square-bold-duotone"
 						size={24}
-						color={colorSuccess}
+						color={themeVars.colors.palette.success.default}
 					/>
 					<Iconify
 						icon="solar:emoji-funny-square-bold-duotone"
 						size={24}
-						color={colorWarning}
+						color={themeVars.colors.palette.warning.default}
 					/>
 					<Iconify
 						icon="solar:emoji-funny-square-bold-duotone"
 						size={24}
-						color={colorError}
+						color={themeVars.colors.palette.error.default}
 					/>
 				</div>
 			</Card>
@@ -74,7 +67,7 @@ export default function IconPage() {
 				<span className="mr-1">For more info</span>
 				<Typography.Link
 					href="https://github.com/vbenjs/vite-plugin-svg-icons"
-					style={{ color: colorPrimary }}
+					style={{ color: themeVars.colors.palette.primary.default }}
 				>
 					click here
 				</Typography.Link>
@@ -84,11 +77,11 @@ export default function IconPage() {
 				</p>
 
 				<div className="mt-4 flex gap-4">
-					<SvgIcon icon="ic-workbench" size={24} color={colorPrimary} />
-					<SvgIcon icon="ic-workbench" size={24} color={colorInfo} />
-					<SvgIcon icon="ic-workbench" size={24} color={colorSuccess} />
-					<SvgIcon icon="ic-workbench" size={24} color={colorWarning} />
-					<SvgIcon icon="ic-workbench" size={24} color={colorError} />
+					<SvgIcon icon="ic-workbench" size={24} color={themeVars.colors.palette.primary.default} />
+					<SvgIcon icon="ic-workbench" size={24} color={themeVars.colors.palette.info.default} />
+					<SvgIcon icon="ic-workbench" size={24} color={themeVars.colors.palette.success.default} />
+					<SvgIcon icon="ic-workbench" size={24} color={themeVars.colors.palette.warning.default} />
+					<SvgIcon icon="ic-workbench" size={24} color={themeVars.colors.palette.error.default} />
 				</div>
 			</Card>
 		</Space>

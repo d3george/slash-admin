@@ -25,7 +25,7 @@ const StyledMarkdown = styled.div<{
 	$thememode: ThemeMode;
 }>`
   display: grid;
-  // Text
+  // Text TODO: replace with useTheme
   h1 {
     ${(props) => getHeadingStyle(1, props.$token)};
   }
@@ -110,8 +110,7 @@ const StyledMarkdown = styled.div<{
     border-radius: 4px;
     white-space: pre;
     padding: 0px;
-    background-color: ${(props) =>
-			props.$thememode === ThemeMode.Light ? "#161c24" : "#919eab29"};
+    background-color: ${(props) => (props.$thememode === ThemeMode.Light ? "#161c24" : "#919eab29")};
   }
 
   // Table
@@ -125,8 +124,7 @@ const StyledMarkdown = styled.div<{
       border: 1px solid #919eab33;
     }
     tbody tr:nth-of-type(odd) {
-      background-color: ${(props) =>
-				props.$thememode === ThemeMode.Light ? "#f4f6f8" : "#919eab1f "};
+      background-color: ${(props) => (props.$thememode === ThemeMode.Light ? "#f4f6f8" : "#919eab1f ")};
     }
   }
 

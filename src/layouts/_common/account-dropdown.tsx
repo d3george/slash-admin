@@ -32,7 +32,7 @@ export default function AccountDropdown() {
 		}
 	};
 	const {
-		tokens: { colors, borderRadius, shadows },
+		themeVars: { colors, borderRadius, shadows },
 	} = useTheme();
 
 	const contentStyle: React.CSSProperties = {

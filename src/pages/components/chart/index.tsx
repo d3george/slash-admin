@@ -1,7 +1,5 @@
+import { themeVars } from "@/theme/theme.css";
 import { Card, Col, Row, Typography } from "antd";
-
-import { useThemeToken } from "@/theme/hooks";
-
 import ChartArea from "./view/chart-area";
 import ChartBar from "./view/chart-bar";
 import ChartColumnStacked from "./view/chart-column-Stacked";
@@ -16,12 +14,11 @@ import ChartRadar from "./view/chart-radar";
 import ChartRadial from "./view/chart-radial";
 
 export default function ChartPage() {
-	const { colorPrimary } = useThemeToken();
 	return (
 		<>
 			<Typography.Link
 				href="https://apexcharts.com"
-				style={{ color: colorPrimary }}
+				style={{ color: themeVars.colors.palette.primary.default }}
 				className="mb-4 block"
 			>
 				https://apexcharts.com

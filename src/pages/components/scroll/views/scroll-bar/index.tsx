@@ -2,16 +2,15 @@ import { faker } from "@faker-js/faker";
 import { Card, Col, Row, Typography } from "antd";
 
 import Scrollbar from "@/components/scrollbar";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 
 const TEXT = faker.lorem.paragraphs({ min: 20, max: 30 });
 export default function ScrollbarView() {
-	const { colorPrimary } = useThemeToken();
 	return (
 		<>
 			<Typography.Link
 				href="https://grsmto.github.io/simplebar/"
-				style={{ color: colorPrimary }}
+				style={{ color: themeVars.colors.palette.primary.default }}
 				className="mb-4 block"
 			>
 				https://grsmto.github.io/simplebar/

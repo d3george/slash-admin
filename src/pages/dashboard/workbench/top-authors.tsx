@@ -1,30 +1,27 @@
-import { faker } from "@faker-js/faker";
-import { Typography } from "antd";
-import Color from "color";
-
 import Card from "@/components/card";
 import { Iconify } from "@/components/icon";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
+import { faker } from "@faker-js/faker";
+import { Typography } from "antd";
 
 export default function TopAuthor() {
-	const themeToken = useThemeToken();
 	const getTrophyIconColor = (index: number) => {
 		switch (index) {
 			case 1:
 				return {
-					color: themeToken.colorInfo,
-					bg: themeToken.colorInfoBgHover,
+					color: themeVars.colors.palette.info.light,
+					bg: `rgba(${themeVars.colors.palette.info.defaultChannel}, .4)`,
 				};
 			case 2: {
 				return {
-					color: themeToken.colorError,
-					bg: themeToken.colorErrorBgHover,
+					color: themeVars.colors.palette.error.light,
+					bg: `rgba(${themeVars.colors.palette.error.defaultChannel}, .4)`,
 				};
 			}
 			default:
 				return {
-					color: themeToken.colorPrimary,
-					bg: themeToken.colorPrimaryBgHover,
+					color: themeVars.colors.palette.primary.light,
+					bg: `rgba(${themeVars.colors.palette.primary.defaultChannel}, .4)`,
 				};
 		}
 	};
@@ -37,34 +34,22 @@ export default function TopAuthor() {
 				{new Array(3).fill("").map((_, index) => (
 					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 					<div key={index} className="mb-4 flex">
-						<img
-							src={faker.image.avatarGitHub()}
-							alt=""
-							className="h-10 w-10 rounded-full"
-						/>
+						<img src={faker.image.avatarGitHub()} alt="" className="h-10 w-10 rounded-full" />
 						<div className="ml-2 flex flex-col">
 							<span>{faker.person.fullName()}</span>
 							<div className="flex items-center  text-gray">
 								<Iconify icon="icon-park-solid:like" size={14} />
-								<span className="ml-2">
-									{faker.number.float({ min: 3, max: 9, multipleOf: 3 })}k
-								</span>
+								<span className="ml-2">{faker.number.float({ min: 3, max: 9, multipleOf: 3 })}k</span>
 							</div>
 						</div>
 
 						<div
 							className="ml-auto flex h-10 w-10 items-center justify-center rounded-full"
 							style={{
-								background: Color(getTrophyIconColor(index).bg)
-									.alpha(0.4)
-									.toString(),
+								background: getTrophyIconColor(index).bg,
 							}}
 						>
-							<Iconify
-								icon="solar:cup-star-bold"
-								size={24}
-								color={getTrophyIconColor(index).color}
-							/>
+							<Iconify icon="solar:cup-star-bold" size={24} color={getTrophyIconColor(index).color} />
 						</div>
 					</div>
 				))}

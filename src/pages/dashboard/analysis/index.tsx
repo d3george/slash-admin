@@ -1,6 +1,3 @@
-import { Card, Col, Row, Typography } from "antd";
-import Color from "color";
-
 import glass_bag from "@/assets/images/glass/ic_glass_bag.png";
 import glass_buy from "@/assets/images/glass/ic_glass_buy.png";
 import glass_message from "@/assets/images/glass/ic_glass_message.png";
@@ -10,8 +7,8 @@ import ChartBar from "@/pages/components/chart/view/chart-bar";
 import ChartMixed from "@/pages/components/chart/view/chart-mixed";
 import ChartPie from "@/pages/components/chart/view/chart-pie";
 import ChartRadar from "@/pages/components/chart/view/chart-radar";
-import { useThemeToken } from "@/theme/hooks";
-
+import { themeVars } from "@/theme/theme.css";
+import { Card, Col, Row, Typography } from "antd";
 import AnalysisCard from "./analysis-card";
 import AnalysisNews from "./analysis-news";
 import AnalysisOrderTimeline from "./analysis-order-timeline";
@@ -19,7 +16,6 @@ import AnalysisTasks from "./analysis-tasks";
 import AnalysisTrafficCard from "./analysis-traffic-card";
 
 function Analysis() {
-	const theme = useThemeToken();
 	return (
 		<div className="p-2">
 			<Typography.Title level={2}>Hi, Welcome back 👋</Typography.Title>
@@ -30,14 +26,8 @@ function Analysis() {
 						title="714k"
 						subtitle="Weekly Sales"
 						style={{
-							color: theme.colorPrimaryTextActive,
-							background: `linear-gradient(135deg, ${Color(
-								theme.colorPrimaryActive,
-							)
-								.alpha(0.2)
-								.toString()}, ${Color(theme.colorPrimary)
-								.alpha(0.2)
-								.toString()}) rgb(255, 255, 255)`,
+							color: themeVars.colors.palette.success.dark,
+							backgroundColor: `rgba(${themeVars.colors.palette.success.defaultChannel}, .2)`,
 						}}
 					/>
 				</Col>
@@ -47,12 +37,8 @@ function Analysis() {
 						title="1.35m"
 						subtitle="New Users"
 						style={{
-							color: theme.colorInfoTextActive,
-							background: `linear-gradient(135deg, ${Color(
-								theme.colorInfoActive,
-							)
-								.alpha(0.2)
-								.toString()}, ${Color(theme.colorInfo).alpha(0.2).toString()}) rgb(255, 255, 255)`,
+							color: themeVars.colors.palette.info.dark,
+							backgroundColor: `rgba(${themeVars.colors.palette.info.defaultChannel}, .2)`,
 						}}
 					/>
 				</Col>
@@ -62,14 +48,8 @@ function Analysis() {
 						title="1.72m"
 						subtitle="New Orders"
 						style={{
-							color: theme.colorWarningTextActive,
-							background: `linear-gradient(135deg, ${Color(
-								theme.colorWarningActive,
-							)
-								.alpha(0.2)
-								.toString()}, ${Color(theme.colorWarning)
-								.alpha(0.2)
-								.toString()}) rgb(255, 255, 255)`,
+							color: themeVars.colors.palette.warning.dark,
+							backgroundColor: `rgba(${themeVars.colors.palette.warning.defaultChannel}, .2)`,
 						}}
 					/>
 				</Col>
@@ -79,12 +59,8 @@ function Analysis() {
 						title="234"
 						subtitle="Bug Reports"
 						style={{
-							color: theme.colorErrorTextActive,
-							background: `linear-gradient(135deg, ${Color(
-								theme.colorErrorActive,
-							)
-								.alpha(0.2)
-								.toString()}, ${Color(theme.colorError).alpha(0.2).toString()}) rgb(255, 255, 255)`,
+							color: themeVars.colors.palette.error.dark,
+							backgroundColor: `rgba(${themeVars.colors.palette.error.defaultChannel}, .2)`,
 						}}
 					/>
 				</Col>
@@ -135,9 +111,7 @@ function Analysis() {
 						<Row gutter={[16, 16]}>
 							<Col span={12}>
 								<AnalysisTrafficCard
-									icon={
-										<Iconify icon="bxl:facebook" size={32} color="#1877f2" />
-									}
+									icon={<Iconify icon="bxl:facebook" size={32} color="#1877f2" />}
 									title="1.95k"
 									subtitle="FaceBook"
 								/>
@@ -145,13 +119,7 @@ function Analysis() {
 
 							<Col span={12}>
 								<AnalysisTrafficCard
-									icon={
-										<Iconify
-											icon="ant-design:google-outlined"
-											size={32}
-											color="#df3e30"
-										/>
-									}
+									icon={<Iconify icon="ant-design:google-outlined" size={32} color="#df3e30" />}
 									title="9.12k"
 									subtitle="Google"
 								/>
@@ -159,13 +127,7 @@ function Analysis() {
 
 							<Col span={12}>
 								<AnalysisTrafficCard
-									icon={
-										<Iconify
-											icon="eva:linkedin-fill"
-											size={32}
-											color="#006097"
-										/>
-									}
+									icon={<Iconify icon="eva:linkedin-fill" size={32} color="#006097" />}
 									title="6.98k"
 									subtitle="Linkedin"
 								/>
@@ -173,13 +135,7 @@ function Analysis() {
 
 							<Col span={12}>
 								<AnalysisTrafficCard
-									icon={
-										<Iconify
-											icon="eva:twitter-fill"
-											size={32}
-											color="#1c9cea"
-										/>
-									}
+									icon={<Iconify icon="eva:twitter-fill" size={32} color="#1c9cea" />}
 									title="8.49k"
 									subtitle="Twitter"
 								/>

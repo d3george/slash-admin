@@ -1,11 +1,9 @@
 import { Button, Col, Row, Switch, Typography } from "antd";
 
 import Card from "@/components/card";
-import { useThemeToken } from "@/theme/hooks";
 import { toast } from "sonner";
 
 export default function NotificationsTab() {
-	const { colorBgContainerDisabled, colorTextSecondary } = useThemeToken();
 	const handleClick = () => {
 		toast.success("Update success!");
 	};
@@ -14,15 +12,12 @@ export default function NotificationsTab() {
 			<Row gutter={[16, 16]}>
 				<Col span={24} lg={8}>
 					<Typography.Title level={4}>Activity</Typography.Title>
-					<Typography.Text color={colorTextSecondary} className="opacity-70">
+					<Typography.Text className="opacity-70 !text-text-secondary">
 						Donec mi odio, faucibus at, scelerisque quis
 					</Typography.Text>
 				</Col>
 				<Col span={24} lg={16}>
-					<div
-						className="flex w-full flex-col gap-4 rounded-lg px-6 py-8"
-						style={{ backgroundColor: colorBgContainerDisabled }}
-					>
+					<div className="flex w-full flex-col gap-4 rounded-lg px-6 py-8 bg-bg-neutral">
 						<div className="flex w-full justify-between">
 							<div>Email me when someone answers on my form</div>
 							<Switch defaultChecked />
@@ -40,15 +35,12 @@ export default function NotificationsTab() {
 
 				<Col span={24} lg={8}>
 					<Typography.Title level={4}>Applications</Typography.Title>
-					<Typography.Text color={colorTextSecondary} className="opacity-70">
+					<Typography.Text className="opacity-70 !text-text-secondary">
 						Donec mi odio, faucibus at, scelerisque quis
 					</Typography.Text>
 				</Col>
 				<Col span={24} lg={16}>
-					<div
-						className="flex w-full flex-col gap-4 rounded-lg px-6 py-8"
-						style={{ backgroundColor: colorBgContainerDisabled }}
-					>
+					<div className="flex w-full flex-col gap-4 rounded-lg px-6 py-8 bg-bg-neutral">
 						<div className="flex w-full justify-between">
 							<div>News and announcements</div>
 							<Switch />

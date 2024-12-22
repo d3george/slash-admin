@@ -1,8 +1,5 @@
 import { Upload as AntdUpload, Typography } from "antd";
 import type { ItemRender } from "antd/es/upload/interface";
-
-import { useThemeToken } from "@/theme/hooks";
-
 import { StyledUpload } from "./styles";
 import UploadIllustration from "./upload-illustration";
 import UploadListItem from "./upload-list-item";
@@ -19,13 +16,10 @@ interface Props extends UploadProps {
 const itemRender: (thumbnail: boolean) => ItemRender = (thumbnail) => {
 	return function temp(...args) {
 		const [, file, , actions] = args;
-		return (
-			<UploadListItem file={file} actions={actions} thumbnail={thumbnail} />
-		);
+		return <UploadListItem file={file} actions={actions} thumbnail={thumbnail} />;
 	};
 };
 export function Upload({ thumbnail = false, ...other }: Props) {
-	const { colorPrimary } = useThemeToken();
 	return (
 		<StyledUpload $thumbnail={thumbnail}>
 			<Dragger {...other} itemRender={itemRender(thumbnail)}>
@@ -39,7 +33,7 @@ export function Upload({ thumbnail = false, ...other }: Props) {
 						</Title>
 						<Text type="secondary">
 							Drop files here or click
-							<Text style={{ color: colorPrimary }} className="mx-2" underline>
+							<Text className="mx-2 !text-primary" underline>
 								browse
 							</Text>
 							thorough your machine

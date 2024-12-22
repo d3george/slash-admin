@@ -1,23 +1,21 @@
 import { faker } from "@faker-js/faker";
-import { Badge, Button, Drawer, Space, Tabs, Tag, type TabsProps } from "antd";
-import Color from "color";
+import { Badge, Button, Drawer, Space, Tabs, type TabsProps, Tag } from "antd";
 import { type CSSProperties, type ReactNode, useState } from "react";
 
 import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
 import { IconButton, Iconify, SvgIcon } from "@/components/icon";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 
 export default function NoticeButton() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
-	const themeToken = useThemeToken();
 	const [count, setCount] = useState(4);
 
 	const style: CSSProperties = {
 		backdropFilter: "blur(20px)",
 		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundColor: Color(themeToken.colorBgContainer).alpha(0.9).toString(),
+		backgroundColor: `rgba(${themeVars.colors.background.paperChannel}, 0.9)`,
 		backgroundPosition: "right top, left bottom",
 		backgroundSize: "50, 50%",
 	};
@@ -29,7 +27,7 @@ export default function NoticeButton() {
 					count={count}
 					styles={{
 						root: { color: "inherit" },
-						indicator: { color: "#fff" },
+						indicator: { color: themeVars.colors.common.white },
 					}}
 				>
 					<Iconify icon="solar:bell-bing-bold-duotone" size={24} />
@@ -49,7 +47,7 @@ export default function NoticeButton() {
 				style={style}
 				extra={
 					<IconButton
-						style={{ color: themeToken.colorPrimary }}
+						style={{ color: themeVars.colors.palette.primary.default }}
 						onClick={() => {
 							setCount(0);
 							setDrawerOpen(false);
@@ -60,7 +58,7 @@ export default function NoticeButton() {
 				}
 				footer={
 					<div
-						style={{ color: themeToken.colorTextBase }}
+						style={{ color: themeVars.colors.text.primary }}
 						className="flex h-10 w-full items-center justify-center font-semibold"
 					>
 						View All
@@ -74,26 +72,16 @@ export default function NoticeButton() {
 }
 
 function NoticeTab() {
-	const themeToken = useThemeToken();
 	const tabChildren: ReactNode = (
 		<div className="text-sm">
 			<div className="flex">
-				<img
-					className="h-10 w-10 rounded-full"
-					src={faker.image.avatarGitHub()}
-					alt=""
-				/>
+				<img className="h-10 w-10 rounded-full" src={faker.image.avatarGitHub()} alt="" />
 				<div className="ml-2">
 					<div>
 						<span className="font-medium">{faker.person.fullName()}</span>
-						<span className="text-xs font-light">
-							{" "}
-							sent you a frind request
-						</span>
+						<span className="text-xs font-light"> sent you a frind request</span>
 					</div>
-					<span className="text-xs font-light opacity-60">
-						about 1 hour ago
-					</span>
+					<span className="text-xs font-light opacity-60">about 1 hour ago</span>
 					<div className="mt-2">
 						<Space>
 							<Button type="primary">Accept</Button>
@@ -104,11 +92,7 @@ function NoticeTab() {
 			</div>
 
 			<div className="mt-8 flex">
-				<img
-					className="h-10 w-10 rounded-full"
-					src={faker.image.avatarGitHub()}
-					alt=""
-				/>
+				<img className="h-10 w-10 rounded-full" src={faker.image.avatarGitHub()} alt="" />
 				<div className="ml-2">
 					<div>
 						<span className="font-medium">{faker.person.fullName()}</span>
@@ -116,10 +100,7 @@ function NoticeTab() {
 						<span className="font-medium">File Manager</span>
 					</div>
 					<span className="text-xs font-light opacity-60">5 hour ago</span>
-					<div
-						style={{ background: themeToken.colorBgContainerDisabled }}
-						className="mt-2 flex items-center rounded-lg bg-gray-200 p-4"
-					>
+					<div className="mt-2 flex items-center rounded-lg bg-bg-neutral p-4">
 						<div className="ml-2 flex flex-col text-gray">
 							<span className="font-medium">@{faker.person.fullName()}</span>
 							<span className="text-xs">{faker.lorem.lines(2)}</span>
@@ -134,11 +115,7 @@ function NoticeTab() {
 			</div>
 
 			<div className="mt-8 flex">
-				<img
-					className="h-10 w-10 rounded-full"
-					src={faker.image.avatarGitHub()}
-					alt=""
-				/>
+				<img className="h-10 w-10 rounded-full" src={faker.image.avatarGitHub()} alt="" />
 				<div className="ml-2">
 					<div>
 						<span className="font-medium">{faker.person.fullName()}</span>
@@ -155,11 +132,7 @@ function NoticeTab() {
 			</div>
 
 			<div className="mt-8 flex">
-				<img
-					className="h-10 w-10 rounded-full"
-					src={faker.image.avatarGitHub()}
-					alt=""
-				/>
+				<img className="h-10 w-10 rounded-full" src={faker.image.avatarGitHub()} alt="" />
 				<div className="ml-2">
 					<div>
 						<span className="font-medium">{faker.person.fullName()}</span>
@@ -167,10 +140,7 @@ function NoticeTab() {
 						<span className="font-medium">File Manager</span>
 					</div>
 					<span className="text-xs font-light opacity-60">2 days ago</span>
-					<div
-						style={{ background: themeToken.colorBgContainerDisabled }}
-						className="mt-2 flex items-center rounded-lg bg-gray-200 p-4"
-					>
+					<div className="mt-2 flex items-center rounded-lg bg-bg-neutral p-4">
 						<SvgIcon icon="ic_file_audio" size={48} />
 						<div className="ml-2 flex flex-col text-gray">
 							<span className="font-medium">Witout Me</span>
@@ -182,11 +152,7 @@ function NoticeTab() {
 			</div>
 
 			<div className="mt-8 flex">
-				<img
-					className="h-10 w-10 rounded-full"
-					src={faker.image.avatarGitHub()}
-					alt=""
-				/>
+				<img className="h-10 w-10 rounded-full" src={faker.image.avatarGitHub()} alt="" />
 				<div className="ml-2">
 					<div>
 						<span className="font-medium">{faker.person.fullName()}</span>
@@ -209,9 +175,7 @@ function NoticeTab() {
 				</IconButton>
 				<div className="ml-2">
 					<div>
-						<span className="font-light">
-							Your order is placed waiting for shipping
-						</span>
+						<span className="font-light">Your order is placed waiting for shipping</span>
 					</div>
 					<span className="text-xs font-light opacity-60">4 days ago</span>{" "}
 				</div>
@@ -235,9 +199,7 @@ function NoticeTab() {
 				</IconButton>
 				<div className="ml-2">
 					<div>
-						<span className="font-light">
-							You have new message 5 unread message
-						</span>
+						<span className="font-light">You have new message 5 unread message</span>
 					</div>
 					<span className="text-xs font-light opacity-60">7 days ago</span>
 				</div>
@@ -249,9 +211,7 @@ function NoticeTab() {
 				</IconButton>
 				<div className="ml-2">
 					<div>
-						<span className="font-light">
-							Delivery processing your order is being shipped
-						</span>
+						<span className="font-light">Delivery processing your order is being shipped</span>
 					</div>
 					<span className="text-xs font-light opacity-60">8 days ago</span>{" "}
 				</div>

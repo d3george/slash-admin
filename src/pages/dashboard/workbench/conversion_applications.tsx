@@ -1,31 +1,28 @@
+import { Iconify } from "@/components/icon";
+import { themeVars } from "@/theme/theme.css";
 import { Progress } from "antd";
 
-import { Iconify } from "@/components/icon";
-import { useThemeToken } from "@/theme/hooks";
-
 export function Conversion() {
-	const { colorPrimaryActive, colorPrimaryBorder } = useThemeToken();
 	return (
 		<Basic
 			percent={48}
 			title="38,566"
 			subtitle="Conversion"
 			iconify="tabler:user-filled"
-			bg={colorPrimaryActive}
-			strokeColor={colorPrimaryBorder}
+			bg={themeVars.colors.palette.primary.default}
+			strokeColor={themeVars.colors.palette.primary.light}
 		/>
 	);
 }
 export function Applications() {
-	const { colorInfoActive, colorInfoBorder } = useThemeToken();
 	return (
 		<Basic
 			percent={75}
 			title="45,566"
 			subtitle="Applications"
 			iconify="ic:round-email"
-			bg={colorInfoActive}
-			strokeColor={colorInfoBorder}
+			bg={themeVars.colors.palette.info.default}
+			strokeColor={themeVars.colors.palette.info.light}
 		/>
 	);
 }
@@ -39,22 +36,13 @@ type Props = {
 	strokeColor?: string;
 };
 function Basic({ percent, title, subtitle, iconify, bg, strokeColor }: Props) {
-	const { colorBgBase } = useThemeToken();
-	const format = (val?: number) => (
-		<span style={{ color: colorBgBase }}>{val}%</span>
-	);
+	const format = (val?: number) => <span style={{ color: themeVars.colors.background.default }}>{val}%</span>;
 	return (
 		<div
 			className="relative flex items-center rounded-2xl p-6"
-			style={{ background: bg, color: colorBgBase }}
+			style={{ background: bg, color: themeVars.colors.background.default }}
 		>
-			<Progress
-				type="circle"
-				size={70}
-				percent={percent}
-				format={format}
-				strokeColor={strokeColor}
-			/>
+			<Progress type="circle" size={70} percent={percent} format={format} strokeColor={strokeColor} />
 			<div className="ml-2 flex flex-col">
 				<span className="text-2xl font-bold">{title}</span>
 				<span className="opacity-50">{subtitle}</span>

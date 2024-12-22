@@ -1,34 +1,26 @@
 import { useSettings } from "@/store/settingStore";
-import { useThemeToken } from "@/theme/hooks";
 
-import type { GlobalToken } from "antd";
+import { themeVars } from "@/theme/theme.css";
 import { Toaster } from "sonner";
 import styled from "styled-components";
-import Iconify from "../icon/iconify-icon";
+
+import { Iconify } from "../icon";
 
 /**
  * https://sonner.emilkowal.ski/getting-started
  */
 export default function Toast() {
 	const { themeMode } = useSettings();
-	const theme = useThemeToken();
-	const {
-		colorInfo,
-		colorSuccess,
-		colorWarning,
-		colorError,
-		colorBgContainer,
-	} = theme;
 
 	return (
-		<ToasterStyleWrapper $theme={theme}>
+		<ToasterStyleWrapper>
 			<Toaster
 				position="top-right"
 				theme={themeMode}
 				toastOptions={{
 					duration: 3000,
 					style: {
-						backgroundColor: colorBgContainer,
+						backgroundColor: themeVars.colors.background.paper,
 					},
 					classNames: {
 						toast: "rounded-lg border-0",
@@ -44,47 +36,27 @@ export default function Toast() {
 				icons={{
 					success: (
 						<div className="p-2 bg-success/10 rounded-lg">
-							<Iconify
-								icon="carbon:checkmark-filled"
-								size={24}
-								color={colorSuccess}
-							/>
+							<Iconify icon="carbon:checkmark-filled" size={24} color={themeVars.colors.palette.success.default} />
 						</div>
 					),
 					error: (
 						<div className="p-2 bg-error/10 rounded-lg">
-							<Iconify
-								icon="carbon:warning-hex-filled"
-								size={24}
-								color={colorError}
-							/>
+							<Iconify icon="carbon:warning-hex-filled" size={24} color={themeVars.colors.palette.error.default} />
 						</div>
 					),
 					warning: (
 						<div className="p-2 bg-warning/10 rounded-lg">
-							<Iconify
-								icon="carbon:warning-alt-filled"
-								size={24}
-								color={colorWarning}
-							/>
+							<Iconify icon="carbon:warning-alt-filled" size={24} color={themeVars.colors.palette.warning.default} />
 						</div>
 					),
 					info: (
 						<div className="p-2 bg-info/10 rounded-lg">
-							<Iconify
-								icon="carbon:information-filled"
-								size={24}
-								color={colorInfo}
-							/>
+							<Iconify icon="carbon:information-filled" size={24} color={themeVars.colors.palette.info.default} />
 						</div>
 					),
 					loading: (
 						<div className="p-2 bg-gray-400/10 text-gray-400 rounded-lg">
-							<Iconify
-								icon="svg-spinners:6-dots-scale-middle"
-								size={24}
-								speed={3}
-							/>
+							<Iconify icon="svg-spinners:6-dots-scale-middle" size={24} speed={3} />
 						</div>
 					),
 				}}
@@ -94,61 +66,61 @@ export default function Toast() {
 	);
 }
 
-const ToasterStyleWrapper = styled.div<{ $theme: GlobalToken }>`
+const ToasterStyleWrapper = styled.div`
   [data-sonner-toast] {
     font-weight: 600;
     font-size: 14px;
 
     [data-cancel] {
-      color: ${(props) => props.$theme.colorTextBase};
+      color: ${themeVars.colors.text.primary};
       background-color: transparent;
       &:hover {
-        background-color: ${(props) => props.$theme.colorBgTextHover};
+        background-color: ${`rgba(${themeVars.colors.text.primaryChannel}, 0.08)`};
       }
     }
 
     /* Default */
     [data-action] {
-      color: ${(props) => props.$theme.colorPrimary};
+      color: ${themeVars.colors.palette.primary.default};
       background-color: transparent;
       &:hover {
-        background-color: ${(props) => props.$theme.colorPrimaryBgHover};
+        background-color: ${`rgba(${themeVars.colors.palette.primary.defaultChannel}, 0.08)`};
       }
     }
 
     /* Info */
     &[data-type="info"] [data-action] {
-      color: ${(props) => props.$theme.colorInfo};
+      color: ${themeVars.colors.palette.info.default};
       background-color: transparent;
       &:hover {
-        background-color: ${(props) => props.$theme.colorInfoBgHover};
+        background-color: ${`rgba(${themeVars.colors.palette.info.defaultChannel}, 0.08)`};
       }
     }
 
     /* Error */
     &[data-type="error"] [data-action] {
-      color: ${(props) => props.$theme.colorError};
+      color: ${themeVars.colors.palette.error.default};
       background-color: transparent;
       &:hover {
-        background-color: ${(props) => props.$theme.colorErrorBgHover};
+        background-color: ${`rgba(${themeVars.colors.palette.error.defaultChannel}, 0.08)`};
       }
     }
 
     /* Success */
     &[data-type="success"] [data-action] {
-      color: ${(props) => props.$theme.colorSuccess};
+      color: ${themeVars.colors.palette.success.default};
       background-color: transparent;
       &:hover {
-        background-color: ${(props) => props.$theme.colorSuccessBgHover};
+        background-color: ${`rgba(${themeVars.colors.palette.success.defaultChannel}, 0.08)`};
       }
     }
 
     /* Warning */
     &[data-type="warning"] [data-action] {
-      color: ${(props) => props.$theme.colorWarning};
+      color: ${themeVars.colors.palette.warning.default};
       background-color: transparent;
       &:hover {
-        background-color: ${(props) => props.$theme.colorWarningBgHover};
+        background-color: ${`rgba(${themeVars.colors.palette.warning.defaultChannel}, 0.08)`};
       }
     }
 
@@ -157,9 +129,9 @@ const ToasterStyleWrapper = styled.div<{ $theme: GlobalToken }>`
       top: 0;
       right: 0;
       left: auto;
-      border: 1px solid ${(props) => props.$theme.colorBorder};
+      border: 1px solid ${themeVars.colors.palette.gray[500]};
       border-style: dashed;
-      background-color: ${(props) => props.$theme.colorBgContainer};
+        background-color: ${themeVars.colors.background.paper};
     }
   }
 `;

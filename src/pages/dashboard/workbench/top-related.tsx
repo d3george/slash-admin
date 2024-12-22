@@ -3,7 +3,7 @@ import { Tag, Typography } from "antd";
 import Card from "@/components/card";
 import { Iconify } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 import { Rate } from "antd";
 
 const dataSource = [
@@ -49,7 +49,6 @@ const dataSource = [
 	},
 ];
 export default function TopRelated() {
-	const themeToken = useThemeToken();
 	return (
 		<Card className="flex-col">
 			<header className="self-start">
@@ -62,7 +61,7 @@ export default function TopRelated() {
 							<div
 								className="mr-2 flex items-center justify-center"
 								style={{
-									background: themeToken.colorBorderSecondary,
+									background: `rgba(${themeVars.colors.background.defaultChannel}, .4)`,
 									borderRadius: "12px",
 									width: "48px",
 									height: "48px",
@@ -79,20 +78,14 @@ export default function TopRelated() {
 									) : (
 										<Iconify icon="mingcute:windows-fill" size={12} />
 									)}
-									<span className="mx-1 text-xs font-light">
-										{item.platform}
-									</span>
-									<Tag color={item.type === "free" ? "green" : "red"}>
-										{item.type}
-									</Tag>
+									<span className="mx-1 text-xs font-light">{item.platform}</span>
+									<Tag color={item.type === "free" ? "green" : "red"}>{item.type}</Tag>
 								</div>
 							</div>
 
 							<div className="ml-auto flex flex-col self-center">
 								<Rate allowHalf disabled defaultValue={item.star} />
-								<span className="mt-1 text-right text-xs text-gray-400">
-									{item.reviews}reviews
-								</span>
+								<span className="mt-1 text-right text-xs text-gray-400">{item.reviews}reviews</span>
 							</div>
 						</div>
 					))}

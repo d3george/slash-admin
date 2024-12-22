@@ -9,6 +9,8 @@ import type { UILibraryAdapter } from "../type";
 
 import { useSettings } from "@/store/settingStore";
 import { removePx } from "@/utils/theme";
+import { lightShadowTokens } from "../tokens/shadow";
+import { darkShadowTokens } from "../tokens/shadow";
 import { typographyTokens } from "../tokens/typography";
 
 export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
@@ -17,6 +19,7 @@ export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 	const algorithm = mode === ThemeMode.Light ? theme.defaultAlgorithm : theme.darkAlgorithm;
 
 	const colorTokens = mode === ThemeMode.Light ? lightColorTokens : darkColorTokens;
+	const shadowTokens = mode === ThemeMode.Light ? lightShadowTokens : darkShadowTokens;
 
 	const primaryColorToken = presetsColors[themeColorPresets];
 
@@ -53,6 +56,9 @@ export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 		},
 		Layout: {
 			siderBg: darkColorTokens.background.default,
+		},
+		Card: {
+			boxShadow: shadowTokens.card,
 		},
 	};
 

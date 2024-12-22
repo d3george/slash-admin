@@ -1,19 +1,17 @@
 import Chart from "@/components/chart/chart";
 import useChart from "@/components/chart/useChart";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 
 const series = [
 	{
 		name: "Cash Flow",
 		data: [
-			1.45, 5.42, 5.9, -0.42, -12.6, -18.1, -18.2, -14.16, -11.1, -6.09, 0.34,
-			3.88, 13.07, 5.8, 2, 7.37, 8.1, 13.57, 15.75, 17.1, 19.8, -27.03, -54.4,
-			-47.2, -43.3, -18.6, -48.6, -41.1, -39.6, -37.6, -29.4, -21.4, -2.4,
+			1.45, 5.42, 5.9, -0.42, -12.6, -18.1, -18.2, -14.16, -11.1, -6.09, 0.34, 3.88, 13.07, 5.8, 2, 7.37, 8.1, 13.57,
+			15.75, 17.1, 19.8, -27.03, -54.4, -47.2, -43.3, -18.6, -48.6, -41.1, -39.6, -37.6, -29.4, -21.4, -2.4,
 		],
 	},
 ];
 export default function ChartColumnNegative() {
-	const theme = useThemeToken();
 	const chartOptions = useChart({
 		stroke: { show: false },
 		yaxis: {
@@ -64,15 +62,13 @@ export default function ChartColumnNegative() {
 				columnWidth: "58%",
 				colors: {
 					ranges: [
-						{ from: -100, to: -46, color: theme.colorWarning },
-						{ from: -45, to: 0, color: theme.colorInfo },
+						{ from: -100, to: -46, color: themeVars.colors.palette.warning.default },
+						{ from: -45, to: 0, color: themeVars.colors.palette.info.default },
 					],
 				},
 			},
 		},
 	});
 
-	return (
-		<Chart type="bar" series={series} options={chartOptions} height={320} />
-	);
+	return <Chart type="bar" series={series} options={chartOptions} height={320} />;
 }

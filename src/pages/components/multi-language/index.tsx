@@ -2,8 +2,8 @@ import { Card, Pagination, Radio, Space, Typography } from "antd";
 
 import { SvgIcon } from "@/components/icon";
 import useLocale from "@/locales/useLocale";
-import { useThemeToken } from "@/theme/hooks";
 
+import { themeVars } from "@/theme/theme.css";
 import { LocalEnum } from "#/enum";
 
 export default function MultiLanguagePage() {
@@ -13,19 +13,14 @@ export default function MultiLanguagePage() {
 		language: { icon, label },
 	} = useLocale();
 
-	const { colorPrimary } = useThemeToken();
-
 	return (
 		<Space direction="vertical" size="middle" style={{ display: "flex" }}>
-			<Typography.Link
-				href="https://www.i18next.com/"
-				style={{ color: colorPrimary }}
-			>
+			<Typography.Link href="https://www.i18next.com/" style={{ color: themeVars.colors.palette.primary.default }}>
 				https://www.i18next.com
 			</Typography.Link>
 			<Typography.Link
 				href="https://ant.design/docs/react/i18n-cn"
-				style={{ color: colorPrimary }}
+				style={{ color: themeVars.colors.palette.primary.default }}
 			>
 				https://ant.design/docs/react/i18n-cn
 			</Typography.Link>
@@ -42,12 +37,7 @@ export default function MultiLanguagePage() {
 			</Card>
 
 			<Card title="System">
-				<Pagination
-					defaultCurrent={1}
-					total={50}
-					showSizeChanger
-					showQuickJumper
-				/>
+				<Pagination defaultCurrent={1} total={50} showSizeChanger showQuickJumper />
 			</Card>
 		</Space>
 	);

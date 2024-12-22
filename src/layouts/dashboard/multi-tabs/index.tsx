@@ -1,47 +1,34 @@
+import { useRouter } from "@/router/hooks";
+import { replaceDynamicParams } from "@/router/hooks/use-current-route-meta";
+import { themeVars } from "@/theme/theme.css";
 import { Tabs } from "antd";
-import {
-	DragDropContext,
-	Draggable,
-	Droppable,
-	type OnDragEndResponder,
-} from "react-beautiful-dnd";
+import { useEffect, useRef, useState } from "react";
+import { DragDropContext, Draggable, Droppable, type OnDragEndResponder } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { useState, useRef, useEffect } from "react";
-import { useThemeToken } from "@/theme/hooks";
 import { TabItem } from "./components/tab-item";
 import { useMultiTabsStyle } from "./hooks/use-tab-style";
 import { useMultiTabsContext } from "./providers/multi-tabs-provider";
 import type { KeepAliveTab } from "./types";
-import { replaceDynamicParams } from "@/router/hooks/use-current-route-meta";
-import { useRouter } from "@/router/hooks";
 
-export default function MultiTabs({
-	offsetTop = false,
-}: { offsetTop: boolean }) {
+export default function MultiTabs({ offsetTop = false }: { offsetTop: boolean }) {
 	const scrollContainer = useRef<HTMLDivElement>(null);
 	const tabContentRef = useRef(null);
 
 	const [hoveringTabKey, setHoveringTabKey] = useState("");
 	const { tabs, activeTabRoutePath, setTabs, closeTab } = useMultiTabsContext();
 	const style = useMultiTabsStyle(offsetTop);
-	const themeToken = useThemeToken();
 	const { push } = useRouter();
 
 	const getTabStyle = (tab: KeepAliveTab) => {
-		const isActive =
-			tab.key === activeTabRoutePath || tab.key === hoveringTabKey;
+		const isActive = tab.key === activeTabRoutePath || tab.key === hoveringTabKey;
 
 		return {
 			borderRadius: "8px 8px 0 0",
 			borderWidth: "1px",
 			borderStyle: "solid",
-			borderColor: themeToken.colorBorderSecondary,
-			backgroundColor: isActive
-				? themeToken.colorBgContainer
-				: themeToken.colorBgLayout,
-			color: isActive ? themeToken.colorPrimaryText : "inherit",
-			transition:
-				"color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+			borderColor: `rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.2)`,
+			color: isActive ? themeVars.colors.palette.primary.default : "inherit",
+			transition: "color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
 		};
 	};
 
@@ -67,10 +54,7 @@ export default function MultiTabs({
 
 	const onDragEnd: OnDragEndResponder = ({ destination, source }) => {
 		if (!destination) return;
-		if (
-			destination.droppableId === source.droppableId &&
-			destination.index === source.index
-		) {
+		if (destination.droppableId === source.droppableId && destination.index === source.index) {
 			return;
 		}
 
@@ -90,9 +74,7 @@ export default function MultiTabs({
 		if (!scrollContainer.current) return;
 
 		const index = tabs.findIndex((tab) => tab.key === activeTabRoutePath);
-		const currentTabElement = scrollContainer.current.querySelector(
-			`#tab-${index}`,
-		);
+		const currentTabElement = scrollContainer.current.querySelector(`#tab-${index}`);
 		if (currentTabElement) {
 			currentTabElement.scrollIntoView({
 				block: "nearest",
@@ -133,22 +115,10 @@ export default function MultiTabs({
 							{...provided.droppableProps}
 							className="flex w-full overflow-visible items-center h-[34px]"
 						>
-							<div
-								ref={scrollContainer}
-								className="hide-scrollbar flex w-full px-2 flex-shrink-0 items-center h-full"
-							>
+							<div ref={scrollContainer} className="hide-scrollbar flex w-full px-2 flex-shrink-0 items-center h-full">
 								{tabs.map((tab, index) => (
-									<div
-										id={`tab-${index}`}
-										key={tab.key}
-										className="flex-shrink-0"
-										onClick={() => handleTabClick(tab)}
-									>
-										<Draggable
-											key={tab.key}
-											draggableId={tab.key}
-											index={index}
-										>
+									<div id={`tab-${index}`} key={tab.key} className="flex-shrink-0" onClick={() => handleTabClick(tab)}>
+										<Draggable key={tab.key} draggableId={tab.key} index={index}>
 											{(dragProvided) => (
 												<div
 													ref={dragProvided.innerRef}

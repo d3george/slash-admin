@@ -1,23 +1,17 @@
 import { Layout, Menu, type MenuProps } from "antd";
-import Color from "color";
 import { useEffect, useMemo, useState } from "react";
 import { useMatches, useNavigate } from "react-router";
 
 import Scrollbar from "@/components/scrollbar";
-import {
-	useFlattenedRoutes,
-	usePathname,
-	usePermissionRoutes,
-	useRouteToMenuFn,
-} from "@/router/hooks";
+import { useFlattenedRoutes, usePathname, usePermissionRoutes, useRouteToMenuFn } from "@/router/hooks";
 import { menuFilter } from "@/router/utils";
 import { useSettingActions, useSettings } from "@/store/settingStore";
-import { useThemeToken } from "@/theme/hooks";
 
 import { NAV_WIDTH } from "../config";
 
 import NavLogo from "./nav-logo";
 
+import { themeVars } from "@/theme/theme.css";
 import { ThemeLayout, ThemeMode } from "#/enum";
 
 const { Sider } = Layout;
@@ -30,7 +24,6 @@ export default function NavVertical(props: Props) {
 	const matches = useMatches();
 	const pathname = usePathname();
 
-	const { colorBorder } = useThemeToken();
 	const settings = useSettings();
 	const { themeLayout, themeMode, darkSidebar } = settings;
 	const { setSettings } = useSettingActions();
@@ -39,10 +32,7 @@ export default function NavVertical(props: Props) {
 	const permissionRoutes = usePermissionRoutes();
 	const flattenedRoutes = useFlattenedRoutes();
 
-	const collapsed = useMemo(
-		() => themeLayout === ThemeLayout.Mini,
-		[themeLayout],
-	);
+	const collapsed = useMemo(() => themeLayout === ThemeLayout.Mini, [themeLayout]);
 
 	const menuList = useMemo(() => {
 		const menuRoutes = menuFilter(permissionRoutes);
@@ -56,9 +46,7 @@ export default function NavVertical(props: Props) {
 	useEffect(() => {
 		if (!collapsed) {
 			const keys = matches
-				.filter(
-					(match) => match.pathname !== "/" && match.pathname !== pathname,
-				)
+				.filter((match) => match.pathname !== "/" && match.pathname !== pathname)
 				.map((match) => match.pathname);
 			setOpenKeys(keys);
 		}
@@ -103,7 +91,7 @@ export default function NavVertical(props: Props) {
 			theme={sidebarTheme}
 			className="!fixed left-0 top-0 h-screen"
 			style={{
-				borderRight: `1px dashed ${Color(colorBorder).alpha(0.6).toString()}`,
+				borderRight: `1px dashed rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.2)`,
 			}}
 		>
 			<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />

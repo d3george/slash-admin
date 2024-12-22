@@ -1,6 +1,5 @@
+import { themeVars } from "@/theme/theme.css";
 import type { ReactNode } from "react";
-
-import { useThemeToken } from "@/theme/hooks";
 
 type Props = {
 	icon: ReactNode;
@@ -9,19 +8,16 @@ type Props = {
 };
 
 export default function AnalysisTrafficCard({ icon, title, subtitle }: Props) {
-	const theme = useThemeToken();
 	return (
 		<div
 			className="flex flex-col items-center rounded py-5"
 			style={{
-				border: `1px solid ${theme.colorBorder}`,
+				border: `1px solid rgba(${themeVars.colors.palette.gray["500Channel"]}, .2)`,
 			}}
 		>
 			<div>{icon}</div>
 			<span className="text-2xl font-bold">{title}</span>
-			<span className="text-sm" style={{ color: theme.colorTextSecondary }}>
-				{subtitle}
-			</span>
+			<span className="text-sm text-text-secondary">{subtitle}</span>
 		</div>
 	);
 }

@@ -1,6 +1,5 @@
+import { themeVars } from "@/theme/theme.css";
 import { Card } from "antd";
-
-import { useThemeToken } from "@/theme/hooks";
 
 type Props = {
 	variantKey: {
@@ -10,18 +9,12 @@ type Props = {
 	selectedVariant: string;
 	onChangeVarient: (varient: string) => void;
 };
-export default function ControlPanel({
-	variantKey,
-	selectedVariant,
-	onChangeVarient,
-}: Props) {
-	const { colorPrimary, colorTextBase } = useThemeToken();
-
+export default function ControlPanel({ variantKey, selectedVariant, onChangeVarient }: Props) {
 	const selectedStyle = (variantKey: string) => {
 		return variantKey === selectedVariant
 			? {
-					backgroundColor: colorPrimary,
-					color: colorTextBase,
+					backgroundColor: themeVars.colors.palette.primary.default,
+					color: themeVars.colors.text.primary,
 				}
 			: {};
 	};
@@ -34,7 +27,7 @@ export default function ControlPanel({
 						{item.values.map((item) => (
 							<li
 								key={item}
-								className="my-2 cursor-pointer rounded-md p-1"
+								className="m-2 cursor-pointer rounded-md p-2"
 								onClick={() => onChangeVarient(item)}
 								onKeyDown={(e) => {
 									if (e.key === "Enter") {
