@@ -10,6 +10,7 @@ import { IconButton, SvgIcon } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
 import { useFlattenedRoutes, useRouter } from "@/router/hooks";
 import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 
 export default function SearchBar() {
 	const { t } = useTranslation();
@@ -23,7 +24,7 @@ export default function SearchBar() {
 
 	const activeStyle: CSSProperties = {
 		border: `1px dashed ${themeVars.colors.palette.primary.default}`,
-		backgroundColor: `rgba(${themeVars.colors.palette.primary.defaultChannel}, 0.1)`,
+		backgroundColor: rgbAlpha(themeVars.colors.palette.primary.default, 0.1),
 	};
 
 	const [searchQuery, setSearchQuery] = useState("");

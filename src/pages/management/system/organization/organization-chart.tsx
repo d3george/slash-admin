@@ -1,4 +1,5 @@
 import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 import { Tree, TreeNode } from "react-organizational-chart";
 import styled from "styled-components";
 import type { Organization } from "#/entity";
@@ -44,6 +45,6 @@ const StyledNode = styled.div`
   display: inline-flex;
   text-transform: capitalize;
   color: ${themeVars.colors.palette.primary.default};
-  background-color: ${`rgba(${themeVars.colors.palette.primary.lightChannel}, 0.2)`};
-  border: 1px solid ${`rgba(${themeVars.colors.palette.primary.darkerChannel}, 0.24)`};
+  background-color: ${rgbAlpha(themeVars.colors.palette.primary.lightChannel, 0.2)};
+  border: 1px solid ${rgbAlpha(themeVars.colors.palette.primary.darkerChannel, 0.24)};
 `;

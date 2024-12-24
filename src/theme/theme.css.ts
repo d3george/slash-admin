@@ -1,4 +1,4 @@
-import { hexToRgbString } from "@/utils/theme";
+import { hexToRgbChannel } from "@/utils/theme";
 import { createGlobalTheme, createThemeContract } from "@vanilla-extract/css";
 import { baseThemeTokens } from "./tokens/base";
 import { darkColorTokens, lightColorTokens } from "./tokens/color";
@@ -40,7 +40,7 @@ function addColorChannels<T extends Record<string, any>>(obj: T): AddChannelToLe
 		// 在最深层对象添加 Channel
 		for (const [key, value] of Object.entries(obj)) {
 			result[key] = value;
-			result[`${key}Channel`] = value === null ? "" : value.startsWith("#") ? hexToRgbString(value) : value;
+			result[`${key}Channel`] = value === null ? "" : value.startsWith("#") ? hexToRgbChannel(value) : value;
 		}
 	} else {
 		// 递归处理非最深层对象

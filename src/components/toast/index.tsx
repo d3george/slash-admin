@@ -1,6 +1,6 @@
 import { useSettings } from "@/store/settingStore";
-
 import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 import { Toaster } from "sonner";
 import styled from "styled-components";
 
@@ -75,7 +75,7 @@ const ToasterStyleWrapper = styled.div`
       color: ${themeVars.colors.text.primary};
       background-color: transparent;
       &:hover {
-        background-color: ${`rgba(${themeVars.colors.text.primaryChannel}, 0.08)`};
+        background-color: ${rgbAlpha(themeVars.colors.text.primaryChannel, 0.08)};
       }
     }
 
@@ -84,7 +84,7 @@ const ToasterStyleWrapper = styled.div`
       color: ${themeVars.colors.palette.primary.default};
       background-color: transparent;
       &:hover {
-        background-color: ${`rgba(${themeVars.colors.palette.primary.defaultChannel}, 0.08)`};
+        background-color: ${rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.08)};
       }
     }
 
@@ -129,9 +129,10 @@ const ToasterStyleWrapper = styled.div`
       top: 0;
       right: 0;
       left: auto;
-      border: 1px solid ${themeVars.colors.palette.gray[500]};
+      border-width: 1px;
       border-style: dashed;
-        background-color: ${themeVars.colors.background.paper};
+      background-color: ${themeVars.colors.background.paper};
+      border-color: ${themeVars.colors.common.border};
     }
   }
 `;

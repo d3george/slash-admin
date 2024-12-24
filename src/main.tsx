@@ -1,6 +1,5 @@
 // react-query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // vercel analytics
 import { Analytics } from "@vercel/analytics/react";
 // react
@@ -49,7 +48,7 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
 	<HelmetProvider>
 		<QueryClientProvider client={queryClient}>
-			<ReactQueryDevtools initialIsOpen={false} />
+			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 			<Suspense>
 				<Analytics />
 

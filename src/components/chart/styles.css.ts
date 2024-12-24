@@ -1,4 +1,5 @@
 import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 import { globalStyle } from "@vanilla-extract/css";
 import { style } from "@vanilla-extract/css";
 
@@ -9,7 +10,7 @@ globalStyle(`${chartWrapper} .apexcharts-tooltip`, {
 	color: themeVars.colors.text.primary,
 	borderRadius: themeVars.borderRadius.lg,
 	backdropFilter: "blur(6px)",
-	backgroundColor: `rgba(${themeVars.colors.background.paperChannel}, 0.8)`,
+	backgroundColor: rgbAlpha(themeVars.colors.background.paperChannel, 0.8),
 	boxShadow: themeVars.shadows.card,
 });
 
@@ -30,7 +31,7 @@ globalStyle(`${chartWrapper} .apexcharts-xaxistooltip`, {
 });
 
 globalStyle(`${chartWrapper} .apexcharts-xaxistooltip::before`, {
-	borderBottomColor: `rgba(${themeVars.colors.background.paperChannel}, 0.8)`,
+	borderBottomColor: rgbAlpha(themeVars.colors.background.paperChannel, 0.8),
 });
 
 globalStyle(`${chartWrapper} .apexcharts-xaxistooltip::after`, {

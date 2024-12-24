@@ -3,32 +3,71 @@ import { themeTokens } from "../theme/type";
 
 /**
  * @example
- * #FF0000 -> "255, 0, 0"
- * #00FF00 -> "0, 255, 0"
- * #0000FF -> "0, 0, 255"
+ * const rgb = rgbAlpha("#000000", 0.24);
+ * console.log(rgb); // "rgba(0, 0, 0, 0.24)"
+ *
+ * const rgb = rgbAlpha("var(--colors-palette-primary-main)", 0.24);
+ * console.log(rgb); // "rgba(var(--colors-palette-primary-main), 0.24)"
+ *
+ * const rgb = rgbAlpha("rgb(var(--colors-palette-primary-main))", 0.24);
+ * console.log(rgb); // "rgba(rgb(var(--colors-palette-primary-main)), 0.24)"
+ *
+ * const rgb = rgbAlpha([200, 250, 214], 0.24);
+ * console.log(rgb); // "rgba(200, 250, 214, 0.24)"
  */
-export const hexToRgbString = (hex: string) => {
+export function rgbAlpha(color: string | string[] | number[], alpha: number): string {
+	// ensure alpha value is between 0-1
+	const safeAlpha = Math.max(0, Math.min(1, alpha));
+
+	// if color is CSS variable
+	if (typeof color === "string") {
+		if (color.startsWith("#")) {
+			return `rgba(${hexToRgbChannel(color)}, ${safeAlpha})`;
+		}
+		if (color.includes("var(")) {
+			return `rgba(${color}, ${safeAlpha})`;
+		}
+		if (color.startsWith("--")) {
+			return `rgba(var(${color}), ${safeAlpha})`;
+		}
+
+		// handle "200, 250, 214" or "200 250 214" format
+		if (color.includes(",") || color.includes(" ")) {
+			const rgb = color.split(/[,\s]+/).map((n) => n.trim());
+			return `rgba(${rgb.join(", ")}, ${safeAlpha})`;
+		}
+	}
+
+	// handle array format [200, 250, 214]
+	if (Array.isArray(color)) {
+		return `rgba(${color.join(", ")}, ${safeAlpha})`;
+	}
+
+	throw new Error("Invalid color format");
+}
+
+/**
+ * @example
+ * const rgbChannel = hexToRgbChannel("#000000");
+ * console.log(rgbChannel); // "0, 0, 0"
+ */
+export const hexToRgbChannel = (hex: string) => {
 	const rgb = color(hex).rgb().array();
 	return rgb.join(",");
 };
 
 /**
  * convert to CSS vars
- * @param key example: `colors.palette.primary`
+ * @param propertyPath example: `colors.palette.primary`
  * @returns example: `--colors-palette-primary`
  */
-export const toCssVar = (key: string) => {
-	return `--${key.split(".").join("-")}`;
+export const toCssVar = (propertyPath: string) => {
+	return `--${propertyPath.split(".").join("-")}`;
 };
 
 /**
  * convert to CSS vars
- * @param key example: `colors.palette.primary`
- * @param variants example:
- * `
- * ["lighter", "light", "main", "dark", "darker"]
- * `
- * default value is defaultVariants
+ * @param propertyPath example: `colors.palette.primary`
  * @returns
  * ```js
  * {
@@ -40,12 +79,12 @@ export const toCssVar = (key: string) => {
  * }
  * ```
  */
-export const toCssVars = (key: string) => {
-	const variants = getVariants(key);
+export const toCssVars = (propertyPath: string) => {
+	const variants = getThemeTokenVariants(propertyPath);
 	const result = variants.reduce(
 		(acc, variant) => {
 			const variantKey = variant === "default" ? "DEFAULT" : variant;
-			acc[variantKey] = `var(${toCssVar(`${key}-${variant}`)})`;
+			acc[variantKey] = `var(${toCssVar(`${propertyPath}-${variant}`)})`;
 			return acc;
 		},
 		{} as Record<string, string>,
@@ -55,11 +94,11 @@ export const toCssVars = (key: string) => {
 
 /**
  * get variants in {@link themeTokens}
- * @param keyPath example: `colors.palette.primary`
+ * @param propertyPath example: `colors.palette.primary`
  * @returns example: `["lighter", "light", "main", "dark", "darker"]`
  */
-export const getVariants = (keyPath: string) => {
-	const keys = keyPath.split(".");
+export const getThemeTokenVariants = (propertyPath: string) => {
+	const keys = propertyPath.split(".");
 	const val = keys.reduce((obj: any, key) => {
 		if (obj && typeof obj === "object") {
 			return obj[key];

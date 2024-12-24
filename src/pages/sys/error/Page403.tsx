@@ -6,19 +6,11 @@ import { NavLink } from "react-router";
 import Character4 from "@/assets/images/characters/character_4.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export default function Page403() {
-	const {
-		colorBgBase,
-		colorTextBase,
-		colorPrimary,
-		colorPrimaryActive,
-		colorPrimaryTextActive,
-		colorPrimaryHover,
-	} = useThemeToken();
 	return (
 		<>
 			<Helmet>
@@ -35,34 +27,17 @@ export default function Page403() {
 
 					<m.div variants={varBounce().in}>
 						<Typography.Paragraph type="secondary" className="text-center">
-							The page you are trying access has restricted access. Please refer
-							to your system administrator
+							The page you are trying access has restricted access. Please refer to your system administrator
 						</Typography.Paragraph>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<svg
-							viewBox="0 0 480 360"
-							xmlns="http://www.w3.org/2000/svg"
-							width={400}
-							height={400}
-							className="w-full"
-						>
+						<svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" width={400} height={400} className="w-full">
 							<title>403</title>
 							<defs>
-								<linearGradient
-									id="BG"
-									x1="19.496%"
-									x2="77.479%"
-									y1="71.822%"
-									y2="16.69%"
-								>
-									<stop offset="0%" stopColor={colorPrimary} />
-									<stop
-										offset="100%"
-										stopColor={colorPrimary}
-										stopOpacity="0"
-									/>
+								<linearGradient id="BG" x1="19.496%" x2="77.479%" y1="71.822%" y2="16.69%">
+									<stop offset="0%" stopColor={themeVars.colors.palette.primary.default} />
+									<stop offset="100%" stopColor={themeVars.colors.palette.primary.default} stopOpacity="0" />
 								</linearGradient>
 							</defs>
 							<path
@@ -73,19 +48,12 @@ export default function Page403() {
 							/>
 							<image href={Character4} height="300" x="220" y="30" />
 							<path
-								fill={colorPrimary}
+								fill={themeVars.colors.palette.primary.default}
 								d="M425.545 119.2c0-5-4.6-9-9.6-8.2-2-3.7-6-6-10.2-5.9 4.3-21.4-30-21.4-25.7 0-8.7-.8-15.1 9.4-10.4 16.8 2.1 3.5 5.9 5.6 10 5.5h38.7v-.1c4.1-.4 7.2-3.9 7.2-8.1zm-321.3 81.8c.1-4.2-4.1-7.8-8.2-7-1.7-3.2-5.1-5.1-8.8-5 3.8-18.4-25.8-18.4-22 0-7.4-.7-12.9 8.1-8.9 14.4 1.8 3 5.1 4.8 8.6 4.7h33.2v-.1c3.4-.4 6.1-3.4 6.1-7z"
 								opacity="0.08"
 							/>
-							<path
-								fill="#FFAB00"
-								d="M111.045 142.2c58.7-1 58.6-88.3 0-89.2-58.6 1-58.6 88.3 0 89.2z"
-								opacity="0.12"
-							/>
-							<path
-								fill="#FFD666"
-								d="M111.045 121c30.8-.5 30.8-46.3 0-46.8-30.8.5-30.8 46.3 0 46.8z"
-							/>
+							<path fill="#FFAB00" d="M111.045 142.2c58.7-1 58.6-88.3 0-89.2-58.6 1-58.6 88.3 0 89.2z" opacity="0.12" />
+							<path fill="#FFD666" d="M111.045 121c30.8-.5 30.8-46.3 0-46.8-30.8.5-30.8 46.3 0 46.8z" />
 
 							{/* hand */}
 							<path
@@ -102,7 +70,7 @@ export default function Page403() {
 
 							{/* 0 */}
 							<path
-								fill={colorPrimaryTextActive}
+								fill={themeVars.colors.palette.primary.default}
 								d="M244.945 189.8c-67.6 1.3-77 97-11 111.4 81 11.8 92.7-107.3 11-111.4zm-48.5 56.2c-1-40.4 49.8-63.8 79.9-36.9l-68.3 68.3c-7.5-8.7-11.6-19.9-11.6-31.4zm48.5 48.5c-11.5 0-22.7-4.1-31.4-11.6l68.3-68.3c27 30.1 3.5 80.9-36.9 79.9z"
 							/>
 							{/* 4_3 */}
@@ -119,18 +87,14 @@ export default function Page403() {
 									y2="307.306"
 									gradientUnits="userSpaceOnUse"
 								>
-									<stop stopColor={colorPrimaryHover} />
-									<stop offset="1" stopColor={colorPrimaryActive} />
+									<stop stopColor={themeVars.colors.palette.primary.default} />
+									<stop offset="1" stopColor={themeVars.colors.palette.primary.default} />
 								</linearGradient>
 							</defs>
 						</svg>
 					</m.div>
 
-					<NavLink
-						to={HOMEPAGE}
-						style={{ background: colorTextBase, color: colorBgBase }}
-						className="rounded-md p-4"
-					>
+					<NavLink to={HOMEPAGE} className="rounded-md p-4 !text-text-primary !bg-primary">
 						Go to Home
 					</NavLink>
 				</MotionContainer>

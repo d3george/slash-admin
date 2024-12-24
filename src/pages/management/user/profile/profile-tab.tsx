@@ -7,7 +7,7 @@ import Card from "@/components/card";
 import { IconButton, Iconify, SvgIcon } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
 import { useUserInfo } from "@/store/userStore";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 
 interface DataType {
 	key: string;
@@ -21,7 +21,6 @@ interface DataType {
 
 export default function ProfileTab() {
 	const { username } = useUserInfo();
-	const theme = useThemeToken();
 	const AboutItems = [
 		{
 			icon: <Iconify icon="fa-solid:user" size={18} />,
@@ -175,7 +174,9 @@ export default function ProfileTab() {
 		{
 			title: "STATUS",
 			dataIndex: "status",
-			render: (val) => <Progress percent={val} strokeColor={theme.colorPrimary} trailColor="transparent" />,
+			render: (val) => (
+				<Progress percent={val} strokeColor={themeVars.colors.palette.primary.default} trailColor="transparent" />
+			),
 		},
 		{
 			title: "ACTIONS",
@@ -219,7 +220,7 @@ export default function ProfileTab() {
 							className="!mt-4 w-full"
 							items={[
 								{
-									color: theme.colorError,
+									color: themeVars.colors.palette.error.default,
 									children: (
 										<div className="flex flex-col">
 											<div className="flex items-center justify-between">
@@ -238,7 +239,7 @@ export default function ProfileTab() {
 									),
 								},
 								{
-									color: theme.colorPrimaryActive,
+									color: themeVars.colors.palette.primary.default,
 									children: (
 										<div className="flex flex-col">
 											<div className="flex items-center justify-between">
@@ -256,7 +257,7 @@ export default function ProfileTab() {
 									),
 								},
 								{
-									color: theme.colorInfo,
+									color: themeVars.colors.palette.info.default,
 									children: (
 										<div className="flex flex-col">
 											<div className="flex items-center justify-between">
@@ -270,7 +271,7 @@ export default function ProfileTab() {
 									),
 								},
 								{
-									color: theme.colorWarning,
+									color: themeVars.colors.palette.warning.default,
 									children: (
 										<div className="flex flex-col">
 											<div className="flex items-center justify-between">
@@ -305,17 +306,24 @@ export default function ProfileTab() {
 									<div
 										className="flex h-8 w-8 flex-none items-center justify-center rounded"
 										style={{
-											backgroundColor: item.connected ? theme.colorPrimaryText : "transparent",
-											border: item.connected ? "" : `1px solid ${theme.colorPrimaryText}`,
+											backgroundColor: item.connected ? themeVars.colors.palette.primary.default : "transparent",
+											border: item.connected ? "" : `1px solid ${themeVars.colors.palette.primary.default}`,
 										}}
 									>
-										<Iconify icon="tdesign:user" color={item.connected ? "#fff" : theme.colorPrimaryText} size={20} />
+										<Iconify
+											icon="tdesign:user"
+											color={item.connected ? "#fff" : themeVars.colors.palette.primary.default}
+											size={20}
+										/>
 									</div>
 								</div>
 							))}
 						</div>
 
-						<div className="mt-4 w-full text-center text-lg" style={{ color: theme.colorPrimaryText }}>
+						<div
+							className="mt-4 w-full text-center text-lg"
+							style={{ color: themeVars.colors.palette.primary.default }}
+						>
 							View all connections
 						</div>
 					</Card>
@@ -341,7 +349,10 @@ export default function ProfileTab() {
 							))}
 						</div>
 
-						<div className="mt-4 w-full text-center text-lg" style={{ color: theme.colorPrimaryText }}>
+						<div
+							className="mt-4 w-full text-center text-lg"
+							style={{ color: themeVars.colors.palette.primary.default }}
+						>
 							View all members
 						</div>
 					</Card>

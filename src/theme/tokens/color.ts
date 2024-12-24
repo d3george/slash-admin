@@ -1,9 +1,5 @@
-import { ThemeColorPresets } from "../../../types/enum";
-
-export const commonColors = {
-	white: "#FFFFFF",
-	black: "#000000",
-};
+import { rgbAlpha } from "@/utils/theme";
+import { ThemeColorPresets } from "#/enum";
 
 export const presetsColors = {
 	[ThemeColorPresets.Default]: {
@@ -106,6 +102,12 @@ export const paletteColors = {
 		"800": "#1C252E",
 		"900": "#141A21",
 	},
+};
+
+export const commonColors = {
+	white: "#FFFFFF",
+	black: "#000000",
+	border: rgbAlpha(paletteColors.gray[500], 0.2),
 };
 
 export const lightColorTokens = {

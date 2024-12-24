@@ -1,8 +1,5 @@
-import color from "color";
 import type { Config } from "tailwindcss";
-import { baseThemeTokens } from "./src/theme/tokens/base";
-import { paletteColors } from "./src/theme/tokens/color";
-import { toCssVars } from "./src/utils/theme";
+import { rgbAlpha, toCssVar, toCssVars } from "./src/utils/theme";
 
 const config: Config = {
 	content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -15,17 +12,18 @@ const config: Config = {
 			error: toCssVars("colors.palette.error"),
 			info: toCssVars("colors.palette.info"),
 			gray: toCssVars("colors.palette.gray"),
-			hover: color(paletteColors.gray[500]).alpha(0.1).rgb().string(),
 			common: toCssVars("colors.common"),
 			text: toCssVars("colors.text"),
 			bg: toCssVars("colors.background"),
+			border: rgbAlpha(toCssVar("colors.palette.gray.500Channel"), 0.1),
+			hover: rgbAlpha(toCssVar("colors.palette.gray.500Channel"), 0.1),
 		},
 
-		screens: baseThemeTokens.screens,
-		spacing: toCssVars("spacing"),
+		opacity: toCssVars("opacity"),
 		extend: {
 			borderRadius: toCssVars("borderRadius"),
 			boxShadow: toCssVars("shadows"),
+			spacing: toCssVars("spacing"),
 		},
 	},
 

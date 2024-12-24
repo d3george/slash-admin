@@ -6,19 +6,13 @@ import Character5 from "@/assets/images/characters/character_5.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
 import { useRouter } from "@/router/hooks";
-import { useThemeToken } from "@/theme/hooks";
 
+import { themeVars } from "@/theme/theme.css";
 import type { FallbackProps } from "react-error-boundary";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
-export default function PageError({
-	error,
-	resetErrorBoundary,
-}: FallbackProps) {
-	const { colorBgBase, colorTextBase, colorPrimary, colorPrimaryActive } =
-		useThemeToken();
-
+export default function PageError({ error, resetErrorBoundary }: FallbackProps) {
 	const { replace } = useRouter();
 
 	const goHome = () => {
@@ -46,28 +40,12 @@ export default function PageError({
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<svg
-							viewBox="0 0 480 360"
-							xmlns="http://www.w3.org/2000/svg"
-							width={400}
-							height={400}
-							className="w-full"
-						>
+						<svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" width={400} height={400} className="w-full">
 							<title>Error</title>
 							<defs>
-								<linearGradient
-									id="BG"
-									x1="19.496%"
-									x2="77.479%"
-									y1="71.822%"
-									y2="16.69%"
-								>
-									<stop offset="0%" stopColor={colorPrimary} />
-									<stop
-										offset="100%"
-										stopColor={colorPrimary}
-										stopOpacity="0"
-									/>
+								<linearGradient id="BG" x1="19.496%" x2="77.479%" y1="71.822%" y2="16.69%">
+									<stop offset="0%" stopColor={themeVars.colors.palette.primary.default} />
+									<stop offset="100%" stopColor={themeVars.colors.palette.primary.default} stopOpacity="0" />
 								</linearGradient>
 							</defs>
 							<path
@@ -77,7 +55,7 @@ export default function PageError({
 								opacity="0.2"
 							/>
 							<path
-								fill={colorPrimary}
+								fill={themeVars.colors.palette.primary.darker}
 								d="M297.46 99.296l-185.934-5.29c-6.35-.18-11.526 4.158-11.526 9.693v159.882c0 5.534 5.176 9.742 11.526 9.4l185.934-10.028c5.28-.284 9.54-4.576 9.54-9.585v-144.73c0-5.012-4.26-9.194-9.54-9.342z"
 								opacity="0.12"
 							/>
@@ -144,18 +122,9 @@ export default function PageError({
 								d="M210.302 292.411c-2.657.122-5.499.157-8.447.089-14.491-.334-26.135-3.025-26.135-6.005a.81.81 0 01.02-.214h-.02l.06-.143a.834.834 0 01.054-.139l3.342-8.724 4.037-10.526 5.652-14.752 4.325-11.293 5.381-14.042c.673-1.758 1.922-2.851 3.269-2.851.183-.001.364.019.542.059.574 3.574 1.558 9.812 2.646 17.165.546 3.702 1.118 7.687 1.677 11.753a776.568 776.568 0 012.016 15.767c.485 4.188.899 8.185 1.192 11.754.429 5.167.604 9.441.389 12.102z"
 								opacity="0.2"
 							/>
-							<path
-								fill="#FF5630"
-								d="M118.108 103.182a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
-							/>
-							<path
-								fill="#FFAB00"
-								d="M126.108 103.182a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
-							/>
-							<path
-								fill="#36B37E"
-								d="M134.108 103.182a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
-							/>
+							<path fill="#FF5630" d="M118.108 103.182a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+							<path fill="#FFAB00" d="M126.108 103.182a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+							<path fill="#36B37E" d="M134.108 103.182a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
 							<defs>
 								<linearGradient
 									id="paint0_linear_1_160"
@@ -165,8 +134,8 @@ export default function PageError({
 									y2="199.671"
 									gradientUnits="userSpaceOnUse"
 								>
-									<stop stopColor={colorPrimaryActive} />
-									<stop offset="1" stopColor={colorPrimary} />
+									<stop stopColor={themeVars.colors.palette.primary.darker} />
+									<stop offset="1" stopColor={themeVars.colors.palette.primary.darker} />
 								</linearGradient>
 								<linearGradient
 									id="paint1_linear_1_160"
@@ -176,8 +145,8 @@ export default function PageError({
 									y2="199.671"
 									gradientUnits="userSpaceOnUse"
 								>
-									<stop stopColor={colorPrimaryActive} />
-									<stop offset="1" stopColor={colorPrimary} />
+									<stop stopColor={themeVars.colors.palette.primary.darker} />
+									<stop offset="1" stopColor={themeVars.colors.palette.primary.darker} />
 								</linearGradient>
 								<linearGradient
 									id="paint2_linear_1_160"
@@ -242,7 +211,7 @@ export default function PageError({
 					</m.div>
 
 					<button
-						style={{ background: colorTextBase, color: colorBgBase }}
+						style={{ background: themeVars.colors.palette.primary.default, color: themeVars.colors.text.primary }}
 						className="rounded-md p-4"
 						onClick={goHome}
 						type="button"

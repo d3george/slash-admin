@@ -3,20 +3,19 @@ import { useMemo } from "react";
 
 import MotionViewport from "@/components/animate/motion-viewport";
 import { getVariant } from "@/components/animate/variants";
-import { useThemeToken } from "@/theme/hooks";
+import { themeVars } from "@/theme/theme.css";
 
 type Props = {
 	variant: string;
 };
 export default function ContainerView({ variant }: Props) {
-	const { colorBgLayout } = useThemeToken();
 	const varients = useMemo(() => getVariant(variant), [variant]);
 
 	return (
 		<div
 			key={variant}
-			className="h-[480px] overflow-scroll rounded-lg px-20"
-			style={{ backgroundColor: colorBgLayout }}
+			className="h-[480px] overflow-auto rounded-lg px-20"
+			style={{ backgroundColor: themeVars.colors.background.neutral }}
 		>
 			{[...Array(40)].map((_, index) => (
 				// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>

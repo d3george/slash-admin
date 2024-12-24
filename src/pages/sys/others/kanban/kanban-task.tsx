@@ -1,5 +1,4 @@
 import { Avatar, Drawer, Image, Select } from "antd";
-import Color from "color";
 import { type CSSProperties, memo, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
@@ -8,11 +7,11 @@ import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
 import { IconButton, Iconify, SvgIcon } from "@/components/icon";
 import { type Task, TaskPriority } from "@/pages/sys/others/kanban/types";
-import { useThemeToken } from "@/theme/hooks";
 
 import TaskDetail from "./task-detail";
 
 import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 
 type Props = {
 	index: number;
@@ -20,15 +19,13 @@ type Props = {
 };
 function KanbanTask({ index, task }: Props) {
 	const [drawerOpen, setDrawerOpen] = useState(false);
-	const themeToken = useThemeToken();
 
 	const style: CSSProperties = {
-		backdropFilter: "blur(20px)",
+		backdropFilter: "blur(6px)",
 		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundColor: Color(themeToken.colorBgContainer).alpha(0.9).toString(),
 		backgroundPosition: "right top, left bottom",
-		backgroundSize: "50, 50%",
+		backgroundSize: "50%, 50%",
 	};
 
 	const { id, title, comments = [], attachments = [], priority, assignee } = task;
@@ -63,8 +60,8 @@ function KanbanTask({ index, task }: Props) {
 											max={{
 												count: 3,
 												style: {
-													color: themeToken.colorPrimary,
-													backgroundColor: themeToken.colorPrimaryBg,
+													color: themeVars.colors.palette.primary.default,
+													backgroundColor: rgbAlpha(themeVars.colors.palette.primary.default, 0.9),
 												},
 											}}
 										>
@@ -100,7 +97,7 @@ function KanbanTask({ index, task }: Props) {
 						</div>
 						<div className="flex text-gray">
 							<IconButton>
-								<Iconify icon="solar:like-bold" size={20} color={themeToken.colorSuccess} />
+								<Iconify icon="solar:like-bold" size={20} color={themeVars.colors.palette.success.default} />
 							</IconButton>
 							<IconButton>
 								<Iconify icon="solar:trash-bin-trash-bold" size={20} />
@@ -134,14 +131,15 @@ type TaskPrioritySvgProps = {
 	taskPriority: TaskPriority;
 };
 function TaskPrioritySvg({ taskPriority }: TaskPrioritySvgProps) {
-	const { colorSuccess, colorInfo, colorWarning } = useThemeToken();
 	switch (taskPriority) {
 		case TaskPriority.HIGH:
-			return <SvgIcon icon="ic_rise" size={20} color={colorWarning} className="" />;
+			return <SvgIcon icon="ic_rise" size={20} color={themeVars.colors.palette.warning.default} className="" />;
 		case TaskPriority.MEDIUM:
-			return <SvgIcon icon="ic_rise" size={20} color={colorSuccess} className="rotate-90" />;
+			return (
+				<SvgIcon icon="ic_rise" size={20} color={themeVars.colors.palette.success.default} className="rotate-90" />
+			);
 		case TaskPriority.LOW:
-			return <SvgIcon icon="ic_rise" size={20} color={colorInfo} className="rotate-180" />;
+			return <SvgIcon icon="ic_rise" size={20} color={themeVars.colors.palette.info.default} className="rotate-180" />;
 		default:
 			break;
 	}

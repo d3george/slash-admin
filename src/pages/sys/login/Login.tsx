@@ -1,5 +1,4 @@
 import { Layout, Typography } from "antd";
-import Color from "color";
 import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router";
 
@@ -7,8 +6,9 @@ import DashboardImg from "@/assets/images/background/dashboard.png";
 import Overlay2 from "@/assets/images/background/overlay_2.jpg";
 import LocalePicker from "@/components/locale-picker";
 import { useUserToken } from "@/store/userStore";
-import { useThemeToken } from "@/theme/hooks";
 
+import SettingButton from "@/layouts/_common/setting-button";
+import { themeVars } from "@/theme/theme.css";
 import LoginForm from "./LoginForm";
 import MobileForm from "./MobileForm";
 import QrCodeFrom from "./QrCodeForm";
@@ -21,7 +21,6 @@ const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 function Login() {
 	const { t } = useTranslation();
 	const token = useUserToken();
-	const { colorBgElevated } = useThemeToken();
 
 	// 判断用户是否有权限
 	if (token.accessToken) {
@@ -29,7 +28,7 @@ function Login() {
 		return <Navigate to={HOMEPAGE} replace />;
 	}
 
-	const gradientBg = Color(colorBgElevated).alpha(0.9).toString();
+	const gradientBg = `rgba(${themeVars.colors.palette.primary.default}, 0.9)`;
 	const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay2})`;
 
 	return (
@@ -40,14 +39,8 @@ function Login() {
 					background: bg,
 				}}
 			>
-				<div className="text-3xl font-bold leading-normal lg:text-4xl xl:text-5xl">
-					Slash Admin
-				</div>
-				<img
-					className="max-w-[480px] xl:max-w-[560px]"
-					src={DashboardImg}
-					alt=""
-				/>
+				<div className="text-3xl font-bold leading-normal lg:text-4xl xl:text-5xl">Slash Admin</div>
+				<img className="max-w-[480px] xl:max-w-[560px]" src={DashboardImg} alt="" />
 				<Typography.Text className="flex flex-row gap-[16px] text-2xl">
 					{t("sys.login.signInSecondTitle")}
 				</Typography.Text>
@@ -63,8 +56,9 @@ function Login() {
 				</LoginStateProvider>
 			</div>
 
-			<div className="absolute right-2 top-0">
+			<div className="absolute right-2 top-0 flex flex-row">
 				<LocalePicker />
+				<SettingButton />
 			</div>
 		</Layout>
 	);

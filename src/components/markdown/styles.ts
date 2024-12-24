@@ -1,48 +1,40 @@
-import type { GlobalToken } from "antd";
 /**
  * https://styled-components.com/
  * vscode plugin: https://github.com/styled-components/vscode-styled-components
  */
 import styled from "styled-components";
 
-import { ThemeMode } from "#/enum";
+import { themeVars } from "@/theme/theme.css";
 
-type KeyofToken = keyof GlobalToken;
-const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
-	const fontSizeHeading: KeyofToken = `fontSizeHeading${level}`;
-	const lineHeightHeading: KeyofToken = `lineHeightHeading${level}`;
-
-	return {
-		margin: 0,
-		color: token.colorTextHeading,
-		fontWeight: 800,
-		fontSize: token[fontSizeHeading],
-		lineHeight: token[lineHeightHeading],
-	};
-};
-const StyledMarkdown = styled.div<{
-	$token: GlobalToken;
-	$thememode: ThemeMode;
-}>`
+const StyledMarkdown = styled.div`
   display: grid;
-  // Text TODO: replace with useTheme
   h1 {
-    ${(props) => getHeadingStyle(1, props.$token)};
+    font-size: 64px;
+    line-height: 1.25;
+    font-weight: 800;
   }
   h2 {
-    ${(props) => getHeadingStyle(2, props.$token)};
+    font-size: 56px;
+    line-height: 1.25;
+    font-weight: 700;
   }
   h3 {
-    ${(props) => getHeadingStyle(3, props.$token)};
+    font-size: 48px;
+    line-height: 1.25;
+    font-weight: 700;
   }
   h4 {
-    ${(props) => getHeadingStyle(4, props.$token)};
+    font-size: 40px;
+    line-height: 1.25;
+    font-weight: 700;
   }
   h5 {
-    ${(props) => getHeadingStyle(5, props.$token)};
+    font-size: 32px;
+    line-height: 1.25;
+    font-weight: 700;
   }
   a {
-    color: ${(props) => props.$token.colorPrimary};
+    color: ${themeVars.colors.palette.primary.default};
   }
   img {
     border-radius: 4px;
@@ -79,8 +71,8 @@ const StyledMarkdown = styled.div<{
     position: relative;
     padding: 24px 24px 24px 64px;
     border-radius: 16px;
-    background-color: #f4f6f8;
-    color: #637381;
+    background-color: ${themeVars.colors.background.neutral};
+    color: ${themeVars.colors.text.secondary};
     p,
     span {
       margin-bottom: 0;
@@ -110,21 +102,21 @@ const StyledMarkdown = styled.div<{
     border-radius: 4px;
     white-space: pre;
     padding: 0px;
-    background-color: ${(props) => (props.$thememode === ThemeMode.Light ? "#161c24" : "#919eab29")};
+    background-color: ${themeVars.colors.background.neutral};
   }
 
   // Table
   table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #919eab33;
+    border: 1px solid ${themeVars.colors.common.border};
     th,
     td {
       padding: 8px;
-      border: 1px solid #919eab33;
+      border: 1px solid ${themeVars.colors.common.border};
     }
     tbody tr:nth-of-type(odd) {
-      background-color: ${(props) => (props.$thememode === ThemeMode.Light ? "#f4f6f8" : "#919eab1f ")};
+      background-color: ${themeVars.colors.background.neutral};
     }
   }
 
@@ -142,11 +134,11 @@ const StyledMarkdown = styled.div<{
         height: 17px;
         border-radius: 3px;
         position: absolute;
-        background-color: #f4f6f8;
+        background-color: ${themeVars.colors.palette.primary.default};
       }
       &:checked {
         &::before {
-          background-color: ${(props) => props.$token.colorPrimary};
+          background-color: ${themeVars.colors.palette.primary.default};
         }
         &::after {
           content: '';
@@ -156,7 +148,7 @@ const StyledMarkdown = styled.div<{
           height: 9px;
           position: absolute;
           transform: rotate(45deg);
-          border: solid white;
+          border: solid ${themeVars.colors.common.white};
           border-width: 0 2px 2px 0;
         }
       }

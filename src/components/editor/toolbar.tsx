@@ -1,16 +1,6 @@
-import { useSettings } from "@/store/settingStore";
-import { useThemeToken } from "@/theme/hooks";
-
 import { StyledToolbar } from "./styles";
 
-const HEADINGS = [
-	"Heading 1",
-	"Heading 2",
-	"Heading 3",
-	"Heading 4",
-	"Heading 5",
-	"Heading 6",
-];
+const HEADINGS = ["Heading 1", "Heading 2", "Heading 3", "Heading 4", "Heading 5", "Heading 6"];
 
 export const formats = [
 	"align",
@@ -43,15 +33,9 @@ type EditorToolbarProps = {
 	isSimple?: boolean;
 };
 
-export default function Toolbar({
-	id,
-	isSimple,
-	...other
-}: EditorToolbarProps) {
-	const token = useThemeToken();
-	const { themeMode } = useSettings();
+export default function Toolbar({ id, isSimple }: EditorToolbarProps) {
 	return (
-		<StyledToolbar $token={token} $thememode={themeMode} {...other}>
+		<StyledToolbar>
 			<div id={id}>
 				<div className="ql-formats">
 					<select className="ql-header" defaultValue="">
@@ -81,12 +65,8 @@ export default function Toolbar({
 				<div className="ql-formats">
 					<button type="button" className="ql-list" value="ordered" />
 					<button type="button" className="ql-list" value="bullet" />
-					{!isSimple && (
-						<button type="button" className="ql-indent" value="-1" />
-					)}
-					{!isSimple && (
-						<button type="button" className="ql-indent" value="+1" />
-					)}
+					{!isSimple && <button type="button" className="ql-indent" value="-1" />}
+					{!isSimple && <button type="button" className="ql-indent" value="+1" />}
 				</div>
 
 				{!isSimple && (

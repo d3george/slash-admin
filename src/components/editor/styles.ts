@@ -1,38 +1,36 @@
-import type { GlobalToken } from "antd";
+import { themeVars } from "@/theme/theme.css";
 import styled from "styled-components";
 
-import type { ThemeMode } from "#/enum";
-
-type KeyofToken = keyof GlobalToken;
-const getHeadingStyle = (level: 1 | 2 | 3 | 4 | 5, token: GlobalToken) => {
-	const fontSizeHeading: KeyofToken = `fontSizeHeading${level}`;
-	const lineHeightHeading: KeyofToken = `lineHeightHeading${level}`;
-
-	return {
-		margin: 0,
-		color: token.colorTextHeading,
-		fontWeight: 800,
-		fontSize: token[fontSizeHeading],
-		lineHeight: token[lineHeightHeading],
-	};
-};
-
-// TODO: replace with useTheme
-const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
+const StyledEditor = styled.div`
   h1 {
-    ${(props) => getHeadingStyle(1, props.$token)};
+    font-size: 64px;
+    line-height: 1.25;
+    font-weight: 800;
   }
   h2 {
-    ${(props) => getHeadingStyle(2, props.$token)};
+    font-size: 56px;
+    line-height: 1.25;
+    font-weight: 800;
   }
   h3 {
-    ${(props) => getHeadingStyle(3, props.$token)};
+    font-size: 48px;
+    line-height: 1.25;
+    font-weight: 700;
   }
   h4 {
-    ${(props) => getHeadingStyle(4, props.$token)};
+    font-size: 40px;
+    line-height: 1.25;
+    font-weight: 700;
   }
   h5 {
-    ${(props) => getHeadingStyle(5, props.$token)};
+    font-size: 32px;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+  h6 {
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 600;
   }
   img {
     display: inline;
@@ -40,7 +38,7 @@ const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
   overflow: hidden;
   position: relative;
   border-radius: 8px;
-  border: 1px solid rgba(119, 145, 170, 0.2);
+  border: 1px solid ${themeVars.colors.common.border};
   & .ql-container.ql-snow {
     border: none;
     line-height: 1.6;
@@ -53,7 +51,7 @@ const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
     background-color: rgba(145, 158, 171, 0.08);
     &.ql-blank::before {
       font-style: normal;
-      color: rgb(145, 158, 171);
+      color: ${themeVars.colors.text.secondary};
     }
     & pre.ql-syntax {
       border-radius: 8px;
@@ -63,15 +61,12 @@ const StyledEditor = styled.div<{ $token: GlobalToken; $thememode: ThemeMode }>`
       font-weight: 400;
       padding: 16px;
       border-radius: 8px;
-      background-color: rgb(22, 28, 36);
+      background-color: ${themeVars.colors.background.neutral};
     }
   }
 `;
 
-const StyledToolbar = styled.div<{
-	$token: GlobalToken;
-	$thememode: ThemeMode;
-}>`
+const StyledToolbar = styled.div`
   & .ql-snow.ql-toolbar button:hover .ql-fill,
   .ql-snow .ql-toolbar button:hover .ql-fill,
   .ql-snow.ql-toolbar button:focus .ql-fill,
@@ -100,7 +95,7 @@ const StyledToolbar = styled.div<{
   .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
-    fill: ${(props) => props.$token.colorPrimary};
+    fill: ${themeVars.colors.palette.primary.default};
   }
   & .ql-snow.ql-toolbar button:hover,
   .ql-snow .ql-toolbar button:hover,
@@ -116,7 +111,7 @@ const StyledToolbar = styled.div<{
   .ql-snow .ql-toolbar .ql-picker-item:hover,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
-    color: ${(props) => props.$token.colorPrimary};
+    color: ${themeVars.colors.palette.primary.default};
   }
 
   & .ql-snow.ql-toolbar button:hover .ql-stroke,
@@ -147,20 +142,20 @@ const StyledToolbar = styled.div<{
   .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
   .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
   .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
-    stroke: ${(props) => props.$token.colorPrimary};
+    stroke: ${themeVars.colors.palette.primary.default};
   }
 
   & .ql-stroke {
-    stroke: ${(props) => props.$token.colorTextBase};
+    stroke: ${themeVars.colors.text.primary};
   }
   & .ql-fill,
   .ql-stroke.ql-fill {
-    fill: ${(props) => props.$token.colorTextBase};
+    fill: ${themeVars.colors.text.primary};
   }
 
   & .ql-toolbar.ql-snow {
     border: none;
-    border-bottom: 1px solid rgba(119, 145, 170, 0.2);
+    border-bottom: 1px solid ${themeVars.colors.common.border};
     // Button
     & button {
       padding: 0;
@@ -177,8 +172,8 @@ const StyledToolbar = styled.div<{
     & .ql-picker-label {
       border-radius: 4px;
       border-color: transparent !important;
-      background-color: ${(props) => props.$token.colorBgContainerDisabled};
-      color: ${(props) => props.$token.colorTextBase};
+      background-color: ${themeVars.colors.background.paper};
+      color: ${themeVars.colors.text.primary};
     }
     & .ql-picker-options {
       margin-top: 4px;
@@ -186,8 +181,8 @@ const StyledToolbar = styled.div<{
       max-height: 200px;
       overflow: auto;
       border-radius: 8px;
-      color: ${(props) => props.$token.colorTextBase};
-      background-color: ${(props) => props.$token.colorBgContainer};
+      color: ${themeVars.colors.text.primary};
+      background-color: ${themeVars.colors.background.paper};
     }
   }
 `;
