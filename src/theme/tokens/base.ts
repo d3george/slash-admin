@@ -1,3 +1,5 @@
+import { breakpointsTokens } from "./breakpoints";
+
 export const baseThemeTokens = {
 	spacing: {
 		0: "0px",
@@ -25,14 +27,7 @@ export const baseThemeTokens = {
 		xl: "12px",
 		full: "9999px",
 	},
-	screens: {
-		xs: "480px", // => @media (min-width: 480px) { ... }
-		sm: "576px", // => @media (min-width: 576px) { ... }
-		md: "768px", // => @media (min-width: 768px) { ... }
-		lg: "992px", // => @media (min-width: 992px) { ... }
-		xl: "1200px", // => @media (min-width: 1200px) { ... }
-		"2xl": "1600px", // => @media (min-width: 1600px) { ... }
-	},
+	screens: breakpointsTokens,
 	opacity: {
 		0: "0",
 		5: "0.05",

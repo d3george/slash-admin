@@ -14,6 +14,7 @@ import SettingButton from "../_common/setting-button";
 
 import { themeVars } from "@/theme/theme.css";
 import { cn } from "@/utils";
+import { rgbAlpha } from "@/utils/theme";
 import { ThemeLayout } from "#/enum";
 import { HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH, OFFSET_HEADER_HEIGHT } from "./config";
 import NavVertical from "./nav/nav-vertical";
@@ -28,9 +29,9 @@ export default function Header({ offsetTop = false }: Props) {
 	const headerStyle: CSSProperties = {
 		borderBottom:
 			themeLayout === ThemeLayout.Horizontal
-				? `1px dashed rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.2)`
+				? `1px dashed ${rgbAlpha(themeVars.colors.palette.gray["500Channel"], 0.2)}`
 				: "",
-		backgroundColor: `rgba(${themeVars.colors.background.defaultChannel}, 0.9)`,
+		backgroundColor: rgbAlpha(themeVars.colors.background.defaultChannel, 0.9),
 		width: "100%",
 	};
 

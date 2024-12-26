@@ -24,7 +24,7 @@ export default function SearchBar() {
 
 	const activeStyle: CSSProperties = {
 		border: `1px dashed ${themeVars.colors.palette.primary.default}`,
-		backgroundColor: rgbAlpha(themeVars.colors.palette.primary.default, 0.1),
+		backgroundColor: rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.1),
 	};
 
 	const [searchQuery, setSearchQuery] = useState("");

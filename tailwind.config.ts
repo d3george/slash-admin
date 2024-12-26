@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { breakpointsTokens } from "./src/theme/tokens/breakpoints";
 import { rgbAlpha, toCssVar, toCssVars } from "./src/utils/theme";
 
 const config: Config = {
@@ -20,6 +21,7 @@ const config: Config = {
 		},
 
 		opacity: toCssVars("opacity"),
+		screens: breakpointsTokens,
 		extend: {
 			borderRadius: toCssVars("borderRadius"),
 			boxShadow: toCssVars("shadows"),
