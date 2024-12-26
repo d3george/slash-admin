@@ -20,13 +20,13 @@ export default function ContainerView({ isText, variant, isMulti }: Props) {
 	return (
 		<div
 			key={variant}
-			className="h-[480px] overflow-auto rounded-lg xs:p-20 flex flex-col items-center justify-center"
+			className="h-[480px] overflow-auto rounded-lg flex flex-col items-center justify-center"
 			style={{ backgroundColor: themeVars.colors.background.neutral }}
 		>
 			{isText ? (
 				<MotionContainer className="flex h-[480px] items-center justify-center font-bold md:text-6xl">
 					{TEXT.split("").map((letter) => (
-						<m.div key={letter} variants={varients} className="xs:ml-1">
+						<m.div key={letter} variants={varients}>
 							{letter}
 						</m.div>
 					))}

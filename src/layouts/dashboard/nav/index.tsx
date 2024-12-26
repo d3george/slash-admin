@@ -1,17 +1,16 @@
+import { up } from "@/hooks";
+import { useMediaQuery } from "@/hooks";
 import { useSettings } from "@/store/settingStore";
-import { useResponsive } from "@/theme/hooks";
-
+import { ThemeLayout } from "#/enum";
 import NavHorizontal from "./nav-horizontal";
 import NavVertical from "./nav-vertical";
 
-import { ThemeLayout } from "#/enum";
-
 export default function Nav() {
 	const { themeLayout } = useSettings();
-	const { screenMap } = useResponsive();
+	const isPc = useMediaQuery(up("md"));
 
 	if (themeLayout === ThemeLayout.Horizontal) return <NavHorizontal />;
 
-	if (screenMap.md) return <NavVertical />;
+	if (isPc) return <NavVertical />;
 	return null;
 }

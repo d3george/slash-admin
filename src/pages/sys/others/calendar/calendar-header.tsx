@@ -3,14 +3,11 @@ import dayjs from "dayjs";
 import { type ReactNode, useMemo } from "react";
 
 import { IconButton, Iconify } from "@/components/icon";
-import { useResponsive } from "@/theme/hooks";
+import { up } from "@/hooks";
+import { useMediaQuery } from "@/hooks";
 
 export type HandleMoveArg = "next" | "prev" | "today";
-export type ViewType =
-	| "dayGridMonth"
-	| "timeGridWeek"
-	| "timeGridDay"
-	| "listWeek";
+export type ViewType = "dayGridMonth" | "timeGridWeek" | "timeGridDay" | "listWeek";
 type ViewTypeMenu = {
 	key: string;
 	label: string;
@@ -25,14 +22,8 @@ type Props = {
 	onCreate: VoidFunction;
 	onViewTypeChange: (view: ViewType) => void;
 };
-export default function CalendarHeader({
-	now,
-	view,
-	onMove,
-	onCreate,
-	onViewTypeChange,
-}: Props) {
-	const { screenMap } = useResponsive();
+export default function CalendarHeader({ now, view, onMove, onCreate, onViewTypeChange }: Props) {
+	const LgBreakPoint = useMediaQuery(up("lg"));
 
 	const items = useMemo<ViewTypeMenu[]>(
 		() => [
@@ -88,7 +79,7 @@ export default function CalendarHeader({
 
 	return (
 		<div className="relative flex items-center justify-between py-5">
-			{screenMap.lg && (
+			{LgBreakPoint && (
 				<Dropdown menu={{ items, onClick: handleMenuClick }}>
 					<Button type="text" size="small">
 						{viewTypeMenu(view)}
@@ -98,21 +89,11 @@ export default function CalendarHeader({
 
 			<div className="flex cursor-pointer items-center justify-center">
 				<IconButton>
-					<Iconify
-						icon="solar:alt-arrow-left-outline"
-						onClick={() => onMove("prev")}
-						size={20}
-					/>
+					<Iconify icon="solar:alt-arrow-left-outline" onClick={() => onMove("prev")} size={20} />
 				</IconButton>
-				<span className="mx-2 text-base font-bold">
-					{dayjs(now).format("DD MMM YYYY")}
-				</span>
+				<span className="mx-2 text-base font-bold">{dayjs(now).format("DD MMM YYYY")}</span>
 				<IconButton>
-					<Iconify
-						icon="solar:alt-arrow-right-outline"
-						onClick={() => onMove("next")}
-						size={20}
-					/>
+					<Iconify icon="solar:alt-arrow-right-outline" onClick={() => onMove("next")} size={20} />
 				</IconButton>
 			</div>
 

@@ -11,13 +11,14 @@ import Header from "./header";
 import Main from "./main";
 import Nav from "./nav";
 
-import { useResponsive } from "@/theme/hooks";
+import { down, useMediaQuery } from "@/hooks";
 import { ThemeLayout } from "#/enum";
 import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from "./config";
 
 function DashboardLayout() {
 	const { themeLayout } = useSettings();
-	const { screenMap } = useResponsive();
+
+	const mobileOrTablet = useMediaQuery(down("md"));
 
 	const mainEl = useRef<HTMLDivElement>(null);
 	const { scrollY } = useScroll({ container: mainEl });
@@ -45,13 +46,13 @@ function DashboardLayout() {
 		display: "flex",
 		flexDirection: "column",
 		transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-		paddingLeft: screenMap.md
-			? themeLayout === ThemeLayout.Horizontal
+		paddingLeft: mobileOrTablet
+			? 0
+			: themeLayout === ThemeLayout.Horizontal
 				? 0
 				: themeLayout === ThemeLayout.Mini
 					? NAV_COLLAPSED_WIDTH
-					: NAV_WIDTH
-			: 0,
+					: NAV_WIDTH,
 	};
 
 	return (

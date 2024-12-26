@@ -12,7 +12,7 @@ type ReturnType = {
 	copiedText: CopiedValue;
 };
 
-export function useCopyToClipboard(): ReturnType {
+export default function useCopyToClipboard(): ReturnType {
 	const [copiedText, setCopiedText] = useState<CopiedValue>(null);
 
 	const copyFn: CopyFn = async (text) => {

@@ -4,6 +4,7 @@ import type { ApexOptions } from "apexcharts";
 import { mergeDeepRight } from "ramda";
 
 import { useSettings } from "@/store/settingStore";
+import { breakpointsTokens } from "@/theme/tokens/breakpoints";
 import { paletteColors, presetsColors } from "@/theme/tokens/color";
 
 export default function useChart(options: ApexOptions) {
@@ -192,14 +193,14 @@ export default function useChart(options: ApexOptions) {
 		responsive: [
 			{
 				// sm
-				breakpoint: removePx(themeVars.screens.sm),
+				breakpoint: removePx(breakpointsTokens.sm),
 				options: {
 					plotOptions: { bar: { columnWidth: "40%" } },
 				},
 			},
 			{
 				// md
-				breakpoint: removePx(themeVars.screens.md),
+				breakpoint: removePx(breakpointsTokens.md),
 				options: {
 					plotOptions: { bar: { columnWidth: "32%" } },
 				},
