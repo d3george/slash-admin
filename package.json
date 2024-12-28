@@ -13,6 +13,8 @@
 	"dependencies": {
 		"@ant-design/cssinjs": "^1.17.2",
 		"@ant-design/icons": "^5.2.6",
+		"@fontsource-variable/inter": "^5.1.0",
+		"@fontsource-variable/open-sans": "^5.1.0",
 		"@fullcalendar/common": "^5.11.5",
 		"@fullcalendar/core": "^6.1.9",
 		"@fullcalendar/daygrid": "^6.1.9",

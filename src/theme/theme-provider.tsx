@@ -5,14 +5,13 @@ import { ThemeMode } from "#/enum";
 import { layoutClass } from "./layout.css";
 import { presetsColors } from "./tokens/color";
 import type { UILibraryAdapter } from "./type";
-
 interface ThemeProviderProps {
 	children: React.ReactNode;
 	adapters?: UILibraryAdapter[];
 }
 
 export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
-	const { themeMode, themeColorPresets } = useSettings();
+	const { themeMode, themeColorPresets, fontFamily, fontSize } = useSettings();
 
 	// Update HTML class to support Tailwind dark mode
 	useEffect(() => {
@@ -31,6 +30,15 @@ export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
 		}
 		root.style.setProperty("--shadows-primary", `box-shadow: 0 8px 16px 0 ${rgbAlpha(primaryColors.default, 0.24)}`);
 	}, [themeColorPresets]);
+
+	// Update font size and font family
+	useEffect(() => {
+		const root = window.document.documentElement;
+		root.style.fontSize = `${fontSize}px`;
+
+		const body = window.document.body;
+		body.style.fontFamily = fontFamily;
+	}, [fontFamily, fontSize]);
 
 	// Wrap children with adapters
 	const wrappedWithAdapters = adapters.reduce(

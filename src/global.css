@@ -1,3 +1,7 @@
+/* font */
+@import "@fontsource-variable/open-sans";
+@import "@fontsource-variable/inter";
+
 /* editor */
 @import "react-quill/dist/quill.snow.css";
 /* simplebar */

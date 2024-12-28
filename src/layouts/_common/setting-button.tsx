@@ -1,5 +1,5 @@
 import { CloseOutlined, LeftOutlined, QuestionCircleOutlined, RightOutlined } from "@ant-design/icons";
-import { Button, Card, Drawer, Switch, Tooltip } from "antd";
+import { Button, Card, Drawer, Slider, Switch, Tooltip } from "antd";
 import { m } from "framer-motion";
 import { type CSSProperties, useState } from "react";
 import { MdCircle } from "react-icons/md";
@@ -13,6 +13,8 @@ import { useSettingActions, useSettings } from "@/store/settingStore";
 import { presetsColors } from "@/theme/tokens/color";
 
 import { themeVars } from "@/theme/theme.css";
+import { FontFamilyPreset } from "@/theme/tokens/typography";
+import { cn } from "@/utils";
 import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
 
 /**
@@ -22,7 +24,17 @@ export default function SettingButton() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	const settings = useSettings();
-	const { themeMode, themeColorPresets, themeLayout, themeStretch, breadCrumb, multiTab, darkSidebar } = settings;
+	const {
+		themeMode,
+		themeColorPresets,
+		themeLayout,
+		themeStretch,
+		breadCrumb,
+		multiTab,
+		darkSidebar,
+		fontSize,
+		fontFamily,
+	} = settings;
 	const { setSettings } = useSettingActions();
 
 	const setThemeMode = (themeMode: ThemeMode) => {
@@ -71,6 +83,20 @@ export default function SettingButton() {
 		setSettings({
 			...settings,
 			darkSidebar: checked,
+		});
+	};
+
+	const setFontFamily = (fontFamily: string) => {
+		setSettings({
+			...settings,
+			fontFamily,
+		});
+	};
+
+	const setFontSize = (fontSize: number) => {
+		setSettings({
+			...settings,
+			fontSize,
 		});
 	};
 
@@ -160,9 +186,7 @@ export default function SettingButton() {
 				<div className="flex flex-col gap-6 p-6">
 					{/* theme mode */}
 					<div>
-						<div className="mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
-							Mode
-						</div>
+						<div className="mb-3 text-base font-semibold text-text-secondary">Mode</div>
 						<div className="flex flex-row gap-4">
 							<Card
 								onClick={() => setThemeMode(ThemeMode.Light)}
@@ -189,9 +213,7 @@ export default function SettingButton() {
 
 					{/* theme layout */}
 					<div>
-						<div className="mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
-							Layout
-						</div>
+						<div className="mb-3 text-base font-semibold text-text-secondary">Layout</div>
 						<div className="grid grid-cols-3 gap-4">
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Vertical)}
@@ -320,7 +342,7 @@ export default function SettingButton() {
 
 					{/* theme stretch */}
 					<div>
-						<div className=" mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
+						<div className="mb-3 text-base font-semibold text-text-secondary">
 							<span className="mr-2">Stretch</span>
 							<Tooltip title="Only available at large resolutions > 1600px (xl)">
 								<QuestionCircleOutlined />
@@ -369,9 +391,7 @@ export default function SettingButton() {
 
 					{/* theme presets */}
 					<div>
-						<div className="mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
-							Presets
-						</div>
+						<div className="mb-3 text-base font-semibold text-text-secondary">Presets</div>
 						<div className="grid grid-cols-3 gap-x-4 gap-y-3">
 							{Object.entries(presetsColors).map(([preset, color]) => (
 								<Card
@@ -394,21 +414,56 @@ export default function SettingButton() {
 						</div>
 					</div>
 
+					{/* font */}
+					<div>
+						<div className="mb-3 text-base font-semibold text-text-secondary">Font </div>
+
+						<div className="my-3 text-sm font-semibold text-text-disabled">Family</div>
+						<div className="flex flex-row gap-3">
+							{Object.entries(FontFamilyPreset).map(([font, family]) => (
+								<Card
+									key={font}
+									className="flex h-20 w-full cursor-pointer items-center justify-center"
+									onClick={() => setFontFamily(family)}
+								>
+									<div
+										className={cn(
+											fontFamily === family ? "text-primary font-medium" : "text-text-disabled",
+											"text-center text-lg",
+										)}
+									>
+										<span>A</span>
+										<span className="opacity-50 ml-0.5">a</span>
+									</div>
+									<span
+										className={cn(
+											fontFamily === family ? "text-text-primary font-medium" : "text-text-disabled",
+											"text-sm",
+										)}
+									>
+										{family.replace("Variable", "")}
+									</span>
+								</Card>
+							))}
+						</div>
+
+						<div className="my-3 text-sm font-semibold text-text-disabled">Size</div>
+						<Slider min={12} max={20} defaultValue={fontSize} onChange={setFontSize} />
+					</div>
+
 					{/* Page config */}
 					<div>
-						<div className="mb-3 text-base font-semibold" style={{ color: themeVars.colors.text.secondary }}>
-							Page
-						</div>
+						<div className="mb-3 text-base font-semibold text-text-secondary">Page</div>
 						<div className="flex flex-col gap-2">
-							<div className="flex items-center justify-between" style={{ color: themeVars.colors.text.disabled }}>
+							<div className="flex items-center justify-between text-sm text-text-disabled">
 								<div>BreadCrumb</div>
 								<Switch size="small" checked={breadCrumb} onChange={(checked) => setBreadCrumn(checked)} />
 							</div>
-							<div className="flex items-center justify-between" style={{ color: themeVars.colors.text.disabled }}>
+							<div className="flex items-center justify-between text-sm text-text-disabled">
 								<div>Multi Tab</div>
 								<Switch size="small" checked={multiTab} onChange={(checked) => setMultiTab(checked)} />
 							</div>
-							<div className="flex items-center justify-between" style={{ color: themeVars.colors.text.disabled }}>
+							<div className="flex items-center justify-between text-sm text-text-disabled">
 								<div>Dark Sidebar</div>
 								<Switch size="small" checked={darkSidebar} onChange={(checked) => setDarkSidebar(checked)} />
 							</div>

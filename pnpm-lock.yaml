@@ -14,6 +14,12 @@ importers:
       '@ant-design/icons':
         specifier: ^5.2.6
         version: 5.5.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@fontsource-variable/inter':
+        specifier: ^5.1.0
+        version: 5.1.0
+      '@fontsource-variable/open-sans':
+        specifier: ^5.1.0
+        version: 5.1.0
       '@fullcalendar/common':
         specifier: ^5.11.5
         version: 5.11.5
@@ -723,6 +729,12 @@ packages:
   '@faker-js/faker@8.4.1':
     resolution: {integrity: sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
+
+  '@fontsource-variable/inter@5.1.0':
+    resolution: {integrity: sha512-Wj2dUGP0vUpxRGQTXQTCNJO+aLcFcQm+gUPXfj/aS877bQkEPBPv9JvZJpwdm2vzelt8NTZ+ausKlBCJjh2XIg==}
+
+  '@fontsource-variable/open-sans@5.1.0':
+    resolution: {integrity: sha512-NuJdoORzM6qp+bf5j7dyo6MO8rBEEiSw8wiZv9t7sga0RIODgLLbBAMaZMaZiLwNbXcGPxhFcHcuDaQr1xj9kA==}
 
   '@fullcalendar/common@5.11.5':
     resolution: {integrity: sha512-3iAYiUbHXhjSVXnYWz27Od2cslztUPsOwiwKlfGvQxBixv2Kl6a8IPwaijKFYJHXdwYmfPoEgK7rvqAGVoIYwA==}
@@ -4958,6 +4970,10 @@ snapshots:
     optional: true
 
   '@faker-js/faker@8.4.1': {}
+
+  '@fontsource-variable/inter@5.1.0': {}
+
+  '@fontsource-variable/open-sans@5.1.0': {}
 
   '@fullcalendar/common@5.11.5':
     dependencies:

@@ -11,11 +11,10 @@ import { useSettings } from "@/store/settingStore";
 import { removePx } from "@/utils/theme";
 import { lightShadowTokens } from "../tokens/shadow";
 import { darkShadowTokens } from "../tokens/shadow";
-import { typographyTokens } from "../tokens/typography";
 
 export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 	const { language } = useLocale();
-	const { themeColorPresets } = useSettings();
+	const { themeColorPresets, fontFamily, fontSize } = useSettings();
 	const algorithm = mode === ThemeMode.Light ? theme.defaultAlgorithm : theme.darkAlgorithm;
 
 	const colorTokens = mode === ThemeMode.Light ? lightColorTokens : darkColorTokens;
@@ -35,6 +34,8 @@ export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 		colorBgElevated: colorTokens.background.default,
 
 		wireframe: false,
+		fontFamily: fontFamily,
+		fontSize: fontSize,
 
 		borderRadiusSM: removePx(baseThemeTokens.borderRadius.sm),
 		borderRadius: removePx(baseThemeTokens.borderRadius.default),
@@ -43,11 +44,9 @@ export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 
 	const components: ThemeConfig["components"] = {
 		Breadcrumb: {
-			fontSize: removePx(typographyTokens.fontSize.xs),
 			separatorMargin: removePx(baseThemeTokens.spacing[1]),
 		},
 		Menu: {
-			fontSize: removePx(typographyTokens.fontSize.sm),
 			colorFillAlter: "transparent",
 			itemColor: colorTokens.text.secondary,
 			motionDurationMid: "0.125s",
@@ -72,7 +71,6 @@ export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
 					fontWeight: 700,
 					padding: `0 ${baseThemeTokens.spacing[1]}`,
 					margin: `0 ${baseThemeTokens.spacing[1]}`,
-					fontSize: removePx(typographyTokens.fontSize.xs),
 					borderWidth: 0,
 				},
 			}}

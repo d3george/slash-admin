@@ -1,7 +1,12 @@
+export const FontFamilyPreset = {
+	openSans: "Open Sans Variable",
+	inter: "Inter Variable",
+};
+
 export const typographyTokens = {
 	fontFamily: {
-		primary: "Inter, sans-serif",
-		secondary: "Inter, sans-serif",
+		primary: FontFamilyPreset.openSans,
+		secondary: FontFamilyPreset.inter,
 	},
 	fontSize: {
 		xs: "12",

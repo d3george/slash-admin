@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
+import { FontFamilyPreset, typographyTokens } from "@/theme/tokens/typography";
 import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
 
 type SettingsType = {
@@ -11,6 +12,9 @@ type SettingsType = {
 	breadCrumb: boolean;
 	multiTab: boolean;
 	darkSidebar: boolean;
+	fontFamily: string;
+	fontSize: number;
+	direction: "ltr" | "rtl";
 };
 type SettingStore = {
 	settings: SettingsType;
@@ -32,6 +36,9 @@ const useSettingStore = create<SettingStore>()(
 				breadCrumb: true,
 				multiTab: true,
 				darkSidebar: false,
+				fontFamily: FontFamilyPreset.openSans,
+				fontSize: Number(typographyTokens.fontSize.sm),
+				direction: "ltr",
 			},
 			actions: {
 				setSettings: (settings) => {
@@ -51,5 +58,4 @@ const useSettingStore = create<SettingStore>()(
 );
 
 export const useSettings = () => useSettingStore((state) => state.settings);
-export const useSettingActions = () =>
-	useSettingStore((state) => state.actions);
+export const useSettingActions = () => useSettingStore((state) => state.actions);
