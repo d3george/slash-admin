@@ -1,22 +1,18 @@
+import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { faker } from "@faker-js/faker";
 import { Button, Dropdown, Input, type InputRef, type MenuProps } from "antd";
 import { type CSSProperties, useRef, useState } from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useEvent } from "react-use";
 
 import { Iconify } from "@/components/icon";
-import KanbanTask from "@/pages/sys/others/kanban/kanban-task";
-import {
-	type Column,
-	DragType,
-	type Task,
-	TaskPriority,
-} from "@/pages/sys/others/kanban/types";
 import { useSettings } from "@/store/settingStore";
-
 import { ThemeMode } from "#/enum";
+import KanbanTask from "./kanban-task";
+import { type Column, type Task, TaskPriority } from "./types";
 
 type Props = {
+	id: string;
 	index: number;
 	column: Column;
 	tasks: Task[];
@@ -24,27 +20,30 @@ type Props = {
 	clearColumn: (columnId: string) => void;
 	deleteColumn: (columnId: string) => void;
 	renameColumn: (column: Column) => void;
+	isDragging?: boolean;
 };
 
 export default function KanbanColumn({
-	index,
+	id,
 	column,
 	tasks,
 	createTask,
 	clearColumn,
 	deleteColumn,
 	renameColumn,
+	isDragging,
 }: Props) {
 	const { themeMode } = useSettings();
+	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
 	const style: CSSProperties = {
+		transform: CSS.Transform.toString(transform),
+		transition,
 		height: "100%",
 		padding: "16px",
 		borderRadius: "16px",
-		backgroundColor:
-			themeMode === ThemeMode.Light
-				? "rgb(244, 246, 248)"
-				: "rgba(145, 158, 171, 0.12)",
+		backgroundColor: themeMode === ThemeMode.Light ? "rgb(244, 246, 248)" : "rgba(145, 158, 171, 0.12)",
+		opacity: isDragging ? 0.5 : 1,
 	};
 
 	const items: MenuProps["items"] = [
@@ -106,10 +105,7 @@ export default function KanbanColumn({
 	const [addingTask, setAddingTask] = useState(false);
 	const addTaskInputRef = useRef<InputRef>(null);
 	const handleClickOutside = (event: MouseEvent) => {
-		if (
-			addTaskInputRef.current &&
-			!addTaskInputRef.current.input?.contains(event.target as Node)
-		) {
+		if (addTaskInputRef.current && !addTaskInputRef.current.input?.contains(event.target as Node)) {
 			const addTaskInputVal = addTaskInputRef.current.input?.value;
 			if (addTaskInputVal) {
 				createTask(column.id, {
@@ -122,10 +118,7 @@ export default function KanbanColumn({
 			setAddingTask(false);
 		}
 
-		if (
-			renameTaskInputRef.current &&
-			!renameTaskInputRef.current.input?.contains(event.target as Node)
-		) {
+		if (renameTaskInputRef.current && !renameTaskInputRef.current.input?.contains(event.target as Node)) {
 			const renameInputVal = renameTaskInputRef.current.input?.value;
 			if (renameInputVal) {
 				renameColumn({
@@ -146,74 +139,53 @@ export default function KanbanColumn({
 		menuInfo.domEvent.stopPropagation();
 	};
 	return (
-		<Draggable draggableId={column.id} index={index}>
-			{(provided) => (
-				<div ref={provided.innerRef} {...provided.draggableProps}>
-					<div style={style}>
-						<header
-							{...provided.dragHandleProps}
-							className="mb-4 flex select-none items-center justify-between text-base font-semibold"
-						>
-							{renamingTask ? (
-								<Input ref={renameTaskInputRef} size="large" autoFocus />
-							) : (
-								column.title
-							)}
-							<Dropdown
-								open={dropdownOpen}
-								onOpenChange={(flag) => setDropdownOpen(flag)}
-								menu={{ items, onClick: handleMenuItemClick }}
-								placement="bottomRight"
-								trigger={["click"]}
-							>
-								<Button shape="circle" type="text" className="!text-gray">
-									<Iconify icon="dashicons:ellipsis" />
-								</Button>
-							</Dropdown>
-						</header>
+		<div ref={setNodeRef} style={style}>
+			<header
+				{...attributes}
+				{...listeners}
+				className="mb-4 flex select-none items-center justify-between text-base font-semibold"
+			>
+				{renamingTask ? <Input ref={renameTaskInputRef} size="large" autoFocus /> : column.title}
+				<Dropdown
+					open={dropdownOpen}
+					onOpenChange={(flag) => setDropdownOpen(flag)}
+					menu={{ items, onClick: handleMenuItemClick }}
+					placement="bottomRight"
+					trigger={["click"]}
+				>
+					<Button shape="circle" type="text" className="!text-gray">
+						<Iconify icon="dashicons:ellipsis" />
+					</Button>
+				</Dropdown>
+			</header>
 
-						<Droppable droppableId={column.id} type={DragType.TASK}>
-							{(provided) => (
-								<main
-									ref={provided.innerRef}
-									{...provided.droppableProps}
-									className="min-h-[10px]"
-								>
-									{tasks.map((task, index) => (
-										<KanbanTask task={task} key={task.id} index={index} />
-									))}
-									{provided.placeholder}
-								</main>
-							)}
-						</Droppable>
-
-						<footer className="w-[248px]">
-							{addingTask ? (
-								<Input
-									ref={addTaskInputRef}
-									size="large"
-									placeholder="Task Name"
-									autoFocus
-								/>
-							) : (
-								<Button
-									onClick={(e) => {
-										e.stopPropagation();
-										setAddingTask(true);
-									}}
-									className="!flex items-center justify-center !text-xs !font-medium"
-									type="text"
-									block
-									size="large"
-								>
-									<Iconify icon="carbon:add" size={20} />
-									<span>Add Task</span>
-								</Button>
-							)}
-						</footer>
-					</div>
+			<SortableContext items={tasks.map((task) => task.id)} strategy={verticalListSortingStrategy}>
+				<div className="min-h-[10px]">
+					{tasks.map((task) => (
+						<KanbanTask key={task.id} id={task.id} task={task} />
+					))}
 				</div>
-			)}
-		</Draggable>
+			</SortableContext>
+
+			<footer className="w-[248px]">
+				{addingTask ? (
+					<Input ref={addTaskInputRef} size="large" placeholder="Task Name" autoFocus />
+				) : (
+					<Button
+						onClick={(e) => {
+							e.stopPropagation();
+							setAddingTask(true);
+						}}
+						className="!flex items-center justify-center !text-xs !font-medium"
+						type="text"
+						block
+						size="large"
+					>
+						<Iconify icon="carbon:add" size={20} />
+						<span>Add Task</span>
+					</Button>
+				)}
+			</footer>
+		</div>
 	);
 }

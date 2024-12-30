@@ -1,8 +1,4 @@
-import axios, {
-	type AxiosRequestConfig,
-	type AxiosError,
-	type AxiosResponse,
-} from "axios";
+import axios, { type AxiosRequestConfig, type AxiosError, type AxiosResponse } from "axios";
 
 import { t } from "@/locales/i18n";
 import userStore from "@/store/userStore";
@@ -38,8 +34,7 @@ axiosInstance.interceptors.response.use(
 
 		const { status, data, message } = res.data;
 		// 业务请求成功
-		const hasSuccess =
-			data && Reflect.has(res.data, "status") && status === ResultEnum.SUCCESS;
+		const hasSuccess = data && Reflect.has(res.data, "status") && status === ResultEnum.SUCCESS;
 		if (hasSuccess) {
 			return data;
 		}
@@ -50,8 +45,7 @@ axiosInstance.interceptors.response.use(
 	(error: AxiosError<Result>) => {
 		const { response, message } = error || {};
 
-		const errMsg =
-			response?.data?.message || message || t("sys.api.errorMessage");
+		const errMsg = response?.data?.message || message || t("sys.api.errorMessage");
 		toast.error(errMsg, {
 			position: "top-center",
 		});

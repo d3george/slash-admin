@@ -49,8 +49,3 @@ export type DndDataType = {
 	columns: Columns;
 	columnOrder: string[];
 };
-
-export enum DragType {
-	COLUMN = "column",
-	TASK = "task",
-}

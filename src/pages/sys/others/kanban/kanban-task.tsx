@@ -1,81 +1,71 @@
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { Avatar, Drawer, Image, Select } from "antd";
 import { type CSSProperties, memo, useState } from "react";
-import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
-import CyanBlur from "@/assets/images/background/cyan-blur.png";
-import RedBlur from "@/assets/images/background/red-blur.png";
 import { IconButton, Iconify, SvgIcon } from "@/components/icon";
-import { type Task, TaskPriority } from "@/pages/sys/others/kanban/types";
-
-import TaskDetail from "./task-detail";
-
 import { themeVars } from "@/theme/theme.css";
 import { rgbAlpha } from "@/utils/theme";
+import TaskDetail from "./task-detail";
+import { type Task, TaskPriority } from "./types";
 
 type Props = {
-	index: number;
+	id: string;
 	task: Task;
+	isDragging?: boolean;
 };
-function KanbanTask({ index, task }: Props) {
+
+function KanbanTask({ id, task, isDragging }: Props) {
 	const [drawerOpen, setDrawerOpen] = useState(false);
 
+	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+
 	const style: CSSProperties = {
-		backdropFilter: "blur(6px)",
-		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
-		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundPosition: "right top, left bottom",
-		backgroundSize: "50%, 50%",
+		transform: CSS.Transform.toString(transform),
+		transition,
 	};
 
-	const { id, title, comments = [], attachments = [], priority, assignee } = task;
+	const { title, comments = [], attachments = [], priority, assignee } = task;
+
 	return (
 		<>
-			<Draggable draggableId={id} index={index}>
-				{(provided, snapshot) => (
-					<Container
-						ref={provided.innerRef}
-						{...provided.draggableProps}
-						{...provided.dragHandleProps}
-						$isDragging={snapshot.isDragging}
-					>
-						<div>
-							{attachments.length > 0 && <Image src={attachments[0]} alt="" className="mb-4 rounded-md" />}
-							<div onClick={() => setDrawerOpen(true)}>
-								<div className="flex justify-end">
-									<TaskPrioritySvg taskPriority={priority} />
-								</div>
-								<div>{title}</div>
-								<div className="mt-4 flex items-center justify-between">
-									<div className="flex items-center text-base text-gray-600">
-										<Iconify icon="uim:comment-dots" size={16} className="mr-1" />
-										<span className="text-xs">{comments.length}</span>
-
-										<Iconify icon="iconamoon:attachment-bold" size={16} className="ml-2 mr-1" />
-										<span className="text-xs">{attachments.length}</span>
-									</div>
-
-									{assignee?.length && (
-										<Avatar.Group
-											max={{
-												count: 3,
-												style: {
-													color: themeVars.colors.palette.primary.default,
-													backgroundColor: rgbAlpha(themeVars.colors.palette.primary.default, 0.9),
-												},
-											}}
-										>
-											{assignee.map((url) => (
-												<Avatar key={url} src={url} />
-											))}
-										</Avatar.Group>
-									)}
-								</div>
-							</div>
+			<Container ref={setNodeRef} style={style} {...attributes} {...listeners} $isDragging={!!isDragging}>
+				<div>
+					{attachments.length > 0 && <Image src={attachments[0]} alt="" className="mb-4 rounded-md" />}
+					<div onClick={() => setDrawerOpen(true)}>
+						<div className="flex justify-end">
+							<TaskPrioritySvg taskPriority={priority} />
 						</div>
-					</Container>
-				)}
-			</Draggable>
+						<div>{title}</div>
+						<div className="mt-4 flex items-center justify-between">
+							<div className="flex items-center text-base text-gray-600">
+								<Iconify icon="uim:comment-dots" size={16} className="mr-1" />
+								<span className="text-xs">{comments.length}</span>
+
+								<Iconify icon="iconamoon:attachment-bold" size={16} className="ml-2 mr-1" />
+								<span className="text-xs">{attachments.length}</span>
+							</div>
+
+							{assignee?.length && (
+								<Avatar.Group
+									max={{
+										count: 3,
+										style: {
+											color: themeVars.colors.palette.primary.default,
+											backgroundColor: rgbAlpha(themeVars.colors.palette.primary.default, 0.9),
+										},
+									}}
+								>
+									{assignee.map((url) => (
+										<Avatar key={url} src={url} />
+									))}
+								</Avatar.Group>
+							)}
+						</div>
+					</div>
+				</div>
+			</Container>
 			<Drawer
 				placement="right"
 				title={
@@ -124,7 +114,6 @@ function KanbanTask({ index, task }: Props) {
 	);
 }
 
-// 在这里使用memo很重要，因为drag column时，不应该重复渲染内部的task
 export default memo(KanbanTask);
 
 type TaskPrioritySvgProps = {
@@ -145,16 +134,16 @@ function TaskPrioritySvg({ taskPriority }: TaskPrioritySvgProps) {
 	}
 }
 const Container = styled.div<{ $isDragging: boolean }>`
-  width: 248px;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-  font-weight: 400;
-  font-size: 12px;
-  background-color: ${themeVars.colors.background.default};
-  backdrop-filter: ${(props) => (props.$isDragging ? "blur(6px)" : "")};
+	width: 248px;
+	border-radius: 12px;
+	padding: 16px;
+	margin-bottom: 16px;
+	font-weight: 400;
+	font-size: 12px;
+	background-color: ${themeVars.colors.background.default};
+	backdrop-filter: ${(props) => (props.$isDragging ? "blur(6px)" : "")};
 
-  &:hover {
-    box-shadow: ${themeVars.shadows["3xl"]};
-  }
+	&:hover {
+		box-shadow: ${themeVars.shadows["3xl"]};
+	}
 `;

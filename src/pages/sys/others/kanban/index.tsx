@@ -1,136 +1,129 @@
+import {
+	DndContext,
+	type DragEndEvent,
+	DragOverlay,
+	type DragStartEvent,
+	PointerSensor,
+	useSensor,
+	useSensors,
+} from "@dnd-kit/core";
+import { SortableContext, arrayMove, horizontalListSortingStrategy } from "@dnd-kit/sortable";
 import { faker } from "@faker-js/faker";
 import { Button, Input, type InputRef } from "antd";
 import { useRef, useState } from "react";
-import {
-	DragDropContext,
-	type DropResult,
-	Droppable,
-	type OnDragEndResponder,
-} from "react-beautiful-dnd";
 import { useEvent } from "react-use";
 import SimpleBar from "simplebar-react";
 
 import { Iconify } from "@/components/icon";
-import KanbanColumn from "@/pages/sys/others/kanban/kanban-column";
-import {
-	type Column,
-	type Columns,
-	type DndDataType,
-	DragType,
-	type Task,
-	type Tasks,
-} from "@/pages/sys/others/kanban/types";
-
+import KanbanColumn from "./kanban-column";
+import KanbanTask from "./kanban-task";
 import { initialData } from "./task-utils";
+import type { Column, Columns, DndDataType, Task, Tasks } from "./types";
 
 export default function Kanban() {
 	const [state, setState] = useState(initialData);
-
-	const handleTaskDragEnd = (result: DropResult) => {
-		const { source, destination, draggableId } = result;
-		if (!destination) {
-			return;
-		}
-
-		const start = state.columns[source.droppableId];
-
-		const finish = state.columns[destination.droppableId];
-
-		if (start === finish) {
-			// moving task in one column
-			const newTaskIds = Array.from(start.taskIds);
-			newTaskIds.splice(source.index, 1);
-			newTaskIds.splice(destination.index, 0, draggableId);
-
-			const newColumn: Column = {
-				...start,
-				taskIds: newTaskIds,
-			};
-
-			const newState: DndDataType = {
-				...state,
-				columns: {
-					...state.columns,
-					[newColumn.id]: newColumn,
-				},
-			};
-
-			setState(newState);
-		} else {
-			// moving task from on column to another
-			const startTaskIds = Array.from(start.taskIds);
-			startTaskIds.splice(source.index, 1);
-			const newStart: Column = {
-				...start,
-				taskIds: startTaskIds,
-			};
-
-			const finishTaskIds = Array.from(finish.taskIds);
-			finishTaskIds.splice(destination.index, 0, draggableId);
-			const newFinish: Column = {
-				...finish,
-				taskIds: finishTaskIds,
-			};
-
-			const newState: DndDataType = {
-				...state,
-				columns: {
-					...state.columns,
-					[newStart.id]: newStart,
-					[newFinish.id]: newFinish,
-				},
-			};
-
-			setState(newState);
-		}
-	};
-
-	// dragtype == column
-	const handleColumnDragEnd = (result: DropResult) => {
-		const { source, destination, draggableId } = result;
-		if (!destination) {
-			return;
-		}
-
-		const newColumnOrder = Array.from(state.columnOrder);
-		newColumnOrder.splice(source.index, 1);
-		newColumnOrder.splice(destination.index, 0, draggableId);
-		const newState: DndDataType = {
-			...state,
-			columnOrder: newColumnOrder,
-		};
-		setState(newState);
-	};
-
-	const onDragEnd: OnDragEndResponder = (result) => {
-		const { source, destination, type } = result;
-		// 拖拽到非法非 droppable区域
-		if (!destination) {
-			return;
-		}
-		// 原地放下
-		if (
-			destination.droppableId === source.droppableId &&
-			destination.index === source.index
-		) {
-			return;
-		}
-
-		if (type === DragType.COLUMN) {
-			handleColumnDragEnd(result);
-		} else {
-			handleTaskDragEnd(result);
-		}
-	};
-
+	const [activeId, setActiveId] = useState<string | null>(null);
+	const [activeType, setActiveType] = useState<"column" | "task" | null>(null);
 	const [addingColumn, setAddingColumn] = useState(false);
 	const inputRef = useRef<InputRef>(null);
 
+	const sensors = useSensors(
+		useSensor(PointerSensor, {
+			activationConstraint: {
+				distance: 8,
+			},
+		}),
+	);
+
+	const handleDragStart = (event: DragStartEvent) => {
+		const { active } = event;
+		setActiveId(active.id as string);
+		// 通过判断 id 格式来确定拖拽类型
+		setActiveType(active.id.toString().startsWith("task-") ? "task" : "column");
+	};
+
+	const handleDragEnd = (event: DragEndEvent) => {
+		const { active, over } = event;
+
+		if (!over) {
+			setActiveId(null);
+			setActiveType(null);
+			return;
+		}
+
+		if (active.id !== over.id) {
+			if (activeType === "column") {
+				// 处理列的拖拽
+				const oldIndex = state.columnOrder.indexOf(active.id as string);
+				const newIndex = state.columnOrder.indexOf(over.id as string);
+
+				setState({
+					...state,
+					columnOrder: arrayMove(state.columnOrder, oldIndex, newIndex),
+				});
+			} else {
+				// 处理任务的拖拽
+				const activeColumn = Object.values(state.columns).find((col) => col.taskIds.includes(active.id as string));
+				const overColumn = Object.values(state.columns).find(
+					(col) => col.taskIds.includes(over.id as string) || col.id === over.id,
+				);
+
+				if (!activeColumn || !overColumn) return;
+
+				if (activeColumn === overColumn) {
+					// 同列内移动
+					const newTaskIds = arrayMove(
+						activeColumn.taskIds,
+						activeColumn.taskIds.indexOf(active.id as string),
+						activeColumn.taskIds.indexOf(over.id as string),
+					);
+
+					setState({
+						...state,
+						columns: {
+							...state.columns,
+							[activeColumn.id]: {
+								...activeColumn,
+								taskIds: newTaskIds,
+							},
+						},
+					});
+				} else {
+					// 跨列移动
+					const sourceTaskIds = activeColumn.taskIds.filter((id) => id !== active.id);
+					const destinationTaskIds = [...overColumn.taskIds];
+					const overTaskIndex = overColumn.taskIds.indexOf(over.id as string);
+
+					destinationTaskIds.splice(
+						overTaskIndex >= 0 ? overTaskIndex : destinationTaskIds.length,
+						0,
+						active.id as string,
+					);
+
+					setState({
+						...state,
+						columns: {
+							...state.columns,
+							[activeColumn.id]: {
+								...activeColumn,
+								taskIds: sourceTaskIds,
+							},
+							[overColumn.id]: {
+								...overColumn,
+								taskIds: destinationTaskIds,
+							},
+						},
+					});
+				}
+			}
+		}
+
+		setActiveId(null);
+		setActiveType(null);
+	};
+
 	const handleClickOutside = (event: MouseEvent) => {
-		if (
-			inputRef.current &&
-			!inputRef.current.input?.contains(event.target as Node)
-		) {
+		if (inputRef.current && !inputRef.current.input?.contains(event.target as Node)) {
 			const inputVal = inputRef.current.input?.value;
 			if (inputVal) {
 				createColumn({
@@ -191,9 +184,7 @@ export default function Kanban() {
 				result[key] = state.columns[key];
 				return result;
 			}, {} as Columns);
-		const newColumnOrder = Array.from(state.columnOrder).filter(
-			(item) => item !== columnId,
-		);
+		const newColumnOrder = Array.from(state.columnOrder).filter((item) => item !== columnId);
 
 		const newState: DndDataType = {
 			tasks: newTasks,
@@ -245,51 +236,53 @@ export default function Kanban() {
 	return (
 		<SimpleBar>
 			<div className="flex">
-				<DragDropContext onDragEnd={onDragEnd}>
-					<Droppable
-						droppableId="all-columns"
-						direction="horizontal"
-						type={DragType.COLUMN}
-					>
-						{(provided) => (
-							<div
-								ref={provided.innerRef}
-								{...provided.droppableProps}
-								className="flex h-full items-start gap-6 p-1"
-							>
-								{state.columnOrder.map((columnId, index) => {
-									const column = state.columns[columnId];
-									const tasks = column.taskIds.map(
-										(taskId) => state.tasks[taskId],
-									);
+				<DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+					<div className="flex h-full items-start gap-6 p-1">
+						<SortableContext items={state.columnOrder} strategy={horizontalListSortingStrategy}>
+							{state.columnOrder.map((columnId, index) => {
+								const column = state.columns[columnId];
+								const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
 
-									return (
-										<KanbanColumn
-											key={columnId}
-											index={index}
-											column={column}
-											tasks={tasks}
-											createTask={createTask}
-											clearColumn={clearColumn}
-											deleteColumn={deletColumn}
-											renameColumn={renameColumn}
-										/>
-									);
-								})}
-								{provided.placeholder}
-							</div>
-						)}
-					</Droppable>
-				</DragDropContext>
+								return (
+									<KanbanColumn
+										key={columnId}
+										id={columnId}
+										index={index}
+										column={column}
+										tasks={tasks}
+										createTask={createTask}
+										clearColumn={clearColumn}
+										deleteColumn={deletColumn}
+										renameColumn={renameColumn}
+									/>
+								);
+							})}
+						</SortableContext>
+
+						<DragOverlay>
+							{activeId && activeType === "column" ? (
+								<KanbanColumn
+									id={activeId}
+									index={state.columnOrder.indexOf(activeId)}
+									column={state.columns[activeId]}
+									tasks={state.columns[activeId].taskIds.map((id) => state.tasks[id])}
+									createTask={createTask}
+									clearColumn={clearColumn}
+									deleteColumn={deletColumn}
+									renameColumn={renameColumn}
+									isDragging
+								/>
+							) : null}
+							{activeId && activeType === "task" ? (
+								<KanbanTask id={activeId} task={state.tasks[activeId]} isDragging />
+							) : null}
+						</DragOverlay>
+					</div>
+				</DndContext>
 
 				<div className="ml-[1.6rem] mt-[0.25rem] min-w-[280px]">
 					{addingColumn ? (
-						<Input
-							ref={inputRef}
-							size="large"
-							placeholder="Column Name"
-							autoFocus
-						/>
+						<Input ref={inputRef} size="large" placeholder="Column Name" autoFocus />
 					) : (
 						<Button
 							onClick={(e) => {
