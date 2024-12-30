@@ -6,7 +6,7 @@ import { useTabLabelRender } from "../hooks/use-tab-label-render";
 import { useMultiTabsContext } from "../providers/multi-tabs-provider";
 import type { TabItemProps } from "../types";
 
-export function TabItem({ tab, isActive, style, onClose, onMouseEnter, onMouseLeave }: TabItemProps) {
+export function TabItem({ tab, style, onClose }: TabItemProps) {
 	const { t } = useTranslation();
 	const { tabs, refreshTab, closeTab, closeOthersTab, closeLeft, closeRight, closeAll } = useMultiTabsContext();
 
@@ -90,21 +90,16 @@ export function TabItem({ tab, isActive, style, onClose, onMouseEnter, onMouseLe
 				onClick: menuClick,
 			}}
 		>
-			<div
-				className="relative mx-px flex select-none items-center px-4 py-1"
-				style={style}
-				onMouseEnter={onMouseEnter}
-				onMouseLeave={onMouseLeave}
-			>
+			<div className="relative flex select-none items-center px-4 py-1" style={style}>
 				<div>{renderTabLabel(tab)}</div>
-				{!tab.hideTab && (tabs.length > 1 || isActive) && (
+				{!tab.hideTab && (
 					<Iconify
 						icon="ion:close-outline"
 						size={18}
 						className="ml-2 cursor-pointer opacity-50"
 						onClick={(e) => {
 							e.stopPropagation();
-							onClose();
+							onClose?.();
 						}}
 					/>
 				)}

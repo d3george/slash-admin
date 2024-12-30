@@ -1,4 +1,4 @@
-import { themeVars } from "@/theme/theme.css";
+import { cn } from "@/utils";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useMultiTabsContext } from "../providers/multi-tabs-provider";
@@ -7,9 +7,10 @@ import { TabItem } from "./tab-item";
 
 type Props = {
 	tab: KeepAliveTab;
+	onClick: () => void;
 };
 
-export const SortableTabItem = ({ tab }: Props) => {
+export const SortableItem = ({ tab, onClick }: Props) => {
 	const { activeTabRoutePath, closeTab } = useMultiTabsContext();
 	const isActive = tab.key === activeTabRoutePath;
 	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
@@ -23,15 +24,19 @@ export const SortableTabItem = ({ tab }: Props) => {
 	const style = {
 		transform: CSS.Translate.toString(transform),
 		transition,
-		border: "1px solid",
-		borderRadius: "8px 8px 0 0",
-		borderColor: `rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.2)`,
-		color: isActive ? themeVars.colors.palette.primary.default : "inherit",
 	};
 
 	return (
-		<div ref={setNodeRef} style={style} {...attributes} {...listeners} id={`tab${tab.key.split("/").join("-")}`}>
-			<TabItem tab={tab} isActive={isActive} isHovering={false} onClose={() => closeTab(tab.key)} />
-		</div>
+		<li
+			ref={setNodeRef}
+			style={style}
+			{...attributes}
+			{...listeners}
+			id={`tab${tab.key.split("/").join("-")}`}
+			onClick={onClick}
+			className={cn("flex-shrink-0 rounded-t-lg border border-border", isActive && "text-primary")}
+		>
+			<TabItem tab={tab} onClose={() => closeTab(tab.key)} />
+		</li>
 	);
 };

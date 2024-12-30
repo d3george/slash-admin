@@ -22,13 +22,9 @@ export type MultiTabsContextType = {
 
 export type TabItemProps = {
 	tab: KeepAliveTab;
-	isActive: boolean;
-	isHovering: boolean;
 	style?: CSSProperties;
 	className?: string;
-	onClose: () => void;
-	onMouseEnter?: () => void;
-	onMouseLeave?: () => void;
+	onClose?: () => void;
 };
 
 export type TabDropdownProps = {

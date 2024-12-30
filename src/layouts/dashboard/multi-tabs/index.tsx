@@ -1,18 +1,17 @@
 import { useRouter } from "@/router/hooks";
 import { replaceDynamicParams } from "@/router/hooks/use-current-route-meta";
-import { DndContext, type DragEndEvent, PointerSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
-import { SortableContext, rectSwappingStrategy } from "@dnd-kit/sortable";
-
 import { Tabs } from "antd";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { SortableTabItem } from "./components/sortable-tab-item";
+import SortableContainer from "./components/sortable-container";
+import { SortableItem } from "./components/sortable-item";
+import { TabItem } from "./components/tab-item";
 import { useMultiTabsStyle } from "./hooks/use-tab-style";
 import { useMultiTabsContext } from "./providers/multi-tabs-provider";
 import type { KeepAliveTab } from "./types";
 
 export default function MultiTabs({ offsetTop = false }: { offsetTop: boolean }) {
-	const scrollContainer = useRef<HTMLDivElement>(null);
+	const scrollContainer = useRef<HTMLUListElement>(null);
 
 	const { tabs, activeTabRoutePath, setTabs } = useMultiTabsContext();
 	const style = useMultiTabsStyle(offsetTop);
@@ -58,64 +57,19 @@ export default function MultiTabs({ offsetTop = false }: { offsetTop: boolean })
 		};
 	}, []);
 
-	const sensors = useSensors(
-		useSensor(PointerSensor, {
-			activationConstraint: {
-				distance: 5, // 需要移动 5px 才会开始拖拽
-				// 或者使用时间约束
-				// delay: 100, // 需要按住 100ms 才会开始拖拽
-			},
-		}),
-	);
-	const handleDragEnd = (event: DragEndEvent) => {
-		console.log("handleDragEnd", event);
-		const { active, over } = event;
-		if (!over || active.id === over.id) return;
-
-		const oldIndex = tabs.findIndex((tab) => tab.key === active.id);
-		const newIndex = tabs.findIndex((tab) => tab.key === over.id);
-
+	const handleDragEnd = (oldIndex: number, newIndex: number) => {
 		const newTabs = Array.from(tabs);
 		const [movedTab] = newTabs.splice(oldIndex, 1);
 		newTabs.splice(newIndex, 0, movedTab);
 
 		setTabs([...newTabs]);
 	};
-	// 添加约束修饰符
-	const restrictToHorizontalAxis = ({ transform }: any) => {
-		return {
-			...transform,
-			y: 0, // 将垂直方向的移动固定为 0
-		};
-	};
-	const renderTabBar = () => (
-		<div style={style}>
-			<DndContext
-				sensors={sensors}
-				collisionDetection={closestCenter}
-				onDragEnd={handleDragEnd}
-				modifiers={[restrictToHorizontalAxis]}
-			>
-				<SortableContext items={tabs.map((tab) => tab.key)} strategy={rectSwappingStrategy}>
-					<div className="flex w-full overflow-visible items-center relative">
-						<div ref={scrollContainer} className="hide-scrollbar flex w-full px-2 flex-shrink-0 items-center h-full">
-							{tabs.map((tab) => (
-								<div className="flex-shrink-0" key={tab.key} onClick={() => handleTabClick(tab)}>
-									<SortableTabItem tab={tab} />
-								</div>
-							))}
-						</div>
-					</div>
-				</SortableContext>
-			</DndContext>
-		</div>
-	);
 
-	const tabItems = tabs.map((tab) => ({
-		key: tab.key,
-		label: tab.label,
-		children: <div key={tab.timeStamp}>{tab.children}</div>,
-	}));
+	const renderOverlay = (id: string | number) => {
+		const tab = tabs.find((tab) => tab.key === id);
+		if (!tab) return null;
+		return <TabItem tab={tab} />;
+	};
 
 	return (
 		<StyledMultiTabs>
@@ -124,8 +78,23 @@ export default function MultiTabs({ offsetTop = false }: { offsetTop: boolean })
 				type="card"
 				tabBarGutter={4}
 				activeKey={activeTabRoutePath}
-				items={tabItems}
-				renderTabBar={renderTabBar}
+				items={tabs.map((tab) => ({
+					...tab,
+					children: <div key={tab.timeStamp}>{tab.children}</div>,
+				}))}
+				renderTabBar={() => {
+					return (
+						<div style={style}>
+							<SortableContainer items={tabs} onSortEnd={handleDragEnd} renderOverlay={renderOverlay}>
+								<ul ref={scrollContainer} className="flex overflow-x-auto w-full px-2 h-[32px] hide-scrollbar">
+									{tabs.map((tab) => (
+										<SortableItem tab={tab} key={tab.key} onClick={() => handleTabClick(tab)} />
+									))}
+								</ul>
+							</SortableContainer>
+						</div>
+					);
+				}}
 			/>
 		</StyledMultiTabs>
 	);
@@ -154,7 +123,6 @@ const StyledMultiTabs = styled.div`
 
   .hide-scrollbar {
     overflow: scroll;
-    flex-shrink: 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
     will-change: transform;

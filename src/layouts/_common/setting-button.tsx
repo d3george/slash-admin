@@ -150,7 +150,6 @@ export default function SettingButton() {
 				onClose={() => setDrawerOpen(false)}
 				open={drawerOpen}
 				closable={false}
-				width={280}
 				styles={{
 					body: { padding: 0 },
 					mask: { backgroundColor: "transparent" },
@@ -217,7 +216,7 @@ export default function SettingButton() {
 						<div className="grid grid-cols-3 gap-4">
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Vertical)}
-								className="h-12 cursor-pointer"
+								className="h-16 cursor-pointer"
 								style={{ flexGrow: 1, flexShrink: 0 }}
 								styles={{
 									body: {
@@ -260,7 +259,7 @@ export default function SettingButton() {
 							</Card>
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Horizontal)}
-								className="h-12 cursor-pointer"
+								className="h-16 cursor-pointer"
 								style={{ flexGrow: 1, flexShrink: 0 }}
 								styles={{
 									body: {
@@ -304,7 +303,7 @@ export default function SettingButton() {
 							</Card>
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Mini)}
-								className="h-12 cursor-pointer"
+								className="h-16 cursor-pointer"
 								style={{ flexGrow: 1, flexShrink: 0 }}
 								styles={{
 									body: {
