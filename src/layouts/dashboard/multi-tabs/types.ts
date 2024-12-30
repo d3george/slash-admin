@@ -1,7 +1,7 @@
+import type { MenuProps } from "antd";
+import type { CSSProperties, ReactNode } from "react";
 // types.ts
 import type { RouteMeta } from "#/router";
-import type { CSSProperties, ReactNode } from "react";
-import type { MenuProps } from "antd";
 
 export type KeepAliveTab = RouteMeta & {
 	children: ReactNode;
@@ -24,10 +24,11 @@ export type TabItemProps = {
 	tab: KeepAliveTab;
 	isActive: boolean;
 	isHovering: boolean;
-	style: CSSProperties;
+	style?: CSSProperties;
+	className?: string;
 	onClose: () => void;
-	onMouseEnter: () => void;
-	onMouseLeave: () => void;
+	onMouseEnter?: () => void;
+	onMouseLeave?: () => void;
 };
 
 export type TabDropdownProps = {

@@ -1,87 +1,40 @@
 import { useRouter } from "@/router/hooks";
 import { replaceDynamicParams } from "@/router/hooks/use-current-route-meta";
-import { themeVars } from "@/theme/theme.css";
+import { DndContext, type DragEndEvent, PointerSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
+import { SortableContext, rectSwappingStrategy } from "@dnd-kit/sortable";
+
 import { Tabs } from "antd";
-import { useEffect, useRef, useState } from "react";
-import { DragDropContext, Draggable, Droppable, type OnDragEndResponder } from "react-beautiful-dnd";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { TabItem } from "./components/tab-item";
+import { SortableTabItem } from "./components/sortable-tab-item";
 import { useMultiTabsStyle } from "./hooks/use-tab-style";
 import { useMultiTabsContext } from "./providers/multi-tabs-provider";
 import type { KeepAliveTab } from "./types";
 
 export default function MultiTabs({ offsetTop = false }: { offsetTop: boolean }) {
 	const scrollContainer = useRef<HTMLDivElement>(null);
-	const tabContentRef = useRef(null);
 
-	const [hoveringTabKey, setHoveringTabKey] = useState("");
-	const { tabs, activeTabRoutePath, setTabs, closeTab } = useMultiTabsContext();
+	const { tabs, activeTabRoutePath, setTabs } = useMultiTabsContext();
 	const style = useMultiTabsStyle(offsetTop);
 	const { push } = useRouter();
 
-	const getTabStyle = (tab: KeepAliveTab) => {
-		const isActive = tab.key === activeTabRoutePath || tab.key === hoveringTabKey;
-
-		return {
-			borderRadius: "8px 8px 0 0",
-			borderWidth: "1px",
-			borderStyle: "solid",
-			borderColor: `rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.2)`,
-			color: isActive ? themeVars.colors.palette.primary.default : "inherit",
-			transition: "color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-		};
-	};
-
-	const tabItems = tabs.map((tab) => ({
-		key: tab.key,
-		label: (
-			<TabItem
-				tab={tab}
-				isActive={tab.key === activeTabRoutePath}
-				isHovering={tab.key === hoveringTabKey}
-				onMouseEnter={() => setHoveringTabKey(tab.key)}
-				onMouseLeave={() => setHoveringTabKey("")}
-				style={getTabStyle(tab)}
-				onClose={() => closeTab(tab.key)}
-			/>
-		),
-		children: (
-			<div ref={tabContentRef} key={tab.timeStamp}>
-				{tab.children}
-			</div>
-		),
-	}));
-
-	const onDragEnd: OnDragEndResponder = ({ destination, source }) => {
-		if (!destination) return;
-		if (destination.droppableId === source.droppableId && destination.index === source.index) {
-			return;
-		}
-
-		const newTabs = Array.from(tabs);
-		const [movedTab] = newTabs.splice(source.index, 1);
-		newTabs.splice(destination.index, 0, movedTab);
-
-		setTabs([...newTabs]);
-	};
-
 	const handleTabClick = ({ key, params = {} }: KeepAliveTab) => {
+		console.log("handleTabClick", key, params);
 		const tabKey = replaceDynamicParams(key, params);
 		push(tabKey);
 	};
 
 	useEffect(() => {
 		if (!scrollContainer.current) return;
-
-		const index = tabs.findIndex((tab) => tab.key === activeTabRoutePath);
-		const currentTabElement = scrollContainer.current.querySelector(`#tab-${index}`);
+		const tab = tabs.find((item) => item.key === activeTabRoutePath);
+		const currentTabElement = scrollContainer.current.querySelector(`#tab${tab?.key.split("/").join("-")}`);
 		if (currentTabElement) {
 			currentTabElement.scrollIntoView({
 				block: "nearest",
 				behavior: "smooth",
 			});
 		}
-	}, [activeTabRoutePath, tabs]);
+	}, [tabs, activeTabRoutePath]);
 
 	useEffect(() => {
 		const container = scrollContainer.current;
@@ -105,41 +58,64 @@ export default function MultiTabs({ offsetTop = false }: { offsetTop: boolean })
 		};
 	}, []);
 
+	const sensors = useSensors(
+		useSensor(PointerSensor, {
+			activationConstraint: {
+				distance: 5, // 需要移动 5px 才会开始拖拽
+				// 或者使用时间约束
+				// delay: 100, // 需要按住 100ms 才会开始拖拽
+			},
+		}),
+	);
+	const handleDragEnd = (event: DragEndEvent) => {
+		console.log("handleDragEnd", event);
+		const { active, over } = event;
+		if (!over || active.id === over.id) return;
+
+		const oldIndex = tabs.findIndex((tab) => tab.key === active.id);
+		const newIndex = tabs.findIndex((tab) => tab.key === over.id);
+
+		const newTabs = Array.from(tabs);
+		const [movedTab] = newTabs.splice(oldIndex, 1);
+		newTabs.splice(newIndex, 0, movedTab);
+
+		setTabs([...newTabs]);
+	};
+	// 添加约束修饰符
+	const restrictToHorizontalAxis = ({ transform }: any) => {
+		return {
+			...transform,
+			y: 0, // 将垂直方向的移动固定为 0
+		};
+	};
 	const renderTabBar = () => (
-		<div style={style} className="z-20 w-full">
-			<DragDropContext onDragEnd={onDragEnd}>
-				<Droppable droppableId="tabs" direction="horizontal">
-					{(provided) => (
-						<div
-							ref={provided.innerRef}
-							{...provided.droppableProps}
-							className="flex w-full overflow-visible items-center h-[34px]"
-						>
-							<div ref={scrollContainer} className="hide-scrollbar flex w-full px-2 flex-shrink-0 items-center h-full">
-								{tabs.map((tab, index) => (
-									<div id={`tab-${index}`} key={tab.key} className="flex-shrink-0" onClick={() => handleTabClick(tab)}>
-										<Draggable key={tab.key} draggableId={tab.key} index={index}>
-											{(dragProvided) => (
-												<div
-													ref={dragProvided.innerRef}
-													{...dragProvided.draggableProps}
-													{...dragProvided.dragHandleProps}
-													className="w-auto"
-												>
-													{tabItems.find((item) => item.key === tab.key)?.label}
-												</div>
-											)}
-										</Draggable>
-									</div>
-								))}
-							</div>
-							{provided.placeholder}
+		<div style={style}>
+			<DndContext
+				sensors={sensors}
+				collisionDetection={closestCenter}
+				onDragEnd={handleDragEnd}
+				modifiers={[restrictToHorizontalAxis]}
+			>
+				<SortableContext items={tabs.map((tab) => tab.key)} strategy={rectSwappingStrategy}>
+					<div className="flex w-full overflow-visible items-center relative">
+						<div ref={scrollContainer} className="hide-scrollbar flex w-full px-2 flex-shrink-0 items-center h-full">
+							{tabs.map((tab) => (
+								<div className="flex-shrink-0" key={tab.key} onClick={() => handleTabClick(tab)}>
+									<SortableTabItem tab={tab} />
+								</div>
+							))}
 						</div>
-					)}
-				</Droppable>
-			</DragDropContext>
+					</div>
+				</SortableContext>
+			</DndContext>
 		</div>
 	);
+
+	const tabItems = tabs.map((tab) => ({
+		key: tab.key,
+		label: tab.label,
+		children: <div key={tab.timeStamp}>{tab.children}</div>,
+	}));
 
 	return (
 		<StyledMultiTabs>
@@ -181,7 +157,8 @@ const StyledMultiTabs = styled.div`
     flex-shrink: 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    
+    will-change: transform;
+ 
     &::-webkit-scrollbar {
       display: none;
     }

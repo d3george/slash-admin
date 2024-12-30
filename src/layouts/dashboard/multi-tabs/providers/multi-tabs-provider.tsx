@@ -1,10 +1,9 @@
-// MultiTabsProvider.tsx
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { isEmpty } from "ramda";
 import { useCurrentRouteMeta } from "@/router/hooks";
 import { replaceDynamicParams } from "@/router/hooks/use-current-route-meta";
+import { isEmpty } from "ramda";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useTabOperations } from "../hooks/use-tab-operations";
-import type { MultiTabsContextType, KeepAliveTab } from "../types";
+import type { KeepAliveTab, MultiTabsContextType } from "../types";
 
 const MultiTabsContext = createContext<MultiTabsContextType>({
 	tabs: [],
@@ -70,11 +69,7 @@ export function MultiTabsProvider({ children }: { children: React.ReactNode }) {
 		[tabs, activeTabRoutePath, operations],
 	);
 
-	return (
-		<MultiTabsContext.Provider value={contextValue}>
-			{children}
-		</MultiTabsContext.Provider>
-	);
+	return <MultiTabsContext.Provider value={contextValue}>{children}</MultiTabsContext.Provider>;
 }
 
 export function useMultiTabsContext() {
