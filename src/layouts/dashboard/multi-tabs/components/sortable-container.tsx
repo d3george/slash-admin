@@ -6,6 +6,7 @@ import {
 	KeyboardSensor,
 	MeasuringStrategy,
 	PointerSensor,
+	TouchSensor,
 	closestCenter,
 	defaultDropAnimationSideEffects,
 	useSensor,
@@ -31,6 +32,7 @@ const SortableContainer: React.FC<SortableContainerProps> = ({ items, onSortEnd,
 				distance: 8, // 8px 的移动距离后才触发拖拽
 			},
 		}),
+		useSensor(TouchSensor),
 		useSensor(KeyboardSensor),
 	);
 
