@@ -16,13 +16,10 @@ import { themeVars } from "@/theme/theme.css";
 import { cn } from "@/utils";
 import { rgbAlpha } from "@/utils/theme";
 import { ThemeLayout } from "#/enum";
-import { HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH, OFFSET_HEADER_HEIGHT } from "./config";
+import { HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH } from "./config";
 import NavVertical from "./nav/nav-vertical";
 
-type Props = {
-	offsetTop?: boolean;
-};
-export default function Header({ offsetTop = false }: Props) {
+export default function Header() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const { themeLayout, breadCrumb } = useSettings();
 
@@ -44,7 +41,7 @@ export default function Header({ offsetTop = false }: Props) {
 				<div
 					className="flex flex-grow items-center justify-between px-4 text-gray backdrop-blur xl:px-6 2xl:px-10"
 					style={{
-						height: offsetTop ? OFFSET_HEADER_HEIGHT : HEADER_HEIGHT,
+						height: HEADER_HEIGHT,
 						transition: "height 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
 					}}
 				>

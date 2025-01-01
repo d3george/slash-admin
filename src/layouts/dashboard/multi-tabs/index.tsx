@@ -10,11 +10,11 @@ import { useMultiTabsStyle } from "./hooks/use-tab-style";
 import { useMultiTabsContext } from "./providers/multi-tabs-provider";
 import type { KeepAliveTab } from "./types";
 
-export default function MultiTabs({ offsetTop = false }: { offsetTop: boolean }) {
+export default function MultiTabs() {
 	const scrollContainer = useRef<HTMLUListElement>(null);
 
 	const { tabs, activeTabRoutePath, setTabs } = useMultiTabsContext();
-	const style = useMultiTabsStyle(offsetTop);
+	const style = useMultiTabsStyle();
 	const { push } = useRouter();
 
 	const handleTabClick = ({ key, params = {} }: KeepAliveTab) => {

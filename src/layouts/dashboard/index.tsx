@@ -1,6 +1,5 @@
 import { Layout } from "antd";
-import { useScroll } from "framer-motion";
-import { type CSSProperties, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { type CSSProperties, Suspense, useMemo } from "react";
 
 import { CircleLoading } from "@/components/loading";
 import ProgressBar from "@/components/progress-bar";
@@ -19,24 +18,6 @@ function DashboardLayout() {
 	const { themeLayout } = useSettings();
 
 	const mobileOrTablet = useMediaQuery(down("md"));
-
-	const mainEl = useRef<HTMLDivElement>(null);
-	const { scrollY } = useScroll({ container: mainEl });
-
-	/**
-	 *  Tracks if content is scrolled
-	 */
-	const [offsetTop, setOffsetTop] = useState(false);
-
-	const onOffSetTop = useCallback(() => {
-		scrollY.on("change", (scrollHeight) => {
-			setOffsetTop(scrollHeight > 0);
-		});
-	}, [scrollY]);
-
-	useEffect(() => {
-		onOffSetTop();
-	}, [onOffSetTop]);
 
 	const layoutClassName = useMemo(() => {
 		return cn("flex h-screen overflow-hidden", themeLayout === ThemeLayout.Horizontal ? "flex-col" : "flex-row");
@@ -61,9 +42,9 @@ function DashboardLayout() {
 			<Layout className={layoutClassName}>
 				<Suspense fallback={<CircleLoading />}>
 					<Layout style={secondLayoutStyle}>
-						<Header offsetTop={themeLayout !== ThemeLayout.Horizontal && offsetTop} />
+						<Header />
 						<Nav />
-						<Main ref={mainEl} offsetTop={offsetTop} />
+						<Main />
 					</Layout>
 				</Suspense>
 			</Layout>

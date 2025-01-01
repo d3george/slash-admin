@@ -2,17 +2,14 @@ import { useSettings } from "@/store/settingStore";
 import { themeVars } from "@/theme/theme.css";
 import { cn } from "@/utils";
 import { Content } from "antd/es/layout/layout";
-import { type CSSProperties, forwardRef } from "react";
+import type { CSSProperties } from "react";
 import { Outlet } from "react-router";
 import { ThemeLayout } from "#/enum";
 import { MULTI_TABS_HEIGHT } from "./config";
 import MultiTabs from "./multi-tabs";
 import { MultiTabsProvider } from "./multi-tabs/providers/multi-tabs-provider";
 
-type Props = {
-	offsetTop?: boolean;
-};
-const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
+const Main = () => {
 	const { themeStretch, themeLayout, multiTab } = useSettings();
 
 	const mainStyle: CSSProperties = {
@@ -24,7 +21,7 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
 
 	return (
 		<Content style={mainStyle} className="flex">
-			<div className="flex-grow overflow-auto size-full" ref={ref}>
+			<div className="flex-grow overflow-auto size-full">
 				<div
 					className={cn(
 						"m-auto size-full flex-grow sm:p-2",
@@ -34,7 +31,7 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
 				>
 					{multiTab ? (
 						<MultiTabsProvider>
-							<MultiTabs offsetTop={offsetTop} />
+							<MultiTabs />
 						</MultiTabsProvider>
 					) : (
 						<Outlet />
@@ -43,6 +40,6 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
 			</div>
 		</Content>
 	);
-});
+};
 
 export default Main;

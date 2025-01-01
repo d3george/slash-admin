@@ -5,23 +5,16 @@ import { rgbAlpha } from "@/utils/theme";
 import { type CSSProperties, useMemo } from "react";
 import { ThemeLayout } from "#/enum";
 
-import {
-	HEADER_HEIGHT,
-	MULTI_TABS_HEIGHT,
-	NAV_COLLAPSED_WIDTH,
-	NAV_HORIZONTAL_HEIGHT,
-	NAV_WIDTH,
-	OFFSET_HEADER_HEIGHT,
-} from "../../config";
+import { HEADER_HEIGHT, MULTI_TABS_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_HORIZONTAL_HEIGHT, NAV_WIDTH } from "../../config";
 
-export function useMultiTabsStyle(offsetTop: boolean) {
+export function useMultiTabsStyle() {
 	const { themeLayout } = useSettings();
 	const isPc = useMediaQuery(up("md"));
 
 	return useMemo(() => {
 		const style: CSSProperties = {
 			position: "fixed",
-			top: offsetTop ? OFFSET_HEADER_HEIGHT - 2 : HEADER_HEIGHT,
+			top: HEADER_HEIGHT,
 			right: 0,
 			height: MULTI_TABS_HEIGHT,
 			backgroundColor: rgbAlpha(themeVars.colors.background.defaultChannel, 0.9),
@@ -36,5 +29,5 @@ export function useMultiTabsStyle(offsetTop: boolean) {
 		}
 
 		return style;
-	}, [themeLayout, offsetTop, isPc]);
+	}, [themeLayout, isPc]);
 }
