@@ -114,6 +114,7 @@
 			"functions": "Functions",
 			"clipboard": "Clipboard",
 			"token_expired": "Token Expired",
+			"permission_button": "Permission Button",
 			"menulevel": {
 				"index": "Menu Level",
 				"1a": "Menu Level 1a",

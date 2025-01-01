@@ -41,6 +41,7 @@ export interface Permission {
 	frameSrc?: string;
 	newFeature?: boolean;
 	children?: Permission[];
+	perm?: string;
 }
 
 export interface Role {

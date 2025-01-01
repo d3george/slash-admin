@@ -290,36 +290,64 @@ const COMPONENTS_PERMISSION = {
 		},
 	],
 };
-const FUNCTIONS_PERMISSION = {
-	id: "8132044808088488",
-	parentId: "",
-	label: "sys.menu.functions",
-	name: "functions",
-	icon: "solar:plain-2-bold-duotone",
-	type: PermissionType.CATALOGUE,
-	route: "functions",
-	order: 4,
-	children: [
-		{
-			id: "3667930780705750",
-			parentId: "8132044808088488",
-			label: "sys.menu.clipboard",
-			name: "Clipboard",
-			type: PermissionType.MENU,
-			route: "clipboard",
-			component: "/functions/clipboard/index.tsx",
-		},
-		{
-			id: "3667930780705751",
-			parentId: "8132044808088488",
-			label: "sys.menu.token_expired",
-			name: "Token Expired",
-			type: PermissionType.MENU,
-			route: "token-expired",
-			component: "/functions/token-expired/index.tsx",
-		},
-	],
-};
+function createFunctionsPermissionByRole(role) {
+	return {
+		id: "8132044808088488",
+		parentId: "",
+		label: "sys.menu.functions",
+		name: "functions",
+		icon: "solar:plain-2-bold-duotone",
+		type: PermissionType.CATALOGUE,
+		route: "functions",
+		order: 4,
+		children: [
+			{
+				id: "3667930780705750",
+				parentId: "8132044808088488",
+				label: "sys.menu.clipboard",
+				name: "Clipboard",
+				type: PermissionType.MENU,
+				route: "clipboard",
+				component: "/functions/clipboard/index.tsx",
+			},
+			{
+				id: "3667930780705751",
+				parentId: "8132044808088488",
+				label: "sys.menu.token_expired",
+				name: "Token Expired",
+				type: PermissionType.MENU,
+				route: "token-expired",
+				component: "/functions/token-expired/index.tsx",
+			},
+			{
+				id: "0941594969900757",
+				parentId: "8132044808088488",
+				label: "sys.menu.permission_button",
+				name: "Button",
+				type: PermissionType.MENU,
+				route: "button",
+				component: "/functions/button/index.tsx",
+				children: [
+					{
+						id: "0941594969900758",
+						parentId: "0941594969900757",
+						label: "sys.menu.permission_button",
+						type: PermissionType.BUTTON,
+						perm: "functions:button:edit",
+					},
+					role === "admin" && {
+						id: "0941594969900758",
+						parentId: "0941594969900757",
+						label: "sys.menu.permission_button",
+						type: PermissionType.BUTTON,
+						perm: "functions:button:delete",
+					},
+				].filter(Boolean),
+			},
+		],
+	};
+}
+
 const MENU_LEVEL_PERMISSION = {
 	id: "0194818428516575",
 	parentId: "",
@@ -371,8 +399,7 @@ const MENU_LEVEL_PERMISSION = {
 							name: "Menu Level 3a",
 							type: PermissionType.MENU,
 							route: "menu-level-3a",
-							component:
-								"/menu-level/menu-level-1b/menu-level-2b/menu-level-3a/index.tsx",
+							component: "/menu-level/menu-level-1b/menu-level-2b/menu-level-3a/index.tsx",
 						},
 						{
 							id: "3298034742548454",
@@ -381,8 +408,7 @@ const MENU_LEVEL_PERMISSION = {
 							name: "Menu Level 3b",
 							type: PermissionType.MENU,
 							route: "menu-level-3b",
-							component:
-								"/menu-level/menu-level-1b/menu-level-2b/menu-level-3b/index.tsx",
+							component: "/menu-level/menu-level-1b/menu-level-2b/menu-level-3b/index.tsx",
 						},
 					],
 				},
@@ -520,7 +546,7 @@ export const PERMISSION_LIST = [
 	DASHBOARD_PERMISSION,
 	MANAGEMENT_PERMISSION,
 	COMPONENTS_PERMISSION,
-	FUNCTIONS_PERMISSION,
+	createFunctionsPermissionByRole("admin"),
 	MENU_LEVEL_PERMISSION,
 	ERRORS_PERMISSION,
 	...OTHERS_PERMISSION,
@@ -545,11 +571,7 @@ const TEST_ROLE = {
 	status: BasicStatus.ENABLE,
 	order: 2,
 	desc: "test",
-	permission: [
-		DASHBOARD_PERMISSION,
-		COMPONENTS_PERMISSION,
-		FUNCTIONS_PERMISSION,
-	],
+	permission: [DASHBOARD_PERMISSION, COMPONENTS_PERMISSION, createFunctionsPermissionByRole("test")],
 };
 export const ROLE_LIST = [ADMIN_ROLE, TEST_ROLE];
 
@@ -594,8 +616,7 @@ if (import.meta.hot) {
 
 		if (!userInfo?.username) return;
 
-		const newUserInfo =
-			userInfo.username === DEFAULT_USER.username ? DEFAULT_USER : TEST_USER;
+		const newUserInfo = userInfo.username === DEFAULT_USER.username ? DEFAULT_USER : TEST_USER;
 
 		setUserInfo(newUserInfo);
 

@@ -113,6 +113,7 @@
 			"functions": "功能",
 			"clipboard": "剪贴板",
 			"token_expired": "Token失效",
+			"permission_button": "按钮权限",
 			"menulevel": {
 				"index": "多级菜单",
 				"1a": "多级菜单 1a",
