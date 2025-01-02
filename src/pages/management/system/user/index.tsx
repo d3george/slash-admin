@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "@/router/hooks";
 import type { Role, UserInfo } from "#/entity";
 import { BasicStatus } from "#/enum";
 
-const USERS: UserInfo[] = USER_LIST;
+const USERS: UserInfo[] = USER_LIST as UserInfo[];
 
 export default function RolePage() {
 	const { push } = useRouter();

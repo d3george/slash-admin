@@ -10,7 +10,7 @@ import { RoleModal, type RoleModalProps } from "./role-modal";
 import type { Role } from "#/entity";
 import { BasicStatus } from "#/enum";
 
-const ROLES: Role[] = ROLE_LIST;
+const ROLES: Role[] = ROLE_LIST as Role[];
 
 const DEFAULE_ROLE_VALUE: Role = {
 	id: "",
@@ -64,18 +64,9 @@ export default function RolePage() {
 					<IconButton onClick={() => onEdit(record)}>
 						<Iconify icon="solar:pen-bold-duotone" size={18} />
 					</IconButton>
-					<Popconfirm
-						title="Delete the Role"
-						okText="Yes"
-						cancelText="No"
-						placement="left"
-					>
+					<Popconfirm title="Delete the Role" okText="Yes" cancelText="No" placement="left">
 						<IconButton>
-							<Iconify
-								icon="mingcute:delete-2-fill"
-								size={18}
-								className="text-error"
-							/>
+							<Iconify icon="mingcute:delete-2-fill" size={18} className="text-error" />
 						</IconButton>
 					</Popconfirm>
 				</div>

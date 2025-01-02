@@ -33,7 +33,7 @@ export interface RouteMeta {
 	/**
 	 * react router outlet
 	 */
-	outlet?: any;
+	outlet?: ReactNode;
 	/**
 	 * use to refresh tab
 	 */
@@ -41,7 +41,7 @@ export interface RouteMeta {
 	/**
 	 * external link and iframe need
 	 */
-	frameSrc?: string;
+	frameSrc?: URL;
 	/**
 	 * dynamic route params
 	 *

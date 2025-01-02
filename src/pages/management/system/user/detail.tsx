@@ -4,7 +4,7 @@ import { useParams } from "@/router/hooks";
 
 import type { UserInfo } from "#/entity";
 
-const USERS: UserInfo[] = USER_LIST;
+const USERS: UserInfo[] = USER_LIST as UserInfo[];
 
 export default function UserDetail() {
 	const { id } = useParams();
