@@ -5,12 +5,12 @@ import { Navigate, Outlet } from "react-router";
 import { Iconify } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
 import { useUserPermission } from "@/store/userStore";
+import { nonNullable } from "@/utils";
 import { flattenTrees } from "@/utils/tree";
-
+import { Tag } from "antd";
 import type { Permission } from "#/entity";
 import { BasicStatus, PermissionType } from "#/enum";
 import type { AppRouteObject } from "#/router";
-import { Tag } from "antd";
 
 const ENTRY_PATH = "/src/pages";
 const PAGES = import.meta.glob("/src/pages/**/*.tsx");
@@ -63,21 +63,8 @@ function RouteWrapper({ children }: { children: React.ReactNode }) {
 }
 
 // Route Transformers
-const createBaseRoute = (
-	permission: Permission,
-	completeRoute: string,
-): AppRouteObject => {
-	const {
-		route,
-		label,
-		icon,
-		order,
-		hide,
-		hideTab,
-		status,
-		frameSrc,
-		newFeature,
-	} = permission;
+const createBaseRoute = (permission: Permission, completeRoute: string): AppRouteObject => {
+	const { route, label, icon, order, hide, hideTab, status, frameSrc, newFeature } = permission;
 
 	const baseRoute: AppRouteObject = {
 		path: route,
@@ -100,14 +87,8 @@ const createBaseRoute = (
 	return baseRoute;
 };
 
-const createCatalogueRoute = (
-	permission: Permission,
-	flattenedPermissions: Permission[],
-): AppRouteObject => {
-	const baseRoute = createBaseRoute(
-		permission,
-		buildCompleteRoute(permission, flattenedPermissions),
-	);
+const createCatalogueRoute = (permission: Permission, flattenedPermissions: Permission[]): AppRouteObject => {
+	const baseRoute = createBaseRoute(permission, buildCompleteRoute(permission, flattenedPermissions));
 
 	if (baseRoute.meta) {
 		baseRoute.meta.hideTab = true;
@@ -122,10 +103,7 @@ const createCatalogueRoute = (
 		);
 	}
 
-	baseRoute.children = transformPermissionsToRoutes(
-		children,
-		flattenedPermissions,
-	);
+	baseRoute.children = transformPermissionsToRoutes(children, flattenedPermissions);
 
 	if (!isEmpty(children)) {
 		baseRoute.children.unshift({
@@ -137,14 +115,8 @@ const createCatalogueRoute = (
 	return baseRoute;
 };
 
-const createMenuRoute = (
-	permission: Permission,
-	flattenedPermissions: Permission[],
-): AppRouteObject => {
-	const baseRoute = createBaseRoute(
-		permission,
-		buildCompleteRoute(permission, flattenedPermissions),
-	);
+const createMenuRoute = (permission: Permission, flattenedPermissions: Permission[]): AppRouteObject => {
+	const baseRoute = createBaseRoute(permission, buildCompleteRoute(permission, flattenedPermissions));
 
 	if (permission.component) {
 		const Element = lazy(loadComponentFromPath(permission.component) as any);
@@ -161,16 +133,18 @@ const createMenuRoute = (
 };
 
 // Main Functions
-function transformPermissionsToRoutes(
-	permissions: Permission[],
-	flattenedPermissions: Permission[],
-): AppRouteObject[] {
-	return permissions.map((permission) => {
-		if (permission.type === PermissionType.CATALOGUE) {
-			return createCatalogueRoute(permission, flattenedPermissions);
-		}
-		return createMenuRoute(permission, flattenedPermissions);
-	});
+function transformPermissionsToRoutes(permissions: Permission[], flattenedPermissions: Permission[]): AppRouteObject[] {
+	return permissions
+		.map((permission) => {
+			if (permission.type === PermissionType.CATALOGUE) {
+				return createCatalogueRoute(permission, flattenedPermissions);
+			}
+			if (permission.type === PermissionType.MENU) {
+				return createMenuRoute(permission, flattenedPermissions);
+			}
+			return null;
+		})
+		.filter(nonNullable);
 }
 
 // Exports
