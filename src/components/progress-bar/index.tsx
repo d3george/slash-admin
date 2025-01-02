@@ -1,6 +1,5 @@
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import { usePathname } from "@/router/hooks";
 import { useEffect } from "react";
 import "./index.css";
 
@@ -12,18 +11,45 @@ NProgress.configure({
 });
 
 export default function ProgressBar() {
-	const pathname = usePathname();
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		NProgress.start();
-		const timer = setTimeout(() => NProgress.done(), 100);
+		let lastHref = window.location.href;
 
-		return () => {
-			clearTimeout(timer);
-			NProgress.done();
+		const handleRouteChange = () => {
+			NProgress.start();
+			const timer = setTimeout(() => NProgress.done(), 100);
+			return () => {
+				clearTimeout(timer);
+				NProgress.done();
+			};
 		};
-	}, [pathname]); // 保留 pathname 依赖
+
+		// 监听 href 变化
+		const observer = new MutationObserver(() => {
+			const currentHref = window.location.href;
+			if (currentHref !== lastHref) {
+				lastHref = currentHref;
+				handleRouteChange();
+			}
+		});
+
+		// 观察整个文档的变化
+		observer.observe(document, {
+			subtree: true,
+			childList: true,
+		});
+
+		// 监听 popstate 事件（处理浏览器前进后退）
+		window.addEventListener("popstate", handleRouteChange);
+
+		// 初始加载时触发一次
+		handleRouteChange();
+
+		// 清理监听器
+		return () => {
+			observer.disconnect();
+			window.removeEventListener("popstate", handleRouteChange);
+		};
+	}, []);
 
 	return null;
 }

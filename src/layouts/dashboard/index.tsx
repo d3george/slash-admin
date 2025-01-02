@@ -2,7 +2,6 @@ import { Layout } from "antd";
 import { type CSSProperties, Suspense, useMemo } from "react";
 
 import { CircleLoading } from "@/components/loading";
-import ProgressBar from "@/components/progress-bar";
 import { useSettings } from "@/store/settingStore";
 import { cn } from "@/utils";
 
@@ -37,18 +36,15 @@ function DashboardLayout() {
 	};
 
 	return (
-		<>
-			<ProgressBar />
-			<Layout className={layoutClassName}>
-				<Suspense fallback={<CircleLoading />}>
-					<Layout style={secondLayoutStyle}>
-						<Header />
-						<Nav />
-						<Main />
-					</Layout>
-				</Suspense>
-			</Layout>
-		</>
+		<Layout className={layoutClassName}>
+			<Suspense fallback={<CircleLoading />}>
+				<Layout style={secondLayoutStyle}>
+					<Header />
+					<Nav />
+					<Main />
+				</Layout>
+			</Suspense>
+		</Layout>
 	);
 }
 export default DashboardLayout;

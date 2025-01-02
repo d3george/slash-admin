@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 // helmet
 import { HelmetProvider } from "react-helmet-async";
-//
+// svg icons
 import "virtual:svg-icons-register";
 // mock api
 import worker from "./_mock";
@@ -19,6 +19,7 @@ import "./theme/theme.css";
 
 // root component
 import App from "./App";
+import ProgressBar from "./components/progress-bar";
 
 const charAt = `
     ███████╗██╗      █████╗ ███████╗██╗  ██╗ 
@@ -30,28 +31,15 @@ const charAt = `
   `;
 console.info(`%c${charAt}`, "color: #5BE49B");
 
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			retry: 3,
-			gcTime: 300_000,
-			staleTime: 10_1000,
-			refetchOnWindowFocus: false,
-			refetchOnReconnect: false,
-			refetchOnMount: false,
-		},
-	},
-});
-
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
 	<HelmetProvider>
-		<QueryClientProvider client={queryClient}>
+		<QueryClientProvider client={new QueryClient()}>
 			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 			<Suspense>
+				<ProgressBar />
 				<Analytics />
-
 				<App />
 			</Suspense>
 		</QueryClientProvider>
