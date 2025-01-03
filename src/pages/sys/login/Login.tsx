@@ -3,12 +3,13 @@ import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router";
 
 import DashboardImg from "@/assets/images/background/dashboard.png";
-import Overlay2 from "@/assets/images/background/overlay_2.jpg";
+import Overlay from "@/assets/images/background/overlay.jpg";
 import LocalePicker from "@/components/locale-picker";
 import { useUserToken } from "@/store/userStore";
 
 import SettingButton from "@/layouts/_common/setting-button";
 import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 import LoginForm from "./LoginForm";
 import MobileForm from "./MobileForm";
 import QrCodeFrom from "./QrCodeForm";
@@ -28,8 +29,8 @@ function Login() {
 		return <Navigate to={HOMEPAGE} replace />;
 	}
 
-	const gradientBg = `rgba(${themeVars.colors.palette.primary.default}, 0.9)`;
-	const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay2})`;
+	const gradientBg = rgbAlpha(themeVars.colors.background.defaultChannel, 0.9);
+	const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay})`;
 
 	return (
 		<Layout className="relative flex !min-h-screen !w-full !flex-row">
