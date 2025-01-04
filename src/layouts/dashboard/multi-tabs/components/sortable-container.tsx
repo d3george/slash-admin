@@ -47,10 +47,12 @@ const SortableContainer: React.FC<SortableContainerProps> = ({ items, onSortEnd,
 		setActiveId(null);
 
 		if (over && active.id !== over.id) {
-			const oldIndex = items.findIndex((item) => item.id === active.id);
-			const newIndex = items.findIndex((item) => item.id === over.id);
+			const oldIndex = items.findIndex((item) => item.key === active.id);
+			const newIndex = items.findIndex((item) => item.key === over.id);
 
-			onSortEnd?.(oldIndex, newIndex);
+			if (oldIndex !== -1 && newIndex !== -1) {
+				onSortEnd?.(oldIndex, newIndex);
+			}
 		}
 	};
 
