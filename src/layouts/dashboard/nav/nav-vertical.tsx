@@ -7,7 +7,7 @@ import { useFlattenedRoutes, usePathname, usePermissionRoutes, useRouteToMenuFn 
 import { menuFilter } from "@/router/utils";
 import { useSettingActions, useSettings } from "@/store/settingStore";
 
-import { NAV_WIDTH } from "../config";
+import { HEADER_HEIGHT, NAV_WIDTH } from "../config";
 
 import NavLogo from "./nav-logo";
 
@@ -96,18 +96,20 @@ export default function NavVertical(props: Props) {
 		>
 			<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />
 
-			<Scrollbar>
-				<Menu
-					mode="inline"
-					items={menuList}
-					theme={sidebarTheme}
-					selectedKeys={selectedKeys}
-					openKeys={openKeys}
-					onOpenChange={handleOpenChange}
-					className="!border-none"
-					onClick={onClick}
-				/>
-			</Scrollbar>
+			<div style={{ height: `calc(100% - ${HEADER_HEIGHT}px)` }}>
+				<Scrollbar>
+					<Menu
+						mode="inline"
+						items={menuList}
+						theme={sidebarTheme}
+						selectedKeys={selectedKeys}
+						openKeys={openKeys}
+						onOpenChange={handleOpenChange}
+						className="!border-none"
+						onClick={onClick}
+					/>
+				</Scrollbar>
+			</div>
 		</Sider>
 	);
 }

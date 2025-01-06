@@ -1,4 +1,3 @@
-import { HEADER_HEIGHT } from "@/layouts/dashboard/config";
 import { forwardRef, memo } from "react";
 import SimpleBar, { type Props as SimplebarProps } from "simplebar-react";
 /**
@@ -6,12 +5,7 @@ import SimpleBar, { type Props as SimplebarProps } from "simplebar-react";
  */
 const Scrollbar = forwardRef<HTMLElement, SimplebarProps>(({ children, ...other }, ref) => {
 	return (
-		<SimpleBar
-			clickOnTrack={false}
-			scrollableNodeProps={{ ref }}
-			style={{ height: `calc(100% - ${HEADER_HEIGHT}px)` }}
-			{...other}
-		>
+		<SimpleBar className="h-full" clickOnTrack={false} scrollableNodeProps={{ ref }} {...other}>
 			{children}
 		</SimpleBar>
 	);
