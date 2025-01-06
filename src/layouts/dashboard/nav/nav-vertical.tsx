@@ -11,7 +11,6 @@ import { HEADER_HEIGHT, NAV_WIDTH } from "../config";
 
 import NavLogo from "./nav-logo";
 
-import { themeVars } from "@/theme/theme.css";
 import { ThemeLayout, ThemeMode } from "#/enum";
 
 const { Sider } = Layout;
@@ -89,10 +88,7 @@ export default function NavVertical(props: Props) {
 			collapsed={collapsed}
 			width={NAV_WIDTH}
 			theme={sidebarTheme}
-			className="!fixed left-0 top-0 h-screen"
-			style={{
-				borderRight: `1px dashed rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.2)`,
-			}}
+			className="!fixed left-0 top-0 h-screen border-r border-dashed border-border"
 		>
 			<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />
 
