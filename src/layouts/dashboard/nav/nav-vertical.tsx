@@ -7,7 +7,7 @@ import { useFlattenedRoutes, usePathname, usePermissionRoutes, useRouteToMenuFn 
 import { menuFilter } from "@/router/utils";
 import { useSettingActions, useSettings } from "@/store/settingStore";
 
-import { HEADER_HEIGHT, NAV_WIDTH } from "../config";
+import { NAV_WIDTH } from "../config";
 
 import NavLogo from "./nav-logo";
 
@@ -70,7 +70,6 @@ export default function NavVertical(props: Props) {
 	};
 
 	const handleOpenChange: MenuProps["onOpenChange"] = (keys) => {
-		// 关闭时也触发一次，刚好设置为 []
 		setOpenKeys(keys);
 	};
 
@@ -90,9 +89,9 @@ export default function NavVertical(props: Props) {
 			theme={sidebarTheme}
 			className="!fixed left-0 top-0 h-screen border-r border-dashed border-border"
 		>
-			<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />
+			<div className="flex h-full flex-col">
+				<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />
 
-			<div style={{ height: `calc(100% - ${HEADER_HEIGHT}px)` }}>
 				<Scrollbar>
 					<Menu
 						mode="inline"
