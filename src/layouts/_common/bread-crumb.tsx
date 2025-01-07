@@ -20,13 +20,9 @@ export default function BreadCrumb() {
 
 	const breadCrumbs = useMemo(() => {
 		const menuRoutes = menuFilter(permissionRoutes);
-		const paths = matches
-			.filter((item) => item.pathname !== "/")
-			.map((item) => item.pathname);
+		const paths = matches.filter((item) => item.pathname !== "/").map((item) => item.pathname);
 
-		const pathRouteMetas = flattenedRoutes.filter((item) =>
-			paths.includes(item.key),
-		);
+		const pathRouteMetas = flattenedRoutes.filter((item) => paths.includes(item.key));
 
 		let currentMenuItems = [...menuRoutes];
 
@@ -34,13 +30,10 @@ export default function BreadCrumb() {
 			const { key, label } = routeMeta;
 
 			// Find current level menu items
-			const currentRoute = currentMenuItems.find(
-				(item) => item.meta?.key === key,
-			);
+			const currentRoute = currentMenuItems.find((item) => item.meta?.key === key);
 
 			// Update menu items for next level
-			currentMenuItems =
-				currentRoute?.children?.filter((item) => !item.meta?.hideMenu) ?? [];
+			currentMenuItems = currentRoute?.children?.filter((item) => !item.meta?.hideMenu) ?? [];
 
 			return {
 				key,
@@ -49,9 +42,7 @@ export default function BreadCrumb() {
 					menu: {
 						items: currentMenuItems.map((item) => ({
 							key: item.meta?.key,
-							label: item.meta?.key ? (
-								<Link to={item.meta.key}>{t(item.meta.label)}</Link>
-							) : null,
+							label: item.meta?.key ? <Link to={item.meta.key}>{t(item.meta.label)}</Link> : null,
 						})),
 					},
 				}),
@@ -59,11 +50,5 @@ export default function BreadCrumb() {
 		});
 	}, [matches, flattenedRoutes, t, permissionRoutes]);
 
-	return (
-		<Breadcrumb
-			items={breadCrumbs}
-			className="!text-sm"
-			separator={<Iconify icon="ph:dot-duotone" />}
-		/>
-	);
+	return <Breadcrumb items={breadCrumbs} className="!text-sm" separator={<Iconify icon="ph:dot-duotone" />} />;
 }

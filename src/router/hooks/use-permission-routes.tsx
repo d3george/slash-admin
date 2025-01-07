@@ -59,10 +59,6 @@ function NewFeatureTag() {
 	);
 }
 
-function RouteWrapper({ children }: { children: React.ReactNode }) {
-	return <Suspense fallback={<CircleLoading />}>{children}</Suspense>;
-}
-
 // Route Transformers
 const createBaseRoute = (permission: Permission, completeRoute: string): AppRouteObject => {
 	const { route, label, icon, order, hide, hideTab, status, frameSrc, newFeature } = permission;
@@ -98,9 +94,9 @@ const createCatalogueRoute = (permission: Permission, flattenedPermissions: Perm
 	const { parentId, children = [] } = permission;
 	if (!parentId) {
 		baseRoute.element = (
-			<RouteWrapper>
+			<Suspense fallback={<CircleLoading />}>
 				<Outlet />
-			</RouteWrapper>
+			</Suspense>
 		);
 	}
 
@@ -121,13 +117,16 @@ const createMenuRoute = (permission: Permission, flattenedPermissions: Permissio
 
 	if (permission.component) {
 		const Element = lazy(loadComponentFromPath(permission.component) as any);
-		baseRoute.element = permission.frameSrc ? (
-			<Element src={permission.frameSrc} />
-		) : (
-			<RouteWrapper>
-				<Element />
-			</RouteWrapper>
-		);
+
+		if (permission.frameSrc) {
+			baseRoute.element = <Element src={permission.frameSrc} />;
+		} else {
+			baseRoute.element = (
+				<Suspense fallback={<CircleLoading />}>
+					<Element />
+				</Suspense>
+			);
+		}
 	}
 
 	return baseRoute;

@@ -9,7 +9,7 @@ import { useRouter } from "../hooks";
 type Props = {
 	children: React.ReactNode;
 };
-export default function AuthGuard({ children }: Props) {
+export default function ProtectedRoute({ children }: Props) {
 	const router = useRouter();
 	const { accessToken } = useUserToken();
 

@@ -1,18 +1,17 @@
-import { Navigate, type RouteObject, createHashRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
-
 import DashboardLayout from "@/layouts/dashboard";
-import AuthGuard from "@/router/components/auth-guard";
-import { usePermissionRoutes } from "@/router/hooks";
-import { ErrorRoutes } from "@/router/routes/error-routes";
-
 import PageError from "@/pages/sys/error/PageError";
 import Login from "@/pages/sys/login/Login";
+import ProtectedRoute from "@/router/components/protected-route";
+import { usePermissionRoutes } from "@/router/hooks";
+import { ERROR_ROUTE } from "@/router/routes/error-routes";
 import { ErrorBoundary } from "react-error-boundary";
+import { Navigate, type RouteObject, createHashRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
 import type { AppRouteObject } from "#/router";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
-const LoginRoute: AppRouteObject = {
+
+const PUBLIC_ROUTE: AppRouteObject = {
 	path: "/login",
 	element: (
 		<ErrorBoundary FallbackComponent={PageError}>
@@ -20,26 +19,28 @@ const LoginRoute: AppRouteObject = {
 		</ErrorBoundary>
 	),
 };
-const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {
+
+const NO_MATCHED_ROUTE: AppRouteObject = {
 	path: "*",
 	element: <Navigate to="/404" replace />,
 };
 
 export default function Router() {
 	const permissionRoutes = usePermissionRoutes();
-	const asyncRoutes: AppRouteObject = {
+
+	const PROTECTED_ROUTE: AppRouteObject = {
 		path: "/",
 		element: (
-			<AuthGuard>
+			<ProtectedRoute>
 				<DashboardLayout />
-			</AuthGuard>
+			</ProtectedRoute>
 		),
 		children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...permissionRoutes],
 	};
 
-	const routes = [LoginRoute, asyncRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];
+	const routes = [PUBLIC_ROUTE, PROTECTED_ROUTE, ERROR_ROUTE, NO_MATCHED_ROUTE] as RouteObject[];
 
-	const router = createHashRouter(routes as unknown as RouteObject[]);
+	const router = createHashRouter(routes);
 
 	return <RouterProvider router={router} />;
 }
