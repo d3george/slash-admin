@@ -9,8 +9,7 @@ import zh_CN from "./lang/zh_CN";
 
 import { LocalEnum, StorageEnum } from "#/enum";
 
-const defaultLng =
-	getStringItem(StorageEnum.I18N) || (LocalEnum.en_US as string);
+const defaultLng = getStringItem(StorageEnum.I18N) || (LocalEnum.en_US as string);
 i18n
 	// detect user language
 	// learn more: https://github.com/i18next/i18next-browser-languageDetector

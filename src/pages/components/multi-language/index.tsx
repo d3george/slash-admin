@@ -1,7 +1,7 @@
 import { Card, Pagination, Radio, Space, Typography } from "antd";
 
 import { SvgIcon } from "@/components/icon";
-import useLocale from "@/locales/useLocale";
+import useLocale from "@/locales/use-locale";
 
 import { themeVars } from "@/theme/theme.css";
 import { LocalEnum } from "#/enum";

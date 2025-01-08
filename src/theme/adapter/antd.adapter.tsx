@@ -1,4 +1,4 @@
-import useLocale from "@/locales/useLocale";
+import useLocale from "@/locales/use-locale";
 import { StyleProvider } from "@ant-design/cssinjs";
 import type { ThemeConfig } from "antd";
 import { App, ConfigProvider, theme } from "antd";
