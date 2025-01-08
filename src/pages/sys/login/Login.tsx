@@ -7,7 +7,7 @@ import Overlay from "@/assets/images/background/overlay.jpg";
 import LocalePicker from "@/components/locale-picker";
 import { useUserToken } from "@/store/userStore";
 
-import SettingButton from "@/layouts/_common/setting-button";
+import SettingButton from "@/layouts/components/setting-button";
 import { themeVars } from "@/theme/theme.css";
 import { rgbAlpha } from "@/utils/theme";
 import LoginForm from "./LoginForm";

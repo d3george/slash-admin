@@ -6,11 +6,11 @@ import LocalePicker from "@/components/locale-picker";
 import Logo from "@/components/logo";
 import { useSettings } from "@/store/settingStore";
 
-import AccountDropdown from "../_common/account-dropdown";
-import BreadCrumb from "../_common/bread-crumb";
-import NoticeButton from "../_common/notice";
-import SearchBar from "../_common/search-bar";
-import SettingButton from "../_common/setting-button";
+import AccountDropdown from "../components/account-dropdown";
+import BreadCrumb from "../components/bread-crumb";
+import NoticeButton from "../components/notice";
+import SearchBar from "../components/search-bar";
+import SettingButton from "../components/setting-button";
 
 import { themeVars } from "@/theme/theme.css";
 import { cn } from "@/utils";
