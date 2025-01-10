@@ -1,22 +1,22 @@
-import { useSettings } from "@/store/settingStore";
 import { themeVars } from "@/theme/theme.css";
 import { rgbAlpha } from "@/utils/theme";
 import { Toaster } from "sonner";
 import styled from "styled-components";
 
+import { useTheme } from "@/theme/hooks";
 import { Iconify } from "../icon";
 
 /**
  * https://sonner.emilkowal.ski/getting-started
  */
 export default function Toast() {
-	const { themeMode } = useSettings();
+	const { mode } = useTheme();
 
 	return (
 		<ToasterStyleWrapper>
 			<Toaster
 				position="top-right"
-				theme={themeMode}
+				theme={mode}
 				toastOptions={{
 					duration: 3000,
 					style: {

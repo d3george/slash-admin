@@ -6,7 +6,7 @@ import { type CSSProperties, useRef, useState } from "react";
 import { useEvent } from "react-use";
 
 import { Iconify } from "@/components/icon";
-import { useSettings } from "@/store/settingStore";
+import { useTheme } from "@/theme/hooks";
 import { ThemeMode } from "#/enum";
 import KanbanTask from "./kanban-task";
 import { type Column, type Task, TaskPriority } from "./types";
@@ -33,7 +33,7 @@ export default function KanbanColumn({
 	renameColumn,
 	isDragging,
 }: Props) {
-	const { themeMode } = useSettings();
+	const { mode } = useTheme();
 	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
 	const style: CSSProperties = {
@@ -42,7 +42,7 @@ export default function KanbanColumn({
 		height: "100%",
 		padding: "16px",
 		borderRadius: "16px",
-		backgroundColor: themeMode === ThemeMode.Light ? "rgb(244, 246, 248)" : "rgba(145, 158, 171, 0.12)",
+		backgroundColor: mode === ThemeMode.Light ? "rgb(244, 246, 248)" : "rgba(145, 158, 171, 0.12)",
 		opacity: isDragging ? 0.5 : 1,
 	};
 

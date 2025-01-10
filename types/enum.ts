@@ -19,6 +19,7 @@ export enum StorageEnum {
 export enum ThemeMode {
 	Light = "light",
 	Dark = "dark",
+	System = "system",
 }
 
 export enum ThemeLayout {

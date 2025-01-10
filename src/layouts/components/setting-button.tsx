@@ -8,7 +8,7 @@ import screenfull from "screenfull";
 import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
 import { varHover } from "@/components/animate/variants/action";
-import { IconButton, SvgIcon } from "@/components/icon";
+import { IconButton, Iconify, SvgIcon } from "@/components/icon";
 import { useSettingActions, useSettings } from "@/store/settingStore";
 import { presetsColors } from "@/theme/tokens/color";
 
@@ -205,6 +205,16 @@ export default function SettingButton() {
 									icon="ic-settings-mode-moon"
 									size="24"
 									color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ""}
+								/>
+							</Card>
+							<Card
+								onClick={() => setThemeMode(ThemeMode.System)}
+								className="flex h-20 w-full cursor-pointer items-center justify-center"
+							>
+								<Iconify
+									icon="mingcute:computer-line"
+									size="24"
+									color={themeMode === ThemeMode.System ? themeVars.colors.palette.primary.default : ""}
 								/>
 							</Card>
 						</div>

@@ -11,6 +11,7 @@ import { NAV_WIDTH } from "../config";
 
 import NavLogo from "./nav-logo";
 
+import { useTheme } from "@/theme/hooks";
 import { ThemeLayout, ThemeMode } from "#/enum";
 
 const { Sider } = Layout;
@@ -24,7 +25,8 @@ export default function NavVertical(props: Props) {
 	const pathname = usePathname();
 
 	const settings = useSettings();
-	const { themeLayout, themeMode, darkSidebar } = settings;
+	const { mode } = useTheme();
+	const { themeLayout, darkSidebar } = settings;
 	const { setSettings } = useSettingActions();
 
 	const routeToMenuFn = useRouteToMenuFn();
@@ -74,11 +76,11 @@ export default function NavVertical(props: Props) {
 	};
 
 	const sidebarTheme = useMemo(() => {
-		if (themeMode === ThemeMode.Dark) {
+		if (mode === ThemeMode.Dark) {
 			return darkSidebar ? "light" : "dark";
 		}
 		return darkSidebar ? "dark" : "light";
-	}, [themeMode, darkSidebar]);
+	}, [mode, darkSidebar]);
 
 	return (
 		<Sider

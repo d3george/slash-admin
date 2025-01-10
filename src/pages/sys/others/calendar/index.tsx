@@ -1,6 +1,6 @@
 import Card from "@/components/card";
 import { down, useMediaQuery } from "@/hooks";
-import { useSettings } from "@/store/settingStore";
+import { useTheme } from "@/theme/hooks";
 import { faker } from "@faker-js/faker";
 import type { DateSelectArg, EventClickArg, EventInput } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -33,7 +33,7 @@ export default function Calendar() {
 	const [eventInitValue, setEventInitValue] = useState<CalendarEventFormFieldType>(DefaultEventInitValue);
 	const [eventFormType, setEventFormType] = useState<"add" | "edit">("add");
 
-	const { themeMode } = useSettings();
+	const { mode } = useTheme();
 	const xsBreakPoint = useMediaQuery(down("xs"));
 
 	useEffect(() => {
@@ -176,7 +176,7 @@ export default function Calendar() {
 	return (
 		<Card className="h-full w-full">
 			<div className="h-full w-full">
-				<StyledCalendar $themeMode={themeMode}>
+				<StyledCalendar $themeMode={mode}>
 					<CalendarHeader
 						now={date}
 						view={view}

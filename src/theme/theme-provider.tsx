@@ -2,6 +2,7 @@ import { useSettings } from "@/store/settingStore";
 import { hexToRgbChannel, rgbAlpha } from "@/utils/theme";
 import { useEffect } from "react";
 import { ThemeMode } from "#/enum";
+import { useTheme } from "./hooks";
 import { layoutClass } from "./layout.css";
 import { presetsColors } from "./tokens/color";
 import type { UILibraryAdapter } from "./type";
@@ -11,14 +12,15 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
-	const { themeMode, themeColorPresets, fontFamily, fontSize } = useSettings();
+	const { themeColorPresets, fontFamily, fontSize } = useSettings();
+	const { mode } = useTheme();
 
 	// Update HTML class to support Tailwind dark mode
 	useEffect(() => {
 		const root = window.document.documentElement;
 		root.classList.remove(ThemeMode.Light, ThemeMode.Dark);
-		root.classList.add(themeMode);
-	}, [themeMode]);
+		root.classList.add(mode);
+	}, [mode]);
 
 	// Dynamically update theme color related CSS variables
 	useEffect(() => {
@@ -43,7 +45,7 @@ export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
 	// Wrap children with adapters
 	const wrappedWithAdapters = adapters.reduce(
 		(children, Adapter) => (
-			<Adapter key={Adapter.name} mode={themeMode}>
+			<Adapter key={Adapter.name} mode={mode}>
 				{children}
 			</Adapter>
 		),
