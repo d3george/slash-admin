@@ -76,9 +76,8 @@ export default function NavVertical(props: Props) {
 	};
 
 	const sidebarTheme = useMemo(() => {
-		if (mode === ThemeMode.Dark) {
-			return darkSidebar ? "light" : "dark";
-		}
+		// sidebar should be dark when global theme is dark
+		if (mode === ThemeMode.Dark) return "dark";
 		return darkSidebar ? "dark" : "light";
 	}, [mode, darkSidebar]);
 
