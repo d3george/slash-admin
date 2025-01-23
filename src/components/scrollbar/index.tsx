@@ -29,7 +29,7 @@ const Scrollbar = forwardRef<HTMLElement, ScrollbarProps>(
 export default Scrollbar;
 
 const ScrollbarRoot = styled(SimpleBar).withConfig({
-	shouldForwardProp: (prop: string) => !["fillContent"].includes(prop),
+	shouldForwardProp: (prop: string) => !["fillContainer"].includes(prop),
 	displayName: "ScrollbarRoot",
 })<Pick<ScrollbarProps, "fillContainer">>`
   min-width: 0;
