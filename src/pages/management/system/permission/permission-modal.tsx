@@ -1,12 +1,4 @@
-import {
-	AutoComplete,
-	Form,
-	Input,
-	InputNumber,
-	Modal,
-	Radio,
-	TreeSelect,
-} from "antd";
+import { AutoComplete, Form, Input, InputNumber, Modal, Radio, TreeSelect } from "antd";
 import { useCallback, useEffect, useState } from "react";
 
 import { useUserPermission } from "@/store/userStore";
@@ -33,13 +25,7 @@ export type PermissionModalProps = {
 	onCancel: VoidFunction;
 };
 
-export default function PermissionModal({
-	title,
-	show,
-	formValue,
-	onOk,
-	onCancel,
-}: PermissionModalProps) {
+export default function PermissionModal({ title, show, formValue, onOk, onCancel }: PermissionModalProps) {
 	const [form] = Form.useForm();
 	const permissions = useUserPermission();
 	const [compOptions, setCompOptions] = useState(PAGE_SELECT_OPTIONS);
@@ -82,14 +68,8 @@ export default function PermissionModal({
 	}, [formValue, form, getParentNameById]);
 
 	return (
-		<Modal title={title} open={show} onOk={onOk} onCancel={onCancel}>
-			<Form
-				initialValues={formValue}
-				form={form}
-				labelCol={{ span: 6 }}
-				wrapperCol={{ span: 18 }}
-				layout="horizontal"
-			>
+		<Modal forceRender title={title} open={show} onOk={onOk} onCancel={onCancel}>
+			<Form initialValues={formValue} form={form} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} layout="horizontal">
 				<Form.Item<Permission> label="Type" name="type" required>
 					<Radio.Group optionType="button" buttonStyle="solid">
 						<Radio value={PermissionType.CATALOGUE}>CATALOGUE</Radio>
@@ -101,12 +81,7 @@ export default function PermissionModal({
 					<Input />
 				</Form.Item>
 
-				<Form.Item<Permission>
-					label="Label"
-					name="label"
-					required
-					tooltip="internationalization config"
-				>
+				<Form.Item<Permission> label="Label" name="label" required tooltip="internationalization config">
 					<Input />
 				</Form.Item>
 
@@ -129,12 +104,7 @@ export default function PermissionModal({
 					<Input />
 				</Form.Item>
 
-				<Form.Item
-					noStyle
-					shouldUpdate={(prevValues, currentValues) =>
-						prevValues.type !== currentValues.type
-					}
-				>
+				<Form.Item noStyle shouldUpdate={(prevValues, currentValues) => prevValues.type !== currentValues.type}>
 					{({ getFieldValue }) => {
 						if (getFieldValue("type") === PermissionType.MENU) {
 							return (
@@ -146,9 +116,7 @@ export default function PermissionModal({
 									<AutoComplete
 										options={compOptions}
 										filterOption={(input, option) =>
-											((option?.label || "") as string)
-												.toLowerCase()
-												.includes(input.toLowerCase())
+											((option?.label || "") as string).toLowerCase().includes(input.toLowerCase())
 										}
 									/>
 								</Form.Item>
@@ -158,11 +126,7 @@ export default function PermissionModal({
 					}}
 				</Form.Item>
 
-				<Form.Item<Permission>
-					label="Icon"
-					name="icon"
-					tooltip="local icon should start with ic"
-				>
+				<Form.Item<Permission> label="Icon" name="icon" tooltip="local icon should start with ic">
 					<Input />
 				</Form.Item>
 
