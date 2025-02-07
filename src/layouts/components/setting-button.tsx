@@ -124,7 +124,7 @@ export default function SettingButton() {
 
 	return (
 		<>
-			<div className="flex items-center justify-center">
+			<div className="flex items-center justify-center overflow-hidden">
 				<m.div
 					animate={{
 						rotate: [0, drawerOpen ? 0 : 360],
