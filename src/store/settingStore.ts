@@ -10,6 +10,7 @@ type SettingsType = {
 	themeLayout: ThemeLayout;
 	themeStretch: boolean;
 	breadCrumb: boolean;
+	accordion: boolean;
 	multiTab: boolean;
 	darkSidebar: boolean;
 	fontFamily: string;
@@ -34,6 +35,7 @@ const useSettingStore = create<SettingStore>()(
 				themeLayout: ThemeLayout.Vertical,
 				themeStretch: false,
 				breadCrumb: true,
+				accordion: false,
 				multiTab: true,
 				darkSidebar: false,
 				fontFamily: FontFamilyPreset.openSans,

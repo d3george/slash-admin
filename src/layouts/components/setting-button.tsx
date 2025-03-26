@@ -34,6 +34,7 @@ export default function SettingButton() {
 		darkSidebar,
 		fontSize,
 		fontFamily,
+		accordion,
 	} = settings;
 	const { setSettings } = useSettingActions();
 
@@ -97,6 +98,13 @@ export default function SettingButton() {
 		setSettings({
 			...settings,
 			fontSize,
+		});
+	};
+
+	const setAccordion = (checked: boolean) => {
+		setSettings({
+			...settings,
+			accordion: checked,
 		});
 	};
 
@@ -465,6 +473,10 @@ export default function SettingButton() {
 							<div className="flex items-center justify-between text-sm text-text-disabled">
 								<div>Dark Sidebar</div>
 								<Switch size="small" checked={darkSidebar} onChange={(checked) => setDarkSidebar(checked)} />
+							</div>
+							<div className="flex items-center justify-between text-sm text-text-disabled">
+								<div>Accordion Menu</div>
+								<Switch size="small" checked={accordion} onChange={(check) => setAccordion(check)} />
 							</div>
 						</div>
 					</div>
