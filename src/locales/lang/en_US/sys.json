@@ -142,6 +142,24 @@
 				"500": "500"
 			}
 		},
-		"docs": "Document"
+		"docs": "Document",
+		"settings": {
+			"title": "Settings",
+			"mode": "Mode",
+			"layout": "Layout",
+			"stretch": "Stretch",
+			"stretchTip": "Only available at large resolutions > 1600px (xl)",
+			"presetThemes": "Preset Themes",
+			"font": "Font",
+			"family": "Family",
+			"size": "Size",
+			"page": "Page",
+			"breadcrumb": "BreadCrumb",
+			"multiTab": "Multi Tab",
+			"darkSidebar": "Dark Sidebar",
+			"accordion": "Accordion Menu",
+			"fullscreen": "FullScreen",
+			"exitFullscreen": "Exit FullScreen"
+		}
 	}
 }
