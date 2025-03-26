@@ -1,5 +1,5 @@
 import { Layout, Menu, type MenuProps } from "antd";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useMatches, useNavigate } from "react-router";
 
 import Scrollbar from "@/components/scrollbar";
@@ -38,24 +38,32 @@ export default function NavVertical(props: Props) {
 		return routeToMenuFn(menuRoutes);
 	}, [routeToMenuFn, permissionRoutes]);
 
-	const selectedKeys = useMemo(() => [pathname], [pathname]);
-
-	const [openKeys, setOpenKeys] = useState<string[]>([]);
-	// 首次加载时设置 openKeys
-	useEffect(() => {
+	const [selectedKeys, setSelectedKeys] = useState([pathname]);
+	const [openKeys, setOpenKeys] = useState<string[]>(() => {
 		if (!collapsed) {
 			const keys = matches
 				.filter((match) => match.pathname !== "/" && match.pathname !== pathname)
 				.map((match) => match.pathname);
-			setOpenKeys(keys);
+			return keys;
 		}
-	}, [collapsed, matches, pathname]);
+		return [];
+	});
 
 	const handleToggleCollapsed = () => {
 		setSettings({
 			...settings,
 			themeLayout: collapsed ? ThemeLayout.Vertical : ThemeLayout.Mini,
 		});
+		if (collapsed) {
+			const keys = matches
+				.filter((match) => match.pathname !== "/" && match.pathname !== pathname)
+				.map((match) => match.pathname);
+			// hack resolution of https://github.com/d3george/slash-admin/issues/104
+			setTimeout(() => {
+				setOpenKeys(keys);
+			}, 0);
+			return;
+		}
 	};
 
 	const onClick: MenuProps["onClick"] = ({ key }) => {
@@ -65,12 +73,44 @@ export default function NavVertical(props: Props) {
 			return;
 		}
 
+		setSelectedKeys([key]);
 		navigate(key);
 		props?.closeSideBarDrawer?.();
 	};
 
 	const handleOpenChange: MenuProps["onOpenChange"] = (keys) => {
-		setOpenKeys(keys);
+		if (!settings.accordion) {
+			setOpenKeys(keys);
+			return;
+		}
+
+		// 手风琴模式
+
+		const latestOpenKey = keys.find((key) => !openKeys.includes(key));
+		// 收起
+		if (!latestOpenKey) {
+			const closedKey = openKeys.find((key) => !keys.includes(key));
+			if (closedKey) {
+				// 只移除被收起的菜单，保留其他展开状态
+				setOpenKeys(openKeys.filter((key) => key !== closedKey));
+			}
+			return;
+		}
+		// 展开
+		const getKeyLevel = (key: string) => (key.match(/\//g) || []).length;
+		const latestKeyLevel = getKeyLevel(latestOpenKey);
+		// 过滤掉同层级的其他 key，保留不同层级的 key
+		const newOpenKeys = openKeys.filter((key) => getKeyLevel(key) !== latestKeyLevel);
+
+		// 找到当前打开菜单的所有父级路径
+		const parentKeys = matches
+			.filter(
+				(match) =>
+					latestOpenKey.startsWith(match.pathname) && match.pathname !== "/" && match.pathname !== latestOpenKey,
+			)
+			.map((match) => match.pathname);
+
+		setOpenKeys([...new Set([...parentKeys, ...newOpenKeys, latestOpenKey])]);
 	};
 
 	const sidebarTheme = useMemo(() => {
