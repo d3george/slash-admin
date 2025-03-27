@@ -16,19 +16,33 @@ export default function useCopyToClipboard(): ReturnType {
 	const [copiedText, setCopiedText] = useState<CopiedValue>(null);
 
 	const copyFn: CopyFn = async (text) => {
-		if (!navigator?.clipboard) {
-			console.warn("Clipboard not supported");
-			return false;
+		if (navigator?.clipboard) {
+			try {
+				// Try to save to clipboard then save it in the state if worked
+				await navigator.clipboard.writeText(text);
+				setCopiedText(text);
+				toast.success("Copied!");
+				return true;
+			} catch (error) {
+				console.warn("Copy failed", error);
+			}
 		}
 
-		// Try to save to clipboard then save it in the state if worked
+		const textArea = document.createElement("textarea");
+
 		try {
-			await navigator.clipboard.writeText(text);
+			textArea.value = text;
+			textArea.style.position = "fixed";
+			textArea.style.opacity = "0";
+			document.body.appendChild(textArea);
+			textArea.select();
+			document.execCommand("copy");
+			textArea.remove();
 			setCopiedText(text);
 			toast.success("Copied!");
 			return true;
 		} catch (error) {
-			console.warn("Copy failed", error);
+			textArea.remove();
 			setCopiedText(null);
 			return false;
 		}
