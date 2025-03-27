@@ -1,26 +1,67 @@
-import { Layout, Menu, type MenuProps } from "antd";
-import { useMemo, useState } from "react";
-import { useMatches, useNavigate } from "react-router";
-
 import Scrollbar from "@/components/scrollbar";
 import { useFlattenedRoutes, usePathname, usePermissionRoutes, useRouteToMenuFn } from "@/router/hooks";
 import { menuFilter } from "@/router/utils";
 import { useSettingActions, useSettings } from "@/store/settingStore";
+import { Layout, Menu, type MenuProps } from "antd";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router";
 
 import { NAV_WIDTH } from "../config";
 
 import NavLogo from "./nav-logo";
 
+import type { ItemType } from "antd/es/menu/interface";
 import { ThemeLayout, ThemeMode } from "#/enum";
 
 const { Sider } = Layout;
 
-type Props = {
-	closeSideBarDrawer?: () => void;
+/**
+ * 获取菜单项的层级和父级key数组
+ * @param items 菜单项数组或单个菜单项
+ * @param targetKey 目标key
+ * @returns [层级, 父级key数组]，如果未找到返回[0, []]
+ */
+const getKeyLevelAndParentKeys = (
+	items: ItemType[] | ItemType | null | undefined,
+	targetKey: string,
+): [number, string[]] => {
+	if (!items || !targetKey) return [0, []];
+
+	const findLevelAndParents = (
+		items: ItemType[] | ItemType,
+		targetKey: string,
+		level = 1,
+		parentKeys: string[] = [],
+	): [number, string[]] => {
+		const menuItems = Array.isArray(items) ? items : [items];
+
+		if (!menuItems?.length) return [0, []];
+
+		for (const item of menuItems) {
+			if (!item) continue;
+			const itemKey = typeof item.key === "string" ? item.key : String(item.key);
+			if (itemKey === targetKey) return [level, parentKeys];
+
+			if ("children" in item && Array.isArray(item.children)) {
+				const [childLevel, childParents] = findLevelAndParents(item.children, targetKey, level + 1, [
+					...parentKeys,
+					itemKey,
+				]);
+				if (childLevel > 0) return [childLevel, childParents];
+			}
+		}
+		return [0, []];
+	};
+
+	return findLevelAndParents(items, targetKey);
 };
-export default function NavVertical(props: Props) {
+
+function NavVertical({
+	closeSideBarDrawer,
+}: {
+	closeSideBarDrawer?: () => void;
+}) {
 	const navigate = useNavigate();
-	const matches = useMatches();
 	const pathname = usePathname();
 
 	const settings = useSettings();
@@ -38,16 +79,10 @@ export default function NavVertical(props: Props) {
 		return routeToMenuFn(menuRoutes);
 	}, [routeToMenuFn, permissionRoutes]);
 
-	const [selectedKeys, setSelectedKeys] = useState([pathname]);
-	const [openKeys, setOpenKeys] = useState<string[]>(() => {
-		if (!collapsed) {
-			const keys = matches
-				.filter((match) => match.pathname !== "/" && match.pathname !== pathname)
-				.map((match) => match.pathname);
-			return keys;
-		}
-		return [];
-	});
+	const [selectedKey, setSelectedKey] = useState(pathname);
+	const selectedKeys = useMemo(() => [selectedKey], [selectedKey]);
+
+	const [openKeys, setOpenKeys] = useState<string[]>(() => getKeyLevelAndParentKeys(menuList, pathname)[1]);
 
 	const handleToggleCollapsed = () => {
 		setSettings({
@@ -55,12 +90,14 @@ export default function NavVertical(props: Props) {
 			themeLayout: collapsed ? ThemeLayout.Vertical : ThemeLayout.Mini,
 		});
 		if (collapsed) {
-			const keys = matches
-				.filter((match) => match.pathname !== "/" && match.pathname !== pathname)
-				.map((match) => match.pathname);
+			const [level, parentKeys] = getKeyLevelAndParentKeys(menuList, pathname);
 			// hack resolution of https://github.com/d3george/slash-admin/issues/104
 			setTimeout(() => {
-				setOpenKeys(keys);
+				if (level > 0) {
+					setOpenKeys([...new Set([...parentKeys, pathname])]);
+				} else {
+					setOpenKeys([]);
+				}
 			}, 0);
 			return;
 		}
@@ -73,45 +110,36 @@ export default function NavVertical(props: Props) {
 			return;
 		}
 
-		setSelectedKeys([key]);
+		setSelectedKey(key);
 		navigate(key);
-		props?.closeSideBarDrawer?.();
+		closeSideBarDrawer?.();
 	};
 
-	const handleOpenChange: MenuProps["onOpenChange"] = (keys) => {
-		if (!settings.accordion) {
-			setOpenKeys(keys);
-			return;
-		}
-
-		// 手风琴模式
-
-		const latestOpenKey = keys.find((key) => !openKeys.includes(key));
-		// 收起
-		if (!latestOpenKey) {
-			const closedKey = openKeys.find((key) => !keys.includes(key));
-			if (closedKey) {
-				// 只移除被收起的菜单，保留其他展开状态
-				setOpenKeys(openKeys.filter((key) => key !== closedKey));
+	const handleOpenChange = useCallback(
+		(keys: string[]) => {
+			if (!settings.accordion) {
+				setOpenKeys(keys);
+				return;
 			}
-			return;
-		}
-		// 展开
-		const getKeyLevel = (key: string) => (key.match(/\//g) || []).length;
-		const latestKeyLevel = getKeyLevel(latestOpenKey);
-		// 过滤掉同层级的其他 key，保留不同层级的 key
-		const newOpenKeys = openKeys.filter((key) => getKeyLevel(key) !== latestKeyLevel);
 
-		// 找到当前打开菜单的所有父级路径
-		const parentKeys = matches
-			.filter(
-				(match) =>
-					latestOpenKey.startsWith(match.pathname) && match.pathname !== "/" && match.pathname !== latestOpenKey,
-			)
-			.map((match) => match.pathname);
+			// 手风琴模式
+			const latestOpenKey = keys.find((key) => !openKeys.includes(key));
+			// 收起
+			if (!latestOpenKey) {
+				const closedKey = openKeys.find((key) => !keys.includes(key));
+				if (closedKey) {
+					// 只移除被收起的菜单，保留其他展开状态
+					setOpenKeys(openKeys.filter((key) => key !== closedKey));
+				}
+				return;
+			}
 
-		setOpenKeys([...new Set([...parentKeys, ...newOpenKeys, latestOpenKey])]);
-	};
+			// 展开
+			const [, parentKeys] = getKeyLevelAndParentKeys(menuList, latestOpenKey);
+			setOpenKeys([...new Set([...parentKeys, latestOpenKey])]);
+		},
+		[menuList, openKeys, settings.accordion],
+	);
 
 	const sidebarTheme = useMemo(() => {
 		if (themeMode === ThemeMode.Dark) {
@@ -119,6 +147,21 @@ export default function NavVertical(props: Props) {
 		}
 		return darkSidebar ? "dark" : "light";
 	}, [themeMode, darkSidebar]);
+
+	// 监听路由变化
+	useEffect(() => {
+		setSelectedKey(pathname);
+
+		const currentKey = pathname;
+		if (collapsed) return;
+
+		const [, parentKeys] = getKeyLevelAndParentKeys(menuList, currentKey);
+		if (settings.accordion) {
+			setOpenKeys([...new Set([...parentKeys, currentKey])]);
+		} else {
+			setOpenKeys((prev) => [...new Set([...prev, ...parentKeys, currentKey])]);
+		}
+	}, [pathname, menuList, settings.accordion, collapsed]);
 
 	return (
 		<Sider
@@ -148,3 +191,5 @@ export default function NavVertical(props: Props) {
 		</Sider>
 	);
 }
+
+export default memo(NavVertical);
