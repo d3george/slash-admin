@@ -82,7 +82,7 @@ function NavVertical({
 	const [selectedKey, setSelectedKey] = useState(pathname);
 	const selectedKeys = useMemo(() => [selectedKey], [selectedKey]);
 
-	const [openKeys, setOpenKeys] = useState<string[]>(() => getKeyLevelAndParentKeys(menuList, pathname)[1]);
+	const [openKeys, setOpenKeys] = useState<string[]>([]);
 
 	const handleToggleCollapsed = () => {
 		setSettings({
@@ -90,14 +90,10 @@ function NavVertical({
 			themeLayout: collapsed ? ThemeLayout.Vertical : ThemeLayout.Mini,
 		});
 		if (collapsed) {
-			const [level, parentKeys] = getKeyLevelAndParentKeys(menuList, pathname);
+			const [, parentKeys] = getKeyLevelAndParentKeys(menuList, pathname);
 			// hack resolution of https://github.com/d3george/slash-admin/issues/104
 			setTimeout(() => {
-				if (level > 0) {
-					setOpenKeys([...new Set([...parentKeys, pathname])]);
-				} else {
-					setOpenKeys([]);
-				}
+				setOpenKeys([...new Set([...parentKeys, pathname])]);
 			}, 0);
 			return;
 		}
