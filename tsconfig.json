@@ -34,9 +34,9 @@
 		/* alias */
 		"paths": {
 			"@/*": ["src/*"],
-			"#/*": ["types/*"]
+			"#/*": ["src/types/*"]
 		}
 	},
-	"include": ["src", "types", "tailwind.config.ts"],
+	"include": ["src", "src/types", "tailwind.config.ts"],
 	"exclude": ["node_modules", "dist"]
 }
