@@ -1,37 +1,32 @@
 {
 	"compilerOptions": {
-		"target": "ESNext", // 编译后代码的目标版本（ECMAScript）。
-		"module": "ESNext", // 使用的模块系统类型。ESNext 支持更多特性，比如动态导入等。
-		"lib": ["ESNext", "DOM", "DOM.Iterable"], // 要包含的库文件。DOM、DOM.Iterable 和 ESNext 库文件是 TypeScript 开发中比较基础的依赖。
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
 		"useDefineForClassFields": true,
-		"skipLibCheck": true, // 跳过编译器对引入库文件的检查，以加快构建速度
-		"allowJs": true, // 允许编译JavaScript文件
-		/* Bundler mode */
+		"skipLibCheck": true,
+		"allowJs": true,
 		"moduleResolution": "bundler",
-		"sourceMap": true, // 输出 *.map 文件提供源码映射
-		"declaration": true, // 是否生成声明文件（.d.ts）。
-		"preserveWatchOutput": true, // 该选项允许在监视模式下保留先前编译的文件，从而避免增量编译时删除更改的文件导致的重新编译。
-		"removeComments": true, // 是否移除注释。可以提高编译速度并减小生成文件的大小
-		"allowImportingTsExtensions": true, // 允许在 import 导入语句中导入 .ts 或 .tsx 扩展名的模块，而不需要显式地指定扩展名
-		"resolveJsonModule": true, // 允许导入json模块
-		"isolatedModules": true, // 让typescript处理每个文件时都是独立的单元（可加快编译速度）
-		"noEmit": true, // 编译器不生成任何JS文件
+		"sourceMap": true,
+		"declaration": true,
+		"preserveWatchOutput": true,
+		"removeComments": true,
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
 		"jsx": "react-jsx",
-		// 使 TypeScript 可以更好地与 CommonJS 模块兼容。在使用 CommonJS 模块系统时，导出的模块将会被包装在一个对象中，这是因为 CommonJS 使用的是类似于 module.exports 的语法来导出模块。
-		// 而某些工具和库可能需要以 ES6 模块的方式导入这些 CommonJS 模块，这时候就可以开启 esModuleInterop 选项。
-		// 开启后，在导入 CommonJS 模块时不需要再使用默认导出才能正确引入，也不需要手动处理 require() 和 module.exports。
-		// 这使得导入和使用 CommonJS 模块的过程变得更加简洁方便。
 		"esModuleInterop": true,
-		/* Linting */
-		"strict": true, // 启用所有严格类型检查选项
-		"strictNullChecks": true, // 对空值进行严格检查
-		"noImplicitAny": true, // 禁止隐式any类型
-		"noUnusedLocals": true, // 消除未使用变量产生的警告
-		"noUnusedParameters": true, // 消除未使用参数产生的警告
-		"noFallthroughCasesInSwitch": true, // 避免 switch 语句掉入陷阱
-		"useUnknownInCatchVariables": false, // 为 true 时，在 catch 块中声明的变量类型会被视为 unknown 而非默认的 any。
+
+		"strict": true,
+		"strictNullChecks": true,
+		"noImplicitAny": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"useUnknownInCatchVariables": false,
+
 		"baseUrl": ".",
-		/* alias */
 		"paths": {
 			"@/*": ["src/*"],
 			"#/*": ["src/types/*"]
