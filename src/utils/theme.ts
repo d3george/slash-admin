@@ -22,7 +22,7 @@ export function rgbAlpha(color: string | string[] | number[], alpha: number): st
 	// if color is CSS variable
 	if (typeof color === "string") {
 		if (color.startsWith("#")) {
-			return `rgba(${hexToRgbChannel(color)}, ${safeAlpha})`;
+			return `rgba(${hexToRgbChannel(color).split(" ").join(",")}, ${safeAlpha})`;
 		}
 		if (color.includes("var(")) {
 			return `rgba(${color}, ${safeAlpha})`;
@@ -49,11 +49,11 @@ export function rgbAlpha(color: string | string[] | number[], alpha: number): st
 /**
  * @example
  * const rgbChannel = hexToRgbChannel("#000000");
- * console.log(rgbChannel); // "0, 0, 0"
+ * console.log(rgbChannel); // "0 0 0"
  */
 export const hexToRgbChannel = (hex: string) => {
 	const rgb = color(hex).rgb().array();
-	return rgb.join(",");
+	return rgb.join(" ");
 };
 
 /**
@@ -67,24 +67,30 @@ export const toCssVar = (propertyPath: string) => {
 
 /**
  * convert to CSS vars
- * @param propertyPath example: `colors.palette.primary`
- * @returns
- * ```js
- * {
- *   lighter: "var(--colors-palette-primary-lighter)",
- *   light: "var(--colors-palette-primary-light)",
- *   main: "rgb(var(--colors-palette-primary-main))",
- *   dark: "rgb(var(--colors-palette-primary-dark))",
- *   darker: "rgb(var(--colors-palette-primary-darker))"
- * }
- * ```
  */
-export const toCssVars = (propertyPath: string) => {
+export const getTailwinConfg = (propertyPath: string) => {
+	const variants = getThemeTokenVariants(propertyPath);
+	const result = variants.reduce(
+		(acc, variant) => {
+			acc[variant] = `var(${toCssVar(`${propertyPath}-${variant}`)})`;
+			return acc;
+		},
+		{} as Record<string, string>,
+	);
+	return result;
+};
+
+/**
+ * Get RGB values from color channels
+ * @param propertyPath example: `colors.palette.primary`
+ * @returns example: `{ DEFAULT: "rgb(var(--colors-palette-primary-defaultChannel))" }`
+ */
+export const getRgbFromColorChannel = (propertyPath: string) => {
 	const variants = getThemeTokenVariants(propertyPath);
 	const result = variants.reduce(
 		(acc, variant) => {
 			const variantKey = variant === "default" ? "DEFAULT" : variant;
-			acc[variantKey] = `var(${toCssVar(`${propertyPath}-${variant}`)})`;
+			acc[variantKey] = `rgb(var(${toCssVar(`${propertyPath}-${variant}Channel`)}))`;
 			return acc;
 		},
 		{} as Record<string, string>,

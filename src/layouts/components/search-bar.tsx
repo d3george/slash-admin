@@ -125,7 +125,7 @@ export default function SearchBar() {
 	return (
 		<>
 			<div className="flex items-center justify-center">
-				<IconButton className="h-8 rounded-xl bg-hover py-2 text-xs font-bold" onClick={handleOpen}>
+				<IconButton className="h-8 rounded-xl bg-gray-500/10 py-2 text-xs font-bold" onClick={handleOpen}>
 					<div className="flex items-center justify-center gap-2">
 						<SvgIcon icon="ic-search" size="20" />
 						<span className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
@@ -160,7 +160,7 @@ export default function SearchBar() {
 						autoFocus
 						prefix={<SvgIcon icon="ic-search" size="20" />}
 						suffix={
-							<IconButton className="h-6 rounded-md bg-hover text-xs" onClick={handleCancel}>
+							<IconButton className="h-6 rounded-md bg-gray-500/10 text-xs" onClick={handleCancel}>
 								Esc
 							</IconButton>
 						}

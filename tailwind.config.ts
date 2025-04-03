@@ -1,35 +1,44 @@
 import type { Config } from "tailwindcss";
 import { breakpointsTokens } from "./src/theme/tokens/breakpoints";
-import { rgbAlpha, toCssVar, toCssVars } from "./src/utils/theme";
+import { getRgbFromColorChannel, getTailwinConfg } from "./src/utils/theme";
 
 const config: Config = {
 	content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
 		colors: {
-			primary: toCssVars("colors.palette.primary"),
-			secondary: toCssVars("colors.palette.secondary"),
-			success: toCssVars("colors.palette.success"),
-			warning: toCssVars("colors.palette.warning"),
-			error: toCssVars("colors.palette.error"),
-			info: toCssVars("colors.palette.info"),
-			gray: toCssVars("colors.palette.gray"),
-			common: toCssVars("colors.common"),
-			text: toCssVars("colors.text"),
-			bg: toCssVars("colors.background"),
-			border: rgbAlpha(toCssVar("colors.palette.gray.500Channel"), 0.1),
-			hover: rgbAlpha(toCssVar("colors.palette.gray.500Channel"), 0.1),
+			primary: getRgbFromColorChannel("colors.palette.primary"),
+			secondary: getRgbFromColorChannel("colors.palette.secondary"),
+			success: getRgbFromColorChannel("colors.palette.success"),
+			warning: getRgbFromColorChannel("colors.palette.warning"),
+			error: getRgbFromColorChannel("colors.palette.error"),
+			info: getRgbFromColorChannel("colors.palette.info"),
+			gray: getRgbFromColorChannel("colors.palette.gray"),
+			common: getRgbFromColorChannel("colors.common"),
+			text: getRgbFromColorChannel("colors.text"),
+			bg: getRgbFromColorChannel("colors.background"),
 		},
-
-		opacity: toCssVars("opacity"),
+		opacity: getTailwinConfg("opacity"),
 		screens: breakpointsTokens,
 		extend: {
-			borderRadius: toCssVars("borderRadius"),
-			boxShadow: toCssVars("shadows"),
-			spacing: toCssVars("spacing"),
+			borderRadius: getTailwinConfg("borderRadius"),
+			boxShadow: getTailwinConfg("shadows"),
+			spacing: getTailwinConfg("spacing"),
+			keyframes: {
+				"collapsible-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-collapsible-content-height)" },
+				},
+				"collapsible-up": {
+					from: { height: "var(--radix-collapsible-content-height)" },
+					to: { height: "0" },
+				},
+			},
+			animation: {
+				"collapsible-down": "collapsible-down 0.2s ease-out",
+				"collapsible-up": "collapsible-up 0.2s ease-out",
+			},
 		},
 	},
-
-	plugins: [],
 };
 
 export default config;

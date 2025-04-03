@@ -127,7 +127,7 @@ export default function NavVertical(props: Props) {
 			collapsed={collapsed}
 			width={NAV_WIDTH}
 			theme={sidebarTheme}
-			className="!fixed left-0 top-0 h-screen border-r border-dashed border-border"
+			className="!fixed left-0 top-0 h-screen border-r border-dashed border-gray-500/10"
 		>
 			<div className="flex h-full flex-col">
 				<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />

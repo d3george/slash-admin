@@ -1,18 +1,14 @@
-import { Suspense, lazy } from "react";
-
-import Card from "@/components/card";
 import { Iconify, SvgIcon } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
-
-import type { AppRouteObject } from "#/router";
 import { Tag } from "antd";
+import { Suspense, lazy } from "react";
+import type { AppRouteObject } from "#/router";
 
-const ExternalLink = lazy(
-	() => import("@/pages/sys/others/iframe/external-link"),
-);
+const ExternalLink = lazy(() => import("@/pages/sys/others/iframe/external-link"));
 const Iframe = lazy(() => import("@/pages/sys/others/iframe"));
 const Calendar = lazy(() => import("@/pages/sys/others/calendar"));
 const Kanban = lazy(() => import("@/pages/sys/others/kanban"));
+const Blank = lazy(() => import("@/pages/sys/others/blank"));
 
 function Wrapper({ children }: any) {
 	return <Suspense fallback={<CircleLoading />}>{children}</Suspense>;
@@ -52,9 +48,7 @@ const others: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.disabled",
-			icon: (
-				<SvgIcon icon="ic_disabled" className="ant-menu-item-icon" size="24" />
-			),
+			icon: <SvgIcon icon="ic_disabled" className="ant-menu-item-icon" size="24" />,
 			disabled: true,
 			key: "/disabled",
 		},
@@ -68,14 +62,9 @@ const others: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.label",
-			icon: (
-				<SvgIcon icon="ic_label" className="ant-menu-item-icon" size="24" />
-			),
+			icon: <SvgIcon icon="ic_label" className="ant-menu-item-icon" size="24" />,
 			suffix: (
-				<Tag
-					color="cyan"
-					icon={<Iconify icon="solar:bell-bing-bold-duotone" size={14} />}
-				>
+				<Tag color="cyan" icon={<Iconify icon="solar:bell-bing-bold-duotone" size={14} />}>
 					NEW
 				</Tag>
 			),
@@ -86,9 +75,7 @@ const others: AppRouteObject[] = [
 		path: "frame",
 		meta: {
 			label: "sys.menu.frame",
-			icon: (
-				<SvgIcon icon="ic_external" className="ant-menu-item-icon" size="24" />
-			),
+			icon: <SvgIcon icon="ic_external" className="ant-menu-item-icon" size="24" />,
 			key: "/frame",
 		},
 		children: [
@@ -122,14 +109,12 @@ const others: AppRouteObject[] = [
 		path: "blank",
 		element: (
 			<Wrapper>
-				<Card />
+				<Blank />
 			</Wrapper>
 		),
 		meta: {
 			label: "sys.menu.blank",
-			icon: (
-				<SvgIcon icon="ic_blank" className="ant-menu-item-icon" size="24" />
-			),
+			icon: <SvgIcon icon="ic_blank" className="ant-menu-item-icon" size="24" />,
 			key: "/blank",
 		},
 	},

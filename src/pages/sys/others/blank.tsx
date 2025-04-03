@@ -1,10 +1,10 @@
 import Card from "@/components/card";
-import { Button } from "@/ui/button";
+import { NAV_SECTION_ITEMS, NavVertical } from "@/components/nav";
 
 export default function BlankPage() {
 	return (
-		<Card>
-			<Button>Click me</Button>
+		<Card className="w-80 h-[600px] flex flex-col justify-start">
+			<NavVertical data={NAV_SECTION_ITEMS} />
 		</Card>
 	);
 }

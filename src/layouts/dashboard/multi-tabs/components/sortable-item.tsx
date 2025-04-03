@@ -34,7 +34,7 @@ export const SortableItem = ({ tab, onClick }: Props) => {
 			{...listeners}
 			id={`tab${tab.key.split("/").join("-")}`}
 			onClick={onClick}
-			className={cn("flex-shrink-0 rounded-t-lg border border-border", isActive && "text-primary")}
+			className={cn("flex-shrink-0 rounded-t-lg border border-gray-500/10", isActive && "text-primary")}
 		>
 			<TabItem tab={tab} onClose={() => closeTab(tab.key)} />
 		</li>
