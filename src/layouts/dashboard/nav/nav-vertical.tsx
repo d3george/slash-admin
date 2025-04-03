@@ -1,17 +1,19 @@
+import { Layout, Menu, type MenuProps } from "antd";
+import type { ItemType } from "antd/es/menu/interface";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router";
+import { useUpdateEffect } from "react-use";
+
 import Scrollbar from "@/components/scrollbar";
+import useMemoizedFn from "@/hooks/use-memoized-fn";
 import { useFlattenedRoutes, usePathname, usePermissionRoutes, useRouteToMenuFn } from "@/router/hooks";
 import { menuFilter } from "@/router/utils";
 import { useSettingActions, useSettings } from "@/store/settingStore";
-import { Layout, Menu, type MenuProps } from "antd";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router";
+import { ThemeLayout, ThemeMode } from "#/enum";
 
 import { NAV_WIDTH } from "../config";
 
 import NavLogo from "./nav-logo";
-
-import type { ItemType } from "antd/es/menu/interface";
-import { ThemeLayout, ThemeMode } from "#/enum";
 
 const { Sider } = Layout;
 
@@ -82,21 +84,21 @@ function NavVertical({
 	const [selectedKey, setSelectedKey] = useState(pathname);
 	const selectedKeys = useMemo(() => [selectedKey], [selectedKey]);
 
-	const [openKeys, setOpenKeys] = useState<string[]>([]);
+	const menuStatusRef = useRef<"closing" | "opening" | undefined>(undefined);
+	const siderRef = useRef<HTMLDivElement>(null);
+
+	const [openKeys, setOpenKeys] = useState<string[]>(() => {
+		if (collapsed) return [];
+		const [, parentKeys] = getKeyLevelAndParentKeys(menuList, pathname);
+		return [...new Set([...parentKeys])];
+	});
 
 	const handleToggleCollapsed = () => {
 		setSettings({
 			...settings,
 			themeLayout: collapsed ? ThemeLayout.Vertical : ThemeLayout.Mini,
 		});
-		if (collapsed) {
-			const [, parentKeys] = getKeyLevelAndParentKeys(menuList, pathname);
-			// hack resolution of https://github.com/d3george/slash-admin/issues/104
-			setTimeout(() => {
-				setOpenKeys([...new Set([...parentKeys, pathname])]);
-			}, 0);
-			return;
-		}
+		menuStatusRef.current = collapsed ? "opening" : "closing";
 	};
 
 	const onClick: MenuProps["onClick"] = ({ key }) => {
@@ -145,22 +147,43 @@ function NavVertical({
 	}, [themeMode, darkSidebar]);
 
 	// 监听路由变化
-	useEffect(() => {
+	useUpdateEffect(() => {
 		setSelectedKey(pathname);
 
-		const currentKey = pathname;
+		// 如果侧边栏收起，则不展开菜单
 		if (collapsed) return;
+		// 如果侧边栏正在打开，则不展开菜单，等待动画结束
+		if (menuStatusRef.current === "opening") return;
 
-		const [, parentKeys] = getKeyLevelAndParentKeys(menuList, currentKey);
+		const [, parentKeys] = getKeyLevelAndParentKeys(menuList, pathname);
 		if (settings.accordion) {
-			setOpenKeys([...new Set([...parentKeys, currentKey])]);
+			setOpenKeys([...new Set([...parentKeys])]);
 		} else {
-			setOpenKeys((prev) => [...new Set([...prev, ...parentKeys, currentKey])]);
+			setOpenKeys((prev) => [...new Set([...prev, ...parentKeys])]);
 		}
 	}, [pathname, menuList, settings.accordion, collapsed]);
 
+	const handleTransitionEnd = useMemoizedFn((e: TransitionEvent) => {
+		if (e.propertyName === "width") {
+			if (menuStatusRef.current === "opening") {
+				const [, parentKeys] = getKeyLevelAndParentKeys(menuList, pathname);
+				setOpenKeys([...new Set([...parentKeys])]);
+			}
+			// reset menu status after transition end
+			menuStatusRef.current = undefined;
+		}
+	});
+
+	useEffect(() => {
+		siderRef.current?.addEventListener("transitionend", handleTransitionEnd);
+		return () => {
+			siderRef.current?.removeEventListener("transitionend", handleTransitionEnd);
+		};
+	}, [handleTransitionEnd]);
+
 	return (
 		<Sider
+			ref={siderRef}
 			trigger={null}
 			collapsible
 			collapsed={collapsed}
