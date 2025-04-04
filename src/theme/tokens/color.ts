@@ -110,9 +110,17 @@ export const commonColors = {
 	border: rgbAlpha(paletteColors.gray[500], 0.2),
 };
 
+const actionColors = {
+	hover: rgbAlpha(paletteColors.gray[500], 0.08),
+	selected: rgbAlpha(paletteColors.gray[500], 0.08),
+	focus: rgbAlpha(paletteColors.gray[500], 0.12),
+	disabled: rgbAlpha(paletteColors.gray[500], 0.48),
+};
+
 export const lightColorTokens = {
 	palette: paletteColors,
 	common: commonColors,
+	action: actionColors,
 	text: {
 		primary: "#1C252E",
 		secondary: "#637381",
@@ -128,6 +136,7 @@ export const lightColorTokens = {
 export const darkColorTokens = {
 	palette: paletteColors,
 	common: commonColors,
+	action: actionColors,
 	text: {
 		primary: "#FFFFFF",
 		secondary: "#919EAB",

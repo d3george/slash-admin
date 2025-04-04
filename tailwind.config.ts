@@ -16,6 +16,7 @@ const config: Config = {
 			common: getRgbFromColorChannel("colors.common"),
 			text: getRgbFromColorChannel("colors.text"),
 			bg: getRgbFromColorChannel("colors.background"),
+			action: getRgbFromColorChannel("colors.action"),
 		},
 		opacity: getTailwinConfg("opacity"),
 		screens: breakpointsTokens,

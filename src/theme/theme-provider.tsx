@@ -1,8 +1,8 @@
 import { useSettings } from "@/store/settingStore";
-import { hexToRgbChannel, rgbAlpha } from "@/utils/theme";
+import { rgbAlpha } from "@/utils/theme";
+import color from "color";
 import { useEffect } from "react";
 import { ThemeMode } from "#/enum";
-import { layoutClass } from "./layout.css";
 import { presetsColors } from "./tokens/color";
 import type { UILibraryAdapter } from "./type";
 interface ThemeProviderProps {
@@ -26,7 +26,7 @@ export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
 		const primaryColors = presetsColors[themeColorPresets];
 		for (const [key, value] of Object.entries(primaryColors)) {
 			root.style.setProperty(`--colors-palette-primary-${key}`, value);
-			root.style.setProperty(`--colors-palette-primary-${key}Channel`, hexToRgbChannel(value));
+			root.style.setProperty(`--colors-palette-primary-${key}Channel`, color(value).rgb().array().join(" "));
 		}
 		root.style.setProperty("--shadows-primary", `box-shadow: 0 8px 16px 0 ${rgbAlpha(primaryColors.default, 0.24)}`);
 	}, [themeColorPresets]);
@@ -50,5 +50,5 @@ export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
 		children,
 	);
 
-	return <div className={layoutClass}>{wrappedWithAdapters}</div>;
+	return wrappedWithAdapters;
 }

@@ -62,6 +62,12 @@ export const themeTokens = {
 			black: null,
 			border: null,
 		},
+		action: {
+			hover: null,
+			selected: null,
+			focus: null,
+			disabled: null,
+		},
 		text: {
 			primary: null,
 			secondary: null,
