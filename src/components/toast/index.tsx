@@ -93,7 +93,7 @@ const ToasterStyleWrapper = styled.div`
       color: ${themeVars.colors.palette.info.default};
       background-color: transparent;
       &:hover {
-        background-color: ${`rgba(${themeVars.colors.palette.info.defaultChannel}, 0.08)`};
+        background-color: ${rgbAlpha(themeVars.colors.palette.info.defaultChannel, 0.08)};
       }
     }
 
@@ -102,7 +102,7 @@ const ToasterStyleWrapper = styled.div`
       color: ${themeVars.colors.palette.error.default};
       background-color: transparent;
       &:hover {
-        background-color: ${`rgba(${themeVars.colors.palette.error.defaultChannel}, 0.08)`};
+        background-color: ${rgbAlpha(themeVars.colors.palette.error.defaultChannel, 0.08)};
       }
     }
 
@@ -111,7 +111,7 @@ const ToasterStyleWrapper = styled.div`
       color: ${themeVars.colors.palette.success.default};
       background-color: transparent;
       &:hover {
-        background-color: ${`rgba(${themeVars.colors.palette.success.defaultChannel}, 0.08)`};
+        background-color: ${rgbAlpha(themeVars.colors.palette.success.defaultChannel, 0.08)};
       }
     }
 
@@ -120,7 +120,7 @@ const ToasterStyleWrapper = styled.div`
       color: ${themeVars.colors.palette.warning.default};
       background-color: transparent;
       &:hover {
-        background-color: ${`rgba(${themeVars.colors.palette.warning.defaultChannel}, 0.08)`};
+        background-color: ${rgbAlpha(themeVars.colors.palette.warning.defaultChannel, 0.08)};
       }
     }
 

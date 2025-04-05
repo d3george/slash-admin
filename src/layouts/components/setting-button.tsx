@@ -114,7 +114,7 @@ export default function SettingButton() {
 		backdropFilter: "blur(20px)",
 		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundColor: `rgba(${themeVars.colors.background.paperChannel}, 0.9)`,
+		backgroundColor: `rgba(${themeVars.colors.background.paperChannel} / 0.9)`,
 		backgroundPosition: "right top, left bottom",
 		backgroundSize: "50, 50%",
 	};
@@ -383,7 +383,7 @@ export default function SettingButton() {
 									}}
 								>
 									<LeftOutlined />
-									<div className="flex flex-grow border-b border-dashed border-border" />
+									<div className="flex flex-grow border-b border-dashed border-gray-500/10" />
 									<RightOutlined />
 								</div>
 							) : (
@@ -394,7 +394,7 @@ export default function SettingButton() {
 									}}
 								>
 									<RightOutlined />
-									<div className="flex-grow border-b border-dashed border-border" />
+									<div className="flex-grow border-b border-dashed border-gray-500/10" />
 									<LeftOutlined />
 								</div>
 							)}

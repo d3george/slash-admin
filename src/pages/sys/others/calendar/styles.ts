@@ -17,13 +17,13 @@ export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
     width: 100%;
     height: 100%;
     /* override fullcalendar css variables */
-    --fc-border-color: rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.16);
+    --fc-border-color: rgba(${themeVars.colors.palette.gray["500Channel"]} / 0.16);
     --fc-now-indicator-color: ${themeVars.colors.palette.primary.darker};
-    --fc-today-bg-color: rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.08);
+    --fc-today-bg-color: rgba(${themeVars.colors.palette.gray["500Channel"]} / 0.08);
     --fc-page-bg-color: ${(props) => (props.$themeMode === ThemeMode.Light ? "#ffffff" : "#161c24")};
     --fc-neutral-bg-color: ${themeVars.colors.background.default};
-    --fc-list-event-hover-bg-color: rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.08);
-    --fc-highlight-color: rgba(${themeVars.colors.palette.gray["500Channel"]}, 0.08);
+    --fc-list-event-hover-bg-color: rgba(${themeVars.colors.palette.gray["500Channel"]} / 0.08);
+    --fc-highlight-color: rgba(${themeVars.colors.palette.gray["500Channel"]} / 0.08);
 
     a {
       color: ${(props) => (props.$themeMode === ThemeMode.Dark ? "#ffffff" : "#212b36")};

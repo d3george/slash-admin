@@ -1,5 +1,5 @@
 import color from "color";
-import { themeTokens } from "../theme/type";
+import { type AddChannelToLeaf, themeTokens } from "../theme/type";
 
 /**
  * @example
@@ -7,54 +7,50 @@ import { themeTokens } from "../theme/type";
  * console.log(rgb); // "rgba(0, 0, 0, 0.24)"
  *
  * const rgb = rgbAlpha("var(--colors-palette-primary-main)", 0.24);
- * console.log(rgb); // "rgba(var(--colors-palette-primary-main), 0.24)"
+ * console.log(rgb); // "rgba(var(--colors-palette-primary-main) / 0.24)"
  *
  * const rgb = rgbAlpha("rgb(var(--colors-palette-primary-main))", 0.24);
- * console.log(rgb); // "rgba(rgb(var(--colors-palette-primary-main)), 0.24)"
+ * console.log(rgb); // "rgba(rgb(var(--colors-palette-primary-main)) / 0.24)"
  *
  * const rgb = rgbAlpha([200, 250, 214], 0.24);
  * console.log(rgb); // "rgba(200, 250, 214, 0.24)"
+ *
+ * const rgb = rgbAlpha("200 250 214", 0.24);
+ * console.log(rgb); // "rgba(200, 250, 214, 0.24)"
  */
-export function rgbAlpha(color: string | string[] | number[], alpha: number): string {
+export function rgbAlpha(colorVal: string | string[] | number[], alpha: number): string {
 	// ensure alpha value is between 0-1
 	const safeAlpha = Math.max(0, Math.min(1, alpha));
 
 	// if color is CSS variable
-	if (typeof color === "string") {
-		if (color.startsWith("#")) {
-			return `rgba(${hexToRgbChannel(color)}, ${safeAlpha})`;
+	if (typeof colorVal === "string") {
+		if (colorVal.startsWith("#")) {
+			return color(colorVal).alpha(safeAlpha).toString();
 		}
-		if (color.includes("var(")) {
-			return `rgba(${color}, ${safeAlpha})`;
+		if (colorVal.includes("var(")) {
+			return `rgba(${colorVal} / ${safeAlpha})`;
 		}
-		if (color.startsWith("--")) {
-			return `rgba(var(${color}), ${safeAlpha})`;
+		if (colorVal.startsWith("--")) {
+			return `rgba(var(${colorVal}) / ${safeAlpha})`;
 		}
 
 		// handle "200, 250, 214" or "200 250 214" format
-		if (color.includes(",") || color.includes(" ")) {
-			const rgb = color.split(/[,\s]+/).map((n) => n.trim());
+		if (colorVal.includes(",") || colorVal.includes(" ")) {
+			const rgb = colorVal
+				.split(/[,\s]+/)
+				.map((n) => n.trim())
+				.filter(Boolean);
 			return `rgba(${rgb.join(", ")}, ${safeAlpha})`;
 		}
 	}
 
 	// handle array format [200, 250, 214]
-	if (Array.isArray(color)) {
-		return `rgba(${color.join(", ")}, ${safeAlpha})`;
+	if (Array.isArray(colorVal)) {
+		return `rgba(${colorVal.join(", ")}, ${safeAlpha})`;
 	}
 
 	throw new Error("Invalid color format");
 }
-
-/**
- * @example
- * const rgbChannel = hexToRgbChannel("#000000");
- * console.log(rgbChannel); // "0, 0, 0"
- */
-export const hexToRgbChannel = (hex: string) => {
-	const rgb = color(hex).rgb().array();
-	return rgb.join(",");
-};
 
 /**
  * convert to CSS vars
@@ -67,24 +63,30 @@ export const toCssVar = (propertyPath: string) => {
 
 /**
  * convert to CSS vars
- * @param propertyPath example: `colors.palette.primary`
- * @returns
- * ```js
- * {
- *   lighter: "var(--colors-palette-primary-lighter)",
- *   light: "var(--colors-palette-primary-light)",
- *   main: "rgb(var(--colors-palette-primary-main))",
- *   dark: "rgb(var(--colors-palette-primary-dark))",
- *   darker: "rgb(var(--colors-palette-primary-darker))"
- * }
- * ```
  */
-export const toCssVars = (propertyPath: string) => {
+export const getTailwinConfg = (propertyPath: string) => {
+	const variants = getThemeTokenVariants(propertyPath);
+	const result = variants.reduce(
+		(acc, variant) => {
+			acc[variant] = `var(${toCssVar(`${propertyPath}-${variant}`)})`;
+			return acc;
+		},
+		{} as Record<string, string>,
+	);
+	return result;
+};
+
+/**
+ * Get RGB values from color channels
+ * @param propertyPath example: `colors.palette.primary`
+ * @returns example: `{ DEFAULT: "rgb(var(--colors-palette-primary-defaultChannel))" }`
+ */
+export const getRgbFromColorChannel = (propertyPath: string) => {
 	const variants = getThemeTokenVariants(propertyPath);
 	const result = variants.reduce(
 		(acc, variant) => {
 			const variantKey = variant === "default" ? "DEFAULT" : variant;
-			acc[variantKey] = `var(${toCssVar(`${propertyPath}-${variant}`)})`;
+			acc[variantKey] = `rgb(var(${toCssVar(`${propertyPath}-${variant}Channel`)}))`;
 			return acc;
 		},
 		{} as Record<string, string>,
@@ -147,4 +149,35 @@ export const removePx = (value: string | number): number => {
 	}
 
 	return result;
+};
+
+/**
+ * add color channels to the color tokens {@link themeTokens}
+ * @param obj example: `{ palette: { primary: "#000000" } }`
+ * @returns example: `{ palette: { primary: "#000000", primaryChannel: "0, 0, 0" } }`
+ */
+export const addColorChannels = <T extends Record<string, any>>(obj: T): AddChannelToLeaf<T> => {
+	const result: Record<string, any> = {};
+
+	// check if the object is a leaf object
+	const isLeafObject = Object.values(obj).every((v) => v === null || typeof v === "string");
+
+	if (isLeafObject) {
+		// add channel to the leaf object
+		for (const [key, value] of Object.entries(obj)) {
+			result[key] = value;
+			result[`${key}Channel`] = color(value).rgb().array().join(" ");
+		}
+	} else {
+		// recursively process non-leaf objects
+		for (const [key, value] of Object.entries(obj)) {
+			if (typeof value === "object" && value !== null) {
+				result[key] = addColorChannels(value);
+			} else {
+				result[key] = value;
+			}
+		}
+	}
+
+	return result as AddChannelToLeaf<T>;
 };

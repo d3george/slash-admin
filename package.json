@@ -27,6 +27,9 @@
 		"@fullcalendar/timegrid": "^6.1.15",
 		"@fullcalendar/timeline": "^6.1.15",
 		"@iconify/react": "^4.1.1",
+		"@radix-ui/react-collapsible": "^1.1.3",
+		"@radix-ui/react-slot": "^1.1.2",
+		"@radix-ui/react-tooltip": "^1.1.8",
 		"@tanstack/react-query": "^5.60.2",
 		"@tanstack/react-query-devtools": "^5.60.2",
 		"@vanilla-extract/css": "^1.17.0",
@@ -37,6 +40,7 @@
 		"apexcharts": "^3.54.1",
 		"autosuggest-highlight": "^3.3.4",
 		"axios": "^1.7.7",
+		"class-variance-authority": "^0.7.1",
 		"classnames": "^2.5.1",
 		"clsx": "^2.1.1",
 		"color": "^4.2.3",
@@ -45,6 +49,7 @@
 		"highlight.js": "^11.10.0",
 		"i18next": "^23.16.5",
 		"i18next-browser-languagedetector": "^7.2.1",
+		"lucide-react": "^0.487.0",
 		"nprogress": "^0.2.0",
 		"numeral": "^2.0.6",
 		"ramda": "^0.29.1",
@@ -69,6 +74,7 @@
 		"sonner": "^1.7.0",
 		"styled-components": "^6.1.13",
 		"tailwind-merge": "^2.5.4",
+		"tw-animate-css": "^1.2.5",
 		"zustand": "^4.5.5"
 	},
 	"devDependencies": {

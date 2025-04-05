@@ -30,7 +30,7 @@ export function LineLoading() {
 		<div className="m-auto flex h-full w-96 items-center justify-center">
 			<Progress
 				percent={percent}
-				trailColor={rgbAlpha(themeVars.colors.palette.primary.default, 0.8)}
+				trailColor={rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.8)}
 				strokeColor={themeVars.colors.palette.primary.default}
 				showInfo={false}
 				size="small"

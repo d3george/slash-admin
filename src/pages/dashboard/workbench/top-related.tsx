@@ -61,7 +61,7 @@ export default function TopRelated() {
 							<div
 								className="mr-2 flex items-center justify-center"
 								style={{
-									background: `rgba(${themeVars.colors.background.defaultChannel}, .4)`,
+									background: `rgba(${themeVars.colors.background.defaultChannel}/ .4)`,
 									borderRadius: "12px",
 									width: "48px",
 									height: "48px",

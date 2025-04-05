@@ -10,18 +10,18 @@ export default function TopAuthor() {
 			case 1:
 				return {
 					color: themeVars.colors.palette.info.default,
-					bg: `rgba(${themeVars.colors.palette.info.defaultChannel}, .4)`,
+					bg: `rgba(${themeVars.colors.palette.info.defaultChannel} / .4)`,
 				};
 			case 2: {
 				return {
 					color: themeVars.colors.palette.error.default,
-					bg: `rgba(${themeVars.colors.palette.error.defaultChannel}, .4)`,
+					bg: `rgba(${themeVars.colors.palette.error.defaultChannel} / .4)`,
 				};
 			}
 			default:
 				return {
 					color: themeVars.colors.palette.success.default,
-					bg: `rgba(${themeVars.colors.palette.success.defaultChannel}, .4)`,
+					bg: `rgba(${themeVars.colors.palette.success.defaultChannel} / .4)`,
 				};
 		}
 	};
