@@ -12,7 +12,7 @@ export default function AnalysisTrafficCard({ icon, title, subtitle }: Props) {
 		<div
 			className="flex flex-col items-center rounded py-5"
 			style={{
-				border: `1px solid rgba(${themeVars.colors.palette.gray["500Channel"]}, .2)`,
+				border: `1px solid rgba(${themeVars.colors.palette.gray["500Channel"]} / .2)`,
 			}}
 		>
 			<div>{icon}</div>

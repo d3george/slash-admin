@@ -110,7 +110,7 @@ export const commonColors = {
 	border: rgbAlpha(paletteColors.gray[500], 0.2),
 };
 
-const actionColors = {
+export const actionColors = {
 	hover: rgbAlpha(paletteColors.gray[500], 0.08),
 	selected: rgbAlpha(paletteColors.gray[500], 0.08),
 	focus: rgbAlpha(paletteColors.gray[500], 0.12),

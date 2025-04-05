@@ -53,7 +53,7 @@ function KanbanTask({ id, task, isDragging }: Props) {
 										count: 3,
 										style: {
 											color: themeVars.colors.palette.primary.default,
-											backgroundColor: rgbAlpha(themeVars.colors.palette.primary.default, 0.9),
+											backgroundColor: rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.3),
 										},
 									}}
 								>

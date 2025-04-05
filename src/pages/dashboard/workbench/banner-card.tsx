@@ -7,7 +7,7 @@ import { Col, Row } from "antd";
 export default function BannerCard() {
 	const { username } = useUserInfo();
 
-	const bg = `linear-gradient(135deg, rgba(${themeVars.colors.palette.primary.lightChannel}, .2), rgba(${themeVars.colors.palette.primary.defaultChannel}, .2)) ${themeVars.colors.common.white}`;
+	const bg = `linear-gradient(135deg, rgba(${themeVars.colors.palette.primary.lightChannel}/ .2), rgba(${themeVars.colors.palette.primary.defaultChannel}/ .2)) ${themeVars.colors.common.white}`;
 
 	return (
 		<Row className="!mx-0 rounded-2xl p-7" gutter={[16, 16]} justify="space-between" style={{ background: bg }}>

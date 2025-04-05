@@ -56,3 +56,8 @@ export enum PermissionType {
 	MENU = 1,
 	BUTTON = 2,
 }
+
+export enum HtmlDataAttribute {
+	ColorPalette = "data-color-palette",
+	ThemeMode = "data-theme-mode",
+}

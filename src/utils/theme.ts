@@ -7,12 +7,15 @@ import { type AddChannelToLeaf, themeTokens } from "../theme/type";
  * console.log(rgb); // "rgba(0, 0, 0, 0.24)"
  *
  * const rgb = rgbAlpha("var(--colors-palette-primary-main)", 0.24);
- * console.log(rgb); // "rgba(var(--colors-palette-primary-main), 0.24)"
+ * console.log(rgb); // "rgba(var(--colors-palette-primary-main) / 0.24)"
  *
  * const rgb = rgbAlpha("rgb(var(--colors-palette-primary-main))", 0.24);
- * console.log(rgb); // "rgba(rgb(var(--colors-palette-primary-main)), 0.24)"
+ * console.log(rgb); // "rgba(rgb(var(--colors-palette-primary-main)) / 0.24)"
  *
  * const rgb = rgbAlpha([200, 250, 214], 0.24);
+ * console.log(rgb); // "rgba(200, 250, 214, 0.24)"
+ *
+ * const rgb = rgbAlpha("200 250 214", 0.24);
  * console.log(rgb); // "rgba(200, 250, 214, 0.24)"
  */
 export function rgbAlpha(colorVal: string | string[] | number[], alpha: number): string {
@@ -25,15 +28,18 @@ export function rgbAlpha(colorVal: string | string[] | number[], alpha: number):
 			return color(colorVal).alpha(safeAlpha).toString();
 		}
 		if (colorVal.includes("var(")) {
-			return `rgba(${colorVal}, ${safeAlpha})`;
+			return `rgba(${colorVal} / ${safeAlpha})`;
 		}
 		if (colorVal.startsWith("--")) {
-			return `rgba(var(${colorVal}), ${safeAlpha})`;
+			return `rgba(var(${colorVal}) / ${safeAlpha})`;
 		}
 
 		// handle "200, 250, 214" or "200 250 214" format
 		if (colorVal.includes(",") || colorVal.includes(" ")) {
-			const rgb = colorVal.split(/[,\s]+/).map((n) => n.trim());
+			const rgb = colorVal
+				.split(/[,\s]+/)
+				.map((n) => n.trim())
+				.filter(Boolean);
 			return `rgba(${rgb.join(", ")}, ${safeAlpha})`;
 		}
 	}

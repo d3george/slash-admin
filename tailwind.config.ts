@@ -1,8 +1,10 @@
 import type { Config } from "tailwindcss";
 import { breakpointsTokens } from "./src/theme/tokens/breakpoints";
+import { HtmlDataAttribute } from "./src/types/enum";
 import { getRgbFromColorChannel, getTailwinConfg } from "./src/utils/theme";
 
 const config: Config = {
+	darkMode: ["selector", `[${HtmlDataAttribute.ThemeMode}='dark']`],
 	content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
 		colors: {

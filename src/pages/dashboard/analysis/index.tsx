@@ -27,7 +27,7 @@ function Analysis() {
 						subtitle="Weekly Sales"
 						style={{
 							color: themeVars.colors.palette.success.dark,
-							backgroundColor: `rgba(${themeVars.colors.palette.success.defaultChannel}, .2)`,
+							backgroundColor: `rgba(${themeVars.colors.palette.success.defaultChannel} / .2)`,
 						}}
 					/>
 				</Col>
@@ -38,7 +38,7 @@ function Analysis() {
 						subtitle="New Users"
 						style={{
 							color: themeVars.colors.palette.info.dark,
-							backgroundColor: `rgba(${themeVars.colors.palette.info.defaultChannel}, .2)`,
+							backgroundColor: `rgba(${themeVars.colors.palette.info.defaultChannel} / .2)`,
 						}}
 					/>
 				</Col>
@@ -49,7 +49,7 @@ function Analysis() {
 						subtitle="New Orders"
 						style={{
 							color: themeVars.colors.palette.warning.dark,
-							backgroundColor: `rgba(${themeVars.colors.palette.warning.defaultChannel}, .2)`,
+							backgroundColor: `rgba(${themeVars.colors.palette.warning.defaultChannel} / .2)`,
 						}}
 					/>
 				</Col>
@@ -60,7 +60,7 @@ function Analysis() {
 						subtitle="Bug Reports"
 						style={{
 							color: themeVars.colors.palette.error.dark,
-							backgroundColor: `rgba(${themeVars.colors.palette.error.defaultChannel}, .2)`,
+							backgroundColor: `rgba(${themeVars.colors.palette.error.defaultChannel} / .2)`,
 						}}
 					/>
 				</Col>
