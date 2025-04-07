@@ -35,5 +35,3 @@ for (const preset of Object.values(ThemeColorPresets)) {
 		}),
 	});
 }
-
-console.log(themeVars.colors.palette.primary.defaultChannel);

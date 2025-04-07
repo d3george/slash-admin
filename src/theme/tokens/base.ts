@@ -49,6 +49,12 @@ export const baseThemeTokens = {
 		90: "0.9",
 		95: "0.95",
 		100: "1",
+		border: "0.2",
+		hover: "0.08",
+		selected: "0.16",
+		focus: "0.24",
+		disabled: "0.8",
+		disabledBackground: "0.24",
 	},
 	zIndex: {
 		drawer: "1000",

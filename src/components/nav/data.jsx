@@ -9,13 +9,13 @@ export const NAV_SECTION_ITEMS = [
 				path: "#",
 				roles: ["admin"],
 				caption: "Display only admin role       aaaaaaaaaaaaaaa",
-				info: "+2",
+				info: <span className="text-xs text-text-secondary bg-success px-1.5 py-0.5 rounded-md">+2</span>,
 				children: [
 					{
 						title: "Item 1",
 						path: "#",
 						caption: "Display caption",
-						info: "+2",
+						info: <span className="text-xs text-text-secondary">+2</span>,
 					},
 					{ title: "Item 2", path: "#" },
 				],
