@@ -107,7 +107,6 @@ export const paletteColors = {
 export const commonColors = {
 	white: "#FFFFFF",
 	black: "#000000",
-	border: rgbAlpha(paletteColors.gray[500], 0.2),
 };
 
 export const actionColors = {
@@ -115,6 +114,7 @@ export const actionColors = {
 	selected: rgbAlpha(paletteColors.gray[500], 0.08),
 	focus: rgbAlpha(paletteColors.gray[500], 0.12),
 	disabled: rgbAlpha(paletteColors.gray[500], 0.48),
+	active: rgbAlpha(paletteColors.gray[500], 1),
 };
 
 export const lightColorTokens = {
@@ -122,14 +122,14 @@ export const lightColorTokens = {
 	common: commonColors,
 	action: actionColors,
 	text: {
-		primary: "#1C252E",
-		secondary: "#637381",
-		disabled: "#919EAB",
+		primary: paletteColors.gray[800],
+		secondary: paletteColors.gray[600],
+		disabled: paletteColors.gray[500],
 	},
 	background: {
-		default: "#FFFFFF",
-		paper: "#FFFFFF",
-		neutral: "#F4F6F8",
+		default: commonColors.white,
+		paper: commonColors.white,
+		neutral: paletteColors.gray[200],
 	},
 };
 
@@ -138,13 +138,13 @@ export const darkColorTokens = {
 	common: commonColors,
 	action: actionColors,
 	text: {
-		primary: "#FFFFFF",
-		secondary: "#919EAB",
-		disabled: "#637381",
+		primary: commonColors.white,
+		secondary: paletteColors.gray[500],
+		disabled: paletteColors.gray[600],
 	},
 	background: {
-		default: "#161c24",
-		paper: "#212b36",
+		default: paletteColors.gray[900],
+		paper: paletteColors.gray[800],
 		neutral: "#28323D",
 	},
 };

@@ -60,13 +60,13 @@ export const themeTokens = {
 		common: {
 			white: null,
 			black: null,
-			border: null,
 		},
 		action: {
 			hover: null,
 			selected: null,
 			focus: null,
 			disabled: null,
+			active: null,
 		},
 		text: {
 			primary: null,
@@ -180,6 +180,12 @@ export const themeTokens = {
 		90: null,
 		95: null,
 		100: null,
+		border: null,
+		hover: null,
+		selected: null,
+		focus: null,
+		disabled: null,
+		disabledBackground: null,
 	},
 	zIndex: {
 		drawer: null,

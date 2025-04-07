@@ -132,7 +132,7 @@ const ToasterStyleWrapper = styled.div`
       border-width: 1px;
       border-style: dashed;
       background-color: ${themeVars.colors.background.paper};
-      border-color: ${themeVars.colors.common.border};
+      border: 1px solid ${rgbAlpha(themeVars.colors.palette.gray[200], 0.2)};
     }
   }
 `;

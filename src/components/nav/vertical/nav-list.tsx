@@ -37,7 +37,7 @@ export function NavList({ data, currentRole, depth = 0, enabledRootRedirect = fa
 					<div className="ml-4 mt-1 flex flex-col gap-1">
 						{data.children?.map((child) => (
 							<NavList
-								key={child.path}
+								key={child.title}
 								data={child}
 								currentRole={currentRole}
 								depth={depth + 1}

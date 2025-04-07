@@ -4,6 +4,7 @@ import { Tooltip } from "@/ui/tooltip";
 import { TooltipTrigger } from "@/ui/tooltip";
 import { TooltipProvider } from "@/ui/tooltip";
 import { cn } from "@/utils";
+import { Icon } from "@iconify/react";
 import type { NavItemProps } from "../types";
 
 export function NavItem({
@@ -22,8 +23,8 @@ export function NavItem({
 	const content = (
 		<>
 			{/* Icon */}
-			<span className="mr-2 inline-flex h-5 w-5 shrink-0 items-center justify-center">
-				{icon && typeof icon === "string" ? <Iconify icon={icon} className="h-5 w-5" /> : icon}
+			<span className="mr-3 inline-flex h-6 w-6 shrink-0 items-center justify-center">
+				{icon && typeof icon === "string" ? <Iconify icon={icon} className="h-6 w-6" /> : icon}
 			</span>
 
 			{/* Texts: Title, Caption */}
@@ -45,7 +46,7 @@ export function NavItem({
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<span
-									className="text-xs text-muted-foreground text-left"
+									className="text-xs text-text-secondary text-left"
 									style={{
 										display: "-webkit-box",
 										WebkitLineClamp: 1,
@@ -66,17 +67,13 @@ export function NavItem({
 			</span>
 
 			{/* Info */}
-			{info && (
-				<span className="ml-1.5 inline-flex shrink-0 text-xs text-muted-foreground">
-					{Array.isArray(info) ? info.join(", ") : info}
-				</span>
-			)}
+			{info && <span className="mx-1.5 inline-flex shrink-0">{info}</span>}
 
 			{/* Arrow */}
 			{hasChild && (
-				<Iconify
+				<Icon
 					icon="eva:arrow-ios-forward-fill"
-					className="ml-1.5 h-4 w-4 inline-flex shrink-0 transition-all duration-300 ease-in-out"
+					className="h-4 w-4 inline-flex shrink-0 transition-all duration-300 ease-in-out"
 					style={{
 						transform: open ? "rotate(90deg)" : "rotate(0deg)",
 					}}
@@ -87,8 +84,8 @@ export function NavItem({
 
 	const itemClassName = cn(
 		"inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-colors",
-		"hover:bg-primary/10",
-		active && "bg-primary/10 text-primary",
+		"hover:bg-action-hover",
+		active && "bg-action-active text-action-active",
 		disabled && "pointer-events-none opacity-50",
 	);
 

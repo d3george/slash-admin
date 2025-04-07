@@ -8,7 +8,7 @@ export type NavItemDataProps = {
 	path: string; // 导航路径
 	title: string; // 导航标题
 	icon?: string | React.ReactNode; // 图标
-	info?: string[] | React.ReactNode; // 附加信息
+	info?: React.ReactNode; // 附加信息
 	caption?: string; // 副标题/说明文字
 	roles?: string[]; // 权限控制
 	children?: NavItemDataProps[]; // 子菜单项

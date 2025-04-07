@@ -1,4 +1,5 @@
 import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 import styled from "styled-components";
 
 const StyledEditor = styled.div`
@@ -38,7 +39,7 @@ const StyledEditor = styled.div`
   overflow: hidden;
   position: relative;
   border-radius: 8px;
-  border: 1px solid ${themeVars.colors.common.border};
+  border: 1px solid ${rgbAlpha(themeVars.colors.palette.gray[200], 0.2)};
   & .ql-container.ql-snow {
     border: none;
     line-height: 1.6;
@@ -155,7 +156,7 @@ const StyledToolbar = styled.div`
 
   & .ql-toolbar.ql-snow {
     border: none;
-    border-bottom: 1px solid ${themeVars.colors.common.border};
+    border-bottom: 1px solid ${rgbAlpha(themeVars.colors.palette.gray[200], 0.2)};
     // Button
     & button {
       padding: 0;

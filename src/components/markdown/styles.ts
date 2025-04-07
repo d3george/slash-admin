@@ -5,6 +5,7 @@
 import styled from "styled-components";
 
 import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 
 const StyledMarkdown = styled.div`
   display: grid;
@@ -109,11 +110,11 @@ const StyledMarkdown = styled.div`
   table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid ${themeVars.colors.common.border};
+    border: 1px solid ${rgbAlpha(themeVars.colors.palette.gray[200], 0.2)};
     th,
     td {
       padding: 8px;
-      border: 1px solid ${themeVars.colors.common.border};
+      border: 1px solid ${rgbAlpha(themeVars.colors.palette.gray[200], 0.2)};
     }
     tbody tr:nth-of-type(odd) {
       background-color: ${themeVars.colors.background.neutral};
