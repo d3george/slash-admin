@@ -1,4 +1,3 @@
-import { Iconify } from "@/components/icon";
 import { RouterLink } from "@/router/components/router-link";
 import { TooltipContent } from "@/ui/tooltip";
 import { Tooltip } from "@/ui/tooltip";
@@ -24,15 +23,19 @@ export function NavItem({
 	const content = (
 		<>
 			{/* Icon */}
-			<span className="mr-3 inline-flex h-6 w-6 shrink-0 items-center justify-center">
-				{icon && typeof icon === "string" ? <Iconify icon={icon} className="h-6 w-6" /> : icon}
+			<span
+				className={cn(
+					"mr-3 inline-flex h-6 w-6 shrink-0 items-center justify-center group-hover:scale-125 transition-transform duration-300 ease-in-out",
+				)}
+			>
+				{icon && typeof icon === "string" ? <Icon icon={icon} /> : icon}
 			</span>
 
 			{/* Texts */}
-			<span className="inline-flex flex-auto flex-col h-full">
+			<span className="inline-flex flex-auto flex-col justify-center min-h-[24px]">
 				{/* Title */}
 				<span
-					className="text-sm font-medium text-left"
+					className="text-sm font-medium text-left leading-tight"
 					style={{
 						display: "-webkit-box",
 						WebkitLineClamp: 1,
@@ -50,7 +53,7 @@ export function NavItem({
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<span
-									className="text-xs text-text-secondary text-left"
+									className="text-xs text-text-secondary text-left leading-tight"
 									style={{
 										display: "-webkit-box",
 										WebkitLineClamp: 1,
@@ -71,7 +74,7 @@ export function NavItem({
 			</span>
 
 			{/* Info */}
-			{info && <span className="mx-1.5 inline-flex shrink-0">{info}</span>}
+			{info && <span className="mx-1.5 inline-flex shrink-0 items-center">{info}</span>}
 
 			{/* Arrow */}
 			{hasChild && (
@@ -87,10 +90,10 @@ export function NavItem({
 	);
 
 	const itemClassName = cn(
-		"inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-colors !text-text-primary",
+		"group inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-all duration-300 ease-in-out !text-text-primary",
 		"hover:bg-action-hover",
 		active && "!bg-primary/hover !text-primary",
-		disabled && "cursor-not-allowed hover:bg-transparent text-action-disabled",
+		disabled && "cursor-not-allowed hover:bg-transparent !text-action-disabled",
 	);
 
 	if (disabled) {
