@@ -9,6 +9,7 @@ export const NAV_SECTION_ITEMS = [
 				path: "#",
 				roles: ["admin"],
 				caption: "Display only admin role       aaaaaaaaaaaaaaa",
+				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
 				info: <span className="text-xs text-text-secondary bg-success px-1.5 py-0.5 rounded-md">+2</span>,
 				children: [
 					{
@@ -97,7 +98,7 @@ export const NAV_SECTION_ITEMS = [
 			{
 				title: "More",
 				path: "#",
-				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+				icon: "solar:star-line-duotone",
 			},
 		],
 	},
