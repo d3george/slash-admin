@@ -1,4 +1,5 @@
 import { Iconify } from "@/components/icon";
+import { RouterLink } from "@/router/components/router-link";
 import { TooltipContent } from "@/ui/tooltip";
 import { Tooltip } from "@/ui/tooltip";
 import { TooltipTrigger } from "@/ui/tooltip";
@@ -27,8 +28,9 @@ export function NavItem({
 				{icon && typeof icon === "string" ? <Iconify icon={icon} className="h-6 w-6" /> : icon}
 			</span>
 
-			{/* Texts: Title, Caption */}
-			<span className="inline-flex flex-auto flex-col">
+			{/* Texts */}
+			<span className="inline-flex flex-auto flex-col h-full">
+				{/* Title */}
 				<span
 					className="text-sm font-medium text-left"
 					style={{
@@ -41,6 +43,8 @@ export function NavItem({
 				>
 					{title}
 				</span>
+
+				{/* Caption */}
 				{caption && (
 					<TooltipProvider>
 						<Tooltip>
@@ -83,10 +87,10 @@ export function NavItem({
 	);
 
 	const itemClassName = cn(
-		"inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-colors",
+		"inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-colors !text-text-primary",
 		"hover:bg-action-hover",
-		active && "bg-action-active text-action-active",
-		disabled && "pointer-events-none opacity-50",
+		active && "!bg-primary/hover !text-primary",
+		disabled && "cursor-not-allowed hover:bg-transparent text-action-disabled",
 	);
 
 	if (disabled) {
@@ -101,9 +105,17 @@ export function NavItem({
 		);
 	}
 
+	if (hasChild) {
+		return (
+			<div className={itemClassName} onClick={onClick}>
+				{content}
+			</div>
+		);
+	}
+
 	return (
-		<div className={itemClassName} onClick={onClick}>
+		<RouterLink href={path} className={itemClassName}>
 			{content}
-		</div>
+		</RouterLink>
 	);
 }
