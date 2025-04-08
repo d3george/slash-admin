@@ -16,7 +16,6 @@ export type NavItemDataProps = {
 };
 
 export type NavItemOptionsProps = {
-	depth?: number;
 	hasChild?: boolean;
 	externalLink?: boolean;
 	enabledRootRedirect?: boolean;
@@ -30,7 +29,7 @@ export type NavItemProps = React.ComponentProps<"div"> & NavItemDataProps & NavI
 /**
  * List
  */
-export type NavListProps = Pick<NavItemProps, "depth" | "enabledRootRedirect"> & {
+export type NavListProps = Pick<NavItemProps, "enabledRootRedirect"> & {
 	data: NavItemDataProps;
 	currentRole?: string;
 };
@@ -38,7 +37,7 @@ export type NavListProps = Pick<NavItemProps, "depth" | "enabledRootRedirect"> &
 /**
  * Group
  */
-export type NavGroupProps = Omit<NavListProps, "data" | "depth"> & {
+export type NavGroupProps = Omit<NavListProps, "data"> & {
 	name?: string;
 	items: NavItemDataProps[];
 };
@@ -47,7 +46,7 @@ export type NavGroupProps = Omit<NavListProps, "data" | "depth"> & {
  * Main
  */
 export type NavProps = React.ComponentProps<"nav"> &
-	Omit<NavListProps, "data" | "depth"> & {
+	Omit<NavListProps, "data"> & {
 		data: {
 			name?: string;
 			items: NavItemDataProps[];

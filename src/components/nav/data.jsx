@@ -22,7 +22,7 @@ export const NAV_SECTION_ITEMS = [
 			},
 			{
 				title: "Services",
-				path: "#",
+				path: "/blank",
 				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
 				roles: ["admin", "user"],
 			},
@@ -88,7 +88,8 @@ export const NAV_SECTION_ITEMS = [
 					},
 					{
 						title: "Level 2c",
-						path: "#",
+						path: "https://www.google.com",
+						externalLink: true,
 						icon: <Iconify icon="solar:star-line-duotone" size={18} />,
 					},
 				],
