@@ -1,4 +1,5 @@
 import { RouterLink } from "@/router/components/router-link";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/ui/hover-card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip";
 import { cn } from "@/utils";
 import { Icon } from "@iconify/react";
@@ -82,8 +83,11 @@ export const NavMiniRootItem = (item: NavItemProps) => {
 	}
 
 	return (
-		<div className={itemClassName} onClick={item.onClick}>
-			{content}
-		</div>
+		<HoverCard>
+			<HoverCardTrigger asChild>
+				<div className={itemClassName}>{content}</div>
+			</HoverCardTrigger>
+			<HoverCardContent side="right">123</HoverCardContent>
+		</HoverCard>
 	);
 };
