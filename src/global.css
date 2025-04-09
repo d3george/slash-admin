@@ -1,4 +1,4 @@
-/* font */
+/* import font */
 @import "@fontsource-variable/open-sans";
 @import "@fontsource-variable/inter";
 
@@ -7,7 +7,42 @@
 /* simplebar */
 @import "simplebar-react/dist/simplebar.min.css";
 
-/* tailwind */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+
+/* import tailwind */
+@import "tailwindcss";
+
+/* config  tailwind */
+@config "../tailwind.config.ts";
+
+/* base layer */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    /* https://tailwindcss.com/docs/upgrade-guide#default-border-color */
+    border-color: rgba(var(--colors-palette-gray-500Channel) / var(--opacity-border)) ;
+  }
+}
+
+@theme {
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+}

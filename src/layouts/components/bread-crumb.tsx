@@ -50,5 +50,5 @@ export default function BreadCrumb() {
 		});
 	}, [matches, flattenedRoutes, t, permissionRoutes]);
 
-	return <Breadcrumb items={breadCrumbs} className="!text-sm" separator={<Iconify icon="ph:dot-duotone" />} />;
+	return <Breadcrumb items={breadCrumbs} className="text-sm!" separator={<Iconify icon="ph:dot-duotone" />} />;
 }

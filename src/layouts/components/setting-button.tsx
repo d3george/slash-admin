@@ -181,13 +181,13 @@ export default function SettingButton() {
 									<SvgIcon
 										icon="ic-settings-exit-fullscreen"
 										color={themeVars.colors.palette.primary.default}
-										className="!m-0"
+										className="m-0!"
 									/>
 									<span className="ml-2">{t("sys.settings.exitFullscreen")}</span>
 								</>
 							) : (
 								<>
-									<SvgIcon icon="ic-settings-fullscreen" className="!m-0" />
+									<SvgIcon icon="ic-settings-fullscreen" className="m-0!" />
 									<span className="ml-2 text-gray">{t("sys.settings.fullscreen")}</span>
 								</>
 							)}
@@ -241,27 +241,27 @@ export default function SettingButton() {
 									},
 								}}
 							>
-								<div className="flex h-full w-7 flex-shrink-0 flex-col gap-1 p-1">
+								<div className="flex h-full w-7 shrink-0 flex-col gap-1 p-1">
 									<div
-										className="h-2 w-2 flex-shrink-0 rounded"
+										className="h-2 w-2 shrink-0 rounded"
 										style={{
 											background: layoutBackground(ThemeLayout.Vertical),
 										}}
 									/>
 									<div
-										className="h-1 w-full flex-shrink-0 rounded opacity-50"
+										className="h-1 w-full shrink-0 rounded opacity-50"
 										style={{
 											background: layoutBackground(ThemeLayout.Vertical),
 										}}
 									/>
 									<div
-										className="h-1 max-w-[12px] flex-shrink-0 rounded opacity-20"
+										className="h-1 max-w-[12px] shrink-0 rounded opacity-20"
 										style={{
 											background: layoutBackground(ThemeLayout.Vertical),
 										}}
 									/>
 								</div>
-								<div className="h-full w-full flex-1 flex-grow p-1">
+								<div className="h-full w-full flex-1 grow p-1">
 									<div
 										className="h-full w-full rounded opacity-20"
 										style={{
@@ -287,25 +287,25 @@ export default function SettingButton() {
 							>
 								<div className="flex h-4 w-full items-center gap-1  p-1">
 									<div
-										className="h-2 w-2 flex-shrink-0 rounded"
+										className="h-2 w-2 shrink-0 rounded"
 										style={{
 											background: layoutBackground(ThemeLayout.Horizontal),
 										}}
 									/>
 									<div
-										className="h-1 w-4 flex-shrink-0 rounded opacity-50"
+										className="h-1 w-4 shrink-0 rounded opacity-50"
 										style={{
 											background: layoutBackground(ThemeLayout.Horizontal),
 										}}
 									/>
 									<div
-										className="h-1 w-3 flex-shrink-0 rounded opacity-20"
+										className="h-1 w-3 shrink-0 rounded opacity-20"
 										style={{
 											background: layoutBackground(ThemeLayout.Horizontal),
 										}}
 									/>
 								</div>
-								<div className="h-full w-full flex-1 flex-grow p-1">
+								<div className="h-full w-full flex-1 grow p-1">
 									<div
 										className="h-full w-full rounded opacity-20"
 										style={{
@@ -328,21 +328,21 @@ export default function SettingButton() {
 									},
 								}}
 							>
-								<div className="flex h-full flex-shrink-0 flex-col gap-1 p-1">
+								<div className="flex h-full shrink-0 flex-col gap-1 p-1">
 									<div
-										className="h-2 w-2 flex-shrink-0 rounded"
+										className="h-2 w-2 shrink-0 rounded"
 										style={{ background: layoutBackground(ThemeLayout.Mini) }}
 									/>
 									<div
-										className="h-1 w-full flex-shrink-0 rounded opacity-50"
+										className="h-1 w-full shrink-0 rounded opacity-50"
 										style={{ background: layoutBackground(ThemeLayout.Mini) }}
 									/>
 									<div
-										className="h-1 max-w-[12px] flex-shrink-0 rounded opacity-20"
+										className="h-1 max-w-[12px] shrink-0 rounded opacity-20"
 										style={{ background: layoutBackground(ThemeLayout.Mini) }}
 									/>
 								</div>
-								<div className="h-full w-full flex-1 flex-grow p-1">
+								<div className="h-full w-full flex-1 grow p-1">
 									<div
 										className="h-full w-full rounded opacity-20"
 										style={{ background: layoutBackground(ThemeLayout.Mini) }}
@@ -383,7 +383,7 @@ export default function SettingButton() {
 									}}
 								>
 									<LeftOutlined />
-									<div className="flex flex-grow border-b border-dashed border-gray-500/10" />
+									<div className="flex grow border-b border-dashed" />
 									<RightOutlined />
 								</div>
 							) : (
@@ -394,7 +394,7 @@ export default function SettingButton() {
 									}}
 								>
 									<RightOutlined />
-									<div className="flex-grow border-b border-dashed border-gray-500/10" />
+									<div className="grow border-b border-dashed" />
 									<LeftOutlined />
 								</div>
 							)}

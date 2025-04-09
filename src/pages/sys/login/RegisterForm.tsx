@@ -5,10 +5,7 @@ import { useTranslation } from "react-i18next";
 import userService from "@/api/services/userService";
 
 import { ReturnButton } from "./components/ReturnButton";
-import {
-	LoginStateEnum,
-	useLoginStateContext,
-} from "./providers/LoginStateProvider";
+import { LoginStateEnum, useLoginStateContext } from "./providers/LoginStateProvider";
 
 function RegisterForm() {
 	const { t } = useTranslation();
@@ -27,41 +24,16 @@ function RegisterForm() {
 
 	return (
 		<>
-			<div className="mb-4 text-2xl font-bold xl:text-3xl">
-				{t("sys.login.signUpFormTitle")}
-			</div>
-			<Form
-				name="normal_login"
-				size="large"
-				initialValues={{ remember: true }}
-				onFinish={onFinish}
-			>
-				<Form.Item
-					name="username"
-					rules={[
-						{ required: true, message: t("sys.login.accountPlaceholder") },
-					]}
-				>
+			<div className="mb-4 text-2xl font-bold xl:text-3xl">{t("sys.login.signUpFormTitle")}</div>
+			<Form name="normal_login" size="large" initialValues={{ remember: true }} onFinish={onFinish}>
+				<Form.Item name="username" rules={[{ required: true, message: t("sys.login.accountPlaceholder") }]}>
 					<Input placeholder={t("sys.login.userName")} />
 				</Form.Item>
-				<Form.Item
-					name="email"
-					rules={[
-						{ required: true, message: t("sys.login.emaildPlaceholder") },
-					]}
-				>
+				<Form.Item name="email" rules={[{ required: true, message: t("sys.login.emaildPlaceholder") }]}>
 					<Input placeholder={t("sys.login.email")} />
 				</Form.Item>
-				<Form.Item
-					name="password"
-					rules={[
-						{ required: true, message: t("sys.login.passwordPlaceholder") },
-					]}
-				>
-					<Input.Password
-						type="password"
-						placeholder={t("sys.login.password")}
-					/>
+				<Form.Item name="password" rules={[{ required: true, message: t("sys.login.passwordPlaceholder") }]}>
+					<Input.Password type="password" placeholder={t("sys.login.password")} />
 				</Form.Item>
 				<Form.Item
 					name="confirmPassword"
@@ -80,10 +52,7 @@ function RegisterForm() {
 						}),
 					]}
 				>
-					<Input.Password
-						type="password"
-						placeholder={t("sys.login.confirmPassword")}
-					/>
+					<Input.Password type="password" placeholder={t("sys.login.confirmPassword")} />
 				</Form.Item>
 				<Form.Item>
 					<Button type="primary" htmlType="submit" className="w-full">
@@ -93,11 +62,11 @@ function RegisterForm() {
 
 				<div className="mb-2 text-xs text-gray">
 					<span>{t("sys.login.registerAndAgree")}</span>
-					<a href="./" className="text-sm !underline">
+					<a href="./" className="text-sm underline!">
 						{t("sys.login.termsOfService")}
 					</a>
 					{" & "}
-					<a href="./" className="text-sm !underline">
+					<a href="./" className="text-sm underline!">
 						{t("sys.login.privacyPolicy")}
 					</a>
 				</div>

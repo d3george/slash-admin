@@ -33,7 +33,7 @@ export function Upload({ thumbnail = false, ...other }: Props) {
 						</Title>
 						<Text type="secondary">
 							Drop files here or click
-							<Text className="mx-2 !text-primary" underline>
+							<Text className="mx-2 text-primary!" underline>
 								browse
 							</Text>
 							thorough your machine

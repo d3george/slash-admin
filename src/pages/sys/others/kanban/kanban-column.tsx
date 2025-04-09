@@ -153,7 +153,7 @@ export default function KanbanColumn({
 					placement="bottomRight"
 					trigger={["click"]}
 				>
-					<Button shape="circle" type="text" className="!text-gray">
+					<Button shape="circle" type="text" className="text-gray!">
 						<Iconify icon="dashicons:ellipsis" />
 					</Button>
 				</Dropdown>
@@ -176,7 +176,7 @@ export default function KanbanColumn({
 							e.stopPropagation();
 							setAddingTask(true);
 						}}
-						className="!flex items-center justify-center !text-xs !font-medium"
+						className="flex! items-center justify-center text-xs! font-medium!"
 						type="text"
 						block
 						size="large"

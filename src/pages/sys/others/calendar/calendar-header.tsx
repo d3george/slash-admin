@@ -71,7 +71,7 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 		return (
 			<div className="flex items-center">
 				{icon}
-				<span className="mx-1 !text-sm font-medium">{label}</span>
+				<span className="mx-1 text-sm! font-medium">{label}</span>
 				<Iconify icon="solar:alt-arrow-down-outline" size={20} />
 			</div>
 		);

@@ -70,7 +70,7 @@ export function UploadAvatar({ helperText, defaultAvatar = "", ...other }: Props
 				name="avatar"
 				showUploadList={false}
 				listType="picture-circle"
-				className="avatar-uploader !flex items-center justify-center"
+				className="avatar-uploader flex! items-center justify-center"
 				{...other}
 				beforeUpload={beforeAvatarUpload}
 				onChange={handleChange}

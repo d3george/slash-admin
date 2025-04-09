@@ -86,7 +86,7 @@ export default function Page404() {
 						</svg>
 					</m.div>
 
-					<NavLink to={HOMEPAGE} className="rounded-md p-4 !text-text-primary !bg-primary">
+					<NavLink to={HOMEPAGE} className="rounded-md p-4 text-text-primary! bg-primary!">
 						Go to Home
 					</NavLink>
 				</MotionContainer>

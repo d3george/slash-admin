@@ -88,10 +88,10 @@ export function NavItem({
 	);
 
 	const itemClassName = cn(
-		"group inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-all duration-300 ease-in-out !text-text-primary",
+		"group inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-all duration-300 ease-in-out text-text-primary!",
 		"hover:bg-action-hover",
-		active && "!bg-primary/hover !text-primary",
-		disabled && "cursor-not-allowed hover:bg-transparent !text-action-disabled",
+		active && "bg-primary/border text-primary!",
+		disabled && "cursor-not-allowed hover:bg-transparent text-action-disabled!",
 	);
 
 	if (disabled) {

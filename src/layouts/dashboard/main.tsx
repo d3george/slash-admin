@@ -21,11 +21,11 @@ const Main = () => {
 
 	return (
 		<Content style={mainStyle} className="flex">
-			<div className="flex-grow overflow-auto size-full">
+			<div className="grow overflow-auto size-full">
 				<div
 					className={cn(
-						"m-auto size-full flex-grow sm:p-2",
-						themeStretch ? "" : "xl:max-w-screen-xl",
+						"m-auto size-full grow sm:p-2",
+						themeStretch ? "" : "xl:max-w-(--breakpoint-xl)",
 						themeLayout === ThemeLayout.Horizontal ? "flex-col" : "flex-row",
 					)}
 				>

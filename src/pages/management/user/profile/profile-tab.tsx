@@ -214,10 +214,10 @@ export default function ProfileTab() {
 				</Col>
 
 				<Col span={24} md={12} lg={16}>
-					<Card className="flex-col !items-start">
+					<Card className="flex-col items-start!">
 						<Typography.Title level={5}>Activity Timeline</Typography.Title>
 						<Timeline
-							className="!mt-4 w-full"
+							className="mt-4! w-full"
 							items={[
 								{
 									color: themeVars.colors.palette.error.default,
@@ -288,7 +288,7 @@ export default function ProfileTab() {
 			</Row>
 			<Row gutter={[16, 16]} className="mt-4">
 				<Col span={24} md={12}>
-					<Card className="flex-col !items-start">
+					<Card className="flex-col items-start!">
 						<div className="flex w-full items-center justify-between">
 							<Typography.Title level={5}>Connections</Typography.Title>
 							<IconButton>
@@ -329,7 +329,7 @@ export default function ProfileTab() {
 					</Card>
 				</Col>
 				<Col span={24} md={12}>
-					<Card className="flex-col !items-start">
+					<Card className="flex-col items-start!">
 						<div className="flex w-full items-center justify-between">
 							<Typography.Title level={5}>Teams</Typography.Title>
 							<IconButton>
@@ -360,9 +360,9 @@ export default function ProfileTab() {
 			</Row>
 			<Row gutter={[16, 16]} className="mt-4">
 				<Col span={24}>
-					<Card className="flex-col !items-start">
+					<Card className="flex-col items-start!">
 						<Typography.Title level={5}>Projects</Typography.Title>
-						<div className="!mt-4 w-full">
+						<div className="mt-4! w-full">
 							<Scrollbar>
 								<Table rowSelection={{ type: "checkbox" }} columns={ProjectColumns} dataSource={fakeProjectItems()} />
 							</Scrollbar>

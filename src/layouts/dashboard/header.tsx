@@ -39,7 +39,7 @@ export default function Header() {
 				style={headerStyle}
 			>
 				<div
-					className="flex flex-grow items-center justify-between px-4 text-gray backdrop-blur xl:px-6 2xl:px-10"
+					className="flex grow items-center justify-between px-4 text-gray backdrop-blur-sm xl:px-6 2xl:px-10"
 					style={{
 						height: HEADER_HEIGHT,
 						transition: "height 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",

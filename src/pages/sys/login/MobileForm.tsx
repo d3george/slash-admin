@@ -3,10 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ReturnButton } from "./components/ReturnButton";
-import {
-	LoginStateEnum,
-	useLoginStateContext,
-} from "./providers/LoginStateProvider";
+import { LoginStateEnum, useLoginStateContext } from "./providers/LoginStateProvider";
 
 const { Countdown } = Statistic;
 
@@ -36,37 +33,18 @@ function MobileForm() {
 	};
 	return (
 		<>
-			<div className="mb-4 text-2xl font-bold xl:text-3xl">
-				{t("sys.login.mobileSignInFormTitle")}
-			</div>
-			<Form
-				name="normal_login"
-				size="large"
-				initialValues={{ remember: true }}
-				onFinish={onFinish}
-			>
-				<Form.Item
-					name="phone"
-					rules={[{ required: true, message: "Please input your Phone!" }]}
-				>
+			<div className="mb-4 text-2xl font-bold xl:text-3xl">{t("sys.login.mobileSignInFormTitle")}</div>
+			<Form name="normal_login" size="large" initialValues={{ remember: true }} onFinish={onFinish}>
+				<Form.Item name="phone" rules={[{ required: true, message: "Please input your Phone!" }]}>
 					<Input placeholder={t("sys.login.mobile")} />
 				</Form.Item>
-				<Form.Item
-					name="code"
-					rules={[
-						{ required: true, message: t("sys.login.mobilePlaceholder") },
-					]}
-				>
+				<Form.Item name="code" rules={[{ required: true, message: t("sys.login.mobilePlaceholder") }]}>
 					<Row justify="space-between">
 						<Col span={14}>
 							<Input placeholder={t("sys.login.smsCode")} />
 						</Col>
 						<Col span={9} flex={1}>
-							<Button
-								disabled={countdown !== 0}
-								className="w-full !text-sm"
-								onClick={start}
-							>
+							<Button disabled={countdown !== 0} className="w-full text-sm!" onClick={start}>
 								{countdown === 0 ? (
 									<span>{t("sys.login.sendSmsButton")}</span>
 								) : (
@@ -81,9 +59,7 @@ function MobileForm() {
 											format="ss"
 											onFinish={reset}
 										/>
-										<span className="ml-1">
-											{t("sys.login.sendSmsText", { second })}
-										</span>
+										<span className="ml-1">{t("sys.login.sendSmsText", { second })}</span>
 									</div>
 								)}
 							</Button>

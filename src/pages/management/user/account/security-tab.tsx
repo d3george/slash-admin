@@ -19,13 +19,8 @@ export default function SecurityTab() {
 	};
 
 	return (
-		<Card className="!h-auto flex-col">
-			<Form
-				layout="vertical"
-				initialValues={initFormValues}
-				labelCol={{ span: 8 }}
-				className="w-full"
-			>
+		<Card className="h-auto! flex-col">
+			<Form layout="vertical" initialValues={initFormValues} labelCol={{ span: 8 }} className="w-full">
 				<Form.Item<FieldType> label="Old Password" name="oldPassword">
 					<Input.Password />
 				</Form.Item>
@@ -34,10 +29,7 @@ export default function SecurityTab() {
 					<Input.Password />
 				</Form.Item>
 
-				<Form.Item<FieldType>
-					label="Confirm New Password"
-					name="confirmPassword"
-				>
+				<Form.Item<FieldType> label="Confirm New Password" name="confirmPassword">
 					<Input.Password />
 				</Form.Item>
 			</Form>

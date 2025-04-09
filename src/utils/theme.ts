@@ -64,7 +64,7 @@ export const toCssVar = (propertyPath: string) => {
 /**
  * convert to CSS vars
  */
-export const getTailwinConfg = (propertyPath: string) => {
+export const createTailwinConfg = (propertyPath: string) => {
 	const variants = getThemeTokenVariants(propertyPath);
 	const result = variants.reduce(
 		(acc, variant) => {
@@ -81,12 +81,12 @@ export const getTailwinConfg = (propertyPath: string) => {
  * @param propertyPath example: `colors.palette.primary`
  * @returns example: `{ DEFAULT: "rgb(var(--colors-palette-primary-defaultChannel))" }`
  */
-export const getRgbFromColorChannel = (propertyPath: string) => {
+export const creatColorChannel = (propertyPath: string) => {
 	const variants = getThemeTokenVariants(propertyPath);
 	const result = variants.reduce(
 		(acc, variant) => {
 			const variantKey = variant === "default" ? "DEFAULT" : variant;
-			acc[variantKey] = `rgb(var(${toCssVar(`${propertyPath}-${variant}Channel`)}))`;
+			acc[variantKey] = `rgb(var(${toCssVar(`${propertyPath}-${variant}Channel`)}) / <alpha-value>)`;
 			return acc;
 		},
 		{} as Record<string, string>,

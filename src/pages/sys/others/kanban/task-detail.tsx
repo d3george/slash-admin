@@ -104,8 +104,8 @@ export default function TaskDetail({ task }: Props) {
 			>
 				{comments?.map(({ avatar, username, content, time }) => (
 					<div key={username} className="flex gap-4">
-						<Avatar src={avatar} size={40} className="flex-shrink-0" />
-						<div className="flex flex-grow flex-col flex-wrap gap-1 text-gray">
+						<Avatar src={avatar} size={40} className="shrink-0" />
+						<div className="flex grow flex-col flex-wrap gap-1 text-gray">
 							<div className="flex justify-between">
 								<Typography.Text>{username}</Typography.Text>
 								<Typography.Text>{dayjs(time).format("DD/MM/YYYY HH:mm")}</Typography.Text>
@@ -133,7 +133,7 @@ const Container = styled.div`
     font-size: 0.75rem;
     font-weight: 600;
     width: 100px;
-    flex-shrink: 0;
+    shrink: 0;
     color: rgb(99, 115, 129);
     height: 40px;
     line-height: 40px;
