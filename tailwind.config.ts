@@ -7,25 +7,26 @@ const config: Config = {
 	darkMode: ["selector", `[${HtmlDataAttribute.ThemeMode}='dark']`],
 	content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
-		colors: {
-			primary: getRgbFromColorChannel("colors.palette.primary"),
-			secondary: getRgbFromColorChannel("colors.palette.secondary"),
-			success: getRgbFromColorChannel("colors.palette.success"),
-			warning: getRgbFromColorChannel("colors.palette.warning"),
-			error: getRgbFromColorChannel("colors.palette.error"),
-			info: getRgbFromColorChannel("colors.palette.info"),
-			gray: getRgbFromColorChannel("colors.palette.gray"),
-			common: getRgbFromColorChannel("colors.common"),
-			text: getRgbFromColorChannel("colors.text"),
-			bg: getRgbFromColorChannel("colors.background"),
-			action: getTailwinConfg("colors.action"),
-		},
-		opacity: getTailwinConfg("opacity"),
-		screens: breakpointsTokens,
 		extend: {
+			colors: {
+				primary: getRgbFromColorChannel("colors.palette.primary"),
+				secondary: getRgbFromColorChannel("colors.palette.secondary"),
+				success: getRgbFromColorChannel("colors.palette.success"),
+				warning: getRgbFromColorChannel("colors.palette.warning"),
+				error: getRgbFromColorChannel("colors.palette.error"),
+				info: getRgbFromColorChannel("colors.palette.info"),
+				gray: getRgbFromColorChannel("colors.palette.gray"),
+				common: getRgbFromColorChannel("colors.common"),
+				text: getRgbFromColorChannel("colors.text"),
+				bg: getRgbFromColorChannel("colors.background"),
+				action: getTailwinConfg("colors.action"),
+			},
+			opacity: getTailwinConfg("opacity"),
 			borderRadius: getTailwinConfg("borderRadius"),
 			boxShadow: getTailwinConfg("shadows"),
 			spacing: getTailwinConfg("spacing"),
+
+			screens: breakpointsTokens,
 			keyframes: {
 				"collapsible-down": {
 					from: { height: "0" },
