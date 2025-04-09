@@ -3,7 +3,7 @@ import { breakpointsTokens } from "./src/theme/tokens/breakpoints";
 import { HtmlDataAttribute } from "./src/types/enum";
 import { creatColorChannel, createTailwinConfg } from "./src/utils/theme";
 
-const config: Config = {
+export default {
 	darkMode: ["selector", `[${HtmlDataAttribute.ThemeMode}='dark']`],
 	content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
@@ -28,6 +28,4 @@ const config: Config = {
 			screens: breakpointsTokens,
 		},
 	},
-};
-
-export default config;
+} satisfies Config;

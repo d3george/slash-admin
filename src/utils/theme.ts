@@ -86,7 +86,7 @@ export const creatColorChannel = (propertyPath: string) => {
 	const result = variants.reduce(
 		(acc, variant) => {
 			const variantKey = variant === "default" ? "DEFAULT" : variant;
-			acc[variantKey] = `rgb(var(${toCssVar(`${propertyPath}-${variant}Channel`)}) / <alpha-value>)`;
+			acc[variantKey] = `rgb(var(${toCssVar(`${propertyPath}-${variant}Channel`)}))`;
 			return acc;
 		},
 		{} as Record<string, string>,
