@@ -10,16 +10,10 @@ type Props = {
 	count: string;
 	chartData: number[];
 };
-export default function TotalCard({
-	title,
-	increase,
-	count,
-	percent,
-	chartData,
-}: Props) {
+export default function TotalCard({ title, increase, count, percent, chartData }: Props) {
 	return (
 		<Card>
-			<div className="flex-grow">
+			<div className="grow">
 				<h6 className="text-sm font-medium">{title}</h6>
 				<div className="mb-2 mt-4 flex flex-row">
 					{increase ? (
@@ -81,7 +75,5 @@ function ChartLine({ data }: { data: number[] }) {
 		},
 	});
 
-	return (
-		<Chart type="line" series={series} options={chartOptions} width={120} />
-	);
+	return <Chart type="line" series={series} options={chartOptions} width={120} />;
 }

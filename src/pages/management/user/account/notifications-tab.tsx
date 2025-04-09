@@ -8,11 +8,11 @@ export default function NotificationsTab() {
 		toast.success("Update success!");
 	};
 	return (
-		<Card className="!h-auto flex-col">
+		<Card className="h-auto! flex-col">
 			<Row gutter={[16, 16]}>
 				<Col span={24} lg={8}>
 					<Typography.Title level={4}>Activity</Typography.Title>
-					<Typography.Text className="opacity-70 !text-text-secondary">
+					<Typography.Text className="opacity-70 text-text-secondary!">
 						Donec mi odio, faucibus at, scelerisque quis
 					</Typography.Text>
 				</Col>
@@ -35,7 +35,7 @@ export default function NotificationsTab() {
 
 				<Col span={24} lg={8}>
 					<Typography.Title level={4}>Applications</Typography.Title>
-					<Typography.Text className="opacity-70 !text-text-secondary">
+					<Typography.Text className="opacity-70 text-text-secondary!">
 						Donec mi odio, faucibus at, scelerisque quis
 					</Typography.Text>
 				</Col>

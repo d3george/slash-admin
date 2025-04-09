@@ -8,7 +8,7 @@ import ReactDOM from "react-dom/client";
 // helmet
 import { HelmetProvider } from "react-helmet-async";
 // svg icons
-import "virtual:svg-icons-register";
+// import "virtual:svg-icons-register";
 // mock api
 import worker from "./_mock";
 // i18n

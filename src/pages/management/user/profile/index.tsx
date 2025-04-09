@@ -45,7 +45,7 @@ function UserProfile() {
 
 	return (
 		<>
-			<Card className="relative mb-6 h-[290px] flex-col rounded-2xl !p-0">
+			<Card className="relative mb-6 h-[290px] flex-col rounded-2xl p-0!">
 				<div style={bgStyle} className="h-full w-full">
 					<div className="flex flex-col items-center justify-center pt-12 md:absolute md:bottom-6 md:left-6 md:flex-row md:pt-0">
 						<img src={avatar} className="h-16 w-16 rounded-full md:h-32 md:w-32" alt="" />

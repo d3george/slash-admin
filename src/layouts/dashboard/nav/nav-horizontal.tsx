@@ -43,7 +43,7 @@ export default function NavHorizontal() {
 				defaultOpenKeys={[]}
 				selectedKeys={selectedKeys}
 				onClick={onClick}
-				className="!border-none"
+				className="border-none!"
 				style={{ background: themeVars.colors.background.default }}
 			/>
 		</div>

@@ -127,7 +127,7 @@ export default function NavVertical(props: Props) {
 			collapsed={collapsed}
 			width={NAV_WIDTH}
 			theme={sidebarTheme}
-			className="!fixed left-0 top-0 h-screen border-r border-dashed border-gray-500/10"
+			className="fixed! left-0 top-0 h-screen border-r border-dashed"
 		>
 			<div className="flex h-full flex-col">
 				<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />
@@ -140,7 +140,7 @@ export default function NavVertical(props: Props) {
 						selectedKeys={selectedKeys}
 						openKeys={openKeys}
 						onOpenChange={handleOpenChange}
-						className="!border-none"
+						className="border-none!"
 						onClick={onClick}
 					/>
 				</Scrollbar>

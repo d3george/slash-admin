@@ -33,7 +33,7 @@ function Login() {
 	const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay})`;
 
 	return (
-		<Layout className="relative flex !min-h-screen !w-full !flex-row">
+		<Layout className="relative flex min-h-screen! w-full! flex-row!">
 			<div
 				className="hidden grow flex-col items-center justify-center gap-[80px] bg-center  bg-no-repeat md:flex"
 				style={{
@@ -47,7 +47,7 @@ function Login() {
 				</Typography.Text>
 			</div>
 
-			<div className="m-auto flex !h-screen w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
+			<div className="m-auto flex h-screen! w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
 				<LoginStateProvider>
 					<LoginForm />
 					<MobileForm />

@@ -15,11 +15,7 @@ type Props = {
 	thumbnail?: boolean;
 };
 
-export default function UploadListItem({
-	file,
-	actions,
-	thumbnail = false,
-}: Props) {
+export default function UploadListItem({ file, actions, thumbnail = false }: Props) {
 	const { name, size } = file;
 	const thumb = getFileThumb(name);
 	const format = getFileFormat(name);
@@ -27,11 +23,7 @@ export default function UploadListItem({
 
 	useEffect(() => {
 		// TODO: mock upload sucess, you should delete 'error' in the production environment
-		if (
-			file.status &&
-			["done", "error"].includes(file.status) &&
-			format === "img"
-		) {
+		if (file.status && ["done", "error"].includes(file.status) && format === "img") {
 			if (file.originFileObj) {
 				setImgThumbUrl(getBlobUrl(file.originFileObj));
 			}
@@ -80,10 +72,8 @@ export default function UploadListItem({
 				<SvgIcon icon={thumb} size={32} />
 			)}
 			<div className="ml-4 flex flex-col">
-				<Typography.Text className="!text-sm !font-medium">
-					{name}
-				</Typography.Text>
-				<Typography.Text type="secondary" className="!text-xs">
+				<Typography.Text className="text-sm! font-medium!">{name}</Typography.Text>
+				<Typography.Text type="secondary" className="text-xs!">
 					{fBytes(size)}
 				</Typography.Text>
 			</div>
@@ -91,12 +81,7 @@ export default function UploadListItem({
 		</Card>
 	);
 	return (
-		<m.div
-			initial="initial"
-			animate="animate"
-			exit="exit"
-			variants={varFade().inUp}
-		>
+		<m.div initial="initial" animate="animate" exit="exit" variants={varFade().inUp}>
 			{thumbnail ? thumbList : cardList}
 		</m.div>
 	);

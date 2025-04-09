@@ -289,7 +289,7 @@ export default function Kanban() {
 								e.stopPropagation();
 								setAddingColumn(true);
 							}}
-							className="!inline-flex !w-full items-center justify-center !text-xs !font-semibold"
+							className="inline-flex! w-full! items-center justify-center text-xs! font-semibold!"
 							block
 							size="large"
 						>

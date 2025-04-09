@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 import { breakpointsTokens } from "./src/theme/tokens/breakpoints";
 import { HtmlDataAttribute } from "./src/types/enum";
-import { getRgbFromColorChannel, getTailwinConfg } from "./src/utils/theme";
+import { creatColorChannel, createTailwinConfg } from "./src/utils/theme";
 
 const config: Config = {
 	darkMode: ["selector", `[${HtmlDataAttribute.ThemeMode}='dark']`],
@@ -9,38 +9,23 @@ const config: Config = {
 	theme: {
 		extend: {
 			colors: {
-				primary: getRgbFromColorChannel("colors.palette.primary"),
-				secondary: getRgbFromColorChannel("colors.palette.secondary"),
-				success: getRgbFromColorChannel("colors.palette.success"),
-				warning: getRgbFromColorChannel("colors.palette.warning"),
-				error: getRgbFromColorChannel("colors.palette.error"),
-				info: getRgbFromColorChannel("colors.palette.info"),
-				gray: getRgbFromColorChannel("colors.palette.gray"),
-				common: getRgbFromColorChannel("colors.common"),
-				text: getRgbFromColorChannel("colors.text"),
-				bg: getRgbFromColorChannel("colors.background"),
-				action: getTailwinConfg("colors.action"),
+				primary: creatColorChannel("colors.palette.primary"),
+				secondary: creatColorChannel("colors.palette.secondary"),
+				success: creatColorChannel("colors.palette.success"),
+				warning: creatColorChannel("colors.palette.warning"),
+				error: creatColorChannel("colors.palette.error"),
+				info: creatColorChannel("colors.palette.info"),
+				gray: creatColorChannel("colors.palette.gray"),
+				common: creatColorChannel("colors.common"),
+				text: creatColorChannel("colors.text"),
+				bg: creatColorChannel("colors.background"),
+				action: createTailwinConfg("colors.action"),
 			},
-			opacity: getTailwinConfg("opacity"),
-			borderRadius: getTailwinConfg("borderRadius"),
-			boxShadow: getTailwinConfg("shadows"),
-			spacing: getTailwinConfg("spacing"),
-
+			opacity: createTailwinConfg("opacity"),
+			borderRadius: createTailwinConfg("borderRadius"),
+			boxShadow: createTailwinConfg("shadows"),
+			spacing: createTailwinConfg("spacing"),
 			screens: breakpointsTokens,
-			keyframes: {
-				"collapsible-down": {
-					from: { height: "0" },
-					to: { height: "var(--radix-collapsible-content-height)" },
-				},
-				"collapsible-up": {
-					from: { height: "var(--radix-collapsible-content-height)" },
-					to: { height: "0" },
-				},
-			},
-			animation: {
-				"collapsible-down": "collapsible-down 0.2s ease-out",
-				"collapsible-up": "collapsible-up 0.2s ease-out",
-			},
 		},
 	},
 };

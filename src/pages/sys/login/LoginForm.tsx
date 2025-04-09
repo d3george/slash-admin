@@ -44,13 +44,13 @@ function LoginForm() {
 						description={
 							<div className="flex flex-col">
 								<div className="flex">
-									<span className="flex-shrink-0 text-text-disabled">{t("sys.login.userName")}:</span>
+									<span className="shrink-0 text-text-disabled">{t("sys.login.userName")}:</span>
 									<span className="ml-1 text-text-secondary">
 										{DEFAULT_USER.username} / {TEST_USER.username}
 									</span>
 								</div>
 								<div className="flex">
-									<span className="flex-shrink-0 text-text-disabled">{t("sys.login.password")}:</span>
+									<span className="shrink-0 text-text-disabled">{t("sys.login.password")}:</span>
 									<span className="ml-1 text-text-secondary">{DEFAULT_USER.password}</span>
 								</div>
 							</div>
@@ -75,7 +75,7 @@ function LoginForm() {
 						<Col span={12} className="text-right">
 							<Button
 								type="link"
-								className="!underline"
+								className="underline!"
 								onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)}
 								size="small"
 							>
@@ -92,21 +92,21 @@ function LoginForm() {
 
 				<Row align="middle" gutter={8}>
 					<Col span={9} flex="1">
-						<Button className="w-full !text-sm" onClick={() => setLoginState(LoginStateEnum.MOBILE)}>
+						<Button className="w-full text-sm!" onClick={() => setLoginState(LoginStateEnum.MOBILE)}>
 							{t("sys.login.mobileSignInFormTitle")}
 						</Button>
 					</Col>
 					<Col span={9} flex="1">
-						<Button className="w-full !text-sm" onClick={() => setLoginState(LoginStateEnum.QR_CODE)}>
+						<Button className="w-full text-sm!" onClick={() => setLoginState(LoginStateEnum.QR_CODE)}>
 							{t("sys.login.qrSignInFormTitle")}
 						</Button>
 					</Col>
 					<Col span={6} flex="1" onClick={() => setLoginState(LoginStateEnum.REGISTER)}>
-						<Button className="w-full !text-sm">{t("sys.login.signUpFormTitle")}</Button>
+						<Button className="w-full text-sm!">{t("sys.login.signUpFormTitle")}</Button>
 					</Col>
 				</Row>
 
-				<Divider className="!text-xs">{t("sys.login.otherSignIn")}</Divider>
+				<Divider className="text-xs!">{t("sys.login.otherSignIn")}</Divider>
 
 				<div className="flex cursor-pointer justify-around text-2xl">
 					<AiFillGithub />

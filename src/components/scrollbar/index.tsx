@@ -35,7 +35,7 @@ const ScrollbarRoot = styled(SimpleBar).withConfig({
   min-width: 0;
   min-height: 0;
   max-height: 100%;
-  flex-grow: 1;
+  grow: 1;
   display: flex;
   flex-direction: column;
 

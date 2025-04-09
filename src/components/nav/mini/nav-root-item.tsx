@@ -57,9 +57,9 @@ export const NavMiniRootItem = (item: NavItemProps) => {
 	);
 
 	const itemClassName = cn(
-		"w-full flex flex-col items-center hover:bg-action-hover cursor-pointer rounded-md !text-text-primary",
-		item.active && "!bg-primary/hover !text-primary",
-		item.disabled && "cursor-not-allowed hover:bg-transparent !text-action-disabled",
+		"w-full flex flex-col items-center hover:bg-action-hover cursor-pointer rounded-md text-text-primary!",
+		item.active && "bg-primary/hover! text-primary!",
+		item.disabled && "cursor-not-allowed hover:bg-transparent text-action-disabled!",
 	);
 
 	if (item.disabled) {

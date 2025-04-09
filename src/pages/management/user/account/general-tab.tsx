@@ -32,7 +32,7 @@ export default function GeneralTab() {
 	return (
 		<Row gutter={[16, 16]}>
 			<Col span={24} lg={8}>
-				<Card className="flex-col !px-6 !pb-10 !pt-20">
+				<Card className="flex-col px-6! pb-10! pt-20!">
 					<UploadAvatar defaultAvatar={avatar} />
 
 					<Space className="py-6">
@@ -47,12 +47,7 @@ export default function GeneralTab() {
 			</Col>
 			<Col span={24} lg={16}>
 				<Card>
-					<Form
-						layout="vertical"
-						initialValues={initFormValues}
-						labelCol={{ span: 8 }}
-						className="w-full"
-					>
+					<Form layout="vertical" initialValues={initFormValues} labelCol={{ span: 8 }} className="w-full">
 						<Row gutter={16}>
 							<Col span={12}>
 								<Form.Item<FieldType> label="Username" name="name">
