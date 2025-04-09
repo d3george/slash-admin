@@ -20,15 +20,19 @@ export function NavList({ data, currentRole, enabledRootRedirect = false }: NavL
 		<Collapsible open={open} onOpenChange={setOpen}>
 			<CollapsibleTrigger className="w-full">
 				<NavItem
+					// data
 					title={data.title}
 					path={data.path}
 					icon={data.icon}
 					info={data.info}
 					caption={data.caption}
-					disabled={data.disabled}
+					// state
 					open={open}
 					active={isActive}
+					disabled={data.disabled}
+					// options
 					hasChild={hasChild}
+					// event
 					onClick={handleClick}
 				/>
 			</CollapsibleTrigger>

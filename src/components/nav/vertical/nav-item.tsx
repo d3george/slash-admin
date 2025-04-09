@@ -65,9 +65,7 @@ export function NavItem({
 									{caption}
 								</span>
 							</TooltipTrigger>
-							<TooltipContent side="top" align="start">
-								{caption}
-							</TooltipContent>
+							<TooltipContent side="top">{caption}</TooltipContent>
 						</Tooltip>
 					</TooltipProvider>
 				)}
