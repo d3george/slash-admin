@@ -5,7 +5,7 @@ import type { TableRowSelection } from "antd/es/table/interface";
 import { useEffect, useState } from "react";
 
 import orgService from "@/api/services/orgService";
-import { IconButton, Iconify } from "@/components/icon";
+import { Icon, IconButton } from "@/components/icon";
 
 import OrganizationChart from "./organization-chart";
 
@@ -50,11 +50,11 @@ export default function OrganizationPage() {
 			render: (_, record) => (
 				<div className="flex w-full justify-center text-gray">
 					<IconButton onClick={() => onEdit(record)}>
-						<Iconify icon="solar:pen-bold-duotone" size={18} />
+						<Icon icon="solar:pen-bold-duotone" size={18} />
 					</IconButton>
 					<Popconfirm title="Delete the Organization" okText="Yes" cancelText="No" placement="left">
 						<IconButton>
-							<Iconify icon="mingcute:delete-2-fill" size={18} className="text-error" />
+							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error" />
 						</IconButton>
 					</Popconfirm>
 				</div>

@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Navigate, Outlet } from "react-router";
 
-import { SvgIcon } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
 
 import type { AppRouteObject } from "#/router";
@@ -9,12 +9,8 @@ import type { AppRouteObject } from "#/router";
 const ProfilePage = lazy(() => import("@/pages/management/user/profile"));
 const AccountPage = lazy(() => import("@/pages/management/user/account"));
 
-const OrganizationPage = lazy(
-	() => import("@/pages/management/system/organization"),
-);
-const PermissioPage = lazy(
-	() => import("@/pages/management/system/permission"),
-);
+const OrganizationPage = lazy(() => import("@/pages/management/system/organization"));
+const PermissioPage = lazy(() => import("@/pages/management/system/permission"));
 
 const Blog = lazy(() => import("@/pages/management/blog"));
 
@@ -28,9 +24,7 @@ const management: AppRouteObject = {
 	),
 	meta: {
 		label: "sys.menu.management",
-		icon: (
-			<SvgIcon icon="ic-management" className="ant-menu-item-icon" size="24" />
-		),
+		icon: <Icon icon="local:ic-management" className="ant-menu-item-icon" size="24" />,
 		key: "/management",
 	},
 	children: [

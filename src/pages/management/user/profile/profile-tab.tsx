@@ -1,13 +1,12 @@
-import { faker } from "@faker-js/faker";
-import { Avatar, Col, Progress, Row, Space, Table, Tag, Timeline, Typography } from "antd";
-import type { ColumnsType } from "antd/es/table";
-
 import { fakeAvatars } from "@/_mock/utils";
 import Card from "@/components/card";
-import { IconButton, Iconify, SvgIcon } from "@/components/icon";
+import { Icon, IconButton } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
+import { faker } from "@faker-js/faker";
+import { Avatar, Col, Progress, Row, Space, Table, Tag, Timeline, Typography } from "antd";
+import type { ColumnsType } from "antd/es/table";
 
 interface DataType {
 	key: string;
@@ -23,32 +22,32 @@ export default function ProfileTab() {
 	const { username } = useUserInfo();
 	const AboutItems = [
 		{
-			icon: <Iconify icon="fa-solid:user" size={18} />,
+			icon: <Icon icon="fa-solid:user" size={18} />,
 			label: "Full Name",
 			val: username,
 		},
 		{
-			icon: <Iconify icon="eos-icons:role-binding" size={18} />,
+			icon: <Icon icon="eos-icons:role-binding" size={18} />,
 			label: "Role",
 			val: "Developer",
 		},
 		{
-			icon: <Iconify icon="tabler:location-filled" size={18} />,
+			icon: <Icon icon="tabler:location-filled" size={18} />,
 			label: "Country",
 			val: "USA",
 		},
 		{
-			icon: <Iconify icon="ion:language" size={18} />,
+			icon: <Icon icon="ion:language" size={18} />,
 			label: "Language",
 			val: "English",
 		},
 		{
-			icon: <Iconify icon="ph:phone-fill" size={18} />,
+			icon: <Icon icon="ph:phone-fill" size={18} />,
 			label: "Contact",
 			val: "(123)456-7890",
 		},
 		{
-			icon: <Iconify icon="ic:baseline-email" size={18} />,
+			icon: <Icon icon="ic:baseline-email" size={18} />,
 			label: "Email",
 			val: username,
 		},
@@ -93,32 +92,32 @@ export default function ProfileTab() {
 
 	const TeamItems = [
 		{
-			avatar: <Iconify icon="devicon:react" size={36} />,
+			avatar: <Icon icon="devicon:react" size={36} />,
 			name: "React Developers",
 			members: `${faker.number.int(100)} Members`,
 			tag: <Tag color="warning">Developer</Tag>,
 		},
 		{
-			avatar: <Iconify icon="devicon:figma" size={36} />,
+			avatar: <Icon icon="devicon:figma" size={36} />,
 			name: "UI Designer",
 			members: `${faker.number.int(100)} Members`,
 			tag: <Tag color="cyan">Designer</Tag>,
 		},
 		{
-			avatar: <Iconify icon="logos:jest" size={36} />,
+			avatar: <Icon icon="logos:jest" size={36} />,
 			name: "Test Team",
 			members: `${faker.number.int(100)} Members`,
 			tag: <Tag color="success">Test</Tag>,
 		},
 		{
-			avatar: <Iconify icon="logos:nestjs" size={36} />,
+			avatar: <Icon icon="logos:nestjs" size={36} />,
 			name: "Nest.js Developers",
 			members: `${faker.number.int(100)} Members`,
 			tag: <Tag color="warning">Developer</Tag>,
 		},
 
 		{
-			avatar: <Iconify icon="logos:twitter" size={36} />,
+			avatar: <Icon icon="logos:twitter" size={36} />,
 			name: "Digital Marketing",
 			members: `${faker.number.int(100)} Members`,
 			tag: <Tag>Marketing</Tag>,
@@ -184,7 +183,7 @@ export default function ProfileTab() {
 			render: () => (
 				<Space size="middle">
 					<IconButton>
-						<Iconify icon="fontisto:more-v-a" />
+						<Icon icon="fontisto:more-v-a" />
 					</IconButton>
 				</Space>
 			),
@@ -232,7 +231,7 @@ export default function ProfileTab() {
 											</Typography.Text>
 
 											<div className="mt-2 flex items-center gap-2">
-												<SvgIcon icon="ic_file_pdf" size={30} />
+												<Icon icon="local:file-pdf" size={30} />
 												<span className="font-medium opacity-60">invoice.pdf</span>
 											</div>
 										</div>
@@ -292,7 +291,7 @@ export default function ProfileTab() {
 						<div className="flex w-full items-center justify-between">
 							<Typography.Title level={5}>Connections</Typography.Title>
 							<IconButton>
-								<Iconify icon="fontisto:more-v-a" />
+								<Icon icon="fontisto:more-v-a" />
 							</IconButton>
 						</div>
 						<div className="mt-2 flex w-full flex-col gap-4">
@@ -310,7 +309,7 @@ export default function ProfileTab() {
 											border: item.connected ? "" : `1px solid ${themeVars.colors.palette.primary.default}`,
 										}}
 									>
-										<Iconify
+										<Icon
 											icon="tdesign:user"
 											color={item.connected ? "#fff" : themeVars.colors.palette.primary.default}
 											size={20}
@@ -333,7 +332,7 @@ export default function ProfileTab() {
 						<div className="flex w-full items-center justify-between">
 							<Typography.Title level={5}>Teams</Typography.Title>
 							<IconButton>
-								<Iconify icon="fontisto:more-v-a" />
+								<Icon icon="fontisto:more-v-a" />
 							</IconButton>
 						</div>
 						<div className="mt-2 flex w-full flex-col gap-4">

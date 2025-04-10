@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { Checkbox, List } from "antd";
 
-import { IconButton, Iconify } from "@/components/icon";
+import { Icon, IconButton } from "@/components/icon";
 
 export default function AnalysisTasks() {
 	const data = [
@@ -30,7 +30,7 @@ export default function AnalysisTasks() {
 				<List.Item
 					actions={[
 						<IconButton key={item.task}>
-							<Iconify icon="fontisto:more-v-a" />
+							<Icon icon="fontisto:more-v-a" />
 						</IconButton>,
 					]}
 				>

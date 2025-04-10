@@ -1,10 +1,9 @@
+import { Icon } from "@/components/icon";
 import { useSettings } from "@/store/settingStore";
 import { themeVars } from "@/theme/theme.css";
 import { rgbAlpha } from "@/utils/theme";
 import { Toaster } from "sonner";
 import styled from "styled-components";
-
-import { Iconify } from "../icon";
 
 /**
  * https://sonner.emilkowal.ski/getting-started
@@ -36,27 +35,27 @@ export default function Toast() {
 				icons={{
 					success: (
 						<div className="p-2 bg-success/10 rounded-lg">
-							<Iconify icon="carbon:checkmark-filled" size={24} color={themeVars.colors.palette.success.default} />
+							<Icon icon="carbon:checkmark-filled" size={24} color={themeVars.colors.palette.success.default} />
 						</div>
 					),
 					error: (
 						<div className="p-2 bg-error/10 rounded-lg">
-							<Iconify icon="carbon:warning-hex-filled" size={24} color={themeVars.colors.palette.error.default} />
+							<Icon icon="carbon:warning-hex-filled" size={24} color={themeVars.colors.palette.error.default} />
 						</div>
 					),
 					warning: (
 						<div className="p-2 bg-warning/10 rounded-lg">
-							<Iconify icon="carbon:warning-alt-filled" size={24} color={themeVars.colors.palette.warning.default} />
+							<Icon icon="carbon:warning-alt-filled" size={24} color={themeVars.colors.palette.warning.default} />
 						</div>
 					),
 					info: (
 						<div className="p-2 bg-info/10 rounded-lg">
-							<Iconify icon="carbon:information-filled" size={24} color={themeVars.colors.palette.info.default} />
+							<Icon icon="carbon:information-filled" size={24} color={themeVars.colors.palette.info.default} />
 						</div>
 					),
 					loading: (
 						<div className="p-2 bg-gray-400/10 text-gray-400 rounded-lg">
-							<Iconify icon="svg-spinners:6-dots-scale-middle" size={24} speed={3} />
+							<Icon icon="svg-spinners:6-dots-scale-middle" size={24} speed={3} />
 						</div>
 					),
 				}}

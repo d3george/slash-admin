@@ -2,7 +2,7 @@ import { Typography } from "antd";
 import { Suspense } from "react";
 import { Navigate, Outlet } from "react-router";
 
-import { SvgIcon } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
 
 import type { AppRouteObject } from "#/router";
@@ -21,9 +21,7 @@ const menulevel: AppRouteObject = {
 	),
 	meta: {
 		label: "sys.menu.menulevel.index",
-		icon: (
-			<SvgIcon icon="ic-menulevel" className="ant-menu-item-icon" size="24" />
-		),
+		icon: <Icon icon="local:ic-menulevel" className="ant-menu-item-icon" size="24" />,
 		key: "/menu_level",
 	},
 	children: [

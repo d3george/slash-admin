@@ -1,6 +1,6 @@
 import CoverImage from "@/assets/images/cover/cover_4.jpg";
 import Card from "@/components/card";
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
 import { type CSSProperties, useState } from "react";
@@ -22,22 +22,22 @@ function UserProfile() {
 
 	const tabs = [
 		{
-			icon: <Iconify icon="solar:user-id-bold" size={24} className="mr-2" />,
+			icon: <Icon icon="solar:user-id-bold" size={24} className="mr-2" />,
 			title: "Profile",
 			content: <ProfileTab />,
 		},
 		{
-			icon: <Iconify icon="mingcute:profile-fill" size={24} className="mr-2" />,
+			icon: <Icon icon="mingcute:profile-fill" size={24} className="mr-2" />,
 			title: "Teams",
 			content: <TeamsTab />,
 		},
 		{
-			icon: <Iconify icon="mingcute:profile-fill" size={24} className="mr-2" />,
+			icon: <Icon icon="mingcute:profile-fill" size={24} className="mr-2" />,
 			title: "Projects",
 			content: <ProjectsTab />,
 		},
 		{
-			icon: <Iconify icon="mingcute:profile-fill" size={24} className="mr-2" />,
+			icon: <Icon icon="mingcute:profile-fill" size={24} className="mr-2" />,
 			title: "Connections",
 			content: <ConnectionsTab />,
 		},

@@ -1,4 +1,4 @@
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { Dropdown, type MenuProps } from "antd";
 import { useTranslation } from "react-i18next";
 import { MultiTabOperation } from "#/enum";
@@ -15,12 +15,12 @@ export function TabItem({ tab, style, onClose }: TabItemProps) {
 		{
 			label: t(`sys.tab.${MultiTabOperation.REFRESH}`),
 			key: MultiTabOperation.REFRESH,
-			icon: <Iconify icon="mdi:reload" size={18} />,
+			icon: <Icon icon="mdi:reload" size={18} />,
 		},
 		{
 			label: t(`sys.tab.${MultiTabOperation.CLOSE}`),
 			key: MultiTabOperation.CLOSE,
-			icon: <Iconify icon="material-symbols:close" size={18} />,
+			icon: <Icon icon="material-symbols:close" size={18} />,
 			disabled: tabs.length === 1,
 		},
 		{
@@ -29,13 +29,13 @@ export function TabItem({ tab, style, onClose }: TabItemProps) {
 		{
 			label: t(`sys.tab.${MultiTabOperation.CLOSELEFT}`),
 			key: MultiTabOperation.CLOSELEFT,
-			icon: <Iconify icon="material-symbols:tab-close-right-outline" size={18} className="rotate-180" />,
+			icon: <Icon icon="material-symbols:tab-close-right-outline" size={18} className="rotate-180" />,
 			disabled: tabs.findIndex((t) => t.key === tab.key) === 0,
 		},
 		{
 			label: t(`sys.tab.${MultiTabOperation.CLOSERIGHT}`),
 			key: MultiTabOperation.CLOSERIGHT,
-			icon: <Iconify icon="material-symbols:tab-close-right-outline" size={18} />,
+			icon: <Icon icon="material-symbols:tab-close-right-outline" size={18} />,
 			disabled: tabs.findIndex((t) => t.key === tab.key) === tabs.length - 1,
 		},
 		{
@@ -44,13 +44,13 @@ export function TabItem({ tab, style, onClose }: TabItemProps) {
 		{
 			label: t(`sys.tab.${MultiTabOperation.CLOSEOTHERS}`),
 			key: MultiTabOperation.CLOSEOTHERS,
-			icon: <Iconify icon="material-symbols:tab-close-outline" size={18} />,
+			icon: <Icon icon="material-symbols:tab-close-outline" size={18} />,
 			disabled: tabs.length === 1,
 		},
 		{
 			label: t(`sys.tab.${MultiTabOperation.CLOSEALL}`),
 			key: MultiTabOperation.CLOSEALL,
-			icon: <Iconify icon="mdi:collapse-all-outline" size={18} />,
+			icon: <Icon icon="mdi:collapse-all-outline" size={18} />,
 		},
 	];
 
@@ -93,7 +93,7 @@ export function TabItem({ tab, style, onClose }: TabItemProps) {
 			<div className="relative flex select-none items-center px-4 py-1" style={style}>
 				<div>{renderTabLabel(tab)}</div>
 				{!tab.hideTab && (
-					<Iconify
+					<Icon
 						icon="ion:close-outline"
 						size={18}
 						className="ml-2 cursor-pointer opacity-50"

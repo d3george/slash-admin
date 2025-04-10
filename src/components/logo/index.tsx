@@ -1,8 +1,6 @@
-import { NavLink } from "react-router";
-
+import { Icon } from "@/components/icon";
 import { useTheme } from "@/theme/hooks";
-
-import { Iconify } from "../icon";
+import { NavLink } from "react-router";
 
 interface Props {
 	size?: number | string;
@@ -12,7 +10,7 @@ function Logo({ size = 50 }: Props) {
 
 	return (
 		<NavLink to="/">
-			<Iconify icon="solar:code-square-bold" color={themeTokens.color.palette.primary.default} size={size} />
+			<Icon icon="solar:code-square-bold" color={themeTokens.color.palette.primary.default} size={size} />
 		</NavLink>
 	);
 }

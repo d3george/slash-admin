@@ -1,13 +1,11 @@
-import { isEmpty } from "ramda";
-import { Suspense, lazy, useMemo } from "react";
-import { Navigate, Outlet } from "react-router";
-
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
 import { useUserPermission } from "@/store/userStore";
 import { flattenTrees } from "@/utils/tree";
-
 import { Tag } from "antd";
+import { isEmpty } from "ramda";
+import { Suspense, lazy, useMemo } from "react";
+import { Navigate, Outlet } from "react-router";
 import type { Permission } from "#/entity";
 import { BasicStatus, PermissionType } from "#/enum";
 import type { AppRouteObject } from "#/router";
@@ -52,7 +50,7 @@ function NewFeatureTag() {
 	return (
 		<Tag color="cyan" className="ml-2!">
 			<div className="flex items-center gap-1">
-				<Iconify icon="solar:bell-bing-bold-duotone" size={12} />
+				<Icon icon="solar:bell-bing-bold-duotone" size={12} />
 				<span className="ms-1">NEW</span>
 			</div>
 		</Tag>

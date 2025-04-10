@@ -1,9 +1,7 @@
+import { Icon } from "@/components/icon";
+import { CircleLoading } from "@/components/loading";
 import { Suspense, lazy } from "react";
 import { Outlet } from "react-router";
-
-import { Iconify } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
-
 import type { AppRouteObject } from "#/router";
 
 const Page403 = lazy(() => import("@/pages/sys/error/Page403"));
@@ -21,13 +19,7 @@ const errors: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.error.index",
-			icon: (
-				<Iconify
-					icon="bxs:error-alt"
-					className="ant-menu-item-icon"
-					size="24"
-				/>
-			),
+			icon: <Icon icon="bxs:error-alt" className="ant-menu-item-icon" size="24" />,
 			key: "/error",
 		},
 		children: [

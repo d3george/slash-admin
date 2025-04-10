@@ -1,4 +1,4 @@
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
 import { Progress } from "antd";
 
@@ -48,7 +48,7 @@ function Basic({ percent, title, subtitle, iconify, bg, strokeColor }: Props) {
 				<span className="opacity-50">{subtitle}</span>
 			</div>
 			<div className="absolute right-0">
-				<Iconify icon={iconify} style={{ opacity: 0.08 }} size={100} />
+				<Icon icon={iconify} style={{ opacity: 0.08 }} size={100} />
 			</div>
 		</div>
 	);

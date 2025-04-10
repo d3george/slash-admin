@@ -1,8 +1,7 @@
+import useLocale, { LANGUAGE_MAP } from "@/locales/use-locale";
 import { Dropdown } from "antd";
 
-import useLocale, { LANGUAGE_MAP } from "@/locales/use-locale";
-
-import { IconButton, SvgIcon } from "../icon";
+import { Icon, IconButton } from "../icon";
 
 import type { MenuProps } from "antd";
 import type { LocalEnum } from "#/enum";
@@ -19,7 +18,7 @@ export default function LocalePicker() {
 		return {
 			key: item.locale,
 			label: item.label,
-			icon: <SvgIcon icon={item.icon} size="20" className="rounded-md" />,
+			icon: <Icon icon={`local:${item.icon}`} size="20" className="rounded-md" />,
 		};
 	});
 
@@ -30,7 +29,7 @@ export default function LocalePicker() {
 			menu={{ items: localeList, onClick: (e) => setLocale(e.key as Locale) }}
 		>
 			<IconButton className="h-10 w-10 hover:scale-105">
-				<SvgIcon icon={`ic-locale_${locale}`} size="24" className="rounded-md" />
+				<Icon icon={`local:${LANGUAGE_MAP[locale].icon}`} size="24" className="rounded-md" />
 			</IconButton>
 		</Dropdown>
 	);

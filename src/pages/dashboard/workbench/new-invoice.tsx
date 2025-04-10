@@ -2,7 +2,7 @@ import { Space, Tag, Typography } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 
 import Card from "@/components/card";
-import { IconButton, Iconify } from "@/components/icon";
+import { Icon, IconButton } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
 
 interface DataType {
@@ -50,7 +50,7 @@ export default function NewInvoice() {
 			render: () => (
 				<Space size="middle">
 					<IconButton>
-						<Iconify icon="fontisto:more-v-a" />
+						<Icon icon="fontisto:more-v-a" />
 					</IconButton>
 				</Space>
 			),

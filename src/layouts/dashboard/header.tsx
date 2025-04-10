@@ -1,7 +1,7 @@
 import { Drawer } from "antd";
 import { type CSSProperties, useState } from "react";
 
-import { IconButton, Iconify, SvgIcon } from "@/components/icon";
+import { Icon, IconButton } from "@/components/icon";
 import LocalePicker from "@/components/locale-picker";
 import Logo from "@/components/logo";
 import { useSettings } from "@/store/settingStore";
@@ -48,7 +48,7 @@ export default function Header() {
 					<div className="flex items-baseline">
 						{themeLayout !== ThemeLayout.Horizontal ? (
 							<IconButton onClick={() => setDrawerOpen(true)} className="h-10 w-10 md:hidden">
-								<SvgIcon icon="ic-menu" size="24" />
+								<Icon icon="local:ic-menu" size="24" />
 							</IconButton>
 						) : (
 							<Logo />
@@ -60,10 +60,10 @@ export default function Header() {
 						<SearchBar />
 						<LocalePicker />
 						<IconButton onClick={() => window.open("https://github.com/d3george/slash-admin")}>
-							<Iconify icon="mdi:github" size={24} />
+							<Icon icon="mdi:github" size={24} />
 						</IconButton>
 						<IconButton onClick={() => window.open("https://discord.gg/fXemAXVNDa")}>
-							<Iconify icon="carbon:logo-discord" size={24} />
+							<Icon icon="carbon:logo-discord" size={24} />
 						</IconButton>
 						<NoticeButton />
 						<SettingButton />

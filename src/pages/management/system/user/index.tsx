@@ -1,10 +1,8 @@
+import { USER_LIST } from "@/_mock/assets";
+import { Icon, IconButton } from "@/components/icon";
+import { usePathname, useRouter } from "@/router/hooks";
 import { Button, Card, Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
-
-import { USER_LIST } from "@/_mock/assets";
-import { IconButton, Iconify } from "@/components/icon";
-import { usePathname, useRouter } from "@/router/hooks";
-
 import type { Role, UserInfo } from "#/entity";
 import { BasicStatus } from "#/enum";
 
@@ -61,14 +59,14 @@ export default function RolePage() {
 							push(`${pathname}/${record.id}`);
 						}}
 					>
-						<Iconify icon="mdi:card-account-details" size={18} />
+						<Icon icon="mdi:card-account-details" size={18} />
 					</IconButton>
 					<IconButton onClick={() => {}}>
-						<Iconify icon="solar:pen-bold-duotone" size={18} />
+						<Icon icon="solar:pen-bold-duotone" size={18} />
 					</IconButton>
 					<Popconfirm title="Delete the User" okText="Yes" cancelText="No" placement="left">
 						<IconButton>
-							<Iconify icon="mingcute:delete-2-fill" size={18} className="text-error" />
+							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error" />
 						</IconButton>
 					</Popconfirm>
 				</div>

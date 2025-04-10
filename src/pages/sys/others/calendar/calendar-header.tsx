@@ -1,10 +1,9 @@
+import { Icon, IconButton } from "@/components/icon";
+import { up } from "@/hooks";
+import { useMediaQuery } from "@/hooks";
 import { Button, Dropdown, type MenuProps } from "antd";
 import dayjs from "dayjs";
 import { type ReactNode, useMemo } from "react";
-
-import { IconButton, Iconify } from "@/components/icon";
-import { up } from "@/hooks";
-import { useMediaQuery } from "@/hooks";
 
 export type HandleMoveArg = "next" | "prev" | "today";
 export type ViewType = "dayGridMonth" | "timeGridWeek" | "timeGridDay" | "listWeek";
@@ -31,25 +30,25 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 				key: "1",
 				label: "Month",
 				view: "dayGridMonth",
-				icon: <Iconify icon="mdi:calendar-month-outline" size={18} />,
+				icon: <Icon icon="mdi:calendar-month-outline" size={18} />,
 			},
 			{
 				key: "2",
 				label: "Week",
 				view: "timeGridWeek",
-				icon: <Iconify icon="mdi:calendar-weekend-outline" size={18} />,
+				icon: <Icon icon="mdi:calendar-weekend-outline" size={18} />,
 			},
 			{
 				key: "3",
 				label: "Day",
 				view: "timeGridDay",
-				icon: <Iconify icon="mdi:calendar-today-outline" size={18} />,
+				icon: <Icon icon="mdi:calendar-today-outline" size={18} />,
 			},
 			{
 				key: "4",
 				label: "List",
 				view: "listWeek",
-				icon: <Iconify icon="mdi:view-agenda-outline" size={18} />,
+				icon: <Icon icon="mdi:view-agenda-outline" size={18} />,
 			},
 		],
 		[],
@@ -72,7 +71,7 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 			<div className="flex items-center">
 				{icon}
 				<span className="mx-1 text-sm! font-medium">{label}</span>
-				<Iconify icon="solar:alt-arrow-down-outline" size={20} />
+				<Icon icon="solar:alt-arrow-down-outline" size={20} />
 			</div>
 		);
 	};
@@ -89,11 +88,11 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 
 			<div className="flex cursor-pointer items-center justify-center">
 				<IconButton>
-					<Iconify icon="solar:alt-arrow-left-outline" onClick={() => onMove("prev")} size={20} />
+					<Icon icon="solar:alt-arrow-left-outline" onClick={() => onMove("prev")} size={20} />
 				</IconButton>
 				<span className="mx-2 text-base font-bold">{dayjs(now).format("DD MMM YYYY")}</span>
 				<IconButton>
-					<Iconify icon="solar:alt-arrow-right-outline" onClick={() => onMove("next")} size={20} />
+					<Icon icon="solar:alt-arrow-right-outline" onClick={() => onMove("next")} size={20} />
 				</IconButton>
 			</div>
 
@@ -103,7 +102,7 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 				</Button>
 				<Button className="ml-2" type="primary" onClick={() => onCreate()}>
 					<div className=" flex items-center justify-center">
-						<Iconify icon="material-symbols:add" size={24} />
+						<Icon icon="material-symbols:add" size={24} />
 						New Event
 					</div>
 				</Button>

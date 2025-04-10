@@ -1,11 +1,9 @@
-import { useCallback } from "react";
-import { useTranslation } from "react-i18next";
-
-import { Iconify, SvgIcon } from "@/components/icon";
-
+import { Icon } from "@/components/icon";
 import { useSettings } from "@/store/settingStore";
 import { cn } from "@/utils";
 import type { GetProp, MenuProps } from "antd";
+import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { ThemeLayout } from "#/enum";
 import type { AppRouteObject } from "#/router";
 
@@ -13,12 +11,7 @@ type MenuItem = GetProp<MenuProps, "items">[number];
 
 const renderIcon = (icon: string | React.ReactNode): React.ReactNode => {
 	if (typeof icon !== "string") return icon;
-
-	return icon.startsWith("ic") ? (
-		<SvgIcon icon={icon} size={24} className="ant-menu-item-icon" />
-	) : (
-		<Iconify icon={icon} size={24} className="ant-menu-item-icon" />
-	);
+	return <Icon icon={icon} size={24} className="ant-menu-item-icon" />;
 };
 
 /**
@@ -43,9 +36,7 @@ export function useRouteToMenuFn() {
 							<div
 								className={cn(
 									"inline-flex items-center overflow-hidden",
-									themeLayout === ThemeLayout.Horizontal
-										? "justify-start"
-										: "justify-between",
+									themeLayout === ThemeLayout.Horizontal ? "justify-start" : "justify-between",
 								)}
 							>
 								<div className="">{t(meta.label)}</div>

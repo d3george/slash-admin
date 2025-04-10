@@ -1,5 +1,5 @@
 import Card from "@/components/card";
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
 import { faker } from "@faker-js/faker";
 import { Typography } from "antd";
@@ -38,7 +38,7 @@ export default function TopAuthor() {
 						<div className="ml-2 flex flex-col">
 							<span>{faker.person.fullName()}</span>
 							<div className="flex items-center  text-gray">
-								<Iconify icon="icon-park-solid:like" size={14} />
+								<Icon icon="icon-park-solid:like" size={14} />
 								<span className="ml-2">{faker.number.float({ min: 3, max: 9, multipleOf: 3 })}k</span>
 							</div>
 						</div>
@@ -49,7 +49,7 @@ export default function TopAuthor() {
 								background: getTrophyIconColor(index).bg,
 							}}
 						>
-							<Iconify icon="solar:cup-star-bold" size={24} color={getTrophyIconColor(index).color} />
+							<Icon icon="solar:cup-star-bold" size={24} color={getTrophyIconColor(index).color} />
 						</div>
 					</div>
 				))}

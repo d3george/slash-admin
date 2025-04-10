@@ -9,7 +9,7 @@ import screenfull from "screenfull";
 import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
 import { varHover } from "@/components/animate/variants/action";
-import { IconButton, SvgIcon } from "@/components/icon";
+import { Icon, IconButton } from "@/components/icon";
 import { useSettingActions, useSettings } from "@/store/settingStore";
 import { presetsColors } from "@/theme/tokens/color";
 
@@ -150,7 +150,7 @@ export default function SettingButton() {
 					onClick={() => setDrawerOpen(true)}
 				>
 					<IconButton className="h-10 w-10">
-						<SvgIcon icon="ic-setting" size="24" />
+						<Icon icon="local:ic-setting" size={24} />
 					</IconButton>
 				</m.div>
 			</div>
@@ -178,17 +178,13 @@ export default function SettingButton() {
 						>
 							{isFullscreen ? (
 								<>
-									<SvgIcon
-										icon="ic-settings-exit-fullscreen"
-										color={themeVars.colors.palette.primary.default}
-										className="m-0!"
-									/>
+									<Icon icon="local:ic-settings-exit-fullscreen" className="m-0!" />
 									<span className="ml-2">{t("sys.settings.exitFullscreen")}</span>
 								</>
 							) : (
 								<>
-									<SvgIcon icon="ic-settings-fullscreen" className="m-0!" />
-									<span className="ml-2 text-gray">{t("sys.settings.fullscreen")}</span>
+									<Icon icon="local:ic-settings-fullscreen" className="m-0!" />
+									<span className="ml-2">{t("sys.settings.fullscreen")}</span>
 								</>
 							)}
 						</div>
@@ -204,8 +200,8 @@ export default function SettingButton() {
 								onClick={() => setThemeMode(ThemeMode.Light)}
 								className="flex h-20 w-full cursor-pointer items-center justify-center"
 							>
-								<SvgIcon
-									icon="ic-settings-mode-sun"
+								<Icon
+									icon="local:ic-settings-mode-sun"
 									size="24"
 									color={themeMode === ThemeMode.Light ? themeVars.colors.palette.primary.default : ""}
 								/>
@@ -214,8 +210,8 @@ export default function SettingButton() {
 								onClick={() => setThemeMode(ThemeMode.Dark)}
 								className="flex h-20 w-full cursor-pointer items-center justify-center"
 							>
-								<SvgIcon
-									icon="ic-settings-mode-moon"
+								<Icon
+									icon="local:ic-settings-mode-moon"
 									size="24"
 									color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ""}
 								/>
