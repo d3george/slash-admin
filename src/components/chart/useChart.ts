@@ -54,13 +54,11 @@ export default function useChart(options: ApexOptions) {
 			hover: {
 				filter: {
 					type: "lighten",
-					value: 0.04,
 				},
 			},
 			active: {
 				filter: {
 					type: "darken",
-					value: 0.88,
 				},
 			},
 		},

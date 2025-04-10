@@ -79,10 +79,10 @@ importers:
         version: 4.1.3(vite@6.2.6(@types/node@20.5.1)(jiti@2.4.2)(lightningcss@1.29.2))
       '@tanstack/react-query':
         specifier: ^5.60.2
-        version: 5.72.1(react@18.2.0)
+        version: 5.72.2(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.60.2
-        version: 5.72.1(@tanstack/react-query@5.72.1(react@18.2.0))(react@18.2.0)
+        version: 5.72.2(@tanstack/react-query@5.72.2(react@18.2.0))(react@18.2.0)
       '@vanilla-extract/css':
         specifier: ^1.17.0
         version: 1.17.1(babel-plugin-macros@3.1.0)
@@ -1428,20 +1428,20 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6
 
-  '@tanstack/query-core@5.72.1':
-    resolution: {integrity: sha512-nOu0EEkZuJ0BZnYgeaEfo44+psq1jBO7/zp3KudixD4dvgOVerrhAhDEKsWx2N7MxB59mjO4r0ddP/VqWGPK+Q==}
+  '@tanstack/query-core@5.72.2':
+    resolution: {integrity: sha512-fxl9/0yk3mD/FwTmVEf1/H6N5B975H0luT+icKyX566w6uJG0x6o+Yl+I38wJRCaogiMkstByt+seXfDbWDAcA==}
 
-  '@tanstack/query-devtools@5.72.1':
-    resolution: {integrity: sha512-D0vEoQaiVq9ayCqvvxA9XkDq7TIesyPpvgP69arRtt5FQF6n/Hrta4SlkfXC4m9BCvFLlhLDcKGYa2eMQ4ZIIA==}
+  '@tanstack/query-devtools@5.72.2':
+    resolution: {integrity: sha512-mMKnGb+iOhVBcj6jaerCFRpg8pACStdG8hmUBHPtToeZzs4ctjBUL1FajqpVn2WaMxnq8Wya+P3Q5tPFNM9jQw==}
 
-  '@tanstack/react-query-devtools@5.72.1':
-    resolution: {integrity: sha512-ckNRgABst3MLjpM2nD/CzQToCiaT3jb3Xhtf+GP/0/9ij9SPT/SC+lc3wUDSkT0OupnHobBBF5E1/Xp6B+XZLg==}
+  '@tanstack/react-query-devtools@5.72.2':
+    resolution: {integrity: sha512-n53qr9JdHCJTCUba6OvMhwiV2CcsckngOswKEE7nM5pQBa/fW9c43qw8omw1RPT2s+aC7MuwS8fHsWT8g+j6IQ==}
     peerDependencies:
-      '@tanstack/react-query': ^5.72.1
+      '@tanstack/react-query': ^5.72.2
       react: ^18 || ^19
 
-  '@tanstack/react-query@5.72.1':
-    resolution: {integrity: sha512-4UEMyRx54xj144D2nDvDIMiXSG5BrqyCJrmyNoGbymNS+VWODcBDFrmRk9p2fe12UGZ4JtKPTNuW2Jg0aisUgQ==}
+  '@tanstack/react-query@5.72.2':
+    resolution: {integrity: sha512-SVNHzyBUYiis+XiCl+8yiPZmMYei2AKYY94wM/zpvB5l1jxqOo82FQTziSJ4pBi96jtYqvYrTMxWynmbQh3XKw==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -1721,8 +1721,8 @@ packages:
   camelize@1.0.1:
     resolution: {integrity: sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==}
 
-  caniuse-lite@1.0.30001712:
-    resolution: {integrity: sha512-MBqPpGYYdQ7/hfKiet9SCI+nmN5/hp4ZzveOJubl5DTAMa5oggjAuoi0Z4onBpKPFI2ePGnQuQIzF3VxDjDJig==}
+  caniuse-lite@1.0.30001713:
+    resolution: {integrity: sha512-wCIWIg+A4Xr7NfhTuHdX+/FKh3+Op3LBbSp2N5Pfx6T/LhdQy3GTyoTg48BReaW/MyMNZAkTadsBtai3ldWK0Q==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -1960,8 +1960,8 @@ packages:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
-  electron-to-chromium@1.5.134:
-    resolution: {integrity: sha512-zSwzrLg3jNP3bwsLqWHmS5z2nIOQ5ngMnfMZOWWtXnqqQkPVyOipxK98w+1beLw1TB+EImPNcG8wVP/cLVs2Og==}
+  electron-to-chromium@1.5.135:
+    resolution: {integrity: sha512-8gXUdEmvb+WCaYUhA0Svr08uSeRjM2w3x5uHOc1QbaEVzJXB8rgm5eptieXzyKoVEtinLvW6MtTcurA65PeS1Q==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -5006,19 +5006,19 @@ snapshots:
       tailwindcss: 4.1.3
       vite: 6.2.6(@types/node@20.5.1)(jiti@2.4.2)(lightningcss@1.29.2)
 
-  '@tanstack/query-core@5.72.1': {}
+  '@tanstack/query-core@5.72.2': {}
 
-  '@tanstack/query-devtools@5.72.1': {}
+  '@tanstack/query-devtools@5.72.2': {}
 
-  '@tanstack/react-query-devtools@5.72.1(@tanstack/react-query@5.72.1(react@18.2.0))(react@18.2.0)':
+  '@tanstack/react-query-devtools@5.72.2(@tanstack/react-query@5.72.2(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@tanstack/query-devtools': 5.72.1
-      '@tanstack/react-query': 5.72.1(react@18.2.0)
+      '@tanstack/query-devtools': 5.72.2
+      '@tanstack/react-query': 5.72.2(react@18.2.0)
       react: 18.2.0
 
-  '@tanstack/react-query@5.72.1(react@18.2.0)':
+  '@tanstack/react-query@5.72.2(react@18.2.0)':
     dependencies:
-      '@tanstack/query-core': 5.72.1
+      '@tanstack/query-core': 5.72.2
       react: 18.2.0
 
   '@tsconfig/node10@1.0.11': {}
@@ -5366,8 +5366,8 @@ snapshots:
 
   browserslist@4.24.4:
     dependencies:
-      caniuse-lite: 1.0.30001712
-      electron-to-chromium: 1.5.134
+      caniuse-lite: 1.0.30001713
+      electron-to-chromium: 1.5.135
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.24.4)
 
@@ -5402,7 +5402,7 @@ snapshots:
 
   camelize@1.0.1: {}
 
-  caniuse-lite@1.0.30001712: {}
+  caniuse-lite@1.0.30001713: {}
 
   ccount@2.0.1: {}
 
@@ -5616,7 +5616,7 @@ snapshots:
       es-errors: 1.3.0
       gopd: 1.2.0
 
-  electron-to-chromium@1.5.134: {}
+  electron-to-chromium@1.5.135: {}
 
   emoji-regex@8.0.0: {}
 

@@ -24,8 +24,8 @@ export default function Toast() {
 					classNames: {
 						toast: "rounded-lg border-0",
 						description: "text-xs text-current/45",
-						content: "flex-1 ml-2",
-						icon: "flex items-center justify-center px-4 rounded-lg",
+						content: "flex-1 ml-6",
+						icon: "flex items-center justify-center rounded-lg",
 						success: "bg-success/10",
 						error: "bg-error/10",
 						warning: "bg-warning/10",
@@ -121,6 +121,11 @@ const ToasterStyleWrapper = styled.div`
       &:hover {
         background-color: ${rgbAlpha(themeVars.colors.palette.warning.defaultChannel, 0.08)};
       }
+    }
+
+    /* Loading */
+    &[data-type="loading"] [data-icon] .sonner-loader[data-visible="true"] {
+      margin-left: 12px;
     }
 
     /* Close Button */
