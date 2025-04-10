@@ -1,17 +1,12 @@
+import { Icon, IconButton } from "@/components/icon";
 import { faker } from "@faker-js/faker";
 import type { EventInput } from "@fullcalendar/core";
 import { ColorPicker, DatePicker, Form, Input, Modal, Switch } from "antd";
+import type { ModalProps } from "antd/es/modal/interface";
 import type { Dayjs } from "dayjs";
 import { useEffect } from "react";
 
-import { IconButton, Iconify } from "@/components/icon";
-
-import type { ModalProps } from "antd/es/modal/interface";
-
-export type CalendarEventFormFieldType = Pick<
-	EventInput,
-	"title" | "allDay" | "color"
-> & {
+export type CalendarEventFormFieldType = Pick<EventInput, "title" | "allDay" | "color"> & {
 	id: string;
 	description?: string;
 	start?: Dayjs;
@@ -28,16 +23,7 @@ type Props = {
 	initValues: CalendarEventFormFieldType;
 };
 
-const COLORS = [
-	"#00a76f",
-	"#8e33ff",
-	"#00b8d9",
-	"#003768",
-	"#22c55e",
-	"#ffab00",
-	"#ff5630",
-	"#7a0916",
-];
+const COLORS = ["#00a76f", "#8e33ff", "#00b8d9", "#003768", "#22c55e", "#ffab00", "#ff5630", "#7a0916"];
 
 export default function CalendarEventForm({
 	type,
@@ -69,7 +55,7 @@ export default function CalendarEventForm({
 								onCancel();
 							}}
 						>
-							<Iconify icon="fluent:delete-16-filled" size={20} />
+							<Icon icon="fluent:delete-16-filled" size={20} />
 						</IconButton>
 						<div>
 							<CancelBtn />
@@ -110,13 +96,7 @@ export default function CalendarEventForm({
 					});
 			}}
 		>
-			<Form
-				form={form}
-				size="small"
-				labelCol={{ span: 4 }}
-				wrapperCol={{ span: 18 }}
-				initialValues={initValues}
-			>
+			<Form form={form} size="small" labelCol={{ span: 4 }} wrapperCol={{ span: 18 }} initialValues={initValues}>
 				<Form.Item<CalendarEventFormFieldType>
 					label="Titile"
 					name="title"
@@ -129,11 +109,7 @@ export default function CalendarEventForm({
 					<Input.TextArea />
 				</Form.Item>
 
-				<Form.Item<CalendarEventFormFieldType>
-					label="All day"
-					name="allDay"
-					valuePropName="checked"
-				>
+				<Form.Item<CalendarEventFormFieldType> label="All day" name="allDay" valuePropName="checked">
 					<Switch />
 				</Form.Item>
 
@@ -142,11 +118,7 @@ export default function CalendarEventForm({
 					name="start"
 					rules={[{ required: true, message: "Please input start date!" }]}
 				>
-					<DatePicker
-						showTime
-						className="w-full"
-						format="YYYY-MM-DD HH:mm:ss"
-					/>
+					<DatePicker showTime className="w-full" format="YYYY-MM-DD HH:mm:ss" />
 				</Form.Item>
 
 				<Form.Item<CalendarEventFormFieldType>
@@ -154,18 +126,10 @@ export default function CalendarEventForm({
 					name="end"
 					rules={[{ required: true, message: "Please input end date!" }]}
 				>
-					<DatePicker
-						showTime
-						className="w-full"
-						format="YYYY-MM-DD HH:mm:ss"
-					/>
+					<DatePicker showTime className="w-full" format="YYYY-MM-DD HH:mm:ss" />
 				</Form.Item>
 
-				<Form.Item<CalendarEventFormFieldType>
-					label="Color"
-					name="color"
-					getValueFromEvent={(e) => e.toHexString()}
-				>
+				<Form.Item<CalendarEventFormFieldType> label="Color" name="color" getValueFromEvent={(e) => e.toHexString()}>
 					<ColorPicker
 						presets={[
 							{

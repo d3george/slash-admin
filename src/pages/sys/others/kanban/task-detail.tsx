@@ -2,7 +2,7 @@ import { Avatar, DatePicker, Image, Input, Radio, Space, Tag, Typography } from 
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { SvgIcon } from "@/components/icon";
+import { Icon } from "@/components/icon";
 
 import { themeVars } from "@/theme/theme.css";
 import type { Task } from "./types";
@@ -53,13 +53,13 @@ export default function TaskDetail({ task }: Props) {
 						<Radio.Group defaultValue={priority}>
 							<Space>
 								<Radio.Button value="High">
-									<SvgIcon icon="ic_rise" size={20} color={themeVars.colors.palette.warning.default} />
+									<Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.warning.default} />
 									<span>High</span>
 								</Radio.Button>
 
 								<Radio.Button value="Medium">
-									<SvgIcon
-										icon="ic_rise"
+									<Icon
+										icon="local:ic-rise"
 										size={20}
 										color={themeVars.colors.palette.success.default}
 										className="rotate-90"
@@ -68,8 +68,8 @@ export default function TaskDetail({ task }: Props) {
 								</Radio.Button>
 
 								<Radio.Button value="Low">
-									<SvgIcon
-										icon="ic_rise"
+									<Icon
+										icon="local:ic-rise"
 										size={20}
 										color={themeVars.colors.palette.info.default}
 										className="rotate-180"

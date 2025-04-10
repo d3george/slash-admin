@@ -4,7 +4,7 @@ import { type CSSProperties, type ReactNode, useState } from "react";
 
 import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
-import { IconButton, Iconify, SvgIcon } from "@/components/icon";
+import { Icon, IconButton } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
 
 export default function NoticeButton() {
@@ -30,7 +30,7 @@ export default function NoticeButton() {
 						indicator: { color: themeVars.colors.common.white },
 					}}
 				>
-					<Iconify icon="solar:bell-bing-bold-duotone" size={24} />
+					<Icon icon="solar:bell-bing-bold-duotone" size={24} />
 				</Badge>
 			</IconButton>
 			<Drawer
@@ -53,7 +53,7 @@ export default function NoticeButton() {
 							setDrawerOpen(false);
 						}}
 					>
-						<Iconify icon="solar:check-read-broken" size={20} />
+						<Icon icon="solar:check-read-broken" size={20} />
 					</IconButton>
 				}
 				footer={
@@ -141,7 +141,7 @@ function NoticeTab() {
 					</div>
 					<span className="text-xs font-light opacity-60">2 days ago</span>
 					<div className="mt-2 flex items-center rounded-lg bg-bg-neutral p-4">
-						<SvgIcon icon="ic_file_audio" size={48} />
+						<Icon icon="local:ic-file-audio" size={48} />
 						<div className="ml-2 flex flex-col text-gray">
 							<span className="font-medium">Witout Me</span>
 							<span className="text-xs">1.2GB·30 min ago </span>
@@ -171,7 +171,7 @@ function NoticeTab() {
 
 			<div className="mt-8 flex">
 				<IconButton>
-					<SvgIcon icon="ic_order" size={30} />
+					<Icon icon="local:ic-order" size={30} />
 				</IconButton>
 				<div className="ml-2">
 					<div>
@@ -183,7 +183,7 @@ function NoticeTab() {
 
 			<div className="mt-8 flex">
 				<IconButton>
-					<SvgIcon icon="ic_mail" size={30} />
+					<Icon icon="local:ic-mail" size={30} />
 				</IconButton>
 				<div className="ml-2">
 					<div>
@@ -195,7 +195,7 @@ function NoticeTab() {
 
 			<div className="mt-8 flex">
 				<IconButton>
-					<SvgIcon icon="ic_chat" size={30} />
+					<Icon icon="local:ic-chat" size={30} />
 				</IconButton>
 				<div className="ml-2">
 					<div>
@@ -207,7 +207,7 @@ function NoticeTab() {
 
 			<div className="mt-8 flex">
 				<IconButton>
-					<SvgIcon icon="ic_delivery" size={30} />
+					<Icon icon="local:ic-delivery" size={30} />
 				</IconButton>
 				<div className="ml-2">
 					<div>

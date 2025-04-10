@@ -1,9 +1,7 @@
+import { Icon } from "@/components/icon";
+import { CircleLoading } from "@/components/loading";
 import { Suspense, lazy } from "react";
 import { Navigate, Outlet } from "react-router";
-
-import { Iconify } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
-
 import type { AppRouteObject } from "#/router";
 
 const ClipboardPage = lazy(() => import("@/pages/functions/clipboard"));
@@ -18,13 +16,7 @@ const functions: AppRouteObject = {
 	),
 	meta: {
 		label: "sys.menu.functions",
-		icon: (
-			<Iconify
-				icon="solar:plain-2-bold-duotone"
-				className="ant-menu-item-icon"
-				size="24"
-			/>
-		),
+		icon: <Icon icon="solar:plain-2-bold-duotone" className="ant-menu-item-icon" size="24" />,
 		key: "/functions",
 	},
 	children: [

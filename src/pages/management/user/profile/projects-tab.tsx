@@ -1,15 +1,14 @@
+import { fakeAvatars } from "@/_mock/utils";
+import Card from "@/components/card";
+import { Icon, IconButton } from "@/components/icon";
 import { faker } from "@faker-js/faker";
 import { Avatar, Col, Divider, Row, Tag } from "antd";
 import dayjs from "dayjs";
 
-import { fakeAvatars } from "@/_mock/utils";
-import Card from "@/components/card";
-import { IconButton, Iconify } from "@/components/icon";
-
 export default function ProjectsTab() {
 	const items = [
 		{
-			icon: <Iconify icon="logos:react" size={40} />,
+			icon: <Icon icon="logos:react" size={40} />,
 			name: "Admin Template",
 			client: faker.person.fullName(),
 			desc: "Time is our most valuable asset, that is why we want to help you save it by creating…",
@@ -22,7 +21,7 @@ export default function ProjectsTab() {
 			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 		{
-			icon: <Iconify icon="logos:vue" size={40} />,
+			icon: <Icon icon="logos:vue" size={40} />,
 			name: "App Design",
 			desc: "App design combines the user interface (UI) and user experience (UX).  ",
 			client: faker.person.fullName(),
@@ -35,7 +34,7 @@ export default function ProjectsTab() {
 			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 		{
-			icon: <Iconify icon="logos:figma" size={40} />,
+			icon: <Icon icon="logos:figma" size={40} />,
 			name: "Figma Dashboard",
 			desc: "Use this template to organize your design project. Some of the key features are… ",
 			client: faker.person.fullName(),
@@ -48,7 +47,7 @@ export default function ProjectsTab() {
 			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 		{
-			icon: <Iconify icon="logos:html-5" size={40} />,
+			icon: <Icon icon="logos:html-5" size={40} />,
 			name: "Create Website",
 			desc: "Your domain name should reflect your products or services so that your...  ",
 			client: faker.person.fullName(),
@@ -61,7 +60,7 @@ export default function ProjectsTab() {
 			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 		{
-			icon: <Iconify icon="logos:adobe-xd" size={40} />,
+			icon: <Icon icon="logos:adobe-xd" size={40} />,
 			name: "Logo Design",
 			desc: "Premium logo designs created by top logo designers. Create the branding of business.  ",
 			client: faker.person.fullName(),
@@ -84,14 +83,12 @@ export default function ProjectsTab() {
 
 							<div className="flex flex-col">
 								<span className="ml-4 text-xl opacity-70">{item.name}</span>
-								<span className="text-md ml-4 opacity-50">
-									Client: {item.client}
-								</span>
+								<span className="text-md ml-4 opacity-50">Client: {item.client}</span>
 							</div>
 
 							<div className="ml-auto flex opacity-70">
 								<IconButton>
-									<Iconify icon="fontisto:more-v-a" size={18} />
+									<Icon icon="fontisto:more-v-a" size={18} />
 								</IconButton>
 							</div>
 						</header>
@@ -100,16 +97,12 @@ export default function ProjectsTab() {
 							<div className="my-2 flex justify-between">
 								<span>
 									Start Date:
-									<span className="ml-2 opacity-50">
-										{item.startDate.format("DD/MM/YYYY")}
-									</span>
+									<span className="ml-2 opacity-50">{item.startDate.format("DD/MM/YYYY")}</span>
 								</span>
 
 								<span>
 									Deadline:
-									<span className="ml-2 opacity-50">
-										{item.deadline.format("DD/MM/YYYY")}
-									</span>
+									<span className="ml-2 opacity-50">{item.deadline.format("DD/MM/YYYY")}</span>
 								</span>
 							</div>
 							<span className="opacity-70">{item.desc}</span>
@@ -124,9 +117,7 @@ export default function ProjectsTab() {
 									<span className="ml-2 opacity-50">{item.allHours}</span>
 								</span>
 
-								<Tag color="warning">
-									{item.deadline.diff(dayjs(), "day")} days left
-								</Tag>
+								<Tag color="warning">{item.deadline.diff(dayjs(), "day")} days left</Tag>
 							</div>
 							<div className="flex w-full ">
 								<Avatar.Group max={{ count: 4 }}>
@@ -135,7 +126,7 @@ export default function ProjectsTab() {
 									))}
 								</Avatar.Group>
 								<div className="ml-auto flex items-center opacity-50">
-									<Iconify icon="solar:chat-round-line-linear" size={24} />
+									<Icon icon="solar:chat-round-line-linear" size={24} />
 									<span className="ml-2">{item.messages}</span>
 								</div>
 							</div>

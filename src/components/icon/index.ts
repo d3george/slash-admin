@@ -1,5 +1,5 @@
+import Icon from "./icon";
 import IconButton from "./icon-button";
-import Iconify from "./iconify-icon";
-import SvgIcon from "./svg-icon";
+import registerLocalIcons from "./register-icons";
 
-export { Iconify, SvgIcon, IconButton };
+export { IconButton, Icon, registerLocalIcons };

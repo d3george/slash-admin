@@ -69,43 +69,43 @@ export function getFileThumb(fileName: string | undefined) {
 	const format = getFileFormat(fileName);
 	switch (format) {
 		case "txt":
-			thumb = "ic_file_txt";
+			thumb = "file-txt";
 			break;
 		case "zip":
-			thumb = "ic_file_zip";
+			thumb = "file-zip";
 			break;
 		case "audio":
-			thumb = "ic_file_audio";
+			thumb = "file-audio";
 			break;
 		case "video":
-			thumb = "ic_file_video";
+			thumb = "file-video";
 			break;
 		case "word":
-			thumb = "ic_file_word";
+			thumb = "file-word";
 			break;
 		case "excel":
-			thumb = "ic_file_excel";
+			thumb = "file-excel";
 			break;
 		case "ppt":
-			thumb = "ic_file_ppt";
+			thumb = "file-ppt";
 			break;
 		case "pdf":
-			thumb = "ic_file_pdf";
+			thumb = "file-pdf";
 			break;
 		case "psd":
-			thumb = "ic_file_psd";
+			thumb = "file-psd";
 			break;
 		case "ai":
-			thumb = "ic_file_ai";
+			thumb = "file-ai";
 			break;
 		case "img":
-			thumb = "ic_file_img";
+			thumb = "file-img";
 			break;
 		case "folder":
-			thumb = "ic_folder";
+			thumb = "folder";
 			break;
 		default:
-			thumb = "ic_file";
+			thumb = "file";
 	}
 	return thumb;
 }

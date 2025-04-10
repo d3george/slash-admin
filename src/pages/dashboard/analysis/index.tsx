@@ -2,7 +2,7 @@ import glass_bag from "@/assets/images/glass/ic_glass_bag.png";
 import glass_buy from "@/assets/images/glass/ic_glass_buy.png";
 import glass_message from "@/assets/images/glass/ic_glass_message.png";
 import glass_users from "@/assets/images/glass/ic_glass_users.png";
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import ChartBar from "@/pages/components/chart/view/chart-bar";
 import ChartMixed from "@/pages/components/chart/view/chart-mixed";
 import ChartPie from "@/pages/components/chart/view/chart-pie";
@@ -111,7 +111,7 @@ function Analysis() {
 						<Row gutter={[16, 16]}>
 							<Col span={12}>
 								<AnalysisTrafficCard
-									icon={<Iconify icon="bxl:facebook" size={32} color="#1877f2" />}
+									icon={<Icon icon="bxl:facebook" size={32} color="#1877f2" />}
 									title="1.95k"
 									subtitle="FaceBook"
 								/>
@@ -119,7 +119,7 @@ function Analysis() {
 
 							<Col span={12}>
 								<AnalysisTrafficCard
-									icon={<Iconify icon="ant-design:google-outlined" size={32} color="#df3e30" />}
+									icon={<Icon icon="ant-design:google-outlined" size={32} color="#df3e30" />}
 									title="9.12k"
 									subtitle="Google"
 								/>
@@ -127,7 +127,7 @@ function Analysis() {
 
 							<Col span={12}>
 								<AnalysisTrafficCard
-									icon={<Iconify icon="eva:linkedin-fill" size={32} color="#006097" />}
+									icon={<Icon icon="eva:linkedin-fill" size={32} color="#006097" />}
 									title="6.98k"
 									subtitle="Linkedin"
 								/>
@@ -135,7 +135,7 @@ function Analysis() {
 
 							<Col span={12}>
 								<AnalysisTrafficCard
-									icon={<Iconify icon="eva:twitter-fill" size={32} color="#1c9cea" />}
+									icon={<Icon icon="eva:twitter-fill" size={32} color="#1c9cea" />}
 									title="8.49k"
 									subtitle="Twitter"
 								/>

@@ -1,9 +1,9 @@
+import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
 import { fBytes } from "@/utils/format-number";
 import { Typography, Upload } from "antd";
 import type { UploadChangeParam, UploadFile, UploadProps } from "antd/es/upload";
 import { useState } from "react";
-import { Iconify } from "../icon";
 import { StyledUploadAvatar } from "./styles";
 import { beforeAvatarUpload, getBlobUrl } from "./utils";
 
@@ -40,7 +40,7 @@ export function UploadAvatar({ helperText, defaultAvatar = "", ...other }: Props
 			}}
 			className="absolute z-10 flex h-full w-full flex-col items-center justify-center"
 		>
-			<Iconify icon="solar:camera-add-bold" size={32} />
+			<Icon icon="solar:camera-add-bold" size={32} />
 			<div className="mt-1 text-xs">Upload Photo</div>
 		</div>
 	);

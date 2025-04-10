@@ -1,9 +1,8 @@
+import { Icon, IconButton } from "@/components/icon";
+import { useCopyToClipboard } from "@/hooks";
 import { faker } from "@faker-js/faker";
 import { Card, Col, Input, Row, Tooltip, Typography } from "antd";
 import { type ChangeEvent, useState } from "react";
-
-import { IconButton, Iconify } from "@/components/icon";
-import { useCopyToClipboard } from "@/hooks";
 
 export default function ClipboardPage() {
 	const { copyFn } = useCopyToClipboard();
@@ -16,7 +15,7 @@ export default function ClipboardPage() {
 	const CopyButton = (
 		<Tooltip title="Copy">
 			<IconButton className="text-gray" onClick={() => copyFn(value)}>
-				<Iconify icon="eva:copy-fill" size={20} />
+				<Icon icon="eva:copy-fill" size={20} />
 			</IconButton>
 		</Tooltip>
 	);

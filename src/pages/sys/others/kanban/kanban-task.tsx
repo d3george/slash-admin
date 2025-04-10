@@ -1,12 +1,11 @@
+import { Icon, IconButton } from "@/components/icon";
+import { themeVars } from "@/theme/theme.css";
+import { rgbAlpha } from "@/utils/theme";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Avatar, Drawer, Image, Select } from "antd";
 import { type CSSProperties, memo, useState } from "react";
 import styled from "styled-components";
-
-import { IconButton, Iconify, SvgIcon } from "@/components/icon";
-import { themeVars } from "@/theme/theme.css";
-import { rgbAlpha } from "@/utils/theme";
 import TaskDetail from "./task-detail";
 import { type Task, TaskPriority } from "./types";
 
@@ -40,10 +39,10 @@ function KanbanTask({ id, task, isDragging }: Props) {
 						<div>{title}</div>
 						<div className="mt-4 flex items-center justify-between">
 							<div className="flex items-center text-base text-gray-600">
-								<Iconify icon="uim:comment-dots" size={16} className="mr-1" />
+								<Icon icon="uim:comment-dots" size={16} className="mr-1" />
 								<span className="text-xs">{comments.length}</span>
 
-								<Iconify icon="iconamoon:attachment-bold" size={16} className="ml-2 mr-1" />
+								<Icon icon="iconamoon:attachment-bold" size={16} className="ml-2 mr-1" />
 								<span className="text-xs">{attachments.length}</span>
 							</div>
 
@@ -87,13 +86,13 @@ function KanbanTask({ id, task, isDragging }: Props) {
 						</div>
 						<div className="flex text-gray">
 							<IconButton>
-								<Iconify icon="solar:like-bold" size={20} color={themeVars.colors.palette.success.default} />
+								<Icon icon="solar:like-bold" size={20} color={themeVars.colors.palette.success.default} />
 							</IconButton>
 							<IconButton>
-								<Iconify icon="solar:trash-bin-trash-bold" size={20} />
+								<Icon icon="solar:trash-bin-trash-bold" size={20} />
 							</IconButton>
 							<IconButton>
-								<Iconify icon="fontisto:more-v-a" size={20} />
+								<Icon icon="fontisto:more-v-a" size={20} />
 							</IconButton>
 						</div>
 					</div>
@@ -122,13 +121,15 @@ type TaskPrioritySvgProps = {
 function TaskPrioritySvg({ taskPriority }: TaskPrioritySvgProps) {
 	switch (taskPriority) {
 		case TaskPriority.HIGH:
-			return <SvgIcon icon="ic_rise" size={20} color={themeVars.colors.palette.warning.default} className="" />;
+			return <Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.warning.default} className="" />;
 		case TaskPriority.MEDIUM:
 			return (
-				<SvgIcon icon="ic_rise" size={20} color={themeVars.colors.palette.success.default} className="rotate-90" />
+				<Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.success.default} className="rotate-90" />
 			);
 		case TaskPriority.LOW:
-			return <SvgIcon icon="ic_rise" size={20} color={themeVars.colors.palette.info.default} className="rotate-180" />;
+			return (
+				<Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.info.default} className="rotate-180" />
+			);
 		default:
 			break;
 	}

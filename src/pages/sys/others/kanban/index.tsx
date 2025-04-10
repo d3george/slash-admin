@@ -1,3 +1,4 @@
+import { Icon } from "@/components/icon";
 import {
 	DndContext,
 	type DragEndEvent,
@@ -13,8 +14,6 @@ import { Button, Input, type InputRef } from "antd";
 import { useRef, useState } from "react";
 import { useEvent } from "react-use";
 import SimpleBar from "simplebar-react";
-
-import { Iconify } from "@/components/icon";
 import KanbanColumn from "./kanban-column";
 import KanbanTask from "./kanban-task";
 import { initialData } from "./task-utils";
@@ -293,7 +292,7 @@ export default function Kanban() {
 							block
 							size="large"
 						>
-							<Iconify icon="carbon:add" size={20} />
+							<Icon icon="carbon:add" size={20} />
 							<div>Add Column</div>
 						</Button>
 					)}

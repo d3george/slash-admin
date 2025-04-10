@@ -1,8 +1,7 @@
+import Card from "@/components/card";
+import { Icon } from "@/components/icon";
 import { Typography } from "antd";
 import type { ReactNode } from "react";
-
-import Card from "@/components/card";
-import { Iconify } from "@/components/icon";
 
 const dataSource = [
 	{
@@ -45,12 +44,12 @@ const dataSource = [
 const platformIcon = (platform: string) => {
 	let iconify: ReactNode;
 	if (platform === "android") {
-		iconify = <Iconify icon="uiw:android" />;
+		iconify = <Icon icon="uiw:android" />;
 	}
 	if (platform === "windows") {
-		iconify = <Iconify icon="mingcute:windows-fill" />;
+		iconify = <Icon icon="mingcute:windows-fill" />;
 	}
-	iconify = <Iconify icon="wpf:mac-os" />;
+	iconify = <Icon icon="wpf:mac-os" />;
 
 	return <div className="mr-1 text-xs text-gray">{iconify}</div>;
 };
@@ -63,7 +62,7 @@ export default function TopInstalled() {
 			<main className="w-full">
 				{dataSource.map((item) => (
 					<div className="mb-4 flex items-center" key={item.country}>
-						<Iconify icon={item.iconify} size={30} />
+						<Icon icon={item.iconify} size={30} />
 						<span className="mx-2 font-medium">{item.country}</span>
 						<div className="ml-auto flex">
 							<div className="flex items-center justify-center">

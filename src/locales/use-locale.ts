@@ -20,13 +20,13 @@ export const LANGUAGE_MAP: Record<Locale, Language> = {
 	[LocalEnum.zh_CN]: {
 		locale: LocalEnum.zh_CN,
 		label: "Chinese",
-		icon: "ic-locale_zh_CN",
+		icon: "flag-cn",
 		antdLocal: zh_CN,
 	},
 	[LocalEnum.en_US]: {
 		locale: LocalEnum.en_US,
 		label: "English",
-		icon: "ic-locale_en_US",
+		icon: "flag-us",
 		antdLocal: en_US,
 	},
 };

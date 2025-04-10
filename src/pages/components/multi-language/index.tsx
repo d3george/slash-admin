@@ -1,6 +1,6 @@
 import { Card, Pagination, Radio, Space, Typography } from "antd";
 
-import { SvgIcon } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import useLocale from "@/locales/use-locale";
 
 import { themeVars } from "@/theme/theme.css";
@@ -31,7 +31,7 @@ export default function MultiLanguagePage() {
 				</Radio.Group>
 
 				<div className="flex items-center text-4xl">
-					<SvgIcon icon={icon} className="mr-4 rounded-md" size="30" />
+					<Icon icon={`local:${icon}`} className="mr-4 rounded-md" size="30" />
 					{label}
 				</div>
 			</Card>

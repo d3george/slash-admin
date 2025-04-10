@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useMatches } from "react-router";
 
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { useFlattenedRoutes, usePermissionRoutes } from "@/router/hooks";
 import { menuFilter } from "@/router/utils";
 
@@ -50,5 +50,5 @@ export default function BreadCrumb() {
 		});
 	}, [matches, flattenedRoutes, t, permissionRoutes]);
 
-	return <Breadcrumb items={breadCrumbs} className="text-sm!" separator={<Iconify icon="ph:dot-duotone" />} />;
+	return <Breadcrumb items={breadCrumbs} className="text-sm!" separator={<Icon icon="ph:dot-duotone" />} />;
 }

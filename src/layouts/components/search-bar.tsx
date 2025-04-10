@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useBoolean, useEvent, useKeyPressEvent } from "react-use";
 import styled from "styled-components";
 
-import { IconButton, SvgIcon } from "@/components/icon";
+import { Icon, IconButton } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
 import { useFlattenedRoutes, useRouter } from "@/router/hooks";
 import { themeVars } from "@/theme/theme.css";
@@ -127,7 +127,7 @@ export default function SearchBar() {
 			<div className="flex items-center justify-center">
 				<IconButton className="h-8 rounded-xl bg-gray-500/10 py-2 text-xs font-bold" onClick={handleOpen}>
 					<div className="flex items-center justify-center gap-2">
-						<SvgIcon icon="ic-search" size="20" />
+						<Icon icon="local:ic-search" size="20" />
 						<span className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
 							{" "}
 							⌘K{" "}
@@ -158,7 +158,7 @@ export default function SearchBar() {
 						placeholder="Search..."
 						variant="borderless"
 						autoFocus
-						prefix={<SvgIcon icon="ic-search" size="20" />}
+						prefix={<Icon icon="local:ic-search" size="20" />}
 						suffix={
 							<IconButton className="h-6 rounded-md bg-gray-500/10 text-xs" onClick={handleCancel}>
 								Esc

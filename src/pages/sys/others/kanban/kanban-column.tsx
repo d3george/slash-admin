@@ -1,12 +1,11 @@
+import { Icon } from "@/components/icon";
+import { useSettings } from "@/store/settingStore";
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { faker } from "@faker-js/faker";
 import { Button, Dropdown, Input, type InputRef, type MenuProps } from "antd";
 import { type CSSProperties, useRef, useState } from "react";
 import { useEvent } from "react-use";
-
-import { Iconify } from "@/components/icon";
-import { useSettings } from "@/store/settingStore";
 import { ThemeMode } from "#/enum";
 import KanbanTask from "./kanban-task";
 import { type Column, type Task, TaskPriority } from "./types";
@@ -61,7 +60,7 @@ export default function KanbanColumn({
 						}
 					}}
 				>
-					<Iconify icon="solar:pen-bold" />
+					<Icon icon="solar:pen-bold" />
 					<span className="ml-2">rename</span>
 				</div>
 			),
@@ -78,7 +77,7 @@ export default function KanbanColumn({
 						}
 					}}
 				>
-					<Iconify icon="solar:eraser-bold" />
+					<Icon icon="solar:eraser-bold" />
 					<span className="ml-2">clear</span>
 				</div>
 			),
@@ -95,7 +94,7 @@ export default function KanbanColumn({
 						}
 					}}
 				>
-					<Iconify icon="solar:trash-bin-trash-bold" />
+					<Icon icon="solar:trash-bin-trash-bold" />
 					<span className="ml-2">delete</span>
 				</div>
 			),
@@ -154,7 +153,7 @@ export default function KanbanColumn({
 					trigger={["click"]}
 				>
 					<Button shape="circle" type="text" className="text-gray!">
-						<Iconify icon="dashicons:ellipsis" />
+						<Icon icon="dashicons:ellipsis" />
 					</Button>
 				</Dropdown>
 			</header>
@@ -181,7 +180,7 @@ export default function KanbanColumn({
 						block
 						size="large"
 					>
-						<Iconify icon="carbon:add" size={20} />
+						<Icon icon="carbon:add" size={20} />
 						<span>Add Task</span>
 					</Button>
 				)}

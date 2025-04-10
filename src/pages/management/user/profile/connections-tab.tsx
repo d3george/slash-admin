@@ -1,5 +1,5 @@
 import Card from "@/components/card";
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { faker } from "@faker-js/faker";
 import { Button, Col, Row, Tag } from "antd";
 
@@ -101,7 +101,7 @@ export default function ConnectionsTab() {
 
 						<div className="mt-4 flex">
 							<Button type={item.connected ? "primary" : "dashed"}>
-								<Iconify icon="ri:user-add-line" size={14} />
+								<Icon icon="ri:user-add-line" size={14} />
 								<span className="ml-2">CONNECTED</span>
 							</Button>
 						</div>

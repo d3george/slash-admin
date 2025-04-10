@@ -4,7 +4,7 @@ import { m } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { varFade } from "@/components/animate/variants";
-import { Iconify, SvgIcon } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { fBytes } from "@/utils/format-number";
 
 import { getBlobUrl, getFileFormat, getFileThumb } from "./utils";
@@ -36,7 +36,7 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
 			className="ml-auto h-6 w-6 cursor-pointer rounded-full text-center hover:bg-gray-400 hover:bg-opacity-20"
 			onClick={actions.remove}
 		>
-			<Iconify icon="mingcute:close-line" size={14} className="text-gray-600" />
+			<Icon icon="mingcute:close-line" size={14} className="text-gray-600" />
 		</button>
 	);
 
@@ -49,7 +49,7 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
 				{format === "img" ? (
 					<Image src={imgThumbUrl} preview={false} width={40} height={40} />
 				) : (
-					<SvgIcon icon={thumb} size={40} />
+					<Icon icon={`local:${thumb}`} size={40} />
 				)}
 			</Tooltip>
 			<div className="absolute right-0 top-0">{closeButton}</div>
@@ -69,7 +69,7 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
 			{format === "img" ? (
 				<Image src={imgThumbUrl} preview={false} width={32} height={32} />
 			) : (
-				<SvgIcon icon={thumb} size={32} />
+				<Icon icon={`local:${thumb}`} size={32} />
 			)}
 			<div className="ml-4 flex flex-col">
 				<Typography.Text className="text-sm! font-medium!">{name}</Typography.Text>

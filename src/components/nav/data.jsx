@@ -1,4 +1,4 @@
-import { Iconify } from "@/components/icon";
+import { Icon } from "@/components/icon";
 
 export const NAV_SECTION_ITEMS = [
 	{
@@ -9,7 +9,7 @@ export const NAV_SECTION_ITEMS = [
 				path: "#",
 				roles: ["admin"],
 				caption: "Display only admin role       aaaaaaaaaaaaaaa",
-				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+				icon: <Icon icon="solar:star-line-duotone" size={18} />,
 				info: <span className="text-xs text-text-secondary bg-success px-1.5 py-0.5 rounded-md">+2</span>,
 				children: [
 					{
@@ -24,13 +24,13 @@ export const NAV_SECTION_ITEMS = [
 			{
 				title: "Services",
 				path: "/blank",
-				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+				icon: <Icon icon="solar:star-line-duotone" size={18} />,
 				roles: ["admin", "user"],
 			},
 			{
 				title: "Blog",
 				path: "#",
-				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+				icon: <Icon icon="solar:star-line-duotone" size={18} />,
 				info: "+3",
 				children: [
 					{
@@ -50,24 +50,24 @@ export const NAV_SECTION_ITEMS = [
 			{
 				title: "About",
 				path: "#",
-				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+				icon: <Icon icon="solar:star-line-duotone" size={18} />,
 				info: "+4",
 			},
 			{
 				title: "Contact",
 				path: "#",
-				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+				icon: <Icon icon="solar:star-line-duotone" size={18} />,
 				disabled: true,
 			},
 			{
 				title: "Level",
 				path: "/components",
-				icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+				icon: <Icon icon="solar:star-line-duotone" size={18} />,
 				children: [
 					{
 						title: "Level 2a",
 						path: "/components/extra",
-						icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+						icon: <Icon icon="solar:star-line-duotone" size={18} />,
 						caption: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
 						children: [
 							{ title: "Level 3a", path: "#" },
@@ -85,13 +85,13 @@ export const NAV_SECTION_ITEMS = [
 					{
 						title: "Level 2b",
 						path: "#",
-						icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+						icon: <Icon icon="solar:star-line-duotone" size={18} />,
 					},
 					{
 						title: "Level 2c",
 						path: "https://www.google.com",
 						externalLink: true,
-						icon: <Iconify icon="solar:star-line-duotone" size={18} />,
+						icon: <Icon icon="solar:star-line-duotone" size={18} />,
 					},
 				],
 			},

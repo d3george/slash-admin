@@ -1,4 +1,4 @@
-import { Iconify, SvgIcon } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
 import { Tag } from "antd";
 import { Suspense, lazy } from "react";
@@ -23,7 +23,7 @@ const others: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.calendar",
-			icon: <Iconify icon="solar:calendar-bold-duotone" size={24} />,
+			icon: <Icon icon="solar:calendar-bold-duotone" size={24} />,
 			key: "/calendar",
 		},
 	},
@@ -36,7 +36,7 @@ const others: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.kanban",
-			icon: <Iconify icon="solar:clipboard-bold-duotone" size={24} />,
+			icon: <Icon icon="solar:clipboard-bold-duotone" size={24} />,
 			key: "/kanban",
 		},
 	},
@@ -48,7 +48,7 @@ const others: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.disabled",
-			icon: <SvgIcon icon="ic_disabled" className="ant-menu-item-icon" size="24" />,
+			icon: <Icon icon="local:ic-disabled" className="ant-menu-item-icon" size="24" />,
 			disabled: true,
 			key: "/disabled",
 		},
@@ -62,9 +62,9 @@ const others: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.label",
-			icon: <SvgIcon icon="ic_label" className="ant-menu-item-icon" size="24" />,
+			icon: <Icon icon="local:ic-label" className="ant-menu-item-icon" size="24" />,
 			suffix: (
-				<Tag color="cyan" icon={<Iconify icon="solar:bell-bing-bold-duotone" size={14} />}>
+				<Tag color="cyan" icon={<Icon icon="solar:bell-bing-bold-duotone" size={14} />}>
 					NEW
 				</Tag>
 			),
@@ -75,7 +75,7 @@ const others: AppRouteObject[] = [
 		path: "frame",
 		meta: {
 			label: "sys.menu.frame",
-			icon: <SvgIcon icon="ic_external" className="ant-menu-item-icon" size="24" />,
+			icon: <Icon icon="local:ic-external" className="ant-menu-item-icon" size="24" />,
 			key: "/frame",
 		},
 		children: [
@@ -114,7 +114,7 @@ const others: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.blank",
-			icon: <SvgIcon icon="ic_blank" className="ant-menu-item-icon" size="24" />,
+			icon: <Icon icon="local:ic-blank" className="ant-menu-item-icon" size="24" />,
 			key: "/blank",
 		},
 	},
