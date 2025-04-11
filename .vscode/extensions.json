@@ -2,6 +2,7 @@
 	"recommendations": [
 		"biomejs.biome",
 		"bradlc.vscode-tailwindcss",
-		"lokalise.i18n-ally"
+		"lokalise.i18n-ally",
+		"antfu.iconify"
 	]
 }

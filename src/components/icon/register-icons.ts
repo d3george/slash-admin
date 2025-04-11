@@ -1,4 +1,4 @@
-import { addIcon } from "@iconify/react";
+import { addCollection } from "@iconify/react";
 import { parseSVGContent } from "@iconify/utils/lib/svg/parse";
 
 interface IconifyIcon {
@@ -19,6 +19,7 @@ interface ParsedSVG {
 // Auto import all SVG files
 export default async function registerLocalIcons() {
 	const svgModules = import.meta.glob("../../assets/icons/*.svg", { as: "raw" });
+	const icons: Record<string, IconifyIcon> = {};
 
 	for (const path in svgModules) {
 		try {
@@ -52,21 +53,27 @@ export default async function registerLocalIcons() {
 					}
 				}
 
-				// Build IconifyIcon data
-				const iconData: IconifyIcon = {
+				// Add icon to collection
+				icons[iconName] = {
 					body: parsedSVG.body,
 					width,
 					height,
 				};
-
-				// Add icon
-				const result = addIcon(`local:${iconName}`, iconData);
-				if (!result) {
-					console.warn(`Failed to add icon: ${iconName}`);
-				}
 			}
 		} catch (error) {
 			console.error("Error processing SVG:", error);
 		}
+	}
+
+	// Add the entire collection at once
+	const result = addCollection({
+		prefix: "local",
+		icons,
+		width: 24,
+		height: 24,
+	});
+
+	if (!result) {
+		console.warn("Failed to add icon collection");
 	}
 }
