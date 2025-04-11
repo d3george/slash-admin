@@ -16,19 +16,26 @@ interface ParsedSVG {
 	};
 }
 
+// Cache for icon collection
+let iconCollection: Record<string, IconifyIcon> | null = null;
+
 // Auto import all SVG files
 export default async function registerLocalIcons() {
-	const svgModules = import.meta.glob("../../assets/icons/*.svg", { as: "raw" });
+	// If icons are already registered, return early
+	if (iconCollection) {
+		return;
+	}
+
+	const svgModules = import.meta.glob("../../assets/icons/*.svg", { as: "raw", eager: true });
 	const icons: Record<string, IconifyIcon> = {};
 
-	for (const path in svgModules) {
+	for (const [path, svgContent] of Object.entries(svgModules)) {
 		try {
-			const svgContent = await svgModules[path]();
 			const iconName = path.split("/").pop()?.replace(".svg", "");
 
 			if (iconName) {
 				// Parse SVG content
-				const parsedSVG = parseSVGContent(svgContent) as ParsedSVG;
+				const parsedSVG = parseSVGContent(svgContent as string) as ParsedSVG;
 				if (!parsedSVG) {
 					console.warn(`Failed to parse SVG: ${iconName}`);
 					continue;
@@ -64,6 +71,9 @@ export default async function registerLocalIcons() {
 			console.error("Error processing SVG:", error);
 		}
 	}
+
+	// Cache the icon collection
+	iconCollection = icons;
 
 	// Add the entire collection at once
 	const result = addCollection({
