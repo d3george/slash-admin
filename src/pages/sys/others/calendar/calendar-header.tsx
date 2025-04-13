@@ -1,7 +1,8 @@
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { up } from "@/hooks";
 import { useMediaQuery } from "@/hooks";
-import { Button, Dropdown, type MenuProps } from "antd";
+import { Button } from "@/ui/button";
+import { Dropdown, type MenuProps } from "antd";
 import dayjs from "dayjs";
 import { type ReactNode, useMemo } from "react";
 
@@ -80,27 +81,25 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 		<div className="relative flex items-center justify-between py-5">
 			{LgBreakPoint && (
 				<Dropdown menu={{ items, onClick: handleMenuClick }}>
-					<Button type="text" size="small">
+					<Button variant="ghost" size="sm">
 						{viewTypeMenu(view)}
 					</Button>
 				</Dropdown>
 			)}
 
 			<div className="flex cursor-pointer items-center justify-center">
-				<IconButton>
-					<Icon icon="solar:alt-arrow-left-outline" onClick={() => onMove("prev")} size={20} />
-				</IconButton>
+				<Button variant="ghost" size="icon" onClick={() => onMove("prev")}>
+					<Icon icon="solar:alt-arrow-left-outline" size={20} />
+				</Button>
 				<span className="mx-2 text-base font-bold">{dayjs(now).format("DD MMM YYYY")}</span>
-				<IconButton>
-					<Icon icon="solar:alt-arrow-right-outline" onClick={() => onMove("next")} size={20} />
-				</IconButton>
+				<Button variant="ghost" size="icon" onClick={() => onMove("next")}>
+					<Icon icon="solar:alt-arrow-right-outline" size={20} />
+				</Button>
 			</div>
 
 			<div className="flex items-center">
-				<Button type="primary" onClick={() => onMove("today")}>
-					Today
-				</Button>
-				<Button className="ml-2" type="primary" onClick={() => onCreate()}>
+				<Button onClick={() => onMove("today")}>Today</Button>
+				<Button className="ml-2" onClick={() => onCreate()}>
 					<div className=" flex items-center justify-center">
 						<Icon icon="material-symbols:add" size={24} />
 						New Event

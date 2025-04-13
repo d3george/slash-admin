@@ -8,14 +8,7 @@
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit"
   },
-  "editor.quickSuggestions": { "strings": "on" },
-  "editor.suggestSelection": "first",
-  "editor.wordWrap": "on",
-  "editor.renderWhitespace": "boundary",
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true,
-  "editor.guides.bracketPairsHorizontal": true,
-  "editor.guides.highlightActiveBracketPair": true,
+
   "tailwindCSS.experimental.classRegex": [
     [
       "cn\\(([^)]*)\\)",

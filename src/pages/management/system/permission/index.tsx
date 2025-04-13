@@ -1,6 +1,7 @@
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { useUserPermission } from "@/store/userStore";
-import { Button, Card, Popconfirm, Tag } from "antd";
+import { Button } from "@/ui/button";
+import { Card, Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import { isNil } from "ramda";
 import { useState } from "react";
@@ -85,17 +86,17 @@ export default function PermissionPage() {
 			render: (_, record) => (
 				<div className="flex w-full justify-end text-gray">
 					{record?.type === PermissionType.CATALOGUE && (
-						<IconButton onClick={() => onCreate(record.id)}>
+						<Button variant="ghost" size="icon" onClick={() => onCreate(record.id)}>
 							<Icon icon="gridicons:add-outline" size={18} />
-						</IconButton>
+						</Button>
 					)}
-					<IconButton onClick={() => onEdit(record)}>
+					<Button variant="ghost" size="icon" onClick={() => onEdit(record)}>
 						<Icon icon="solar:pen-bold-duotone" size={18} />
-					</IconButton>
+					</Button>
 					<Popconfirm title="Delete the Permission" okText="Yes" cancelText="No" placement="left">
-						<IconButton>
-							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error" />
-						</IconButton>
+						<Button variant="ghost" size="icon">
+							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
+						</Button>
 					</Popconfirm>
 				</div>
 			),
@@ -121,14 +122,7 @@ export default function PermissionPage() {
 		}));
 	};
 	return (
-		<Card
-			title="Permission List"
-			extra={
-				<Button type="primary" onClick={() => onCreate()}>
-					New
-				</Button>
-			}
-		>
+		<Card title="Permission List" extra={<Button onClick={() => onCreate()}>New</Button>}>
 			<Table
 				rowKey="id"
 				size="small"

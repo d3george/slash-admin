@@ -1,11 +1,12 @@
+import { Button } from "@/ui/button";
 import { useQuery } from "@tanstack/react-query";
-import { Button, Card, Col, Form, Input, InputNumber, Modal, Popconfirm, Radio, Row, Select, Space, Tag } from "antd";
+import { Card, Col, Form, Input, InputNumber, Modal, Popconfirm, Radio, Row, Select, Space, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import type { TableRowSelection } from "antd/es/table/interface";
 import { useEffect, useState } from "react";
 
 import orgService from "@/api/services/orgService";
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
 
 import OrganizationChart from "./organization-chart";
 
@@ -49,13 +50,13 @@ export default function OrganizationPage() {
 			width: 100,
 			render: (_, record) => (
 				<div className="flex w-full justify-center text-gray">
-					<IconButton onClick={() => onEdit(record)}>
+					<Button variant="ghost" size="icon" onClick={() => onEdit(record)}>
 						<Icon icon="solar:pen-bold-duotone" size={18} />
-					</IconButton>
+					</Button>
 					<Popconfirm title="Delete the Organization" okText="Yes" cancelText="No" placement="left">
-						<IconButton>
+						<Button variant="ghost" size="icon">
 							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error" />
-						</IconButton>
+						</Button>
 					</Popconfirm>
 				</div>
 			),
@@ -133,24 +134,17 @@ export default function OrganizationPage() {
 						</Col>
 						<Col span={24} lg={12}>
 							<div className="flex justify-end">
-								<Button onClick={onSearchFormReset}>Reset</Button>
-								<Button type="primary" className="ml-4">
-									Search
+								<Button variant="outline" onClick={onSearchFormReset}>
+									Reset
 								</Button>
+								<Button className="ml-4">Search</Button>
 							</div>
 						</Col>
 					</Row>
 				</Form>
 			</Card>
 
-			<Card
-				title="Organization List"
-				extra={
-					<Button type="primary" onClick={onCreate}>
-						New
-					</Button>
-				}
-			>
+			<Card title="Organization List" extra={<Button onClick={onCreate}>New</Button>}>
 				<Table
 					rowKey="id"
 					size="small"

@@ -1,6 +1,7 @@
 import { ROLE_LIST } from "@/_mock/assets";
-import { Icon, IconButton } from "@/components/icon";
-import { Button, Card, Popconfirm, Tag } from "antd";
+import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
+import { Card, Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import { useState } from "react";
 import type { Role } from "#/entity";
@@ -58,13 +59,13 @@ export default function RolePage() {
 			width: 100,
 			render: (_, record) => (
 				<div className="flex w-full justify-center text-gray">
-					<IconButton onClick={() => onEdit(record)}>
+					<Button variant="ghost" size="icon" onClick={() => onEdit(record)}>
 						<Icon icon="solar:pen-bold-duotone" size={18} />
-					</IconButton>
+					</Button>
 					<Popconfirm title="Delete the Role" okText="Yes" cancelText="No" placement="left">
-						<IconButton>
-							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error" />
-						</IconButton>
+						<Button variant="ghost" size="icon">
+							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
+						</Button>
 					</Popconfirm>
 				</div>
 			),
@@ -93,14 +94,7 @@ export default function RolePage() {
 	};
 
 	return (
-		<Card
-			title="Role List"
-			extra={
-				<Button type="primary" onClick={onCreate}>
-					New
-				</Button>
-			}
-		>
+		<Card title="Role List" extra={<Button onClick={onCreate}>New</Button>}>
 			<Table
 				rowKey="id"
 				size="small"

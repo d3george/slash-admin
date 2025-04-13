@@ -45,6 +45,8 @@ export default function Icon({ icon, size = "1em", color = "currentColor", class
 			className={cn("inline-block", className)}
 			style={{
 				color,
+				height: size,
+				width: size,
 				...style,
 			}}
 		/>

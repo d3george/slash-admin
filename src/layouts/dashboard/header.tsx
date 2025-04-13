@@ -1,21 +1,19 @@
-import { Drawer } from "antd";
-import { type CSSProperties, useState } from "react";
-
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import LocalePicker from "@/components/locale-picker";
 import Logo from "@/components/logo";
 import { useSettings } from "@/store/settingStore";
-
+import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
+import { cn } from "@/utils";
+import { rgbAlpha } from "@/utils/theme";
+import { Drawer } from "antd";
+import { type CSSProperties, useState } from "react";
+import { ThemeLayout } from "#/enum";
 import AccountDropdown from "../components/account-dropdown";
 import BreadCrumb from "../components/bread-crumb";
 import NoticeButton from "../components/notice";
 import SearchBar from "../components/search-bar";
 import SettingButton from "../components/setting-button";
-
-import { themeVars } from "@/theme/theme.css";
-import { cn } from "@/utils";
-import { rgbAlpha } from "@/utils/theme";
-import { ThemeLayout } from "#/enum";
 import { HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH } from "./config";
 import NavVertical from "./nav/nav-vertical";
 
@@ -47,24 +45,34 @@ export default function Header() {
 				>
 					<div className="flex items-baseline">
 						{themeLayout !== ThemeLayout.Horizontal ? (
-							<IconButton onClick={() => setDrawerOpen(true)} className="h-10 w-10 md:hidden">
+							<Button variant="ghost" size="icon" onClick={() => setDrawerOpen(true)} className="md:hidden">
 								<Icon icon="local:ic-menu" size="24" />
-							</IconButton>
+							</Button>
 						) : (
 							<Logo />
 						)}
 						<div className="ml-4 hidden md:block">{breadCrumb ? <BreadCrumb /> : null}</div>
 					</div>
 
-					<div className="flex">
+					<div className="flex items-center">
 						<SearchBar />
 						<LocalePicker />
-						<IconButton onClick={() => window.open("https://github.com/d3george/slash-admin")}>
+						<Button
+							variant="ghost"
+							size="icon"
+							className="rounded-full"
+							onClick={() => window.open("https://github.com/d3george/slash-admin")}
+						>
 							<Icon icon="mdi:github" size={24} />
-						</IconButton>
-						<IconButton onClick={() => window.open("https://discord.gg/fXemAXVNDa")}>
+						</Button>
+						<Button
+							variant="ghost"
+							size="icon"
+							className="rounded-full"
+							onClick={() => window.open("https://discord.gg/fXemAXVNDa")}
+						>
 							<Icon icon="carbon:logo-discord" size={24} />
-						</IconButton>
+						</Button>
 						<NoticeButton />
 						<SettingButton />
 						<AccountDropdown />

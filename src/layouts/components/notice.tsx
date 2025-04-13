@@ -1,11 +1,11 @@
-import { faker } from "@faker-js/faker";
-import { Badge, Button, Drawer, Space, Tabs, type TabsProps, Tag } from "antd";
-import { type CSSProperties, type ReactNode, useState } from "react";
-
 import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
+import { faker } from "@faker-js/faker";
+import { Badge, Drawer, Space, Tabs, type TabsProps, Tag } from "antd";
+import { type CSSProperties, type ReactNode, useState } from "react";
 
 export default function NoticeButton() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
@@ -22,7 +22,7 @@ export default function NoticeButton() {
 
 	return (
 		<div>
-			<IconButton onClick={() => setDrawerOpen(true)}>
+			<Button variant="ghost" size="icon" className="rounded-full" onClick={() => setDrawerOpen(true)}>
 				<Badge
 					count={count}
 					styles={{
@@ -32,7 +32,7 @@ export default function NoticeButton() {
 				>
 					<Icon icon="solar:bell-bing-bold-duotone" size={24} />
 				</Badge>
-			</IconButton>
+			</Button>
 			<Drawer
 				placement="right"
 				title="Notifications"
@@ -46,15 +46,17 @@ export default function NoticeButton() {
 				}}
 				style={style}
 				extra={
-					<IconButton
-						style={{ color: themeVars.colors.palette.primary.default }}
+					<Button
+						variant="ghost"
+						size="icon"
+						className="rounded-full text-primary"
 						onClick={() => {
 							setCount(0);
 							setDrawerOpen(false);
 						}}
 					>
 						<Icon icon="solar:check-read-broken" size={20} />
-					</IconButton>
+					</Button>
 				}
 				footer={
 					<div
@@ -84,8 +86,8 @@ function NoticeTab() {
 					<span className="text-xs font-light opacity-60">about 1 hour ago</span>
 					<div className="mt-2">
 						<Space>
-							<Button type="primary">Accept</Button>
-							<Button>Refuse</Button>
+							<Button>Accept</Button>
+							<Button variant="outline">Refuse</Button>
 						</Space>
 					</div>
 				</div>
@@ -108,7 +110,7 @@ function NoticeTab() {
 					</div>
 					<div className="mt-2">
 						<Space>
-							<Button type="primary">Reply</Button>
+							<Button>Reply</Button>
 						</Space>
 					</div>
 				</div>
@@ -125,7 +127,7 @@ function NoticeTab() {
 					<span className="text-xs font-light opacity-60">1 days ago</span>
 					<div className="mt-2">
 						<Space>
-							<Button type="primary">Reply</Button>
+							<Button>Reply</Button>
 						</Space>
 					</div>
 				</div>
@@ -146,7 +148,9 @@ function NoticeTab() {
 							<span className="font-medium">Witout Me</span>
 							<span className="text-xs">1.2GB·30 min ago </span>
 						</div>
-						<Button className="ml-4">Download</Button>
+						<Button variant="outline" className="ml-4">
+							Download
+						</Button>
 					</div>
 				</div>
 			</div>
@@ -162,17 +166,15 @@ function NoticeTab() {
 					<span className="text-xs font-light opacity-60">4 days ago</span>
 					<div className="mt-2">
 						<Space>
-							<Button type="primary">Pay</Button>
-							<Button>Refuse</Button>
+							<Button>Pay</Button>
+							<Button variant="outline">Refuse</Button>
 						</Space>
 					</div>
 				</div>
 			</div>
 
 			<div className="mt-8 flex">
-				<IconButton>
-					<Icon icon="local:ic-order" size={30} />
-				</IconButton>
+				<Icon icon="local:ic-order" size={40} />
 				<div className="ml-2">
 					<div>
 						<span className="font-light">Your order is placed waiting for shipping</span>
@@ -182,9 +184,7 @@ function NoticeTab() {
 			</div>
 
 			<div className="mt-8 flex">
-				<IconButton>
-					<Icon icon="local:ic-mail" size={30} />
-				</IconButton>
+				<Icon icon="local:ic-mail" size={40} />
 				<div className="ml-2">
 					<div>
 						<span className="font-light">You have new mail</span>
@@ -194,9 +194,7 @@ function NoticeTab() {
 			</div>
 
 			<div className="mt-8 flex">
-				<IconButton>
-					<Icon icon="local:ic-chat" size={30} />
-				</IconButton>
+				<Icon icon="local:ic-chat" size={40} />
 				<div className="ml-2">
 					<div>
 						<span className="font-light">You have new message 5 unread message</span>
@@ -206,9 +204,7 @@ function NoticeTab() {
 			</div>
 
 			<div className="mt-8 flex">
-				<IconButton>
-					<Icon icon="local:ic-delivery" size={30} />
-				</IconButton>
+				<Icon icon="local:ic-delivery" size={40} />
 				<div className="ml-2">
 					<div>
 						<span className="font-light">Delivery processing your order is being shipped</span>

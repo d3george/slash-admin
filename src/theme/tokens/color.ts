@@ -56,13 +56,6 @@ export const presetsColors = {
  */
 export const paletteColors = {
 	primary: presetsColors[ThemeColorPresets.Default],
-	secondary: {
-		lighter: "#D6E4FF",
-		light: "#84A9FF",
-		default: "#3366FF",
-		dark: "#1939B7",
-		darker: "#091A7A",
-	},
 	success: {
 		lighter: "#D8FBDE",
 		light: "#86E8AB",

@@ -1,9 +1,9 @@
+import Card from "@/components/card";
+import { Icon } from "@/components/icon";
+import Scrollbar from "@/components/scrollbar";
+import { Button } from "@/ui/button";
 import { Space, Tag, Typography } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
-
-import Card from "@/components/card";
-import { Icon, IconButton } from "@/components/icon";
-import Scrollbar from "@/components/scrollbar";
 
 interface DataType {
 	key: string;
@@ -49,9 +49,9 @@ export default function NewInvoice() {
 			key: "action",
 			render: () => (
 				<Space size="middle">
-					<IconButton>
+					<Button variant="ghost" size="icon">
 						<Icon icon="fontisto:more-v-a" />
-					</IconButton>
+					</Button>
 				</Space>
 			),
 		},

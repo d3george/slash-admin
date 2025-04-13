@@ -1,14 +1,13 @@
+import { useLoginStateContext } from "@/pages/sys/login/providers/LoginStateProvider";
+import { useRouter } from "@/router/hooks";
+import { useUserActions, useUserInfo } from "@/store/userStore";
+import { useTheme } from "@/theme/hooks";
+import { Button } from "@/ui/button";
 import { Divider, type MenuProps } from "antd";
 import Dropdown, { type DropdownProps } from "antd/es/dropdown/dropdown";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
-
-import { IconButton } from "@/components/icon";
-import { useLoginStateContext } from "@/pages/sys/login/providers/LoginStateProvider";
-import { useRouter } from "@/router/hooks";
-import { useUserActions, useUserInfo } from "@/store/userStore";
-import { useTheme } from "@/theme/hooks";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
@@ -91,9 +90,9 @@ export default function AccountDropdown() {
 
 	return (
 		<Dropdown menu={{ items }} trigger={["click"]} dropdownRender={dropdownRender}>
-			<IconButton className="h-10 w-10 transform-none px-0 hover:scale-105">
+			<Button variant="ghost" className="rounded-md">
 				<img className="h-8 w-8 rounded-full" src={avatar} alt="" />
-			</IconButton>
+			</Button>
 		</Dropdown>
 	);
 }

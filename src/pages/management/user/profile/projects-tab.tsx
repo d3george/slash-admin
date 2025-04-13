@@ -1,6 +1,7 @@
 import { fakeAvatars } from "@/_mock/utils";
 import Card from "@/components/card";
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
 import { faker } from "@faker-js/faker";
 import { Avatar, Col, Divider, Row, Tag } from "antd";
 import dayjs from "dayjs";
@@ -87,9 +88,9 @@ export default function ProjectsTab() {
 							</div>
 
 							<div className="ml-auto flex opacity-70">
-								<IconButton>
+								<Button variant="ghost" size="icon">
 									<Icon icon="fontisto:more-v-a" size={18} />
-								</IconButton>
+								</Button>
 							</div>
 						</header>
 

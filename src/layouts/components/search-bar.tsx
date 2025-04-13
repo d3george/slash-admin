@@ -1,3 +1,9 @@
+import { Icon } from "@/components/icon";
+import Scrollbar from "@/components/scrollbar";
+import { useFlattenedRoutes, useRouter } from "@/router/hooks";
+import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
+import { rgbAlpha } from "@/utils/theme";
 import { Empty, Input, type InputRef, Modal, Tag } from "antd";
 import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
@@ -5,12 +11,6 @@ import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next";
 import { useBoolean, useEvent, useKeyPressEvent } from "react-use";
 import styled from "styled-components";
-
-import { Icon, IconButton } from "@/components/icon";
-import Scrollbar from "@/components/scrollbar";
-import { useFlattenedRoutes, useRouter } from "@/router/hooks";
-import { themeVars } from "@/theme/theme.css";
-import { rgbAlpha } from "@/utils/theme";
 
 export default function SearchBar() {
 	const { t } = useTranslation();
@@ -125,7 +125,7 @@ export default function SearchBar() {
 	return (
 		<>
 			<div className="flex items-center justify-center">
-				<IconButton className="h-8 rounded-xl bg-gray-500/10 py-2 text-xs font-bold" onClick={handleOpen}>
+				<Button variant="ghost" className="bg-secondary px-2 rounded-lg" onClick={handleOpen}>
 					<div className="flex items-center justify-center gap-2">
 						<Icon icon="local:ic-search" size="20" />
 						<span className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
@@ -133,7 +133,7 @@ export default function SearchBar() {
 							⌘K{" "}
 						</span>
 					</div>
-				</IconButton>
+				</Button>
 			</div>
 			<Modal
 				centered
@@ -160,9 +160,9 @@ export default function SearchBar() {
 						autoFocus
 						prefix={<Icon icon="local:ic-search" size="20" />}
 						suffix={
-							<IconButton className="h-6 rounded-md bg-gray-500/10 text-xs" onClick={handleCancel}>
+							<Button variant="secondary" size="icon" onClick={handleCancel}>
 								Esc
-							</IconButton>
+							</Button>
 						}
 					/>
 				}

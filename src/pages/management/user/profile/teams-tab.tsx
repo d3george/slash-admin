@@ -1,6 +1,7 @@
 import { fakeAvatars } from "@/_mock/utils";
 import Card from "@/components/card";
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
 import { faker } from "@faker-js/faker";
 import { Avatar, Col, Row, Tag } from "antd";
 
@@ -52,12 +53,12 @@ export default function TeamsTab() {
 							<span className="ml-4 text-xl opacity-70">{item.name}</span>
 
 							<div className="ml-auto flex opacity-70">
-								<IconButton>
+								<Button variant="ghost" size="icon">
 									<Icon icon="solar:star-line-duotone" size={18} />
-								</IconButton>
-								<IconButton>
+								</Button>
+								<Button variant="ghost" size="icon">
 									<Icon icon="fontisto:more-v-a" size={18} />
-								</IconButton>
+								</Button>
 							</div>
 						</header>
 						<main className="my-4 opacity-70">{item.desc}</main>

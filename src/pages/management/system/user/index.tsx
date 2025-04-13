@@ -1,7 +1,8 @@
 import { USER_LIST } from "@/_mock/assets";
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { usePathname, useRouter } from "@/router/hooks";
-import { Button, Card, Popconfirm, Tag } from "antd";
+import { Button } from "@/ui/button";
+import { Card, Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import type { Role, UserInfo } from "#/entity";
 import { BasicStatus } from "#/enum";
@@ -54,20 +55,22 @@ export default function RolePage() {
 			width: 100,
 			render: (_, record) => (
 				<div className="flex w-full justify-center text-gray-500">
-					<IconButton
+					<Button
+						variant="ghost"
+						size="icon"
 						onClick={() => {
 							push(`${pathname}/${record.id}`);
 						}}
 					>
 						<Icon icon="mdi:card-account-details" size={18} />
-					</IconButton>
-					<IconButton onClick={() => {}}>
+					</Button>
+					<Button variant="ghost" size="icon" onClick={() => {}}>
 						<Icon icon="solar:pen-bold-duotone" size={18} />
-					</IconButton>
+					</Button>
 					<Popconfirm title="Delete the User" okText="Yes" cancelText="No" placement="left">
-						<IconButton>
-							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error" />
-						</IconButton>
+						<Button variant="ghost" size="icon">
+							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
+						</Button>
 					</Popconfirm>
 				</div>
 			),
@@ -75,14 +78,7 @@ export default function RolePage() {
 	];
 
 	return (
-		<Card
-			title="User List"
-			extra={
-				<Button type="primary" onClick={() => {}}>
-					New
-				</Button>
-			}
-		>
+		<Card title="User List" extra={<Button onClick={() => {}}>New</Button>}>
 			<Table
 				rowKey="id"
 				size="small"

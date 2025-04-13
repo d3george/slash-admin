@@ -1,4 +1,5 @@
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
 import { faker } from "@faker-js/faker";
 import type { EventInput } from "@fullcalendar/core";
 import { ColorPicker, DatePicker, Form, Input, Modal, Switch } from "antd";
@@ -49,15 +50,17 @@ export default function CalendarEventForm({
 			<div>
 				{type === "edit" ? (
 					<div className="flex justify-between">
-						<IconButton
+						<Button
+							variant="ghost"
+							size="icon"
 							onClick={() => {
 								onDelete(initValues.id);
 								onCancel();
 							}}
 						>
-							<Icon icon="fluent:delete-16-filled" size={20} />
-						</IconButton>
-						<div>
+							<Icon icon="fluent:delete-16-filled" size={20} className="text-error!" />
+						</Button>
+						<div className="flex gap-2">
 							<CancelBtn />
 							<OkBtn />
 						</div>
@@ -96,7 +99,7 @@ export default function CalendarEventForm({
 					});
 			}}
 		>
-			<Form form={form} size="small" labelCol={{ span: 4 }} wrapperCol={{ span: 18 }} initialValues={initValues}>
+			<Form form={form} size="small" labelCol={{ span: 5 }} wrapperCol={{ span: 18 }} initialValues={initValues}>
 				<Form.Item<CalendarEventFormFieldType>
 					label="Titile"
 					name="title"

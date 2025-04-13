@@ -1,23 +1,21 @@
-import { CloseOutlined, LeftOutlined, QuestionCircleOutlined, RightOutlined } from "@ant-design/icons";
-import { Button, Card, Drawer, Slider, Switch, Tooltip } from "antd";
+import CyanBlur from "@/assets/images/background/cyan-blur.png";
+import RedBlur from "@/assets/images/background/red-blur.png";
+import { varHover } from "@/components/animate/variants/action";
+import { Icon } from "@/components/icon";
+import { useSettingActions, useSettings } from "@/store/settingStore";
+import { themeVars } from "@/theme/theme.css";
+import { presetsColors } from "@/theme/tokens/color";
+import { FontFamilyPreset } from "@/theme/tokens/typography";
+import { Button } from "@/ui/button";
+import { cn } from "@/utils";
+import { LeftOutlined, QuestionCircleOutlined, RightOutlined } from "@ant-design/icons";
+import { Card, Drawer, Slider, Switch, Tooltip } from "antd";
 import { m } from "framer-motion";
 import { type CSSProperties, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MdCircle } from "react-icons/md";
 import screenfull from "screenfull";
-
-import CyanBlur from "@/assets/images/background/cyan-blur.png";
-import RedBlur from "@/assets/images/background/red-blur.png";
-import { varHover } from "@/components/animate/variants/action";
-import { Icon, IconButton } from "@/components/icon";
-import { useSettingActions, useSettings } from "@/store/settingStore";
-import { presetsColors } from "@/theme/tokens/color";
-
-import { themeVars } from "@/theme/theme.css";
-import { FontFamilyPreset } from "@/theme/tokens/typography";
-import { cn } from "@/utils";
 import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
-
 /**
  * App Setting
  */
@@ -149,9 +147,9 @@ export default function SettingButton() {
 					variants={varHover(1.05)}
 					onClick={() => setDrawerOpen(true)}
 				>
-					<IconButton className="h-10 w-10">
+					<Button variant="ghost" size="icon" className="rounded-full">
 						<Icon icon="local:ic-setting" size={24} />
-					</IconButton>
+					</Button>
 				</m.div>
 			</div>
 			<Drawer
@@ -166,24 +164,28 @@ export default function SettingButton() {
 				}}
 				style={style}
 				extra={
-					<IconButton onClick={() => setDrawerOpen(false)} className="h-9 w-9 hover:scale-105">
-						<CloseOutlined className="text-gray-400" />
-					</IconButton>
+					<Button variant="ghost" size="icon" onClick={() => setDrawerOpen(false)} className="rounded-full">
+						<Icon icon="lucide:x" size={20} />
+					</Button>
 				}
 				footer={
-					<Button type="dashed" block size="large" onClick={toggleFullScreen}>
+					<Button
+						variant="outline"
+						className="w-full border-dashed hover:border-primary hover:text-primary"
+						onClick={toggleFullScreen}
+					>
 						<div
 							className="flex items-center justify-center"
 							aria-label={isFullscreen ? t("sys.settings.exitFullscreen") : t("sys.settings.fullscreen")}
 						>
 							{isFullscreen ? (
 								<>
-									<Icon icon="local:ic-settings-exit-fullscreen" className="m-0!" />
+									<Icon icon="local:ic-settings-exit-fullscreen" />
 									<span className="ml-2">{t("sys.settings.exitFullscreen")}</span>
 								</>
 							) : (
 								<>
-									<Icon icon="local:ic-settings-fullscreen" className="m-0!" />
+									<Icon icon="local:ic-settings-fullscreen" />
 									<span className="ml-2">{t("sys.settings.fullscreen")}</span>
 								</>
 							)}

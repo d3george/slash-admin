@@ -1,9 +1,10 @@
 import { fakeAvatars } from "@/_mock/utils";
 import Card from "@/components/card";
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import Scrollbar from "@/components/scrollbar";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
 import { faker } from "@faker-js/faker";
 import { Avatar, Col, Progress, Row, Space, Table, Tag, Timeline, Typography } from "antd";
 import type { ColumnsType } from "antd/es/table";
@@ -182,9 +183,9 @@ export default function ProfileTab() {
 			dataIndex: "action",
 			render: () => (
 				<Space size="middle">
-					<IconButton>
+					<Button variant="ghost" size="icon">
 						<Icon icon="fontisto:more-v-a" />
-					</IconButton>
+					</Button>
 				</Space>
 			),
 		},
@@ -290,9 +291,9 @@ export default function ProfileTab() {
 					<Card className="flex-col items-start!">
 						<div className="flex w-full items-center justify-between">
 							<Typography.Title level={5}>Connections</Typography.Title>
-							<IconButton>
+							<Button variant="ghost" size="icon">
 								<Icon icon="fontisto:more-v-a" />
-							</IconButton>
+							</Button>
 						</div>
 						<div className="mt-2 flex w-full flex-col gap-4">
 							{ConnectionsItems.map((item) => (
@@ -331,9 +332,9 @@ export default function ProfileTab() {
 					<Card className="flex-col items-start!">
 						<div className="flex w-full items-center justify-between">
 							<Typography.Title level={5}>Teams</Typography.Title>
-							<IconButton>
+							<Button variant="ghost" size="icon">
 								<Icon icon="fontisto:more-v-a" />
-							</IconButton>
+							</Button>
 						</div>
 						<div className="mt-2 flex w-full flex-col gap-4">
 							{TeamItems.map((item) => (

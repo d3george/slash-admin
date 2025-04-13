@@ -10,13 +10,6 @@ export const themeTokens = {
 				dark: null,
 				darker: null,
 			},
-			secondary: {
-				lighter: null,
-				light: null,
-				default: null,
-				dark: null,
-				darker: null,
-			},
 			success: {
 				lighter: null,
 				light: null,
@@ -145,7 +138,6 @@ export const themeTokens = {
 		card: null,
 		dropdown: null,
 		primary: null,
-		secondary: null,
 		info: null,
 		success: null,
 		warning: null,

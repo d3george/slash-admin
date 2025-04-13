@@ -1,5 +1,6 @@
-import { Icon, IconButton } from "@/components/icon";
+import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
 import { rgbAlpha } from "@/utils/theme";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -85,15 +86,15 @@ function KanbanTask({ id, task, isDragging }: Props) {
 							/>
 						</div>
 						<div className="flex text-gray">
-							<IconButton>
-								<Icon icon="solar:like-bold" size={20} color={themeVars.colors.palette.success.default} />
-							</IconButton>
-							<IconButton>
-								<Icon icon="solar:trash-bin-trash-bold" size={20} />
-							</IconButton>
-							<IconButton>
+							<Button variant="ghost" size="icon">
+								<Icon icon="solar:like-bold" size={20} className="text-success!" />
+							</Button>
+							<Button variant="ghost" size="icon">
+								<Icon icon="solar:trash-bin-trash-bold" size={20} className="text-error!" />
+							</Button>
+							<Button variant="ghost" size="icon">
 								<Icon icon="fontisto:more-v-a" size={20} />
-							</IconButton>
+							</Button>
 						</div>
 					</div>
 				}
