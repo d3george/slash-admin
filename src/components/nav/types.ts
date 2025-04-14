@@ -5,17 +5,18 @@ export type NavItemStateProps = {
 };
 
 export type NavItemDataProps = {
-	path: string; // 导航路径
-	title: string; // 导航标题
-	icon?: string | React.ReactNode; // 图标
-	info?: React.ReactNode; // 附加信息
-	caption?: string; // 副标题/说明文字
-	roles?: string[]; // 权限控制
-	children?: NavItemDataProps[]; // 子菜单项
-	disabled?: boolean; // 是否禁用
+	path: string;
+	title: string;
+	icon?: string | React.ReactNode;
+	info?: React.ReactNode;
+	caption?: string;
+	roles?: string[];
+	children?: NavItemDataProps[];
+	disabled?: boolean;
 };
 
 export type NavItemOptionsProps = {
+	depth?: number;
 	hasChild?: boolean;
 	externalLink?: boolean;
 	enabledRootRedirect?: boolean;
@@ -29,7 +30,7 @@ export type NavItemProps = React.ComponentProps<"div"> & NavItemDataProps & NavI
 /**
  * List
  */
-export type NavListProps = Pick<NavItemProps, "enabledRootRedirect"> & {
+export type NavListProps = Pick<NavItemProps, "depth" | "enabledRootRedirect"> & {
 	data: NavItemDataProps;
 	currentRole?: string;
 };
@@ -37,7 +38,7 @@ export type NavListProps = Pick<NavItemProps, "enabledRootRedirect"> & {
 /**
  * Group
  */
-export type NavGroupProps = Omit<NavListProps, "data"> & {
+export type NavGroupProps = Omit<NavListProps, "data" | "depth"> & {
 	name?: string;
 	items: NavItemDataProps[];
 };
@@ -46,7 +47,7 @@ export type NavGroupProps = Omit<NavListProps, "data"> & {
  * Main
  */
 export type NavProps = React.ComponentProps<"nav"> &
-	Omit<NavListProps, "data"> & {
+	Omit<NavListProps, "data" | "depth"> & {
 		data: {
 			name?: string;
 			items: NavItemDataProps[];

@@ -57,9 +57,10 @@ export const baseThemeTokens = {
 		disabledBackground: "24%",
 	},
 	zIndex: {
-		drawer: "1000",
-		modal: "1000",
-		snackbar: "1000",
-		tooltip: "1000",
+		appBar: "1100", // z-index of the navigation bar at the top of the application
+		drawer: "1200", // z-index of the drawer/navigation menu
+		modal: "1300", // z-index of the modal/dialog
+		snackbar: "1400", // z-index of the notification/toast/alert/message
+		tooltip: "1500", // z-index of the tooltip
 	},
 };

@@ -58,6 +58,7 @@ export default {
 			boxShadow: createTailwinConfg("shadows"),
 			spacing: createTailwinConfg("spacing"),
 			screens: breakpointsTokens,
+			zIndex: createTailwinConfg("zIndex"),
 		},
 	},
 } satisfies Config;

@@ -72,7 +72,7 @@ importers:
         specifier: ^1.1.2
         version: 1.2.0(@types/react@18.3.20)(react@18.2.0)
       '@radix-ui/react-tooltip':
-        specifier: ^1.1.8
+        specifier: ^1.2.0
         version: 1.2.0(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@tailwindcss/vite':
         specifier: ^4.1.3

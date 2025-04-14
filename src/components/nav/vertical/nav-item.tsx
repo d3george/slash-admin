@@ -23,11 +23,7 @@ export function NavItem({
 	const content = (
 		<>
 			{/* Icon */}
-			<span
-				className={cn(
-					"mr-3 inline-flex h-6 w-6 shrink-0 items-center justify-center group-hover:scale-125 transition-transform duration-300 ease-in-out",
-				)}
-			>
+			<span className={cn("mr-3 inline-flex h-6 w-6 shrink-0 items-center justify-center")}>
 				{icon && typeof icon === "string" ? <Icon icon={icon} /> : icon}
 			</span>
 
@@ -65,7 +61,9 @@ export function NavItem({
 									{caption}
 								</span>
 							</TooltipTrigger>
-							<TooltipContent side="top">{caption}</TooltipContent>
+							<TooltipContent side="top" align="start">
+								{caption}
+							</TooltipContent>
 						</Tooltip>
 					</TooltipProvider>
 				)}
@@ -88,8 +86,8 @@ export function NavItem({
 	);
 
 	const itemClassName = cn(
-		"group inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-all duration-300 ease-in-out text-text-primary! cursor-pointer",
-		"hover:bg-action-hover",
+		"inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-all duration-300 ease-in-out text-text-primary! cursor-pointer",
+		"hover:bg-action-hover!",
 		active && "bg-primary/hover! text-primary!",
 		disabled && "cursor-not-allowed hover:g-transparent text-action-disabled!",
 	);
