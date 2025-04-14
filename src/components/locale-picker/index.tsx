@@ -27,8 +27,8 @@ export default function LocalePicker() {
 			trigger={["click"]}
 			menu={{ items: localeList, onClick: (e) => setLocale(e.key as Locale) }}
 		>
-			<Button variant="ghost" size="icon">
-				<Icon icon={`local:${LANGUAGE_MAP[locale].icon}`} size="24" />
+			<Button variant="ghost" size="icon" className="rounded-full">
+				<Icon icon={`local:${LANGUAGE_MAP[locale].icon}`} size="20" />
 			</Button>
 		</Dropdown>
 	);

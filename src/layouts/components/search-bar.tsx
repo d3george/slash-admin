@@ -125,7 +125,7 @@ export default function SearchBar() {
 	return (
 		<>
 			<div className="flex items-center justify-center">
-				<Button variant="ghost" className="bg-secondary px-2 rounded-lg" onClick={handleOpen}>
+				<Button variant="ghost" className="bg-secondary px-2 rounded-lg" size="sm" onClick={handleOpen}>
 					<div className="flex items-center justify-center gap-2">
 						<Icon icon="local:ic-search" size="20" />
 						<span className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">

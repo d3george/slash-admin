@@ -90,8 +90,8 @@ export default function AccountDropdown() {
 
 	return (
 		<Dropdown menu={{ items }} trigger={["click"]} dropdownRender={dropdownRender}>
-			<Button variant="ghost" className="rounded-md">
-				<img className="h-8 w-8 rounded-full" src={avatar} alt="" />
+			<Button variant="ghost" size="icon" className="rounded-full">
+				<img className="h-6 w-6 rounded-full" src={avatar} alt="" />
 			</Button>
 		</Dropdown>
 	);
