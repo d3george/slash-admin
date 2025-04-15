@@ -1,10 +1,11 @@
+import Icon from "@/components/icon/icon";
 import { RouterLink } from "@/router/components/router-link";
 import { TooltipContent } from "@/ui/tooltip";
 import { Tooltip } from "@/ui/tooltip";
 import { TooltipTrigger } from "@/ui/tooltip";
 import { TooltipProvider } from "@/ui/tooltip";
 import { cn } from "@/utils";
-import { Icon } from "@iconify/react";
+import { navItemClasses, navItemStyles } from "../styles";
 import type { NavItemProps } from "../types";
 
 export function NavItem({
@@ -23,43 +24,21 @@ export function NavItem({
 	const content = (
 		<>
 			{/* Icon */}
-			<span className={cn("mr-3 inline-flex h-6 w-6 shrink-0 items-center justify-center")}>
+			<span style={navItemStyles.icon} className="mr-3">
 				{icon && typeof icon === "string" ? <Icon icon={icon} /> : icon}
 			</span>
 
 			{/* Texts */}
-			<span className="inline-flex flex-auto flex-col justify-center min-h-[24px]">
+			<span style={navItemStyles.texts} className="min-h-[24px]">
 				{/* Title */}
-				<span
-					className="text-sm font-medium text-left leading-tight"
-					style={{
-						display: "-webkit-box",
-						WebkitLineClamp: 1,
-						WebkitBoxOrient: "vertical",
-						overflow: "hidden",
-						textOverflow: "ellipsis",
-					}}
-				>
-					{title}
-				</span>
+				<span style={navItemStyles.title}>{title}</span>
 
 				{/* Caption */}
 				{caption && (
 					<TooltipProvider>
 						<Tooltip>
 							<TooltipTrigger asChild>
-								<span
-									className="text-xs text-text-secondary text-left leading-tight"
-									style={{
-										display: "-webkit-box",
-										WebkitLineClamp: 1,
-										WebkitBoxOrient: "vertical",
-										overflow: "hidden",
-										textOverflow: "ellipsis",
-									}}
-								>
-									{caption}
-								</span>
+								<span style={navItemStyles.caption}>{caption}</span>
 							</TooltipTrigger>
 							<TooltipContent side="top" align="start">
 								{caption}
@@ -70,14 +49,14 @@ export function NavItem({
 			</span>
 
 			{/* Info */}
-			{info && <span className="mx-1.5 inline-flex shrink-0 items-center">{info}</span>}
+			{info && <span style={navItemStyles.info}>{info}</span>}
 
 			{/* Arrow */}
 			{hasChild && (
 				<Icon
 					icon="eva:arrow-ios-forward-fill"
-					className="h-4 w-4 inline-flex shrink-0 transition-all duration-300 ease-in-out"
 					style={{
+						...navItemStyles.arrow,
 						transform: open ? "rotate(90deg)" : "rotate(0deg)",
 					}}
 				/>
@@ -86,10 +65,10 @@ export function NavItem({
 	);
 
 	const itemClassName = cn(
-		"inline-flex w-full items-center rounded-md px-2 py-1.5 text-sm transition-all duration-300 ease-in-out text-text-primary! cursor-pointer",
-		"hover:bg-action-hover!",
-		active && "bg-primary/hover! text-primary!",
-		disabled && "cursor-not-allowed hover:g-transparent text-action-disabled!",
+		navItemClasses.base,
+		navItemClasses.hover,
+		active && navItemClasses.active,
+		disabled && navItemClasses.disabled,
 	);
 
 	if (disabled) {

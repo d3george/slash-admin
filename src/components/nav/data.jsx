@@ -9,7 +9,7 @@ export const NAV_SECTION_ITEMS = [
 				path: "/blank",
 				roles: ["admin"],
 				caption: "Display only admin role       aaaaaaaaaaaaaaa",
-				icon: <Icon icon="solar:star-line-duotone" size={16} />,
+				icon: <Icon icon="solar:star-line-duotone" size={22} />,
 				info: <span className="text-xs text-text-secondary bg-success px-1.5 py-0.5 rounded-md">+2</span>,
 				children: [
 					{

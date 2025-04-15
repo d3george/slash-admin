@@ -1,65 +1,48 @@
+import Icon from "@/components/icon/icon";
 import { RouterLink } from "@/router/components/router-link";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip";
 import { cn } from "@/utils";
-import { Icon } from "@iconify/react";
+import { navItemClasses, navItemStyles } from "../styles";
 import type { NavItemProps } from "../types";
 
 export const NavRootItem = (item: NavItemProps) => {
 	const content = (
 		<>
-			<div className="relative w-full min-h-12 inline-flex flex-col items-center px-1 pt-2 pb-1.5">
-				{/* Caption */}
-				{item.caption && (
-					<TooltipProvider>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<Icon icon="solar:info-circle-linear" className="absolute left-[6px] top-[10px] h-4 w-4" />
-							</TooltipTrigger>
-							<TooltipContent side="right">
-								<p>{item.caption}</p>
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				)}
+			{/* Caption */}
+			{item.caption && (
+				<TooltipProvider>
+					<Tooltip>
+						<TooltipTrigger>
+							<Icon icon="solar:info-circle-linear" size={16} className="absolute left-1 top-2" />
+						</TooltipTrigger>
+						<TooltipContent side="right">{item.caption}</TooltipContent>
+					</Tooltip>
+				</TooltipProvider>
+			)}
 
-				{/* Icon */}
-				<span className="h-5 w-5 mb-1 flex items-center justify-center">
-					{item.icon && typeof item.icon === "string" ? <Icon icon={item.icon} /> : item.icon}
-				</span>
+			{/* Icon */}
+			<span style={navItemStyles.icon}>
+				{item.icon && typeof item.icon === "string" ? <Icon icon={item.icon} /> : item.icon}
+			</span>
 
-				{/* Arrow */}
-				{item.hasChild && (
-					<Icon
-						icon="eva:arrow-ios-forward-fill"
-						className="absolute right-[6px] top-[10px] h-4 w-4"
-						style={{
-							transform: item.open ? "rotate(90deg)" : "rotate(0deg)",
-						}}
-					/>
-				)}
+			{/* Arrow */}
+			{item.hasChild && (
+				<Icon icon="eva:arrow-ios-forward-fill" className="absolute right-1 top-2" style={navItemStyles.arrow} />
+			)}
 
-				{/* Title */}
-				<span
-					style={{
-						display: "-webkit-box",
-						WebkitLineClamp: 1,
-						WebkitBoxOrient: "vertical",
-						overflow: "hidden",
-						textOverflow: "ellipsis",
-					}}
-					className="text-[10px] font-medium text-center"
-				>
-					{item.title}
-				</span>
-			</div>
+			{/* Title */}
+			<span style={navItemStyles.title} className="text-center! text-xs! mt-1">
+				{item.title}
+			</span>
 		</>
 	);
 
 	const itemClassName = cn(
-		"w-full flex flex-col items-center cursor-pointer rounded-md text-text-primary! transition-all duration-300 ease-in-out",
-		"hover:bg-action-hover!",
-		item.active && "bg-primary/hover! hover:bg-primary/focus! text-primary!",
-		item.disabled && "cursor-not-allowed hover:bg-transparent text-action-disabled!",
+		navItemClasses.base,
+		navItemClasses.hover,
+		"relative flex-col min-h-12 px-1 pt-2 pb-1.5",
+		item.active && navItemClasses.active,
+		item.disabled && navItemClasses.disabled,
 	);
 
 	if (item.externalLink) {
