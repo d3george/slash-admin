@@ -1,10 +1,9 @@
 import Icon from "@/components/icon/icon";
-import { RouterLink } from "@/router/components/router-link";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip";
 import { cn } from "@/utils";
+import { NavItemRenderer } from "../components";
 import { navItemClasses, navItemStyles } from "../styles";
 import type { NavItemProps } from "../types";
-
 export const NavItem = (item: NavItemProps) => {
 	const content = (
 		<>
@@ -46,27 +45,11 @@ export const NavItem = (item: NavItemProps) => {
 		item.disabled && navItemClasses.disabled,
 	);
 
-	if (item.disabled) {
-		return <div className={itemClassName}>{content}</div>;
-	}
-
-	if (item.externalLink) {
-		return (
-			<a href={item.path} target="_blank" rel="noopener noreferrer" className={itemClassName}>
-				{content}
-			</a>
-		);
-	}
-
-	if (!item.hasChild) {
-		return (
-			<RouterLink href={item.path} className={itemClassName}>
-				{content}
-			</RouterLink>
-		);
-	}
-
-	return <div className={itemClassName}>{content}</div>;
+	return (
+		<NavItemRenderer item={item} className={itemClassName}>
+			{content}
+		</NavItemRenderer>
+	);
 };
 
 const ItemIcon = ({ depth = 1 }: { depth?: number }) => {

@@ -1,26 +1,16 @@
 import Icon from "@/components/icon/icon";
-import { RouterLink } from "@/router/components/router-link";
 import { TooltipContent } from "@/ui/tooltip";
 import { Tooltip } from "@/ui/tooltip";
 import { TooltipTrigger } from "@/ui/tooltip";
 import { TooltipProvider } from "@/ui/tooltip";
 import { cn } from "@/utils";
+import { NavItemRenderer } from "../components";
 import { navItemClasses, navItemStyles } from "../styles";
 import type { NavItemProps } from "../types";
 
-export function NavItem({
-	title,
-	path,
-	icon,
-	info,
-	caption,
-	open,
-	active,
-	disabled,
-	hasChild,
-	externalLink,
-	onClick,
-}: NavItemProps) {
+export function NavItem(item: NavItemProps) {
+	const { title, icon, info, caption, open, active, disabled, hasChild } = item;
+
 	const content = (
 		<>
 			{/* Icon */}
@@ -72,29 +62,9 @@ export function NavItem({
 		disabled && navItemClasses.disabled,
 	);
 
-	if (disabled) {
-		return <div className={itemClassName}>{content}</div>;
-	}
-
-	if (externalLink) {
-		return (
-			<a href={path} target="_blank" rel="noopener noreferrer" className={itemClassName}>
-				{content}
-			</a>
-		);
-	}
-
-	if (hasChild) {
-		return (
-			<div className={itemClassName} onClick={onClick}>
-				{content}
-			</div>
-		);
-	}
-
 	return (
-		<RouterLink href={path} className={itemClassName}>
+		<NavItemRenderer item={item} className={itemClassName}>
 			{content}
-		</RouterLink>
+		</NavItemRenderer>
 	);
 }
