@@ -24,7 +24,7 @@ export function NavItem({
 	const content = (
 		<>
 			{/* Icon */}
-			<span style={navItemStyles.icon} className="mr-3">
+			<span style={navItemStyles.icon} className="mr-3 items-center justify-center">
 				{icon && typeof icon === "string" ? <Icon icon={icon} /> : icon}
 			</span>
 
@@ -67,6 +67,7 @@ export function NavItem({
 	const itemClassName = cn(
 		navItemClasses.base,
 		navItemClasses.hover,
+		"min-h-[44px]",
 		active && navItemClasses.active,
 		disabled && navItemClasses.disabled,
 	);

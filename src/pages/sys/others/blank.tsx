@@ -1,19 +1,29 @@
 import { NAV_SECTION_ITEMS, NavVertical } from "@/components/nav";
+import { NavHorizontal } from "@/components/nav/horizontal";
 import { NavMini } from "@/components/nav/mini";
-import { ScrollArea } from "@/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/ui/scroll-area";
 
 export default function BlankPage() {
 	return (
-		<div className="flex gap-4">
-			<div className="h-[400px] flex flex-col justify-start border border-primary p-2">
-				<ScrollArea type="scroll" className="w-72 h-full flex flex-col">
-					<NavVertical data={NAV_SECTION_ITEMS} />
-				</ScrollArea>
+		<div>
+			<div className="flex gap-4">
+				<div className="h-[400px] flex flex-col justify-start border border-primary p-2">
+					<ScrollArea type="scroll" className="w-72 h-full flex flex-col">
+						<NavVertical data={NAV_SECTION_ITEMS} />
+					</ScrollArea>
+				</div>
+
+				<div className="h-[400px] flex flex-col justify-start border border-primary p-2">
+					<ScrollArea type="scroll" className="h-full flex flex-col">
+						<NavMini data={NAV_SECTION_ITEMS} />
+					</ScrollArea>
+				</div>
 			</div>
 
-			<div className="h-[400px] flex flex-col justify-start border border-primary p-2">
-				<ScrollArea type="scroll" className="h-full flex flex-col">
-					<NavMini data={NAV_SECTION_ITEMS} />
+			<div className="border border-primary p-2 w-fit">
+				<ScrollArea className="w-96 whitespace-nowrap">
+					<NavHorizontal data={NAV_SECTION_ITEMS} />
+					<ScrollBar orientation="horizontal" />
 				</ScrollArea>
 			</div>
 		</div>

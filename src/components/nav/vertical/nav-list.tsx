@@ -4,7 +4,7 @@ import { useLocation } from "react-router";
 import type { NavListProps } from "../types";
 import { NavItem } from "./nav-item";
 
-export function NavList({ data, currentRole, enabledRootRedirect = false }: NavListProps) {
+export function NavList({ data, enabledRootRedirect = false }: NavListProps) {
 	const location = useLocation();
 	const [open, setOpen] = useState(false);
 	const hasChild = data.children && data.children.length > 0;
@@ -40,12 +40,7 @@ export function NavList({ data, currentRole, enabledRootRedirect = false }: NavL
 				<CollapsibleContent>
 					<div className="ml-4 mt-1 flex flex-col gap-1">
 						{data.children?.map((child) => (
-							<NavList
-								key={child.title}
-								data={child}
-								currentRole={currentRole}
-								enabledRootRedirect={enabledRootRedirect}
-							/>
+							<NavList key={child.title} data={child} enabledRootRedirect={enabledRootRedirect} />
 						))}
 					</div>
 				</CollapsibleContent>

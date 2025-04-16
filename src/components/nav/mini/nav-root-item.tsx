@@ -45,6 +45,10 @@ export const NavRootItem = (item: NavItemProps) => {
 		item.disabled && navItemClasses.disabled,
 	);
 
+	if (item.disabled) {
+		return <div className={itemClassName}>{content}</div>;
+	}
+
 	if (item.externalLink) {
 		return (
 			<a href={item.path} target="_blank" rel="noopener noreferrer" className={itemClassName}>

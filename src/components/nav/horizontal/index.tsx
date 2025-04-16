@@ -2,9 +2,9 @@ import { cn } from "@/utils";
 import type { NavProps } from "../types";
 import { NavGroup } from "./nav-group";
 
-export function NavVertical({ data, className, ...props }: NavProps) {
+export function NavHorizontal({ data, className, ...props }: NavProps) {
 	return (
-		<nav className={cn("flex w-full flex-col gap-1", className)} {...props}>
+		<nav className={cn("flex justify-center items-center gap-1 min-h-[56px]", className)} {...props}>
 			{data.map((group) => (
 				<NavGroup key={group.name} name={group.name} items={group.items} />
 			))}

@@ -1,7 +1,16 @@
 import { themeVars } from "@/theme/theme.css";
 import type { CSSProperties } from "react";
 
-export const navItemStyles: Record<string, CSSProperties> = {
+export type NavItemStyles = {
+	icon: CSSProperties;
+	texts: CSSProperties;
+	title: CSSProperties;
+	caption: CSSProperties;
+	info: CSSProperties;
+	arrow: CSSProperties;
+};
+
+export const navItemStyles: NavItemStyles = {
 	icon: {
 		display: "inline-flex",
 		flexShrink: 0,
@@ -16,8 +25,8 @@ export const navItemStyles: Record<string, CSSProperties> = {
 	},
 	title: {
 		display: "-webkit-box",
-		WebkitLineClamp: 1,
 		WebkitBoxOrient: "vertical",
+		WebkitLineClamp: 1,
 		overflow: "hidden",
 		textOverflow: "ellipsis",
 		fontSize: "0.875rem",
@@ -33,7 +42,7 @@ export const navItemStyles: Record<string, CSSProperties> = {
 		textOverflow: "ellipsis",
 		fontSize: "0.75rem",
 		fontWeight: 400,
-		color: themeVars.colors.text.secondary,
+		color: themeVars.colors.text.disabled,
 		textAlign: "left",
 		lineHeight: 18 / 12,
 	},
