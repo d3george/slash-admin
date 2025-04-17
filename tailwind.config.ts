@@ -58,8 +58,8 @@ export default {
 			borderRadius: createTailwinConfg("borderRadius"),
 			boxShadow: createTailwinConfg("shadows"),
 			spacing: createTailwinConfg("spacing"),
-			screens: breakpointsTokens,
 			zIndex: createTailwinConfg("zIndex"),
+			screens: breakpointsTokens,
 		},
 	},
 } satisfies Config;

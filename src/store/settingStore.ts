@@ -4,7 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { FontFamilyPreset, typographyTokens } from "@/theme/tokens/typography";
 import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
 
-type SettingsType = {
+export type SettingsType = {
 	themeColorPresets: ThemeColorPresets;
 	themeMode: ThemeMode;
 	themeLayout: ThemeLayout;

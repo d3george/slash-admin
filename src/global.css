@@ -10,6 +10,7 @@
 
 /* import tailwind */
 @import "tailwindcss";
+@import "tw-animate-css";
 
 /* config  tailwind */
 @config "../tailwind.config.ts";
@@ -26,7 +27,7 @@
   }
 }
 
-@theme {
+@theme  {
   --animate-collapsible-down: collapsible-down 0.2s ease-in-out;
   --animate-collapsible-up: collapsible-up 0.2s ease-in-out;
   @keyframes collapsible-down {
@@ -44,6 +45,16 @@
     }
     to {
       height: 0;
+    }
+  }
+
+  --animate-slow-spin: spin 4s linear infinite;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);  
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 }
@@ -68,7 +79,7 @@
   --destructive: var(--colors-palette-error-default);
   --border: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
   --input: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
-  --ring: var(--colors-palette-error-default);
+  --ring: var(--colors-palette-primary-default);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
