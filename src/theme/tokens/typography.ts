@@ -5,8 +5,8 @@ export const FontFamilyPreset = {
 
 export const typographyTokens = {
 	fontFamily: {
-		primary: FontFamilyPreset.openSans,
-		secondary: FontFamilyPreset.inter,
+		openSans: FontFamilyPreset.openSans,
+		inter: FontFamilyPreset.inter,
 	},
 	fontSize: {
 		xs: "12",

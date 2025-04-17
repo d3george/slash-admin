@@ -46,7 +46,7 @@ export default function useChart(options: ApexOptions) {
 			toolbar: { show: false },
 			zoom: { enabled: false },
 			foreColor: themeVars.colors.text.disabled,
-			fontFamily: themeVars.typography.fontFamily.primary,
+			fontFamily: themeVars.typography.fontFamily.openSans,
 		},
 
 		// States

@@ -1,6 +1,6 @@
-import { Button } from "antd";
+import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
 import { useTranslation } from "react-i18next";
-import { MdArrowBackIosNew } from "react-icons/md";
 
 interface ReturnButtonProps {
 	onClick?: () => void;
@@ -8,11 +8,9 @@ interface ReturnButtonProps {
 export function ReturnButton({ onClick }: ReturnButtonProps) {
 	const { t } = useTranslation();
 	return (
-		<Button block type="link" onClick={onClick}>
-			<div className="flex items-center justify-center hover:underline">
-				<MdArrowBackIosNew />
-				<span className="text-sm">{t("sys.login.backSignIn")}</span>
-			</div>
+		<Button variant="link" onClick={onClick} className="w-full cursor-pointer text-accent-foreground">
+			<Icon icon="solar:alt-arrow-left-linear" size={24} />
+			<span className="text-sm">{t("sys.login.backSignIn")}</span>
 		</Button>
 	);
 }

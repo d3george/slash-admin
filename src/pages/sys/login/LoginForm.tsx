@@ -1,12 +1,10 @@
+import { DEFAULT_USER, TEST_USER } from "@/_mock/assets";
+import type { SignInReq } from "@/api/services/userService";
+import { Icon } from "@/components/icon";
+import { useSignIn } from "@/store/userStore";
 import { Alert, Button, Checkbox, Col, Divider, Form, Input, Row } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from "react-icons/ai";
-
-import { DEFAULT_USER, TEST_USER } from "@/_mock/assets";
-import type { SignInReq } from "@/api/services/userService";
-import { useSignIn } from "@/store/userStore";
-
 import { LoginStateEnum, useLoginStateContext } from "./providers/LoginStateProvider";
 
 function LoginForm() {
@@ -109,9 +107,9 @@ function LoginForm() {
 				<Divider className="text-xs!">{t("sys.login.otherSignIn")}</Divider>
 
 				<div className="flex cursor-pointer justify-around text-2xl">
-					<AiFillGithub />
-					<AiFillWechat />
-					<AiFillGoogleCircle />
+					<Icon icon="mdi:github" size={24} />
+					<Icon icon="mdi:wechat" size={24} />
+					<Icon icon="ant-design:google-circle-filled" size={24} />
 				</div>
 			</Form>
 		</>

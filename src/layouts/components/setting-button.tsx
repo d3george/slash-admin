@@ -7,13 +7,15 @@ import { themeVars } from "@/theme/theme.css";
 import { presetsColors } from "@/theme/tokens/color";
 import { FontFamilyPreset } from "@/theme/tokens/typography";
 import { Button } from "@/ui/button";
+import { Card } from "@/ui/card";
+import { Slider } from "@/ui/slider";
+import { Switch } from "@/ui/switch";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/ui/tooltip";
 import { cn } from "@/utils";
-import { LeftOutlined, QuestionCircleOutlined, RightOutlined } from "@ant-design/icons";
-import { Card, Drawer, Slider, Switch, Tooltip } from "antd";
+import { Drawer } from "antd";
 import { m } from "framer-motion";
 import { type CSSProperties, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { MdCircle } from "react-icons/md";
 import screenfull from "screenfull";
 import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
 /**
@@ -200,7 +202,7 @@ export default function SettingButton() {
 						<div className="flex flex-row gap-4">
 							<Card
 								onClick={() => setThemeMode(ThemeMode.Light)}
-								className="flex h-20 w-full cursor-pointer items-center justify-center"
+								className="flex flex-1 h-20 cursor-pointer items-center justify-center"
 							>
 								<Icon
 									icon="local:ic-settings-mode-sun"
@@ -210,7 +212,7 @@ export default function SettingButton() {
 							</Card>
 							<Card
 								onClick={() => setThemeMode(ThemeMode.Dark)}
-								className="flex h-20 w-full cursor-pointer items-center justify-center"
+								className="flex flex-1 h-20 cursor-pointer items-center justify-center"
 							>
 								<Icon
 									icon="local:ic-settings-mode-moon"
@@ -227,19 +229,9 @@ export default function SettingButton() {
 						<div className="grid grid-cols-3 gap-4">
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Vertical)}
-								className="h-16 cursor-pointer"
-								style={{ flexGrow: 1, flexShrink: 0 }}
-								styles={{
-									body: {
-										padding: 0,
-										display: "flex",
-										justifyContent: "center",
-										alignItems: "center",
-										height: "100%",
-									},
-								}}
+								className="flex h-16 cursor-pointer flex-1 flex-row p-0 gap-1"
 							>
-								<div className="flex h-full w-7 shrink-0 flex-col gap-1 p-1">
+								<div className="flex h-full w-7 flex-col gap-1 p-1">
 									<div
 										className="h-2 w-2 shrink-0 rounded"
 										style={{
@@ -270,20 +262,9 @@ export default function SettingButton() {
 							</Card>
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Horizontal)}
-								className="h-16 cursor-pointer"
-								style={{ flexGrow: 1, flexShrink: 0 }}
-								styles={{
-									body: {
-										padding: 0,
-										display: "flex",
-										flexDirection: "column",
-										justifyContent: "center",
-										alignItems: "center",
-										height: "100%",
-									},
-								}}
+								className="flex h-16 cursor-pointer flex-1 p-0 gap-0"
 							>
-								<div className="flex h-4 w-full items-center gap-1  p-1">
+								<div className="flex h-full w-7 gap-1 p-1 items-center flex-0">
 									<div
 										className="h-2 w-2 shrink-0 rounded"
 										style={{
@@ -314,19 +295,9 @@ export default function SettingButton() {
 							</Card>
 							<Card
 								onClick={() => setThemeLayout(ThemeLayout.Mini)}
-								className="h-16 cursor-pointer"
-								style={{ flexGrow: 1, flexShrink: 0 }}
-								styles={{
-									body: {
-										padding: 0,
-										display: "flex",
-										justifyContent: "center",
-										alignItems: "center",
-										height: "100%",
-									},
-								}}
+								className="h-16 cursor-pointer flex-1 p-0 gap-0 flex-row"
 							>
-								<div className="flex h-full shrink-0 flex-col gap-1 p-1">
+								<div className="flex h-full w-7 gap-1 p-1 items-center flex-0 flex-col">
 									<div
 										className="h-2 w-2 shrink-0 rounded"
 										style={{ background: layoutBackground(ThemeLayout.Mini) }}
@@ -336,7 +307,7 @@ export default function SettingButton() {
 										style={{ background: layoutBackground(ThemeLayout.Mini) }}
 									/>
 									<div
-										className="h-1 max-w-[12px] shrink-0 rounded opacity-20"
+										className="h-1 w-full shrink-0 rounde opacity-20"
 										style={{ background: layoutBackground(ThemeLayout.Mini) }}
 									/>
 								</div>
@@ -354,48 +325,34 @@ export default function SettingButton() {
 					<div>
 						<div className="mb-3 text-base font-semibold text-text-secondary">
 							<span className="mr-2">{t("sys.settings.stretch")}</span>
-							<Tooltip title={t("sys.settings.stretchTip")}>
-								<QuestionCircleOutlined />
+							<Tooltip>
+								<TooltipTrigger>
+									<Icon icon="solar:question-circle-linear" />
+								</TooltipTrigger>
+								<TooltipContent>{t("sys.settings.stretchTip")}</TooltipContent>
 							</Tooltip>
 						</div>
 
 						<Card
 							onClick={() => setThemeStretch(!themeStretch)}
 							className="flex h-20 w-full cursor-pointer items-center justify-center"
-							styles={{
-								body: {
-									width: "50%",
-									padding: 0,
-									display: "flex",
-									justifyContent: "center",
-									alignItems: "center",
-								},
-							}}
 						>
-							{themeStretch ? (
-								<div
-									className="flex w-full items-center justify-between"
-									style={{
-										color: themeVars.colors.palette.primary.default,
-										transition: "width 300ms 0ms",
-									}}
-								>
-									<LeftOutlined />
-									<div className="flex grow border-b border-dashed" />
-									<RightOutlined />
-								</div>
-							) : (
-								<div
-									className="flex w-1/2 items-center justify-between"
-									style={{
-										transition: "width 300ms 0ms",
-									}}
-								>
-									<RightOutlined />
-									<div className="grow border-b border-dashed" />
-									<LeftOutlined />
-								</div>
-							)}
+							<div
+								className={cn("flex w-1/2 items-center justify-between", themeStretch && "w-full")}
+								style={{
+									transition: "width 300ms 0ms",
+								}}
+							>
+								<Icon
+									icon={themeStretch ? "solar:alt-arrow-left-outline" : "solar:alt-arrow-right-outline"}
+									size={20}
+								/>
+								<div className="flex grow border-b border-dashed" />
+								<Icon
+									icon={themeStretch ? "solar:alt-arrow-left-outline" : "solar:alt-arrow-right-outline"}
+									size={20}
+								/>
+							</div>
 						</Card>
 					</div>
 
@@ -407,16 +364,15 @@ export default function SettingButton() {
 								<Card
 									key={preset}
 									className="flex h-12 w-full cursor-pointer items-center justify-center"
-									style={{
-										backgroundColor: themeColorPresets === preset ? `${color}14` : "",
-									}}
 									onClick={() => setThemeColorPresets(preset as ThemeColorPresets)}
 								>
 									<div style={{ color: color.default }}>
-										<MdCircle
-											style={{
-												fontSize: themeColorPresets === preset ? 24 : 12,
-											}}
+										<Icon
+											icon="mdi:circle"
+											className={cn(
+												"scale-100 transition-all duration-300 ease-in-out",
+												themeColorPresets === preset && "scale-150",
+											)}
 										/>
 									</div>
 								</Card>
@@ -433,32 +389,32 @@ export default function SettingButton() {
 							{Object.entries(FontFamilyPreset).map(([font, family]) => (
 								<Card
 									key={font}
-									className="flex h-20 w-full cursor-pointer items-center justify-center"
+									className={cn(
+										"flex h-20 w-full cursor-pointer items-center justify-center text-text-disabled",
+										fontFamily === family && "text-primary font-medium",
+										family === FontFamilyPreset.inter && "font-inter",
+										family === FontFamilyPreset.openSans && "font-openSans",
+									)}
 									onClick={() => setFontFamily(family)}
 								>
-									<div
-										className={cn(
-											fontFamily === family ? "text-primary font-medium" : "text-text-disabled",
-											"text-center text-lg",
-										)}
-									>
+									<div className="text-center text-lg">
 										<span>A</span>
 										<span className="opacity-50 ml-0.5">a</span>
 									</div>
-									<span
-										className={cn(
-											fontFamily === family ? "text-text-primary font-medium" : "text-text-disabled",
-											"text-sm",
-										)}
-									>
-										{family.replace("Variable", "")}
-									</span>
+									<span className="text-sm text-text-primary">{family.replace("Variable", "")}</span>
 								</Card>
 							))}
 						</div>
 
-						<div className="my-3 text-sm font-semibold text-text-disabled">{t("sys.settings.size")}</div>
-						<Slider min={12} max={20} defaultValue={fontSize} onChange={setFontSize} />
+						<div className="my-4 text-sm font-semibold text-text-disabled">{t("sys.settings.size")}</div>
+						<Slider
+							tooltipMode="always"
+							min={12}
+							max={20}
+							step={1}
+							defaultValue={[fontSize]}
+							onValueChange={(value) => setFontSize(value[0])}
+						/>
 					</div>
 
 					{/* Page config */}
@@ -467,19 +423,19 @@ export default function SettingButton() {
 						<div className="flex flex-col gap-2">
 							<div className="flex items-center justify-between text-sm text-text-disabled">
 								<div>{t("sys.settings.breadcrumb")}</div>
-								<Switch size="small" checked={breadCrumb} onChange={(checked) => setBreadCrumn(checked)} />
+								<Switch checked={breadCrumb} onCheckedChange={(checked) => setBreadCrumn(checked)} />
 							</div>
 							<div className="flex items-center justify-between text-sm text-text-disabled">
 								<div>{t("sys.settings.multiTab")}</div>
-								<Switch size="small" checked={multiTab} onChange={(checked) => setMultiTab(checked)} />
+								<Switch checked={multiTab} onCheckedChange={(checked) => setMultiTab(checked)} />
 							</div>
 							<div className="flex items-center justify-between text-sm text-text-disabled">
 								<div>{t("sys.settings.darkSidebar")}</div>
-								<Switch size="small" checked={darkSidebar} onChange={(checked) => setDarkSidebar(checked)} />
+								<Switch checked={darkSidebar} onCheckedChange={(checked) => setDarkSidebar(checked)} />
 							</div>
 							<div className="flex items-center justify-between text-sm text-text-disabled">
 								<div>{t("sys.settings.accordion")}</div>
-								<Switch size="small" checked={accordion} onChange={(check) => setAccordion(check)} />
+								<Switch checked={accordion} onCheckedChange={(checked) => setAccordion(checked)} />
 							</div>
 						</div>
 					</div>

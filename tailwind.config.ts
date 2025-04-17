@@ -7,6 +7,7 @@ export default {
 	darkMode: ["selector", `[${HtmlDataAttribute.ThemeMode}='dark']`],
 	content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
+		fontFamily: createTailwinConfg("typography.fontFamily"),
 		extend: {
 			colors: {
 				// slash admin theme tokens

@@ -74,8 +74,8 @@ export const themeTokens = {
 	},
 	typography: {
 		fontFamily: {
-			primary: null,
-			secondary: null,
+			openSans: null,
+			inter: null,
 		},
 		fontSize: {
 			xs: null,
