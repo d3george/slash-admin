@@ -1,4 +1,5 @@
-import { Button, Card, Flex } from "antd";
+import { Button } from "@/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { toast } from "sonner";
 
 export default function ToastPage() {
@@ -14,17 +15,19 @@ export default function ToastPage() {
 		});
 	};
 	return (
-		<Flex gap={16} vertical wrap>
-			<Flex gap={16} wrap>
-				<Card title="Simple" bordered={false} className="flex-none text- lg:flex-1 bg-">
-					<Flex gap={16} wrap>
-						<Button color="default" variant="solid" onClick={() => toast("Toast Default", {})}>
+		<div className=" grid grid-cols-1 md:grid-cols-2 gap-4">
+			<Card title="Simple" className="flex-none text- lg:flex-1 bg-">
+				<CardHeader>
+					<CardTitle>Simple</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<div className="flex flex-wrap gap-4">
+						<Button variant="outline" onClick={() => toast("Toast Default", {})}>
 							Default
 						</Button>
 						<Button
-							color="default"
+							variant="ghost"
 							className="bg-info!"
-							variant="solid"
 							onClick={() =>
 								toast.info("Toast Info", {
 									description: "Toast Description Info asdfdfasdfasdfasdfasdfasdfasdf",
@@ -33,32 +36,26 @@ export default function ToastPage() {
 						>
 							Info
 						</Button>
-						<Button
-							color="default"
-							className="bg-success!"
-							variant="solid"
-							onClick={() => toast.success("Toast Success")}
-						>
+						<Button variant="ghost" className="bg-success!" onClick={() => toast.success("Toast Success")}>
 							Success
 						</Button>
-						<Button
-							color="default"
-							className="bg-warning!"
-							variant="solid"
-							onClick={() => toast.warning("Toast Warning")}
-						>
+						<Button variant="ghost" className="bg-warning!" onClick={() => toast.warning("Toast Warning")}>
 							Warning
 						</Button>
-						<Button color="default" className="bg-error!" variant="solid" onClick={() => toast.error("Toast Error")}>
+						<Button variant="ghost" className="bg-error!" onClick={() => toast.error("Toast Error")}>
 							Error
 						</Button>
-					</Flex>
-				</Card>
-				<Card title="With Action" bordered={false} className="flex-none lg:flex-1">
-					<Flex gap={16} wrap>
+					</div>
+				</CardContent>
+			</Card>
+			<Card title="With Action">
+				<CardHeader>
+					<CardTitle>With Action</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<div className="flex flex-wrap gap-4">
 						<Button
-							color="default"
-							variant="solid"
+							variant="outline"
 							onClick={() =>
 								toast("Toast Default", {
 									cancel: {
@@ -75,9 +72,8 @@ export default function ToastPage() {
 							Default
 						</Button>
 						<Button
-							color="default"
+							variant="ghost"
 							className="bg-info!"
-							variant="solid"
 							onClick={() =>
 								toast.info("Toast Info", {
 									action: {
@@ -94,9 +90,8 @@ export default function ToastPage() {
 							Info
 						</Button>
 						<Button
-							color="default"
+							variant="ghost"
 							className="bg-success!"
-							variant="solid"
 							onClick={() =>
 								toast.success("Toast Success", {
 									action: {
@@ -113,9 +108,8 @@ export default function ToastPage() {
 							Success
 						</Button>
 						<Button
-							color="default"
+							variant="ghost"
 							className="bg-warning!"
-							variant="solid"
 							onClick={() =>
 								toast.warning("Toast Warning", {
 									action: {
@@ -132,9 +126,8 @@ export default function ToastPage() {
 							Warning
 						</Button>
 						<Button
-							color="default"
+							variant="ghost"
 							className="bg-error!"
-							variant="solid"
 							onClick={() =>
 								toast.error("Toast Error", {
 									action: {
@@ -150,27 +143,47 @@ export default function ToastPage() {
 						>
 							Error
 						</Button>
-					</Flex>
-				</Card>
-			</Flex>
+					</div>
+				</CardContent>
+			</Card>
 
-			<Flex gap={16} wrap>
-				<Card title="Position" bordered={false} className="flex-none lg:flex-1">
-					<Flex gap={16} wrap>
-						<Button onClick={() => toast.info("Toast Info", { position: "top-left" })}>Top Left</Button>
-						<Button onClick={() => toast.info("Toast Info", { position: "top-center" })}>Top Center</Button>
-						<Button onClick={() => toast.info("Toast Info", { position: "top-right" })}>Top Right</Button>
-						<Button onClick={() => toast.info("Toast Info", { position: "bottom-right" })}>Bottom Right</Button>
-						<Button onClick={() => toast.info("Toast Info", { position: "bottom-center" })}>Bottom Center</Button>
-						<Button onClick={() => toast.info("Toast Info", { position: "bottom-left" })}>Bottom Left</Button>
-					</Flex>
-				</Card>
-				<Card title="With Promise" bordered={false} className="flex-none lg:flex-1">
-					<Flex gap={16} justify="center" align="center" wrap>
-						<Button onClick={handleSubmit}>On Submit</Button>
-					</Flex>
-				</Card>
-			</Flex>
-		</Flex>
+			<Card title="Position">
+				<CardHeader>
+					<CardTitle>Position</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<div className="flex flex-wrap gap-4">
+						<Button variant="outline" onClick={() => toast.info("Toast Info", { position: "top-left" })}>
+							Top Left
+						</Button>
+						<Button variant="outline" onClick={() => toast.info("Toast Info", { position: "top-center" })}>
+							Top Center
+						</Button>
+						<Button variant="outline" onClick={() => toast.info("Toast Info", { position: "top-right" })}>
+							Top Right
+						</Button>
+						<Button variant="outline" onClick={() => toast.info("Toast Info", { position: "bottom-right" })}>
+							Bottom Right
+						</Button>
+						<Button variant="outline" onClick={() => toast.info("Toast Info", { position: "bottom-center" })}>
+							Bottom Center
+						</Button>
+						<Button variant="outline" onClick={() => toast.info("Toast Info", { position: "bottom-left" })}>
+							Bottom Left
+						</Button>
+					</div>
+				</CardContent>
+			</Card>
+			<Card title="With Promise">
+				<CardHeader>
+					<CardTitle>With Promise</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Button variant="outline" onClick={handleSubmit}>
+						On Submit
+					</Button>
+				</CardContent>
+			</Card>
+		</div>
 	);
 }

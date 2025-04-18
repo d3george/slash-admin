@@ -1,8 +1,7 @@
-import Card from "@/components/card";
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { faker } from "@faker-js/faker";
-import { Typography } from "antd";
 
 export default function TopAuthor() {
 	const getTrophyIconColor = (index: number) => {
@@ -26,11 +25,11 @@ export default function TopAuthor() {
 		}
 	};
 	return (
-		<Card className="flex-col">
-			<header className="self-start">
-				<Typography.Title level={5}>Top Authors</Typography.Title>
-			</header>
-			<main className="w-full">
+		<Card>
+			<CardHeader>
+				<CardTitle>Top Authors</CardTitle>
+			</CardHeader>
+			<CardContent>
 				{new Array(3).fill("").map((_, index) => (
 					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 					<div key={index} className="mb-4 flex">
@@ -53,7 +52,7 @@ export default function TopAuthor() {
 						</div>
 					</div>
 				))}
-			</main>
+			</CardContent>
 		</Card>
 	);
 }

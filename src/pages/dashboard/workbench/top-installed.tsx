@@ -1,6 +1,5 @@
-import Card from "@/components/card";
 import { Icon } from "@/components/icon";
-import { Typography } from "antd";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import type { ReactNode } from "react";
 
 const dataSource = [
@@ -44,27 +43,27 @@ const dataSource = [
 const platformIcon = (platform: string) => {
 	let iconify: ReactNode;
 	if (platform === "android") {
-		iconify = <Icon icon="uiw:android" />;
+		iconify = <Icon icon="uiw:android" size={12} />;
 	}
 	if (platform === "windows") {
-		iconify = <Icon icon="mingcute:windows-fill" />;
+		iconify = <Icon icon="mingcute:windows-fill" size={12} />;
 	}
-	iconify = <Icon icon="wpf:mac-os" />;
+	iconify = <Icon icon="wpf:mac-os" size={12} />;
 
-	return <div className="mr-1 text-xs text-gray">{iconify}</div>;
+	return iconify;
 };
 export default function TopInstalled() {
 	return (
-		<Card className="flex-col">
-			<header className="self-start">
-				<Typography.Title level={5}>Top Installed Countries</Typography.Title>
-			</header>
-			<main className="w-full">
+		<Card>
+			<CardHeader>
+				<CardTitle>Top Installed Countries</CardTitle>
+			</CardHeader>
+			<CardContent>
 				{dataSource.map((item) => (
 					<div className="mb-4 flex items-center" key={item.country}>
 						<Icon icon={item.iconify} size={30} />
 						<span className="mx-2 font-medium">{item.country}</span>
-						<div className="ml-auto flex">
+						<div className="ml-auto flex items-center">
 							<div className="flex items-center justify-center">
 								{platformIcon("android")}
 								{item.android}
@@ -82,7 +81,7 @@ export default function TopInstalled() {
 						</div>
 					</div>
 				))}
-			</main>
+			</CardContent>
 		</Card>
 	);
 }

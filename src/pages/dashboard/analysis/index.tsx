@@ -8,7 +8,7 @@ import ChartMixed from "@/pages/components/chart/view/chart-mixed";
 import ChartPie from "@/pages/components/chart/view/chart-pie";
 import ChartRadar from "@/pages/components/chart/view/chart-radar";
 import { themeVars } from "@/theme/theme.css";
-import { Card, Col, Row, Typography } from "antd";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import AnalysisCard from "./analysis-card";
 import AnalysisNews from "./analysis-news";
 import AnalysisOrderTimeline from "./analysis-order-timeline";
@@ -18,138 +18,137 @@ import AnalysisTrafficCard from "./analysis-traffic-card";
 function Analysis() {
 	return (
 		<div className="p-2">
-			<Typography.Title level={2}>Hi, Welcome back 👋</Typography.Title>
-			<Row gutter={[16, 16]} justify="center">
-				<Col lg={6} md={12} span={24}>
-					<AnalysisCard
-						cover={glass_bag}
-						title="714k"
-						subtitle="Weekly Sales"
-						style={{
-							color: themeVars.colors.palette.success.dark,
-							backgroundColor: `rgba(${themeVars.colors.palette.success.defaultChannel} / .2)`,
-						}}
-					/>
-				</Col>
-				<Col lg={6} md={12} span={24}>
-					<AnalysisCard
-						cover={glass_users}
-						title="1.35m"
-						subtitle="New Users"
-						style={{
-							color: themeVars.colors.palette.info.dark,
-							backgroundColor: `rgba(${themeVars.colors.palette.info.defaultChannel} / .2)`,
-						}}
-					/>
-				</Col>
-				<Col lg={6} md={12} span={24}>
-					<AnalysisCard
-						cover={glass_buy}
-						title="1.72m"
-						subtitle="New Orders"
-						style={{
-							color: themeVars.colors.palette.warning.dark,
-							backgroundColor: `rgba(${themeVars.colors.palette.warning.defaultChannel} / .2)`,
-						}}
-					/>
-				</Col>
-				<Col lg={6} md={12} span={24}>
-					<AnalysisCard
-						cover={glass_message}
-						title="234"
-						subtitle="Bug Reports"
-						style={{
-							color: themeVars.colors.palette.error.dark,
-							backgroundColor: `rgba(${themeVars.colors.palette.error.defaultChannel} / .2)`,
-						}}
-					/>
-				</Col>
-			</Row>
+			<h2>Hi, Welcome back 👋</h2>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+				<AnalysisCard
+					cover={glass_bag}
+					title="714k"
+					subtitle="Weekly Sales"
+					style={{
+						color: themeVars.colors.palette.success.dark,
+						backgroundColor: `rgba(${themeVars.colors.palette.success.defaultChannel} / .2)`,
+					}}
+				/>
+				<AnalysisCard
+					cover={glass_users}
+					title="1.35m"
+					subtitle="New Users"
+					style={{
+						color: themeVars.colors.palette.info.dark,
+						backgroundColor: `rgba(${themeVars.colors.palette.info.defaultChannel} / .2)`,
+					}}
+				/>
+				<AnalysisCard
+					cover={glass_buy}
+					title="1.72m"
+					subtitle="New Orders"
+					style={{
+						color: themeVars.colors.palette.warning.dark,
+						backgroundColor: `rgba(${themeVars.colors.palette.warning.defaultChannel} / .2)`,
+					}}
+				/>
+				<AnalysisCard
+					cover={glass_message}
+					title="234"
+					subtitle="Bug Reports"
+					style={{
+						color: themeVars.colors.palette.error.dark,
+						backgroundColor: `rgba(${themeVars.colors.palette.error.defaultChannel} / .2)`,
+					}}
+				/>
+			</div>
 
-			<Row gutter={[16, 16]} className="mt-8" justify="center">
-				<Col span={24} lg={12} xl={16}>
-					<Card title="Website Visits">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+				<Card title="Website Visits">
+					<CardHeader>
+						<CardTitle>Website Visits</CardTitle>
+					</CardHeader>
+					<CardContent>
 						<ChartMixed />
-					</Card>
-				</Col>
-				<Col span={24} lg={12} xl={8}>
-					<Card title="Current Visits">
+					</CardContent>
+				</Card>
+				<Card title="Current Visits">
+					<CardHeader>
+						<CardTitle>Current Visits</CardTitle>
+					</CardHeader>
+					<CardContent>
 						<ChartPie />
-					</Card>
-				</Col>
-			</Row>
-
-			<Row gutter={[16, 16]} className="mt-8" justify="center">
-				<Col span={24} lg={12} xl={16}>
-					<Card title="Conversion Rates">
+					</CardContent>
+				</Card>
+				<Card title="Conversion Rates">
+					<CardHeader>
+						<CardTitle>Conversion Rates</CardTitle>
+					</CardHeader>
+					<CardContent>
 						<ChartBar />
-					</Card>
-				</Col>
-				<Col span={24} lg={12} xl={8}>
-					<Card title="Current Subject">
+					</CardContent>
+				</Card>
+				<Card title="Current Subject">
+					<CardHeader>
+						<CardTitle>Current Subject</CardTitle>
+					</CardHeader>
+					<CardContent>
 						<ChartRadar />
-					</Card>
-				</Col>
-			</Row>
-
-			<Row gutter={[16, 16]} className="mt-8">
-				<Col span={24} lg={12} xl={16}>
-					<Card title="News">
+					</CardContent>
+				</Card>
+				<Card title="News">
+					<CardHeader>
+						<CardTitle>News</CardTitle>
+					</CardHeader>
+					<CardContent>
 						<AnalysisNews />
-					</Card>
-				</Col>
-				<Col span={24} lg={12} xl={8}>
-					<Card title="Order Timeline">
+					</CardContent>
+				</Card>
+				<Card title="Order Timeline">
+					<CardHeader>
+						<CardTitle>Order Timeline</CardTitle>
+					</CardHeader>
+					<CardContent>
 						<AnalysisOrderTimeline />
-					</Card>
-				</Col>
-			</Row>
+					</CardContent>
+				</Card>
 
-			<Row gutter={[16, 16]} className="my-8">
-				<Col span={24} lg={12} xl={8}>
-					<Card title="Traffic by Site">
-						<Row gutter={[16, 16]}>
-							<Col span={12}>
-								<AnalysisTrafficCard
-									icon={<Icon icon="bxl:facebook" size={32} color="#1877f2" />}
-									title="1.95k"
-									subtitle="FaceBook"
-								/>
-							</Col>
+				<Card title="Traffic by Site">
+					<CardHeader>
+						<CardTitle>Traffic by Site</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<AnalysisTrafficCard
+								icon={<Icon icon="ant-design:facebook-outlined" size={32} color="#1877f2" />}
+								title="1.95k"
+								subtitle="FaceBook"
+							/>
+							<AnalysisTrafficCard
+								icon={<Icon icon="ant-design:google-outlined" size={32} color="#df3e30" />}
+								title="9.12k"
+								subtitle="Google"
+							/>
 
-							<Col span={12}>
-								<AnalysisTrafficCard
-									icon={<Icon icon="ant-design:google-outlined" size={32} color="#df3e30" />}
-									title="9.12k"
-									subtitle="Google"
-								/>
-							</Col>
+							<AnalysisTrafficCard
+								icon={<Icon icon="eva:linkedin-fill" size={32} color="#006097" />}
+								title="6.98k"
+								subtitle="Linkedin"
+							/>
 
-							<Col span={12}>
-								<AnalysisTrafficCard
-									icon={<Icon icon="eva:linkedin-fill" size={32} color="#006097" />}
-									title="6.98k"
-									subtitle="Linkedin"
-								/>
-							</Col>
+							<AnalysisTrafficCard
+								icon={<Icon icon="eva:twitter-fill" size={32} color="#1c9cea" />}
+								title="8.49k"
+								subtitle="Twitter"
+							/>
+						</div>
+					</CardContent>
+				</Card>
 
-							<Col span={12}>
-								<AnalysisTrafficCard
-									icon={<Icon icon="eva:twitter-fill" size={32} color="#1c9cea" />}
-									title="8.49k"
-									subtitle="Twitter"
-								/>
-							</Col>
-						</Row>
-					</Card>
-				</Col>
-
-				<Col span={24} lg={12} xl={16}>
-					<Card title="Tasks">
+				<Card title="Tasks">
+					<CardHeader>
+						<CardTitle>Tasks</CardTitle>
+					</CardHeader>
+					<CardContent>
 						<AnalysisTasks />
-					</Card>
-				</Col>
-			</Row>
+					</CardContent>
+				</Card>
+			</div>
 		</div>
 	);
 }

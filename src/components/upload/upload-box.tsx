@@ -2,7 +2,6 @@ import { Icon } from "@/components/icon";
 import type { UploadProps } from "antd";
 import Dragger from "antd/es/upload/Dragger";
 import type { ReactElement } from "react";
-
 import { StyledUploadBox } from "./styles";
 
 interface Props extends UploadProps {
@@ -14,7 +13,7 @@ export function UploadBox({ placeholder, ...other }: Props) {
 			<Dragger {...other} showUploadList={false}>
 				<div className="opacity-60 hover:opacity-50">
 					{placeholder || (
-						<div className="m-auto flex h-16 w-16 items-center justify-center ">
+						<div className="mx-auto flex h-16 w-16 items-center justify-center">
 							<Icon icon="eva:cloud-upload-fill" size={28} />
 						</div>
 					)}

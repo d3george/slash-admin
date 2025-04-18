@@ -1,6 +1,6 @@
 import Editor from "@/components/editor";
-import { themeVars } from "@/theme/theme.css";
-import { Card, Typography } from "antd";
+import { Button } from "@/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { useState } from "react";
 
 export default function EditorPage() {
@@ -9,19 +9,27 @@ export default function EditorPage() {
 
 	return (
 		<>
-			<Typography.Link
-				href="https://github.com/zenoamaro/react-quill"
-				style={{ color: themeVars.colors.palette.primary.default }}
-				className="mb-4 block"
-			>
-				https://github.com/zenoamaro/react-quill
-			</Typography.Link>
+			<Button variant="link" asChild className="mb-4 block">
+				<a href="https://github.com/zenoamaro/react-quill" target="_blank" rel="noreferrer">
+					https://github.com/zenoamaro/react-quill
+				</a>
+			</Button>
 			<Card title="Editor Simple">
-				<Editor id="sample-editor" sample value={quillSimple} onChange={setQuillSimple} />
+				<CardHeader>
+					<CardTitle>Editor Simple</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Editor id="sample-editor" sample value={quillSimple} onChange={setQuillSimple} />
+				</CardContent>
 			</Card>
 			<div className="h-10" />
 			<Card title="Editor Full">
-				<Editor id="full-editor" value={quillFull} onChange={setQuillFull} />
+				<CardHeader>
+					<CardTitle>Editor Full</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Editor id="full-editor" value={quillFull} onChange={setQuillFull} />
+				</CardContent>
 			</Card>
 		</>
 	);

@@ -1,8 +1,8 @@
-import Card from "@/components/card";
 import { Icon } from "@/components/icon";
-import Scrollbar from "@/components/scrollbar";
 import { Button } from "@/ui/button";
-import { Space, Tag, Typography } from "antd";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { ScrollArea, ScrollBar } from "@/ui/scroll-area";
+import { Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 
 interface DataType {
@@ -48,11 +48,9 @@ export default function NewInvoice() {
 			title: "Action",
 			key: "action",
 			render: () => (
-				<Space size="middle">
-					<Button variant="ghost" size="icon">
-						<Icon icon="fontisto:more-v-a" />
-					</Button>
-				</Space>
+				<Button variant="ghost" size="icon">
+					<Icon icon="fontisto:more-v-a" />
+				</Button>
 			),
 		},
 	];
@@ -96,15 +94,16 @@ export default function NewInvoice() {
 	];
 
 	return (
-		<Card className="flex-col">
-			<header className="self-start">
-				<Typography.Title level={5}>New Invoice</Typography.Title>
-			</header>
-			<main className="w-full">
-				<Scrollbar>
+		<Card>
+			<CardHeader>
+				<CardTitle>New Invoice</CardTitle>
+			</CardHeader>
+			<CardContent>
+				<ScrollArea>
 					<Table columns={columns} dataSource={data} />
-				</Scrollbar>
-			</main>
+					<ScrollBar orientation="horizontal" />
+				</ScrollArea>
+			</CardContent>
 		</Card>
 	);
 }

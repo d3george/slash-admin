@@ -1,8 +1,8 @@
-import { Card, Typography } from "antd";
-import { useState } from "react";
-
 import Markdown from "@/components/markdown";
 import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { useState } from "react";
 
 const TEXT = `
 # h1
@@ -68,15 +68,24 @@ export default function MarkdownPage() {
 	const [content] = useState(TEXT);
 	return (
 		<>
-			<Typography.Link
-				href="https://github.com/remarkjs/react-markdown"
-				style={{ color: themeVars.colors.palette.primary.default }}
-				className="mb-4 block"
-			>
-				https://github.com/remarkjs/react-markdown
-			</Typography.Link>
+			<Button variant="link" asChild>
+				<a
+					href="https://github.com/remarkjs/react-markdown"
+					target="_blank"
+					rel="noreferrer"
+					style={{ color: themeVars.colors.palette.primary.default }}
+					className="mb-4 block"
+				>
+					https://github.com/remarkjs/react-markdown
+				</a>
+			</Button>
 			<Card title="Mardown content">
-				<Markdown>{content}</Markdown>
+				<CardHeader>
+					<CardTitle>Mardown content</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Markdown>{content}</Markdown>
+				</CardContent>
 			</Card>
 		</>
 	);

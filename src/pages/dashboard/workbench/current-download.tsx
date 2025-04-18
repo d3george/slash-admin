@@ -1,18 +1,16 @@
-import { Typography } from "antd";
-
-import Card from "@/components/card";
 import Chart from "@/components/chart/chart";
 import useChart from "@/components/chart/useChart";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 
 export default function CurrentDownload() {
 	return (
-		<Card className="flex-col">
-			<header className="self-start">
-				<Typography.Title level={5}>Current Download</Typography.Title>
-			</header>
-			<main>
+		<Card>
+			<CardHeader>
+				<CardTitle>Current Download</CardTitle>
+			</CardHeader>
+			<CardContent>
 				<ChartDonut />
-			</main>
+			</CardContent>
 		</Card>
 	);
 }
@@ -52,7 +50,5 @@ function ChartDonut() {
 		},
 	});
 
-	return (
-		<Chart type="donut" series={series} options={chartOptions} height={360} />
-	);
+	return <Chart type="donut" series={series} options={chartOptions} height={360} />;
 }

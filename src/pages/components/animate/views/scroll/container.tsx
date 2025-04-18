@@ -1,9 +1,8 @@
-import { Card, Typography } from "antd";
-import { useMemo } from "react";
-
 import MotionViewport from "@/components/animate/motion-viewport";
 import { getVariant } from "@/components/animate/variants";
 import { themeVars } from "@/theme/theme.css";
+import { Card } from "@/ui/card";
+import { useMemo } from "react";
 
 type Props = {
 	variant: string;
@@ -21,7 +20,7 @@ export default function ContainerView({ variant }: Props) {
 				// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 				<MotionViewport key={index} variants={varients} className="mt-4">
 					<Card>
-						<Typography className="text-center">Item {index + 1}</Typography>
+						<span className="text-center">Item {index + 1}</span>
 					</Card>
 				</MotionViewport>
 			))}

@@ -1,8 +1,6 @@
-import { Card, Col, Row } from "antd";
+import { Card, CardContent, CardHeader } from "@/ui/card";
 import { useMemo, useState } from "react";
-
 import ControlPanel from "../../control-panel";
-
 import ContainerView from "./container";
 import Toolbar from "./toolbar";
 
@@ -12,32 +10,30 @@ export default function BackgroundView() {
 			selectedVariant: "kenburnsTop",
 		};
 	}, []);
-	const [selectedVariant, setSelectedVariant] = useState(
-		defaultValue.selectedVariant,
-	);
+	const [selectedVariant, setSelectedVariant] = useState(defaultValue.selectedVariant);
 
 	const onRefresh = () => {
 		setSelectedVariant(defaultValue.selectedVariant);
 	};
 	return (
 		<Card>
-			<Row>
-				<Col xs={24} md={18}>
-					<Toolbar onRefresh={onRefresh} />
-				</Col>
-			</Row>
-			<Row justify="space-between">
-				<Col xs={24} md={18}>
-					<ContainerView variant={selectedVariant} />
-				</Col>
-				<Col xs={24} md={5}>
-					<ControlPanel
-						variantKey={variantKey}
-						selectedVariant={selectedVariant}
-						onChangeVarient={(varient) => setSelectedVariant(varient)}
-					/>
-				</Col>
-			</Row>
+			<CardHeader>
+				<Toolbar onRefresh={onRefresh} />
+			</CardHeader>
+			<CardContent>
+				<div className="flex md:flex-row flex-col gap-2">
+					<div className="flex-3">
+						<ContainerView variant={selectedVariant} />
+					</div>
+					<div className="flex-1">
+						<ControlPanel
+							variantKey={variantKey}
+							selectedVariant={selectedVariant}
+							onChangeVarient={(varient) => setSelectedVariant(varient)}
+						/>
+					</div>
+				</div>
+			</CardContent>
 		</Card>
 	);
 }

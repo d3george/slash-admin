@@ -1,12 +1,12 @@
-import { Card, Image, Tooltip, Typography } from "antd";
+import { varFade } from "@/components/animate/variants";
+import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
+import { Card } from "@/ui/card";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/ui/tooltip";
+import { fBytes } from "@/utils/format-number";
 import type { ItemRender } from "antd/es/upload/interface";
 import { m } from "framer-motion";
 import { useEffect, useState } from "react";
-
-import { varFade } from "@/components/animate/variants";
-import { Icon } from "@/components/icon";
-import { fBytes } from "@/utils/format-number";
-
 import { getBlobUrl, getFileFormat, getFileThumb } from "./utils";
 
 type Props = {
@@ -31,58 +31,48 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
 	}, [file, format]);
 
 	const closeButton = (
-		<button
-			type="button"
-			className="ml-auto h-6 w-6 cursor-pointer rounded-full text-center hover:bg-gray-400 hover:bg-opacity-20"
-			onClick={actions.remove}
-		>
-			<Icon icon="mingcute:close-line" size={14} className="text-gray-600" />
-		</button>
+		<Button variant="ghost" size="icon" className="ml-auto rounded-full" onClick={actions.remove}>
+			<Icon icon="mingcute:close-line" size={16} />
+		</Button>
 	);
 
-	const thumbList = (
+	const thumbItem = (
 		<Card
 			className="relative flex items-center justify-center"
 			style={{ width: 80, height: 80, marginTop: "8px", marginRight: "8px" }}
 		>
-			<Tooltip title={name}>
-				{format === "img" ? (
-					<Image src={imgThumbUrl} preview={false} width={40} height={40} />
-				) : (
-					<Icon icon={`local:${thumb}`} size={40} />
-				)}
+			<Tooltip>
+				<TooltipTrigger>
+					{format === "img" ? (
+						<img src={imgThumbUrl} alt={name} className="w-8 h-8" />
+					) : (
+						<Icon icon={`local:${thumb}`} size={40} />
+					)}
+				</TooltipTrigger>
+				<TooltipContent>{name}</TooltipContent>
 			</Tooltip>
 			<div className="absolute right-0 top-0">{closeButton}</div>
 		</Card>
 	);
-	const cardList = (
-		<Card
-			styles={{
-				body: {
-					display: "flex",
-					alignItems: "center",
-					padding: "8px 12px",
-				},
-			}}
-			style={{ marginTop: "8px" }}
-		>
-			{format === "img" ? (
-				<Image src={imgThumbUrl} preview={false} width={32} height={32} />
-			) : (
-				<Icon icon={`local:${thumb}`} size={32} />
-			)}
-			<div className="ml-4 flex flex-col">
-				<Typography.Text className="text-sm! font-medium!">{name}</Typography.Text>
-				<Typography.Text type="secondary" className="text-xs!">
-					{fBytes(size)}
-				</Typography.Text>
+	const cardItem = (
+		<Card className="p-2 mt-2">
+			<div className="flex items-center gap-2">
+				{format === "img" ? (
+					<img src={imgThumbUrl} alt={name} className="w-8 h-8" />
+				) : (
+					<Icon icon={`local:${thumb}`} size={32} />
+				)}
+				<div className="ml-4 flex flex-col">
+					<p className="text-sm font-medium">{name}</p>
+					<p className="text-xs">{fBytes(size)}</p>
+				</div>
+				{closeButton}
 			</div>
-			{closeButton}
 		</Card>
 	);
 	return (
 		<m.div initial="initial" animate="animate" exit="exit" variants={varFade().inUp}>
-			{thumbnail ? thumbList : cardList}
+			{thumbnail ? thumbItem : cardItem}
 		</m.div>
 	);
 }

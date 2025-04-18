@@ -1,4 +1,4 @@
-import { Upload as AntdUpload, Typography } from "antd";
+import { Upload as AntdUpload } from "antd";
 import type { ItemRender } from "antd/es/upload/interface";
 import { StyledUpload } from "./styles";
 import UploadIllustration from "./upload-illustration";
@@ -7,7 +7,6 @@ import UploadListItem from "./upload-list-item";
 import type { UploadProps } from "antd";
 
 const { Dragger } = AntdUpload;
-const { Text, Title } = Typography;
 
 interface Props extends UploadProps {
 	thumbnail?: boolean;
@@ -27,18 +26,14 @@ export function Upload({ thumbnail = false, ...other }: Props) {
 					<p className="m-auto max-w-[200px]">
 						<UploadIllustration />
 					</p>
-					<Typography>
-						<Title level={5} className="mt-4">
-							Drop or Select file
-						</Title>
-						<Text type="secondary">
+					<div>
+						<h5 className="mt-4">Drop or Select file</h5>
+						<p className="text-sm text-gray-500">
 							Drop files here or click
-							<Text className="mx-2 text-primary!" underline>
-								browse
-							</Text>
+							<span className="mx-2 text-primary underline">browse</span>
 							thorough your machine
-						</Text>
-					</Typography>
+						</p>
+					</div>
 				</div>
 			</Dragger>
 		</StyledUpload>

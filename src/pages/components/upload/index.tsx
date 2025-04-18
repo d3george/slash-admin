@@ -1,8 +1,9 @@
-import { Card, Col, Row, Space, Switch, Tabs, type TabsProps, Typography } from "antd";
-import { useState } from "react";
-
 import { Icon } from "@/components/icon";
 import { Upload, UploadAvatar, UploadBox } from "@/components/upload";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { Switch } from "@/ui/switch";
+import { Tabs, type TabsProps } from "antd";
+import { useState } from "react";
 
 export default function UploadPage() {
 	const [thumbnail, setThumbnail] = useState<boolean>(false);
@@ -11,50 +12,68 @@ export default function UploadPage() {
 		setThumbnail(checked);
 	};
 
-	const ThumbnailSwitch = <Switch size="small" checked={thumbnail} onChange={onChange} />;
+	const ThumbnailSwitch = <Switch checked={thumbnail} onCheckedChange={onChange} />;
 
 	const boxPlaceHolder = (
 		<div className="flex flex-col">
 			<Icon icon="eva:cloud-upload-fill" size={40} />
-			<Typography.Text type="secondary" className="">
-				Upload File
-			</Typography.Text>
+			<span className="text-sm text-gray-500">Upload File</span>
 		</div>
 	);
 	const UploadFileTab = (
-		<Space direction="vertical" size="middle" style={{ display: "flex" }}>
-			<Card title="Upload Multi File" className="w-full" extra={ThumbnailSwitch}>
-				<Upload thumbnail={thumbnail} name="multi" />
+		<div className="flex flex-col gap-4">
+			<Card title="Upload Multi File" className="w-full">
+				<CardHeader>
+					<CardTitle>
+						<div className="flex items-center gap-2">
+							<span>Upload Multi File</span>
+							{ThumbnailSwitch}
+						</div>
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Upload thumbnail={thumbnail} name="multi" />
+				</CardContent>
 			</Card>
-			<Card title="Upload Single File" extra={ThumbnailSwitch}>
-				<Upload thumbnail={thumbnail} maxCount={1} name="single" />
+			<Card title="Upload Single File">
+				<CardHeader>
+					<CardTitle>
+						<div className="flex items-center gap-2">
+							<span>Upload Single File</span>
+							{ThumbnailSwitch}
+						</div>
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Upload thumbnail={thumbnail} maxCount={1} name="single" />
+				</CardContent>
 			</Card>
-		</Space>
+		</div>
 	);
 	const UploadAvatarTab = (
-		<Card
-			title="Upload Avatar"
-			styles={{
-				body: {
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "center",
-					alignItems: "center",
-				},
-			}}
-		>
-			<UploadAvatar />
+		<Card title="Upload Avatar">
+			<CardHeader>
+				<CardTitle>
+					<div className="flex items-center gap-2">
+						<span>Upload Avatar</span>
+						{ThumbnailSwitch}
+					</div>
+				</CardTitle>
+			</CardHeader>
+			<CardContent>
+				<UploadAvatar />
+			</CardContent>
 		</Card>
 	);
 	const UploadBoxTab = (
-		<Row gutter={[16, 16]}>
-			<Col span={24} md={4}>
+		<div className="flex flex-col gap-4">
+			<div className="w-40 h-40">
 				<UploadBox />
-			</Col>
-			<Col span={24} md={20}>
+			</div>
+			<div>
 				<UploadBox placeholder={boxPlaceHolder} />
-			</Col>
-		</Row>
+			</div>
+		</div>
 	);
 
 	const TABS: TabsProps["items"] = [
