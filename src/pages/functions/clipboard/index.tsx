@@ -1,8 +1,10 @@
 import { Icon } from "@/components/icon";
 import { useCopyToClipboard } from "@/hooks";
 import { Button } from "@/ui/button";
+import { Card, CardContent } from "@/ui/card";
+import { Input } from "@/ui/input";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/ui/tooltip";
 import { faker } from "@faker-js/faker";
-import { Card, Col, Input, Row, Tooltip, Typography } from "antd";
 import { type ChangeEvent, useState } from "react";
 
 export default function ClipboardPage() {
@@ -14,24 +16,30 @@ export default function ClipboardPage() {
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 	const CopyButton = (
-		<Tooltip title="Copy">
-			<Button variant="ghost" size="icon" onClick={() => copyFn(value)}>
-				<Icon icon="eva:copy-fill" size={20} />
-			</Button>
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<Button variant="ghost" size="icon" onClick={() => copyFn(value)}>
+					<Icon icon="eva:copy-fill" size={20} />
+				</Button>
+			</TooltipTrigger>
+			<TooltipContent>Copy</TooltipContent>
 		</Tooltip>
 	);
 	return (
 		<Card>
-			<Row gutter={[16, 16]}>
-				<Col span={24} md={12}>
-					<Typography.Title level={5}>ON CHANGE</Typography.Title>
-					<Input suffix={CopyButton} value={value} onChange={handleChange} />
-				</Col>
-				<Col span={24} md={12}>
-					<Typography.Title level={5}>ON DOUBLE CLICK</Typography.Title>
-					<Typography onDoubleClick={() => copyFn(textOnClick)}>{textOnClick}</Typography>
-				</Col>
-			</Row>
+			<CardContent className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+				<div>
+					<h5 className="mb-2 font-medium">ON CHANGE</h5>
+					<div className="flex items-center gap-2">
+						<Input value={value} onChange={handleChange} />
+						{CopyButton}
+					</div>
+				</div>
+				<div>
+					<h5 className="mb-2 font-medium">ON DOUBLE CLICK</h5>
+					<div onDoubleClick={() => copyFn(textOnClick)}>{textOnClick}</div>
+				</div>
+			</CardContent>
 		</Card>
 	);
 }

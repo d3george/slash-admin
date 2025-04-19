@@ -1,9 +1,9 @@
 import { fakeAvatars } from "@/_mock/utils";
-import Card from "@/components/card";
 import { Icon } from "@/components/icon";
 import { Button } from "@/ui/button";
+import { Card, CardContent } from "@/ui/card";
 import { faker } from "@faker-js/faker";
-import { Avatar, Col, Row, Tag } from "antd";
+import { Avatar, Tag } from "antd";
 
 export default function TeamsTab() {
 	const items = [
@@ -44,10 +44,10 @@ export default function TeamsTab() {
 		},
 	];
 	return (
-		<Row gutter={[16, 16]}>
+		<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 			{items.map((item) => (
-				<Col span={24} md={12} key={item.name}>
-					<Card className="w-full flex-col">
+				<Card key={item.name} className="flex w-full flex-col">
+					<CardContent>
 						<header className="flex w-full items-center">
 							{item.icon}
 							<span className="ml-4 text-xl opacity-70">{item.name}</span>
@@ -70,15 +70,15 @@ export default function TeamsTab() {
 							</Avatar.Group>
 							<div className="ml-auto flex items-center">
 								{item.tags.map((tag) => (
-									<Tag color={faker.color.rgb()} key={tag}>
+									<Tag color={faker.color.rgb()} key={tag} className="text-sm">
 										{tag}
 									</Tag>
 								))}
 							</div>
 						</footer>
-					</Card>
-				</Col>
+					</CardContent>
+				</Card>
 			))}
-		</Row>
+		</div>
 	);
 }

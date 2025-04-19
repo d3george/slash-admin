@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import { Button, Card, Col, Row, Typography } from "antd";
-
 import demoService from "@/api/services/demoService";
+import { Button } from "@/ui/button";
+import { Card, CardContent } from "@/ui/card";
+import { useMutation } from "@tanstack/react-query";
 
 export default function TokenExpired() {
 	const tokenExpiredMutation = useMutation({
@@ -12,18 +12,16 @@ export default function TokenExpired() {
 	};
 	return (
 		<Card>
-			<Row gutter={[16, 16]}>
-				<Col span={24} md={12}>
-					<Typography.Text>
-						Clicking a button to simulate a token expiration scenario.
-					</Typography.Text>
-				</Col>
-				<Col span={24} md={12}>
-					<Button type="primary" onClick={mockTokenExpired}>
+			<CardContent className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+				<div>
+					<p>Clicking a button to simulate a token expiration scenario.</p>
+				</div>
+				<div>
+					<Button asChild onClick={mockTokenExpired}>
 						Simulate Token Expired
 					</Button>
-				</Col>
-			</Row>
+				</div>
+			</CardContent>
 		</Card>
 	);
 }

@@ -1,6 +1,6 @@
-import Card from "@/components/card";
 import { down, useMediaQuery } from "@/hooks";
 import { useSettings } from "@/store/settingStore";
+import { Card, CardContent } from "@/ui/card";
 import { faker } from "@faker-js/faker";
 import type { DateSelectArg, EventClickArg, EventInput } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -174,33 +174,35 @@ export default function Calendar() {
 	};
 
 	return (
-		<Card className="h-full w-full">
-			<div className="h-full w-full">
-				<StyledCalendar $themeMode={themeMode}>
-					<CalendarHeader
-						now={date}
-						view={view}
-						onMove={handleMove}
-						onCreate={() => setOpen(true)}
-						onViewTypeChange={handleViewTypeChange}
-					/>
-					<FullCalendar
-						ref={fullCalendarRef}
-						plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
-						initialDate={date}
-						initialView={xsBreakPoint ? "listWeek" : view}
-						events={INITIAL_EVENTS}
-						eventContent={CalendarEvent}
-						editable
-						selectable
-						selectMirror
-						dayMaxEvents
-						headerToolbar={false}
-						select={handleDateSelect}
-						eventClick={handleEventClick}
-					/>
-				</StyledCalendar>
-			</div>
+		<>
+			<Card className="h-full w-full">
+				<CardContent className="h-full w-full">
+					<StyledCalendar $themeMode={themeMode}>
+						<CalendarHeader
+							now={date}
+							view={view}
+							onMove={handleMove}
+							onCreate={() => setOpen(true)}
+							onViewTypeChange={handleViewTypeChange}
+						/>
+						<FullCalendar
+							ref={fullCalendarRef}
+							plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+							initialDate={date}
+							initialView={xsBreakPoint ? "listWeek" : view}
+							events={INITIAL_EVENTS}
+							eventContent={CalendarEvent}
+							editable
+							selectable
+							selectMirror
+							dayMaxEvents
+							headerToolbar={false}
+							select={handleDateSelect}
+							eventClick={handleEventClick}
+						/>
+					</StyledCalendar>
+				</CardContent>
+			</Card>
 			<CalendarEventForm
 				open={open}
 				type={eventFormType}
@@ -210,6 +212,6 @@ export default function Calendar() {
 				onCreate={handleCreate}
 				onEdit={handleEdit}
 			/>
-		</Card>
+		</>
 	);
 }

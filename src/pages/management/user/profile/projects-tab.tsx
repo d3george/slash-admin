@@ -1,9 +1,9 @@
 import { fakeAvatars } from "@/_mock/utils";
-import Card from "@/components/card";
 import { Icon } from "@/components/icon";
 import { Button } from "@/ui/button";
+import { Card, CardContent } from "@/ui/card";
 import { faker } from "@faker-js/faker";
-import { Avatar, Col, Divider, Row, Tag } from "antd";
+import { Avatar, Divider, Tag } from "antd";
 import dayjs from "dayjs";
 
 export default function ProjectsTab() {
@@ -75,10 +75,10 @@ export default function ProjectsTab() {
 		},
 	];
 	return (
-		<Row gutter={[16, 16]}>
+		<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 			{items.map((item) => (
-				<Col span={24} md={12} key={item.name}>
-					<Card className="w-full flex-col">
+				<Card key={item.name} className="flex w-full flex-col">
+					<CardContent>
 						<header className="flex w-full items-center">
 							{item.icon}
 
@@ -132,9 +132,9 @@ export default function ProjectsTab() {
 								</div>
 							</div>
 						</footer>
-					</Card>
-				</Col>
+					</CardContent>
+				</Card>
 			))}
-		</Row>
+		</div>
 	);
 }

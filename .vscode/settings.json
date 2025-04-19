@@ -9,16 +9,7 @@
     "source.organizeImports.biome": "explicit"
   },
 
-  "tailwindCSS.experimental.classRegex": [
-    [
-      "cn\\(([^)]*)\\)",
-      "[\"'`]([^\"'`]*).*?[\"'`]"
-    ]
-  ],
-  "tailwindCSS.includeLanguages": {
-    "typescript": "javascript",
-    "typescriptreact": "javascript"
-  },
+  "tailwindCSS.classFunctions": [ "cn", "clsx", "cva", "twMerge", ],
   "tailwindCSS.emmetCompletions": true,
 
   "i18n-ally.localesPaths": [ "src/locales/lang" ],
