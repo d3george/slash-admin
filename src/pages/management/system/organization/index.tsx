@@ -1,16 +1,19 @@
+import orgService from "@/api/services/orgService";
+import { Icon } from "@/components/icon";
 import { Button } from "@/ui/button";
+import { Card, CardContent, CardHeader } from "@/ui/card";
+import { Input } from "@/ui/input";
+import { Label } from "@/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/ui/radio-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
+import { Textarea } from "@/ui/textarea";
 import { useQuery } from "@tanstack/react-query";
-import { Card, Col, Form, Input, InputNumber, Modal, Popconfirm, Radio, Row, Select, Space, Tag } from "antd";
+import { Form, Modal, Popconfirm, Space, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import type { TableRowSelection } from "antd/es/table/interface";
 import { useEffect, useState } from "react";
-
-import orgService from "@/api/services/orgService";
-import { Icon } from "@/components/icon";
-
-import OrganizationChart from "./organization-chart";
-
 import type { Organization } from "#/entity";
+import OrganizationChart from "./organization-chart";
 
 type SearchFormFieldType = Pick<Organization, "name" | "status">;
 
@@ -113,51 +116,63 @@ export default function OrganizationPage() {
 	return (
 		<Space direction="vertical" size="large" className="w-full">
 			<Card>
-				<Form form={searchForm}>
-					<Row gutter={[16, 16]}>
-						<Col span={24} lg={6}>
+				<CardContent>
+					<Form form={searchForm}>
+						<div className="flex items-center gap-4">
 							<Form.Item<SearchFormFieldType> label="Name" name="name" className="mb-0!">
 								<Input />
 							</Form.Item>
-						</Col>
-						<Col span={24} lg={6}>
 							<Form.Item<SearchFormFieldType> label="Status" name="status" className="mb-0!">
 								<Select>
-									<Select.Option value="enable">
-										<Tag color="success">Enable</Tag>
-									</Select.Option>
-									<Select.Option value="disable">
-										<Tag color="error">Disable</Tag>
-									</Select.Option>
+									<SelectTrigger>
+										<SelectValue placeholder="Select Status" />
+									</SelectTrigger>
+									<SelectContent>
+										<SelectItem value="enable">
+											<Tag color="success">Enable</Tag>
+										</SelectItem>
+										<SelectItem value="disable">
+											<Tag color="error">Disable</Tag>
+										</SelectItem>
+									</SelectContent>
 								</Select>
 							</Form.Item>
-						</Col>
-						<Col span={24} lg={12}>
-							<div className="flex justify-end">
+							<div className="flex ml-auto">
 								<Button variant="outline" onClick={onSearchFormReset}>
 									Reset
 								</Button>
 								<Button className="ml-4">Search</Button>
 							</div>
-						</Col>
-					</Row>
-				</Form>
+						</div>
+					</Form>
+				</CardContent>
 			</Card>
 
-			<Card title="Organization List" extra={<Button onClick={onCreate}>New</Button>}>
-				<Table
-					rowKey="id"
-					size="small"
-					scroll={{ x: "max-content" }}
-					pagination={false}
-					columns={columns}
-					dataSource={data}
-					rowSelection={{ ...rowSelection }}
-				/>
+			<Card>
+				<CardHeader>
+					<div className="flex items-center justify-between">
+						<div>Organization List</div>
+						<Button onClick={onCreate}>New</Button>
+					</div>
+				</CardHeader>
+				<CardContent>
+					<Table
+						rowKey="id"
+						size="small"
+						scroll={{ x: "max-content" }}
+						pagination={false}
+						columns={columns}
+						dataSource={data}
+						rowSelection={{ ...rowSelection }}
+					/>
+				</CardContent>
 			</Card>
 
-			<Card title="Organization Chart">
-				<OrganizationChart organizations={data} />
+			<Card>
+				<CardHeader>Organization Chart</CardHeader>
+				<CardContent>
+					<OrganizationChart organizations={data} />
+				</CardContent>
 			</Card>
 
 			<OrganizationModal {...organizationModalPros} />
@@ -185,16 +200,22 @@ function OrganizationModal({ title, show, formValue, onOk, onCancel }: Organizat
 					<Input />
 				</Form.Item>
 				<Form.Item<Organization> label="Order" name="order" required>
-					<InputNumber style={{ width: "100%" }} />
+					<Input type="number" />
 				</Form.Item>
 				<Form.Item<Organization> label="Status" name="status" required>
-					<Radio.Group optionType="button" buttonStyle="solid">
-						<Radio value="enable"> Enable </Radio>
-						<Radio value="disable"> Disable </Radio>
-					</Radio.Group>
+					<RadioGroup className="flex gap-2">
+						<div className="flex items-center space-x-2">
+							<RadioGroupItem value="enable" id="r1" />
+							<Label htmlFor="r1">Enable</Label>
+						</div>
+						<div className="flex items-center space-x-2">
+							<RadioGroupItem value="disable" id="r2" />
+							<Label htmlFor="r2">Disable</Label>
+						</div>
+					</RadioGroup>
 				</Form.Item>
 				<Form.Item<Organization> label="Desc" name="desc">
-					<Input.TextArea />
+					<Textarea />
 				</Form.Item>
 			</Form>
 		</Modal>

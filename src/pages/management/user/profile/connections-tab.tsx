@@ -1,7 +1,8 @@
-import Card from "@/components/card";
 import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
+import { Card } from "@/ui/card";
 import { faker } from "@faker-js/faker";
-import { Button, Col, Row, Tag } from "antd";
+import { Tag } from "antd";
 
 export default function ConnectionsTab() {
 	const items = [
@@ -67,47 +68,45 @@ export default function ConnectionsTab() {
 		},
 	];
 	return (
-		<Row gutter={[16, 16]}>
+		<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 			{items.map((item) => (
-				<Col span={24} md={12} lg={8} key={item.name}>
-					<Card className="w-full flex-col items-center">
-						<img alt="" src={item.avatar} className="h-20 w-20 rounded-full" />
+				<Card className="w-full flex-col items-center" key={item.name}>
+					<img alt="" src={item.avatar} className="h-20 w-20 rounded-full" />
 
-						<span className="mt-4 text-xl font-semibold opacity-60">{item.name}</span>
-						<span className="opacity-50">{item.title}</span>
+					<span className="mt-4 text-xl font-semibold opacity-60">{item.name}</span>
+					<span className="opacity-50">{item.title}</span>
 
-						<div className="mt-4 flex gap-4">
-							{item.tags.map((tag) => (
-								<Tag color={faker.color.rgb()} key={tag}>
-									{tag}
-								</Tag>
-							))}
+					<div className="mt-4 flex gap-4">
+						{item.tags.map((tag) => (
+							<Tag color={faker.color.rgb()} key={tag}>
+								{tag}
+							</Tag>
+						))}
+					</div>
+
+					<div className="mt-4 flex gap-4">
+						<div className="[ flex flex-col  items-center">
+							<span className="text-xl font-semibold">{item.projects}</span>
+							<span className="opacity-60">Projects</span>
 						</div>
-
-						<div className="mt-4 flex gap-4">
-							<div className="[ flex flex-col  items-center">
-								<span className="text-xl font-semibold">{item.projects}</span>
-								<span className="opacity-60">Projects</span>
-							</div>
-							<div className="[ flex flex-col  items-center">
-								<span className="text-xl font-semibold">{item.tasks}</span>
-								<span className="opacity-60">Tasks</span>
-							</div>
-							<div className="[ flex flex-col  items-center">
-								<span className="text-xl font-semibold">{item.connections}</span>
-								<span className="opacity-60">Tasks</span>
-							</div>
+						<div className="[ flex flex-col  items-center">
+							<span className="text-xl font-semibold">{item.tasks}</span>
+							<span className="opacity-60">Tasks</span>
 						</div>
-
-						<div className="mt-4 flex">
-							<Button type={item.connected ? "primary" : "dashed"}>
-								<Icon icon="ri:user-add-line" size={14} />
-								<span className="ml-2">CONNECTED</span>
-							</Button>
+						<div className="[ flex flex-col  items-center">
+							<span className="text-xl font-semibold">{item.connections}</span>
+							<span className="opacity-60">Tasks</span>
 						</div>
-					</Card>
-				</Col>
+					</div>
+
+					<div className="mt-4 flex">
+						<Button variant={item.connected ? "default" : "outline"}>
+							<Icon icon="ri:user-add-line" size={14} />
+							<span className="ml-2">CONNECTED</span>
+						</Button>
+					</div>
+				</Card>
 			))}
-		</Row>
+		</div>
 	);
 }

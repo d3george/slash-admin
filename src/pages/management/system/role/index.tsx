@@ -1,7 +1,8 @@
 import { ROLE_LIST } from "@/_mock/assets";
 import { Icon } from "@/components/icon";
 import { Button } from "@/ui/button";
-import { Card, Popconfirm, Tag } from "antd";
+import { Card, CardContent, CardHeader } from "@/ui/card";
+import { Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import { useState } from "react";
 import type { Role } from "#/entity";
@@ -94,16 +95,23 @@ export default function RolePage() {
 	};
 
 	return (
-		<Card title="Role List" extra={<Button onClick={onCreate}>New</Button>}>
-			<Table
-				rowKey="id"
-				size="small"
-				scroll={{ x: "max-content" }}
-				pagination={false}
-				columns={columns}
-				dataSource={ROLES}
-			/>
-
+		<Card>
+			<CardHeader>
+				<div className="flex items-center justify-between">
+					<div>Role List</div>
+					<Button onClick={onCreate}>New</Button>
+				</div>
+			</CardHeader>
+			<CardContent>
+				<Table
+					rowKey="id"
+					size="small"
+					scroll={{ x: "max-content" }}
+					pagination={false}
+					columns={columns}
+					dataSource={ROLES}
+				/>
+			</CardContent>
 			<RoleModal {...roleModalPros} />
 		</Card>
 	);

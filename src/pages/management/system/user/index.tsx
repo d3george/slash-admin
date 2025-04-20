@@ -2,7 +2,8 @@ import { USER_LIST } from "@/_mock/assets";
 import { Icon } from "@/components/icon";
 import { usePathname, useRouter } from "@/router/hooks";
 import { Button } from "@/ui/button";
-import { Card, Popconfirm, Tag } from "antd";
+import { Card, CardContent, CardHeader } from "@/ui/card";
+import { Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import type { Role, UserInfo } from "#/entity";
 import { BasicStatus } from "#/enum";
@@ -78,15 +79,23 @@ export default function RolePage() {
 	];
 
 	return (
-		<Card title="User List" extra={<Button onClick={() => {}}>New</Button>}>
-			<Table
-				rowKey="id"
-				size="small"
-				scroll={{ x: "max-content" }}
-				pagination={false}
-				columns={columns}
-				dataSource={USERS}
-			/>
+		<Card>
+			<CardHeader>
+				<div className="flex items-center justify-between">
+					<div>User List</div>
+					<Button onClick={() => {}}>New</Button>
+				</div>
+			</CardHeader>
+			<CardContent>
+				<Table
+					rowKey="id"
+					size="small"
+					scroll={{ x: "max-content" }}
+					pagination={false}
+					columns={columns}
+					dataSource={USERS}
+				/>
+			</CardContent>
 		</Card>
 	);
 }

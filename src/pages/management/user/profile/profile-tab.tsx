@@ -1,12 +1,11 @@
 import { fakeAvatars } from "@/_mock/utils";
-import Card from "@/components/card";
 import { Icon } from "@/components/icon";
-import Scrollbar from "@/components/scrollbar";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
 import { faker } from "@faker-js/faker";
-import { Avatar, Col, Progress, Row, Space, Table, Tag, Timeline, Typography } from "antd";
+import { Avatar, Progress, Space, Table, Tag, Timeline, Typography } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 interface DataType {
@@ -193,14 +192,15 @@ export default function ProfileTab() {
 
 	return (
 		<>
-			<Row gutter={[16, 16]}>
-				<Col span={24} md={12} lg={8}>
-					<Card className="flex-col">
-						<div className="flex w-full flex-col">
-							<Typography.Title level={5}>About</Typography.Title>
-							<Typography.Text>{faker.lorem.paragraph()}</Typography.Text>
-
-							<div className="mt-2 flex flex-col gap-4">
+			<div className="flex flex-col md:flex-row gap-4">
+				<div className="flex-1">
+					<Card>
+						<CardHeader>
+							<CardTitle>About</CardTitle>
+							<CardDescription>{faker.lorem.paragraph()}</CardDescription>
+						</CardHeader>
+						<CardContent>
+							<div className="flex flex-col gap-4">
 								{AboutItems.map((item) => (
 									<div className="flex" key={item.label}>
 										<div className="mr-2">{item.icon}</div>
@@ -209,167 +209,165 @@ export default function ProfileTab() {
 									</div>
 								))}
 							</div>
-						</div>
+						</CardContent>
 					</Card>
-				</Col>
+				</div>
 
-				<Col span={24} md={12} lg={16}>
-					<Card className="flex-col items-start!">
-						<Typography.Title level={5}>Activity Timeline</Typography.Title>
-						<Timeline
-							className="mt-4! w-full"
-							items={[
-								{
-									color: themeVars.colors.palette.error.default,
-									children: (
-										<div className="flex flex-col">
-											<div className="flex items-center justify-between">
-												<Typography.Text strong>8 Invoices have been paid</Typography.Text>
-												<div className="opacity-50">Wednesday</div>
-											</div>
-											<Typography.Text type="secondary" className="text-xs">
-												Invoices have been paid to the company.
-											</Typography.Text>
+				<div className="flex-2">
+					<Card>
+						<CardHeader>
+							<CardTitle>Activity Timeline</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<Timeline
+								className="mt-4! w-full"
+								items={[
+									{
+										color: themeVars.colors.palette.error.default,
+										children: (
+											<div className="flex flex-col">
+												<div className="flex items-center justify-between">
+													<Typography.Text strong>8 Invoices have been paid</Typography.Text>
+													<div className="opacity-50">Wednesday</div>
+												</div>
+												<Typography.Text type="secondary" className="text-xs">
+													Invoices have been paid to the company.
+												</Typography.Text>
 
-											<div className="mt-2 flex items-center gap-2">
-												<Icon icon="local:file-pdf" size={30} />
-												<span className="font-medium opacity-60">invoice.pdf</span>
+												<div className="mt-2 flex items-center gap-2">
+													<Icon icon="local:file-pdf" size={30} />
+													<span className="font-medium opacity-60">invoice.pdf</span>
+												</div>
 											</div>
-										</div>
-									),
-								},
-								{
-									color: themeVars.colors.palette.primary.default,
-									children: (
-										<div className="flex flex-col">
-											<div className="flex items-center justify-between">
-												<Typography.Text strong>Create a new project for client 😎</Typography.Text>
-												<div className="opacity-50">April, 18</div>
+										),
+									},
+									{
+										color: themeVars.colors.palette.primary.default,
+										children: (
+											<div className="flex flex-col">
+												<div className="flex items-center justify-between">
+													<Typography.Text strong>Create a new project for client 😎</Typography.Text>
+													<div className="opacity-50">April, 18</div>
+												</div>
+												<Typography.Text type="secondary" className="text-xs">
+													Invoices have been paid to the company.
+												</Typography.Text>
+												<div className="mt-2 flex items-center gap-2">
+													<img alt="" src={faker.image.avatarGitHub()} className="h-8 w-8 rounded-full" />
+													<span className="font-medium opacity-60">{faker.person.fullName()} (client)</span>
+												</div>
 											</div>
-											<Typography.Text type="secondary" className="text-xs">
-												Invoices have been paid to the company.
-											</Typography.Text>
-											<div className="mt-2 flex items-center gap-2">
-												<img alt="" src={faker.image.avatarGitHub()} className="h-8 w-8 rounded-full" />
-												<span className="font-medium opacity-60">{faker.person.fullName()} (client)</span>
+										),
+									},
+									{
+										color: themeVars.colors.palette.info.default,
+										children: (
+											<div className="flex flex-col">
+												<div className="flex items-center justify-between">
+													<Typography.Text strong>Order #37745 from September</Typography.Text>
+													<div className="opacity-50">January, 10</div>
+												</div>
+												<Typography.Text type="secondary" className="text-xs">
+													Invoices have been paid to the company.
+												</Typography.Text>
 											</div>
-										</div>
-									),
-								},
-								{
-									color: themeVars.colors.palette.info.default,
-									children: (
-										<div className="flex flex-col">
-											<div className="flex items-center justify-between">
-												<Typography.Text strong>Order #37745 from September</Typography.Text>
-												<div className="opacity-50">January, 10</div>
+										),
+									},
+									{
+										color: themeVars.colors.palette.warning.default,
+										children: (
+											<div className="flex flex-col">
+												<div className="flex items-center justify-between">
+													<Typography.Text strong>Public Meeting</Typography.Text>
+													<div className="opacity-50">September, 30</div>
+												</div>
 											</div>
-											<Typography.Text type="secondary" className="text-xs">
-												Invoices have been paid to the company.
-											</Typography.Text>
-										</div>
-									),
-								},
-								{
-									color: themeVars.colors.palette.warning.default,
-									children: (
-										<div className="flex flex-col">
-											<div className="flex items-center justify-between">
-												<Typography.Text strong>Public Meeting</Typography.Text>
-												<div className="opacity-50">September, 30</div>
-											</div>
-										</div>
-									),
-								},
-							]}
-						/>
+										),
+									},
+								]}
+							/>
+						</CardContent>
 					</Card>
-				</Col>
-			</Row>
-			<Row gutter={[16, 16]} className="mt-4">
-				<Col span={24} md={12}>
-					<Card className="flex-col items-start!">
-						<div className="flex w-full items-center justify-between">
-							<Typography.Title level={5}>Connections</Typography.Title>
-							<Button variant="ghost" size="icon">
-								<Icon icon="fontisto:more-v-a" />
-							</Button>
-						</div>
-						<div className="mt-2 flex w-full flex-col gap-4">
-							{ConnectionsItems.map((item) => (
-								<div className="flex" key={item.name}>
-									<img alt="" src={item.avatar} className="h-10 w-10 flex-none rounded-full" />
-									<div className="ml-4 flex flex-1 flex-col">
-										<span className="font-semibold">{item.name}</span>
-										<span className="mt-1 text-xs opacity-50">{item.connections}</span>
+				</div>
+			</div>
+			<div className="flex flex-col md:flex-row gap-4">
+				<div className="flex-1">
+					<Card>
+						<CardHeader>
+							<CardTitle className="w-full flex items-center justify-between">
+								<span>Connections</span>
+								<Button variant="ghost" size="icon">
+									<Icon icon="fontisto:more-v-a" />
+								</Button>
+							</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<div className="flex w-full flex-col gap-4">
+								{ConnectionsItems.map((item) => (
+									<div className="flex" key={item.name}>
+										<img alt="" src={item.avatar} className="h-10 w-10 flex-none rounded-full" />
+										<div className="ml-4 flex flex-1 flex-col">
+											<span className="font-semibold">{item.name}</span>
+											<span className="mt-1 text-xs opacity-50">{item.connections}</span>
+										</div>
+										<div
+											className="flex h-8 w-8 flex-none items-center justify-center rounded"
+											style={{
+												backgroundColor: item.connected ? themeVars.colors.palette.primary.default : "transparent",
+												border: item.connected ? "" : `1px solid ${themeVars.colors.palette.primary.default}`,
+											}}
+										>
+											<Icon
+												icon="tdesign:user"
+												color={item.connected ? "#fff" : themeVars.colors.palette.primary.default}
+												size={20}
+											/>
+										</div>
 									</div>
-									<div
-										className="flex h-8 w-8 flex-none items-center justify-center rounded"
-										style={{
-											backgroundColor: item.connected ? themeVars.colors.palette.primary.default : "transparent",
-											border: item.connected ? "" : `1px solid ${themeVars.colors.palette.primary.default}`,
-										}}
-									>
-										<Icon
-											icon="tdesign:user"
-											color={item.connected ? "#fff" : themeVars.colors.palette.primary.default}
-											size={20}
-										/>
+								))}
+							</div>
+						</CardContent>
+					</Card>
+				</div>
+				<div className="flex-1">
+					<Card>
+						<CardHeader>
+							<div className="flex items-center justify-between">
+								<CardTitle>Teams</CardTitle>
+								<Button variant="ghost" size="icon">
+									<Icon icon="fontisto:more-v-a" />
+								</Button>
+							</div>
+						</CardHeader>
+						<CardContent>
+							<div className="flex w-full flex-col gap-4">
+								{TeamItems.map((item) => (
+									<div className="flex" key={item.name}>
+										{item.avatar}
+										<div className="ml-4 flex flex-1 flex-col">
+											<span className="font-semibold">{item.name}</span>
+											<span className="mt-1 text-xs opacity-50">{item.members}</span>
+										</div>
+										<div className="h-6">{item.tag}</div>
 									</div>
-								</div>
-							))}
-						</div>
-
-						<div
-							className="mt-4 w-full text-center text-lg"
-							style={{ color: themeVars.colors.palette.primary.default }}
-						>
-							View all connections
-						</div>
+								))}
+							</div>
+						</CardContent>
 					</Card>
-				</Col>
-				<Col span={24} md={12}>
-					<Card className="flex-col items-start!">
-						<div className="flex w-full items-center justify-between">
-							<Typography.Title level={5}>Teams</Typography.Title>
-							<Button variant="ghost" size="icon">
-								<Icon icon="fontisto:more-v-a" />
-							</Button>
-						</div>
-						<div className="mt-2 flex w-full flex-col gap-4">
-							{TeamItems.map((item) => (
-								<div className="flex" key={item.name}>
-									{item.avatar}
-									<div className="ml-4 flex flex-1 flex-col">
-										<span className="font-semibold">{item.name}</span>
-										<span className="mt-1 text-xs opacity-50">{item.members}</span>
-									</div>
-									<div className="h-6">{item.tag}</div>
-								</div>
-							))}
-						</div>
-
-						<div
-							className="mt-4 w-full text-center text-lg"
-							style={{ color: themeVars.colors.palette.primary.default }}
-						>
-							View all members
-						</div>
+				</div>
+			</div>
+			<div className="flex flex-col md:flex-row gap-4">
+				<div className="flex-1">
+					<Card>
+						<CardHeader>
+							<CardTitle>Projects</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<Table rowSelection={{ type: "checkbox" }} columns={ProjectColumns} dataSource={fakeProjectItems()} />
+						</CardContent>
 					</Card>
-				</Col>
-			</Row>
-			<Row gutter={[16, 16]} className="mt-4">
-				<Col span={24}>
-					<Card className="flex-col items-start!">
-						<Typography.Title level={5}>Projects</Typography.Title>
-						<div className="mt-4! w-full">
-							<Scrollbar>
-								<Table rowSelection={{ type: "checkbox" }} columns={ProjectColumns} dataSource={fakeProjectItems()} />
-							</Scrollbar>
-						</div>
-					</Card>
-				</Col>
-			</Row>
+				</div>
+			</div>
 		</>
 	);
 }

@@ -1,7 +1,8 @@
 import { Icon } from "@/components/icon";
 import { useUserPermission } from "@/store/userStore";
 import { Button } from "@/ui/button";
-import { Card, Popconfirm, Tag } from "antd";
+import { Card, CardContent, CardHeader } from "@/ui/card";
+import { Popconfirm, Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import { isNil } from "ramda";
 import { useState } from "react";
@@ -122,16 +123,23 @@ export default function PermissionPage() {
 		}));
 	};
 	return (
-		<Card title="Permission List" extra={<Button onClick={() => onCreate()}>New</Button>}>
-			<Table
-				rowKey="id"
-				size="small"
-				scroll={{ x: "max-content" }}
-				pagination={false}
-				columns={columns}
-				dataSource={permissions}
-			/>
-
+		<Card>
+			<CardHeader>
+				<div className="flex items-center justify-between">
+					<div>Permission List</div>
+					<Button onClick={() => onCreate()}>New</Button>
+				</div>
+			</CardHeader>
+			<CardContent>
+				<Table
+					rowKey="id"
+					size="small"
+					scroll={{ x: "max-content" }}
+					pagination={false}
+					columns={columns}
+					dataSource={permissions}
+				/>
+			</CardContent>
 			<PermissionModal {...permissionModalProps} />
 		</Card>
 	);

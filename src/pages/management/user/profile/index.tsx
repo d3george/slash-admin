@@ -1,8 +1,8 @@
 import CoverImage from "@/assets/images/cover/cover_4.jpg";
-import Card from "@/components/card";
 import { Icon } from "@/components/icon";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
+import { Card } from "@/ui/card";
 import { type CSSProperties, useState } from "react";
 import ConnectionsTab from "./connections-tab";
 import ProfileTab from "./profile-tab";
@@ -44,8 +44,8 @@ function UserProfile() {
 	];
 
 	return (
-		<>
-			<Card className="relative mb-6 h-[290px] flex-col rounded-2xl p-0!">
+		<div>
+			<Card className="relative mb-6 h-[300px] flex-col rounded-2xl p-0! gap-0">
 				<div style={bgStyle} className="h-full w-full">
 					<div className="flex flex-col items-center justify-center pt-12 md:absolute md:bottom-6 md:left-6 md:flex-row md:pt-0">
 						<img src={avatar} className="h-16 w-16 rounded-full md:h-32 md:w-32" alt="" />
@@ -77,7 +77,7 @@ function UserProfile() {
 				</div>
 			</Card>
 			<div>{tabs[currentTabIndex].content}</div>
-		</>
+		</div>
 	);
 }
 
