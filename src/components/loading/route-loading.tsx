@@ -1,25 +1,31 @@
-import NProgress from "nprogress";
-import "nprogress/nprogress.css";
-import { useEffect } from "react";
-import "./index.css";
+import { Progress } from "@/ui/progress";
+import { useEffect, useState } from "react";
 
-// 配置 NProgress
-NProgress.configure({
-	showSpinner: false,
-	minimum: 0.1,
-	trickleSpeed: 200,
-});
+export function RouteLoadingProgress() {
+	const [progress, setProgress] = useState(0);
 
-export default function ProgressBar() {
 	useEffect(() => {
 		let lastHref = window.location.href;
+		let timer: NodeJS.Timeout;
 
 		const handleRouteChange = () => {
-			NProgress.start();
-			const timer = setTimeout(() => NProgress.done(), 100);
+			setProgress(0);
+			let currentProgress = 0;
+
+			const interval = setInterval(() => {
+				currentProgress += 2;
+				setProgress(currentProgress);
+			}, 5);
+
+			timer = setTimeout(() => {
+				clearInterval(interval);
+				setProgress(100);
+				setTimeout(() => setProgress(0), 100);
+			}, 500);
+
 			return () => {
+				clearInterval(interval);
 				clearTimeout(timer);
-				NProgress.done();
 			};
 		};
 
@@ -48,8 +54,13 @@ export default function ProgressBar() {
 		return () => {
 			observer.disconnect();
 			window.removeEventListener("popstate", handleRouteChange);
+			clearTimeout(timer);
 		};
 	}, []);
 
-	return null;
+	return progress > 0 ? (
+		<div className="fixed top-0 left-0 right-0 z-50">
+			<Progress value={progress} className="h-[3px] shadow-2xl" />
+		</div>
+	) : null;
 }

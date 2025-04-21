@@ -1,8 +1,8 @@
 import { Icon } from "@/components/icon";
-import Scrollbar from "@/components/scrollbar";
 import { useFlattenedRoutes, useRouter } from "@/router/hooks";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
+import { ScrollArea } from "@/ui/scroll-area";
 import { rgbAlpha } from "@/utils/theme";
 import { Empty, Input, type InputRef, Modal, Tag } from "antd";
 import match from "autosuggest-highlight/match";
@@ -147,7 +147,6 @@ export default function SearchBar() {
 						height: "400px",
 						display: "flex",
 						flexDirection: "column",
-						justifyContent: "center",
 					},
 				}}
 				title={
@@ -187,7 +186,7 @@ export default function SearchBar() {
 				{searchResult.length === 0 ? (
 					<Empty />
 				) : (
-					<Scrollbar>
+					<ScrollArea>
 						<div ref={listRef} className="py-2">
 							{searchResult.map(({ key, label }, index) => {
 								const partsTitle = parse(t(label), match(t(label), searchQuery));
@@ -235,7 +234,7 @@ export default function SearchBar() {
 								);
 							})}
 						</div>
-					</Scrollbar>
+					</ScrollArea>
 				)}
 			</Modal>
 		</>

@@ -1,5 +1,6 @@
 import { useSettings } from "@/store/settingStore";
 import { themeVars } from "@/theme/theme.css";
+import { ScrollArea } from "@/ui/scroll-area";
 import { cn } from "@/utils";
 import { Content } from "antd/es/layout/layout";
 import type { CSSProperties } from "react";
@@ -21,7 +22,7 @@ const Main = () => {
 
 	return (
 		<Content style={mainStyle} className="flex">
-			<div className="grow overflow-auto size-full">
+			<ScrollArea className="w-full">
 				<div
 					className={cn(
 						"m-auto size-full grow sm:p-2",
@@ -37,7 +38,7 @@ const Main = () => {
 						<Outlet />
 					)}
 				</div>
-			</div>
+			</ScrollArea>
 		</Content>
 	);
 };

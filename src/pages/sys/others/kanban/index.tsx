@@ -1,4 +1,5 @@
 import { Icon } from "@/components/icon";
+import { ScrollArea } from "@/ui/scroll-area";
 import {
 	DndContext,
 	type DragEndEvent,
@@ -13,7 +14,6 @@ import { faker } from "@faker-js/faker";
 import { Button, Input, type InputRef } from "antd";
 import { useRef, useState } from "react";
 import { useEvent } from "react-use";
-import SimpleBar from "simplebar-react";
 import KanbanColumn from "./kanban-column";
 import KanbanTask from "./kanban-task";
 import { initialData } from "./task-utils";
@@ -233,7 +233,7 @@ export default function Kanban() {
 	};
 
 	return (
-		<SimpleBar>
+		<ScrollArea>
 			<div className="flex">
 				<DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
 					<div className="flex h-full items-start gap-6 p-1">
@@ -298,6 +298,6 @@ export default function Kanban() {
 					)}
 				</div>
 			</div>
-		</SimpleBar>
+		</ScrollArea>
 	);
 }

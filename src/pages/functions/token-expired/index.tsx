@@ -17,9 +17,7 @@ export default function TokenExpired() {
 					<p>Clicking a button to simulate a token expiration scenario.</p>
 				</div>
 				<div>
-					<Button asChild onClick={mockTokenExpired}>
-						Simulate Token Expired
-					</Button>
+					<Button onClick={mockTokenExpired}>Simulate Token Expired</Button>
 				</div>
 			</CardContent>
 		</Card>

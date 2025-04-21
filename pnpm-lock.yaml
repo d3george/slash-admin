@@ -71,6 +71,9 @@ importers:
       '@radix-ui/react-label':
         specifier: ^2.1.4
         version: 2.1.4(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-progress':
+        specifier: ^1.1.4
+        version: 1.1.4(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@radix-ui/react-radio-group':
         specifier: ^1.2.4
         version: 1.2.4(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -155,9 +158,6 @@ importers:
       lucide-react:
         specifier: ^0.487.0
         version: 0.487.0(react@18.2.0)
-      nprogress:
-        specifier: ^0.2.0
-        version: 0.2.0
       numeral:
         specifier: ^2.0.6
         version: 2.0.6
@@ -212,9 +212,6 @@ importers:
       screenfull:
         specifier: ^6.0.2
         version: 6.0.2
-      simplebar-react:
-        specifier: ^3.2.6
-        version: 3.3.0(react@18.2.0)
       sonner:
         specifier: ^1.7.0
         version: 1.7.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -249,9 +246,6 @@ importers:
       '@types/color':
         specifier: ^3.0.6
         version: 3.0.6
-      '@types/nprogress':
-        specifier: ^0.2.3
-        version: 0.2.3
       '@types/numeral':
         specifier: ^2.0.5
         version: 2.0.5
@@ -1154,6 +1148,19 @@ packages:
       '@types/react-dom':
         optional: true
 
+  '@radix-ui/react-progress@1.1.4':
+    resolution: {integrity: sha512-8rl9w7lJdcVPor47Dhws9mUHRHLE+8JEgyJRdNWCpGPa6HIlr3eh+Yn9gyx1CnCLbw5naHsI2gaO9dBWO50vzw==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
   '@radix-ui/react-radio-group@1.2.4':
     resolution: {integrity: sha512-oLz7ATfKgVTUbpr5OBu6Q7hQcnV22uPT306bmG0QwgnKqBStR98RfWfJGCfW/MmhL4ISmrmmBPBW+c77SDwV9g==}
     peerDependencies:
@@ -1679,9 +1686,6 @@ packages:
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
-
-  '@types/nprogress@0.2.3':
-    resolution: {integrity: sha512-k7kRA033QNtC+gLc4VPlfnue58CM1iQLgn1IMAU8VPHGOj7oIHPp9UlhedEnD/Gl8evoCjwkZjlBORtZ3JByUA==}
 
   '@types/numeral@2.0.5':
     resolution: {integrity: sha512-kH8I7OSSwQu9DS9JYdFWbuvhVzvFRoCPCkGxNwoGgaPeDfEPJlcxNvEOypZhQ3XXHsGbfIuYcxcJxKUfJHnRfw==}
@@ -2975,9 +2979,6 @@ packages:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
 
-  nprogress@0.2.0:
-    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
-
   numeral@2.0.6:
     resolution: {integrity: sha512-qaKRmtYPZ5qdw4jWJD6bxEf1FJEqllJrwxCLIm0sQU/A7v2/czigzOb+C2uSiFsa9lBUzeH7M1oK+Q+OLxL3kA==}
 
@@ -3648,14 +3649,6 @@ packages:
 
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
-
-  simplebar-core@1.3.0:
-    resolution: {integrity: sha512-LpWl3w0caz0bl322E68qsrRPpIn+rWBGAaEJ0lUJA7Xpr2sw92AkIhg6VWj988IefLXYh50ILatfAnbNoCFrlA==}
-
-  simplebar-react@3.3.0:
-    resolution: {integrity: sha512-sxzy+xRuU41He4tT4QLGYutchtOuye/xxVeq7xhyOiwMiHNK1ZpvbOTyy+7P0i7gfpXLGTJ8Bep8+4Mhdgtz/g==}
-    peerDependencies:
-      react: '>=16.8.0'
 
   sonner@1.7.4:
     resolution: {integrity: sha512-DIS8z4PfJRbIyfVFDVnK9rO3eYDtse4Omcm6bt0oEr5/jtLgysmjuBl1frJ9E/EQZrFmKx2A8m/s5s9CRXIzhw==}
@@ -4990,6 +4983,16 @@ snapshots:
       '@types/react': 18.3.20
       '@types/react-dom': 18.3.6(@types/react@18.3.20)
 
+  '@radix-ui/react-progress@1.1.4(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@radix-ui/react-context': 1.1.2(@types/react@18.3.20)(react@18.2.0)
+      '@radix-ui/react-primitive': 2.1.0(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.3.20
+      '@types/react-dom': 18.3.6(@types/react@18.3.20)
+
   '@radix-ui/react-radio-group@1.2.4(@types/react-dom@18.3.6(@types/react@18.3.20))(@types/react@18.3.20)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@radix-ui/primitive': 1.1.2
@@ -5488,8 +5491,6 @@ snapshots:
       undici-types: 6.21.0
 
   '@types/normalize-package-data@2.4.4': {}
-
-  '@types/nprogress@0.2.3': {}
 
   '@types/numeral@2.0.5': {}
 
@@ -7007,8 +7008,6 @@ snapshots:
     dependencies:
       path-key: 3.1.1
 
-  nprogress@0.2.0: {}
-
   numeral@2.0.6: {}
 
   object-assign@4.1.1: {}
@@ -7818,15 +7817,6 @@ snapshots:
   simple-swizzle@0.2.2:
     dependencies:
       is-arrayish: 0.3.2
-
-  simplebar-core@1.3.0:
-    dependencies:
-      lodash: 4.17.21
-
-  simplebar-react@3.3.0(react@18.2.0):
-    dependencies:
-      react: 18.2.0
-      simplebar-core: 1.3.0
 
   sonner@1.7.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:

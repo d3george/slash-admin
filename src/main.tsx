@@ -9,7 +9,7 @@ import "./global.css";
 import "./theme/theme.css";
 import App from "./App";
 import { registerLocalIcons } from "./components/icon";
-import ProgressBar from "./components/progress-bar";
+import { RouteLoadingProgress } from "./components/loading";
 
 const charAt = `
   ╔═══════ SLASH ADMIN ═══════╗
@@ -29,7 +29,7 @@ root.render(
 		<QueryClientProvider client={new QueryClient()}>
 			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 			<Suspense>
-				<ProgressBar />
+				<RouteLoadingProgress />
 				<Analytics />
 				<App />
 			</Suspense>

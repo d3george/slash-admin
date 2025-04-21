@@ -1,17 +1,13 @@
-import { Layout, Menu, type MenuProps } from "antd";
-import { useMemo, useState } from "react";
-import { useMatches, useNavigate } from "react-router";
-
-import Scrollbar from "@/components/scrollbar";
 import { useFlattenedRoutes, usePathname, usePermissionRoutes, useRouteToMenuFn } from "@/router/hooks";
 import { menuFilter } from "@/router/utils";
 import { useSettingActions, useSettings } from "@/store/settingStore";
-
-import { NAV_WIDTH } from "../config";
-
-import NavLogo from "./nav-logo";
-
+import { ScrollArea } from "@/ui/scroll-area";
+import { Layout, Menu, type MenuProps } from "antd";
+import { useMemo, useState } from "react";
+import { useMatches, useNavigate } from "react-router";
 import { ThemeLayout, ThemeMode } from "#/enum";
+import { NAV_WIDTH } from "../config";
+import NavLogo from "./nav-logo";
 
 const { Sider } = Layout;
 
@@ -132,7 +128,7 @@ export default function NavVertical(props: Props) {
 			<div className="flex h-full flex-col">
 				<NavLogo collapsed={collapsed} onToggle={handleToggleCollapsed} />
 
-				<Scrollbar>
+				<ScrollArea>
 					<Menu
 						mode="inline"
 						items={menuList}
@@ -143,7 +139,7 @@ export default function NavVertical(props: Props) {
 						className="border-none!"
 						onClick={onClick}
 					/>
-				</Scrollbar>
+				</ScrollArea>
 			</div>
 		</Sider>
 	);
