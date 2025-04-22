@@ -1,50 +1,59 @@
-import { Layout } from "antd";
-import { type CSSProperties, Suspense, useMemo } from "react";
-
-import { CircleLoading } from "@/components/loading";
+import Logo from "@/components/logo";
+import { down, useMediaQuery } from "@/hooks";
 import { useSettings } from "@/store/settingStore";
 import { cn } from "@/utils";
-
+import { ThemeLayout } from "#/enum";
 import Header from "./header";
 import Main from "./main";
-import Nav from "./nav";
+import NavBar from "./nav-bar";
 
-import { down, useMediaQuery } from "@/hooks";
-import { ThemeLayout } from "#/enum";
-import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from "./config";
-
-function DashboardLayout() {
+export default function DashboardLayout() {
+	const isMobile = useMediaQuery(down("md"));
 	const { themeLayout } = useSettings();
 
-	const mobileOrTablet = useMediaQuery(down("md"));
-
-	const layoutClassName = useMemo(() => {
-		return cn("flex h-screen overflow-hidden", themeLayout === ThemeLayout.Horizontal ? "flex-col" : "flex-row");
-	}, [themeLayout]);
-
-	const secondLayoutStyle: CSSProperties = {
-		display: "flex",
-		flexDirection: "column",
-		transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-		paddingLeft: mobileOrTablet
-			? 0
-			: themeLayout === ThemeLayout.Horizontal
-				? 0
-				: themeLayout === ThemeLayout.Mini
-					? NAV_COLLAPSED_WIDTH
-					: NAV_WIDTH,
-	};
-
 	return (
-		<Layout className={layoutClassName}>
-			<Suspense fallback={<CircleLoading />}>
-				<Layout style={secondLayoutStyle}>
-					<Header />
-					<Nav />
-					<Main />
-				</Layout>
-			</Suspense>
-		</Layout>
+		<div
+			data-slot="slash-layout-root"
+			className={cn("w-full min-h-svh flex bg-background", {
+				"flex-col": isMobile || themeLayout === ThemeLayout.Horizontal,
+			})}
+		>
+			{isMobile ? <MobileLayout /> : <PcLayout />}
+		</div>
 	);
 }
-export default DashboardLayout;
+
+function PcLayout() {
+	const { themeLayout } = useSettings();
+
+	return (
+		<>
+			{themeLayout !== ThemeLayout.Horizontal && <NavBar />}
+
+			<div
+				data-slot="slash-layout-content"
+				className={cn("w-full flex flex-col transition-[width, height] duration-300 ease-in-out", {
+					"pl-[var(--layout-nav-width)]": themeLayout === ThemeLayout.Vertical,
+					"pl-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
+				})}
+			>
+				<Header headerLeftSlot={themeLayout === ThemeLayout.Horizontal && <Logo />} />
+
+				{themeLayout === ThemeLayout.Horizontal && (
+					<NavBar className="sticky top-[var(--layout-header-height)] left-0 z-app-bar bg-background" />
+				)}
+
+				<Main />
+			</div>
+		</>
+	);
+}
+
+function MobileLayout() {
+	return (
+		<>
+			<Header headerLeftSlot={<NavBar />} />
+			<Main />
+		</>
+	);
+}

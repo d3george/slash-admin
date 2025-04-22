@@ -1,5 +1,3 @@
-import { Col, Row, Space } from "antd";
-
 import AreaDownload from "./area-download";
 import BannerCard from "./banner-card";
 import { Applications, Conversion } from "./conversion_applications";
@@ -12,21 +10,21 @@ import TotalCard from "./total-card";
 
 function Workbench() {
 	return (
-		<div className="p-2">
-			<Row gutter={[16, 16]} justify="center">
-				<Col span={24} lg={16}>
+		<div className="flex flex-col gap-2">
+			<div className="flex flex-col md:flex-row gap-2">
+				<div className="flex-1 md:flex-2">
 					<BannerCard />
-				</Col>
-				<Col span={24} lg={8}>
-					<Space direction="vertical" size="large" className="h-full w-full justify-center">
+				</div>
+				<div className="flex-1">
+					<div className="flex flex-col justify-between h-full gap-2">
 						<Conversion />
 						<Applications />
-					</Space>
-				</Col>
-			</Row>
+					</div>
+				</div>
+			</div>
 
-			<Row gutter={[16, 16]} className="mt-4" justify="center">
-				<Col span={24} md={8}>
+			<div className="flex flex-col md:flex-row gap-2">
+				<div className="flex-1">
 					<TotalCard
 						title="Total Active Users"
 						increase
@@ -34,9 +32,9 @@ function Workbench() {
 						percent="2.6%"
 						chartData={[22, 8, 35, 50, 82, 84, 77, 12, 87, 43]}
 					/>
-				</Col>
+				</div>
 
-				<Col span={24} md={8}>
+				<div className="flex-1">
 					<TotalCard
 						title="Total Installed"
 						increase
@@ -44,9 +42,9 @@ function Workbench() {
 						percent="0.2%"
 						chartData={[45, 52, 38, 24, 33, 26, 21, 20, 6]}
 					/>
-				</Col>
+				</div>
 
-				<Col span={24} md={8}>
+				<div className="flex-1">
 					<TotalCard
 						title="Total Downloads"
 						increase={false}
@@ -54,36 +52,36 @@ function Workbench() {
 						percent="0.1%"
 						chartData={[35, 41, 62, 42, 13, 18, 29, 37, 36]}
 					/>
-				</Col>
-			</Row>
+				</div>
+			</div>
 
-			<Row gutter={[16, 16]} className="mt-4" justify="center">
-				<Col span={24} md={12} lg={8}>
+			<div className="flex flex-col md:flex-row gap-2">
+				<div className="flex-1">
 					<CurrentDownload />
-				</Col>
-				<Col span={24} md={12} lg={16}>
+				</div>
+				<div className="flex-1">
 					<AreaDownload />
-				</Col>
-			</Row>
+				</div>
+			</div>
 
-			<Row gutter={[16, 16]} className="mt-4" justify="center">
-				<Col span={24} md={12} lg={16}>
+			<div className="flex flex-col md:flex-row gap-2">
+				<div className="flex-1">
 					<NewInvoice />
-				</Col>
-				<Col span={24} md={12} lg={8}>
+				</div>
+				<div className="flex-1">
 					<TopRelated />
-				</Col>
-			</Row>
+				</div>
+			</div>
 
-			<Row gutter={[16, 16]} className="mt-4" justify="center">
-				<Col span={24} md={12}>
+			<div className="flex flex-col md:flex-row gap-2">
+				<div className="flex-1">
 					<TopInstalled />
-				</Col>
+				</div>
 
-				<Col span={24} md={12}>
+				<div className="flex-1">
 					<TopAuthor />
-				</Col>
-			</Row>
+				</div>
+			</div>
 		</div>
 	);
 }

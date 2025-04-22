@@ -127,3 +127,13 @@
   --sidebar-border: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
   --sidebar-ring: var(--colors-palette-primary-default);
 }
+
+
+/* slash layout */
+:root{
+  --layout-nav-width: 260px;
+  --layout-nav-width-mini: 80px;
+  --layout-nav-height-horizontal: 48px;
+  --layout-header-height: 64px;
+  --layout-multi-tabs-height: 48px;
+}

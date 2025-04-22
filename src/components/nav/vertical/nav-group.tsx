@@ -10,7 +10,7 @@ export function NavGroup({ name, items, ...props }: NavGroupProps) {
 	return (
 		<div className="flex w-full flex-col gap-1" {...props}>
 			<Collapsible open={open} onOpenChange={setOpen}>
-				<CollapsibleTrigger>
+				<CollapsibleTrigger asChild>
 					<Group name={name} open={open} />
 				</CollapsibleTrigger>
 				<CollapsibleContent>

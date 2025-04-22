@@ -6,3 +6,4 @@ export { useRouteToMenuFn } from "./use-route-to-menu";
 export { usePermissionRoutes } from "./use-permission-routes";
 export { useCurrentRouteMeta } from "./use-current-route-meta";
 export { useFlattenedRoutes } from "./use-flattened-routes";
+export { useRouteToMenu_V1 } from "./use-route-to-menu";

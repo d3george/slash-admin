@@ -2,7 +2,6 @@ import Character3 from "@/assets/images/characters/character_3.png";
 import { Icon } from "@/components/icon";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
-import { Col, Row } from "antd";
 
 export default function BannerCard() {
 	const { username } = useUserInfo();
@@ -10,8 +9,8 @@ export default function BannerCard() {
 	const bg = `linear-gradient(135deg, rgba(${themeVars.colors.palette.primary.lightChannel}/ .2), rgba(${themeVars.colors.palette.primary.defaultChannel}/ .2)) ${themeVars.colors.common.white}`;
 
 	return (
-		<Row className="mx-0! rounded-2xl p-7" gutter={[16, 16]} justify="space-between" style={{ background: bg }}>
-			<Col span={24} md={12} xl={16} className="flex-1 text-center md:text-left">
+		<div className="rounded-2xl p-7 flex flex-col md:flex-row" style={{ background: bg }}>
+			<div className="flex-1 text-center md:text-left">
 				<div className="mt-4 text-lg font-semibold md:text-xl" style={{ color: themeVars.colors.palette.primary.dark }}>
 					<h4>Welcome back 👋 </h4>
 					<h4>{username}</h4>
@@ -42,17 +41,12 @@ export default function BannerCard() {
 					<Icon icon="carbon:logo-discord" size={24} />
 					<span className="ml-2 font-black">Join Discord</span>
 				</button>
-			</Col>
+			</div>
 
-			<Col
-				span={24}
-				md={12}
-				xl={8}
-				className="!md:max-w-[320px] mx-auto max-w-[270px]! flex-none items-center justify-center "
-			>
+			<div className="!md:max-w-[320px] mx-auto max-w-[270px]! flex-none items-center justify-center ">
 				<BannerSvg />
-			</Col>
-		</Row>
+			</div>
+		</div>
 	);
 }
 

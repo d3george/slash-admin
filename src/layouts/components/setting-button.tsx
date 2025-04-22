@@ -27,7 +27,6 @@ export default function SettingButton() {
 		themeLayout,
 		themeStretch,
 		breadCrumb,
-		multiTab,
 		darkSidebar,
 		fontSize,
 		fontFamily,
@@ -306,10 +305,10 @@ export default function SettingButton() {
 									<div>{t("sys.settings.breadcrumb")}</div>
 									<Switch checked={breadCrumb} onCheckedChange={(checked) => updateSettings({ breadCrumb: checked })} />
 								</div>
-								<div className="flex items-center justify-between text-sm text-text-disabled">
+								{/* <div className="flex items-center justify-between text-sm text-text-disabled">
 									<div>{t("sys.settings.multiTab")}</div>
 									<Switch checked={multiTab} onCheckedChange={(checked) => updateSettings({ multiTab: checked })} />
-								</div>
+								</div> */}
 								<div className="flex items-center justify-between text-sm text-text-disabled">
 									<div>{t("sys.settings.darkSidebar")}</div>
 									<Switch

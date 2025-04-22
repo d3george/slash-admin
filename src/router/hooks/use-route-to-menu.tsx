@@ -1,4 +1,5 @@
 import { Icon } from "@/components/icon";
+import type { NavItemDataProps } from "@/components/nav";
 import { useSettings } from "@/store/settingStore";
 import { cn } from "@/utils";
 import type { GetProp, MenuProps } from "antd";
@@ -11,7 +12,7 @@ type MenuItem = GetProp<MenuProps, "items">[number];
 
 const renderIcon = (icon: string | React.ReactNode): React.ReactNode => {
 	if (typeof icon !== "string") return icon;
-	return <Icon icon={icon} size={24} className="ant-menu-item-icon" />;
+	return <Icon icon={icon} size={24} />;
 };
 
 /**
@@ -52,5 +53,29 @@ export function useRouteToMenuFn() {
 		},
 		[t, themeLayout],
 	);
+	return routeToMenuFn;
+}
+
+export function useRouteToMenu_V1() {
+	const { t } = useTranslation();
+
+	const routeToMenuFn = (items: AppRouteObject[]): NavItemDataProps[] => {
+		return items
+			.filter((item) => !item.meta?.hideMenu)
+			.map((item) => {
+				const { meta, children } = item;
+				if (!meta) return {} as NavItemDataProps;
+
+				const menuItem: NavItemDataProps = {
+					path: meta.key,
+					title: t(meta.label),
+					disabled: meta.disabled,
+					icon: meta.icon ? renderIcon(meta.icon) : undefined,
+					children: children ? routeToMenuFn(children) : undefined,
+				};
+
+				return menuItem;
+			});
+	};
 	return routeToMenuFn;
 }

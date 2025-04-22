@@ -36,7 +36,7 @@ const useSettingStore = create<SettingStore>()(
 				themeStretch: false,
 				breadCrumb: true,
 				accordion: false,
-				multiTab: true,
+				multiTab: false,
 				darkSidebar: false,
 				fontFamily: FontFamilyPreset.openSans,
 				fontSize: Number(typographyTokens.fontSize.sm),

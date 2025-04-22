@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icon";
-import { ScrollArea } from "@/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/ui/scroll-area";
 import {
 	DndContext,
 	type DragEndEvent,
@@ -233,8 +233,8 @@ export default function Kanban() {
 	};
 
 	return (
-		<ScrollArea>
-			<div className="flex">
+		<ScrollArea type="hover">
+			<div className="flex w-full">
 				<DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
 					<div className="flex h-full items-start gap-6 p-1">
 						<SortableContext items={state.columnOrder} strategy={horizontalListSortingStrategy}>
@@ -298,6 +298,7 @@ export default function Kanban() {
 					)}
 				</div>
 			</div>
+			<ScrollBar orientation="horizontal" />
 		</ScrollArea>
 	);
 }

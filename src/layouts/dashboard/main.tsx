@@ -1,45 +1,37 @@
 import { useSettings } from "@/store/settingStore";
-import { themeVars } from "@/theme/theme.css";
 import { ScrollArea } from "@/ui/scroll-area";
 import { cn } from "@/utils";
-import { Content } from "antd/es/layout/layout";
-import type { CSSProperties } from "react";
 import { Outlet } from "react-router";
 import { ThemeLayout } from "#/enum";
-import { MULTI_TABS_HEIGHT } from "./config";
 import MultiTabs from "./multi-tabs";
 import { MultiTabsProvider } from "./multi-tabs/providers/multi-tabs-provider";
 
 const Main = () => {
 	const { themeStretch, themeLayout, multiTab } = useSettings();
 
-	const mainStyle: CSSProperties = {
-		paddingTop: multiTab ? MULTI_TABS_HEIGHT : 0,
-		background: themeVars.colors.background.default,
-		transition: "all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-		width: "100%",
-	};
-
 	return (
-		<Content style={mainStyle} className="flex">
-			<ScrollArea className="w-full">
-				<div
-					className={cn(
-						"m-auto size-full grow sm:p-2",
-						themeStretch ? "" : "xl:max-w-(--breakpoint-xl)",
-						themeLayout === ThemeLayout.Horizontal ? "flex-col" : "flex-row",
-					)}
-				>
-					{multiTab ? (
-						<MultiTabsProvider>
-							<MultiTabs />
-						</MultiTabsProvider>
-					) : (
-						<Outlet />
-					)}
-				</div>
+		<main
+			data-slot="slash-layout-main"
+			className={cn("flex w-full transition-[width, height] duration-200 ease-in-out", {
+				"md:pt-[var(--layout-multi-tabs-height)]": multiTab,
+			})}
+		>
+			<ScrollArea
+				className={cn(
+					"size-full p-2",
+					themeStretch ? "" : "xl:max-w-(--breakpoint-xl)",
+					themeLayout === ThemeLayout.Horizontal ? "flex-col" : "flex-row",
+				)}
+			>
+				{multiTab ? (
+					<MultiTabsProvider>
+						<MultiTabs />
+					</MultiTabsProvider>
+				) : (
+					<Outlet />
+				)}
 			</ScrollArea>
-		</Content>
+		</main>
 	);
 };
 
