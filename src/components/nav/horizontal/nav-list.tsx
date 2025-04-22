@@ -6,6 +6,7 @@ import { NavItem } from "./nav-item";
 export function NavList({ data, depth = 0 }: NavListProps) {
 	const hasChild = data.children && data.children.length > 0;
 	const location = useLocation();
+	const isActive = location.pathname.includes(data.path);
 
 	const renderNavItem = () => {
 		return (
@@ -19,7 +20,7 @@ export function NavList({ data, depth = 0 }: NavListProps) {
 				icon={data.icon}
 				// state
 				disabled={data.disabled}
-				active={location.pathname === data.path}
+				active={isActive}
 				// options
 				hasChild={hasChild}
 				depth={depth}

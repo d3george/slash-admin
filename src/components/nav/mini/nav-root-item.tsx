@@ -41,7 +41,8 @@ export const NavRootItem = (item: NavItemProps) => {
 		navItemClasses.base,
 		navItemClasses.hover,
 		"relative flex-col min-h-12 px-1 pt-2 pb-1.5",
-		item.active && navItemClasses.active,
+		item.active && item.depth === 1 && navItemClasses.active,
+		item.active && item.depth !== 1 && "bg-action-hover!",
 		item.disabled && navItemClasses.disabled,
 	);
 

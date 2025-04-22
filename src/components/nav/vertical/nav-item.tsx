@@ -9,7 +9,7 @@ import { navItemClasses, navItemStyles } from "../styles";
 import type { NavItemProps } from "../types";
 
 export function NavItem(item: NavItemProps) {
-	const { title, icon, info, caption, open, active, disabled, hasChild } = item;
+	const { title, icon, info, caption, open, active, disabled, depth, hasChild } = item;
 
 	const content = (
 		<>
@@ -58,7 +58,8 @@ export function NavItem(item: NavItemProps) {
 		navItemClasses.base,
 		navItemClasses.hover,
 		"min-h-[44px]",
-		active && navItemClasses.active,
+		active && depth === 1 && navItemClasses.active,
+		active && depth !== 1 && "bg-action-hover!",
 		disabled && navItemClasses.disabled,
 	);
 

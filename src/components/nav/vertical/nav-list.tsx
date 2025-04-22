@@ -4,11 +4,11 @@ import { useLocation } from "react-router";
 import type { NavListProps } from "../types";
 import { NavItem } from "./nav-item";
 
-export function NavList({ data, enabledRootRedirect = false }: NavListProps) {
+export function NavList({ data, depth = 1, enabledRootRedirect = false }: NavListProps) {
 	const location = useLocation();
 	const [open, setOpen] = useState(false);
 	const hasChild = data.children && data.children.length > 0;
-	const isActive = location.pathname === data.path;
+	const isActive = location.pathname.includes(data.path);
 
 	const handleClick = () => {
 		if (hasChild) {
@@ -32,6 +32,7 @@ export function NavList({ data, enabledRootRedirect = false }: NavListProps) {
 					disabled={data.disabled}
 					// options
 					hasChild={hasChild}
+					depth={depth}
 					// event
 					onClick={handleClick}
 				/>
@@ -40,7 +41,7 @@ export function NavList({ data, enabledRootRedirect = false }: NavListProps) {
 				<CollapsibleContent>
 					<div className="ml-4 mt-1 flex flex-col gap-1">
 						{data.children?.map((child) => (
-							<NavList key={child.title} data={child} enabledRootRedirect={enabledRootRedirect} />
+							<NavList key={child.title} data={child} depth={depth + 1} enabledRootRedirect={enabledRootRedirect} />
 						))}
 					</div>
 				</CollapsibleContent>

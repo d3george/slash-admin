@@ -41,7 +41,8 @@ export const NavItem = (item: NavItemProps) => {
 		navItemClasses.base,
 		navItemClasses.hover,
 		"min-h-[32px]  max-w-[250px]",
-		item.active && navItemClasses.active,
+		item.active && item.depth === 1 && navItemClasses.active,
+		item.active && item.depth !== 1 && "bg-action-hover!",
 		item.disabled && navItemClasses.disabled,
 	);
 
