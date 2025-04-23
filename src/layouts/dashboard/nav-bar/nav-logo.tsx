@@ -8,9 +8,8 @@ export default function NavLogo() {
 
 	return (
 		<div
-			className={cn("relative bg-background flex items-center py-4 h-[var(--layout-header-height)]", {
+			className={cn("relative flex items-center py-4 px-2 h-[var(--layout-header-height)]", {
 				"justify-center": themeLayout === ThemeLayout.Mini,
-				"px-2": themeLayout === ThemeLayout.Vertical,
 			})}
 		>
 			<div className="flex items-center gap-2">

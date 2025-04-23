@@ -24,9 +24,6 @@
     border-color: rgba(var(--colors-palette-gray-500Channel) / var(--opacity-border)) ;
   }
 
-  a {
-    color: var(--colors-palette-text-primary) !important;
-  }
 }
 
 @theme  {

@@ -85,6 +85,7 @@
 		"styled-components": "^6.1.13",
 		"tailwind-merge": "^3.2.0",
 		"tw-animate-css": "^1.2.5",
+		"vaul": "^1.1.2",
 		"zustand": "^4.5.5"
 	},
 	"devDependencies": {

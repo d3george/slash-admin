@@ -34,7 +34,7 @@ function PcLayout() {
 
 			<div
 				data-slot="slash-layout-content"
-				className={cn("w-full flex flex-col transition-[width, height] duration-300 ease-in-out", {
+				className={cn("w-full flex flex-col transition-all duration-300 ease-in-out", {
 					"pl-[var(--layout-nav-width)]": themeLayout === ThemeLayout.Vertical,
 					"pl-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
 				})}
@@ -77,8 +77,8 @@ function VerticalNavTrigger() {
 	};
 
 	return (
-		<Button variant="ghost" size="icon" onClick={toggleThemeLayout}>
-			<Icon icon={iconName} size={20} />
+		<Button variant="secondary" size="icon" onClick={toggleThemeLayout}>
+			<Icon icon={iconName} size={20} className="text-text-secondary" />
 		</Button>
 	);
 }

@@ -3,8 +3,9 @@ import RedBlur from "@/assets/images/background/red-blur.png";
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/ui/sheet";
 import { faker } from "@faker-js/faker";
-import { Badge, Drawer, Space, Tabs, type TabsProps, Tag } from "antd";
+import { Badge, Space, Tabs, type TabsProps, Tag } from "antd";
 import { type CSSProperties, type ReactNode, useState } from "react";
 
 export default function NoticeButton() {
@@ -33,42 +34,33 @@ export default function NoticeButton() {
 					<Icon icon="solar:bell-bing-bold-duotone" size={24} />
 				</Badge>
 			</Button>
-			<Drawer
-				placement="right"
-				title="Notifications"
-				onClose={() => setDrawerOpen(false)}
-				open={drawerOpen}
-				closable={false}
-				width={420}
-				styles={{
-					body: { padding: 0 },
-					mask: { backgroundColor: "transparent" },
-				}}
-				style={style}
-				extra={
-					<Button
-						variant="ghost"
-						size="icon"
-						className="rounded-full text-primary"
-						onClick={() => {
-							setCount(0);
-							setDrawerOpen(false);
-						}}
-					>
-						<Icon icon="solar:check-read-broken" size={20} />
-					</Button>
-				}
-				footer={
-					<div
-						style={{ color: themeVars.colors.text.primary }}
-						className="flex h-10 w-full items-center justify-center font-semibold"
-					>
-						View All
-					</div>
-				}
-			>
-				<NoticeTab />
-			</Drawer>
+			<Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
+				<SheetContent side="right" className="w-[420px] p-0 [&>button]:hidden" style={style}>
+					<SheetHeader className="flex flex-row items-center justify-between px-6 py-4">
+						<SheetTitle>Notifications</SheetTitle>
+						<Button
+							variant="ghost"
+							size="icon"
+							className="rounded-full text-primary"
+							onClick={() => {
+								setCount(0);
+								setDrawerOpen(false);
+							}}
+						>
+							<Icon icon="solar:check-read-broken" size={20} />
+						</Button>
+					</SheetHeader>
+					<NoticeTab />
+					<SheetFooter className="border-t">
+						<div
+							style={{ color: themeVars.colors.text.primary }}
+							className="flex h-10 w-full items-center justify-center font-semibold"
+						>
+							View All
+						</div>
+					</SheetFooter>
+				</SheetContent>
+			</Sheet>
 		</div>
 	);
 }

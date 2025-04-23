@@ -1,11 +1,14 @@
 import { useLoginStateContext } from "@/pages/sys/login/providers/LoginStateProvider";
 import { useRouter } from "@/router/hooks";
 import { useUserActions, useUserInfo } from "@/store/userStore";
-import { useTheme } from "@/theme/hooks";
 import { Button } from "@/ui/button";
-import { Divider, type MenuProps } from "antd";
-import Dropdown, { type DropdownProps } from "antd/es/dropdown/dropdown";
-import React from "react";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/ui/dropdown-menu";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 
@@ -30,69 +33,42 @@ export default function AccountDropdown() {
 			replace("/login");
 		}
 	};
-	const {
-		themeVars: { colors, borderRadius, shadows },
-	} = useTheme();
-
-	const contentStyle: React.CSSProperties = {
-		backgroundColor: colors.background.default,
-		borderRadius: borderRadius.lg,
-		boxShadow: shadows.dropdown,
-	};
-
-	const menuStyle: React.CSSProperties = {
-		boxShadow: "none",
-	};
-
-	const dropdownRender: DropdownProps["dropdownRender"] = (menu) => (
-		<div style={contentStyle}>
-			<div className="flex flex-col items-start p-4">
-				<div>{username}</div>
-				<div className="text-gray">{email}</div>
-			</div>
-			<Divider style={{ margin: 0 }} />
-			{React.cloneElement(menu as React.ReactElement, { style: menuStyle })}
-		</div>
-	);
-
-	const items: MenuProps["items"] = [
-		{
-			label: (
-				<NavLink to="https://docs-admin.slashspaces.com/" target="_blank">
-					{t("sys.docs")}
-				</NavLink>
-			),
-			key: "0",
-		},
-		{
-			label: <NavLink to={HOMEPAGE}>{t("sys.menu.dashboard")}</NavLink>,
-			key: "1",
-		},
-		{
-			label: <NavLink to="/management/user/profile">{t("sys.menu.user.profile")}</NavLink>,
-			key: "2",
-		},
-		{
-			label: <NavLink to="/management/user/account">{t("sys.menu.user.account")}</NavLink>,
-			key: "3",
-		},
-		{ type: "divider" },
-		{
-			label: (
-				<button className="font-bold text-warning" type="button">
-					{t("sys.login.logout")}
-				</button>
-			),
-			key: "4",
-			onClick: logout,
-		},
-	];
 
 	return (
-		<Dropdown menu={{ items }} trigger={["click"]} dropdownRender={dropdownRender}>
-			<Button variant="ghost" size="icon" className="rounded-full">
-				<img className="h-6 w-6 rounded-full" src={avatar} alt="" />
-			</Button>
-		</Dropdown>
+		<DropdownMenu>
+			<DropdownMenuTrigger asChild>
+				<Button variant="ghost" size="icon" className="rounded-full">
+					<img className="h-6 w-6 rounded-full" src={avatar} alt="" />
+				</Button>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent className="w-56">
+				<div className="flex items-center gap-2 p-2">
+					<img className="h-10 w-10 rounded-full" src={avatar} alt="" />
+					<div className="flex flex-col items-start">
+						<div className="text-text-primary text-sm font-medium">{username}</div>
+						<div className="text-text-secondary text-xs">{email}</div>
+					</div>
+				</div>
+				<DropdownMenuSeparator />
+				<DropdownMenuItem asChild>
+					<NavLink to="https://docs-admin.slashspaces.com/" target="_blank">
+						{t("sys.docs")}
+					</NavLink>
+				</DropdownMenuItem>
+				<DropdownMenuItem asChild>
+					<NavLink to={HOMEPAGE}>{t("sys.menu.dashboard")}</NavLink>
+				</DropdownMenuItem>
+				<DropdownMenuItem asChild>
+					<NavLink to="/management/user/profile">{t("sys.menu.user.profile")}</NavLink>
+				</DropdownMenuItem>
+				<DropdownMenuItem asChild>
+					<NavLink to="/management/user/account">{t("sys.menu.user.account")}</NavLink>
+				</DropdownMenuItem>
+				<DropdownMenuSeparator />
+				<DropdownMenuItem className="font-bold text-warning" onClick={logout}>
+					{t("sys.login.logout")}
+				</DropdownMenuItem>
+			</DropdownMenuContent>
+		</DropdownMenu>
 	);
 }
