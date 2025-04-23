@@ -67,7 +67,7 @@ function VerticalNavTrigger() {
 
 	if (themeLayout === ThemeLayout.Horizontal) return null;
 
-	const iconName = themeLayout === ThemeLayout.Vertical ? "icon-park:to-left" : "icon-park:to-right";
+	const iconName = themeLayout === ThemeLayout.Vertical ? "line-md:menu-unfold-left" : "line-md:menu-unfold-right";
 
 	const toggleThemeLayout = () => {
 		setSettings({

@@ -56,7 +56,7 @@ export default function NavBar({ className }: { className?: string }) {
 	if (themeLayout === ThemeLayout.Horizontal)
 		return (
 			<nav data-slot="slash-layout-nav" className={cn("w-screen bg-background z-app-bar", className)}>
-				<ScrollArea className="min-w-screen whitespace-nowrap px-2">
+				<ScrollArea className="min-w-screen whitespace-nowrap px-2 bg-background">
 					<NavHorizontal data={menuList} />
 					<ScrollBar orientation="horizontal" />
 				</ScrollArea>
@@ -67,15 +67,14 @@ export default function NavBar({ className }: { className?: string }) {
 		<nav
 			data-slot="slash-layout-nav"
 			className={cn(
-				"hidden md:block fixed inset-y-0 left-0 flex-col h-full border-r border-dashed",
-				"transition-[width, height] delay-0 duration-200 ease-in-out",
+				"hidden md:block fixed inset-y-0 left-0 flex-col h-full border-r border-dashed bg-background",
 				className,
 			)}
 		>
 			<NavLogo />
 
 			<ScrollArea
-				className={cn("h-[calc(100vh-var(--layout-header-height))] px-2", {
+				className={cn("h-[calc(100vh-var(--layout-header-height))] px-2 bg-background", {
 					"w-[var(--layout-nav-width)]": themeLayout === ThemeLayout.Vertical,
 					"w-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
 				})}
