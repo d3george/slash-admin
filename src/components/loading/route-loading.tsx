@@ -59,7 +59,7 @@ export function RouteLoadingProgress() {
 	}, []);
 
 	return progress > 0 ? (
-		<div className="fixed top-0 left-0 right-0 z-50">
+		<div className="fixed top-0 left-0 right-0 z-tooltip w-screen">
 			<Progress value={progress} className="h-[3px] shadow-2xl" />
 		</div>
 	) : null;
