@@ -64,7 +64,7 @@ export default function SettingButton() {
 			: themeVars.colors.palette.gray[500];
 
 	return (
-		<Sheet>
+		<Sheet modal={false}>
 			<SheetTrigger asChild>
 				<Button variant="ghost" size="icon" className="rounded-full animate-slow-spin">
 					<Icon icon="local:ic-setting" size={24} />

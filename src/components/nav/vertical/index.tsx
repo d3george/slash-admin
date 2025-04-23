@@ -4,7 +4,7 @@ import { NavGroup } from "./nav-group";
 
 export function NavVertical({ data, className, ...props }: NavProps) {
 	return (
-		<nav className={cn("flex w-full flex-col gap-1 px-4", className)} {...props}>
+		<nav className={cn("flex w-full flex-col gap-1", className)} {...props}>
 			{data.map((group, index) => (
 				<NavGroup key={group.name || index} name={group.name} items={group.items} />
 			))}

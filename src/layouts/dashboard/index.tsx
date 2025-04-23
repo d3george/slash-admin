@@ -1,6 +1,8 @@
+import { Icon } from "@/components/icon";
 import Logo from "@/components/logo";
 import { down, useMediaQuery } from "@/hooks";
-import { useSettings } from "@/store/settingStore";
+import { useSettingActions, useSettings } from "@/store/settingStore";
+import { Button } from "@/ui/button";
 import { cn } from "@/utils";
 import { ThemeLayout } from "#/enum";
 import Header from "./header";
@@ -37,10 +39,10 @@ function PcLayout() {
 					"pl-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
 				})}
 			>
-				<Header headerLeftSlot={themeLayout === ThemeLayout.Horizontal && <Logo />} />
+				<Header headerLeftSlot={themeLayout === ThemeLayout.Horizontal ? <Logo /> : <VerticalNavTrigger />} />
 
 				{themeLayout === ThemeLayout.Horizontal && (
-					<NavBar className="sticky top-[var(--layout-header-height)] left-0 z-app-bar bg-background" />
+					<NavBar className="sticky top-[var(--layout-header-height)] left-0" />
 				)}
 
 				<Main />
@@ -55,5 +57,28 @@ function MobileLayout() {
 			<Header headerLeftSlot={<NavBar />} />
 			<Main />
 		</>
+	);
+}
+
+function VerticalNavTrigger() {
+	const settings = useSettings();
+	const { themeLayout } = settings;
+	const { setSettings } = useSettingActions();
+
+	if (themeLayout === ThemeLayout.Horizontal) return null;
+
+	const iconName = themeLayout === ThemeLayout.Vertical ? "icon-park:to-left" : "icon-park:to-right";
+
+	const toggleThemeLayout = () => {
+		setSettings({
+			...settings,
+			themeLayout: themeLayout === ThemeLayout.Vertical ? ThemeLayout.Mini : ThemeLayout.Vertical,
+		});
+	};
+
+	return (
+		<Button variant="ghost" size="icon" onClick={toggleThemeLayout}>
+			<Icon icon={iconName} size={20} />
+		</Button>
 	);
 }

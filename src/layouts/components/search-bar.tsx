@@ -2,9 +2,19 @@ import { Icon } from "@/components/icon";
 import { useFlattenedRoutes, useRouter } from "@/router/hooks";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/ui/dialog";
+import { Input } from "@/ui/input";
 import { ScrollArea } from "@/ui/scroll-area";
 import { rgbAlpha } from "@/utils/theme";
-import { Empty, Input, type InputRef, Modal, Tag } from "antd";
+import { Empty, Tag } from "antd";
 import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
@@ -12,23 +22,19 @@ import { useTranslation } from "react-i18next";
 import { useBoolean, useEvent, useKeyPressEvent } from "react-use";
 import styled from "styled-components";
 
-export default function SearchBar() {
+const SearchBar = () => {
 	const { t } = useTranslation();
 	const { replace } = useRouter();
-	const inputRef = useRef<InputRef>(null);
 	const listRef = useRef<HTMLDivElement>(null);
-
 	const [search, toggle] = useBoolean(false);
-
 	const flattenedRoutes = useFlattenedRoutes();
+	const [searchQuery, setSearchQuery] = useState("");
+	const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
 	const activeStyle: CSSProperties = {
 		border: `1px dashed ${themeVars.colors.palette.primary.default}`,
 		backgroundColor: rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.1),
 	};
-
-	const [searchQuery, setSearchQuery] = useState("");
-	const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
 	const searchResult = useMemo(() => {
 		return flattenedRoutes.filter(
@@ -95,12 +101,6 @@ export default function SearchBar() {
 	const handleCancel = () => {
 		toggle(false);
 	};
-	const handleAfterOpenChange = (open: boolean) => {
-		if (open) {
-			// auto focus
-			inputRef.current?.focus();
-		}
-	};
 
 	const scrollSelectedItemIntoView = (index: number) => {
 		if (listRef.current) {
@@ -123,50 +123,91 @@ export default function SearchBar() {
 	};
 
 	return (
-		<>
-			<div className="flex items-center justify-center">
-				<Button variant="ghost" className="bg-secondary px-2 rounded-lg" size="sm" onClick={handleOpen}>
-					<div className="flex items-center justify-center gap-2">
-						<Icon icon="local:ic-search" size="20" />
-						<span className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
-							{" "}
-							⌘K{" "}
-						</span>
-					</div>
-				</Button>
-			</div>
-			<Modal
-				centered
-				keyboard
-				open={search}
-				onCancel={handleCancel}
-				closeIcon={false}
-				afterOpenChange={handleAfterOpenChange}
-				styles={{
-					body: {
-						height: "400px",
-						display: "flex",
-						flexDirection: "column",
-					},
-				}}
-				title={
-					<Input
-						ref={inputRef}
-						value={searchQuery}
-						onChange={(e) => setSearchQuery(e.target.value)}
-						placeholder="Search..."
-						variant="borderless"
-						autoFocus
-						prefix={<Icon icon="local:ic-search" size="20" />}
-						suffix={
-							<Button variant="secondary" size="icon" onClick={handleCancel}>
-								Esc
-							</Button>
-						}
-					/>
-				}
-				footer={
-					<div className="flex flex-wrap">
+		<Dialog open={search} onOpenChange={toggle}>
+			<DialogTrigger asChild>
+				<div className="flex items-center justify-center">
+					<Button variant="ghost" className="bg-secondary px-2 rounded-lg" size="sm" onClick={handleOpen}>
+						<div className="flex items-center justify-center gap-2">
+							<Icon icon="local:ic-search" size="20" />
+							<span className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
+								{" "}
+								⌘K{" "}
+							</span>
+						</div>
+					</Button>
+				</div>
+			</DialogTrigger>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle>Search</DialogTitle>
+					<DialogDescription>
+						<Input
+							value={searchQuery}
+							onChange={(e) => setSearchQuery(e.target.value)}
+							placeholder="Search..."
+							autoFocus
+						/>
+					</DialogDescription>
+				</DialogHeader>
+
+				<div className="h-[30vh]">
+					{searchResult.length === 0 ? (
+						<Empty />
+					) : (
+						<ScrollArea className="h-full">
+							<div ref={listRef} className="py-2">
+								{searchResult.map(({ key, label }, index) => {
+									const partsTitle = parse(t(label), match(t(label), searchQuery));
+									const partsKey = parse(key, match(key, searchQuery));
+									return (
+										<StyledListItemButton
+											key={key}
+											style={index === selectedItemIndex ? activeStyle : {}}
+											onClick={() => handleSelect(key)}
+											onMouseMove={() => handleHover(index)}
+										>
+											<div className="flex justify-between">
+												<div>
+													<div className="font-medium">
+														{partsTitle.map((item) => (
+															<span
+																key={item.text}
+																style={{
+																	color: item.highlight
+																		? themeVars.colors.palette.primary.default
+																		: themeVars.colors.text.primary,
+																}}
+															>
+																{item.text}
+															</span>
+														))}
+													</div>
+													<div className="text-xs">
+														{partsKey.map((item) => (
+															<span
+																key={item.text}
+																style={{
+																	color: item.highlight
+																		? themeVars.colors.palette.primary.default
+																		: themeVars.colors.text.secondary,
+																}}
+															>
+																{item.text}
+															</span>
+														))}
+													</div>
+												</div>
+											</div>
+										</StyledListItemButton>
+									);
+								})}
+							</div>
+						</ScrollArea>
+					)}
+				</div>
+
+				<DialogFooter>
+					<div className="flex flex-wrap text-text-primary">
 						<div className="flex">
 							<Tag color="cyan">↑</Tag>
 							<Tag color="cyan">↓</Tag>
@@ -181,65 +222,11 @@ export default function SearchBar() {
 							<span>to close</span>
 						</div>
 					</div>
-				}
-			>
-				{searchResult.length === 0 ? (
-					<Empty />
-				) : (
-					<ScrollArea>
-						<div ref={listRef} className="py-2">
-							{searchResult.map(({ key, label }, index) => {
-								const partsTitle = parse(t(label), match(t(label), searchQuery));
-								const partsKey = parse(key, match(key, searchQuery));
-								return (
-									<StyledListItemButton
-										key={key}
-										style={index === selectedItemIndex ? activeStyle : {}}
-										onClick={() => handleSelect(key)}
-										onMouseMove={() => handleHover(index)}
-									>
-										<div className="flex justify-between">
-											<div>
-												<div className="font-medium">
-													{partsTitle.map((item) => (
-														<span
-															key={item.text}
-															style={{
-																color: item.highlight
-																	? themeVars.colors.palette.primary.default
-																	: themeVars.colors.text.primary,
-															}}
-														>
-															{item.text}
-														</span>
-													))}
-												</div>
-												<div className="text-xs">
-													{partsKey.map((item) => (
-														<span
-															key={item.text}
-															style={{
-																color: item.highlight
-																	? themeVars.colors.palette.primary.default
-																	: themeVars.colors.text.secondary,
-															}}
-														>
-															{item.text}
-														</span>
-													))}
-												</div>
-											</div>
-										</div>
-									</StyledListItemButton>
-								);
-							})}
-						</div>
-					</ScrollArea>
-				)}
-			</Modal>
-		</>
+				</DialogFooter>
+			</DialogContent>
+		</Dialog>
 	);
-}
+};
 
 const StyledListItemButton = styled.div`
   display: flex;
@@ -250,3 +237,5 @@ const StyledListItemButton = styled.div`
   border-radius: 8px;
   color: ${themeVars.colors.text.secondary};
 `;
+
+export default SearchBar;

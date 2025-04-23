@@ -20,18 +20,17 @@ export default function Header({ headerLeftSlot }: HeaderProps) {
 		<header
 			data-slot="slash-layout-header"
 			className={cn(
-				"sticky top-0 right-0 left-auto flex items-center bg-background justify-between px-2 md:px-4 lg:px-6 xl:px-10",
-				"z-app-bar",
+				"sticky top-0 right-0 left-auto flex items-center bg-background justify-between px-2",
 				"h-[var(--layout-header-height)]",
 			)}
 		>
-			<div className="flex items-baseline gap-2">
+			<div className="flex items-center">
 				{headerLeftSlot}
 
-				<div className="hidden md:block">{breadCrumb && <BreadCrumb />}</div>
+				<div className="hidden md:block ml-4">{breadCrumb && <BreadCrumb />}</div>
 			</div>
 
-			<div className="flex items-center">
+			<div className="flex items-center gap-1">
 				<SearchBar />
 				<LocalePicker />
 				<Button
