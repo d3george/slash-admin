@@ -180,6 +180,7 @@ export const themeTokens = {
 		disabledBackground: null,
 	},
 	zIndex: {
+		header: null,
 		appBar: null,
 		drawer: null,
 		modal: null,

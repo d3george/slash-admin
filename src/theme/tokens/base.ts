@@ -57,6 +57,7 @@ export const baseThemeTokens = {
 		disabledBackground: "24%",
 	},
 	zIndex: {
+		header: "1000", // z-index of the header bar
 		appBar: "1100", // z-index of the navigation bar at the top of the application
 		drawer: "1200", // z-index of the drawer/navigation menu
 		modal: "1300", // z-index of the modal/dialog
