@@ -26,7 +26,7 @@
 		},
 		"login": {
 			"backSignIn": "返回",
-			"signInFormTitle": "登录",
+			"signInFormTitle": "登录到您的账户",
 			"mobileSignInFormTitle": "手机登录",
 			"qrSignInFormTitle": "二维码登录",
 			"signUpFormTitle": "注册",
@@ -70,7 +70,9 @@
 			"registerAndAgree": "注册即我同意",
 			"termsOfService": " 服务条款 ",
 			"privacyPolicy": " 隐私政策 ",
-			"logout": "退出"
+			"logout": "退出",
+			"signInFormDescription": "输入您的账号登录到您的账户",
+			"noAccount": "没有账号？"
 		},
 		"tab": {
 			"fullscreen": "内容全屏",

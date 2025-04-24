@@ -4,7 +4,7 @@ import { Button } from "@/ui/button";
 import { Form, Input } from "antd";
 import { useTranslation } from "react-i18next";
 import { ReturnButton } from "./components/ReturnButton";
-import { LoginStateEnum, useLoginStateContext } from "./providers/LoginStateProvider";
+import { LoginStateEnum, useLoginStateContext } from "./providers/login-provider";
 
 function ResetForm() {
 	const onFinish = (values: any) => {

@@ -1,6 +1,6 @@
 import DashboardLayout from "@/layouts/dashboard";
 import PageError from "@/pages/sys/error/PageError";
-import Login from "@/pages/sys/login/Login";
+import LoginPage from "@/pages/sys/login";
 import ProtectedRoute from "@/router/components/protected-route";
 import { usePermissionRoutes } from "@/router/hooks";
 import { ERROR_ROUTE } from "@/router/routes/error-routes";
@@ -15,7 +15,7 @@ const PUBLIC_ROUTE: AppRouteObject = {
 	path: "/login",
 	element: (
 		<ErrorBoundary FallbackComponent={PageError}>
-			<Login />
+			<LoginPage />
 		</ErrorBoundary>
 	),
 };

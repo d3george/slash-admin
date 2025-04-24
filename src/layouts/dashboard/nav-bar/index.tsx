@@ -67,7 +67,7 @@ export default function NavBar({ className }: { className?: string }) {
 		<nav
 			data-slot="slash-layout-nav"
 			className={cn(
-				"hidden md:block fixed inset-y-0 left-0 flex-col h-full border-r border-dashed bg-background",
+				"hidden md:block fixed inset-y-0 left-0 flex-col h-full border-r border-dashed bg-background z-app-bar",
 				className,
 			)}
 		>
