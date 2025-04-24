@@ -5,7 +5,7 @@ import { Card } from "@/ui/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/ui/tooltip";
 import { fBytes } from "@/utils/format-number";
 import type { ItemRender } from "antd/es/upload/interface";
-import { m } from "framer-motion";
+import { m } from "motion/react";
 import { useEffect, useState } from "react";
 import { getBlobUrl, getFileFormat, getFileThumb } from "./utils";
 

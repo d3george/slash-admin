@@ -60,7 +60,7 @@ export default defineConfig(({ mode }) => {
 				output: {
 					manualChunks: {
 						"vendor-core": ["react", "react-dom", "react-router"],
-						"vendor-ui": ["antd", "@ant-design/icons", "@ant-design/cssinjs", "framer-motion", "styled-components"],
+						"vendor-ui": ["antd", "@ant-design/icons", "@ant-design/cssinjs", "styled-components"],
 						"vendor-utils": ["axios", "dayjs", "i18next", "zustand", "@iconify/react"],
 						"vendor-charts": ["apexcharts", "react-apexcharts"],
 					},

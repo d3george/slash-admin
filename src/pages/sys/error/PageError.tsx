@@ -1,5 +1,5 @@
 import { Typography } from "antd";
-import { m } from "framer-motion";
+import { m } from "motion/react";
 import { Helmet } from "react-helmet-async";
 
 import Character5 from "@/assets/images/characters/character_5.png";

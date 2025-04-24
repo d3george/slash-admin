@@ -7,7 +7,7 @@ import type { AppRouteObject } from "#/router";
 
 const AnimatePage = lazy(() => import("@/pages/components/animate"));
 const ScrollPage = lazy(() => import("@/pages/components/scroll"));
-const EditorPage = lazy(() => import("@/pages/components/editor"));
+// const EditorPage = lazy(() => import("@/pages/components/editor"));
 const MultiLanguagePage = lazy(() => import("@/pages/components/multi-language"));
 const IconPage = lazy(() => import("@/pages/components/icon"));
 const UploadPage = lazy(() => import("@/pages/components/upload"));
@@ -46,11 +46,11 @@ const components: AppRouteObject = {
 			element: <ScrollPage />,
 			meta: { label: "sys.menu.scroll", key: "/components/scroll" },
 		},
-		{
-			path: "editor",
-			element: <EditorPage />,
-			meta: { label: "sys.menu.editor", key: "/components/editor" },
-		},
+		// {
+		// 	path: "editor",
+		// 	element: <EditorPage />,
+		// 	meta: { label: "sys.menu.editor", key: "/components/editor" },
+		// },
 		{
 			path: "i18n",
 			element: <MultiLanguagePage />,

@@ -3,7 +3,7 @@ import type { Params, RouteObject } from "react-router";
 
 export interface RouteMeta {
 	/**
-	 * antd menu selectedKeys
+	 * unique key
 	 */
 	key: string;
 	/**

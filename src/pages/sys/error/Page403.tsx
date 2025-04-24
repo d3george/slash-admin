@@ -1,5 +1,4 @@
-import { Typography } from "antd";
-import { m } from "framer-motion";
+import { m } from "motion/react";
 import { Helmet } from "react-helmet-async";
 import { NavLink } from "react-router";
 
@@ -7,6 +6,7 @@ import Character4 from "@/assets/images/characters/character_4.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
 import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
@@ -20,15 +20,13 @@ export default function Page403() {
 			<div className="m-auto max-w-[400px]">
 				<MotionContainer className="flex flex-col items-center justify-center px-2">
 					<m.div variants={varBounce().in}>
-						<Typography.Title level={3} className="text-center">
-							No permission
-						</Typography.Title>
+						<h3 className="text-center">No permission</h3>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<Typography.Paragraph type="secondary" className="text-center">
+						<p className="text-center">
 							The page you are trying access has restricted access. Please refer to your system administrator
-						</Typography.Paragraph>
+						</p>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
@@ -94,8 +92,8 @@ export default function Page403() {
 						</svg>
 					</m.div>
 
-					<NavLink to={HOMEPAGE} className="rounded-md p-4 text-text-primary! bg-primary!">
-						Go to Home
+					<NavLink to={HOMEPAGE}>
+						<Button size="lg">Go to Home</Button>
 					</NavLink>
 				</MotionContainer>
 			</div>

@@ -4,6 +4,7 @@ import ReactQuill, { type ReactQuillProps } from "react-quill";
 import { StyledEditor } from "./styles";
 import Toolbar, { formats } from "./toolbar";
 
+// TODO: repace react-quill with tiptap
 interface Props extends ReactQuillProps {
 	sample?: boolean;
 }
