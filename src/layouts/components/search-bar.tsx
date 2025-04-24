@@ -2,15 +2,7 @@ import { Icon } from "@/components/icon";
 import { useFlattenedRoutes, useRouter } from "@/router/hooks";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "@/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTrigger } from "@/ui/dialog";
 import { Input } from "@/ui/input";
 import { ScrollArea } from "@/ui/scroll-area";
 import { rgbAlpha } from "@/utils/theme";
@@ -139,7 +131,6 @@ const SearchBar = () => {
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>Search</DialogTitle>
 					<DialogDescription>
 						<Input
 							value={searchQuery}

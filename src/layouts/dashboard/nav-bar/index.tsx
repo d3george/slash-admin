@@ -1,3 +1,4 @@
+import { varFade } from "@/components/animate/variants/fade";
 import { Icon } from "@/components/icon";
 import Logo from "@/components/logo";
 import { NavHorizontal, NavMini, NavVertical } from "@/components/nav";
@@ -10,13 +11,16 @@ import { Button } from "@/ui/button";
 import { ScrollArea, ScrollBar } from "@/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/ui/sheet";
 import { cn } from "@/utils";
+import { m } from "motion/react";
 import { useMemo } from "react";
 import { ThemeLayout } from "#/enum";
-import NavLogo from "./nav-logo";
 
-export default function NavBar({ className }: { className?: string }) {
-	const settings = useSettings();
-	const { themeLayout } = settings;
+interface Props {
+	className?: string;
+}
+
+export default function NavBar({ className }: Props) {
+	const { themeLayout } = useSettings();
 
 	const routeToMenuFn = useRouteToMenu_V1();
 	const permissionRoutes = usePermissionRoutes();
@@ -67,11 +71,24 @@ export default function NavBar({ className }: { className?: string }) {
 		<nav
 			data-slot="slash-layout-nav"
 			className={cn(
-				"hidden md:block fixed inset-y-0 left-0 flex-col h-full border-r border-dashed bg-background z-app-bar",
+				"hidden md:block fixed inset-y-0 left-0 flex-col h-full bg-background z-app-bar border-r border-dashed",
 				className,
 			)}
 		>
-			<NavLogo />
+			<div
+				className={cn("relative flex items-center py-4 px-2 h-[var(--layout-header-height)]", {
+					"justify-center": themeLayout === ThemeLayout.Mini,
+				})}
+			>
+				<div className="flex items-center gap-2">
+					<Logo />
+					{themeLayout !== ThemeLayout.Mini && (
+						<m.span className="text-xl font-bold text-primary" variants={varFade().in}>
+							Slash Admin
+						</m.span>
+					)}
+				</div>
+			</div>
 
 			<ScrollArea
 				className={cn("h-[calc(100vh-var(--layout-header-height))] px-2 bg-background", {
@@ -79,7 +96,16 @@ export default function NavBar({ className }: { className?: string }) {
 					"w-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
 				})}
 			>
-				{themeLayout === ThemeLayout.Vertical ? <NavVertical data={menuList} /> : <NavMini data={menuList} />}
+				<m.div
+					key={themeLayout}
+					variants={varFade().in}
+					initial="initial"
+					animate="animate"
+					exit="exit"
+					transition={{ duration: 0.2 }}
+				>
+					{themeLayout === ThemeLayout.Vertical ? <NavVertical data={menuList} /> : <NavMini data={menuList} />}
+				</m.div>
 			</ScrollArea>
 		</nav>
 	);
