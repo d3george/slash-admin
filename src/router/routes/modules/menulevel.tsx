@@ -1,14 +1,12 @@
-import { Typography } from "antd";
-import { Suspense } from "react";
-import { Navigate, Outlet } from "react-router";
-
 import { Icon } from "@/components/icon";
 import { CircleLoading } from "@/components/loading";
-
+import { H1 } from "@/ui/typography";
+import { Suspense } from "react";
+import { Navigate, Outlet } from "react-router";
 import type { AppRouteObject } from "#/router";
 
 function MenuLevel({ title }: { title: string }) {
-	return <Typography.Title>Menu Level: {title}</Typography.Title>;
+	return <H1>Menu Level: {title}</H1>;
 }
 
 const menulevel: AppRouteObject = {

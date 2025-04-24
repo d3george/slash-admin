@@ -1,12 +1,12 @@
-import { Typography } from "antd";
-import { m } from "motion/react";
-import { Helmet } from "react-helmet-async";
-import { NavLink } from "react-router";
-
 import Character6 from "@/assets/images/characters/character_6.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
 import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
+import { H3, Muted } from "@/ui/typography";
+import { m } from "motion/react";
+import { Helmet } from "react-helmet-async";
+import { NavLink } from "react-router";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
@@ -20,16 +20,14 @@ export default function Page404() {
 			<div className="m-auto max-w-[400px]">
 				<MotionContainer className="flex flex-col items-center justify-center px-2">
 					<m.div variants={varBounce().in}>
-						<Typography.Title level={3} className="text-center">
-							Sorry, Page Not Found!
-						</Typography.Title>
+						<H3 className="text-center">Sorry, Page Not Found!</H3>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<Typography.Paragraph type="secondary" className="text-center">
+						<Muted className="text-center">
 							Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be sure to check
 							your spelling.
-						</Typography.Paragraph>
+						</Muted>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
@@ -86,8 +84,8 @@ export default function Page404() {
 						</svg>
 					</m.div>
 
-					<NavLink to={HOMEPAGE} className="rounded-md p-4 text-text-primary! bg-primary!">
-						Go to Home
+					<NavLink to={HOMEPAGE}>
+						<Button size="lg">Go to Home</Button>
 					</NavLink>
 				</MotionContainer>
 			</div>

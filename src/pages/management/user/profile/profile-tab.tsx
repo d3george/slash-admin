@@ -4,8 +4,10 @@ import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
+import { Small } from "@/ui/typography";
+import { Muted } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
-import { Avatar, Progress, Space, Table, Tag, Timeline, Typography } from "antd";
+import { Avatar, Progress, Space, Table, Tag, Timeline } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 interface DataType {
@@ -227,12 +229,10 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Typography.Text strong>8 Invoices have been paid</Typography.Text>
+													<Small>8 Invoices have been paid</Small>
 													<div className="opacity-50">Wednesday</div>
 												</div>
-												<Typography.Text type="secondary" className="text-xs">
-													Invoices have been paid to the company.
-												</Typography.Text>
+												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
 
 												<div className="mt-2 flex items-center gap-2">
 													<Icon icon="local:file-pdf" size={30} />
@@ -246,12 +246,10 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Typography.Text strong>Create a new project for client 😎</Typography.Text>
+													<Small>Create a new project for client 😎</Small>
 													<div className="opacity-50">April, 18</div>
 												</div>
-												<Typography.Text type="secondary" className="text-xs">
-													Invoices have been paid to the company.
-												</Typography.Text>
+												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
 												<div className="mt-2 flex items-center gap-2">
 													<img alt="" src={faker.image.avatarGitHub()} className="h-8 w-8 rounded-full" />
 													<span className="font-medium opacity-60">{faker.person.fullName()} (client)</span>
@@ -264,12 +262,10 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Typography.Text strong>Order #37745 from September</Typography.Text>
+													<Small>Order #37745 from September</Small>
 													<div className="opacity-50">January, 10</div>
 												</div>
-												<Typography.Text type="secondary" className="text-xs">
-													Invoices have been paid to the company.
-												</Typography.Text>
+												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
 											</div>
 										),
 									},
@@ -278,7 +274,7 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Typography.Text strong>Public Meeting</Typography.Text>
+													<Small>Public Meeting</Small>
 													<div className="opacity-50">September, 30</div>
 												</div>
 											</div>

@@ -1,10 +1,9 @@
-import { Avatar, DatePicker, Image, Input, Radio, Space, Tag, Typography } from "antd";
+import { Icon } from "@/components/icon";
+import { themeVars } from "@/theme/theme.css";
+import { H4, Muted } from "@/ui/typography";
+import { Avatar, DatePicker, Image, Input, Radio, Space, Tag } from "antd";
 import dayjs from "dayjs";
 import styled from "styled-components";
-
-import { Icon } from "@/components/icon";
-
-import { themeVars } from "@/theme/theme.css";
 import type { Task } from "./types";
 
 type Props = {
@@ -16,7 +15,7 @@ export default function TaskDetail({ task }: Props) {
 		<>
 			<Container>
 				<div className="item">
-					<Typography.Title level={4}>{title}</Typography.Title>
+					<H4>{title}</H4>
 				</div>
 				<div className="item">
 					<div className="label">Reporter</div>
@@ -107,8 +106,8 @@ export default function TaskDetail({ task }: Props) {
 						<Avatar src={avatar} size={40} className="shrink-0" />
 						<div className="flex grow flex-col flex-wrap gap-1 text-gray">
 							<div className="flex justify-between">
-								<Typography.Text>{username}</Typography.Text>
-								<Typography.Text>{dayjs(time).format("DD/MM/YYYY HH:mm")}</Typography.Text>
+								<Muted>{username}</Muted>
+								<Muted>{dayjs(time).format("DD/MM/YYYY HH:mm")}</Muted>
 							</div>
 							<p>{content}</p>
 						</div>

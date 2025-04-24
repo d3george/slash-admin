@@ -1,14 +1,13 @@
-import { Typography } from "antd";
-import { m } from "motion/react";
-import { Helmet } from "react-helmet-async";
-
 import Character5 from "@/assets/images/characters/character_5.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
 import { useRouter } from "@/router/hooks";
-
 import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
+import { H3, Muted } from "@/ui/typography";
+import { m } from "motion/react";
 import type { FallbackProps } from "react-error-boundary";
+import { Helmet } from "react-helmet-async";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
@@ -28,15 +27,11 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 			<div className="m-auto flex h-screen max-w-[400px] items-center justify-center">
 				<MotionContainer className="flex flex-col items-center justify-center px-2">
 					<m.div variants={varBounce().in}>
-						<Typography.Title level={3} className="text-center">
-							Sorry, Page error occurred!
-						</Typography.Title>
+						<H3 className="text-center">Sorry, Page error occurred!</H3>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<Typography.Paragraph type="secondary" className="text-center">
-							{error.toString()}
-						</Typography.Paragraph>
+						<Muted className="text-center">{error.toString()}</Muted>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
@@ -210,14 +205,9 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 						</svg>
 					</m.div>
 
-					<button
-						style={{ background: themeVars.colors.palette.primary.default, color: themeVars.colors.text.primary }}
-						className="rounded-md p-4"
-						onClick={goHome}
-						type="button"
-					>
+					<Button size="lg" onClick={goHome}>
 						Go to Home
-					</button>
+					</Button>
 				</MotionContainer>
 			</div>
 		</div>

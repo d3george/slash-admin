@@ -1,7 +1,8 @@
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Muted } from "@/ui/typography";
 import { fBytes } from "@/utils/format-number";
-import { Typography, Upload } from "antd";
+import { Upload } from "antd";
 import type { UploadChangeParam, UploadFile, UploadProps } from "antd/es/upload";
 import { useState } from "react";
 import { StyledUploadAvatar } from "./styles";
@@ -57,10 +58,10 @@ export function UploadAvatar({ helperText, defaultAvatar = "", ...other }: Props
 	);
 
 	const defaultHelperText = (
-		<Typography.Text type="secondary" style={{ fontSize: 12 }}>
+		<Muted>
 			Allowed *.jpeg, *.jpg, *.png, *.gif
 			<br /> max size of {fBytes(3145728)}
-		</Typography.Text>
+		</Muted>
 	);
 	const renderHelpText = <div className="text-center">{helperText || defaultHelperText}</div>;
 

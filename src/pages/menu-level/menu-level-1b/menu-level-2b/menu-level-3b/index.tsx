@@ -1,5 +1,5 @@
-import { Typography } from "antd";
+import { H1 } from "@/ui/typography";
 
 export default function MenuLevel() {
-	return <Typography.Title>Menu Level: 3b</Typography.Title>;
+	return <H1>Menu Level: 3b</H1>;
 }

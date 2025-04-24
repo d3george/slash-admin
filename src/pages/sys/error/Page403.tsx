@@ -1,12 +1,12 @@
-import { m } from "motion/react";
-import { Helmet } from "react-helmet-async";
-import { NavLink } from "react-router";
-
 import Character4 from "@/assets/images/characters/character_4.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
+import { H3, Muted } from "@/ui/typography";
+import { m } from "motion/react";
+import { Helmet } from "react-helmet-async";
+import { NavLink } from "react-router";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
@@ -20,13 +20,13 @@ export default function Page403() {
 			<div className="m-auto max-w-[400px]">
 				<MotionContainer className="flex flex-col items-center justify-center px-2">
 					<m.div variants={varBounce().in}>
-						<h3 className="text-center">No permission</h3>
+						<H3 className="text-center">No permission</H3>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<p className="text-center">
+						<Muted className="text-center">
 							The page you are trying access has restricted access. Please refer to your system administrator
-						</p>
+						</Muted>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
