@@ -79,7 +79,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					/>
 
 					{/* 记住我/忘记密码 */}
-					<div className="flex flex-col md:flex-row justify-between">
+					<div className="flex flex-row justify-between">
 						<div className="flex items-center space-x-2">
 							<Checkbox
 								id="remember"
@@ -93,11 +93,9 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 								{t("sys.login.rememberMe")}
 							</label>
 						</div>
-						<div className="text-right">
-							<Button variant="link" onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)} size="sm">
-								{t("sys.login.forgetPassword")}
-							</Button>
-						</div>
+						<Button variant="link" onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)} size="sm">
+							{t("sys.login.forgetPassword")}
+						</Button>
 					</div>
 
 					{/* 登录按钮 */}

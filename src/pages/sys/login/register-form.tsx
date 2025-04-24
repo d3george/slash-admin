@@ -1,20 +1,29 @@
-import { useMutation } from "@tanstack/react-query";
-import { Button, Form, Input } from "antd";
-import { useTranslation } from "react-i18next";
-
 import userService from "@/api/services/userService";
-
+import { Button } from "@/ui/button";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/ui/form";
+import { Input } from "@/ui/input";
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { ReturnButton } from "./components/ReturnButton";
 import { LoginStateEnum, useLoginStateContext } from "./providers/login-provider";
 
 function RegisterForm() {
 	const { t } = useTranslation();
+	const { loginState, backToLogin } = useLoginStateContext();
+
 	const signUpMutation = useMutation({
 		mutationFn: userService.signup,
 	});
 
-	const { loginState, backToLogin } = useLoginStateContext();
-	if (loginState !== LoginStateEnum.REGISTER) return null;
+	const form = useForm({
+		defaultValues: {
+			username: "",
+			email: "",
+			password: "",
+			confirmPassword: "",
+		},
+	});
 
 	const onFinish = async (values: any) => {
 		console.log("Received values of form: ", values);
@@ -22,58 +31,92 @@ function RegisterForm() {
 		backToLogin();
 	};
 
+	if (loginState !== LoginStateEnum.REGISTER) return null;
+
 	return (
-		<>
-			<div className="mb-4 text-2xl font-bold xl:text-3xl">{t("sys.login.signUpFormTitle")}</div>
-			<Form name="normal_login" size="large" initialValues={{ remember: true }} onFinish={onFinish}>
-				<Form.Item name="username" rules={[{ required: true, message: t("sys.login.accountPlaceholder") }]}>
-					<Input placeholder={t("sys.login.userName")} />
-				</Form.Item>
-				<Form.Item name="email" rules={[{ required: true, message: t("sys.login.emaildPlaceholder") }]}>
-					<Input placeholder={t("sys.login.email")} />
-				</Form.Item>
-				<Form.Item name="password" rules={[{ required: true, message: t("sys.login.passwordPlaceholder") }]}>
-					<Input.Password type="password" placeholder={t("sys.login.password")} />
-				</Form.Item>
-				<Form.Item
+		<Form {...form}>
+			<form onSubmit={form.handleSubmit(onFinish)} className="space-y-4">
+				<div className="flex flex-col items-center gap-2 text-center">
+					<h1 className="text-2xl font-bold">{t("sys.login.signUpFormTitle")}</h1>
+				</div>
+
+				<FormField
+					control={form.control}
+					name="username"
+					rules={{ required: t("sys.login.accountPlaceholder") }}
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<Input placeholder={t("sys.login.userName")} {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				<FormField
+					control={form.control}
+					name="email"
+					rules={{ required: t("sys.login.emaildPlaceholder") }}
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<Input placeholder={t("sys.login.email")} {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				<FormField
+					control={form.control}
+					name="password"
+					rules={{ required: t("sys.login.passwordPlaceholder") }}
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<Input type="password" placeholder={t("sys.login.password")} {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				<FormField
+					control={form.control}
 					name="confirmPassword"
-					rules={[
-						{
-							required: true,
-							message: t("sys.login.confirmPasswordPlaceholder"),
-						},
-						({ getFieldValue }) => ({
-							validator(_, value) {
-								if (!value || getFieldValue("password") === value) {
-									return Promise.resolve();
-								}
-								return Promise.reject(new Error(t("sys.login.diffPwd")));
-							},
-						}),
-					]}
-				>
-					<Input.Password type="password" placeholder={t("sys.login.confirmPassword")} />
-				</Form.Item>
-				<Form.Item>
-					<Button type="primary" htmlType="submit" className="w-full">
-						{t("sys.login.registerButton")}
-					</Button>
-				</Form.Item>
+					rules={{
+						required: t("sys.login.confirmPasswordPlaceholder"),
+						validate: (value) => value === form.getValues("password") || t("sys.login.diffPwd"),
+					}}
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<Input type="password" placeholder={t("sys.login.confirmPassword")} {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				<Button type="submit" className="w-full">
+					{t("sys.login.registerButton")}
+				</Button>
 
 				<div className="mb-2 text-xs text-gray">
 					<span>{t("sys.login.registerAndAgree")}</span>
-					<a href="./" className="text-sm underline!">
+					<a href="./" className="text-sm underline! text-primary!">
 						{t("sys.login.termsOfService")}
 					</a>
 					{" & "}
-					<a href="./" className="text-sm underline!">
+					<a href="./" className="text-sm underline! text-primary!">
 						{t("sys.login.privacyPolicy")}
 					</a>
 				</div>
 
 				<ReturnButton onClick={backToLogin} />
-			</Form>
-		</>
+			</form>
+		</Form>
 	);
 }
 

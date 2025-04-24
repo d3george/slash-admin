@@ -45,7 +45,7 @@
 			"forgetPassword": "忘记密码?",
 			"otherSignIn": "其他登录方式",
 			"sendSmsButton": "发送验证码",
-			"sendSmsText": "{{second}}秒后重新获取",
+			"sendSmsText": "{{second}}秒后重试",
 			"sendEmailButton": "发送邮件",
 
 			"loginSuccessTitle": "登录成功",

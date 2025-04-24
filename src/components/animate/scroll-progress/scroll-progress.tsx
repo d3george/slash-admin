@@ -11,7 +11,7 @@ interface Props extends HTMLMotionProps<"div"> {
 /**
  * https://www.framer.com/motion/scroll-animations/##spring-smoothing
  */
-export default function ScrollProgress({ scrollYProgress, height = 4, color, ...other }: Props) {
+export function ScrollProgress({ scrollYProgress, height = 4, color, ...other }: Props) {
 	const scaleX = useSpring(scrollYProgress, {
 		stiffness: 100,
 		damping: 30,

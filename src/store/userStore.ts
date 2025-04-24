@@ -52,8 +52,7 @@ const useUserStore = create<UserStore>()(
 
 export const useUserInfo = () => useUserStore((state) => state.userInfo);
 export const useUserToken = () => useUserStore((state) => state.userToken);
-export const useUserPermission = () =>
-	useUserStore((state) => state.userInfo.permissions);
+export const useUserPermission = () => useUserStore((state) => state.userInfo.permissions);
 export const useUserActions = () => useUserStore((state) => state.actions);
 
 export const useSignIn = () => {
@@ -71,7 +70,9 @@ export const useSignIn = () => {
 			setUserToken({ accessToken, refreshToken });
 			setUserInfo(user);
 			navigatge(HOMEPAGE, { replace: true });
-			toast.success("Sign in success!");
+			toast.success("Sign in success!", {
+				closeButton: true,
+			});
 		} catch (err) {
 			toast.error(err.message, {
 				position: "top-center",

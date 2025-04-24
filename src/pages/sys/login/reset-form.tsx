@@ -1,39 +1,52 @@
 import { Icon } from "@/components/icon";
-import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
-import { Form, Input } from "antd";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/ui/form";
+import { Input } from "@/ui/input";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { ReturnButton } from "./components/ReturnButton";
 import { LoginStateEnum, useLoginStateContext } from "./providers/login-provider";
 
 function ResetForm() {
+	const { t } = useTranslation();
+	const { loginState, backToLogin } = useLoginStateContext();
+	const form = useForm();
+
 	const onFinish = (values: any) => {
 		console.log("Received values of form: ", values);
 	};
-
-	const { t } = useTranslation();
-	const { loginState, backToLogin } = useLoginStateContext();
 
 	if (loginState !== LoginStateEnum.RESET_PASSWORD) return null;
 
 	return (
 		<>
 			<div className="mb-8 text-center">
-				<Icon icon="local:ic-reset-password" size="100" style={{ color: themeVars.colors.palette.primary.default }} />
+				<Icon icon="local:ic-reset-password" size="100" className="text-primary!" />
 			</div>
-			<div className="mb-4 text-center text-2xl font-bold xl:text-3xl">{t("sys.login.forgetFormTitle")}</div>
-			<Form name="normal_login" size="large" initialValues={{ remember: true }} onFinish={onFinish}>
-				<p className="mb-4 text-center text-gray">{t("sys.login.forgetFormSecondTitle")}</p>
-				<Form.Item name="email" rules={[{ required: true, message: t("sys.login.emaildPlaceholder") }]}>
-					<Input placeholder={t("sys.login.email")} />
-				</Form.Item>
-				<Form.Item>
-					<Button variant="outline" size="lg" className="w-full bg-accent-foreground! text-accent! cursor-pointer">
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onFinish)} className="space-y-4">
+					<div className="flex flex-col items-center gap-2 text-center">
+						<h1 className="text-2xl font-bold">{t("sys.login.forgetFormTitle")}</h1>
+						<p className="text-balance text-sm text-muted-foreground">{t("sys.login.forgetFormSecondTitle")}</p>
+					</div>
+
+					<FormField
+						control={form.control}
+						name="email"
+						render={({ field }) => (
+							<FormItem>
+								<FormControl>
+									<Input placeholder={t("sys.login.email")} {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<Button type="submit" className="w-full">
 						{t("sys.login.sendEmailButton")}
 					</Button>
-				</Form.Item>
-
-				<ReturnButton onClick={backToLogin} />
+					<ReturnButton onClick={backToLogin} />
+				</form>
 			</Form>
 		</>
 	);

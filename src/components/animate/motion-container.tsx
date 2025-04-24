@@ -1,5 +1,4 @@
 import { type MotionProps, m } from "framer-motion";
-
 import { varContainer } from "./variants/container";
 
 interface Props extends MotionProps {

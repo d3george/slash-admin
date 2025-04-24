@@ -235,15 +235,6 @@ const COMPONENTS_PERMISSION = {
 			component: "/components/scroll/index.tsx",
 		},
 		{
-			id: "1755562695856395",
-			parentId: "2271615060673773",
-			label: "sys.menu.markdown",
-			name: "Markdown",
-			type: PermissionType.MENU,
-			route: "markdown",
-			component: "/components/markdown/index.tsx",
-		},
-		{
 			id: "2122547769468069",
 			parentId: "2271615060673773",
 			label: "sys.menu.editor",
