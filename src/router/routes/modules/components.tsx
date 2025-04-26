@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 import ToastPage from "@/pages/components/toast";
 import { Suspense, lazy } from "react";
 import { Navigate, Outlet } from "react-router";
@@ -17,7 +17,7 @@ const components: AppRouteObject = {
 	order: 3,
 	path: "components",
 	element: (
-		<Suspense fallback={<CircleLoading />}>
+		<Suspense fallback={<LineLoading />}>
 			<Outlet />
 		</Suspense>
 	),

@@ -21,7 +21,7 @@ export default function Header({ headerLeftSlot }: HeaderProps) {
 			data-slot="slash-layout-header"
 			className={cn(
 				"sticky top-0 right-0 left-auto flex items-center bg-background justify-between px-2 z-app-bar ml-[1px]",
-				"h-[var(--layout-header-height)]",
+				"h-[var(--layout-header-height)] grow-0 shrink-0",
 			)}
 		>
 			<div className="flex items-center">

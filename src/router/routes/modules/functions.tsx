@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 import { Suspense, lazy } from "react";
 import { Navigate, Outlet } from "react-router";
 import type { AppRouteObject } from "#/router";
@@ -10,7 +10,7 @@ const functions: AppRouteObject = {
 	order: 4,
 	path: "functions",
 	element: (
-		<Suspense fallback={<CircleLoading />}>
+		<Suspense fallback={<LineLoading />}>
 			<Outlet />
 		</Suspense>
 	),

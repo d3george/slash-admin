@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 import { H1 } from "@/ui/typography";
 import { Suspense } from "react";
 import { Navigate, Outlet } from "react-router";
@@ -13,7 +13,7 @@ const menulevel: AppRouteObject = {
 	order: 5,
 	path: "menu_level",
 	element: (
-		<Suspense fallback={<CircleLoading />}>
+		<Suspense fallback={<LineLoading />}>
 			<Outlet />
 		</Suspense>
 	),

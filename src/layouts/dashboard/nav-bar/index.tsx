@@ -3,7 +3,7 @@ import { Icon } from "@/components/icon";
 import Logo from "@/components/logo";
 import { NavHorizontal, NavMini, NavVertical } from "@/components/nav";
 import { down, useMediaQuery } from "@/hooks";
-import { useRouteToMenu_V1 } from "@/router/hooks";
+import { useRouteToMenu } from "@/router/hooks";
 import { usePermissionRoutes } from "@/router/hooks";
 import { menuFilter } from "@/router/utils";
 import { useSettings } from "@/store/settingStore";
@@ -22,7 +22,7 @@ interface Props {
 export default function NavBar({ className }: Props) {
 	const { themeLayout } = useSettings();
 
-	const routeToMenuFn = useRouteToMenu_V1();
+	const routeToMenuFn = useRouteToMenu();
 	const permissionRoutes = usePermissionRoutes();
 
 	const menuList = useMemo(() => {
@@ -67,6 +67,7 @@ export default function NavBar({ className }: Props) {
 			</nav>
 		);
 
+	// Vertical and Mini
 	return (
 		<nav
 			data-slot="slash-layout-nav"

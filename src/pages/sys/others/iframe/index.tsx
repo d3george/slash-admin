@@ -1,4 +1,4 @@
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 import { useState } from "react";
 
 type Props = {
@@ -13,14 +13,9 @@ export default function Iframe({ src = "" }: Props) {
 
 	return (
 		<div className="h-full w-full relative">
-			{isLoading && <CircleLoading />}
+			{isLoading && <LineLoading />}
 
-			<iframe
-				src={src}
-				title="iframe-page"
-				className="h-full w-full"
-				onLoad={handleLoad}
-			/>
+			<iframe src={src} title="iframe-page" className="h-full w-full" onLoad={handleLoad} />
 		</div>
 	);
 }

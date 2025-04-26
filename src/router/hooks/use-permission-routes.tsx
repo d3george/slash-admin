@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 import { useUserPermission } from "@/store/userStore";
 import { flattenTrees } from "@/utils/tree";
 import { Tag } from "antd";
@@ -92,7 +92,7 @@ const createCatalogueRoute = (permission: Permission, flattenedPermissions: Perm
 	const { parentId, children = [] } = permission;
 	if (!parentId) {
 		baseRoute.element = (
-			<Suspense fallback={<CircleLoading />}>
+			<Suspense fallback={<LineLoading />}>
 				<Outlet />
 			</Suspense>
 		);
@@ -120,7 +120,7 @@ const createMenuRoute = (permission: Permission, flattenedPermissions: Permissio
 			baseRoute.element = <Element src={permission.frameSrc} />;
 		} else {
 			baseRoute.element = (
-				<Suspense fallback={<CircleLoading />}>
+				<Suspense fallback={<LineLoading />}>
 					<Element />
 				</Suspense>
 			);

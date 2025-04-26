@@ -11,7 +11,7 @@ const Main = () => {
 	return (
 		<main
 			data-slot="slash-layout-main"
-			className={cn("flex w-full", {
+			className={cn("flex w-full flex-1", {
 				"md:pt-[var(--layout-multi-tabs-height)]": multiTab,
 			})}
 		>

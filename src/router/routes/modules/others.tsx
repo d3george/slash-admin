@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 import { Tag } from "antd";
 import { Suspense, lazy } from "react";
 import type { AppRouteObject } from "#/router";
@@ -11,7 +11,7 @@ const Kanban = lazy(() => import("@/pages/sys/others/kanban"));
 const Blank = lazy(() => import("@/pages/sys/others/blank"));
 
 function Wrapper({ children }: any) {
-	return <Suspense fallback={<CircleLoading />}>{children}</Suspense>;
+	return <Suspense fallback={<LineLoading />}>{children}</Suspense>;
 }
 const others: AppRouteObject[] = [
 	{

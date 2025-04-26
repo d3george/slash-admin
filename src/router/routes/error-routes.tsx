@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Outlet } from "react-router";
 
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 import SimpleLayout from "@/layouts/simple";
 
 import ProtectedRoute from "../components/protected-route";
@@ -20,7 +20,7 @@ export const ERROR_ROUTE: AppRouteObject = {
 	element: (
 		<ProtectedRoute>
 			<SimpleLayout>
-				<Suspense fallback={<CircleLoading />}>
+				<Suspense fallback={<LineLoading />}>
 					<Outlet />
 				</Suspense>
 			</SimpleLayout>

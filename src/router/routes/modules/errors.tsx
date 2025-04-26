@@ -1,5 +1,5 @@
 import { Icon } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 import { Suspense, lazy } from "react";
 import { Outlet } from "react-router";
 import type { AppRouteObject } from "#/router";
@@ -13,7 +13,7 @@ const errors: AppRouteObject[] = [
 		path: "error",
 		order: 6,
 		element: (
-			<Suspense fallback={<CircleLoading />}>
+			<Suspense fallback={<LineLoading />}>
 				<Outlet />
 			</Suspense>
 		),

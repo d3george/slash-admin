@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { Navigate, Outlet } from "react-router";
 
 import { Icon } from "@/components/icon";
-import { CircleLoading } from "@/components/loading";
+import { LineLoading } from "@/components/loading";
 
 import type { AppRouteObject } from "#/router";
 
@@ -13,7 +13,7 @@ const dashboard: AppRouteObject = {
 	order: 1,
 	path: "dashboard",
 	element: (
-		<Suspense fallback={<CircleLoading />}>
+		<Suspense fallback={<LineLoading />}>
 			<Outlet />
 		</Suspense>
 	),

@@ -34,7 +34,7 @@ function PcLayout() {
 
 			<div
 				data-slot="slash-layout-content"
-				className={cn("w-full flex flex-col transition-all duration-300 ease-in-out", {
+				className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out", {
 					"pl-[var(--layout-nav-width)]": themeLayout === ThemeLayout.Vertical,
 					"pl-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
 				})}
@@ -42,7 +42,7 @@ function PcLayout() {
 				<Header headerLeftSlot={themeLayout === ThemeLayout.Horizontal ? <Logo /> : <VerticalNavTrigger />} />
 
 				{themeLayout === ThemeLayout.Horizontal && (
-					<NavBar className="sticky top-[var(--layout-header-height)] left-0" />
+					<NavBar className="sticky top-[var(--layout-header-height)] left-0 grow-0 shrink-0" />
 				)}
 
 				<Main />
