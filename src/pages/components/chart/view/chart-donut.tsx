@@ -1,5 +1,4 @@
-import Chart from "@/components/chart/chart";
-import useChart from "@/components/chart/useChart";
+import { Chart, useChart } from "@/components/chart";
 
 const series = [44, 55, 13, 43];
 export default function ChartDonut() {
@@ -23,7 +22,5 @@ export default function ChartDonut() {
 		},
 	});
 
-	return (
-		<Chart type="donut" series={series} options={chartOptions} height={320} />
-	);
+	return <Chart type="donut" series={series} options={chartOptions} height={320} />;
 }

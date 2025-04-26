@@ -1,5 +1,4 @@
-import Chart from "@/components/chart/chart";
-import useChart from "@/components/chart/useChart";
+import { Chart, useChart } from "@/components/chart";
 
 const series = [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380];
 
@@ -25,12 +24,5 @@ export default function ChartBar() {
 		},
 	});
 
-	return (
-		<Chart
-			type="bar"
-			series={[{ data: series }]}
-			options={chartOptions}
-			height={320}
-		/>
-	);
+	return <Chart type="bar" series={[{ data: series }]} options={chartOptions} height={320} />;
 }

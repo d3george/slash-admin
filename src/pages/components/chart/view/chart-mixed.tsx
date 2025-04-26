@@ -1,5 +1,4 @@
-import Chart from "@/components/chart/chart";
-import useChart from "@/components/chart/useChart";
+import { Chart, useChart } from "@/components/chart";
 
 const series = [
 	{
@@ -64,7 +63,5 @@ export default function ChartMixed() {
 		},
 	});
 
-	return (
-		<Chart type="line" series={series} options={chartOptions} height={320} />
-	);
+	return <Chart type="line" series={series} options={chartOptions} height={320} />;
 }

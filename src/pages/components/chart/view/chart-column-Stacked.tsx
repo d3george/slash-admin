@@ -1,5 +1,4 @@
-import Chart from "@/components/chart/chart";
-import useChart from "@/components/chart/useChart";
+import { Chart, useChart } from "@/components/chart";
 
 const series = [
 	{ name: "Product A", data: [44, 55, 41, 67, 22, 43] },
@@ -43,7 +42,5 @@ export default function ChartColumnStacked() {
 		},
 	});
 
-	return (
-		<Chart type="bar" series={series} options={chartOptions} height={320} />
-	);
+	return <Chart type="bar" series={series} options={chartOptions} height={320} />;
 }

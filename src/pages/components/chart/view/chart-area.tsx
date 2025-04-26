@@ -1,5 +1,4 @@
-import Chart from "@/components/chart/chart";
-import useChart from "@/components/chart/useChart";
+import { Chart, useChart } from "@/components/chart";
 
 const series = [
 	{ name: "series1", data: [31, 40, 28, 51, 42, 109, 100] },
@@ -26,7 +25,5 @@ export default function ChartArea() {
 		},
 	});
 
-	return (
-		<Chart type="area" series={series} options={chartOptions} height={320} />
-	);
+	return <Chart type="area" series={series} options={chartOptions} height={320} />;
 }

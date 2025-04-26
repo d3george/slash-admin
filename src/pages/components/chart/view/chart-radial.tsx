@@ -1,5 +1,4 @@
-import Chart from "@/components/chart/chart";
-import useChart from "@/components/chart/useChart";
+import { Chart, useChart } from "@/components/chart";
 import { fNumber } from "@/utils/format-number";
 
 const series = [44, 55];
@@ -33,12 +32,5 @@ export default function ChartRadial() {
 		},
 	});
 
-	return (
-		<Chart
-			type="radialBar"
-			series={series}
-			options={chartOptions}
-			height={320}
-		/>
-	);
+	return <Chart type="radialBar" series={series} options={chartOptions} height={320} />;
 }

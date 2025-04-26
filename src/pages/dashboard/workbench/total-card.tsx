@@ -1,5 +1,4 @@
-import Chart from "@/components/chart/chart";
-import useChart from "@/components/chart/useChart";
+import { Chart, useChart } from "@/components/chart";
 import { Icon } from "@/components/icon";
 import { Card, CardContent } from "@/ui/card";
 

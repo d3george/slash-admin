@@ -7,7 +7,7 @@ import { useSettings } from "@/store/settingStore";
 import { breakpointsTokens } from "@/theme/tokens/breakpoints";
 import { paletteColors, presetsColors } from "@/theme/tokens/color";
 
-export default function useChart(options: ApexOptions) {
+export function useChart(options: ApexOptions) {
 	const { themeColorPresets } = useSettings();
 
 	const LABEL_TOTAL = {
