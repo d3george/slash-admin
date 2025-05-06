@@ -12,7 +12,7 @@ export function LineLoading() {
 		<div className="m-auto flex h-full w-96 items-center justify-center">
 			<div
 				ref={containerRef}
-				className="relative h-1 w-full overflow-hidden rounded-full"
+				className="relative h-1.5 w-full overflow-hidden rounded"
 				style={{
 					backgroundColor: paletteColors.gray["500"],
 				}}
