@@ -1,10 +1,13 @@
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Badge } from "@/ui/badge";
+import { Textarea } from "@/ui/textarea";
+import { ToggleGroup, ToggleGroupItem } from "@/ui/toggle-group";
 import { H4, Muted } from "@/ui/typography";
-import { Avatar, DatePicker, Image, Input, Radio, Space, Tag } from "antd";
+import { Avatar, DatePicker, Image } from "antd";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import type { Task } from "./types";
+import { type Task, TaskPriority } from "./types";
 
 type Props = {
 	task: Task;
@@ -24,21 +27,21 @@ export default function TaskDetail({ task }: Props) {
 				<div className="item">
 					<div className="label">Assignee</div>
 
-					<Space>
+					<div className="flex gap-2">
 						{assignee.map((item) => (
 							<Avatar key={item} shape="circle" src={item} size={40} />
 						))}
-					</Space>
+					</div>
 				</div>
 				<div className="item">
 					<div className="label">Tag</div>
-					<Space wrap>
+					<div className="flex gap-2 flex-wrap">
 						{tags.map((tag) => (
-							<Tag key={tag} color={themeVars.colors.palette.info.default}>
+							<Badge key={tag} variant="info">
 								{tag}
-							</Tag>
+							</Badge>
 						))}
-					</Space>
+					</div>
 				</div>
 
 				<div className="item">
@@ -48,50 +51,41 @@ export default function TaskDetail({ task }: Props) {
 
 				<div className="item">
 					<div className="label">Priority</div>
-					<div>
-						<Radio.Group defaultValue={priority}>
-							<Space>
-								<Radio.Button value="High">
-									<Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.warning.default} />
-									<span>High</span>
-								</Radio.Button>
-
-								<Radio.Button value="Medium">
-									<Icon
-										icon="local:ic-rise"
-										size={20}
-										color={themeVars.colors.palette.success.default}
-										className="rotate-90"
-									/>
-									<span>Medium</span>
-								</Radio.Button>
-
-								<Radio.Button value="Low">
-									<Icon
-										icon="local:ic-rise"
-										size={20}
-										color={themeVars.colors.palette.info.default}
-										className="rotate-180"
-									/>
-									<span>Low</span>
-								</Radio.Button>
-							</Space>
-						</Radio.Group>
-					</div>
+					<ToggleGroup type="single" defaultValue={priority}>
+						<ToggleGroupItem value={TaskPriority.HIGH}>
+							<Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.warning.default} />
+						</ToggleGroupItem>
+						<ToggleGroupItem value={TaskPriority.MEDIUM}>
+							<Icon
+								icon="local:ic-rise"
+								size={20}
+								color={themeVars.colors.palette.success.default}
+								className="rotate-90"
+							/>
+						</ToggleGroupItem>
+						<ToggleGroupItem value={TaskPriority.LOW}>
+							<Icon
+								icon="local:ic-rise"
+								size={20}
+								color={themeVars.colors.palette.info.default}
+								className="rotate-180"
+							/>
+						</ToggleGroupItem>
+					</ToggleGroup>
 				</div>
 
 				<div className="item">
 					<div className="label">Description</div>
-					<Input.TextArea defaultValue={description} />
+					<Textarea defaultValue={description} />
 				</div>
 
 				<div className="item">
 					<div className="label">Attachments</div>
-					<Space wrap>
+					<div className="flex gap-2 flex-wrap">
 						{attachments?.map((item) => (
 							<Image key={item} src={item} width={62} height={62} className="rounded-lg" />
 						))}
-					</Space>
+					</div>
 				</div>
 			</Container>
 			{/* comments */}
@@ -132,7 +126,6 @@ const Container = styled.div`
     font-size: 0.75rem;
     font-weight: 600;
     width: 100px;
-    shrink: 0;
     color: rgb(99, 115, 129);
     height: 40px;
     line-height: 40px;

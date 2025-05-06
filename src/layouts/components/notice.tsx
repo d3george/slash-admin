@@ -2,10 +2,11 @@ import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/ui/sheet";
 import { faker } from "@faker-js/faker";
-import { Badge, Space, Tabs, type TabsProps, Tag } from "antd";
+import { Tabs, type TabsProps } from "antd";
 import { type CSSProperties, type ReactNode, useState } from "react";
 
 export default function NoticeButton() {
@@ -23,17 +24,14 @@ export default function NoticeButton() {
 
 	return (
 		<div>
-			<Button variant="ghost" size="icon" className="rounded-full" onClick={() => setDrawerOpen(true)}>
-				<Badge
-					count={count}
-					styles={{
-						root: { color: "inherit" },
-						indicator: { color: themeVars.colors.common.white },
-					}}
-				>
+			<div className="relative">
+				<Button variant="ghost" size="icon" className="rounded-full" onClick={() => setDrawerOpen(true)}>
 					<Icon icon="solar:bell-bing-bold-duotone" size={24} />
+				</Button>
+				<Badge variant="error" overlay="circle" className="absolute -right-2 -top-2">
+					{count}
 				</Badge>
-			</Button>
+			</div>
 			<Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
 				<SheetContent side="right" className="w-[420px] p-0 [&>button]:hidden" style={style}>
 					<SheetHeader className="flex flex-row items-center justify-between px-6 py-4">
@@ -54,7 +52,7 @@ export default function NoticeButton() {
 					<SheetFooter className="border-t">
 						<div
 							style={{ color: themeVars.colors.text.primary }}
-							className="flex h-10 w-full items-center justify-center font-semibold"
+							className="flex h-10 w-full items-center justify-center font-semibold cursor-pointer"
 						>
 							View All
 						</div>
@@ -76,11 +74,9 @@ function NoticeTab() {
 						<span className="text-xs font-light"> sent you a frind request</span>
 					</div>
 					<span className="text-xs font-light opacity-60">about 1 hour ago</span>
-					<div className="mt-2">
-						<Space>
-							<Button>Accept</Button>
-							<Button variant="outline">Refuse</Button>
-						</Space>
+					<div className="mt-2 flex gap-2">
+						<Button>Accept</Button>
+						<Button variant="outline">Refuse</Button>
 					</div>
 				</div>
 			</div>
@@ -101,9 +97,7 @@ function NoticeTab() {
 						</div>
 					</div>
 					<div className="mt-2">
-						<Space>
-							<Button>Reply</Button>
-						</Space>
+						<Button>Reply</Button>
 					</div>
 				</div>
 			</div>
@@ -118,9 +112,7 @@ function NoticeTab() {
 					</div>
 					<span className="text-xs font-light opacity-60">1 days ago</span>
 					<div className="mt-2">
-						<Space>
-							<Button>Reply</Button>
-						</Space>
+						<Button>Reply</Button>
 					</div>
 				</div>
 			</div>
@@ -156,11 +148,9 @@ function NoticeTab() {
 						<span className="font-medium">$3000</span>
 					</div>
 					<span className="text-xs font-light opacity-60">4 days ago</span>
-					<div className="mt-2">
-						<Space>
-							<Button>Pay</Button>
-							<Button variant="outline">Refuse</Button>
-						</Space>
+					<div className="mt-2 flex gap-2">
+						<Button>Pay</Button>
+						<Button variant="outline">Refuse</Button>
 					</div>
 				</div>
 			</div>
@@ -210,9 +200,9 @@ function NoticeTab() {
 		{
 			key: "1",
 			label: (
-				<div className="flex">
+				<div className="flex gap-0.5">
 					<span>All</span>
-					<Tag color="processing">22</Tag>
+					<Badge variant="info">22</Badge>
 				</div>
 			),
 			children: tabChildren,
@@ -220,9 +210,9 @@ function NoticeTab() {
 		{
 			key: "2",
 			label: (
-				<div className="flex">
+				<div className="flex gap-0.5">
 					<span>Unread</span>
-					<Tag color="error">12</Tag>
+					<Badge variant="error">12</Badge>
 				</div>
 			),
 			children: tabChildren,
@@ -230,9 +220,9 @@ function NoticeTab() {
 		{
 			key: "3",
 			label: (
-				<div className="flex">
+				<div className="flex gap-0.5">
 					<span>Archived</span>
-					<Tag color="green">10</Tag>
+					<Badge variant="success">10</Badge>
 				</div>
 			),
 			children: tabChildren,

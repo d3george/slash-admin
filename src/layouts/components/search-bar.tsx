@@ -1,12 +1,13 @@
 import { Icon } from "@/components/icon";
 import { useFlattenedRoutes, useRouter } from "@/router/hooks";
 import { themeVars } from "@/theme/theme.css";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTrigger } from "@/ui/dialog";
 import { Input } from "@/ui/input";
 import { ScrollArea } from "@/ui/scroll-area";
 import { rgbAlpha } from "@/utils/theme";
-import { Empty, Tag } from "antd";
+import { Empty } from "antd";
 import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
@@ -200,16 +201,16 @@ const SearchBar = () => {
 				<DialogFooter>
 					<div className="flex flex-wrap text-text-primary">
 						<div className="flex">
-							<Tag color="cyan">↑</Tag>
-							<Tag color="cyan">↓</Tag>
+							<Badge variant="info">↑</Badge>
+							<Badge variant="info">↓</Badge>
 							<span>to navigate</span>
 						</div>
 						<div className="flex">
-							<Tag color="cyan">↵</Tag>
+							<Badge variant="info">↵</Badge>
 							<span>to select</span>
 						</div>
 						<div className="flex">
-							<Tag color="cyan">ESC</Tag>
+							<Badge variant="info">ESC</Badge>
 							<span>to close</span>
 						</div>
 					</div>

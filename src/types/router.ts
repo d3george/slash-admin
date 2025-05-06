@@ -17,7 +17,7 @@ export interface RouteMeta {
 	/**
 	 * menu suffix icon
 	 */
-	suffix?: ReactNode;
+	info?: ReactNode;
 	/**
 	 * hide in menu
 	 */

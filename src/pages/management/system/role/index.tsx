@@ -1,8 +1,9 @@
 import { ROLE_LIST } from "@/_mock/assets";
 import { Icon } from "@/components/icon";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
-import { Popconfirm, Tag } from "antd";
+import { Popconfirm } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import { useState } from "react";
 import type { Role } from "#/entity";
@@ -47,9 +48,9 @@ export default function RolePage() {
 			align: "center",
 			width: 120,
 			render: (status) => (
-				<Tag color={status === BasicStatus.DISABLE ? "error" : "success"}>
+				<Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>
 					{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
-				</Tag>
+				</Badge>
 			),
 		},
 		{ title: "Desc", dataIndex: "desc" },

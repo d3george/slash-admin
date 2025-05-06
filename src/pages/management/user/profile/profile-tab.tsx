@@ -2,12 +2,14 @@ import { fakeAvatars } from "@/_mock/utils";
 import { Icon } from "@/components/icon";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
+import { Progress } from "@/ui/progress";
 import { Small } from "@/ui/typography";
 import { Muted } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
-import { Avatar, Progress, Space, Table, Tag, Timeline } from "antd";
+import { Avatar, Table, Timeline } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 interface DataType {
@@ -97,32 +99,32 @@ export default function ProfileTab() {
 			avatar: <Icon icon="devicon:react" size={36} />,
 			name: "React Developers",
 			members: `${faker.number.int(100)} Members`,
-			tag: <Tag color="warning">Developer</Tag>,
+			tag: <Badge variant="warning">Developer</Badge>,
 		},
 		{
 			avatar: <Icon icon="devicon:figma" size={36} />,
 			name: "UI Designer",
-			members: `${faker.number.int(100)} Members`,
-			tag: <Tag color="cyan">Designer</Tag>,
+			members: `${faker.number.int()} Members`,
+			tag: <Badge variant="info">Designer</Badge>,
 		},
 		{
 			avatar: <Icon icon="logos:jest" size={36} />,
 			name: "Test Team",
 			members: `${faker.number.int(100)} Members`,
-			tag: <Tag color="success">Test</Tag>,
+			tag: <Badge variant="success">Test</Badge>,
 		},
 		{
 			avatar: <Icon icon="logos:nestjs" size={36} />,
 			name: "Nest.js Developers",
 			members: `${faker.number.int(100)} Members`,
-			tag: <Tag color="warning">Developer</Tag>,
+			tag: <Badge variant="warning">Developer</Badge>,
 		},
 
 		{
 			avatar: <Icon icon="logos:twitter" size={36} />,
 			name: "Digital Marketing",
 			members: `${faker.number.int(100)} Members`,
-			tag: <Tag>Marketing</Tag>,
+			tag: <Badge variant="info">Marketing</Badge>,
 		},
 	];
 
@@ -175,19 +177,15 @@ export default function ProfileTab() {
 		{
 			title: "STATUS",
 			dataIndex: "status",
-			render: (val) => (
-				<Progress percent={val} strokeColor={themeVars.colors.palette.primary.default} trailColor="transparent" />
-			),
+			render: (val) => <Progress value={val} />,
 		},
 		{
 			title: "ACTIONS",
 			dataIndex: "action",
 			render: () => (
-				<Space size="middle">
-					<Button variant="ghost" size="icon">
-						<Icon icon="fontisto:more-v-a" />
-					</Button>
-				</Space>
+				<Button variant="ghost" size="icon">
+					<Icon icon="fontisto:more-v-a" />
+				</Button>
 			),
 		},
 	];

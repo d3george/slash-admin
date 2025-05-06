@@ -1,9 +1,10 @@
 import { USER_LIST } from "@/_mock/assets";
 import { Icon } from "@/components/icon";
 import { usePathname, useRouter } from "@/router/hooks";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
-import { Popconfirm, Tag } from "antd";
+import { Popconfirm } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import type { Role, UserInfo } from "#/entity";
 import { BasicStatus } from "#/enum";
@@ -36,7 +37,7 @@ export default function RolePage() {
 			dataIndex: "role",
 			align: "center",
 			width: 120,
-			render: (role: Role) => <Tag color="cyan">{role.name}</Tag>,
+			render: (role: Role) => <Badge variant="info">{role.name}</Badge>,
 		},
 		{
 			title: "Status",
@@ -44,9 +45,9 @@ export default function RolePage() {
 			align: "center",
 			width: 120,
 			render: (status) => (
-				<Tag color={status === BasicStatus.DISABLE ? "error" : "success"}>
+				<Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>
 					{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
-				</Tag>
+				</Badge>
 			),
 		},
 		{

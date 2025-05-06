@@ -1,6 +1,6 @@
 import { Icon } from "@/components/icon";
 import { LineLoading } from "@/components/loading";
-import { Tag } from "antd";
+import { Badge } from "@/ui/badge";
 import { Suspense, lazy } from "react";
 import type { AppRouteObject } from "#/router";
 
@@ -25,6 +25,7 @@ const others: AppRouteObject[] = [
 			label: "sys.menu.calendar",
 			icon: <Icon icon="solar:calendar-bold-duotone" size={24} />,
 			key: "/calendar",
+			info: <Badge variant="warning">+12</Badge>,
 		},
 	},
 	{
@@ -62,11 +63,12 @@ const others: AppRouteObject[] = [
 		),
 		meta: {
 			label: "sys.menu.label",
-			icon: <Icon icon="local:ic-label" className="ant-menu-item-icon" size="24" />,
-			suffix: (
-				<Tag color="cyan" icon={<Icon icon="solar:bell-bing-bold-duotone" size={14} />}>
-					NEW
-				</Tag>
+			icon: <Icon icon="local:ic-label" className="ant-menu-item-icon" size="14" />,
+			info: (
+				<Badge variant="info">
+					<Icon icon="solar:bell-bing-bold-duotone" size={14} />
+					New
+				</Badge>
 			),
 			key: "/label",
 		},

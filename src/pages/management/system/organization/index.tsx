@@ -1,5 +1,6 @@
 import orgService from "@/api/services/orgService";
 import { Icon } from "@/components/icon";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
 import { Input } from "@/ui/input";
@@ -8,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
 import { Textarea } from "@/ui/textarea";
 import { useQuery } from "@tanstack/react-query";
-import { Form, Modal, Popconfirm, Space, Tag } from "antd";
+import { Form, Modal, Popconfirm } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import type { TableRowSelection } from "antd/es/table/interface";
 import { useEffect, useState } from "react";
@@ -43,7 +44,11 @@ export default function OrganizationPage() {
 			dataIndex: "status",
 			align: "center",
 			width: 120,
-			render: (status) => <Tag color={status === "enable" ? "success" : "error"}>{status}</Tag>,
+			render: (status) => (
+				<Badge variant={status === "enable" ? "success" : "error"}>
+					{status.charAt(0).toUpperCase() + status.slice(1)}
+				</Badge>
+			),
 		},
 		{ title: "Desc", dataIndex: "desc", align: "center", width: 300 },
 		{
@@ -58,7 +63,7 @@ export default function OrganizationPage() {
 					</Button>
 					<Popconfirm title="Delete the Organization" okText="Yes" cancelText="No" placement="left">
 						<Button variant="ghost" size="icon">
-							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error" />
+							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
 						</Button>
 					</Popconfirm>
 				</div>
@@ -114,7 +119,7 @@ export default function OrganizationPage() {
 	};
 
 	return (
-		<Space direction="vertical" size="large" className="w-full">
+		<div className="flex flex-col gap-4">
 			<Card>
 				<CardContent>
 					<Form form={searchForm}>
@@ -129,10 +134,10 @@ export default function OrganizationPage() {
 									</SelectTrigger>
 									<SelectContent>
 										<SelectItem value="enable">
-											<Tag color="success">Enable</Tag>
+											<Badge variant="success">Enable</Badge>
 										</SelectItem>
 										<SelectItem value="disable">
-											<Tag color="error">Disable</Tag>
+											<Badge variant="error">Disable</Badge>
 										</SelectItem>
 									</SelectContent>
 								</Select>
@@ -176,7 +181,7 @@ export default function OrganizationPage() {
 			</Card>
 
 			<OrganizationModal {...organizationModalPros} />
-		</Space>
+		</div>
 	);
 }
 

@@ -1,8 +1,9 @@
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Badge } from "@/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { ScrollArea } from "@/ui/scroll-area";
-import { Rate, Tag } from "antd";
+import { Rate } from "antd";
 const dataSource = [
 	{
 		logo: <Icon icon="logos:chrome" size={24} />,
@@ -69,14 +70,14 @@ export default function TopRelated() {
 
 							<div className="flex flex-col">
 								<span className="font-medium">{item.title}</span>
-								<div className="flex items-center justify-center text-gray">
+								<div className="flex items-center justify-center text-gray gap-2">
 									{item.platform === "Mac" ? (
 										<Icon icon="wpf:mac-os" size={12} />
 									) : (
 										<Icon icon="mingcute:windows-fill" size={12} />
 									)}
-									<span className="mx-1 text-xs font-light">{item.platform}</span>
-									<Tag color={item.type === "free" ? "green" : "red"}>{item.type}</Tag>
+									<span className="text-xs font-light">{item.platform}</span>
+									<Badge variant={item.type === "free" ? "success" : "error"}>{item.type}</Badge>
 								</div>
 							</div>
 

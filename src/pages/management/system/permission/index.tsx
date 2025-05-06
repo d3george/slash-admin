@@ -1,8 +1,9 @@
 import { Icon } from "@/components/icon";
 import { useUserPermission } from "@/store/userStore";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
-import { Popconfirm, Tag } from "antd";
+import { Popconfirm } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import { isNil } from "ramda";
 import { useState } from "react";
@@ -49,7 +50,7 @@ export default function PermissionPage() {
 			title: "Type",
 			dataIndex: "type",
 			width: 60,
-			render: (_, record) => <Tag color="processing">{PermissionType[record.type]}</Tag>,
+			render: (_, record) => <Badge variant="info">{PermissionType[record.type]}</Badge>,
 		},
 		{
 			title: "Icon",
@@ -73,9 +74,9 @@ export default function PermissionPage() {
 			align: "center",
 			width: 120,
 			render: (status) => (
-				<Tag color={status === BasicStatus.DISABLE ? "error" : "success"}>
+				<Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>
 					{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
-				</Tag>
+				</Badge>
 			),
 		},
 		{ title: "Order", dataIndex: "order", width: 60 },

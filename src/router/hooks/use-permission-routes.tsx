@@ -1,8 +1,8 @@
 import { Icon } from "@/components/icon";
 import { LineLoading } from "@/components/loading";
 import { useUserPermission } from "@/store/userStore";
+import { Badge } from "@/ui/badge";
 import { flattenTrees } from "@/utils/tree";
-import { Tag } from "antd";
 import { isEmpty } from "ramda";
 import { Suspense, lazy, useMemo } from "react";
 import { Navigate, Outlet } from "react-router";
@@ -48,12 +48,10 @@ function buildCompleteRoute(
 // Components
 function NewFeatureTag() {
 	return (
-		<Tag color="cyan" className="ml-2!">
-			<div className="flex items-center gap-1">
-				<Icon icon="solar:bell-bing-bold-duotone" size={12} />
-				<span className="ms-1">NEW</span>
-			</div>
-		</Tag>
+		<Badge variant="info">
+			<Icon icon="solar:bell-bing-bold-duotone" size={14} />
+			New
+		</Badge>
 	);
 }
 
@@ -76,7 +74,7 @@ const createBaseRoute = (permission: Permission, completeRoute: string): AppRout
 	if (baseRoute.meta) {
 		if (icon) baseRoute.meta.icon = icon;
 		if (frameSrc) baseRoute.meta.frameSrc = frameSrc;
-		if (newFeature) baseRoute.meta.suffix = <NewFeatureTag />;
+		if (newFeature) baseRoute.meta.info = <NewFeatureTag />;
 	}
 
 	return baseRoute;

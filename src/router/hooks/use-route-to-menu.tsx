@@ -24,6 +24,7 @@ export function useRouteToMenu() {
 					disabled: meta.disabled,
 					icon: meta.icon ? renderIcon(meta.icon) : undefined,
 					children: children ? routeToMenuFn(children) : undefined,
+					info: meta.info,
 				};
 
 				return menuItem;

@@ -1,8 +1,8 @@
 import { Icon } from "@/components/icon";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card } from "@/ui/card";
 import { faker } from "@faker-js/faker";
-import { Tag } from "antd";
 
 export default function ConnectionsTab() {
 	const items = [
@@ -78,9 +78,9 @@ export default function ConnectionsTab() {
 
 					<div className="mt-4 flex gap-4">
 						{item.tags.map((tag) => (
-							<Tag color={faker.color.rgb()} key={tag}>
+							<Badge key={tag} variant="info">
 								{tag}
-							</Tag>
+							</Badge>
 						))}
 					</div>
 

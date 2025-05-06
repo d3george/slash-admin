@@ -1,9 +1,10 @@
 import { fakeAvatars } from "@/_mock/utils";
 import { Icon } from "@/components/icon";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent } from "@/ui/card";
 import { faker } from "@faker-js/faker";
-import { Avatar, Divider, Tag } from "antd";
+import { Avatar } from "antd";
 import dayjs from "dayjs";
 
 export default function ProjectsTab() {
@@ -109,8 +110,6 @@ export default function ProjectsTab() {
 							<span className="opacity-70">{item.desc}</span>
 						</main>
 
-						<Divider />
-
 						<footer className="flex w-full  flex-col items-center">
 							<div className="mb-4 flex w-full justify-between">
 								<span>
@@ -118,7 +117,7 @@ export default function ProjectsTab() {
 									<span className="ml-2 opacity-50">{item.allHours}</span>
 								</span>
 
-								<Tag color="warning">{item.deadline.diff(dayjs(), "day")} days left</Tag>
+								<Badge variant="warning">{item.deadline.diff(dayjs(), "day")} days left</Badge>
 							</div>
 							<div className="flex w-full ">
 								<Avatar.Group max={{ count: 4 }}>

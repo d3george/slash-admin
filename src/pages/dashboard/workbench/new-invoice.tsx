@@ -1,8 +1,8 @@
 import { Icon } from "@/components/icon";
+import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { ScrollArea, ScrollBar } from "@/ui/scroll-area";
-import { Tag } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 
 interface DataType {
@@ -38,10 +38,10 @@ export default function NewInvoice() {
 			dataIndex: "status",
 			render: (_status) => {
 				const status = _status as string;
-				let color = "success";
-				if (status === "Progress") color = "gold";
-				if (status === "Out of Date") color = "red";
-				return <Tag color={color}>{status}</Tag>;
+				let color: "success" | "warning" | "error" = "success";
+				if (status === "Progress") color = "warning";
+				if (status === "Out of Date") color = "error";
+				return <Badge variant={color}>{status}</Badge>;
 			},
 		},
 		{
