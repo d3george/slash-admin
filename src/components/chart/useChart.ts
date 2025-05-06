@@ -8,7 +8,7 @@ import { breakpointsTokens } from "@/theme/tokens/breakpoints";
 import { paletteColors, presetsColors } from "@/theme/tokens/color";
 
 export function useChart(options: ApexOptions) {
-	const { themeColorPresets } = useSettings();
+	const { themeColorPresets, themeMode } = useSettings();
 
 	const LABEL_TOTAL = {
 		show: true,
@@ -111,7 +111,7 @@ export function useChart(options: ApexOptions) {
 
 		// Tooltip
 		tooltip: {
-			theme: undefined,
+			theme: themeMode,
 			x: {
 				show: true,
 			},
