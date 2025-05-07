@@ -99,7 +99,7 @@ export const paletteColors = {
 
 export const commonColors = {
 	white: "#FFFFFF",
-	black: "#000000",
+	black: "#09090B",
 };
 
 export const actionColors = {
@@ -122,7 +122,7 @@ export const lightColorTokens = {
 	background: {
 		default: commonColors.white,
 		paper: commonColors.white,
-		neutral: paletteColors.gray[200],
+		neutral: paletteColors.gray[300],
 	},
 };
 
@@ -136,8 +136,8 @@ export const darkColorTokens = {
 		disabled: paletteColors.gray[600],
 	},
 	background: {
-		default: paletteColors.gray[900],
-		paper: paletteColors.gray[800],
-		neutral: "#28323D",
+		default: commonColors.black,
+		paper: commonColors.black,
+		neutral: "#27272A",
 	},
 };

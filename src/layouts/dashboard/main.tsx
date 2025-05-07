@@ -17,7 +17,7 @@ const Main = () => {
 		>
 			<ScrollArea
 				className={cn(
-					"h-full w-full p-2 mx-auto transition-all duration-300 ease-in-out",
+					"h-full w-full p-2 mx-auto transition-all duration-300 ease-in-out overscroll-none",
 					themeStretch ? "" : "xl:max-w-screen-xl",
 				)}
 			>

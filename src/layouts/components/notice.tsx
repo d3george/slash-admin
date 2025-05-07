@@ -17,7 +17,6 @@ export default function NoticeButton() {
 		backdropFilter: "blur(20px)",
 		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
-		backgroundColor: `rgba(${themeVars.colors.background.paperChannel} / 0.9)`,
 		backgroundPosition: "right top, left bottom",
 		backgroundSize: "50, 50%",
 	};

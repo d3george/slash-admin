@@ -62,18 +62,18 @@
 :root {
   --radius: 0.5rem;
   --background: var(--colors-common-white);
-  --foreground: var(--colors-palette-gray-900);
+  --foreground: var(--colors-common-black);
   --card: var(--colors-common-white);
-  --card-foreground: var(--colors-palette-gray-900);
+  --card-foreground: var(--colors-common-black);
   --popover: var(--colors-common-white);
-  --popover-foreground: var(--colors-palette-gray-900);
+  --popover-foreground: var(--colors-common-black);
   --primary: var(--colors-palette-primary-default);
   --primary-foreground: var(--colors-palette-primary-lighter);
-  --secondary:var(--colors-palette-gray-200);
+  --secondary:var(--colors-palette-gray-300);
   --secondary-foreground: var(--colors-palette-gray-900);
-  --muted: var(--colors-palette-gray-200);
+  --muted: var(--colors-palette-gray-300);
   --muted-foreground: var(--colors-palette-gray-500);
-  --accent: var(--colors-palette-gray-200);
+  --accent: var(--colors-palette-gray-300);
   --accent-foreground: var(--colors-palette-gray-900);
   --destructive: var(--colors-palette-error-default);
   --border: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
@@ -96,19 +96,19 @@
 
 /* Shadcn UI Dark Theme */
 [data-theme-mode="dark"] {
-  --background: var(--colors-palette-gray-900);
+  --background: var(--colors-common-black);
   --foreground: var(--colors-common-white);
-  --card: var(--colors-palette-gray-900);
+  --card: var(--colors-common-black);
   --card-foreground: var(--colors-common-white);
-  --popover: var(--colors-palette-gray-900);
+  --popover: var(--colors-common-black);
   --popover-foreground: var(--colors-common-white);
   --primary: var(--colors-palette-primary-default);
   --primary-foreground: var(--colors-palette-primary-darker);
-  --secondary: var(--colors-palette-gray-700);
+  --secondary: var(--colors-background-neutral);
   --secondary-foreground: var(--colors-common-white);
-  --muted: var(--colors-palette-gray-700);
+  --muted: var(--colors-background-neutral);
   --muted-foreground: var(--colors-palette-gray-400);
-  --accent: var(--colors-palette-gray-700);
+  --accent: var(--colors-background-neutral);
   --accent-foreground: var(--colors-common-white);
   --destructive: var(--colors-palette-error-default);
   --border: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
@@ -119,11 +119,11 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: var(--colors-palette-gray-800);
+  --sidebar: var(--colors-background-neutral);
   --sidebar-foreground: var(--colors-common-white);
   --sidebar-primary: var(--colors-palette-primary-default);
   --sidebar-primary-foreground: var(--colors-palette-primary-darker);
-  --sidebar-accent: var(--colors-palette-gray-800);
+  --sidebar-accent: var(--colors-background-neutral);
   --sidebar-accent-foreground: var(--colors-common-white);
   --sidebar-border: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
   --sidebar-ring: var(--colors-palette-primary-default);
