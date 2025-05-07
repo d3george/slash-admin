@@ -5,8 +5,8 @@ import { themeVars } from "@/theme/theme.css";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/ui/sheet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { faker } from "@faker-js/faker";
-import { Tabs, type TabsProps } from "antd";
 import { type CSSProperties, type ReactNode, useState } from "react";
 
 export default function NoticeButton() {
@@ -52,7 +52,7 @@ export default function NoticeButton() {
 					<SheetFooter className="border-t">
 						<div
 							style={{ color: themeVars.colors.text.primary }}
-							className="flex h-10 w-full items-center justify-center font-semibold cursor-pointer"
+							className="flex h-10 w-full items-center justify-center font-semibold"
 						>
 							View All
 						</div>
@@ -196,41 +196,28 @@ function NoticeTab() {
 			</div>
 		</div>
 	);
-	const items: TabsProps["items"] = [
-		{
-			key: "1",
-			label: (
-				<div className="flex gap-0.5">
-					<span>All</span>
-					<Badge variant="info">22</Badge>
-				</div>
-			),
-			children: tabChildren,
-		},
-		{
-			key: "2",
-			label: (
-				<div className="flex gap-0.5">
-					<span>Unread</span>
-					<Badge variant="error">12</Badge>
-				</div>
-			),
-			children: tabChildren,
-		},
-		{
-			key: "3",
-			label: (
-				<div className="flex gap-0.5">
-					<span>Archived</span>
-					<Badge variant="success">10</Badge>
-				</div>
-			),
-			children: tabChildren,
-		},
-	];
+
 	return (
 		<div className="flex flex-col px-6">
-			<Tabs defaultActiveKey="1" items={items} />
+			<Tabs defaultValue="all" className="w-full">
+				<TabsList>
+					<TabsTrigger value="all" className="flex gap-1">
+						<span>All</span>
+						<Badge variant="info">22</Badge>
+					</TabsTrigger>
+					<TabsTrigger value="unread" className="flex gap-1">
+						<span>Unread</span>
+						<Badge variant="error">12</Badge>
+					</TabsTrigger>
+					<TabsTrigger value="archived" className="flex gap-1">
+						<span>Archived</span>
+						<Badge variant="success">10</Badge>
+					</TabsTrigger>
+				</TabsList>
+				<TabsContent value="all">{tabChildren}</TabsContent>
+				<TabsContent value="unread">{tabChildren}</TabsContent>
+				<TabsContent value="archived">{tabChildren}</TabsContent>
+			</Tabs>
 		</div>
 	);
 }

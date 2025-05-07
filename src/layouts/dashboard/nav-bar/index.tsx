@@ -59,7 +59,7 @@ export default function NavBar({ className }: Props) {
 		);
 	if (themeLayout === ThemeLayout.Horizontal)
 		return (
-			<nav data-slot="slash-layout-nav" className={cn("w-screen bg-background z-app-bar", className)}>
+			<nav data-slot="slash-layout-nav" className={cn("w-screen bg-background", className)}>
 				<ScrollArea className="min-w-screen whitespace-nowrap px-2 bg-background">
 					<NavHorizontal data={menuList} />
 					<ScrollBar orientation="horizontal" />
@@ -72,7 +72,7 @@ export default function NavBar({ className }: Props) {
 		<nav
 			data-slot="slash-layout-nav"
 			className={cn(
-				"hidden md:block fixed inset-y-0 left-0 flex-col h-full bg-background z-app-bar border-r border-dashed",
+				"hidden md:block fixed inset-y-0 left-0 flex-col h-full bg-background border-r border-dashed",
 				className,
 			)}
 		>

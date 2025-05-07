@@ -3,7 +3,6 @@ import { useUserPermission } from "@/store/userStore";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
-import { Popconfirm } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import { isNil } from "ramda";
 import { useState } from "react";
@@ -95,11 +94,9 @@ export default function PermissionPage() {
 					<Button variant="ghost" size="icon" onClick={() => onEdit(record)}>
 						<Icon icon="solar:pen-bold-duotone" size={18} />
 					</Button>
-					<Popconfirm title="Delete the Permission" okText="Yes" cancelText="No" placement="left">
-						<Button variant="ghost" size="icon">
-							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
-						</Button>
-					</Popconfirm>
+					<Button variant="ghost" size="icon">
+						<Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
+					</Button>
 				</div>
 			),
 		},

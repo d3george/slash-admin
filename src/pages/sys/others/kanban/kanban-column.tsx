@@ -1,9 +1,11 @@
 import { Icon } from "@/components/icon";
 import { useSettings } from "@/store/settingStore";
+import { Button } from "@/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/ui/dropdown-menu";
+import { Input } from "@/ui/input";
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { faker } from "@faker-js/faker";
-import { Button, Dropdown, Input, type InputRef, type MenuProps } from "antd";
 import { type CSSProperties, useRef, useState } from "react";
 import { useEvent } from "react-use";
 import { ThemeMode } from "#/enum";
@@ -45,7 +47,7 @@ export default function KanbanColumn({
 		opacity: isDragging ? 0.5 : 1,
 	};
 
-	const items: MenuProps["items"] = [
+	const items = [
 		{
 			key: "1",
 			label: (
@@ -102,10 +104,10 @@ export default function KanbanColumn({
 	];
 
 	const [addingTask, setAddingTask] = useState(false);
-	const addTaskInputRef = useRef<InputRef>(null);
+	const addTaskInputRef = useRef<HTMLInputElement>(null);
 	const handleClickOutside = (event: MouseEvent) => {
-		if (addTaskInputRef.current && !addTaskInputRef.current.input?.contains(event.target as Node)) {
-			const addTaskInputVal = addTaskInputRef.current.input?.value;
+		if (addTaskInputRef.current && !addTaskInputRef.current.contains(event.target as Node)) {
+			const addTaskInputVal = addTaskInputRef.current.value;
 			if (addTaskInputVal) {
 				createTask(column.id, {
 					id: faker.string.uuid(),
@@ -117,8 +119,8 @@ export default function KanbanColumn({
 			setAddingTask(false);
 		}
 
-		if (renameTaskInputRef.current && !renameTaskInputRef.current.input?.contains(event.target as Node)) {
-			const renameInputVal = renameTaskInputRef.current.input?.value;
+		if (renameTaskInputRef.current && !renameTaskInputRef.current.contains(event.target as Node)) {
+			const renameInputVal = renameTaskInputRef.current.value;
 			if (renameInputVal) {
 				renameColumn({
 					...column,
@@ -131,7 +133,7 @@ export default function KanbanColumn({
 	useEvent("click", handleClickOutside);
 
 	const [renamingTask, setRenamingTask] = useState(false);
-	const renameTaskInputRef = useRef<InputRef>(null);
+	const renameTaskInputRef = useRef<HTMLInputElement>(null);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const handleMenuItemClick = (menuInfo: any) => {
 		setDropdownOpen(false);
@@ -144,18 +146,26 @@ export default function KanbanColumn({
 				{...listeners}
 				className="mb-4 flex select-none items-center justify-between text-base font-semibold"
 			>
-				{renamingTask ? <Input ref={renameTaskInputRef} size="large" autoFocus /> : column.title}
-				<Dropdown
-					open={dropdownOpen}
-					onOpenChange={(flag) => setDropdownOpen(flag)}
-					menu={{ items, onClick: handleMenuItemClick }}
-					placement="bottomRight"
-					trigger={["click"]}
-				>
-					<Button shape="circle" type="text" className="text-gray!">
-						<Icon icon="dashicons:ellipsis" />
-					</Button>
-				</Dropdown>
+				{renamingTask ? <Input ref={renameTaskInputRef} autoFocus /> : column.title}
+				<DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+					<DropdownMenuTrigger asChild>
+						<Button variant="ghost" size="icon" className="text-gray!">
+							<Icon icon="dashicons:ellipsis" />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end">
+						{items?.map((item) => {
+							if (item && "key" in item && "label" in item) {
+								return (
+									<DropdownMenuItem key={item.key} onClick={() => handleMenuItemClick({ key: item.key })}>
+										{item.label}
+									</DropdownMenuItem>
+								);
+							}
+							return null;
+						})}
+					</DropdownMenuContent>
+				</DropdownMenu>
 			</header>
 
 			<SortableContext items={tasks.map((task) => task.id)} strategy={verticalListSortingStrategy}>
@@ -168,17 +178,14 @@ export default function KanbanColumn({
 
 			<footer className="w-[248px]">
 				{addingTask ? (
-					<Input ref={addTaskInputRef} size="large" placeholder="Task Name" autoFocus />
+					<Input ref={addTaskInputRef} placeholder="Task Name" autoFocus />
 				) : (
 					<Button
 						onClick={(e) => {
 							e.stopPropagation();
 							setAddingTask(true);
 						}}
-						className="flex! items-center justify-center text-xs! font-medium!"
-						type="text"
-						block
-						size="large"
+						className="flex! items-center justify-center text-xs! font-medium! w-full"
 					>
 						<Icon icon="carbon:add" size={20} />
 						<span>Add Task</span>

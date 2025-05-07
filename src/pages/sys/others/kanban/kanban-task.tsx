@@ -1,10 +1,11 @@
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
-import { rgbAlpha } from "@/utils/theme";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
+import { Sheet, SheetContent, SheetHeader } from "@/ui/sheet";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Avatar, Drawer, Image, Select } from "antd";
 import { type CSSProperties, memo, useState } from "react";
 import styled from "styled-components";
 import TaskDetail from "./task-detail";
@@ -32,7 +33,7 @@ function KanbanTask({ id, task, isDragging }: Props) {
 		<>
 			<Container ref={setNodeRef} style={style} {...attributes} {...listeners} $isDragging={!!isDragging}>
 				<div>
-					{attachments.length > 0 && <Image src={attachments[0]} alt="" className="mb-4 rounded-md" />}
+					{attachments.length > 0 && <img src={attachments[0]} alt="" className="mb-4 rounded-md" />}
 					<div onClick={() => setDrawerOpen(true)}>
 						<div className="flex justify-end">
 							<TaskPrioritySvg taskPriority={priority} />
@@ -48,68 +49,51 @@ function KanbanTask({ id, task, isDragging }: Props) {
 							</div>
 
 							{assignee?.length && (
-								<Avatar.Group
-									max={{
-										count: 3,
-										style: {
-											color: themeVars.colors.palette.primary.default,
-											backgroundColor: rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.3),
-										},
-									}}
-								>
-									{assignee.map((url) => (
-										<Avatar key={url} src={url} />
+								<div className="flex gap-2 -space-x-4">
+									{assignee.slice(0, 3).map((url) => (
+										<Avatar key={url}>
+											<AvatarImage src={url} />
+										</Avatar>
 									))}
-								</Avatar.Group>
+								</div>
 							)}
 						</div>
 					</div>
 				</div>
 			</Container>
-			<Drawer
-				placement="right"
-				title={
-					<div className="flex items-center justify-between">
-						<div>
-							<Select
-								defaultValue="To do"
-								size="large"
-								variant="borderless"
-								dropdownStyle={{
-									width: "auto",
-								}}
-								options={[
-									{ value: "To do", label: "To do" },
-									{ value: "In progress", label: "In progress" },
-									{ value: "Done", label: "Done" },
-								]}
-							/>
+
+			<Sheet open={drawerOpen} modal={false} onOpenChange={setDrawerOpen}>
+				<SheetContent className="w-[420px] p-0 [&>button]:hidden pointer-events-auto">
+					<SheetHeader>
+						<div className="flex items-center justify-between">
+							<div>
+								<Select defaultValue="To do">
+									<SelectTrigger size="default">
+										<SelectValue />
+									</SelectTrigger>
+									<SelectContent>
+										<SelectItem value="To do">To do</SelectItem>
+										<SelectItem value="In progress">In progress</SelectItem>
+										<SelectItem value="Done">Done</SelectItem>
+									</SelectContent>
+								</Select>
+							</div>
+							<div className="flex text-gray">
+								<Button variant="ghost" size="icon">
+									<Icon icon="solar:like-bold" size={20} className="text-success!" />
+								</Button>
+								<Button variant="ghost" size="icon">
+									<Icon icon="solar:trash-bin-trash-bold" size={20} className="text-error!" />
+								</Button>
+								<Button variant="ghost" size="icon">
+									<Icon icon="fontisto:more-v-a" size={20} />
+								</Button>
+							</div>
 						</div>
-						<div className="flex text-gray">
-							<Button variant="ghost" size="icon">
-								<Icon icon="solar:like-bold" size={20} className="text-success!" />
-							</Button>
-							<Button variant="ghost" size="icon">
-								<Icon icon="solar:trash-bin-trash-bold" size={20} className="text-error!" />
-							</Button>
-							<Button variant="ghost" size="icon">
-								<Icon icon="fontisto:more-v-a" size={20} />
-							</Button>
-						</div>
-					</div>
-				}
-				onClose={() => setDrawerOpen(false)}
-				open={drawerOpen}
-				closable={false}
-				width={420}
-				styles={{
-					body: { padding: 0 },
-					mask: { backgroundColor: "transparent" },
-				}}
-				style={style}
-			>
-				<TaskDetail task={task} />
-			</Drawer>
+					</SheetHeader>
+					<TaskDetail task={task} />
+				</SheetContent>
+			</Sheet>
 		</>
 	);
 }

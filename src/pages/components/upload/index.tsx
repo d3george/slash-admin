@@ -2,7 +2,7 @@ import { Icon } from "@/components/icon";
 import { Upload, UploadAvatar, UploadBox } from "@/components/upload";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { Switch } from "@/ui/switch";
-import { Tabs, type TabsProps } from "antd";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { useState } from "react";
 
 export default function UploadPage() {
@@ -76,15 +76,16 @@ export default function UploadPage() {
 		</div>
 	);
 
-	const TABS: TabsProps["items"] = [
-		{
-			key: "upload--file",
-			label: "Upload Single File",
-			children: UploadFileTab,
-		},
-		{ key: "upload-avatar", label: "Upload Avatar", children: UploadAvatarTab },
-		{ key: "upload-box", label: "Upload Box", children: UploadBoxTab },
-	];
-
-	return <Tabs items={TABS} />;
+	return (
+		<Tabs defaultValue="upload--file" className="w-full">
+			<TabsList>
+				<TabsTrigger value="upload--file">Upload Single File</TabsTrigger>
+				<TabsTrigger value="upload-avatar">Upload Avatar</TabsTrigger>
+				<TabsTrigger value="upload-box">Upload Box</TabsTrigger>
+			</TabsList>
+			<TabsContent value="upload--file">{UploadFileTab}</TabsContent>
+			<TabsContent value="upload-avatar">{UploadAvatarTab}</TabsContent>
+			<TabsContent value="upload-box">{UploadBoxTab}</TabsContent>
+		</Tabs>
+	);
 }

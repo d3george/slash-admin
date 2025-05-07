@@ -104,11 +104,11 @@
   --popover-foreground: var(--colors-common-white);
   --primary: var(--colors-palette-primary-default);
   --primary-foreground: var(--colors-palette-primary-darker);
-  --secondary: var(--colors-palette-gray-800);
+  --secondary: var(--colors-palette-gray-700);
   --secondary-foreground: var(--colors-common-white);
-  --muted: var(--colors-palette-gray-800);
-  --muted-foreground: var(--colors-palette-gray-500);
-  --accent: var(--colors-palette-gray-800);
+  --muted: var(--colors-palette-gray-700);
+  --muted-foreground: var(--colors-palette-gray-400);
+  --accent: var(--colors-palette-gray-700);
   --accent-foreground: var(--colors-common-white);
   --destructive: var(--colors-palette-error-default);
   --border: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));

@@ -324,7 +324,7 @@ export default function SettingButton() {
 						</div>
 					</div>
 				</ScrollArea>
-				<SheetFooter className="px-6 py-4 border border-t shrink-0 z-[2000]">
+				<SheetFooter className="px-6 py-4 border border-t shrink-0">
 					<Button
 						variant="outline"
 						className="w-full border-dashed text-text-primary hover:border-primary hover:text-primary"

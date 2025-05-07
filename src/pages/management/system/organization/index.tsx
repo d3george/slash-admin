@@ -3,23 +3,25 @@ import { Icon } from "@/components/icon";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/ui/form";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
 import { Textarea } from "@/ui/textarea";
 import { useQuery } from "@tanstack/react-query";
-import { Form, Modal, Popconfirm } from "antd";
 import Table, { type ColumnsType } from "antd/es/table";
 import type { TableRowSelection } from "antd/es/table/interface";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import type { Organization } from "#/entity";
 import OrganizationChart from "./organization-chart";
 
 type SearchFormFieldType = Pick<Organization, "name" | "status">;
 
 export default function OrganizationPage() {
-	const [searchForm] = Form.useForm();
+	const searchForm = useForm<SearchFormFieldType>();
 	const [organizationModalPros, setOrganizationModalProps] = useState<OrganizationModalProps>({
 		formValue: {
 			id: "",
@@ -61,11 +63,9 @@ export default function OrganizationPage() {
 					<Button variant="ghost" size="icon" onClick={() => onEdit(record)}>
 						<Icon icon="solar:pen-bold-duotone" size={18} />
 					</Button>
-					<Popconfirm title="Delete the Organization" okText="Yes" cancelText="No" placement="left">
-						<Button variant="ghost" size="icon">
-							<Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
-						</Button>
-					</Popconfirm>
+					<Button variant="ghost" size="icon">
+						<Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
+					</Button>
 				</div>
 			),
 		},
@@ -90,7 +90,7 @@ export default function OrganizationPage() {
 	});
 
 	const onSearchFormReset = () => {
-		searchForm.resetFields();
+		searchForm.reset();
 	};
 
 	const onCreate = () => {
@@ -122,26 +122,42 @@ export default function OrganizationPage() {
 		<div className="flex flex-col gap-4">
 			<Card>
 				<CardContent>
-					<Form form={searchForm}>
+					<Form {...searchForm}>
 						<div className="flex items-center gap-4">
-							<Form.Item<SearchFormFieldType> label="Name" name="name" className="mb-0!">
-								<Input />
-							</Form.Item>
-							<Form.Item<SearchFormFieldType> label="Status" name="status" className="mb-0!">
-								<Select>
-									<SelectTrigger>
-										<SelectValue placeholder="Select Status" />
-									</SelectTrigger>
-									<SelectContent>
-										<SelectItem value="enable">
-											<Badge variant="success">Enable</Badge>
-										</SelectItem>
-										<SelectItem value="disable">
-											<Badge variant="error">Disable</Badge>
-										</SelectItem>
-									</SelectContent>
-								</Select>
-							</Form.Item>
+							<FormField
+								control={searchForm.control}
+								name="name"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Name</FormLabel>
+										<FormControl>
+											<Input {...field} />
+										</FormControl>
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={searchForm.control}
+								name="status"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Status</FormLabel>
+										<Select onValueChange={field.onChange} value={field.value}>
+											<SelectTrigger>
+												<SelectValue placeholder="Select Status" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="enable">
+													<Badge variant="success">Enable</Badge>
+												</SelectItem>
+												<SelectItem value="disable">
+													<Badge variant="error">Disable</Badge>
+												</SelectItem>
+											</SelectContent>
+										</Select>
+									</FormItem>
+								)}
+							/>
 							<div className="flex ml-auto">
 								<Button variant="outline" onClick={onSearchFormReset}>
 									Reset
@@ -194,35 +210,88 @@ type OrganizationModalProps = {
 };
 
 function OrganizationModal({ title, show, formValue, onOk, onCancel }: OrganizationModalProps) {
-	const [form] = Form.useForm();
+	const form = useForm<Organization>({
+		defaultValues: formValue,
+	});
+
 	useEffect(() => {
-		form.setFieldsValue({ ...formValue });
+		form.reset(formValue);
 	}, [formValue, form]);
+
 	return (
-		<Modal title={title} open={show} onOk={onOk} onCancel={onCancel}>
-			<Form initialValues={formValue} form={form} labelCol={{ span: 4 }} wrapperCol={{ span: 18 }} layout="horizontal">
-				<Form.Item<Organization> label="Name" name="name" required>
-					<Input />
-				</Form.Item>
-				<Form.Item<Organization> label="Order" name="order" required>
-					<Input type="number" />
-				</Form.Item>
-				<Form.Item<Organization> label="Status" name="status" required>
-					<RadioGroup className="flex gap-2">
-						<div className="flex items-center space-x-2">
-							<RadioGroupItem value="enable" id="r1" />
-							<Label htmlFor="r1">Enable</Label>
-						</div>
-						<div className="flex items-center space-x-2">
-							<RadioGroupItem value="disable" id="r2" />
-							<Label htmlFor="r2">Disable</Label>
-						</div>
-					</RadioGroup>
-				</Form.Item>
-				<Form.Item<Organization> label="Desc" name="desc">
-					<Textarea />
-				</Form.Item>
-			</Form>
-		</Modal>
+		<Dialog open={show} onOpenChange={(open) => !open && onCancel()}>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle>{title}</DialogTitle>
+				</DialogHeader>
+				<Form {...form}>
+					<div className="grid gap-4 py-4">
+						<FormField
+							control={form.control}
+							name="name"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Name</FormLabel>
+									<FormControl>
+										<Input {...field} />
+									</FormControl>
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="order"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Order</FormLabel>
+									<FormControl>
+										<Input type="number" {...field} />
+									</FormControl>
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="status"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Status</FormLabel>
+									<FormControl>
+										<RadioGroup onValueChange={field.onChange} value={field.value} className="flex gap-2">
+											<div className="flex items-center space-x-2">
+												<RadioGroupItem value="enable" id="r1" />
+												<Label htmlFor="r1">Enable</Label>
+											</div>
+											<div className="flex items-center space-x-2">
+												<RadioGroupItem value="disable" id="r2" />
+												<Label htmlFor="r2">Disable</Label>
+											</div>
+										</RadioGroup>
+									</FormControl>
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="desc"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Desc</FormLabel>
+									<FormControl>
+										<Textarea {...field} />
+									</FormControl>
+								</FormItem>
+							)}
+						/>
+					</div>
+					<DialogFooter>
+						<Button variant="outline" onClick={onCancel}>
+							Cancel
+						</Button>
+						<Button onClick={onOk}>Save</Button>
+					</DialogFooter>
+				</Form>
+			</DialogContent>
+		</Dialog>
 	);
 }

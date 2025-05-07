@@ -24,6 +24,7 @@ const badgeVariants = cva(
       overlay: {
         circle: "rounded-full min-w-5 h-5",
         square: "rounded-md",
+        dot: "rounded-full w-2 h-2 p-0",
       },
     },
     defaultVariants: {

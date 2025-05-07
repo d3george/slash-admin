@@ -1,14 +1,14 @@
 import { Button } from "@/ui/button";
-import { Tabs, type TabsProps } from "antd";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import BackgroundView from "./views/background";
 import Inview from "./views/inview";
 import ScrollView from "./views/scroll";
 
 export default function AnimatePage() {
-	const TABS: TabsProps["items"] = [
-		{ key: "inview", label: "In View", children: <Inview /> },
-		{ key: "scroll", label: "Scroll", children: <ScrollView /> },
-		{ key: "background", label: "Background", children: <BackgroundView /> },
+	const TABS = [
+		{ value: "inview", label: "In View", content: <Inview /> },
+		{ value: "scroll", label: "Scroll", content: <ScrollView /> },
+		{ value: "background", label: "Background", content: <BackgroundView /> },
 	];
 
 	return (
@@ -18,7 +18,20 @@ export default function AnimatePage() {
 					https://www.framer.com/motion/
 				</a>
 			</Button>
-			<Tabs items={TABS} type="card" />
+			<Tabs defaultValue={TABS[0].value}>
+				<TabsList>
+					{TABS.map((tab) => (
+						<TabsTrigger key={tab.value} value={tab.value}>
+							{tab.label}
+						</TabsTrigger>
+					))}
+				</TabsList>
+				{TABS.map((tab) => (
+					<TabsContent key={tab.value} value={tab.value}>
+						{tab.content}
+					</TabsContent>
+				))}
+			</Tabs>
 		</>
 	);
 }

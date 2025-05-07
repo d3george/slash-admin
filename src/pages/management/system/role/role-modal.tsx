@@ -1,7 +1,15 @@
-import { Form, Input, InputNumber, Modal, Radio, Tree } from "antd";
-import { useEffect } from "react";
+import { Tree } from "antd";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { PERMISSION_LIST } from "@/_mock/assets";
+import { Button } from "@/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/ui/form";
+import { Input } from "@/ui/input";
+import { Label } from "@/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/ui/radio-group";
+import { Textarea } from "@/ui/textarea";
 import { flattenTrees } from "@/utils/tree";
 
 import type { Permission, Role } from "#/entity";
@@ -16,53 +24,163 @@ export type RoleModalProps = {
 };
 const PERMISSIONS: Permission[] = PERMISSION_LIST as Permission[];
 export function RoleModal({ title, show, formValue, onOk, onCancel }: RoleModalProps) {
-	const [form] = Form.useForm();
+	const form = useForm<Role>({
+		defaultValues: formValue,
+	});
 
-	const flattenedPermissions = flattenTrees(formValue.permission);
-	const checkedKeys = flattenedPermissions.map((item) => item.id);
+	const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
+
 	useEffect(() => {
-		form.setFieldsValue({ ...formValue });
+		const flattenedPermissions = flattenTrees(formValue.permission);
+		setCheckedKeys(flattenedPermissions.map((item) => item.id));
+	}, [formValue]);
+
+	useEffect(() => {
+		form.reset(formValue);
 	}, [formValue, form]);
 
+	const onCheck = (checked: any) => {
+		setCheckedKeys(checked);
+		form.setValue(
+			"permission",
+			PERMISSIONS.filter((item) => checked.includes(item.id)),
+		);
+	};
+
 	return (
-		<Modal title={title} open={show} onOk={onOk} onCancel={onCancel}>
-			<Form initialValues={formValue} form={form} labelCol={{ span: 4 }} wrapperCol={{ span: 18 }} layout="horizontal">
-				<Form.Item<Role> label="Name" name="name" required>
-					<Input />
-				</Form.Item>
+		<Dialog open={show} onOpenChange={(open) => !open && onCancel()}>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle>{title}</DialogTitle>
+				</DialogHeader>
+				<Form {...form}>
+					<div className="space-y-4">
+						<FormField
+							control={form.control}
+							name="name"
+							render={({ field }) => (
+								<FormItem className="grid grid-cols-4 items-center gap-4">
+									<FormLabel className="text-right">Name</FormLabel>
+									<div className="col-span-3">
+										<FormControl>
+											<Input {...field} />
+										</FormControl>
+									</div>
+								</FormItem>
+							)}
+						/>
 
-				<Form.Item<Role> label="Label" name="label" required>
-					<Input />
-				</Form.Item>
+						<FormField
+							control={form.control}
+							name="label"
+							render={({ field }) => (
+								<FormItem className="grid grid-cols-4 items-center gap-4">
+									<FormLabel className="text-right">Label</FormLabel>
+									<div className="col-span-3">
+										<FormControl>
+											<Input {...field} />
+										</FormControl>
+									</div>
+								</FormItem>
+							)}
+						/>
 
-				<Form.Item<Role> label="Order" name="order">
-					<InputNumber style={{ width: "100%" }} />
-				</Form.Item>
+						<FormField
+							control={form.control}
+							name="order"
+							render={({ field }) => (
+								<FormItem className="grid grid-cols-4 items-center gap-4">
+									<FormLabel className="text-right">Order</FormLabel>
+									<div className="col-span-3">
+										<FormControl>
+											<Input type="number" {...field} />
+										</FormControl>
+									</div>
+								</FormItem>
+							)}
+						/>
 
-				<Form.Item<Role> label="Status" name="status" required>
-					<Radio.Group optionType="button" buttonStyle="solid">
-						<Radio value={BasicStatus.ENABLE}> Enable </Radio>
-						<Radio value={BasicStatus.DISABLE}> Disable </Radio>
-					</Radio.Group>
-				</Form.Item>
+						<FormField
+							control={form.control}
+							name="status"
+							render={({ field }) => (
+								<FormItem className="grid grid-cols-4 items-center gap-4">
+									<FormLabel className="text-right">Status</FormLabel>
+									<div className="col-span-3">
+										<FormControl>
+											<RadioGroup
+												onValueChange={(value) => field.onChange(Number(value))}
+												defaultValue={String(field.value)}
+											>
+												<div className="flex items-center space-x-2">
+													<RadioGroupItem value={String(BasicStatus.ENABLE)} id="r1" />
+													<Label htmlFor="r1">Enable</Label>
+												</div>
+												<div className="flex items-center space-x-2">
+													<RadioGroupItem value={String(BasicStatus.DISABLE)} id="r2" />
+													<Label htmlFor="r2">Disable</Label>
+												</div>
+											</RadioGroup>
+										</FormControl>
+									</div>
+								</FormItem>
+							)}
+						/>
 
-				<Form.Item<Role> label="Desc" name="desc">
-					<Input.TextArea />
-				</Form.Item>
+						<FormField
+							control={form.control}
+							name="desc"
+							render={({ field }) => (
+								<FormItem className="grid grid-cols-4 items-center gap-4">
+									<FormLabel className="text-right">Desc</FormLabel>
+									<div className="col-span-3">
+										<FormControl>
+											<Textarea {...field} />
+										</FormControl>
+									</div>
+								</FormItem>
+							)}
+						/>
 
-				<Form.Item<Role> label="Permission" name="permission">
-					<Tree
-						checkable
-						checkedKeys={checkedKeys}
-						treeData={PERMISSIONS}
-						fieldNames={{
-							key: "id",
-							children: "children",
-							title: "name",
+						<FormField
+							control={form.control}
+							name="permission"
+							render={() => (
+								<FormItem className="grid grid-cols-4 items-center gap-4">
+									<FormLabel className="text-right">Permission</FormLabel>
+									<div className="col-span-3">
+										<FormControl>
+											<Tree
+												checkable
+												checkedKeys={checkedKeys}
+												treeData={PERMISSIONS}
+												fieldNames={{
+													key: "id",
+													children: "children",
+													title: "name",
+												}}
+												onCheck={onCheck}
+											/>
+										</FormControl>
+									</div>
+								</FormItem>
+							)}
+						/>
+					</div>
+				</Form>
+				<DialogFooter>
+					<Button variant="outline" onClick={onCancel}>
+						Cancel
+					</Button>
+					<Button
+						onClick={() => {
+							form.handleSubmit(onOk)();
 						}}
-					/>
-				</Form.Item>
-			</Form>
-		</Modal>
+					>
+						Save
+					</Button>
+				</DialogFooter>
+			</DialogContent>
+		</Dialog>
 	);
 }

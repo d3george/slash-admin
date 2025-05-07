@@ -1,7 +1,9 @@
 import { fakeAvatars } from "@/_mock/utils";
+import { AvatarGroup } from "@/components/avatar-group";
 import { Icon } from "@/components/icon";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
+import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
@@ -9,7 +11,7 @@ import { Progress } from "@/ui/progress";
 import { Small } from "@/ui/typography";
 import { Muted } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
-import { Avatar, Table, Timeline } from "antd";
+import { Table, Timeline } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 interface DataType {
@@ -167,11 +169,13 @@ export default function ProfileTab() {
 			title: "TEAM",
 			dataIndex: "team",
 			render: (val: string[]) => (
-				<Avatar.Group>
+				<AvatarGroup max={3}>
 					{val.map((item) => (
-						<Avatar src={item} key={item} />
+						<Avatar key={item}>
+							<AvatarImage src={item} />
+						</Avatar>
 					))}
-				</Avatar.Group>
+				</AvatarGroup>
 			),
 		},
 		{

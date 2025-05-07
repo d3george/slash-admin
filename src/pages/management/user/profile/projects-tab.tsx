@@ -1,10 +1,10 @@
 import { fakeAvatars } from "@/_mock/utils";
 import { Icon } from "@/components/icon";
+import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent } from "@/ui/card";
 import { faker } from "@faker-js/faker";
-import { Avatar } from "antd";
 import dayjs from "dayjs";
 
 export default function ProjectsTab() {
@@ -120,11 +120,11 @@ export default function ProjectsTab() {
 								<Badge variant="warning">{item.deadline.diff(dayjs(), "day")} days left</Badge>
 							</div>
 							<div className="flex w-full ">
-								<Avatar.Group max={{ count: 4 }}>
-									{item.members.map((memberAvatar) => (
-										<Avatar src={memberAvatar} key={memberAvatar} />
-									))}
-								</Avatar.Group>
+								{item.members.map((memberAvatar) => (
+									<Avatar key={memberAvatar}>
+										<AvatarImage src={memberAvatar} />
+									</Avatar>
+								))}
 								<div className="ml-auto flex items-center opacity-50">
 									<Icon icon="solar:chat-round-line-linear" size={24} />
 									<span className="ml-2">{item.messages}</span>

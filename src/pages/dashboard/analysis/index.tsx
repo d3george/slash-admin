@@ -10,9 +10,7 @@ import ChartRadar from "@/pages/components/chart/view/chart-radar";
 import { themeVars } from "@/theme/theme.css";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import AnalysisCard from "./analysis-card";
-import AnalysisNews from "./analysis-news";
 import AnalysisOrderTimeline from "./analysis-order-timeline";
-import AnalysisTasks from "./analysis-tasks";
 import AnalysisTrafficCard from "./analysis-traffic-card";
 
 function Analysis() {
@@ -91,14 +89,6 @@ function Analysis() {
 						<ChartRadar />
 					</CardContent>
 				</Card>
-				<Card title="News">
-					<CardHeader>
-						<CardTitle>News</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<AnalysisNews />
-					</CardContent>
-				</Card>
 				<Card title="Order Timeline">
 					<CardHeader>
 						<CardTitle>Order Timeline</CardTitle>
@@ -137,15 +127,6 @@ function Analysis() {
 								subtitle="Twitter"
 							/>
 						</div>
-					</CardContent>
-				</Card>
-
-				<Card title="Tasks">
-					<CardHeader>
-						<CardTitle>Tasks</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<AnalysisTasks />
 					</CardContent>
 				</Card>
 			</div>

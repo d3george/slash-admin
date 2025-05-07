@@ -2,11 +2,12 @@ import { UploadAvatar } from "@/components/upload";
 import { useUserInfo } from "@/store/userStore";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardFooter } from "@/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/ui/form";
 import { Input } from "@/ui/input";
 import { Switch } from "@/ui/switch";
 import { Textarea } from "@/ui/textarea";
 import { faker } from "@faker-js/faker";
-import { Form } from "antd";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 type FieldType = {
@@ -18,20 +19,25 @@ type FieldType = {
 	code?: string;
 	about: string;
 };
+
 export default function GeneralTab() {
 	const { avatar, username, email } = useUserInfo();
-	const initFormValues = {
-		name: username,
-		email,
-		phone: faker.phone.number(),
-		address: faker.location.county(),
-		city: faker.location.city(),
-		code: faker.location.zipCode(),
-		about: faker.lorem.paragraphs(),
-	};
+	const form = useForm<FieldType>({
+		defaultValues: {
+			name: username,
+			email,
+			phone: faker.phone.number(),
+			address: faker.location.county(),
+			city: faker.location.city(),
+			code: faker.location.zipCode(),
+			about: faker.lorem.paragraphs(),
+		},
+	});
+
 	const handleClick = () => {
 		toast.success("Update success!");
 	};
+
 	return (
 		<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 			<div className="flex-1">
@@ -49,29 +55,92 @@ export default function GeneralTab() {
 			<div className="flex-2">
 				<Card>
 					<CardContent>
-						<Form layout="vertical" initialValues={initFormValues} labelCol={{ span: 8 }} className="w-full">
+						<Form {...form}>
 							<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-								<Form.Item<FieldType> label="Username" name="name">
-									<Input />
-								</Form.Item>
-								<Form.Item<FieldType> label="Email" name="email">
-									<Input />
-								</Form.Item>
-								<Form.Item<FieldType> label="Phone" name="phone">
-									<Input />
-								</Form.Item>
-								<Form.Item<FieldType> label="Address" name="address">
-									<Input />
-								</Form.Item>
-								<Form.Item<FieldType> label="City" name="city">
-									<Input />
-								</Form.Item>
-								<Form.Item<FieldType> label="Code" name="code">
-									<Input />
-								</Form.Item>
-								<Form.Item<FieldType> label="About" name="about">
-									<Textarea />
-								</Form.Item>
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Username</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="email"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Email</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="phone"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Phone</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="address"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Address</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="city"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>City</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="code"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Code</FormLabel>
+											<FormControl>
+												<Input {...field} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="about"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>About</FormLabel>
+											<FormControl>
+												<Textarea {...field} />
+											</FormControl>
+										</FormItem>
+									)}
+								/>
 							</div>
 						</Form>
 					</CardContent>

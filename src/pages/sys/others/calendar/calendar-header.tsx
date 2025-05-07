@@ -2,7 +2,7 @@ import { Icon } from "@/components/icon";
 import { up } from "@/hooks";
 import { useMediaQuery } from "@/hooks";
 import { Button } from "@/ui/button";
-import { Dropdown, type MenuProps } from "antd";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/ui/dropdown-menu";
 import dayjs from "dayjs";
 import { type ReactNode, useMemo } from "react";
 
@@ -55,7 +55,7 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 		[],
 	);
 
-	const handleMenuClick: MenuProps["onClick"] = (e) => {
+	const handleMenuClick = (e: { key: string }) => {
 		const selectedViewType = items.find((item) => item.key === e.key);
 		if (selectedViewType) {
 			onViewTypeChange(selectedViewType.view);
@@ -80,11 +80,20 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 	return (
 		<div className="relative flex items-center justify-between py-5">
 			{LgBreakPoint && (
-				<Dropdown menu={{ items, onClick: handleMenuClick }}>
-					<Button variant="ghost" size="sm">
-						{viewTypeMenu(view)}
-					</Button>
-				</Dropdown>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="ghost" size="sm">
+							{viewTypeMenu(view)}
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent>
+						{items.map((item) => (
+							<DropdownMenuItem key={item.key} onClick={() => handleMenuClick({ key: item.key })}>
+								{item.label}
+							</DropdownMenuItem>
+						))}
+					</DropdownMenuContent>
+				</DropdownMenu>
 			)}
 
 			<div className="flex cursor-pointer items-center justify-center">

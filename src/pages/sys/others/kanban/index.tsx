@@ -1,4 +1,6 @@
 import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
+import { Input } from "@/ui/input";
 import { ScrollArea, ScrollBar } from "@/ui/scroll-area";
 import {
 	DndContext,
@@ -11,7 +13,6 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, arrayMove, horizontalListSortingStrategy } from "@dnd-kit/sortable";
 import { faker } from "@faker-js/faker";
-import { Button, Input, type InputRef } from "antd";
 import { useRef, useState } from "react";
 import { useEvent } from "react-use";
 import KanbanColumn from "./kanban-column";
@@ -24,7 +25,7 @@ export default function Kanban() {
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [activeType, setActiveType] = useState<"column" | "task" | null>(null);
 	const [addingColumn, setAddingColumn] = useState(false);
-	const inputRef = useRef<InputRef>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -122,8 +123,8 @@ export default function Kanban() {
 	};
 
 	const handleClickOutside = (event: MouseEvent) => {
-		if (inputRef.current && !inputRef.current.input?.contains(event.target as Node)) {
-			const inputVal = inputRef.current.input?.value;
+		if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
+			const inputVal = inputRef.current.value;
 			if (inputVal) {
 				createColumn({
 					id: faker.string.uuid(),
@@ -281,16 +282,15 @@ export default function Kanban() {
 
 				<div className="ml-[1.6rem] mt-[0.25rem] min-w-[280px]">
 					{addingColumn ? (
-						<Input ref={inputRef} size="large" placeholder="Column Name" autoFocus />
+						<Input ref={inputRef} placeholder="Column Name" autoFocus />
 					) : (
 						<Button
+							variant="outline"
 							onClick={(e) => {
 								e.stopPropagation();
 								setAddingColumn(true);
 							}}
 							className="inline-flex! w-full! items-center justify-center text-xs! font-semibold!"
-							block
-							size="large"
 						>
 							<Icon icon="carbon:add" size={20} />
 							<div>Add Column</div>

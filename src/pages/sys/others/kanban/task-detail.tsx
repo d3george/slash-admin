@@ -1,10 +1,13 @@
 import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
+import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Badge } from "@/ui/badge";
+import { Button } from "@/ui/button";
+import { Calendar } from "@/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import { Textarea } from "@/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/ui/toggle-group";
 import { H4, Muted } from "@/ui/typography";
-import { Avatar, DatePicker, Image } from "antd";
 import dayjs from "dayjs";
 import styled from "styled-components";
 import { type Task, TaskPriority } from "./types";
@@ -22,14 +25,18 @@ export default function TaskDetail({ task }: Props) {
 				</div>
 				<div className="item">
 					<div className="label">Reporter</div>
-					<Avatar shape="circle" src={reporter} size={40} />
+					<Avatar>
+						<AvatarImage src={reporter} alt="@shadcn" />
+					</Avatar>
 				</div>
 				<div className="item">
 					<div className="label">Assignee</div>
 
 					<div className="flex gap-2">
 						{assignee.map((item) => (
-							<Avatar key={item} shape="circle" src={item} size={40} />
+							<Avatar key={item}>
+								<AvatarImage src={item} alt="@shadcn" />
+							</Avatar>
 						))}
 					</div>
 				</div>
@@ -46,7 +53,14 @@ export default function TaskDetail({ task }: Props) {
 
 				<div className="item">
 					<div className="label">Due Date</div>
-					<DatePicker variant="borderless" value={dayjs(date)} />
+					<Popover>
+						<PopoverTrigger asChild>
+							<Button variant={"outline"}>{date ? dayjs(date).format("DD/MM/YYYY") : <span>Pick a date</span>}</Button>
+						</PopoverTrigger>
+						<PopoverContent className="w-auto p-0">
+							<Calendar mode="single" selected={date} initialFocus />
+						</PopoverContent>
+					</Popover>
 				</div>
 
 				<div className="item">
@@ -83,7 +97,7 @@ export default function TaskDetail({ task }: Props) {
 					<div className="label">Attachments</div>
 					<div className="flex gap-2 flex-wrap">
 						{attachments?.map((item) => (
-							<Image key={item} src={item} width={62} height={62} className="rounded-lg" />
+							<img key={item} src={item} width={62} height={62} className="rounded-lg" alt="" />
 						))}
 					</div>
 				</div>
@@ -97,7 +111,9 @@ export default function TaskDetail({ task }: Props) {
 			>
 				{comments?.map(({ avatar, username, content, time }) => (
 					<div key={username} className="flex gap-4">
-						<Avatar src={avatar} size={40} className="shrink-0" />
+						<Avatar>
+							<AvatarImage src={avatar} alt="@shadcn" />
+						</Avatar>
 						<div className="flex grow flex-col flex-wrap gap-1 text-gray">
 							<div className="flex justify-between">
 								<Muted>{username}</Muted>
@@ -116,7 +132,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 24px 20px 40px;
+  padding: 0px 24px;
   .item {
     display: flex;
     align-items: center;
@@ -126,7 +142,7 @@ const Container = styled.div`
     font-size: 0.75rem;
     font-weight: 600;
     width: 100px;
-    color: rgb(99, 115, 129);
+    color: ${themeVars.colors.text.secondary};
     height: 40px;
     line-height: 40px;
   }
