@@ -3,7 +3,7 @@ import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
-import { H3, Muted } from "@/ui/typography";
+import { Text, Title } from "@/ui/typography";
 import { m } from "motion/react";
 import { Helmet } from "react-helmet-async";
 import { NavLink } from "react-router";
@@ -20,11 +20,15 @@ export default function Page() {
 			<div className="m-auto max-w-[400px]">
 				<MotionContainer className="flex flex-col items-center justify-center px-2">
 					<m.div variants={varBounce().in}>
-						<H3 className="text-center">500 Internal Server Error</H3>
+						<Title as="h3" className="text-center">
+							500 Internal Server Error
+						</Title>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<Muted className="text-center">There was an error, please try again later.</Muted>
+						<Text variant="caption" color="secondary" className="text-center">
+							There was an error, please try again later.
+						</Text>
 					</m.div>
 
 					<m.div variants={varBounce().in}>

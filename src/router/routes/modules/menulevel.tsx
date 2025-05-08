@@ -1,12 +1,12 @@
 import { Icon } from "@/components/icon";
 import { LineLoading } from "@/components/loading";
-import { H1 } from "@/ui/typography";
+import { Title } from "@/ui/typography";
 import { Suspense } from "react";
 import { Navigate, Outlet } from "react-router";
 import type { AppRouteObject } from "#/router";
 
 function MenuLevel({ title }: { title: string }) {
-	return <H1>Menu Level: {title}</H1>;
+	return <Title as="h1">Menu Level: {title}</Title>;
 }
 
 const menulevel: AppRouteObject = {

@@ -8,8 +8,7 @@ import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
 import { Progress } from "@/ui/progress";
-import { Small } from "@/ui/typography";
-import { Muted } from "@/ui/typography";
+import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
 import { Table, Timeline } from "antd";
 import type { ColumnsType } from "antd/es/table";
@@ -231,10 +230,12 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Small>8 Invoices have been paid</Small>
+													<Text>8 Invoices have been paid</Text>
 													<div className="opacity-50">Wednesday</div>
 												</div>
-												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
+												<Text variant="caption" color="secondary">
+													Invoices have been paid to the company.
+												</Text>
 
 												<div className="mt-2 flex items-center gap-2">
 													<Icon icon="local:file-pdf" size={30} />
@@ -248,10 +249,12 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Small>Create a new project for client 😎</Small>
+													<Text>Create a new project for client 😎</Text>
 													<div className="opacity-50">April, 18</div>
 												</div>
-												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
+												<Text variant="caption" color="secondary">
+													Invoices have been paid to the company.
+												</Text>
 												<div className="mt-2 flex items-center gap-2">
 													<img alt="" src={faker.image.avatarGitHub()} className="h-8 w-8 rounded-full" />
 													<span className="font-medium opacity-60">{faker.person.fullName()} (client)</span>
@@ -264,10 +267,12 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Small>Order #37745 from September</Small>
+													<Text>Order #37745 from September</Text>
 													<div className="opacity-50">January, 10</div>
 												</div>
-												<Muted className="text-xs">Invoices have been paid to the company.</Muted>
+												<Text variant="caption" color="secondary">
+													Invoices have been paid to the company.
+												</Text>
 											</div>
 										),
 									},
@@ -276,7 +281,7 @@ export default function ProfileTab() {
 										children: (
 											<div className="flex flex-col">
 												<div className="flex items-center justify-between">
-													<Small>Public Meeting</Small>
+													<Text>Public Meeting</Text>
 													<div className="opacity-50">September, 30</div>
 												</div>
 											</div>

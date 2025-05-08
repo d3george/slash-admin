@@ -7,7 +7,7 @@ import { Calendar } from "@/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import { Textarea } from "@/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/ui/toggle-group";
-import { H4, Muted } from "@/ui/typography";
+import { Text, Title } from "@/ui/typography";
 import dayjs from "dayjs";
 import styled from "styled-components";
 import { type Task, TaskPriority } from "./types";
@@ -21,7 +21,7 @@ export default function TaskDetail({ task }: Props) {
 		<>
 			<Container>
 				<div className="item">
-					<H4>{title}</H4>
+					<Title as="h4">{title}</Title>
 				</div>
 				<div className="item">
 					<div className="label">Reporter</div>
@@ -116,8 +116,12 @@ export default function TaskDetail({ task }: Props) {
 						</Avatar>
 						<div className="flex grow flex-col flex-wrap gap-1 text-gray">
 							<div className="flex justify-between">
-								<Muted>{username}</Muted>
-								<Muted>{dayjs(time).format("DD/MM/YYYY HH:mm")}</Muted>
+								<Text variant="caption" color="secondary">
+									{username}
+								</Text>
+								<Text variant="caption" color="secondary">
+									{dayjs(time).format("DD/MM/YYYY HH:mm")}
+								</Text>
 							</div>
 							<p>{content}</p>
 						</div>

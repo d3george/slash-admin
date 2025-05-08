@@ -70,11 +70,11 @@
   --primary: var(--colors-palette-primary-default);
   --primary-foreground: var(--colors-palette-primary-lighter);
   --secondary:var(--colors-palette-gray-200);
-  --secondary-foreground: var(--colors-palette-gray-800);
+  --secondary-foreground: var(--colors-palette-gray-600);
   --muted: var(--colors-palette-gray-200);
   --muted-foreground: var(--colors-palette-gray-500);
   --accent: var(--colors-palette-gray-200);
-  --accent-foreground: var(--colors-palette-gray-800);
+  --accent-foreground: var(--colors-palette-gray-600);
   --destructive: var(--colors-palette-error-default);
   --border: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
   --input: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
@@ -105,11 +105,11 @@
   --primary: var(--colors-palette-primary-default);
   --primary-foreground: var(--colors-palette-primary-darker);
   --secondary: var(--colors-background-neutral);
-  --secondary-foreground: var(--colors-common-white);
+  --secondary-foreground: var(--colors-palette-gray-500);
   --muted: var(--colors-background-neutral);
   --muted-foreground: var(--colors-palette-gray-400);
   --accent: var(--colors-background-neutral);
-  --accent-foreground: var(--colors-common-white);
+  --accent-foreground: var(--colors-palette-gray-500);
   --destructive: var(--colors-palette-error-default);
   --border: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));
   --input: rgba(var(--colors-palette-gray-500Channel)/ var(--opacity-border));

@@ -3,7 +3,7 @@ import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
-import { H3, Muted } from "@/ui/typography";
+import { Text, Title } from "@/ui/typography";
 import { m } from "motion/react";
 import { Helmet } from "react-helmet-async";
 import { NavLink } from "react-router";
@@ -20,13 +20,15 @@ export default function Page403() {
 			<div className="m-auto max-w-[400px]">
 				<MotionContainer className="flex flex-col items-center justify-center px-2">
 					<m.div variants={varBounce().in}>
-						<H3 className="text-center">No permission</H3>
+						<Title as="h3" className="text-center">
+							No permission
+						</Title>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<Muted className="text-center">
+						<Text variant="caption" color="secondary" className="text-center">
 							The page you are trying access has restricted access. Please refer to your system administrator
-						</Muted>
+						</Text>
 					</m.div>
 
 					<m.div variants={varBounce().in}>

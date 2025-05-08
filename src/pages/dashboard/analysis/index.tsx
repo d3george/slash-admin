@@ -9,6 +9,7 @@ import ChartPie from "@/pages/components/chart/view/chart-pie";
 import ChartRadar from "@/pages/components/chart/view/chart-radar";
 import { themeVars } from "@/theme/theme.css";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { Title } from "@/ui/typography";
 import AnalysisCard from "./analysis-card";
 import AnalysisOrderTimeline from "./analysis-order-timeline";
 import AnalysisTrafficCard from "./analysis-traffic-card";
@@ -16,8 +17,8 @@ import AnalysisTrafficCard from "./analysis-traffic-card";
 function Analysis() {
 	return (
 		<div className="p-2">
-			<h2>Hi, Welcome back 👋</h2>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+			<Title as="h4">Hi, Welcome back 👋</Title>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
 				<AnalysisCard
 					cover={glass_bag}
 					title="714k"

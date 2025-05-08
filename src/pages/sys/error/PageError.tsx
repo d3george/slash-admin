@@ -4,7 +4,7 @@ import { varBounce } from "@/components/animate/variants/bounce";
 import { useRouter } from "@/router/hooks";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
-import { H3, Muted } from "@/ui/typography";
+import { Text, Title } from "@/ui/typography";
 import { m } from "motion/react";
 import type { FallbackProps } from "react-error-boundary";
 import { Helmet } from "react-helmet-async";
@@ -27,11 +27,15 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 			<div className="m-auto flex h-screen max-w-[400px] items-center justify-center">
 				<MotionContainer className="flex flex-col items-center justify-center px-2">
 					<m.div variants={varBounce().in}>
-						<H3 className="text-center">Sorry, Page error occurred!</H3>
+						<Title as="h3" className="text-center">
+							Sorry, Page error occurred!
+						</Title>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<Muted className="text-center">{error.toString()}</Muted>
+						<Text variant="caption" color="secondary" className="text-center">
+							{error.toString()}
+						</Text>
 					</m.div>
 
 					<m.div variants={varBounce().in}>

@@ -1,5 +1,5 @@
-import { H1 } from "@/ui/typography";
+import { Title } from "@/ui/typography";
 
 export default function MenuLevel() {
-	return <H1>Menu Level: 1a</H1>;
+	return <Title as="h1">Menu Level: 1a</Title>;
 }

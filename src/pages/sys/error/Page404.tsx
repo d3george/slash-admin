@@ -3,7 +3,7 @@ import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
-import { H3, Muted } from "@/ui/typography";
+import { Text, Title } from "@/ui/typography";
 import { m } from "motion/react";
 import { Helmet } from "react-helmet-async";
 import { NavLink } from "react-router";
@@ -20,14 +20,16 @@ export default function Page404() {
 			<div className="m-auto max-w-[400px]">
 				<MotionContainer className="flex flex-col items-center justify-center px-2">
 					<m.div variants={varBounce().in}>
-						<H3 className="text-center">Sorry, Page Not Found!</H3>
+						<Title as="h3" className="text-center">
+							Sorry, Page Not Found!
+						</Title>
 					</m.div>
 
 					<m.div variants={varBounce().in}>
-						<Muted className="text-center">
+						<Text variant="caption" color="secondary" className="text-center">
 							Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be sure to check
 							your spelling.
-						</Muted>
+						</Text>
 					</m.div>
 
 					<m.div variants={varBounce().in}>

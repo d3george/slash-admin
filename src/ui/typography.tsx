@@ -2,185 +2,122 @@ import { cn } from "@/utils";
 import { VariantProps, cva } from "class-variance-authority";
 import { HTMLAttributes, forwardRef } from "react";
 
-const typographyVariants = cva("", {
+const titleVariants = cva("scroll-m-20 tracking-tight", {
   variants: {
-    variant: {
-      h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
-      h2: "scroll-m-20 text-3xl font-semibold tracking-tight",
-      h3: "scroll-m-20 text-2xl font-semibold tracking-tight",
-      h4: "scroll-m-20 text-xl font-semibold tracking-tight",
-      p: "leading-7 [&:not(:first-child)]:mt-6",
-      blockquote: "mt-6 border-l-2 border-slate-300 pl-6 italic",
-      list: "my-6 ml-6 list-disc [&>li]:mt-2",
-      lead: "text-xl text-slate-700",
-      large: "text-lg font-semibold",
-      small: "text-sm font-medium leading-none",
-      muted: "text-sm text-slate-500",
+    as: {
+      h1: "text-4xl font-extrabold lg:text-5xl",
+      h2: "text-3xl font-extrabold",
+      h3: "text-2xl font-bold",
+      h4: "text-xl font-bold",
+      h5: "text-lg font-bold",
+      h6: "text-base font-semibold",
+    },
+    color: {
+      default: "text-text-primary",
+      secondary: "text-text-secondary",
+      disabled: "text-text-disabled",
+      primary: "text-primary",
+      info: "text-info",
+      error: "text-error",
+      warning: "text-warning",
+      success: "text-success",
+    },
+    align: {
+      left: "text-left",
+      center: "text-center",
+      right: "text-right",
     },
   },
   defaultVariants: {
-    variant: "p",
+    as: "h1",
+    color: "default",
+    align: "left",
   },
 });
 
-interface TypographyProps
-  extends HTMLAttributes<HTMLElement>,
-    VariantProps<typeof typographyVariants> {}
+const textVariants = cva("", {
+  variants: {
+    variant: {
+      // 副标题
+      subTitle1: "text-base font-semibold",
+      subTitle2: "text-sm font-normal",
 
-const H1 = forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
+      // 正文
+      body1: "text-base font-normal",
+      body2: "text-sm font-normal",
+
+      // 说明文字
+      caption: "text-xs font-normal",
+
+    },
+    color: {
+      default: "text-text-primary",
+      secondary: "text-text-secondary",
+      disabled: "text-text-disabled",
+      primary: "text-primary",
+      info: "text-info",
+      error: "text-error",
+      warning: "text-warning",
+      success: "text-success",
+    },
+    align: {
+      left: "text-left",
+      center: "text-center",
+      right: "text-right",
+    },
+  },
+  defaultVariants: {
+    variant: "body1",
+    color: "default",
+    align: "left",
+  },
+});
+
+type TitleVariantProps = VariantProps<typeof titleVariants>;
+type TextVariantProps = VariantProps<typeof textVariants>;
+
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+export interface TitleProps extends Omit<HTMLAttributes<HTMLHeadingElement>, "color"> {
+  as?: HeadingTag;
+  color?: TitleVariantProps["color"];
+  align?: TitleVariantProps["align"];
+}
+const Title = forwardRef<HTMLHeadingElement, TitleProps>(
+  ({ className, color, align, as: Component = "h1", ...props }, ref) => {
     return (
-      <h1
-        className={cn(typographyVariants({ variant: "h1" }), className)}
+      <Component
+        className={cn(titleVariants({ as: Component, color, align, className }))}
         ref={ref}
         {...props}
       />
     );
   }
 );
-H1.displayName = "H1";
 
-const H2 = forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
+
+export interface TextProps extends Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
+  variant?: TextVariantProps["variant"];
+  color?: TextVariantProps["color"];
+  align?: TextVariantProps["align"];
+}
+const Text = forwardRef<HTMLSpanElement, TextProps>(
+  ({ className, variant, color, align, ...props }, ref) => {
     return (
-      <h2
-        className={cn(typographyVariants({ variant: "h2" }), className)}
+      <span
+        className={cn(textVariants({ variant, color, align, className }))}
         ref={ref}
         {...props}
       />
     );
   }
 );
-H2.displayName = "H2";
 
-const H3 = forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <h3
-        className={cn(typographyVariants({ variant: "h3" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-H3.displayName = "H3";
+Title.displayName = "Title";
+Text.displayName = "Text";
 
-const H4 = forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <h4
-        className={cn(typographyVariants({ variant: "h4" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-H4.displayName = "H4";
+export { Title, Text, titleVariants, textVariants };
 
-const P = forwardRef<HTMLParagraphElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <p
-        className={cn(typographyVariants({ variant: "p" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-P.displayName = "P";
 
-const Blockquote = forwardRef<HTMLQuoteElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <blockquote
-        className={cn(typographyVariants({ variant: "blockquote" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Blockquote.displayName = "Blockquote";
 
-const List = forwardRef<HTMLUListElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <ul
-        className={cn(typographyVariants({ variant: "list" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-List.displayName = "List";
 
-const Lead = forwardRef<HTMLParagraphElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <p
-        className={cn(typographyVariants({ variant: "lead" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Lead.displayName = "Lead";
-
-const Large = forwardRef<HTMLParagraphElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <p
-        className={cn(typographyVariants({ variant: "large" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Large.displayName = "Large";
-
-const Small = forwardRef<HTMLParagraphElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <p
-        className={cn(typographyVariants({ variant: "small" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Small.displayName = "Small";
-
-const Muted = forwardRef<HTMLParagraphElement, TypographyProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <p
-        className={cn(typographyVariants({ variant: "muted" }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Muted.displayName = "Muted";
-
-export {
-  H1,
-  H2,
-  H3,
-  H4,
-  P,
-  Blockquote,
-  List,
-  Lead,
-  Large,
-  Small,
-  Muted,
-  typographyVariants,
-};
