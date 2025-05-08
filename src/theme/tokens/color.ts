@@ -122,7 +122,7 @@ export const lightColorTokens = {
 	background: {
 		default: commonColors.white,
 		paper: commonColors.white,
-		neutral: paletteColors.gray[300],
+		neutral: paletteColors.gray[200],
 	},
 };
 
