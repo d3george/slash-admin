@@ -103,8 +103,8 @@ export const commonColors = {
 };
 
 export const actionColors = {
-	hover: rgbAlpha(paletteColors.gray[500], 0.08),
-	selected: rgbAlpha(paletteColors.gray[500], 0.08),
+	hover: rgbAlpha(paletteColors.gray[500], 0.1),
+	selected: rgbAlpha(paletteColors.gray[500], 0.1),
 	focus: rgbAlpha(paletteColors.gray[500], 0.12),
 	disabled: rgbAlpha(paletteColors.gray[500], 0.48),
 	active: rgbAlpha(paletteColors.gray[500], 1),
