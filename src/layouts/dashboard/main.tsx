@@ -1,6 +1,8 @@
+import { LineLoading } from "@/components/loading";
 import { useSettings } from "@/store/settingStore";
 import { ScrollArea } from "@/ui/scroll-area";
 import { cn } from "@/utils";
+import { Suspense } from "react";
 import { Outlet } from "react-router";
 import MultiTabs from "./multi-tabs";
 import { MultiTabsProvider } from "./multi-tabs/providers/multi-tabs-provider";
@@ -26,7 +28,9 @@ const Main = () => {
 						<MultiTabs />
 					</MultiTabsProvider>
 				) : (
-					<Outlet />
+					<Suspense fallback={<LineLoading />}>
+						<Outlet />
+					</Suspense>
 				)}
 			</ScrollArea>
 		</main>

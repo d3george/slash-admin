@@ -1,18 +1,14 @@
-import { useRef } from "react";
 import "./line-loading.css";
 import { useSettings } from "@/store/settingStore";
 import { commonColors, paletteColors } from "@/theme/tokens/color";
 
 export function LineLoading() {
-	const containerRef = useRef<HTMLDivElement>(null);
-
 	const { themeMode } = useSettings();
 
 	return (
-		<div className="m-auto flex h-full w-96 items-center justify-center">
+		<div className="m-auto flex min-h-full w-full items-center justify-center">
 			<div
-				ref={containerRef}
-				className="relative h-1.5 w-full overflow-hidden rounded"
+				className="relative h-1.5 w-96 overflow-hidden rounded"
 				style={{
 					backgroundColor: paletteColors.gray["500"],
 				}}
