@@ -19,7 +19,20 @@ interface ParsedSVG {
 // Cache for icon collection
 let iconCollection: Record<string, IconifyIcon> | null = null;
 
-// Auto import all SVG files
+/**
+ * Auto import all SVG files to Iconify local collection
+ *
+ * @example
+ *
+ * ├── src
+ * │   ├── assets
+ * │   │   └── icons
+ * │   │       └── icon-name.svg
+ *
+ * import { Icon } from "@/components/icon";
+ * <Icon icon="local:icon-name" />
+ */
+
 export default async function registerLocalIcons() {
 	// If icons are already registered, return early
 	if (iconCollection) {

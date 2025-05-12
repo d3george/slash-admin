@@ -31,7 +31,7 @@ export const LANGUAGE_MAP: Record<Locale, Language> = {
 };
 
 export default function useLocale() {
-	const { i18n } = useTranslation();
+	const { t, i18n } = useTranslation();
 
 	const locale = (i18n.resolvedLanguage || LocalEnum.en_US) as Locale;
 	const language = LANGUAGE_MAP[locale];
@@ -47,6 +47,7 @@ export default function useLocale() {
 	};
 
 	return {
+		t,
 		locale,
 		language,
 		setLocale,

@@ -1,41 +1,30 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Analytics } from "@vercel/analytics/react";
-import { Suspense } from "react";
-import ReactDOM from "react-dom/client";
-import { HelmetProvider } from "react-helmet-async";
-import worker from "./_mock";
-import "./locales/i18n";
 import "./global.css";
 import "./theme/theme.css";
-import App from "./App";
-import { registerLocalIcons } from "./components/icon";
-import { RouteLoadingProgress } from "./components/loading";
+import "./locales/i18n";
 
-const charAt = `
-  ╔═══════ SLASH ADMIN ═══════╗
-  ║                           ║
-  ║  Modern React Admin UI    ║
-  ║  Built with React & Vite  ║
-  ║                           ║
-  ╚═══════════════════════════╝
-`;
-console.info(`%c${charAt}`, "color: #5BE49B; font-weight: bold;");
+import ReactDOM from "react-dom/client";
+import { ErrorBoundary } from "react-error-boundary";
+import { Outlet, RouterProvider, createHashRouter } from "react-router";
+import App from "./App";
+import worker from "./_mock";
+import { registerLocalIcons } from "./components/icon";
+import PageError from "./pages/sys/error/PageError";
+import { routesSection } from "./router/sections";
 
 await registerLocalIcons();
+worker.start({ onUnhandledRequest: "bypass" });
+
+const router = createHashRouter([
+	{
+		Component: () => (
+			<App>
+				<Outlet />
+			</App>
+		),
+		errorElement: <ErrorBoundary fallbackRender={PageError} />,
+		children: routesSection,
+	},
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-root.render(
-	<HelmetProvider>
-		<QueryClientProvider client={new QueryClient()}>
-			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
-			<Suspense>
-				<RouteLoadingProgress />
-				<Analytics />
-				<App />
-			</Suspense>
-		</QueryClientProvider>
-	</HelmetProvider>,
-);
-
-// 🥵 start service worker mock in development mode
-worker.start({ onUnhandledRequest: "bypass" });
+root.render(<RouterProvider router={router} />);

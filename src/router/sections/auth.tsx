@@ -1,0 +1,24 @@
+import { LineLoading } from "@/components/loading";
+import LoginPage from "@/pages/sys/login";
+import { Suspense } from "react";
+import { Outlet } from "react-router";
+import type { RouteObject } from "react-router";
+
+const authCustom: RouteObject[] = [
+	{
+		path: "login",
+		element: <LoginPage />,
+	},
+];
+
+export const authRoutes: RouteObject[] = [
+	{
+		path: "auth",
+		element: (
+			<Suspense fallback={<LineLoading />}>
+				<Outlet />
+			</Suspense>
+		),
+		children: [...authCustom],
+	},
+];

@@ -1,7 +1,7 @@
 import DashboardLayout from "@/layouts/dashboard";
 import PageError from "@/pages/sys/error/PageError";
 import LoginPage from "@/pages/sys/login";
-import ProtectedRoute from "@/router/components/protected-route";
+import AuthGuard from "@/router/components/auth-guard";
 import { usePermissionRoutes } from "@/router/hooks";
 import { ERROR_ROUTE } from "@/router/routes/error-routes";
 import { ErrorBoundary } from "react-error-boundary";
@@ -31,9 +31,9 @@ export default function Router() {
 	const PROTECTED_ROUTE: AppRouteObject = {
 		path: "/",
 		element: (
-			<ProtectedRoute>
+			<AuthGuard>
 				<DashboardLayout />
-			</ProtectedRoute>
+			</AuthGuard>
 		),
 		children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...permissionRoutes],
 	};

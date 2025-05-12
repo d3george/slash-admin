@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 import { LineLoading } from "@/components/loading";
 import SimpleLayout from "@/layouts/simple";
 
-import ProtectedRoute from "../components/protected-route";
+import AuthGuard from "../components/auth-guard";
 
 import type { AppRouteObject } from "#/router";
 
@@ -18,13 +18,13 @@ const Page500 = lazy(() => import("@/pages/sys/error/Page500"));
  */
 export const ERROR_ROUTE: AppRouteObject = {
 	element: (
-		<ProtectedRoute>
+		<AuthGuard>
 			<SimpleLayout>
 				<Suspense fallback={<LineLoading />}>
 					<Outlet />
 				</Suspense>
 			</SimpleLayout>
-		</ProtectedRoute>
+		</AuthGuard>
 	),
 	children: [
 		{ path: "403", element: <Page403 /> },
