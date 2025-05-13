@@ -9,6 +9,7 @@ import Header from "./header";
 import Main from "./main";
 import NavBar from "./nav-bar";
 
+// Dashboard Layout
 export default function DashboardLayout() {
 	const isMobile = useMediaQuery(down("md"));
 	const { themeLayout } = useSettings();
@@ -25,47 +26,30 @@ export default function DashboardLayout() {
 	);
 }
 
+// Pc Layout
 function PcLayout() {
 	const { themeLayout } = useSettings();
-
-	return (
-		<>
-			{themeLayout !== ThemeLayout.Horizontal && <NavBar />}
-
-			<div
-				data-slot="slash-layout-content"
-				className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out", {
-					"pl-[var(--layout-nav-width)]": themeLayout === ThemeLayout.Vertical,
-					"pl-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
-				})}
-			>
-				<Header headerLeftSlot={themeLayout === ThemeLayout.Horizontal ? <Logo /> : <VerticalNavTrigger />} />
-
-				{themeLayout === ThemeLayout.Horizontal && (
-					<NavBar className="sticky top-[var(--layout-header-height)] left-0 grow-0 shrink-0" />
-				)}
-
-				<Main />
-			</div>
-		</>
-	);
+	if (themeLayout === ThemeLayout.Horizontal) return <PcHorizontalLayout />;
+	return <PcVerticalLayout />;
 }
 
-function MobileLayout() {
+function PcHorizontalLayout() {
 	return (
-		<>
-			<Header headerLeftSlot={<NavBar />} />
+		<div
+			data-slot="slash-layout-content"
+			className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out")}
+		>
+			<Header leftSlot={<Logo />} />
+			<NavBar className="sticky top-[var(--layout-header-height)] left-0 grow-0 shrink-0" />
 			<Main />
-		</>
+		</div>
 	);
 }
 
-function VerticalNavTrigger() {
+function PcVerticalLayout() {
 	const settings = useSettings();
 	const { themeLayout } = settings;
 	const { setSettings } = useSettingActions();
-
-	if (themeLayout === ThemeLayout.Horizontal) return null;
 
 	const iconName = themeLayout === ThemeLayout.Vertical ? "line-md:menu-unfold-left" : "line-md:menu-unfold-right";
 
@@ -76,9 +60,36 @@ function VerticalNavTrigger() {
 		});
 	};
 
+	const renderToggleButton = () => {
+		return (
+			<Button variant="secondary" size="icon" onClick={toggleThemeLayout}>
+				<Icon icon={iconName} size={20} className="text-text-secondary" />
+			</Button>
+		);
+	};
 	return (
-		<Button variant="secondary" size="icon" onClick={toggleThemeLayout}>
-			<Icon icon={iconName} size={20} className="text-text-secondary" />
-		</Button>
+		<>
+			<NavBar />
+			<div
+				data-slot="slash-layout-content"
+				className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out", {
+					"pl-[var(--layout-nav-width)]": themeLayout === ThemeLayout.Vertical,
+					"pl-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
+				})}
+			>
+				<Header leftSlot={renderToggleButton()} />
+				<Main />
+			</div>
+		</>
+	);
+}
+
+// Mobile Layout
+function MobileLayout() {
+	return (
+		<>
+			<Header leftSlot={<NavBar />} />
+			<Main />
+		</>
 	);
 }

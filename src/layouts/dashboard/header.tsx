@@ -11,10 +11,10 @@ import SearchBar from "../components/search-bar";
 import SettingButton from "../components/setting-button";
 
 interface HeaderProps {
-	headerLeftSlot?: ReactNode;
+	leftSlot?: ReactNode;
 }
 
-export default function Header({ headerLeftSlot }: HeaderProps) {
+export default function Header({ leftSlot }: HeaderProps) {
 	const { breadCrumb } = useSettings();
 	return (
 		<header
@@ -25,7 +25,7 @@ export default function Header({ headerLeftSlot }: HeaderProps) {
 			)}
 		>
 			<div className="flex items-center">
-				{headerLeftSlot}
+				{leftSlot}
 
 				<div className="hidden md:block ml-4">{breadCrumb && <BreadCrumb />}</div>
 			</div>
