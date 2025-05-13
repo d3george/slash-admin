@@ -7,8 +7,9 @@ import { cn } from "@/utils";
 import { ThemeLayout } from "#/enum";
 import Header from "./header";
 import Main from "./main";
-import NavBar from "./nav-bar";
+import { NavHorizontalLayout, NavMobileLayout, NavVerticalLayout, navData } from "./nav";
 
+console.log("navData", navData);
 // Dashboard Layout
 export default function DashboardLayout() {
 	const isMobile = useMediaQuery(down("md"));
@@ -29,6 +30,7 @@ export default function DashboardLayout() {
 // Pc Layout
 function PcLayout() {
 	const { themeLayout } = useSettings();
+
 	if (themeLayout === ThemeLayout.Horizontal) return <PcHorizontalLayout />;
 	return <PcVerticalLayout />;
 }
@@ -40,7 +42,7 @@ function PcHorizontalLayout() {
 			className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out")}
 		>
 			<Header leftSlot={<Logo />} />
-			<NavBar className="sticky top-[var(--layout-header-height)] left-0 grow-0 shrink-0" />
+			<NavHorizontalLayout data={navData} />
 			<Main />
 		</div>
 	);
@@ -67,9 +69,10 @@ function PcVerticalLayout() {
 			</Button>
 		);
 	};
+
 	return (
 		<>
-			<NavBar />
+			<NavVerticalLayout data={navData} />
 			<div
 				data-slot="slash-layout-content"
 				className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out", {
@@ -88,7 +91,7 @@ function PcVerticalLayout() {
 function MobileLayout() {
 	return (
 		<>
-			<Header leftSlot={<NavBar />} />
+			<Header leftSlot={<NavMobileLayout data={navData} />} />
 			<Main />
 		</>
 	);

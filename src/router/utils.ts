@@ -32,7 +32,6 @@ export function getRoutesFromModules() {
 		menuModules.push(...modList);
 	}
 
-	console.log("getRoutesFromModules", modules, menuModules);
 	return menuModules;
 }
 

@@ -30,7 +30,6 @@ export type PermissionModalProps = {
 };
 
 export default function PermissionModal({ title, show, formValue, onOk, onCancel }: PermissionModalProps) {
-	console.log("formValue", formValue);
 	const form = useForm<Permission>({
 		defaultValues: formValue,
 	});

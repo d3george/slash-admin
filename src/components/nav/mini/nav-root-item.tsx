@@ -1,4 +1,5 @@
 import Icon from "@/components/icon/icon";
+import useLocale from "@/locales/use-locale";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/ui/tooltip";
 import { cn } from "@/utils";
 import { NavItemRenderer } from "../components";
@@ -6,6 +7,7 @@ import { navItemClasses, navItemStyles } from "../styles";
 import type { NavItemProps } from "../types";
 
 export const NavRootItem = (item: NavItemProps) => {
+	const { t } = useLocale();
 	const content = (
 		<>
 			{/* Caption */}
@@ -15,7 +17,7 @@ export const NavRootItem = (item: NavItemProps) => {
 						<TooltipTrigger>
 							<Icon icon="solar:info-circle-linear" size={16} className="absolute left-1 top-2" />
 						</TooltipTrigger>
-						<TooltipContent side="right">{item.caption}</TooltipContent>
+						<TooltipContent side="right">{t(item.caption)}</TooltipContent>
 					</Tooltip>
 				</TooltipProvider>
 			)}
@@ -32,7 +34,7 @@ export const NavRootItem = (item: NavItemProps) => {
 
 			{/* Title */}
 			<span style={navItemStyles.title} className="text-center! text-xs! mt-1">
-				{item.title}
+				{t(item.title)}
 			</span>
 		</>
 	);

@@ -1,17 +1,18 @@
+import { Icon } from "@/components/icon";
+import useLocale from "@/locales/use-locale";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/ui/collapsible";
 import { cn } from "@/utils";
-import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useToggle } from "react-use";
 import type { NavGroupProps } from "../types";
 import { NavList } from "./nav-list";
 
 export function NavGroup({ name, items, ...props }: NavGroupProps) {
-	const [open, setOpen] = useState(true);
+	const [open, toggleOpen] = useToggle(true);
 	return (
 		<div className="flex w-full flex-col gap-1" {...props}>
-			<Collapsible open={open} onOpenChange={setOpen}>
+			<Collapsible open={open}>
 				<CollapsibleTrigger asChild>
-					<Group name={name} open={open} />
+					<Group name={name} open={open} onClick={toggleOpen} />
 				</CollapsibleTrigger>
 				<CollapsibleContent>
 					<ul className="flex w-full flex-col gap-1">
@@ -25,7 +26,8 @@ export function NavGroup({ name, items, ...props }: NavGroupProps) {
 	);
 }
 
-function Group({ name, open }: { name?: string; open: boolean }) {
+function Group({ name, open, onClick }: { name?: string; open: boolean; onClick: (nextValue: boolean) => void }) {
+	const { t } = useLocale();
 	return (
 		name && (
 			<div
@@ -33,6 +35,7 @@ function Group({ name, open }: { name?: string; open: boolean }) {
 					"group inline-flex items-center justify-start relative gap-2 cursor-pointer pt-4 pr-2 pb-2 pl-3 transition-all duration-300 ease-in-out",
 					"hover:pl-4",
 				)}
+				onClick={() => onClick(!open)}
 			>
 				<Icon
 					icon="eva:arrow-ios-forward-fill"
@@ -51,7 +54,7 @@ function Group({ name, open }: { name?: string; open: boolean }) {
 						"hover:text-text-primary",
 					)}
 				>
-					{name.toUpperCase()}
+					{t(name)}
 				</span>
 			</div>
 		)

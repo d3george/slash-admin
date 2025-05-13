@@ -18,6 +18,8 @@ const MultiLanguagePage = lazy(() => import("@/pages/components/multi-language")
 const IconPage = lazy(() => import("@/pages/components/icon"));
 const UploadPage = lazy(() => import("@/pages/components/upload"));
 const ChartPage = lazy(() => import("@/pages/components/chart"));
+const ClipboardPage = lazy(() => import("@/pages/functions/clipboard"));
+const TokenExpiredPage = lazy(() => import("@/pages/functions/token-expired"));
 
 // error
 const Page403 = lazy(() => import("@/pages/sys/error/Page403"));
@@ -79,6 +81,14 @@ export const dashboardRoutes: RouteObject[] = [
 				],
 			},
 			{
+				path: "functions",
+				children: [
+					{ index: true, element: <Navigate to="clipboard" replace /> },
+					{ path: "clipboard", element: <ClipboardPage /> },
+					{ path: "token-expired", element: <TokenExpiredPage /> },
+				],
+			},
+			{
 				path: "management",
 				children: [
 					{ index: true, element: <Navigate to="user" replace /> },
@@ -103,7 +113,7 @@ export const dashboardRoutes: RouteObject[] = [
 				],
 			},
 			{
-				path: "errors",
+				path: "error",
 				children: [
 					{ index: true, element: <Navigate to="403" replace /> },
 					{ path: "403", element: <Page403 /> },
