@@ -1,4 +1,3 @@
-import { varFade } from "@/components/animate/variants";
 import Logo from "@/components/logo";
 import { NavMini, NavVertical } from "@/components/nav";
 import type { NavProps } from "@/components/nav/types";
@@ -6,7 +5,6 @@ import { useSettings } from "@/store/settingStore";
 import { ThemeLayout } from "@/types/enum";
 import { ScrollArea } from "@/ui/scroll-area";
 import { cn } from "@/utils";
-import { m } from "motion/react";
 
 type Props = {
 	data: NavProps["data"];
@@ -20,7 +18,7 @@ export function NavVerticalLayout({ data, className }: Props) {
 		<nav
 			data-slot="slash-layout-nav"
 			className={cn(
-				"fixed inset-y-0 left-0 flex-col h-full bg-background border-r border-dashed transition-all duration-300 ease-in-out",
+				"fixed inset-y-0 left-0 flex-col h-full bg-background border-r border-dashed transition-[width,height,opacity] duration-300 ease-in-out",
 				className,
 			)}
 		>
@@ -31,11 +29,7 @@ export function NavVerticalLayout({ data, className }: Props) {
 			>
 				<div className="flex items-center gap-2">
 					<Logo />
-					{themeLayout !== ThemeLayout.Mini && (
-						<m.span className="text-xl font-bold text-primary" variants={varFade().in}>
-							Slash Admin
-						</m.span>
-					)}
+					{themeLayout !== ThemeLayout.Mini && <span className="text-xl font-bold text-primary">Slash Admin</span>}
 				</div>
 			</div>
 
@@ -45,9 +39,7 @@ export function NavVerticalLayout({ data, className }: Props) {
 					"w-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
 				})}
 			>
-				<m.div variants={varFade().in} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.2 }}>
-					{themeLayout === ThemeLayout.Mini ? <NavMini data={data} /> : <NavVertical data={data} />}
-				</m.div>
+				{themeLayout === ThemeLayout.Mini ? <NavMini data={data} /> : <NavVertical data={data} />}
 			</ScrollArea>
 		</nav>
 	);
