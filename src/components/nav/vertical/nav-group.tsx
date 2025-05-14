@@ -32,7 +32,7 @@ function Group({ name, open, onClick }: { name?: string; open: boolean; onClick:
 		name && (
 			<div
 				className={cn(
-					"group inline-flex items-center justify-start relative gap-2 cursor-pointer pt-4 pr-2 pb-2 pl-3 transition-all duration-300 ease-in-out",
+					"group w-full inline-flex items-center justify-start relative gap-2 cursor-pointer pt-4 pr-2 pb-2 pl-3 transition-all duration-300 ease-in-out",
 					"hover:pl-4",
 				)}
 				onClick={() => onClick(!open)}

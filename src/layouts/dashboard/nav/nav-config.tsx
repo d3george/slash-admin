@@ -131,6 +131,7 @@ export const navData: NavProps["data"] = [
 				title: "sys.menu.components",
 				path: "/components",
 				icon: <Icon icon="solar:widget-5-bold-duotone" size="24" />,
+				caption: "custom ui components",
 				children: [
 					{
 						title: "sys.menu.icon",
