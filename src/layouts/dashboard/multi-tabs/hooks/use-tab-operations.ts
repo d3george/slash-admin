@@ -1,4 +1,4 @@
-import { useRouter } from "@/router/hooks";
+import { useRouter } from "@/routes/hooks";
 import { type Dispatch, type SetStateAction, useCallback } from "react";
 import type { KeepAliveTab } from "../types";
 

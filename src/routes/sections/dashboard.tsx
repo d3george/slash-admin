@@ -1,6 +1,6 @@
 import { LineLoading } from "@/components/loading";
 import DashboardLayout from "@/layouts/dashboard";
-import AuthGuard from "@/router/components/auth-guard";
+import AuthGuard from "@/routes/components/auth-guard";
 import { Suspense, lazy } from "react";
 import type { RouteObject } from "react-router";
 import { Navigate } from "react-router";

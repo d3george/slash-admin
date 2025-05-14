@@ -1,6 +1,6 @@
 import { Icon } from "@/components/icon";
 import useLocale from "@/locales/use-locale";
-import { useRouter } from "@/router/hooks";
+import { useRouter } from "@/routes/hooks";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import {

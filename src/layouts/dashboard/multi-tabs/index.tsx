@@ -1,5 +1,4 @@
-import { useRouter } from "@/router/hooks";
-import { replaceDynamicParams } from "@/router/hooks/use-current-route-meta";
+import { useRouter } from "@/routes/hooks";
 import { Tabs } from "antd";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
@@ -17,9 +16,8 @@ export default function MultiTabs() {
 	const style = useMultiTabsStyle();
 	const { push } = useRouter();
 
-	const handleTabClick = ({ key, params = {} }: KeepAliveTab) => {
-		console.log("handleTabClick", key, params);
-		const tabKey = replaceDynamicParams(key, params);
+	const handleTabClick = ({ key }: KeepAliveTab) => {
+		const tabKey = key;
 		push(tabKey);
 	};
 

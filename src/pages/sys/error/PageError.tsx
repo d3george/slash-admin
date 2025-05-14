@@ -1,7 +1,7 @@
 import Character5 from "@/assets/images/characters/character_5.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
-import { useRouter } from "@/router/hooks";
+import { useRouter } from "@/routes/hooks";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
 import { Text, Title } from "@/ui/typography";

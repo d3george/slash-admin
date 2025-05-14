@@ -1,4 +1,4 @@
-import { RouterLink } from "@/router/components/router-link";
+import { RouterLink } from "@/routes/components/router-link";
 import type { NavItemProps } from "../types";
 
 type NavItemRendererProps = {

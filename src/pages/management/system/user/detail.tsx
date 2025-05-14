@@ -1,5 +1,5 @@
 import { USER_LIST } from "@/_mock/assets";
-import { useParams } from "@/router/hooks";
+import { useParams } from "@/routes/hooks";
 import { Card, CardContent } from "@/ui/card";
 import type { UserInfo } from "#/entity";
 

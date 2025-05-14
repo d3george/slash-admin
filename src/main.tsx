@@ -9,7 +9,7 @@ import App from "./App";
 import worker from "./_mock";
 import { registerLocalIcons } from "./components/icon";
 import PageError from "./pages/sys/error/PageError";
-import { routesSection } from "./router/sections";
+import { routesSection } from "./routes/sections";
 
 await registerLocalIcons();
 worker.start({ onUnhandledRequest: "bypass" });

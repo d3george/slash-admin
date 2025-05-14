@@ -18,7 +18,7 @@ export function NavVerticalLayout({ data, className }: Props) {
 		<nav
 			data-slot="slash-layout-nav"
 			className={cn(
-				"fixed inset-y-0 left-0 flex-col h-full bg-background border-r border-dashed z-app-bar transition-all duration-300 ease-in-out",
+				"fixed inset-y-0 left-0 flex-col h-full bg-background border-r border-dashed z-app-bar transition-[width] duration-300 ease-in-out",
 				className,
 			)}
 		>
