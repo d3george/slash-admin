@@ -1,233 +1,155 @@
 import { Icon } from "@/components/icon";
-import { useFlattenedRoutes, useRouter } from "@/router/hooks";
-import { themeVars } from "@/theme/theme.css";
+import useLocale from "@/locales/use-locale";
+import { useRouter } from "@/router/hooks";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTrigger } from "@/ui/dialog";
-import { Input } from "@/ui/input";
-import { ScrollArea } from "@/ui/scroll-area";
-import { rgbAlpha } from "@/utils/theme";
-import { Empty } from "antd";
-import match from "autosuggest-highlight/match";
-import parse from "autosuggest-highlight/parse";
-import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useBoolean, useEvent, useKeyPressEvent } from "react-use";
-import styled from "styled-components";
+import {
+	CommandDialog,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+	CommandSeparator,
+} from "@/ui/command";
+import { Text } from "@/ui/typography";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useBoolean } from "react-use";
+import { navData } from "../dashboard/nav/nav-config";
 
-const SearchBar = () => {
-	const { t } = useTranslation();
-	const { replace } = useRouter();
-	const listRef = useRef<HTMLDivElement>(null);
-	const [search, toggle] = useBoolean(false);
-	const flattenedRoutes = useFlattenedRoutes();
-	const [searchQuery, setSearchQuery] = useState("");
-	const [selectedItemIndex, setSelectedItemIndex] = useState(0);
+interface SearchItem {
+	key: string;
+	label: string;
+	path: string;
+}
 
-	const activeStyle: CSSProperties = {
-		border: `1px dashed ${themeVars.colors.palette.primary.default}`,
-		backgroundColor: rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.1),
-	};
+// 高亮文本组件
+const HighlightText = ({ text, query }: { text: string; query: string }) => {
+	if (!query) return <>{text}</>;
 
-	const searchResult = useMemo(() => {
-		return flattenedRoutes.filter(
-			(item) =>
-				t(item.label).toLowerCase().includes(searchQuery.toLowerCase()) ||
-				item.key.toLowerCase().includes(searchQuery.toLowerCase()),
-		);
-	}, [searchQuery, t, flattenedRoutes]);
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies:  在搜索结果变化时重置选中索引
-	useEffect(() => {
-		setSelectedItemIndex(0);
-	}, [searchResult.length]);
-
-	const handleMetaK = (event: KeyboardEvent) => {
-		if (event.metaKey && event.key === "k") {
-			// https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/metaKey
-			handleOpen();
-		}
-	};
-	useEvent("keydown", handleMetaK);
-
-	useKeyPressEvent("ArrowUp", (event) => {
-		if (!search) return;
-		event.preventDefault();
-		let nextIndex = selectedItemIndex - 1;
-		if (nextIndex < 0) {
-			nextIndex = searchResult.length - 1;
-		}
-		setSelectedItemIndex(nextIndex);
-		scrollSelectedItemIntoView(nextIndex);
-	});
-
-	useKeyPressEvent("ArrowDown", (event) => {
-		if (!search) return;
-		event.preventDefault();
-		let nextIndex = selectedItemIndex + 1;
-		if (nextIndex > searchResult.length - 1) {
-			nextIndex = 0;
-		}
-		setSelectedItemIndex(nextIndex);
-		scrollSelectedItemIntoView(nextIndex);
-	});
-
-	useKeyPressEvent("Enter", (event) => {
-		if (!search || searchResult.length === 0) return;
-		event.preventDefault();
-		const selectItem = searchResult[selectedItemIndex].key;
-		if (selectItem) {
-			handleSelect(selectItem);
-			toggle(false);
-		}
-	});
-
-	useKeyPressEvent("Escape", () => {
-		handleCancel();
-	});
-
-	const handleOpen = () => {
-		toggle(true);
-		setSearchQuery("");
-		setSelectedItemIndex(0);
-	};
-	const handleCancel = () => {
-		toggle(false);
-	};
-
-	const scrollSelectedItemIntoView = (index: number) => {
-		if (listRef.current) {
-			const selectedItem = listRef.current.children[index];
-			selectedItem.scrollIntoView({
-				behavior: "smooth",
-				block: "center",
-			});
-		}
-	};
-
-	const handleHover = (index: number) => {
-		if (index === selectedItemIndex) return;
-		setSelectedItemIndex(index);
-	};
-
-	const handleSelect = (key: string) => {
-		replace(key);
-		handleCancel();
-	};
+	const parts = text.split(new RegExp(`(${query})`, "gi"));
 
 	return (
-		<Dialog open={search} onOpenChange={toggle}>
-			<DialogTrigger asChild>
-				<div className="flex items-center justify-center">
-					<Button variant="ghost" className="bg-secondary px-2 rounded-lg" size="sm" onClick={handleOpen}>
-						<div className="flex items-center justify-center gap-2">
-							<Icon icon="local:ic-search" size="20" />
-							<span className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
-								{" "}
-								⌘K{" "}
-							</span>
-						</div>
-					</Button>
-				</div>
-			</DialogTrigger>
-			<DialogContent>
-				<DialogHeader>
-					<DialogDescription>
-						<Input
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-							placeholder="Search..."
-							autoFocus
-						/>
-					</DialogDescription>
-				</DialogHeader>
-
-				<div className="h-[30vh]">
-					{searchResult.length === 0 ? (
-						<Empty />
-					) : (
-						<ScrollArea className="h-full">
-							<div ref={listRef} className="py-2">
-								{searchResult.map(({ key, label }, index) => {
-									const partsTitle = parse(t(label), match(t(label), searchQuery));
-									const partsKey = parse(key, match(key, searchQuery));
-									return (
-										<StyledListItemButton
-											key={key}
-											style={index === selectedItemIndex ? activeStyle : {}}
-											onClick={() => handleSelect(key)}
-											onMouseMove={() => handleHover(index)}
-										>
-											<div className="flex justify-between">
-												<div>
-													<div className="font-medium">
-														{partsTitle.map((item) => (
-															<span
-																key={item.text}
-																style={{
-																	color: item.highlight
-																		? themeVars.colors.palette.primary.default
-																		: themeVars.colors.text.primary,
-																}}
-															>
-																{item.text}
-															</span>
-														))}
-													</div>
-													<div className="text-xs">
-														{partsKey.map((item) => (
-															<span
-																key={item.text}
-																style={{
-																	color: item.highlight
-																		? themeVars.colors.palette.primary.default
-																		: themeVars.colors.text.secondary,
-																}}
-															>
-																{item.text}
-															</span>
-														))}
-													</div>
-												</div>
-											</div>
-										</StyledListItemButton>
-									);
-								})}
-							</div>
-						</ScrollArea>
-					)}
-				</div>
-
-				<DialogFooter>
-					<div className="flex flex-wrap text-text-primary">
-						<div className="flex">
-							<Badge variant="info">↑</Badge>
-							<Badge variant="info">↓</Badge>
-							<span>to navigate</span>
-						</div>
-						<div className="flex">
-							<Badge variant="info">↵</Badge>
-							<span>to select</span>
-						</div>
-						<div className="flex">
-							<Badge variant="info">ESC</Badge>
-							<span>to close</span>
-						</div>
-					</div>
-				</DialogFooter>
-			</DialogContent>
-		</Dialog>
+		<>
+			{parts.map((part, i) =>
+				part.toLowerCase() === query.toLowerCase() ? (
+					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+					<span key={i} className="text-primary">
+						{part}
+					</span>
+				) : (
+					part
+				),
+			)}
+		</>
 	);
 };
 
-const StyledListItemButton = styled.div`
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  width: 100%;
-  padding: 8px 16px;
-  border-radius: 8px;
-  color: ${themeVars.colors.text.secondary};
-`;
+const SearchBar = () => {
+	const { t } = useLocale();
+	const { replace } = useRouter();
+	const [open, setOpen] = useBoolean(false);
+	const [searchQuery, setSearchQuery] = useState("");
+
+	// Flatten navigation data into searchable items
+	const flattenedItems = useMemo(() => {
+		const items: SearchItem[] = [];
+
+		const flattenItems = (navItems: typeof navData) => {
+			for (const section of navItems) {
+				for (const item of section.items) {
+					if (item.path) {
+						items.push({
+							key: item.path,
+							label: item.title,
+							path: item.path,
+						});
+					}
+					if (item.children) {
+						flattenItems([{ items: item.children }]);
+					}
+				}
+			}
+		};
+
+		flattenItems(navData);
+		return items;
+	}, []);
+
+	const searchResult = useMemo(() => {
+		const query = searchQuery.toLowerCase();
+		return flattenedItems.filter(
+			(item) => t(item.label).toLowerCase().includes(query) || item.key.toLowerCase().includes(query),
+		);
+	}, [searchQuery, t, flattenedItems]);
+
+	useEffect(() => {
+		const down = (e: KeyboardEvent) => {
+			if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+				e.preventDefault();
+				setOpen((open: boolean) => !open);
+			}
+		};
+
+		document.addEventListener("keydown", down);
+		return () => document.removeEventListener("keydown", down);
+	}, [setOpen]);
+
+	const handleSelect = useCallback(
+		(path: string) => {
+			replace(path);
+			setOpen(false);
+		},
+		[replace, setOpen],
+	);
+
+	return (
+		<>
+			<Button variant="ghost" className="bg-secondary px-2 rounded-lg" size="sm" onClick={() => setOpen(true)}>
+				<div className="flex items-center justify-center gap-2">
+					<Icon icon="local:ic-search" size="20" />
+					<kbd className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
+						⌘K
+					</kbd>
+				</div>
+			</Button>
+
+			<CommandDialog open={open} onOpenChange={setOpen}>
+				<CommandInput placeholder="Search..." value={searchQuery} onValueChange={setSearchQuery} />
+				<CommandList className="min-h-[400px]">
+					<CommandEmpty>No results found.</CommandEmpty>
+					<CommandGroup>
+						{searchResult.map(({ key, label }) => (
+							<CommandItem key={key} onSelect={() => handleSelect(key)} className="flex flex-col items-start py-2">
+								<div className="font-medium">
+									<HighlightText text={t(label)} query={searchQuery} />
+								</div>
+								<div className="text-xs text-muted-foreground">
+									<HighlightText text={key} query={searchQuery} />
+								</div>
+							</CommandItem>
+						))}
+					</CommandGroup>
+				</CommandList>
+				<CommandSeparator />
+				<div className="flex flex-wrap text-text-primary p-2 justify-end gap-2">
+					<div className="flex items-center gap-1">
+						<Badge variant="outline">↑</Badge>
+						<Badge variant="outline">↓</Badge>
+						<Text variant="caption">to navigate</Text>
+					</div>
+					<div className="flex items-center gap-1">
+						<Badge variant="outline">↵</Badge>
+						<Text variant="caption">to select</Text>
+					</div>
+					<div className="flex items-center gap-1">
+						<Badge variant="outline">ESC</Badge>
+						<Text variant="caption">to close</Text>
+					</div>
+				</div>
+			</CommandDialog>
+		</>
+	);
+};
 
 export default SearchBar;

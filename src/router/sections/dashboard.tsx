@@ -18,6 +18,7 @@ const MultiLanguagePage = lazy(() => import("@/pages/components/multi-language")
 const IconPage = lazy(() => import("@/pages/components/icon"));
 const UploadPage = lazy(() => import("@/pages/components/upload"));
 const ChartPage = lazy(() => import("@/pages/components/chart"));
+const ToastPage = lazy(() => import("@/pages/components/toast"));
 const ClipboardPage = lazy(() => import("@/pages/functions/clipboard"));
 const TokenExpiredPage = lazy(() => import("@/pages/functions/token-expired"));
 
@@ -78,6 +79,7 @@ export const dashboardRoutes: RouteObject[] = [
 					{ path: "icon", element: <IconPage /> },
 					{ path: "upload", element: <UploadPage /> },
 					{ path: "chart", element: <ChartPage /> },
+					{ path: "toast", element: <ToastPage /> },
 				],
 			},
 			{
@@ -143,8 +145,14 @@ export const dashboardRoutes: RouteObject[] = [
 					},
 				],
 			},
-			{ path: "iframe", element: <Iframe src="https://ant.design/index-cn" /> },
-			{ path: "iframe/external-link", element: <ExternalLink src="https://ant.design/index-cn" /> },
+			{
+				path: "iframe",
+				children: [
+					{ index: true, element: <Navigate to="iframe" replace /> },
+					{ path: "iframe", element: <Iframe src="https://ant.design/index-cn" /> },
+					{ path: "external-link", element: <ExternalLink src="https://ant.design/index-cn" /> },
+				],
+			},
 			{ path: "calendar", element: <Calendar /> },
 			{ path: "kanban", element: <Kanban /> },
 			{ path: "blank", element: <Blank /> },

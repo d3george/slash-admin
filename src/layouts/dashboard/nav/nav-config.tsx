@@ -131,7 +131,7 @@ export const navData: NavProps["data"] = [
 				title: "sys.menu.components",
 				path: "/components",
 				icon: <Icon icon="solar:widget-5-bold-duotone" size="24" />,
-				caption: "custom ui components",
+				caption: "sys.menu.custom_ui_components",
 				children: [
 					{
 						title: "sys.menu.icon",
@@ -203,7 +203,7 @@ export const navData: NavProps["data"] = [
 			},
 			{
 				title: "sys.menu.label",
-				path: "/label",
+				path: "#label",
 				icon: <Icon icon="local:ic-label" size="14" />,
 				info: (
 					<Badge variant="info">
@@ -214,16 +214,16 @@ export const navData: NavProps["data"] = [
 			},
 			{
 				title: "sys.menu.frame",
-				path: "/frame",
+				path: "/iframe",
 				icon: <Icon icon="local:ic-external" size="24" />,
 				children: [
 					{
 						title: "sys.menu.external_link",
-						path: "/frame/external_link",
+						path: "/iframe/external-link",
 					},
 					{
 						title: "sys.menu.iframe",
-						path: "/frame/iframe",
+						path: "/iframe/iframe",
 					},
 				],
 			},

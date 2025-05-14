@@ -1,5 +1,6 @@
-import { useFlattenedRoutes, usePermissionRoutes } from "@/router/hooks";
-import { menuFilter } from "@/router/utils";
+import type { NavItemDataProps } from "@/components/nav";
+import { navData } from "@/layouts/dashboard/nav";
+import useLocale from "@/locales/use-locale";
 import {
 	Breadcrumb,
 	BreadcrumbEllipsis,
@@ -12,43 +13,72 @@ import {
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import * as React from "react";
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import { useCallback, useMemo } from "react";
 import { Link, useMatches } from "react-router";
 
 interface BreadCrumbProps {
 	maxItems?: number;
 }
 
-export default function BreadCrumb({ maxItems = 2 }: BreadCrumbProps) {
-	const { t } = useTranslation();
+type NavItem = Pick<NavItemDataProps, "path" | "title"> & {
+	children?: NavItem[];
+};
+
+interface BreadcrumbItemData {
+	key: string;
+	label: string;
+	items: Array<{
+		key: string;
+		label: string;
+	}>;
+}
+
+export default function BreadCrumb({ maxItems = 3 }: BreadCrumbProps) {
+	const { t } = useLocale();
 	const matches = useMatches();
-	const flattenedRoutes = useFlattenedRoutes();
-	const permissionRoutes = usePermissionRoutes();
+
+	const findPathInNavData = useCallback((path: string, items: NavItem[]): NavItem[] => {
+		for (const item of items) {
+			if (item.path === path) {
+				return [item];
+			}
+			if (item.children) {
+				const found = findPathInNavData(path, item.children);
+				if (found.length > 0) {
+					return [item, ...found];
+				}
+			}
+		}
+		return [];
+	}, []);
 
 	const breadCrumbs = useMemo(() => {
-		const menuRoutes = menuFilter(permissionRoutes);
 		const paths = matches.filter((item) => item.pathname !== "/").map((item) => item.pathname);
-		const pathRouteMetas = flattenedRoutes.filter((item) => paths.includes(item.key));
-		let currentMenuItems = [...menuRoutes];
 
-		return pathRouteMetas.map((routeMeta) => {
-			const { key, label } = routeMeta;
-			const currentRoute = currentMenuItems.find((item) => item.meta?.key === key);
-			currentMenuItems = currentRoute?.children?.filter((item) => !item.meta?.hideMenu) ?? [];
+		return paths
+			.map((path) => {
+				const navItems = navData.flatMap((section) => section.items);
+				const pathItems = findPathInNavData(path, navItems);
 
-			return {
-				key,
-				label: t(label),
-				items: currentMenuItems.map((item) => ({
-					key: item.meta?.key,
-					label: item.meta?.label ? t(item.meta.label) : null,
-				})),
-			};
-		});
-	}, [matches, flattenedRoutes, t, permissionRoutes]);
+				if (pathItems.length === 0) return null;
 
-	const renderBreadcrumbItem = (item: (typeof breadCrumbs)[0], isLast: boolean) => {
+				const currentItem = pathItems[pathItems.length - 1];
+				const children =
+					currentItem.children?.map((child) => ({
+						key: child.path,
+						label: t(child.title),
+					})) ?? [];
+
+				return {
+					key: currentItem.path,
+					label: t(currentItem.title),
+					items: children,
+				};
+			})
+			.filter((item): item is BreadcrumbItemData => item !== null);
+	}, [matches, t, findPathInNavData]);
+
+	const renderBreadcrumbItem = (item: BreadcrumbItemData, isLast: boolean) => {
 		const hasItems = item.items && item.items.length > 0;
 
 		if (hasItems) {
@@ -62,7 +92,7 @@ export default function BreadCrumb({ maxItems = 2 }: BreadCrumbProps) {
 						<DropdownMenuContent align="start">
 							{item.items.map((subItem) => (
 								<DropdownMenuItem key={subItem.key} asChild>
-									<Link to={subItem.key ?? ""}>{subItem.label}</Link>
+									<Link to={subItem.key}>{subItem.label}</Link>
 								</DropdownMenuItem>
 							))}
 						</DropdownMenuContent>

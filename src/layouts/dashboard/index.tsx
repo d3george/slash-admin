@@ -7,7 +7,6 @@ import Header from "./header";
 import Main from "./main";
 import { NavHorizontalLayout, NavMobileLayout, NavToggleButton, NavVerticalLayout, navData } from "./nav";
 
-console.log("navData", navData);
 // Dashboard Layout
 export default function DashboardLayout() {
 	const isMobile = useMediaQuery(down("md"));
