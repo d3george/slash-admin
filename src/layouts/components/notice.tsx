@@ -27,7 +27,7 @@ export default function NoticeButton() {
 				<Button variant="ghost" size="icon" className="rounded-full" onClick={() => setDrawerOpen(true)}>
 					<Icon icon="solar:bell-bing-bold-duotone" size={24} />
 				</Button>
-				<Badge variant="error" overlay="circle" className="absolute -right-2 -top-2">
+				<Badge variant="destructive" overlay="circle" className="absolute -right-2 -top-2">
 					{count}
 				</Badge>
 			</div>

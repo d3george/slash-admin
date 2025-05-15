@@ -134,16 +134,16 @@ const SearchBar = () => {
 				<CommandSeparator />
 				<div className="flex flex-wrap text-text-primary p-2 justify-end gap-2">
 					<div className="flex items-center gap-1">
-						<Badge variant="outline">↑</Badge>
-						<Badge variant="outline">↓</Badge>
+						<Badge variant="info">↑</Badge>
+						<Badge variant="info">↓</Badge>
 						<Text variant="caption">to navigate</Text>
 					</div>
 					<div className="flex items-center gap-1">
-						<Badge variant="outline">↵</Badge>
+						<Badge variant="info">↵</Badge>
 						<Text variant="caption">to select</Text>
 					</div>
 					<div className="flex items-center gap-1">
-						<Badge variant="outline">ESC</Badge>
+						<Badge variant="info">ESC</Badge>
 						<Text variant="caption">to close</Text>
 					</div>
 				</div>
