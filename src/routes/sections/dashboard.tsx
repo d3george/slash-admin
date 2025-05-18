@@ -34,6 +34,7 @@ const OrganizationPage = lazy(() => import("@/pages/management/system/organizati
 const PermissioPage = lazy(() => import("@/pages/management/system/permission"));
 const RolePage = lazy(() => import("@/pages/management/system/role"));
 const UserPage = lazy(() => import("@/pages/management/system/user"));
+const UserDetailPage = lazy(() => import("@/pages/management/system/user/detail"));
 
 // others
 const ExternalLink = lazy(() => import("@/pages/sys/others/iframe/external-link"));
@@ -110,6 +111,7 @@ export const dashboardRoutes: RouteObject[] = [
 							{ path: "permission", element: <PermissioPage /> },
 							{ path: "role", element: <RolePage /> },
 							{ path: "user", element: <UserPage /> },
+							{ path: "user/:id", element: <UserDetailPage /> },
 						],
 					},
 				],
