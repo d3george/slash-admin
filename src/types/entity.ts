@@ -52,3 +52,48 @@ export interface Role {
 	desc?: string;
 	permission?: Permission[];
 }
+
+export interface CommonOptions {
+	status: BasicStatus;
+	desc?: string;
+	createdAt?: string;
+	updatedAt?: string;
+}
+export interface User_V1 extends CommonOptions {
+	id: string; // uuid
+	username: string;
+	password: string;
+	email: string;
+	phone?: string;
+}
+
+export interface Role_V1 extends CommonOptions {
+	id: string; // uuid
+	name: string;
+	code: string;
+}
+
+export interface Permission_V1 extends CommonOptions {
+	id: string; // uuid
+	parentId: string;
+	name: string;
+	code: string;
+	order?: number;
+	type: PermissionType;
+}
+
+export type PermissionMetaInfo = {
+	path?: string; // nav path
+	icon?: string; // nav icon
+	caption?: string; // nav caption
+	info?: string; // nav info
+	disabled?: boolean; // nav disabled
+
+	externalLink?: URL;
+	frameSrc?: URL;
+
+	// type: CATALOGUE
+	groupName?: string; // the setting will only take effect when parentId is empty
+	// type: MENU
+	component?: string;
+};

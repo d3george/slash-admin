@@ -10,7 +10,7 @@ export type NavItemDataProps = {
 	icon?: string | React.ReactNode;
 	info?: React.ReactNode;
 	caption?: string;
-	allowedRoles?: string | string[];
+	auth?: string | string[];
 	children?: NavItemDataProps[];
 	disabled?: boolean;
 };
@@ -32,7 +32,7 @@ export type NavItemProps = React.ComponentProps<"div"> & NavItemDataProps & NavI
  */
 export type NavListProps = Pick<NavItemProps, "depth" | "enabledRootRedirect"> & {
 	data: NavItemDataProps;
-	checkPermissions?: (allowedRoles?: NavItemProps["allowedRoles"]) => boolean;
+	checkPermissions?: (auth?: NavItemProps["auth"]) => boolean;
 };
 
 /**
