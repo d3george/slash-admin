@@ -12,7 +12,7 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"lineWidth": 120,
+		"lineWidth": 200,
 		"indentStyle": "tab"
 	},
 	"organizeImports": {

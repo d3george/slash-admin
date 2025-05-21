@@ -74,7 +74,7 @@ export const ORG_LIST = [
 const DASHBOARD_PERMISSION = {
 	id: "9100714781927703",
 	parentId: "",
-	label: "sys.menu.dashboard",
+	label: "sys.nav.dashboard",
 	name: "Dashboard",
 	icon: "local:ic-analysis",
 	type: PermissionType.CATALOGUE,
@@ -84,7 +84,7 @@ const DASHBOARD_PERMISSION = {
 		{
 			id: "8426999229400979",
 			parentId: "9100714781927703",
-			label: "sys.menu.workbench",
+			label: "sys.nav.workbench",
 			name: "Workbench",
 			type: PermissionType.MENU,
 			route: "workbench",
@@ -93,7 +93,7 @@ const DASHBOARD_PERMISSION = {
 		{
 			id: "9710971640510357",
 			parentId: "9100714781927703",
-			label: "sys.menu.analysis",
+			label: "sys.nav.analysis",
 			name: "Analysis",
 			type: PermissionType.MENU,
 			route: "analysis",
@@ -104,7 +104,7 @@ const DASHBOARD_PERMISSION = {
 const MANAGEMENT_PERMISSION = {
 	id: "0901673425580518",
 	parentId: "",
-	label: "sys.menu.management",
+	label: "sys.nav.management",
 	name: "Management",
 	icon: "local:ic-management",
 	type: PermissionType.CATALOGUE,
@@ -114,7 +114,7 @@ const MANAGEMENT_PERMISSION = {
 		{
 			id: "2781684678535711",
 			parentId: "0901673425580518",
-			label: "sys.menu.user.index",
+			label: "sys.nav.user.index",
 			name: "User",
 			type: PermissionType.CATALOGUE,
 			route: "user",
@@ -122,7 +122,7 @@ const MANAGEMENT_PERMISSION = {
 				{
 					id: "4754063958766648",
 					parentId: "2781684678535711",
-					label: "sys.menu.user.profile",
+					label: "sys.nav.user.profile",
 					name: "Profile",
 					type: PermissionType.MENU,
 					route: "profile",
@@ -131,7 +131,7 @@ const MANAGEMENT_PERMISSION = {
 				{
 					id: "2516598794787938",
 					parentId: "2781684678535711",
-					label: "sys.menu.user.account",
+					label: "sys.nav.user.account",
 					name: "Account",
 					type: PermissionType.MENU,
 					route: "account",
@@ -142,7 +142,7 @@ const MANAGEMENT_PERMISSION = {
 		{
 			id: "0249937641030250",
 			parentId: "0901673425580518",
-			label: "sys.menu.system.index",
+			label: "sys.nav.system.index",
 			name: "System",
 			type: PermissionType.CATALOGUE,
 			route: "system",
@@ -150,7 +150,7 @@ const MANAGEMENT_PERMISSION = {
 				{
 					id: "1985890042972842",
 					parentId: "0249937641030250",
-					label: "sys.menu.system.organization",
+					label: "sys.nav.system.organization",
 					name: "Organization",
 					type: PermissionType.MENU,
 					route: "organization",
@@ -159,7 +159,7 @@ const MANAGEMENT_PERMISSION = {
 				{
 					id: "4359580910369984",
 					parentId: "0249937641030250",
-					label: "sys.menu.system.permission",
+					label: "sys.nav.system.permission",
 					name: "Permission",
 					type: PermissionType.MENU,
 					route: "permission",
@@ -168,7 +168,7 @@ const MANAGEMENT_PERMISSION = {
 				{
 					id: "1689241785490759",
 					parentId: "0249937641030250",
-					label: "sys.menu.system.role",
+					label: "sys.nav.system.role",
 					name: "Role",
 					type: PermissionType.MENU,
 					route: "role",
@@ -177,7 +177,7 @@ const MANAGEMENT_PERMISSION = {
 				{
 					id: "0157880245365433",
 					parentId: "0249937641030250",
-					label: "sys.menu.system.user",
+					label: "sys.nav.system.user",
 					name: "User",
 					type: PermissionType.MENU,
 					route: "user",
@@ -186,7 +186,7 @@ const MANAGEMENT_PERMISSION = {
 				{
 					id: "0157880245365434",
 					parentId: "0249937641030250",
-					label: "sys.menu.system.user_detail",
+					label: "sys.nav.system.user_detail",
 					name: "User Detail",
 					type: PermissionType.MENU,
 					route: "user/:id",
@@ -200,7 +200,7 @@ const MANAGEMENT_PERMISSION = {
 const COMPONENTS_PERMISSION = {
 	id: "2271615060673773",
 	parentId: "",
-	label: "sys.menu.components",
+	label: "sys.nav.components",
 	name: "Components",
 	icon: "solar:widget-5-bold-duotone",
 	type: PermissionType.CATALOGUE,
@@ -210,7 +210,7 @@ const COMPONENTS_PERMISSION = {
 		{
 			id: "2478488238255411",
 			parentId: "2271615060673773",
-			label: "sys.menu.icon",
+			label: "sys.nav.icon",
 			name: "Icon",
 			type: PermissionType.MENU,
 			route: "icon",
@@ -219,7 +219,7 @@ const COMPONENTS_PERMISSION = {
 		{
 			id: "6755238352318767",
 			parentId: "2271615060673773",
-			label: "sys.menu.animate",
+			label: "sys.nav.animate",
 			name: "Animate",
 			type: PermissionType.MENU,
 			route: "animate",
@@ -228,7 +228,7 @@ const COMPONENTS_PERMISSION = {
 		{
 			id: "9992476513546805",
 			parentId: "2271615060673773",
-			label: "sys.menu.scroll",
+			label: "sys.nav.scroll",
 			name: "Scroll",
 			type: PermissionType.MENU,
 			route: "scroll",
@@ -237,7 +237,7 @@ const COMPONENTS_PERMISSION = {
 		// {
 		// 	id: "2122547769468069",
 		// 	parentId: "2271615060673773",
-		// 	label: "sys.menu.editor",
+		// 	label: "sys.nav.editor",
 		// 	name: "Editor",
 		// 	type: PermissionType.MENU,
 		// 	route: "editor",
@@ -246,7 +246,7 @@ const COMPONENTS_PERMISSION = {
 		{
 			id: "2501920741714350",
 			parentId: "2271615060673773",
-			label: "sys.menu.i18n",
+			label: "sys.nav.i18n",
 			name: "Multi Language",
 			type: PermissionType.MENU,
 			route: "i18n",
@@ -255,7 +255,7 @@ const COMPONENTS_PERMISSION = {
 		{
 			id: "2013577074467956",
 			parentId: "2271615060673773",
-			label: "sys.menu.upload",
+			label: "sys.nav.upload",
 			name: "upload",
 			type: PermissionType.MENU,
 			route: "Upload",
@@ -264,7 +264,7 @@ const COMPONENTS_PERMISSION = {
 		{
 			id: "7749726274771764",
 			parentId: "2271615060673773",
-			label: "sys.menu.chart",
+			label: "sys.nav.chart",
 			name: "Chart",
 			type: PermissionType.MENU,
 			route: "chart",
@@ -273,7 +273,7 @@ const COMPONENTS_PERMISSION = {
 		{
 			id: "2013577074467957",
 			parentId: "2271615060673773",
-			label: "sys.menu.toast",
+			label: "sys.nav.toast",
 			name: "Toast",
 			type: PermissionType.MENU,
 			route: "toast",
@@ -284,7 +284,7 @@ const COMPONENTS_PERMISSION = {
 const FUNCTIONS_PERMISSION = {
 	id: "8132044808088488",
 	parentId: "",
-	label: "sys.menu.functions",
+	label: "sys.nav.functions",
 	name: "functions",
 	icon: "solar:plain-2-bold-duotone",
 	type: PermissionType.CATALOGUE,
@@ -294,7 +294,7 @@ const FUNCTIONS_PERMISSION = {
 		{
 			id: "3667930780705750",
 			parentId: "8132044808088488",
-			label: "sys.menu.clipboard",
+			label: "sys.nav.clipboard",
 			name: "Clipboard",
 			type: PermissionType.MENU,
 			route: "clipboard",
@@ -303,7 +303,7 @@ const FUNCTIONS_PERMISSION = {
 		{
 			id: "3667930780705751",
 			parentId: "8132044808088488",
-			label: "sys.menu.token_expired",
+			label: "sys.nav.token_expired",
 			name: "Token Expired",
 			type: PermissionType.MENU,
 			route: "token-expired",
@@ -314,7 +314,7 @@ const FUNCTIONS_PERMISSION = {
 const MENU_LEVEL_PERMISSION = {
 	id: "0194818428516575",
 	parentId: "",
-	label: "sys.menu.menulevel.index",
+	label: "sys.nav.menulevel.index",
 	name: "Menu Level",
 	icon: "local:ic-menulevel",
 	type: PermissionType.CATALOGUE,
@@ -324,7 +324,7 @@ const MENU_LEVEL_PERMISSION = {
 		{
 			id: "0144431332471389",
 			parentId: "0194818428516575",
-			label: "sys.menu.menulevel.1a",
+			label: "sys.nav.menulevel.1a",
 			name: "Menu Level 1a",
 			type: PermissionType.MENU,
 			route: "menu-level-1a",
@@ -333,7 +333,7 @@ const MENU_LEVEL_PERMISSION = {
 		{
 			id: "7572529636800586",
 			parentId: "0194818428516575",
-			label: "sys.menu.menulevel.1b.index",
+			label: "sys.nav.menulevel.1b.index",
 			name: "Menu Level 1b",
 			type: PermissionType.CATALOGUE,
 			route: "menu-level-1b",
@@ -341,7 +341,7 @@ const MENU_LEVEL_PERMISSION = {
 				{
 					id: "3653745576583237",
 					parentId: "7572529636800586",
-					label: "sys.menu.menulevel.1b.2a",
+					label: "sys.nav.menulevel.1b.2a",
 					name: "Menu Level 2a",
 					type: PermissionType.MENU,
 					route: "menu-level-2a",
@@ -350,7 +350,7 @@ const MENU_LEVEL_PERMISSION = {
 				{
 					id: "4873136353891364",
 					parentId: "7572529636800586",
-					label: "sys.menu.menulevel.1b.2b.index",
+					label: "sys.nav.menulevel.1b.2b.index",
 					name: "Menu Level 2b",
 					type: PermissionType.CATALOGUE,
 					route: "menu-level-2b",
@@ -358,7 +358,7 @@ const MENU_LEVEL_PERMISSION = {
 						{
 							id: "4233029726998055",
 							parentId: "4873136353891364",
-							label: "sys.menu.menulevel.1b.2b.3a",
+							label: "sys.nav.menulevel.1b.2b.3a",
 							name: "Menu Level 3a",
 							type: PermissionType.MENU,
 							route: "menu-level-3a",
@@ -367,7 +367,7 @@ const MENU_LEVEL_PERMISSION = {
 						{
 							id: "3298034742548454",
 							parentId: "4873136353891364",
-							label: "sys.menu.menulevel.1b.2b.3b",
+							label: "sys.nav.menulevel.1b.2b.3b",
 							name: "Menu Level 3b",
 							type: PermissionType.MENU,
 							route: "menu-level-3b",
@@ -382,7 +382,7 @@ const MENU_LEVEL_PERMISSION = {
 const ERRORS_PERMISSION = {
 	id: "9406067785553476",
 	parentId: "",
-	label: "sys.menu.error.index",
+	label: "sys.nav.error.index",
 	name: "Error",
 	icon: "bxs:error-alt",
 	type: PermissionType.CATALOGUE,
@@ -392,7 +392,7 @@ const ERRORS_PERMISSION = {
 		{
 			id: "8557056851997154",
 			parentId: "9406067785553476",
-			label: "sys.menu.error.403",
+			label: "sys.nav.error.403",
 			name: "403",
 			type: PermissionType.MENU,
 			route: "403",
@@ -401,7 +401,7 @@ const ERRORS_PERMISSION = {
 		{
 			id: "5095669208159005",
 			parentId: "9406067785553476",
-			label: "sys.menu.error.404",
+			label: "sys.nav.error.404",
 			name: "404",
 			type: PermissionType.MENU,
 			route: "404",
@@ -410,7 +410,7 @@ const ERRORS_PERMISSION = {
 		{
 			id: "0225992135973772",
 			parentId: "9406067785553476",
-			label: "sys.menu.error.500",
+			label: "sys.nav.error.500",
 			name: "500",
 			type: PermissionType.MENU,
 			route: "500",
@@ -422,7 +422,7 @@ const OTHERS_PERMISSION = [
 	{
 		id: "3981225257359246",
 		parentId: "",
-		label: "sys.menu.calendar",
+		label: "sys.nav.calendar",
 		name: "Calendar",
 		icon: "solar:calendar-bold-duotone",
 		type: PermissionType.MENU,
@@ -432,7 +432,7 @@ const OTHERS_PERMISSION = [
 	{
 		id: "3513985683886393",
 		parentId: "",
-		label: "sys.menu.kanban",
+		label: "sys.nav.kanban",
 		name: "kanban",
 		icon: "solar:clipboard-bold-duotone",
 		type: PermissionType.MENU,
@@ -442,7 +442,7 @@ const OTHERS_PERMISSION = [
 	{
 		id: "5455837930804461",
 		parentId: "",
-		label: "sys.menu.disabled",
+		label: "sys.nav.disabled",
 		name: "Disabled",
 		icon: "local:ic-disabled",
 		type: PermissionType.MENU,
@@ -453,7 +453,7 @@ const OTHERS_PERMISSION = [
 	{
 		id: "7728048658221587",
 		parentId: "",
-		label: "sys.menu.label",
+		label: "sys.nav.label",
 		name: "Label",
 		icon: "local:ic-label",
 		type: PermissionType.MENU,
@@ -464,7 +464,7 @@ const OTHERS_PERMISSION = [
 	{
 		id: "5733704222120995",
 		parentId: "",
-		label: "sys.menu.frame",
+		label: "sys.nav.frame",
 		name: "Frame",
 		icon: "local:ic-external",
 		type: PermissionType.CATALOGUE,
@@ -473,7 +473,7 @@ const OTHERS_PERMISSION = [
 			{
 				id: "9884486809510480",
 				parentId: "5733704222120995",
-				label: "sys.menu.external_link",
+				label: "sys.nav.external_link",
 				name: "External Link",
 				type: PermissionType.MENU,
 				route: "external_link",
@@ -484,7 +484,7 @@ const OTHERS_PERMISSION = [
 			{
 				id: "9299640886731819",
 				parentId: "5733704222120995",
-				label: "sys.menu.iframe",
+				label: "sys.nav.iframe",
 				name: "Iframe",
 				type: PermissionType.MENU,
 				route: "frame",
@@ -496,7 +496,7 @@ const OTHERS_PERMISSION = [
 	{
 		id: "0941594969900756",
 		parentId: "",
-		label: "sys.menu.blank",
+		label: "sys.nav.blank",
 		name: "Disabled",
 		icon: "local:ic-blank",
 		type: PermissionType.MENU,
@@ -505,15 +505,7 @@ const OTHERS_PERMISSION = [
 	},
 ];
 
-export const PERMISSION_LIST = [
-	DASHBOARD_PERMISSION,
-	MANAGEMENT_PERMISSION,
-	COMPONENTS_PERMISSION,
-	FUNCTIONS_PERMISSION,
-	MENU_LEVEL_PERMISSION,
-	ERRORS_PERMISSION,
-	...OTHERS_PERMISSION,
-];
+export const PERMISSION_LIST = [DASHBOARD_PERMISSION, MANAGEMENT_PERMISSION, COMPONENTS_PERMISSION, FUNCTIONS_PERMISSION, MENU_LEVEL_PERMISSION, ERRORS_PERMISSION, ...OTHERS_PERMISSION];
 
 /**
  * User role mock

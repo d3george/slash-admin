@@ -2,17 +2,9 @@ import { useLoginStateContext } from "@/pages/sys/login/providers/login-provider
 import { useRouter } from "@/routes/hooks";
 import { useUserActions, useUserInfo } from "@/store/userStore";
 import { Button } from "@/ui/button";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/ui/dropdown-menu";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
-
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 /**
  * Account Dropdown
@@ -56,13 +48,10 @@ export default function AccountDropdown() {
 					</NavLink>
 				</DropdownMenuItem>
 				<DropdownMenuItem asChild>
-					<NavLink to={HOMEPAGE}>{t("sys.menu.dashboard")}</NavLink>
+					<NavLink to="/management/user/profile">{t("sys.nav.user.profile")}</NavLink>
 				</DropdownMenuItem>
 				<DropdownMenuItem asChild>
-					<NavLink to="/management/user/profile">{t("sys.menu.user.profile")}</NavLink>
-				</DropdownMenuItem>
-				<DropdownMenuItem asChild>
-					<NavLink to="/management/user/account">{t("sys.menu.user.account")}</NavLink>
+					<NavLink to="/management/user/account">{t("sys.nav.user.account")}</NavLink>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem className="font-bold text-warning" onClick={logout}>

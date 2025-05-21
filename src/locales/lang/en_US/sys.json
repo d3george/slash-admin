@@ -69,12 +69,12 @@
 			"signInFormDescription": "Enter your username to login to your account",
 			"noAccount": "Don't have an account?"
 		},
-		"menu": {
+		"nav": {
+			"dashboard": "Dashboard",
 			"pages": "Pages",
 			"others": "Others",
 			"ui": "UI",
 			"custom_ui_components": "Custom UI Components",
-			"dashboard": "Dashboard",
 			"analysis": "Analysis",
 			"animate": "Animate",
 			"blank": "Blank",
@@ -92,7 +92,7 @@
 				"index": "Error Page"
 			},
 			"external_link": "External Link",
-			"frame": "Item External",
+			"link": "Item External",
 			"functions": "Functions",
 			"i18n": "Multi Language",
 			"icon": "Icon",

@@ -52,9 +52,10 @@ export enum MultiTabOperation {
 }
 
 export enum PermissionType {
-	CATALOGUE = 0,
-	MENU = 1,
-	COMPONENT = 2,
+	GROUP = 0,
+	CATALOGUE = 1,
+	MENU = 2,
+	COMPONENT = 3,
 }
 
 export enum HtmlDataAttribute {

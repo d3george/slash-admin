@@ -37,8 +37,8 @@ const UserPage = lazy(() => import("@/pages/management/system/user"));
 const UserDetailPage = lazy(() => import("@/pages/management/system/user/detail"));
 
 // others
-const ExternalLink = lazy(() => import("@/pages/sys/others/iframe/external-link"));
-const Iframe = lazy(() => import("@/pages/sys/others/iframe"));
+const ExternalLink = lazy(() => import("@/pages/sys/others/link/external-link"));
+const Iframe = lazy(() => import("@/pages/sys/others/link/iframe"));
 const Calendar = lazy(() => import("@/pages/sys/others/calendar"));
 const Kanban = lazy(() => import("@/pages/sys/others/kanban"));
 const Blank = lazy(() => import("@/pages/sys/others/blank"));
@@ -128,19 +128,19 @@ export const dashboardRoutes: RouteObject[] = [
 			{
 				path: "menu_level",
 				children: [
-					{ index: true, element: <Navigate to="menu_level_1a" replace /> },
-					{ path: "menu_level_1a", element: <MenuLevel1a /> },
+					{ index: true, element: <Navigate to="1a" replace /> },
+					{ path: "1a", element: <MenuLevel1a /> },
 					{
-						path: "menu_level_1b",
+						path: "1b",
 						children: [
-							{ index: true, element: <Navigate to="menu_level_2a" replace /> },
-							{ path: "menu_level_2a", element: <MenuLevel2a /> },
+							{ index: true, element: <Navigate to="2a" replace /> },
+							{ path: "2a", element: <MenuLevel2a /> },
 							{
-								path: "menu_level_2b",
+								path: "2b",
 								children: [
-									{ index: true, element: <Navigate to="menu_level_3a" replace /> },
-									{ path: "menu_level_3a", element: <MenuLevel3a /> },
-									{ path: "menu_level_3b", element: <MenuLevel3b /> },
+									{ index: true, element: <Navigate to="3a" replace /> },
+									{ path: "3a", element: <MenuLevel3a /> },
+									{ path: "3b", element: <MenuLevel3b /> },
 								],
 							},
 						],
@@ -148,7 +148,7 @@ export const dashboardRoutes: RouteObject[] = [
 				],
 			},
 			{
-				path: "iframe",
+				path: "link",
 				children: [
 					{ index: true, element: <Navigate to="iframe" replace /> },
 					{ path: "iframe", element: <Iframe src="https://ant.design/index-cn" /> },
