@@ -11,7 +11,7 @@ import { BasicStatus } from "#/enum";
 
 const USERS: UserInfo[] = USER_LIST as UserInfo[];
 
-export default function RolePage() {
+export default function UserPage() {
 	const { push } = useRouter();
 	const pathname = usePathname();
 
@@ -44,11 +44,7 @@ export default function RolePage() {
 			dataIndex: "status",
 			align: "center",
 			width: 120,
-			render: (status) => (
-				<Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>
-					{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
-				</Badge>
-			),
+			render: (status) => <Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>{status === BasicStatus.DISABLE ? "Disable" : "Enable"}</Badge>,
 		},
 		{
 			title: "Action",
@@ -86,14 +82,7 @@ export default function RolePage() {
 				</div>
 			</CardHeader>
 			<CardContent>
-				<Table
-					rowKey="id"
-					size="small"
-					scroll={{ x: "max-content" }}
-					pagination={false}
-					columns={columns}
-					dataSource={USERS}
-				/>
+				<Table rowKey="id" size="small" scroll={{ x: "max-content" }} pagination={false} columns={columns} dataSource={USERS} />
 			</CardContent>
 		</Card>
 	);
