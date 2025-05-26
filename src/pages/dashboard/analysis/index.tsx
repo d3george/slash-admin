@@ -105,28 +105,12 @@ function Analysis() {
 					</CardHeader>
 					<CardContent>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-							<AnalysisTrafficCard
-								icon={<Icon icon="ant-design:facebook-outlined" size={32} color="#1877f2" />}
-								title="1.95k"
-								subtitle="FaceBook"
-							/>
-							<AnalysisTrafficCard
-								icon={<Icon icon="ant-design:google-outlined" size={32} color="#df3e30" />}
-								title="9.12k"
-								subtitle="Google"
-							/>
+							<AnalysisTrafficCard icon={<Icon icon="ant-design:facebook-outlined" size={32} color="#1877f2" />} title="1.95k" subtitle="FaceBook" />
+							<AnalysisTrafficCard icon={<Icon icon="ant-design:google-outlined" size={32} color="#df3e30" />} title="9.12k" subtitle="Google" />
 
-							<AnalysisTrafficCard
-								icon={<Icon icon="eva:linkedin-fill" size={32} color="#006097" />}
-								title="6.98k"
-								subtitle="Linkedin"
-							/>
+							<AnalysisTrafficCard icon={<Icon icon="eva:linkedin-fill" size={32} color="#006097" />} title="6.98k" subtitle="Linkedin" />
 
-							<AnalysisTrafficCard
-								icon={<Icon icon="eva:twitter-fill" size={32} color="#1c9cea" />}
-								title="8.49k"
-								subtitle="Twitter"
-							/>
+							<AnalysisTrafficCard icon={<Icon icon="eva:twitter-fill" size={32} color="#1c9cea" />} title="8.49k" subtitle="Twitter" />
 						</div>
 					</CardContent>
 				</Card>

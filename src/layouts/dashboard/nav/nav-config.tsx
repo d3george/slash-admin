@@ -46,10 +46,6 @@ export const navData: NavProps["data"] = [
 						path: "/management/system",
 						children: [
 							{
-								title: "sys.nav.system.organization",
-								path: "/management/system/organization",
-							},
-							{
 								title: "sys.nav.system.permission",
 								path: "/management/system/permission",
 							},

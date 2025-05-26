@@ -1,21 +1,27 @@
 import { faker } from "@faker-js/faker";
-import type { Permission_V1, Role_V1, User_V1 } from "#/entity";
+import type { Menu, Permission_V1, Role_V1, User_V1 } from "#/entity";
 import { PermissionType } from "#/enum";
 
 const { GROUP, MENU, CATALOGUE } = PermissionType;
 
 export const DB_USER: User_V1[] = [
-	{ id: "user_super_admin_id", username: "super admin", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "super_admin@slash.com" },
+	{ id: "user_admin_id", username: "admin", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "admin@slash.com" },
 	{ id: "user_test_id", username: "test", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "test@slash.com" },
 ];
 
 export const DB_ROLE: Role_V1[] = [
 	{ id: "role_admin_id", name: "admin", code: "SUPER_ADMIN" },
 	{ id: "role_test_id", name: "test", code: "TEST" },
-	{ id: "role_normal_id", name: "normal", code: "NORMAL" },
 ];
 
 export const DB_PERMISSION: Permission_V1[] = [
+	{ id: "user_management_create", name: "user-management-create", resource: "user-management", action: "create" },
+	{ id: "user_management_read", name: "user-management-read", resource: "user-management", action: "read" },
+	{ id: "user_management_update", name: "user-management-update", resource: "user-management", action: "update" },
+	{ id: "user_management_delete", name: "user-management-delete", resource: "user-management", action: "delete" },
+];
+
+export const DB_MENU: Menu[] = [
 	// group
 	{ id: "group_dashboard", name: "sys.nav.dashboard", code: "dashboard", parentId: "", type: GROUP },
 	{ id: "group_pages", name: "sys.nav.pages", code: "pages", parentId: "", type: GROUP },
@@ -46,7 +52,16 @@ export const DB_PERMISSION: Permission_V1[] = [
 
 	// group_pages
 	// management
-	{ id: "management", parentId: "group_pages", name: "sys.nav.management", code: "management", icon: "local:ic-management", type: CATALOGUE, path: "/management" },
+	{
+		id: "management",
+		parentId: "group_pages",
+		name: "sys.nav.management",
+		code: "management",
+		icon: "local:ic-management",
+		type: CATALOGUE,
+		path: "/management",
+		requiredPermissions: { resource: "user-management", action: "read" },
+	},
 	{ id: "management_user", parentId: "management", name: "sys.nav.user.index", code: "management:user", type: CATALOGUE, path: "/management/user" },
 	{
 		id: "management_user_profile",
@@ -226,79 +241,13 @@ export const DB_PERMISSION: Permission_V1[] = [
 export const DB_USER_ROLE = [
 	{ id: "user_admin_role_admin", userId: "user_admin_id", roleId: "role_admin_id" },
 	{ id: "user_test_role_test", userId: "user_test_id", roleId: "role_test_id" },
-	{ id: "user_test_role_normal", userId: "user_test_id", roleId: "role_normal_id" },
 ];
 
 export const DB_ROLE_PERMISSION = [
-	{ id: "admin_permissions_0001", roleId: "role_admin_id", permissionId: "workbench" },
-	{ id: "admin_permissions_0002", roleId: "role_admin_id", permissionId: "analysis" },
-	{ id: "admin_permissions_0003", roleId: "role_admin_id", permissionId: "management" },
-	{ id: "admin_permissions_0004", roleId: "role_admin_id", permissionId: "management_user" },
-	{ id: "admin_permissions_0005", roleId: "role_admin_id", permissionId: "management_user_profile" },
-	{ id: "admin_permissions_0006", roleId: "role_admin_id", permissionId: "management_system" },
-	{ id: "admin_permissions_0007", roleId: "role_admin_id", permissionId: "management_system_organiaztion" },
-	{ id: "admin_permissions_0008", roleId: "role_admin_id", permissionId: "management_user_account" },
-	{ id: "admin_permissions_0009", roleId: "role_admin_id", permissionId: "management_system_user" },
-	{ id: "admin_permissions_0010", roleId: "role_admin_id", permissionId: "management_system_role" },
-	{ id: "admin_permissions_0011", roleId: "role_admin_id", permissionId: "management_system_permission" },
-	{ id: "admin_permissions_0012", roleId: "role_admin_id", permissionId: "menulevel" },
-	{ id: "admin_permissions_0013", roleId: "role_admin_id", permissionId: "menulevel_1a" },
-	{ id: "admin_permissions_0014", roleId: "role_admin_id", permissionId: "menulevel_1b" },
-	{ id: "admin_permissions_0015", roleId: "role_admin_id", permissionId: "menulevel_1b_2a" },
-	{ id: "admin_permissions_0016", roleId: "role_admin_id", permissionId: "menulevel_1b_2b" },
-	{ id: "admin_permissions_0017", roleId: "role_admin_id", permissionId: "menulevel_1b_2b_3a" },
-	{ id: "admin_permissions_0018", roleId: "role_admin_id", permissionId: "menulevel_1b_2b_3b" },
-	{ id: "admin_permissions_0019", roleId: "role_admin_id", permissionId: "error" },
-	{ id: "admin_permissions_0020", roleId: "role_admin_id", permissionId: "error_403" },
-	{ id: "admin_permissions_0021", roleId: "role_admin_id", permissionId: "error_404" },
-	{ id: "admin_permissions_0022", roleId: "role_admin_id", permissionId: "error_500" },
-	{ id: "admin_permissions_0023", roleId: "role_admin_id", permissionId: "components" },
-	{ id: "admin_permissions_0024", roleId: "role_admin_id", permissionId: "components_icon" },
-	{ id: "admin_permissions_0025", roleId: "role_admin_id", permissionId: "components_animate" },
-	{ id: "admin_permissions_0026", roleId: "role_admin_id", permissionId: "components_scroll" },
-	{ id: "admin_permissions_0027", roleId: "role_admin_id", permissionId: "components_i18n" },
-	{ id: "admin_permissions_0028", roleId: "role_admin_id", permissionId: "components_upload" },
-	{ id: "admin_permissions_0029", roleId: "role_admin_id", permissionId: "components_chart" },
-	{ id: "admin_permissions_0030", roleId: "role_admin_id", permissionId: "components_toast" },
-	{ id: "admin_permissions_0031", roleId: "role_admin_id", permissionId: "functions" },
-	{ id: "admin_permissions_0032", roleId: "role_admin_id", permissionId: "functions_clipboard" },
-	{ id: "admin_permissions_0033", roleId: "role_admin_id", permissionId: "functions_tokenExpired" },
-	{ id: "admin_permissions_0034", roleId: "role_admin_id", permissionId: "calendar" },
-	{ id: "admin_permissions_0035", roleId: "role_admin_id", permissionId: "kanban" },
-	{ id: "admin_permissions_0036", roleId: "role_admin_id", permissionId: "disabled" },
-	{ id: "admin_permissions_0037", roleId: "role_admin_id", permissionId: "label" },
-	{ id: "admin_permissions_0038", roleId: "role_admin_id", permissionId: "link" },
-	{ id: "admin_permissions_0039", roleId: "role_admin_id", permissionId: "link_external" },
-	{ id: "admin_permissions_0040", roleId: "role_admin_id", permissionId: "link_iframe" },
-	{ id: "admin_permissions_0041", roleId: "role_admin_id", permissionId: "blank" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "user_management_create" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "user_management_read" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "user_management_update" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "user_management_delete" },
 
-	{ id: "test_permissions_0001", roleId: "role_test_id", permissionId: "workbench" },
-	{ id: "test_permissions_0002", roleId: "role_test_id", permissionId: "analysis" },
-	{ id: "test_permissions_0003", roleId: "role_test_id", permissionId: "error" },
-	{ id: "test_permissions_0004", roleId: "role_test_id", permissionId: "error_403" },
-	{ id: "test_permissions_0005", roleId: "role_test_id", permissionId: "error_404" },
-	{ id: "test_permissions_0006", roleId: "role_test_id", permissionId: "error_500" },
-	{ id: "test_permissions_0007", roleId: "role_test_id", permissionId: "components" },
-	{ id: "test_permissions_0008", roleId: "role_test_id", permissionId: "components_icon" },
-	{ id: "test_permissions_0009", roleId: "role_test_id", permissionId: "components_animate" },
-	{ id: "test_permissions_0010", roleId: "role_test_id", permissionId: "components_scroll" },
-	{ id: "test_permissions_0011", roleId: "role_test_id", permissionId: "components_i18n" },
-	{ id: "test_permissions_0012", roleId: "role_test_id", permissionId: "components_upload" },
-	{ id: "test_permissions_0013", roleId: "role_test_id", permissionId: "components_chart" },
-	{ id: "test_permissions_0014", roleId: "role_test_id", permissionId: "components_toast" },
-	{ id: "test_permissions_0015", roleId: "role_test_id", permissionId: "functions" },
-	{ id: "test_permissions_0016", roleId: "role_test_id", permissionId: "functions_clipboard" },
-	{ id: "test_permissions_0017", roleId: "role_test_id", permissionId: "functions_tokenExpired" },
-	{ id: "test_permissions_0018", roleId: "role_test_id", permissionId: "calendar" },
-	{ id: "test_permissions_0019", roleId: "role_test_id", permissionId: "kanban" },
-	{ id: "test_permissions_0021", roleId: "role_test_id", permissionId: "disabled" },
-	{ id: "test_permissions_0022", roleId: "role_test_id", permissionId: "label" },
-	{ id: "test_permissions_0023", roleId: "role_test_id", permissionId: "link" },
-	{ id: "test_permissions_0024", roleId: "role_test_id", permissionId: "link_external" },
-	{ id: "test_permissions_0025", roleId: "role_test_id", permissionId: "link_iframe" },
-	{ id: "test_permissions_0026", roleId: "role_test_id", permissionId: "blank" },
-
-	{ id: "normal_permissions_0001", roleId: "role_normal_id", permissionId: "management" },
-	{ id: "normal_permissions_0002", roleId: "role_normal_id", permissionId: "management_user" },
-	{ id: "normal_permissions_0003", roleId: "role_normal_id", permissionId: "management_user_profile" },
+	{ id: faker.string.uuid(), roleId: "role_test_id", permissionId: "user_management_read" },
 ];

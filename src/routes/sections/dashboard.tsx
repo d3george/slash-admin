@@ -30,7 +30,6 @@ const Page500 = lazy(() => import("@/pages/sys/error/Page500"));
 // management
 const ProfilePage = lazy(() => import("@/pages/management/user/profile"));
 const AccountPage = lazy(() => import("@/pages/management/user/account"));
-const OrganizationPage = lazy(() => import("@/pages/management/system/organization"));
 const PermissioPage = lazy(() => import("@/pages/management/system/permission"));
 const RolePage = lazy(() => import("@/pages/management/system/role"));
 const UserPage = lazy(() => import("@/pages/management/system/user"));
@@ -107,7 +106,6 @@ export const dashboardRoutes: RouteObject[] = [
 						path: "system",
 						children: [
 							{ index: true, element: <Navigate to="organization" replace /> },
-							{ path: "organization", element: <OrganizationPage /> },
 							{ path: "permission", element: <PermissioPage /> },
 							{ path: "role", element: <RolePage /> },
 							{ path: "user", element: <UserPage /> },

@@ -1,10 +1,10 @@
 import { setupWorker } from "msw/browser";
 
 import demoMockApi from "./handlers/_demo";
-import orgMockApi from "./handlers/_org";
+import menuMockApi from "./handlers/_menu";
 import userMockApi from "./handlers/_user";
 
-const handlers = [...userMockApi, ...orgMockApi, ...demoMockApi];
+const handlers = [...userMockApi, ...demoMockApi, ...menuMockApi];
 const worker = setupWorker(...handlers);
 
 export default worker;

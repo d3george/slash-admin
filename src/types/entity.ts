@@ -16,15 +16,6 @@ export interface UserInfo {
 	permissions?: Permission[];
 }
 
-export interface Organization {
-	id: string;
-	name: string;
-	status: "enable" | "disable";
-	desc?: string;
-	order?: number;
-	children?: Organization[];
-}
-
 export interface Permission {
 	id: string;
 	parentId: string;
@@ -74,7 +65,14 @@ export interface Role_V1 extends CommonOptions {
 	code: string;
 }
 
-export interface Permission_V1 extends CommonOptions, PermissionMetaInfo {
+export interface Permission_V1 extends CommonOptions {
+	id: string; // uuid
+	name: string;
+	resource: string; // example: "user-management"
+	action: string; // example: "read" | "delete" | "update" | "create"
+}
+
+export interface Menu extends CommonOptions, MenuMetaInfo {
 	id: string; // uuid
 	parentId: string;
 	name: string;
@@ -83,15 +81,19 @@ export interface Permission_V1 extends CommonOptions, PermissionMetaInfo {
 	type: PermissionType;
 }
 
-export type PermissionMetaInfo = {
+export type MenuMetaInfo = {
 	path?: string; // nav path
 	icon?: string; // nav icon
 	caption?: string; // nav caption
 	info?: string; // nav info
 	disabled?: boolean; // nav disabled
-
 	externalLink?: URL;
 	frameSrc?: URL;
+
+	requiredPermissions?: {
+		resource: string;
+		action: string;
+	};
 
 	// type: MENU
 	component?: string;
