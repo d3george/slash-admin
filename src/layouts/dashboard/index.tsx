@@ -34,10 +34,7 @@ function PcLayout() {
 
 function PcHorizontalLayout() {
 	return (
-		<div
-			data-slot="slash-layout-content"
-			className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out")}
-		>
+		<div data-slot="slash-layout-content" className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out")}>
 			<Header leftSlot={<Logo />} />
 			<NavHorizontalLayout data={navData} />
 			<Main />

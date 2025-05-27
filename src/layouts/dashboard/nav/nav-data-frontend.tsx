@@ -2,18 +2,18 @@ import { Icon } from "@/components/icon";
 import type { NavProps } from "@/components/nav";
 import { Badge } from "@/ui/badge";
 
-export const navData: NavProps["data"] = [
+export const frontendNavData: NavProps["data"] = [
 	{
 		name: "sys.nav.dashboard",
 		items: [
 			{
 				title: "sys.nav.workbench",
-				path: "/dashboard/workbench",
+				path: "/workbench",
 				icon: <Icon icon="local:ic-workbench" size="24" />,
 			},
 			{
 				title: "sys.nav.analysis",
-				path: "/dashboard/analysis",
+				path: "/analysis",
 				icon: <Icon icon="local:ic-analysis" size="24" />,
 			},
 		],
@@ -171,7 +171,7 @@ export const navData: NavProps["data"] = [
 					},
 					{
 						title: "sys.nav.token_expired",
-						path: "/functions/token-expired",
+						path: "/functions/token_expired",
 					},
 				],
 			},
@@ -215,7 +215,7 @@ export const navData: NavProps["data"] = [
 				children: [
 					{
 						title: "sys.nav.external_link",
-						path: "/link/external-link",
+						path: "/link/external_link",
 					},
 					{
 						title: "sys.nav.iframe",

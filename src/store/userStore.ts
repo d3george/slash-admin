@@ -14,7 +14,7 @@ const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 type UserStore = {
 	userInfo: Partial<UserInfo>;
 	userToken: UserToken;
-	// 使用 actions 命名空间来存放所有的 action
+
 	actions: {
 		setUserInfo: (userInfo: UserInfo) => void;
 		setUserToken: (token: UserToken) => void;

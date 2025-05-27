@@ -1,15 +1,7 @@
 import type { NavItemDataProps } from "@/components/nav";
 import { navData } from "@/layouts/dashboard/nav";
 import useLocale from "@/locales/use-locale";
-import {
-	Breadcrumb,
-	BreadcrumbEllipsis,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
-} from "@/ui/breadcrumb";
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/ui/breadcrumb";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import * as React from "react";

@@ -3,19 +3,11 @@ import useLocale from "@/locales/use-locale";
 import { useRouter } from "@/routes/hooks";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
-import {
-	CommandDialog,
-	CommandEmpty,
-	CommandGroup,
-	CommandInput,
-	CommandItem,
-	CommandList,
-	CommandSeparator,
-} from "@/ui/command";
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/ui/command";
 import { Text } from "@/ui/typography";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useBoolean } from "react-use";
-import { navData } from "../dashboard/nav/nav-config";
+import { navData } from "../dashboard/nav";
 
 interface SearchItem {
 	key: string;
@@ -78,9 +70,7 @@ const SearchBar = () => {
 
 	const searchResult = useMemo(() => {
 		const query = searchQuery.toLowerCase();
-		return flattenedItems.filter(
-			(item) => t(item.label).toLowerCase().includes(query) || item.key.toLowerCase().includes(query),
-		);
+		return flattenedItems.filter((item) => t(item.label).toLowerCase().includes(query) || item.key.toLowerCase().includes(query));
 	}, [searchQuery, t, flattenedItems]);
 
 	useEffect(() => {
@@ -108,9 +98,7 @@ const SearchBar = () => {
 			<Button variant="ghost" className="bg-secondary px-2 rounded-lg" size="sm" onClick={() => setOpen(true)}>
 				<div className="flex items-center justify-center gap-2">
 					<Icon icon="local:ic-search" size="20" />
-					<kbd className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
-						⌘K
-					</kbd>
+					<kbd className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">⌘K</kbd>
 				</div>
 			</Button>
 

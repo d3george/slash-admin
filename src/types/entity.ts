@@ -11,9 +11,10 @@ export interface UserInfo {
 	username: string;
 	password?: string;
 	avatar?: string;
-	role?: Role;
+	roles?: Role[];
 	status?: BasicStatus;
 	permissions?: Permission[];
+	menu?: MenuTree[];
 }
 
 export interface Permission {
@@ -88,13 +89,12 @@ export type MenuMetaInfo = {
 	info?: string; // nav info
 	disabled?: boolean; // nav disabled
 	externalLink?: URL;
-	frameSrc?: URL;
-
-	requiredPermissions?: {
-		resource: string;
-		action: string;
-	};
+	auth?: string[];
 
 	// type: MENU
 	component?: string;
+};
+
+export type MenuTree = Menu & {
+	children?: MenuTree[];
 };
