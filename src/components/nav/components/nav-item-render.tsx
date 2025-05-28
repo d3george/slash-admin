@@ -1,4 +1,5 @@
 import { RouterLink } from "@/routes/components/router-link";
+import { useUserPermission } from "@/store/userStore";
 import type { NavItemProps } from "../types";
 
 type NavItemRendererProps = {
@@ -12,7 +13,15 @@ type NavItemRendererProps = {
  * Handles disabled, external link, clickable child container, and internal link logic.
  */
 export const NavItemRenderer: React.FC<NavItemRendererProps> = ({ item, className, children }) => {
-	const { disabled, externalLink, hasChild, path, onClick } = item;
+	const { disabled, externalLink, hasChild, path, onClick, auth } = item;
+	const userPermissions = useUserPermission();
+
+	if (auth && auth.length > 0) {
+		const isAuthenticated = auth.every((permission) => userPermissions.some((p) => p.name === permission));
+		if (!isAuthenticated) {
+			return null;
+		}
+	}
 
 	if (disabled) {
 		return <div className={className}>{children}</div>;

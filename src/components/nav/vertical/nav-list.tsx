@@ -26,6 +26,7 @@ export function NavList({ data, depth = 1, enabledRootRedirect = false }: NavLis
 					icon={data.icon}
 					info={data.info}
 					caption={data.caption}
+					auth={data.auth}
 					// state
 					open={open}
 					active={isActive}
