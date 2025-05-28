@@ -3,8 +3,8 @@ import { Navigate } from "react-router";
 import { Component } from "./utils";
 
 export const frontendDashboardRoutes: RouteObject[] = [
-	{ path: "dashboard/workbench", element: Component("/pages/dashboard/workbench") },
-	{ path: "dashboard/analysis", element: Component("/pages/dashboard/analysis") },
+	{ path: "workbench", element: Component("/pages/dashboard/workbench") },
+	{ path: "analysis", element: Component("/pages/dashboard/analysis") },
 	{
 		path: "components",
 		children: [

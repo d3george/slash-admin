@@ -19,6 +19,7 @@ export function NavList({ data, depth = 0 }: NavListProps) {
 				caption={data.caption}
 				info={data.info}
 				icon={data.icon}
+				auth={data.auth}
 				// state
 				disabled={data.disabled}
 				active={isActive}
@@ -39,6 +40,7 @@ export function NavList({ data, depth = 0 }: NavListProps) {
 				caption={data.caption}
 				info={data.info}
 				icon={data.icon}
+				auth={data.auth}
 				// state
 				disabled={data.disabled}
 				active={isActive}
