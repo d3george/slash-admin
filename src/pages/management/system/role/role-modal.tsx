@@ -12,19 +12,19 @@ import { RadioGroup, RadioGroupItem } from "@/ui/radio-group";
 import { Textarea } from "@/ui/textarea";
 import { flattenTrees } from "@/utils/tree";
 
-import type { Permission, Role } from "#/entity";
+import type { Permission_Old, Role_Old } from "#/entity";
 import { BasicStatus } from "#/enum";
 
 export type RoleModalProps = {
-	formValue: Role;
+	formValue: Role_Old;
 	title: string;
 	show: boolean;
 	onOk: VoidFunction;
 	onCancel: VoidFunction;
 };
-const PERMISSIONS: Permission[] = PERMISSION_LIST as Permission[];
+const PERMISSIONS: Permission_Old[] = PERMISSION_LIST as Permission_Old[];
 export function RoleModal({ title, show, formValue, onOk, onCancel }: RoleModalProps) {
-	const form = useForm<Role>({
+	const form = useForm<Role_Old>({
 		defaultValues: formValue,
 	});
 
@@ -72,7 +72,7 @@ export function RoleModal({ title, show, formValue, onOk, onCancel }: RoleModalP
 
 						<FormField
 							control={form.control}
-							name="label"
+							name="code"
 							render={({ field }) => (
 								<FormItem className="grid grid-cols-4 items-center gap-4">
 									<FormLabel className="text-right">Label</FormLabel>
@@ -108,10 +108,7 @@ export function RoleModal({ title, show, formValue, onOk, onCancel }: RoleModalP
 									<FormLabel className="text-right">Status</FormLabel>
 									<div className="col-span-3">
 										<FormControl>
-											<RadioGroup
-												onValueChange={(value) => field.onChange(Number(value))}
-												defaultValue={String(field.value)}
-											>
+											<RadioGroup onValueChange={(value) => field.onChange(Number(value))} defaultValue={String(field.value)}>
 												<div className="flex items-center space-x-2">
 													<RadioGroupItem value={String(BasicStatus.ENABLE)} id="r1" />
 													<Label htmlFor="r1">Enable</Label>

@@ -5,7 +5,7 @@ import { cn } from "@/utils";
 import { ThemeLayout } from "#/enum";
 import Header from "./header";
 import Main from "./main";
-import { NavHorizontalLayout, NavMobileLayout, NavToggleButton, NavVerticalLayout, navData } from "./nav";
+import { NavHorizontalLayout, NavMobileLayout, NavToggleButton, NavVerticalLayout, useFilteredNavData } from "./nav";
 
 // Dashboard Layout
 export default function DashboardLayout() {
@@ -33,6 +33,7 @@ function PcLayout() {
 }
 
 function PcHorizontalLayout() {
+	const navData = useFilteredNavData();
 	return (
 		<div data-slot="slash-layout-content" className={cn("w-full h-screen flex flex-col transition-all duration-300 ease-in-out")}>
 			<Header leftSlot={<Logo />} />
@@ -45,7 +46,7 @@ function PcHorizontalLayout() {
 function PcVerticalLayout() {
 	const settings = useSettings();
 	const { themeLayout } = settings;
-
+	const navData = useFilteredNavData();
 	return (
 		<>
 			<NavVerticalLayout data={navData} />
@@ -65,6 +66,7 @@ function PcVerticalLayout() {
 
 // Mobile Layout
 function MobileLayout() {
+	const navData = useFilteredNavData();
 	return (
 		<>
 			<Header leftSlot={<NavMobileLayout data={navData} />} />

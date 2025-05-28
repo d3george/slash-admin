@@ -17,7 +17,7 @@ export interface UserInfo {
 	menu?: MenuTree[];
 }
 
-export interface Permission {
+export interface Permission_Old {
 	id: string;
 	parentId: string;
 	name: string;
@@ -32,17 +32,17 @@ export interface Permission {
 	hideTab?: boolean;
 	frameSrc?: URL;
 	newFeature?: boolean;
-	children?: Permission[];
+	children?: Permission_Old[];
 }
 
-export interface Role {
+export interface Role_Old {
 	id: string;
 	name: string;
-	label: string;
+	code: string;
 	status: BasicStatus;
 	order?: number;
 	desc?: string;
-	permission?: Permission[];
+	permission?: Permission_Old[];
 }
 
 export interface CommonOptions {
@@ -60,17 +60,16 @@ export interface User_V1 extends CommonOptions {
 	avatar?: string;
 }
 
-export interface Role_V1 extends CommonOptions {
+export interface Role extends CommonOptions {
 	id: string; // uuid
 	name: string;
 	code: string;
 }
 
-export interface Permission_V1 extends CommonOptions {
+export interface Permission extends CommonOptions {
 	id: string; // uuid
 	name: string;
-	resource: string; // example: "user-management"
-	action: string; // example: "read" | "delete" | "update" | "create"
+	code: string; // resource:action  example: "user-management:read"
 }
 
 export interface Menu extends CommonOptions, MenuMetaInfo {

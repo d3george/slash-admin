@@ -1,4 +1,3 @@
-import { LineLoading } from "@/components/loading";
 import SimpleLayout from "@/layouts/simple";
 import { Suspense, lazy } from "react";
 import { Outlet, type RouteObject } from "react-router";
@@ -10,7 +9,7 @@ const Page500 = lazy(() => import("@/pages/sys/error/Page500"));
 export const mainRoutes: RouteObject[] = [
 	{
 		element: (
-			<Suspense fallback={<LineLoading />}>
+			<Suspense>
 				<Outlet />
 			</Suspense>
 		),

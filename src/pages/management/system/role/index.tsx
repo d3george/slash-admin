@@ -1,20 +1,22 @@
-import { ROLE_LIST } from "@/_mock/assets";
+// import { ROLE_LIST } from "@/_mock/assets";
 import { Icon } from "@/components/icon";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
 import Table, { type ColumnsType } from "antd/es/table";
 import { useState } from "react";
-import type { Role } from "#/entity";
+import type { Role_Old } from "#/entity";
 import { BasicStatus } from "#/enum";
 import { RoleModal, type RoleModalProps } from "./role-modal";
 
-const ROLES: Role[] = ROLE_LIST as Role[];
+// TODO: fix
+// const ROLES: Role_Old[] = ROLE_LIST as Role_Old[];
+const ROLES: Role_Old[] = [];
 
-const DEFAULE_ROLE_VALUE: Role = {
+const DEFAULE_ROLE_VALUE: Role_Old = {
 	id: "",
 	name: "",
-	label: "",
+	code: "",
 	status: BasicStatus.ENABLE,
 	permission: [],
 };
@@ -30,7 +32,7 @@ export default function RolePage() {
 			setRoleModalProps((prev) => ({ ...prev, show: false }));
 		},
 	});
-	const columns: ColumnsType<Role> = [
+	const columns: ColumnsType<Role_Old> = [
 		{
 			title: "Name",
 			dataIndex: "name",
@@ -46,11 +48,7 @@ export default function RolePage() {
 			dataIndex: "status",
 			align: "center",
 			width: 120,
-			render: (status) => (
-				<Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>
-					{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
-				</Badge>
-			),
+			render: (status) => <Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>{status === BasicStatus.DISABLE ? "Disable" : "Enable"}</Badge>,
 		},
 		{ title: "Desc", dataIndex: "desc" },
 		{
@@ -83,7 +81,7 @@ export default function RolePage() {
 		}));
 	};
 
-	const onEdit = (formValue: Role) => {
+	const onEdit = (formValue: Role_Old) => {
 		setRoleModalProps((prev) => ({
 			...prev,
 			show: true,
@@ -101,14 +99,7 @@ export default function RolePage() {
 				</div>
 			</CardHeader>
 			<CardContent>
-				<Table
-					rowKey="id"
-					size="small"
-					scroll={{ x: "max-content" }}
-					pagination={false}
-					columns={columns}
-					dataSource={ROLES}
-				/>
+				<Table rowKey="id" size="small" scroll={{ x: "max-content" }} pagination={false} columns={columns} dataSource={ROLES} />
 			</CardContent>
 			<RoleModal {...roleModalPros} />
 		</Card>

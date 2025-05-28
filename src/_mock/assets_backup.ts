@@ -1,25 +1,8 @@
 import { faker } from "@faker-js/faker";
-import type { Menu, Permission_V1, Role_V1, User_V1 } from "#/entity";
+import type { Menu, Permission, Role, User_V1 } from "#/entity";
 import { PermissionType } from "#/enum";
 
 const { GROUP, MENU, CATALOGUE } = PermissionType;
-
-export const DB_USER: User_V1[] = [
-	{ id: "user_admin_id", username: "admin", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "admin@slash.com" },
-	{ id: "user_test_id", username: "test", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "test@slash.com" },
-];
-
-export const DB_ROLE: Role_V1[] = [
-	{ id: "role_admin_id", name: "admin", code: "SUPER_ADMIN" },
-	{ id: "role_test_id", name: "test", code: "TEST" },
-];
-
-export const DB_PERMISSION: Permission_V1[] = [
-	{ id: "user_management_create", name: "user-management-create", resource: "user-management", action: "create" },
-	{ id: "user_management_read", name: "user-management-read", resource: "user-management", action: "read" },
-	{ id: "user_management_update", name: "user-management-update", resource: "user-management", action: "update" },
-	{ id: "user_management_delete", name: "user-management-delete", resource: "user-management", action: "delete" },
-];
 
 export const DB_MENU: Menu[] = [
 	// group
@@ -60,7 +43,7 @@ export const DB_MENU: Menu[] = [
 		icon: "local:ic-management",
 		type: CATALOGUE,
 		path: "/management",
-		auth: ["user-management:read"],
+		auth: ["user-management:update"],
 	},
 	{ id: "management_user", parentId: "management", name: "sys.nav.user.index", code: "management:user", type: CATALOGUE, path: "/management/user" },
 	{
@@ -347,6 +330,23 @@ export const DB_MENU: Menu[] = [
 		path: "/blank",
 		component: "/pages/sys/others/blank",
 	},
+];
+
+export const DB_USER: User_V1[] = [
+	{ id: "user_admin_id", username: "admin", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "admin@slash.com" },
+	{ id: "user_test_id", username: "test", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "test@slash.com" },
+];
+
+export const DB_ROLE: Role[] = [
+	{ id: "role_admin_id", name: "admin", code: "SUPER_ADMIN" },
+	{ id: "role_test_id", name: "test", code: "TEST" },
+];
+
+export const DB_PERMISSION: Permission[] = [
+	{ id: "user_management_create", name: "user-management-create", code: "user-management:create" },
+	{ id: "user_management_read", name: "user-management-read", code: "user-management:read" },
+	{ id: "user_management_update", name: "user-management-update", code: "user-management:update" },
+	{ id: "user_management_delete", name: "user-management-delete", code: "user-management:delete" },
 ];
 
 export const DB_USER_ROLE = [

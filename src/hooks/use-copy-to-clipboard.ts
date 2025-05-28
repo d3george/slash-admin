@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { toast } from "sonner";
 
-// ----------------------------------------------------------------------
-
 type CopiedValue = string | null;
-
 type CopyFn = (text: string) => Promise<boolean>;
-
 type ReturnType = {
 	copyFn: CopyFn;
 	copiedText: CopiedValue;
 };
 
-export default function useCopyToClipboard(): ReturnType {
+export const useCopyToClipboard = (): ReturnType => {
 	const [copiedText, setCopiedText] = useState<CopiedValue>(null);
 
 	const copyFn: CopyFn = async (text) => {
@@ -35,4 +31,4 @@ export default function useCopyToClipboard(): ReturnType {
 	};
 
 	return { copiedText, copyFn };
-}
+};

@@ -1,2 +1,2 @@
-export { default as useCopyToClipboard } from "./event/use-copy-to-clipboard";
-export * from "./web/use-media-query";
+export * from "./use-copy-to-clipboard";
+export * from "./use-media-query";

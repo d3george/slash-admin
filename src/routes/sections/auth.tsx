@@ -1,4 +1,3 @@
-import { LineLoading } from "@/components/loading";
 import { Suspense, lazy } from "react";
 import { Outlet } from "react-router";
 import type { RouteObject } from "react-router";
@@ -15,7 +14,7 @@ export const authRoutes: RouteObject[] = [
 	{
 		path: "auth",
 		element: (
-			<Suspense fallback={<LineLoading />}>
+			<Suspense>
 				<Outlet />
 			</Suspense>
 		),

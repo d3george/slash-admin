@@ -1,4 +1,4 @@
-import { useUserPermission } from "@/store/userStore";
+// import { useUserPermission } from "@/store/userStore";
 import { Button } from "@/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/ui/form";
@@ -7,7 +7,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/ui/toggle-group";
 import { AutoComplete, TreeSelect } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import type { Permission } from "#/entity";
+import type { Permission_Old } from "#/entity";
 import { BasicStatus, PermissionType } from "#/enum";
 
 // Constants
@@ -22,39 +22,38 @@ const PAGE_SELECT_OPTIONS = Object.entries(PAGES).map(([path]) => {
 });
 
 export type PermissionModalProps = {
-	formValue: Permission;
+	formValue: Permission_Old;
 	title: string;
 	show: boolean;
-	onOk: (values: Permission) => void;
+	onOk: (values: Permission_Old) => void;
 	onCancel: VoidFunction;
 };
 
 export default function PermissionModal({ title, show, formValue, onOk, onCancel }: PermissionModalProps) {
-	const form = useForm<Permission>({
+	const form = useForm<Permission_Old>({
 		defaultValues: formValue,
 	});
 
-	const permissions = useUserPermission();
+	// TODO: fix
+	// const permissions = useUserPermission();
+	const permissions: any[] = [];
 	const [compOptions, setCompOptions] = useState(PAGE_SELECT_OPTIONS);
 
-	const getParentNameById = useCallback(
-		(parentId: string, data: Permission[] | undefined = permissions) => {
-			let name = "";
-			if (!data || !parentId) return name;
-			for (let i = 0; i < data.length; i += 1) {
-				if (data[i].id === parentId) {
-					name = data[i].name;
-				} else if (data[i].children) {
-					name = getParentNameById(parentId, data[i].children);
-				}
-				if (name) {
-					break;
-				}
+	const getParentNameById = useCallback((parentId: string, data: Permission_Old[] | undefined = permissions) => {
+		let name = "";
+		if (!data || !parentId) return name;
+		for (let i = 0; i < data.length; i += 1) {
+			if (data[i].id === parentId) {
+				name = data[i].name;
+			} else if (data[i].children) {
+				name = getParentNameById(parentId, data[i].children);
 			}
-			return name;
-		},
-		[permissions],
-	);
+			if (name) {
+				break;
+			}
+		}
+		return name;
+	}, []);
 
 	const updateCompOptions = useCallback((name: string) => {
 		if (!name) return;
@@ -73,7 +72,7 @@ export default function PermissionModal({ title, show, formValue, onOk, onCancel
 		}
 	}, [formValue, form, getParentNameById, updateCompOptions]);
 
-	const onSubmit = (values: Permission) => {
+	const onSubmit = (values: Permission_Old) => {
 		onOk(values);
 	};
 
@@ -189,9 +188,7 @@ export default function PermissionModal({ title, show, formValue, onOk, onCancel
 										<FormControl>
 											<AutoComplete
 												options={compOptions}
-												filterOption={(input, option) =>
-													((option?.label || "") as string).toLowerCase().includes(input.toLowerCase())
-												}
+												filterOption={(input, option) => ((option?.label || "") as string).toLowerCase().includes(input.toLowerCase())}
 												value={field.value || ""}
 												onChange={(value) => field.onChange(value || null)}
 											/>
