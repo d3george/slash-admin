@@ -91,8 +91,6 @@ export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
               font-weight: 700;
             }
             .fc-event-title-container {
-              grow: 1;
-              shrink: 1;
               min-width: 0px;
               .fc-event-title {
                 overflow: hidden;
