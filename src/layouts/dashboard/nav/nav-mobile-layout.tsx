@@ -14,7 +14,7 @@ export function NavMobileLayout({ data }: NavProps) {
 					<Icon icon="local:ic-menu" size={24} />
 				</Button>
 			</SheetTrigger>
-			<SheetContent side="left" className="[&>button]:hidden px-2">
+			<SheetContent side="left" className="[&>button]:hidden px-2 w-[280px]">
 				<div className="flex gap-2 px-2 h-[var(--layout-header-height)] items-center">
 					<Logo />
 					<span className="text-xl font-bold text-primary">Slash Admin</span>

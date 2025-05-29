@@ -52,7 +52,7 @@ function PcVerticalLayout() {
 			<NavVerticalLayout data={navData} />
 			<div
 				data-slot="slash-layout-content"
-				className={cn("w-full h-screen flex flex-col transition-[padding] duration-300 ease-in-out", {
+				className={cn("w-full flex flex-col transition-[padding] duration-300 ease-in-out", {
 					"pl-[var(--layout-nav-width)]": themeLayout === ThemeLayout.Vertical,
 					"pl-[var(--layout-nav-width-mini)]": themeLayout === ThemeLayout.Mini,
 				})}

@@ -202,7 +202,7 @@ export const frontendNavData: NavProps["data"] = [
 			{
 				title: "sys.nav.label",
 				path: "#label",
-				icon: <Icon icon="local:ic-label" size="14" />,
+				icon: <Icon icon="local:ic-label" size="24" />,
 				info: (
 					<Badge variant="info">
 						<Icon icon="solar:bell-bing-bold-duotone" size={14} />

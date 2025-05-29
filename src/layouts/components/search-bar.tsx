@@ -7,7 +7,7 @@ import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, C
 import { Text } from "@/ui/typography";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useBoolean } from "react-use";
-import { navData } from "../dashboard/nav";
+import { useFilteredNavData } from "../dashboard/nav";
 
 interface SearchItem {
 	key: string;
@@ -42,6 +42,7 @@ const SearchBar = () => {
 	const { replace } = useRouter();
 	const [open, setOpen] = useBoolean(false);
 	const [searchQuery, setSearchQuery] = useState("");
+	const navData = useFilteredNavData();
 
 	// Flatten navigation data into searchable items
 	const flattenedItems = useMemo(() => {
@@ -66,7 +67,7 @@ const SearchBar = () => {
 
 		flattenItems(navData);
 		return items;
-	}, []);
+	}, [navData]);
 
 	const searchResult = useMemo(() => {
 		const query = searchQuery.toLowerCase();
@@ -96,19 +97,22 @@ const SearchBar = () => {
 	return (
 		<>
 			<Button variant="ghost" className="bg-secondary px-2 rounded-lg" size="sm" onClick={() => setOpen(true)}>
-				<div className="flex items-center justify-center gap-2">
+				<div className="flex items-center justify-center gap-4">
 					<Icon icon="local:ic-search" size="20" />
-					<kbd className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">⌘K</kbd>
+					<kbd className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
+						<span>⌘</span>
+						<span className="text-xs">K</span>
+					</kbd>
 				</div>
 			</Button>
 
-			<CommandDialog open={open} onOpenChange={setOpen}>
-				<CommandInput placeholder="Search..." value={searchQuery} onValueChange={setSearchQuery} />
+			<CommandDialog open={open} onOpenChange={setOpen} modal={false}>
+				<CommandInput placeholder="Type a command or search..." value={searchQuery} onValueChange={setSearchQuery} />
 				<CommandList className="min-h-[400px]">
 					<CommandEmpty>No results found.</CommandEmpty>
-					<CommandGroup>
+					<CommandGroup heading="Navigations">
 						{searchResult.map(({ key, label }) => (
-							<CommandItem key={key} onSelect={() => handleSelect(key)} className="flex flex-col items-start py-2">
+							<CommandItem key={key} onSelect={() => handleSelect(key)} className="flex flex-col items-start">
 								<div className="font-medium">
 									<HighlightText text={t(label)} query={searchQuery} />
 								</div>

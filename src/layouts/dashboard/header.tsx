@@ -20,7 +20,7 @@ export default function Header({ leftSlot }: HeaderProps) {
 		<header
 			data-slot="slash-layout-header"
 			className={cn(
-				"sticky z-app-bar top-0 right-0 left-auto flex items-center bg-background justify-between px-2 ml-[1px]",
+				"sticky z-app-bar top-0 right-0 left-0 flex items-center bg-background justify-between px-2 ml-[1px]",
 				"h-[var(--layout-header-height)] grow-0 shrink-0",
 			)}
 		>
@@ -33,20 +33,10 @@ export default function Header({ leftSlot }: HeaderProps) {
 			<div className="flex items-center gap-1">
 				<SearchBar />
 				<LocalePicker />
-				<Button
-					variant="ghost"
-					size="icon"
-					className="rounded-full"
-					onClick={() => window.open("https://github.com/d3george/slash-admin")}
-				>
+				<Button variant="ghost" size="icon" className="rounded-full" onClick={() => window.open("https://github.com/d3george/slash-admin")}>
 					<Icon icon="mdi:github" size={24} />
 				</Button>
-				<Button
-					variant="ghost"
-					size="icon"
-					className="rounded-full"
-					onClick={() => window.open("https://discord.gg/fXemAXVNDa")}
-				>
+				<Button variant="ghost" size="icon" className="rounded-full" onClick={() => window.open("https://discord.gg/fXemAXVNDa")}>
 					<Icon icon="carbon:logo-discord" size={24} />
 				</Button>
 				<NoticeButton />
