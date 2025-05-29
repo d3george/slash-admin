@@ -133,6 +133,24 @@
   --sidebar-ring: var(--colors-palette-primary-default);
 }
 
+::-webkit-scrollbar {
+  width: 5px
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sidebar);
+  border-radius: 5px
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar) transparent;
+}
+
 
 /* slash layout */
 :root{
