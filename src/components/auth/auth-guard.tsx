@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useAuthCheck } from "./use-auth";
 
-interface AuthWrapperProps {
+interface AuthGuardProps {
 	/**
 	 * The content to be rendered if the user has the required permissions/roles
 	 */
@@ -34,29 +34,29 @@ interface AuthWrapperProps {
  *
  * @example
  * // Check single permission
- * <AuthWrapper check="user.create">
+ * <AuthGuard check="user.create">
  *   <button>Create User</button>
- * </AuthWrapper>
+ * </AuthGuard>
  *
  * @example
  * // Check multiple permissions (any)
- * <AuthWrapper checkAny={["user.create", "user.edit"]}>
+ * <AuthGuard checkAny={["user.create", "user.edit"]}>
  *   <button>Edit User</button>
- * </AuthWrapper>
+ * </AuthGuard>
  *
  * @example
  * // Check multiple permissions (all)
- * <AuthWrapper checkAll={["user.create", "user.edit"]}>
+ * <AuthGuard checkAll={["user.create", "user.edit"]}>
  *   <button>Advanced Edit</button>
- * </AuthWrapper>
+ * </AuthGuard>
  *
  * @example
  * // With fallback content
- * <AuthWrapper check="admin" baseOn="role" fallback={<div>Access Denied</div>}>
+ * <AuthGuard check="admin" baseOn="role" fallback={<div>Access Denied</div>}>
  *   <AdminPanel />
- * </AuthWrapper>
+ * </AuthGuard>
  */
-export const AuthWrapper = ({ children, fallback = null, check, checkAny, checkAll, baseOn = "permission" }: AuthWrapperProps) => {
+export const AuthGuard = ({ children, fallback = null, check, checkAny, checkAll, baseOn = "permission" }: AuthGuardProps) => {
 	const checkFn = useAuthCheck(baseOn);
 
 	const hasAccess = check ? checkFn.check(check) : checkAny ? checkFn.checkAny(checkAny) : checkAll ? checkFn.checkAll(checkAll) : true;

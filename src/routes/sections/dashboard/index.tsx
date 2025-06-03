@@ -8,20 +8,23 @@ import { frontendDashboardRoutes } from "./frontend";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE, VITE_APP_ROUTER_MODE: ROUTER_MODE } = import.meta.env;
 
+export const getRoutes = (): RouteObject[] => {
+	if (ROUTER_MODE === "frontend") {
+		return frontendDashboardRoutes;
+	}
+	return backendDashboardRoutes;
+};
+
 export const dashboardRoutes: RouteObject[] = [
 	{
 		path: "/",
 		element: (
 			<AuthGuard>
 				<Suspense fallback={<LineLoading />}>
-					{/* outlet inside DashboardLayout */}
 					<DashboardLayout />
 				</Suspense>
 			</AuthGuard>
 		),
-		children: [
-			{ index: true, element: <Navigate to={HOMEPAGE} replace /> },
-			...(ROUTER_MODE === "frontend" ? frontendDashboardRoutes : backendDashboardRoutes),
-		],
+		children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...getRoutes()],
 	},
 ];
