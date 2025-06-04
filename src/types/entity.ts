@@ -51,7 +51,7 @@ export interface CommonOptions {
 	createdAt?: string;
 	updatedAt?: string;
 }
-export interface User_V1 extends CommonOptions {
+export interface User extends CommonOptions {
 	id: string; // uuid
 	username: string;
 	password: string;

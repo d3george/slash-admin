@@ -99,6 +99,7 @@
 			"iframe": "Iframe",
 			"kanban": "Kanban",
 			"label": "Item Label",
+			"permission": "Permission",
 			"management": "Management",
 			"markdown": "Markdown",
 			"menulevel": {

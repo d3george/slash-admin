@@ -23,7 +23,7 @@ export const frontendDashboardRoutes: RouteObject[] = [
 		children: [
 			{ index: true, element: <Navigate to="clipboard" replace /> },
 			{ path: "clipboard", element: Component("/pages/functions/clipboard") },
-			{ path: "token-expired", element: Component("/pages/functions/token-expired") },
+			{ path: "token_expired", element: Component("/pages/functions/token-expired") },
 		],
 	},
 	{
@@ -87,6 +87,13 @@ export const frontendDashboardRoutes: RouteObject[] = [
 			{ index: true, element: <Navigate to="iframe" replace /> },
 			{ path: "iframe", element: Component("/pages/sys/others/link/iframe") },
 			{ path: "external-link", element: Component("/pages/sys/others/link/external-link") },
+		],
+	},
+	{
+		path: "permission",
+		children: [
+			{ index: true, element: Component("/pages/sys/others/permission") },
+			{ path: "page-test", element: Component("/pages/sys/others/permission/page-test") },
 		],
 	},
 	{ path: "calendar", element: Component("/pages/sys/others/calendar") },

@@ -43,11 +43,7 @@ function LoginPage() {
 			</div>
 
 			<div className="relative hidden bg-background-paper lg:block">
-				<img
-					src={PlaceholderImg}
-					alt="placeholder img"
-					className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.5] dark:grayscale"
-				/>
+				<img src={PlaceholderImg} alt="placeholder img" className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.5] dark:grayscale" />
 			</div>
 
 			<div className="absolute right-2 top-0 flex flex-row">

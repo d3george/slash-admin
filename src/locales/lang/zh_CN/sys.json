@@ -140,6 +140,7 @@
 			"blank": "空白",
 			"calendar": "日历",
 			"kanban": "看板",
+			"permission": "权限",
 			"error": {
 				"index": "异常页",
 				"403": "403",

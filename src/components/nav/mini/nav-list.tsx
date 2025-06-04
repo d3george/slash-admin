@@ -9,6 +9,10 @@ export function NavList({ data, depth = 0 }: NavListProps) {
 	const location = useLocation();
 	const isActive = location.pathname.includes(data.path);
 
+	if (data.hidden) {
+		return null;
+	}
+
 	const renderRootNavItem = () => {
 		return (
 			<NavRootItem

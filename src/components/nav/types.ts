@@ -13,6 +13,7 @@ export type NavItemDataProps = {
 	auth?: string[];
 	children?: NavItemDataProps[];
 	disabled?: boolean;
+	hidden?: boolean;
 };
 
 export type NavItemOptionsProps = {

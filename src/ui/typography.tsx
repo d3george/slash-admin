@@ -49,6 +49,9 @@ const textVariants = cva("", {
       // 说明文字
       caption: "text-xs font-normal",
 
+      // 代码
+      code: "text-sm font-normal font-mono bg-muted relative rounded px-[0.3rem] py-[0.2rem]",
+
     },
     color: {
       default: "text-text-primary",

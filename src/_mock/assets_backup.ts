@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import type { Menu, Permission, Role, User_V1 } from "#/entity";
+import type { Menu, Permission, Role, User } from "#/entity";
 import { PermissionType } from "#/enum";
 
 const { GROUP, MENU, CATALOGUE } = PermissionType;
@@ -43,7 +43,6 @@ export const DB_MENU: Menu[] = [
 		icon: "local:ic-management",
 		type: CATALOGUE,
 		path: "/management",
-		auth: ["user-management:update"],
 	},
 	{ id: "management_user", parentId: "management", name: "sys.nav.user.index", code: "management:user", type: CATALOGUE, path: "/management/user" },
 	{
@@ -267,6 +266,25 @@ export const DB_MENU: Menu[] = [
 
 	// group_others
 	{
+		id: "permission",
+		parentId: "group_others",
+		name: "sys.nav.permission",
+		code: "permission",
+		icon: "mingcute:safe-lock-fill",
+		type: MENU,
+		path: "/permission",
+		component: "/pages/sys/others/permission",
+	},
+	{
+		id: "permission_page_test",
+		parentId: "permission",
+		name: "sys.nav.permission.page_test",
+		code: "permission:page_test",
+		type: MENU,
+		path: "/permission/page-test",
+		component: "/pages/sys/others/permission/page-test",
+	},
+	{
 		id: "calendar",
 		parentId: "group_others",
 		name: "sys.nav.calendar",
@@ -332,9 +350,10 @@ export const DB_MENU: Menu[] = [
 	},
 ];
 
-export const DB_USER: User_V1[] = [
+export const DB_USER: User[] = [
 	{ id: "user_admin_id", username: "admin", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "admin@slash.com" },
 	{ id: "user_test_id", username: "test", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "test@slash.com" },
+	{ id: "user_guest_id", username: "guest", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "guest@slash.com" },
 ];
 
 export const DB_ROLE: Role[] = [
@@ -343,10 +362,10 @@ export const DB_ROLE: Role[] = [
 ];
 
 export const DB_PERMISSION: Permission[] = [
-	{ id: "user_management_create", name: "user-management-create", code: "user-management:create" },
-	{ id: "user_management_read", name: "user-management-read", code: "user-management:read" },
-	{ id: "user_management_update", name: "user-management-update", code: "user-management:update" },
-	{ id: "user_management_delete", name: "user-management-delete", code: "user-management:delete" },
+	{ id: "permission_create", name: "permission-create", code: "permission:create" },
+	{ id: "permission_read", name: "permission-read", code: "permission:read" },
+	{ id: "permission_update", name: "permission-update", code: "permission:update" },
+	{ id: "permission_delete", name: "permission-delete", code: "permission:delete" },
 ];
 
 export const DB_USER_ROLE = [
@@ -355,10 +374,10 @@ export const DB_USER_ROLE = [
 ];
 
 export const DB_ROLE_PERMISSION = [
-	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "user_management_create" },
-	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "user_management_read" },
-	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "user_management_update" },
-	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "user_management_delete" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_create" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_read" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_update" },
+	{ id: faker.string.uuid(), roleId: "role_admin_id", permissionId: "permission_delete" },
 
-	{ id: faker.string.uuid(), roleId: "role_test_id", permissionId: "user_management_read" },
+	{ id: faker.string.uuid(), roleId: "role_test_id", permissionId: "permission_read" },
 ];

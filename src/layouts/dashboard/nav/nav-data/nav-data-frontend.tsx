@@ -183,6 +183,18 @@ export const frontendNavData: NavProps["data"] = [
 		name: "sys.nav.others",
 		items: [
 			{
+				title: "sys.nav.permission",
+				path: "/permission",
+				icon: <Icon icon="mingcute:safe-lock-fill" size="24" />,
+			},
+			{
+				title: "sys.nav.permission.page_test",
+				path: "/permission/page-test",
+				icon: <Icon icon="mingcute:safe-lock-fill" size="24" />,
+				auth: ["permission:read"],
+				hidden: true,
+			},
+			{
 				title: "sys.nav.calendar",
 				path: "/calendar",
 				icon: <Icon icon="solar:calendar-bold-duotone" size="24" />,

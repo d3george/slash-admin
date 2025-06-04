@@ -1,4 +1,4 @@
-import { DEFAULT_USER } from "@/_mock/assets";
+import { DB_USER } from "@/_mock/assets_backup";
 import type { SignInReq } from "@/api/services/userService";
 import { Icon } from "@/components/icon";
 import { useSignIn } from "@/store/userStore";
@@ -11,20 +11,25 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+import { toast } from "sonner";
 import { LoginStateEnum, useLoginStateContext } from "./providers/login-provider";
+
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"form">) {
 	const { t } = useTranslation();
 	const [loading, setLoading] = useState(false);
 	const [remember, setRemember] = useState(true);
+	const navigatge = useNavigate();
 
 	const { loginState, setLoginState } = useLoginStateContext();
 	const signIn = useSignIn();
 
 	const form = useForm<SignInReq>({
 		defaultValues: {
-			username: DEFAULT_USER.username,
-			password: DEFAULT_USER.password,
+			username: DB_USER[0].username,
+			password: DB_USER[0].password,
 		},
 	});
 
@@ -34,6 +39,10 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 		setLoading(true);
 		try {
 			await signIn(values);
+			navigatge(HOMEPAGE, { replace: true });
+			toast.success("Sign in success!", {
+				closeButton: true,
+			});
 		} finally {
 			setLoading(false);
 		}
@@ -56,7 +65,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 							<FormItem>
 								<FormLabel>{t("sys.login.userName")}</FormLabel>
 								<FormControl>
-									<Input placeholder="admin/test" {...field} />
+									<Input placeholder={DB_USER.map((user) => user.username).join("/")} {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -71,7 +80,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 							<FormItem>
 								<FormLabel>{t("sys.login.password")}</FormLabel>
 								<FormControl>
-									<Input type="password" placeholder={t("sys.login.password")} {...field} suppressHydrationWarning />
+									<Input type="password" placeholder={DB_USER[0].password} {...field} suppressHydrationWarning />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -81,15 +90,8 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					{/* 记住我/忘记密码 */}
 					<div className="flex flex-row justify-between">
 						<div className="flex items-center space-x-2">
-							<Checkbox
-								id="remember"
-								checked={remember}
-								onCheckedChange={(checked) => setRemember(checked === "indeterminate" ? false : checked)}
-							/>
-							<label
-								htmlFor="remember"
-								className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-							>
+							<Checkbox id="remember" checked={remember} onCheckedChange={(checked) => setRemember(checked === "indeterminate" ? false : checked)} />
+							<label htmlFor="remember" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
 								{t("sys.login.rememberMe")}
 							</label>
 						</div>

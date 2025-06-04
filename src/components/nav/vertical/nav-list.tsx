@@ -16,6 +16,10 @@ export function NavList({ data, depth = 1, enabledRootRedirect = false }: NavLis
 		}
 	};
 
+	if (data.hidden) {
+		return null;
+	}
+
 	return (
 		<Collapsible open={open} onOpenChange={setOpen} data-nav-type="list">
 			<CollapsibleTrigger className="w-full">
