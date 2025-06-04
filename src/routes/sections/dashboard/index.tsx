@@ -1,6 +1,6 @@
 import { LineLoading } from "@/components/loading";
 import DashboardLayout from "@/layouts/dashboard";
-import AuthGuard from "@/routes/components/auth-guard";
+import LoginAuthGuard from "@/routes/components/login-auth-guard";
 import { Suspense } from "react";
 import { Navigate, type RouteObject } from "react-router";
 import { backendDashboardRoutes } from "./backend";
@@ -19,11 +19,11 @@ export const dashboardRoutes: RouteObject[] = [
 	{
 		path: "/",
 		element: (
-			<AuthGuard>
+			<LoginAuthGuard>
 				<Suspense fallback={<LineLoading />}>
 					<DashboardLayout />
 				</Suspense>
-			</AuthGuard>
+			</LoginAuthGuard>
 		),
 		children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...getRoutes()],
 	},
