@@ -3,6 +3,7 @@ import { AuthGuard } from "@/components/auth/auth-guard";
 import { useSignIn, useUserInfo } from "@/store/userStore";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
+import { ToggleGroup, ToggleGroupItem } from "@/ui/toggle-group";
 import { Text } from "@/ui/typography";
 import { Link } from "react-router";
 
@@ -19,35 +20,33 @@ export default function PermissionPage() {
 	};
 	return (
 		<div className="flex flex-col gap-4">
+			<div className="w-full flex  items-center justify-center">
+				<Text variant="subTitle1">当前用户：</Text>
+				<ToggleGroup type="single" size="lg" onValueChange={handleSwitch} value={username}>
+					{DB_USER.map((user) => (
+						<ToggleGroupItem key={user.username} value={user.username} aria-label="Toggle bold">
+							{user.username}
+						</ToggleGroupItem>
+					))}
+				</ToggleGroup>
+			</div>
 			<Card>
-				<CardHeader>
-					<CardTitle>切换用户</CardTitle>
-				</CardHeader>
 				<CardContent>
-					<div className="flex flex-col gap-2">
-						<div className="flex gap-2">
-							{DB_USER.map((user) => (
-								<Button key={user.username} variant={username === user.username ? "default" : "outline"} onClick={() => handleSwitch(user.username)}>
-									切换为{user.username.charAt(0).toUpperCase() + user.username.slice(1)}账号
-								</Button>
-							))}
-						</div>
-						<div className="flex items-center gap-2">
-							<Text variant="body1">当前用户角色：</Text>
-							{permissions && permissions.length > 0 ? (
-								<Text variant="body1">[{roles?.map((role) => role.name).join(", ")}]</Text>
-							) : (
-								<Text variant="body1">[]</Text>
-							)}
-						</div>
-						<div className="flex items-center gap-2">
-							<Text variant="body1">当前用户权限：</Text>
-							{permissions && permissions.length > 0 ? (
-								<Text variant="body1">[{permissions?.map((permission) => permission.code).join(", ")}]</Text>
-							) : (
-								<Text variant="body1">[]</Text>
-							)}
-						</div>
+					<div className="flex items-center gap-2">
+						<Text variant="body1">当前用户角色：</Text>
+						{permissions && permissions.length > 0 ? (
+							<Text variant="body1">[{roles?.map((role) => role.name).join(", ")}]</Text>
+						) : (
+							<Text variant="body1">[]</Text>
+						)}
+					</div>
+					<div className="flex items-center gap-2">
+						<Text variant="body1">当前用户权限：</Text>
+						{permissions && permissions.length > 0 ? (
+							<Text variant="body1">[{permissions?.map((permission) => permission.code).join(", ")}]</Text>
+						) : (
+							<Text variant="body1">[]</Text>
+						)}
 					</div>
 				</CardContent>
 			</Card>
