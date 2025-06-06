@@ -52,5 +52,6 @@ export function convertFlatToTree<T extends { id: string; parentId: string }>(it
 		}
 	}
 
+	console.log(result);
 	return result;
 }

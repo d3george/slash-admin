@@ -89,6 +89,7 @@ export type MenuMetaInfo = {
 	disabled?: boolean; // nav disabled
 	externalLink?: URL;
 	auth?: string[];
+	hidden?: boolean;
 
 	// type: MENU
 	component?: string;

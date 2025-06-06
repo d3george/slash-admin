@@ -7,12 +7,21 @@ import { Navigate } from "react-router";
 import { Component } from "./utils";
 
 /**
- * @param menuPath '/link/external_link'
- * @returns 'external_link'
+ * get route path from menu path and parent path
+ * @param menuPath '/a/b/c'
+ * @param parentPath '/a/b'
+ * @returns '/c'
+ *
+ * @example
+ * getRoutePath('/a/b/c', '/a/b') // '/c'
  */
-const getRoutePath = (menuPath?: string) => {
-	const pathArr = menuPath?.split("/") || [];
-	return pathArr[pathArr.length - 1];
+const getRoutePath = (menuPath?: string, parentPath?: string) => {
+	const menuPathArr = menuPath?.split("/").filter(Boolean) || [];
+	const parentPathArr = parentPath?.split("/").filter(Boolean) || [];
+
+	// remove parentPath items from menuPath
+	const result = menuPathArr.slice(parentPathArr.length).join("/");
+	return result;
 };
 
 /**
@@ -28,13 +37,15 @@ const generateProps = (metaInfo: MenuMetaInfo) => {
 	return props;
 };
 
-const convert = (items: MenuTree[]): RouteObject[] => {
+const convert = (items: MenuTree[], parent?: MenuTree): RouteObject[] => {
 	const routes: RouteObject[] = [];
 
 	const processItem = (item: MenuTree) => {
 		// if group, process children
 		if (item.type === PermissionType.GROUP) {
-			(item.children || []).forEach(processItem);
+			for (const child of item.children || []) {
+				processItem(child);
+			}
 		}
 
 		// if catalogue, process children
@@ -44,13 +55,13 @@ const convert = (items: MenuTree[]): RouteObject[] => {
 				const firstChild = children[0];
 				if (firstChild.path) {
 					routes.push({
-						path: getRoutePath(item.path),
+						path: getRoutePath(item.path, parent?.path),
 						children: [
 							{
 								index: true,
-								element: <Navigate to={getRoutePath(firstChild.path)} replace />,
+								element: <Navigate to={getRoutePath(firstChild.path, item.path)} replace />,
 							},
-							...convert(children),
+							...convert(children, item),
 						],
 					});
 				}
@@ -62,13 +73,15 @@ const convert = (items: MenuTree[]): RouteObject[] => {
 			const props = generateProps(item);
 
 			routes.push({
-				path: getRoutePath(item.path),
+				path: getRoutePath(item.path, parent?.path),
 				element: Component(item.component, props),
 			});
 		}
 	};
 
-	items.forEach(processItem);
+	for (const item of items) {
+		processItem(item);
+	}
 	return routes;
 };
 

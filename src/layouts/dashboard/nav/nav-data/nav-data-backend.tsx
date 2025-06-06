@@ -17,6 +17,7 @@ const convertChildren = (children?: MenuTree[]): NavItemDataProps[] => {
 		disabled: child.disabled,
 		externalLink: child.externalLink,
 		auth: child.auth,
+		hidden: child.hidden,
 		children: convertChildren(child.children),
 	}));
 };

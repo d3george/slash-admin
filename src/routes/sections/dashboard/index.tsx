@@ -28,3 +28,5 @@ export const dashboardRoutes: RouteObject[] = [
 		children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...getRoutes()],
 	},
 ];
+
+console.log(dashboardRoutes);

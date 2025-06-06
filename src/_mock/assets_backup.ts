@@ -277,12 +277,15 @@ export const DB_MENU: Menu[] = [
 	},
 	{
 		id: "permission_page_test",
-		parentId: "permission",
+		parentId: "group_others",
 		name: "sys.nav.permission.page_test",
 		code: "permission:page_test",
+		icon: "mingcute:safe-lock-fill",
 		type: MENU,
 		path: "/permission/page-test",
 		component: "/pages/sys/others/permission/page-test",
+		auth: ["permission:read"],
+		hidden: true,
 	},
 	{
 		id: "calendar",

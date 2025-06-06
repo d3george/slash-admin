@@ -53,7 +53,7 @@ export default defineConfig(({ mode }) => {
 				output: {
 					manualChunks: {
 						"vendor-core": ["react", "react-dom", "react-router"],
-						"vendor-ui": ["antd", "@ant-design/icons", "@ant-design/cssinjs", "styled-components"],
+						"vendor-ui": ["antd", "@ant-design/cssinjs", "styled-components"],
 						"vendor-utils": ["axios", "dayjs", "i18next", "zustand", "@iconify/react"],
 						"vendor-charts": ["apexcharts", "react-apexcharts"],
 					},
@@ -63,7 +63,7 @@ export default defineConfig(({ mode }) => {
 
 		// 优化依赖预构建
 		optimizeDeps: {
-			include: ["react", "react-dom", "react-router", "antd", "@ant-design/icons", "axios", "dayjs"],
+			include: ["react", "react-dom", "react-router", "antd", "axios", "dayjs"],
 			exclude: ["@iconify/react"], // 排除不需要预构建的依赖
 		},
 
