@@ -13,7 +13,12 @@ import { backendNavData } from "./nav/nav-data/nav-data-backend";
 import { frontendNavData } from "./nav/nav-data/nav-data-frontend";
 
 const { VITE_APP_ROUTER_MODE: ROUTER_MODE } = import.meta.env;
-// 辅助函数：根据路径查找权限要求
+
+/**
+ * find auth by path
+ * @param path
+ * @returns
+ */
 function findAuthByPath(path: string): string[] {
 	const foundItem = allItems.find((item) => item.path === path);
 	return foundItem?.auth || [];
@@ -27,30 +32,30 @@ const allItems = navData.reduce((acc: any[], group) => {
 
 const Main = () => {
 	const { themeStretch, themeLayout } = useSettings();
-	// 获取当前path 对应的权限
+
 	const { pathname } = useLocation();
 	const currentNavAuth = findAuthByPath(pathname);
 
 	return (
-		<main
+		<ScrollArea
 			data-slot="slash-layout-main"
-			className={cn("flex w-full grow bg-background", {
+			className={cn("flex w-full grow bg-background p-2", {
 				"h-[calc(100vh-var(--layout-header-height))]": themeLayout !== ThemeLayout.Horizontal,
 				"h-[calc(100vh-var(--layout-header-height)-var(--layout-nav-height-horizontal)-10px)]": themeLayout === ThemeLayout.Horizontal,
 			})}
 		>
-			<ScrollArea
-				className={cn("p-2 w-full  mx-auto transition-all duration-300 ease-in-out", {
-					"xl:max-w-screen-xl": !themeStretch,
-				})}
-			>
+			<Suspense fallback={<LineLoading />}>
 				<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
-					<Suspense fallback={<LineLoading />}>
+					<main
+						className={cn("w-full mx-auto", {
+							"xl:max-w-screen-xl": !themeStretch,
+						})}
+					>
 						<Outlet />
-					</Suspense>
+					</main>
 				</AuthGuard>
-			</ScrollArea>
-		</main>
+			</Suspense>
+		</ScrollArea>
 	);
 };
 
