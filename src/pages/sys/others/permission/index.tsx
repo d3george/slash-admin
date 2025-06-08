@@ -1,11 +1,56 @@
 import { DB_USER } from "@/_mock/assets_backup";
 import { AuthGuard } from "@/components/auth/auth-guard";
+import { CodeBlock } from "@/components/code/code-bock";
 import { useSignIn, useUserInfo } from "@/store/userStore";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/card";
-import { ToggleGroup, ToggleGroupItem } from "@/ui/toggle-group";
+import { Tabs, TabsList, TabsTrigger } from "@/ui/tabs";
 import { Text } from "@/ui/typography";
 import { Link } from "react-router";
+
+const code1 = `
+<AuthGuard
+  check="permission:delete"
+  baseOn="permission"
+  fallback={
+    <Text variant="body1" color="error">
+      没有<Text variant="code">permission:delete</Text>权限
+    </Text>
+  }
+>
+  <Button variant="destructive">
+    删除
+  </Button>
+</AuthGuard>
+`;
+
+const code2 = `
+<AuthGuard
+  checkAny={["permission:update", "permission:delete"]}
+  baseOn="permission"
+  fallback={
+    <Text variant="body1" color="error">
+      没有<Text variant="code">permission:update</Text>或<Text variant="code">permission:delete</Text>权限
+    </Text>
+  }
+>
+  <Button variant="secondary">Detail</Button>
+</AuthGuard>
+`;
+
+const code3 = `
+<AuthGuard
+  checkAll={["permission:read", "permission:create"]}
+  baseOn="permission"
+  fallback={
+    <Text variant="body1" color="error">
+      没有<Text variant="code">permission:read</Text>和<Text variant="code">permission:create</Text>权限
+    </Text>
+  }
+>
+  <Button variant="destructive">Add</Button>
+</AuthGuard>
+`;
 
 export default function PermissionPage() {
 	const { permissions, roles, username } = useUserInfo();
@@ -22,13 +67,15 @@ export default function PermissionPage() {
 		<div className="flex flex-col gap-4">
 			<div className="w-full flex  items-center justify-center">
 				<Text variant="subTitle1">当前用户：</Text>
-				<ToggleGroup type="single" size="lg" onValueChange={handleSwitch} value={username}>
-					{DB_USER.map((user) => (
-						<ToggleGroupItem key={user.username} value={user.username} aria-label="Toggle bold">
-							{user.username}
-						</ToggleGroupItem>
-					))}
-				</ToggleGroup>
+				<Tabs defaultValue={username} onValueChange={handleSwitch}>
+					<TabsList>
+						{DB_USER.map((user) => (
+							<TabsTrigger key={user.username} value={user.username}>
+								{user.username}
+							</TabsTrigger>
+						))}
+					</TabsList>
+				</Tabs>
 			</div>
 			<Card>
 				<CardContent>
@@ -66,25 +113,60 @@ export default function PermissionPage() {
 			<Card>
 				<CardHeader>
 					<CardTitle>组件鉴权测试</CardTitle>
-					<CardDescription>
-						使用组件<Text variant="code">&lt;AuthGuard /&gt;</Text>包裹相应组件
-					</CardDescription>
 				</CardHeader>
 				<CardContent>
-					<div className="flex gap-2">
-						<AuthGuard
-							check="permission:delete"
-							baseOn="permission"
-							fallback={
-								<Text variant="body1" color="error">
-									没有<Text variant="code">permission:delete</Text>权限
-								</Text>
-							}
+					<div className="flex gap-2 flex-col">
+						<CodeBlock code={code1.trim()} lang="tsx" title="单权限校验" description="当用户拥有permission:delete权限时，显示Delete按钮，否则fallback">
+							<AuthGuard
+								check="permission:delete"
+								baseOn="permission"
+								fallback={
+									<Text variant="body1" color="error">
+										没有<Text variant="code">permission:delete</Text>权限
+									</Text>
+								}
+							>
+								<Button variant="destructive">Delete</Button>
+							</AuthGuard>
+						</CodeBlock>
+
+						<CodeBlock
+							code={code2.trim()}
+							lang="tsx"
+							title="任意限校验"
+							description="当用户拥有permission:update或permission:delete权限时，显示Detail按钮，否则fallback"
 						>
-							<Button variant="destructive" className="w-20">
-								删除
-							</Button>
-						</AuthGuard>
+							<AuthGuard
+								checkAny={["permission:update", "permission:delete"]}
+								baseOn="permission"
+								fallback={
+									<Text variant="body1" color="error">
+										没有<Text variant="code">permission:update</Text>或<Text variant="code">permission:delete</Text>权限
+									</Text>
+								}
+							>
+								<Button variant="secondary">Detail</Button>
+							</AuthGuard>
+						</CodeBlock>
+
+						<CodeBlock
+							code={code3.trim()}
+							lang="tsx"
+							title="多权限校验"
+							description="当用户拥有permission:read和permission:create权限时，显示Add按钮，否则fallback"
+						>
+							<AuthGuard
+								checkAll={["permission:read", "permission:create"]}
+								baseOn="permission"
+								fallback={
+									<Text variant="body1" color="error">
+										没有<Text variant="code">permission:read</Text>和<Text variant="code">permission:create</Text>权限
+									</Text>
+								}
+							>
+								<Button variant="destructive">Add</Button>
+							</AuthGuard>
+						</CodeBlock>
 					</div>
 				</CardContent>
 			</Card>
