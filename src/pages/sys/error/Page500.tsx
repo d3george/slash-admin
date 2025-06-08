@@ -10,7 +10,7 @@ import { NavLink } from "react-router";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
-export default function Page() {
+export default function Page500() {
 	return (
 		<>
 			<Helmet>
@@ -72,19 +72,13 @@ export default function Page() {
 								fill={themeVars.colors.palette.primary.default}
 								d="M277.8 242.2h-24.9c-4 0-7.3 3.3-7.3 7.3v33.2c0 4 3.3 7.3 7.3 7.3h24.9c4 0 7.3-3.3 7.3-7.3v-33.2c0-4-3.3-7.3-7.3-7.3z"
 							/>
-							<path
-								fill="url(#paint0_linear_1_140)"
-								d="M278 145h-22c-4.4 0-8 3.6-8 8v22.8c0 4.4 3.6 8 8 8h22c4.4 0 8-3.6 8-8V153c0-4.4-3.6-8-8-8z"
-							/>
+							<path fill="url(#paint0_linear_1_140)" d="M278 145h-22c-4.4 0-8 3.6-8 8v22.8c0 4.4 3.6 8 8 8h22c4.4 0 8-3.6 8-8V153c0-4.4-3.6-8-8-8z" />
 							<path
 								fill={themeVars.colors.palette.primary.default}
 								d="M126 129.7h-22.4c-1.7 0-3 1.3-3 3v32.8c0 1.7 1.3 3 3 3H126c1.7 0 3-1.3 3-3v-32.8c0-1.7-1.4-3-3-3z"
 								opacity="0.08"
 							/>
-							<path
-								fill="#fff"
-								d="M119.1 135.9H96.6c-1.7 0-3 1.3-3 3v32.8c0 1.7 1.3 3 3 3H119c1.7 0 3-1.3 3-3v-32.8c.1-1.6-1.3-3-2.9-3z"
-							/>
+							<path fill="#fff" d="M119.1 135.9H96.6c-1.7 0-3 1.3-3 3v32.8c0 1.7 1.3 3 3 3H119c1.7 0 3-1.3 3-3v-32.8c.1-1.6-1.3-3-2.9-3z" />
 							<path
 								fill={themeVars.colors.palette.primary.default}
 								d="M119.1 135.9H96.6c-1.7 0-3 1.3-3 3v32.8c0 1.7 1.3 3 3 3H119c1.7 0 3-1.3 3-3v-32.8c.1-1.6-1.3-3-2.9-3z"
@@ -115,25 +109,11 @@ export default function Page() {
 								d="M264.4 267.7c.5-1.8-.8-3.7-1.2-5.5-.1-.3-.1-.7 0-1 .2-1.5 1.5-2.6 3-2.6s2.8 1.1 3 2.6c.1.3 0 .7 0 1-.3 1.8-1.6 3.8-1.1 5.6l.4 1.3c.5 1.5-.7 3.1-2.3 3.1-1.6 0-2.7-1.5-2.3-3l.5-1.5zM258 158.8l9.2-4.8 8.8 4.8s-1.6 11.8-8.6 15.2c0 0-8.6-3.3-9.4-15.2z"
 							/>
 							<defs>
-								<linearGradient
-									id="paint0_linear_1_140"
-									x1="277.574"
-									x2="255.652"
-									y1="143.24"
-									y2="187.057"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint0_linear_1_140" x1="277.574" x2="255.652" y1="143.24" y2="187.057" gradientUnits="userSpaceOnUse">
 									<stop stopColor={themeVars.colors.palette.primary.default} />
 									<stop offset="1" stopColor={themeVars.colors.palette.primary.default} />
 								</linearGradient>
-								<linearGradient
-									id="paint1_linear_1_140"
-									x1="138"
-									x2="138"
-									y1="164"
-									y2="287.9"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint1_linear_1_140" x1="138" x2="138" y1="164" y2="287.9" gradientUnits="userSpaceOnUse">
 									<stop stopColor={themeVars.colors.palette.primary.default} />
 									<stop offset="1" stopColor={themeVars.colors.palette.primary.default} />
 								</linearGradient>

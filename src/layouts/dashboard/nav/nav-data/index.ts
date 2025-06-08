@@ -1,5 +1,7 @@
 import type { NavItemDataProps } from "@/components/nav/types";
+import { useUserPermissions } from "@/store/userStore";
 import { checkAny } from "@/utils";
+import { useMemo } from "react";
 import { backendNavData } from "./nav-data-backend";
 import { frontendNavData } from "./nav-data-frontend";
 
@@ -37,7 +39,7 @@ const filterItems = (items: NavItemDataProps[], permissions: string[]) => {
  * @param permissions 权限列表
  * @returns 过滤后的导航数据
  */
-export const filterNavData = (permissions: string[]) => {
+const filterNavData = (permissions: string[]) => {
 	return navData
 		.map((group) => {
 			// 过滤组内的项目
@@ -62,9 +64,8 @@ export const filterNavData = (permissions: string[]) => {
  * @returns Filtered navigation data
  */
 export const useFilteredNavData = () => {
-	return navData;
-	// const permissions = useUserPermissions();
-	// const permissionCodes = useMemo(() => permissions.map((p) => p.code), [permissions]);
-	// const filteredNavData = useMemo(() => filterNavData(permissionCodes), [permissionCodes]);
-	// return filteredNavData;
+	const permissions = useUserPermissions();
+	const permissionCodes = useMemo(() => permissions.map((p) => p.code), [permissions]);
+	const filteredNavData = useMemo(() => filterNavData(permissionCodes), [permissionCodes]);
+	return filteredNavData;
 };
