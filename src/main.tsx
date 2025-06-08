@@ -14,6 +14,17 @@ import { routesSection } from "./routes/sections";
 await registerLocalIcons();
 worker.start({ onUnhandledRequest: "bypass" });
 
+if (import.meta.env.DEV) {
+	import("react-scan").then(({ scan }) => {
+		scan({
+			enabled: true,
+			showToolbar: true,
+			log: false,
+			animationSpeed: "fast",
+		});
+	});
+}
+
 const router = createHashRouter([
 	{
 		Component: () => (
