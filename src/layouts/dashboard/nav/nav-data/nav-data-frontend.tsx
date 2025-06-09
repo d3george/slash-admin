@@ -227,7 +227,7 @@ export const frontendNavData: NavProps["data"] = [
 				children: [
 					{
 						title: "sys.nav.external_link",
-						path: "/link/external_link",
+						path: "/link/external-link",
 					},
 					{
 						title: "sys.nav.iframe",

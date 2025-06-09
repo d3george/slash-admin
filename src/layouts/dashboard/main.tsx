@@ -47,7 +47,7 @@ const Main = () => {
 			<Suspense fallback={<LineLoading />}>
 				<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
 					<main
-						className={cn("w-full mx-auto", {
+						className={cn("w-full h-full mx-auto", {
 							"xl:max-w-screen-xl": !themeStretch,
 						})}
 					>

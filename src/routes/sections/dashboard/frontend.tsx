@@ -85,8 +85,8 @@ export const frontendDashboardRoutes: RouteObject[] = [
 		path: "link",
 		children: [
 			{ index: true, element: <Navigate to="iframe" replace /> },
-			{ path: "iframe", element: Component("/pages/sys/others/link/iframe") },
-			{ path: "external-link", element: Component("/pages/sys/others/link/external-link") },
+			{ path: "iframe", element: Component("/pages/sys/others/link/iframe", { src: "https://ant.design/index-cn" }) },
+			{ path: "external-link", element: Component("/pages/sys/others/link/external-link", { src: "https://ant.design/index-cn" }) },
 		],
 	},
 	{
