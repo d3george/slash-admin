@@ -164,7 +164,7 @@ export default function PermissionPage() {
 									</Text>
 								}
 							>
-								<Button variant="destructive">Add</Button>
+								<Button variant="secondary">Add</Button>
 							</AuthGuard>
 						</CodeBlock>
 					</div>
