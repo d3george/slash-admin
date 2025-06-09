@@ -6,7 +6,7 @@ import { useState } from "react";
 import { type CodeBlockProps, HighlightCode } from ".";
 import { Icon } from "../icon";
 
-export function CodeBlock({ title, description, children, code, className, lang = "typescript", ...props }: CodeBlockProps) {
+export function CodeBlock({ title, description, children, code, options, className, ...props }: CodeBlockProps) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -24,7 +24,7 @@ export function CodeBlock({ title, description, children, code, className, lang 
 						</Button>
 					</CollapsibleTrigger>
 					<CollapsibleContent className="flex flex-col gap-2 w-full">
-						<HighlightCode code={code} lang={lang} />
+						<HighlightCode code={code} options={options} />
 					</CollapsibleContent>
 				</Collapsible>
 			</CardFooter>

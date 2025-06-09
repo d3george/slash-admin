@@ -1,5 +1,6 @@
 import { Icon } from "@/components/icon";
 import { useCopyToClipboard } from "@/hooks";
+import { useSettings } from "@/store/settingStore";
 import { Button } from "@/ui/button";
 import { cn } from "@/utils";
 import { useState } from "react";
@@ -8,12 +9,13 @@ import type { HighlightCodeProps } from ".";
 
 const highlighter = await createHighlighter({
 	langs: ["javascript", "typescript", "jsx", "tsx"],
-	themes: ["github-dark"],
+	themes: ["min-dark", "snazzy-light"],
 });
 
-export function HighlightCode({ code, lang = "typescript", className, withCopy = true }: HighlightCodeProps) {
+export function HighlightCode({ code, options, className, withCopy = true }: HighlightCodeProps) {
 	const { copyFn } = useCopyToClipboard();
 	const [hovered, setHovered] = useState(false);
+	const { themeMode } = useSettings();
 
 	return (
 		<div className={cn("w-full relative group", className)} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
@@ -26,8 +28,8 @@ export function HighlightCode({ code, lang = "typescript", className, withCopy =
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
 				dangerouslySetInnerHTML={{
 					__html: highlighter.codeToHtml(code, {
-						lang,
-						theme: "github-dark",
+						lang: options?.lang || "typescript",
+						theme: options?.theme || (themeMode === "dark" ? "min-dark" : "snazzy-light"),
 						transformers: [
 							{
 								pre(node) {
@@ -35,6 +37,7 @@ export function HighlightCode({ code, lang = "typescript", className, withCopy =
 								},
 							},
 						],
+						...options,
 					}),
 				}}
 			/>
