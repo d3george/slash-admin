@@ -21,17 +21,7 @@ import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
 export default function SettingButton() {
 	const { t } = useTranslation();
 	const settings = useSettings();
-	const {
-		themeMode,
-		themeColorPresets,
-		themeLayout,
-		themeStretch,
-		breadCrumb,
-		darkSidebar,
-		fontSize,
-		fontFamily,
-		accordion,
-	} = settings;
+	const { themeMode, themeColorPresets, themeLayout, themeStretch, breadCrumb, fontSize, fontFamily } = settings;
 	const { setSettings } = useSettingActions();
 
 	const updateSettings = (partialSettings: Partial<SettingsType>) => {
@@ -70,7 +60,7 @@ export default function SettingButton() {
 				</Button>
 			</SheetTrigger>
 			<SheetContent style={sheetContentBgStyle} className="gap-0">
-				<SheetHeader className="flex flex-row items-center justify-between px-6 py-4 border border-b shrink-0">
+				<SheetHeader className="flex flex-row items-center justify-between px-6 py-4 shrink-0">
 					<SheetTitle>{t("sys.settings.title")}</SheetTitle>
 					<SheetDescription />
 				</SheetHeader>
@@ -80,25 +70,11 @@ export default function SettingButton() {
 						<div>
 							<div className="mb-3 text-base font-semibold text-text-secondary">{t("sys.settings.mode")}</div>
 							<div className="flex flex-row gap-4">
-								<Card
-									onClick={() => updateSettings({ themeMode: ThemeMode.Light })}
-									className="flex flex-1 h-20 cursor-pointer items-center justify-center"
-								>
-									<Icon
-										icon="local:ic-settings-mode-sun"
-										size="24"
-										color={themeMode === ThemeMode.Light ? themeVars.colors.palette.primary.default : ""}
-									/>
+								<Card onClick={() => updateSettings({ themeMode: ThemeMode.Light })} className="flex flex-1 h-20 cursor-pointer items-center justify-center">
+									<Icon icon="local:ic-settings-mode-sun" size="24" color={themeMode === ThemeMode.Light ? themeVars.colors.palette.primary.default : ""} />
 								</Card>
-								<Card
-									onClick={() => updateSettings({ themeMode: ThemeMode.Dark })}
-									className="flex flex-1 h-20 cursor-pointer items-center justify-center"
-								>
-									<Icon
-										icon="local:ic-settings-mode-moon"
-										size="24"
-										color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ""}
-									/>
+								<Card onClick={() => updateSettings({ themeMode: ThemeMode.Dark })} className="flex flex-1 h-20 cursor-pointer items-center justify-center">
+									<Icon icon="local:ic-settings-mode-moon" size="24" color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ""} />
 								</Card>
 							</div>
 						</div>
@@ -107,10 +83,7 @@ export default function SettingButton() {
 						<div>
 							<div className="mb-3 text-base font-semibold text-text-secondary">{t("sys.settings.layout")}</div>
 							<div className="grid grid-cols-3 gap-4">
-								<Card
-									onClick={() => updateSettings({ themeLayout: ThemeLayout.Vertical })}
-									className="flex h-16 cursor-pointer flex-1 flex-row p-0 gap-1"
-								>
+								<Card onClick={() => updateSettings({ themeLayout: ThemeLayout.Vertical })} className="flex h-16 cursor-pointer flex-1 flex-row p-0 gap-1">
 									<div className="flex h-full w-7 flex-col gap-1 p-1">
 										<div
 											className="h-2 w-2 shrink-0 rounded"
@@ -140,10 +113,7 @@ export default function SettingButton() {
 										/>
 									</div>
 								</Card>
-								<Card
-									onClick={() => updateSettings({ themeLayout: ThemeLayout.Horizontal })}
-									className="flex h-16 cursor-pointer flex-1 p-0 gap-0"
-								>
+								<Card onClick={() => updateSettings({ themeLayout: ThemeLayout.Horizontal })} className="flex h-16 cursor-pointer flex-1 p-0 gap-0">
 									<div className="flex h-full w-7 gap-1 p-1 items-center flex-0">
 										<div
 											className="h-2 w-2 shrink-0 rounded"
@@ -173,29 +143,14 @@ export default function SettingButton() {
 										/>
 									</div>
 								</Card>
-								<Card
-									onClick={() => updateSettings({ themeLayout: ThemeLayout.Mini })}
-									className="h-16 cursor-pointer flex-1 p-0 gap-0 flex-row"
-								>
+								<Card onClick={() => updateSettings({ themeLayout: ThemeLayout.Mini })} className="h-16 cursor-pointer flex-1 p-0 gap-0 flex-row">
 									<div className="flex h-full w-7 gap-1 p-1 items-center flex-0 flex-col">
-										<div
-											className="h-2 w-2 shrink-0 rounded"
-											style={{ background: layoutBackground(ThemeLayout.Mini) }}
-										/>
-										<div
-											className="h-1 w-full shrink-0 rounded opacity-50"
-											style={{ background: layoutBackground(ThemeLayout.Mini) }}
-										/>
-										<div
-											className="h-1 w-full shrink-0 rounde opacity-20"
-											style={{ background: layoutBackground(ThemeLayout.Mini) }}
-										/>
+										<div className="h-2 w-2 shrink-0 rounded" style={{ background: layoutBackground(ThemeLayout.Mini) }} />
+										<div className="h-1 w-full shrink-0 rounded opacity-50" style={{ background: layoutBackground(ThemeLayout.Mini) }} />
+										<div className="h-1 w-full shrink-0 rounde opacity-20" style={{ background: layoutBackground(ThemeLayout.Mini) }} />
 									</div>
 									<div className="h-full w-full flex-1 grow p-1">
-										<div
-											className="h-full w-full rounded opacity-20"
-											style={{ background: layoutBackground(ThemeLayout.Mini) }}
-										/>
+										<div className="h-full w-full rounded opacity-20" style={{ background: layoutBackground(ThemeLayout.Mini) }} />
 									</div>
 								</Card>
 							</div>
@@ -213,25 +168,16 @@ export default function SettingButton() {
 								</Tooltip>
 							</div>
 
-							<Card
-								onClick={() => updateSettings({ themeStretch: !themeStretch })}
-								className="flex h-20 w-full cursor-pointer items-center justify-center"
-							>
+							<Card onClick={() => updateSettings({ themeStretch: !themeStretch })} className="flex h-20 w-full cursor-pointer items-center justify-center">
 								<div
 									className={cn("flex w-1/2 items-center justify-between", themeStretch && "w-full")}
 									style={{
 										transition: "width 300ms 0ms",
 									}}
 								>
-									<Icon
-										icon={themeStretch ? "solar:alt-arrow-left-outline" : "solar:alt-arrow-right-outline"}
-										size={20}
-									/>
+									<Icon icon={themeStretch ? "solar:alt-arrow-left-outline" : "solar:alt-arrow-right-outline"} size={20} />
 									<div className="flex grow border-b border-dashed" />
-									<Icon
-										icon={themeStretch ? "solar:alt-arrow-left-outline" : "solar:alt-arrow-right-outline"}
-										size={20}
-									/>
+									<Icon icon={themeStretch ? "solar:alt-arrow-left-outline" : "solar:alt-arrow-right-outline"} size={20} />
 								</div>
 							</Card>
 						</div>
@@ -249,10 +195,7 @@ export default function SettingButton() {
 										<div style={{ color: color.default }}>
 											<Icon
 												icon="mdi:circle"
-												className={cn(
-													"scale-100 transition-all duration-300 ease-in-out",
-													themeColorPresets === preset && "scale-150",
-												)}
+												className={cn("scale-100 transition-all duration-300 ease-in-out", themeColorPresets === preset && "scale-150")}
 											/>
 										</div>
 									</Card>
@@ -287,13 +230,7 @@ export default function SettingButton() {
 							</div>
 
 							<div className="my-4 text-sm font-semibold text-text-disabled">{t("sys.settings.size")}</div>
-							<Slider
-								min={12}
-								max={20}
-								step={1}
-								defaultValue={[fontSize]}
-								onValueChange={(value) => updateSettings({ fontSize: value[0] })}
-							/>
+							<Slider min={12} max={20} step={1} defaultValue={[fontSize]} onValueChange={(value) => updateSettings({ fontSize: value[0] })} />
 						</div>
 
 						{/* Page config */}
@@ -308,31 +245,21 @@ export default function SettingButton() {
 									<div>{t("sys.settings.multiTab")}</div>
 									<Switch checked={multiTab} onCheckedChange={(checked) => updateSettings({ multiTab: checked })} />
 								</div> */}
-								<div className="flex items-center justify-between text-sm text-text-disabled">
+								{/* <div className="flex items-center justify-between text-sm text-text-disabled">
 									<div>{t("sys.settings.darkSidebar")}</div>
-									<Switch
-										checked={darkSidebar}
-										onCheckedChange={(checked) => updateSettings({ darkSidebar: checked })}
-									/>
-								</div>
-								<div className="flex items-center justify-between text-sm text-text-disabled">
+									<Switch checked={darkSidebar} onCheckedChange={(checked) => updateSettings({ darkSidebar: checked })} />
+								</div> */}
+								{/* <div className="flex items-center justify-between text-sm text-text-disabled">
 									<div>{t("sys.settings.accordion")}</div>
 									<Switch checked={accordion} onCheckedChange={(checked) => updateSettings({ accordion: checked })} />
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>
 				</ScrollArea>
 				<SheetFooter className="px-6 py-4 border border-t shrink-0">
-					<Button
-						variant="outline"
-						className="w-full border-dashed text-text-primary hover:border-primary hover:text-primary"
-						onClick={toggleFullScreen}
-					>
-						<div
-							className="flex items-center justify-center"
-							aria-label={isFullscreen ? t("sys.settings.exitFullscreen") : t("sys.settings.fullscreen")}
-						>
+					<Button variant="outline" className="w-full border-dashed text-text-primary hover:border-primary hover:text-primary" onClick={toggleFullScreen}>
+						<div className="flex items-center justify-center" aria-label={isFullscreen ? t("sys.settings.exitFullscreen") : t("sys.settings.fullscreen")}>
 							{isFullscreen ? (
 								<>
 									<Icon icon="local:ic-settings-exit-fullscreen" />
