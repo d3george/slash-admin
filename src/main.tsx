@@ -10,11 +10,13 @@ import worker from "./_mock";
 import { registerLocalIcons } from "./components/icon";
 import PageError from "./pages/sys/error/PageError";
 import { routesSection } from "./routes/sections";
+import { urlJoin } from "./utils";
 
 const { VITE_APP_BASE_PATH = "/" } = import.meta.env;
 
 await registerLocalIcons();
-worker.start({ onUnhandledRequest: "bypass", serviceWorker: { url: `${VITE_APP_BASE_PATH}/mockServiceWorker.js` } });
+
+worker.start({ onUnhandledRequest: "bypass", serviceWorker: { url: urlJoin(VITE_APP_BASE_PATH, "mockServiceWorker.js") } });
 
 if (import.meta.env.DEV) {
 	import("react-scan").then(({ scan }) => {
