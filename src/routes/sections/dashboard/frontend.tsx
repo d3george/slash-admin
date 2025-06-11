@@ -41,7 +41,7 @@ export const frontendDashboardRoutes: RouteObject[] = [
 			{
 				path: "system",
 				children: [
-					{ index: true, element: <Navigate to="organization" replace /> },
+					{ index: true, element: <Navigate to="permission" replace /> },
 					{ path: "permission", element: Component("/pages/management/system/permission") },
 					{ path: "role", element: Component("/pages/management/system/role") },
 					{ path: "user", element: Component("/pages/management/system/user") },
