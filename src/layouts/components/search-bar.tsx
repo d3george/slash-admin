@@ -106,7 +106,7 @@ const SearchBar = () => {
 				</div>
 			</Button>
 
-			<CommandDialog open={open} onOpenChange={setOpen} modal={false}>
+			<CommandDialog open={open} onOpenChange={setOpen}>
 				<CommandInput placeholder="Type a command or search..." value={searchQuery} onValueChange={setSearchQuery} />
 				<CommandList className="min-h-[400px]">
 					<CommandEmpty>No results found.</CommandEmpty>
