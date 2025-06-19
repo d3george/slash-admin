@@ -37,7 +37,13 @@ const generateProps = (metaInfo: MenuMetaInfo) => {
 	return props;
 };
 
-const convert = (items: MenuTree[], parent?: MenuTree): RouteObject[] => {
+/**
+ * convert menu to route
+ * @param items
+ * @param parent
+ * @returns
+ */
+const convertToRoute = (items: MenuTree[], parent?: MenuTree): RouteObject[] => {
 	const routes: RouteObject[] = [];
 
 	const processItem = (item: MenuTree) => {
@@ -61,7 +67,7 @@ const convert = (items: MenuTree[], parent?: MenuTree): RouteObject[] => {
 								index: true,
 								element: <Navigate to={getRoutePath(firstChild.path, item.path)} replace />,
 							},
-							...convert(children, item),
+							...convertToRoute(children, item),
 						],
 					});
 				}
@@ -85,4 +91,4 @@ const convert = (items: MenuTree[], parent?: MenuTree): RouteObject[] => {
 	return routes;
 };
 
-export const backendDashboardRoutes = convert(convertFlatToTree(DB_MENU));
+export const backendDashboardRoutes = convertToRoute(convertFlatToTree(DB_MENU));

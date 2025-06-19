@@ -11,7 +11,7 @@ const convertChildren = (children?: MenuTree[]): NavItemDataProps[] => {
 	return children.map((child) => ({
 		title: child.name,
 		path: child.path || "",
-		icon: child.icon ? <Icon icon={child.icon} size="24" /> : null,
+		icon: child.icon ? typeof child.icon === "string" ? <Icon icon={child.icon} size="24" /> : child.icon : null,
 		caption: child.caption,
 		info: child.info ? <Badge variant="default">{child.info}</Badge> : null,
 		disabled: child.disabled,

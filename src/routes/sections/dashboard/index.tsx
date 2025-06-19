@@ -8,7 +8,7 @@ import { frontendDashboardRoutes } from "./frontend";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE, VITE_APP_ROUTER_MODE: ROUTER_MODE } = import.meta.env;
 
-export const getRoutes = (): RouteObject[] => {
+const getRoutes = (): RouteObject[] => {
 	if (ROUTER_MODE === "frontend") {
 		return frontendDashboardRoutes;
 	}

@@ -1,3 +1,4 @@
+import type { NavItemDataProps } from "@/components/nav/types";
 import type { BasicStatus, PermissionType } from "./enum";
 
 export interface UserToken {
@@ -81,17 +82,8 @@ export interface Menu extends CommonOptions, MenuMetaInfo {
 	type: PermissionType;
 }
 
-export type MenuMetaInfo = {
-	path?: string; // nav path
-	icon?: string; // nav icon
-	caption?: string; // nav caption
-	info?: string; // nav info
-	disabled?: boolean; // nav disabled
+export type MenuMetaInfo = Partial<Pick<NavItemDataProps, "path" | "icon" | "caption" | "info" | "disabled" | "auth" | "hidden">> & {
 	externalLink?: URL;
-	auth?: string[];
-	hidden?: boolean;
-
-	// type: MENU
 	component?: string;
 };
 

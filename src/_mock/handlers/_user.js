@@ -43,7 +43,6 @@ const signIn = http.post(`/api${UserApi.SignIn}`, async ({ request }) => {
 });
 
 const userList = http.get("/api/user", async () => {
-	await delay(1000);
 	return HttpResponse.json(
 		Array.from({ length: 10 }).map(() => ({
 			fullname: faker.person.fullName(),

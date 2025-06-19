@@ -14,7 +14,9 @@ function App({ children }: { children: React.ReactNode }) {
 		<HelmetProvider>
 			<QueryClientProvider client={new QueryClient()}>
 				<ThemeProvider adapters={[AntdAdapter]}>
+					{/* TODO: remove this in production environment */}
 					<VercelAnalytics />
+
 					<Helmet>
 						<title>Slash Admin</title>
 						<link rel="icon" href={Logo} />

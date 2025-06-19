@@ -12,18 +12,10 @@ type NavItemRendererProps = {
  * Handles disabled, external link, clickable child container, and internal link logic.
  */
 export const NavItemRenderer: React.FC<NavItemRendererProps> = ({ item, className, children }) => {
-	const { disabled, externalLink, hasChild, path, onClick } = item;
+	const { disabled, hasChild, path, onClick } = item;
 
 	if (disabled) {
 		return <div className={className}>{children}</div>;
-	}
-
-	if (externalLink) {
-		return (
-			<a href={path} target="_blank" rel="noopener noreferrer" className={className}>
-				{children}
-			</a>
-		);
 	}
 
 	if (hasChild) {

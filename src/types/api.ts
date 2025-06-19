@@ -1,5 +1,5 @@
-export interface Result<T = any> {
+export interface Result<T = unknown> {
 	status: number;
 	message: string;
-	data?: T;
+	data: T;
 }
