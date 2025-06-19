@@ -1,7 +1,7 @@
 import useUserStore from "@/store/userStore";
+import { BasicStatus, PermissionType } from "@/types/enum";
 import { faker } from "@faker-js/faker";
 
-import { BasicStatus, PermissionType } from "#/enum";
 /**
  * Organization data mock
  */
@@ -505,7 +505,15 @@ const OTHERS_PERMISSION = [
 	},
 ];
 
-export const PERMISSION_LIST = [DASHBOARD_PERMISSION, MANAGEMENT_PERMISSION, COMPONENTS_PERMISSION, FUNCTIONS_PERMISSION, MENU_LEVEL_PERMISSION, ERRORS_PERMISSION, ...OTHERS_PERMISSION];
+export const PERMISSION_LIST = [
+	DASHBOARD_PERMISSION,
+	MANAGEMENT_PERMISSION,
+	COMPONENTS_PERMISSION,
+	FUNCTIONS_PERMISSION,
+	MENU_LEVEL_PERMISSION,
+	ERRORS_PERMISSION,
+	...OTHERS_PERMISSION,
+];
 
 /**
  * User role mock
@@ -562,7 +570,7 @@ if (import.meta.hot) {
 	import.meta.hot.accept((newModule) => {
 		if (!newModule) return;
 
-		const { DEFAULT_USER, TEST_USER, PERMISSION_LIST } = newModule;
+		const { DEFAULT_USER, TEST_USER } = newModule;
 
 		const {
 			userInfo,

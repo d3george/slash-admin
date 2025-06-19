@@ -1,5 +1,6 @@
+import { ResultStuts } from "@/types/enum";
 import { convertFlatToTree } from "@/utils/tree";
-import { http, HttpResponse, delay } from "msw";
+import { http, HttpResponse } from "msw";
 import { DB_MENU } from "../assets_backup";
 
 const menuList = http.get("/api/menu", async () => {
@@ -8,12 +9,12 @@ const menuList = http.get("/api/menu", async () => {
 		{
 			message: "",
 			data: menuTree,
-			status: 0,
+			status: ResultStuts.SUCCESS, // business status
 		},
 		{
-			status: 200, // 200 表示成功
+			status: 200, // http status
 		},
 	);
 });
 
-export default [menuList];
+export { menuList };

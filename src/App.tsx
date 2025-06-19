@@ -9,14 +9,23 @@ import Toast from "./components/toast";
 import { AntdAdapter } from "./theme/adapter/antd.adapter";
 import { ThemeProvider } from "./theme/theme-provider";
 
+if (import.meta.env.DEV) {
+	import("react-scan").then(({ scan }) => {
+		scan({
+			enabled: false,
+			showToolbar: true,
+			log: false,
+			animationSpeed: "fast",
+		});
+	});
+}
+
 function App({ children }: { children: React.ReactNode }) {
 	return (
 		<HelmetProvider>
 			<QueryClientProvider client={new QueryClient()}>
 				<ThemeProvider adapters={[AntdAdapter]}>
-					{/* TODO: remove this in production environment */}
-					<VercelAnalytics />
-
+					<VercelAnalytics debug={import.meta.env.PROD} />
 					<Helmet>
 						<title>Slash Admin</title>
 						<link rel="icon" href={Logo} />

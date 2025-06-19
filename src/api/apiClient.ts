@@ -3,7 +3,7 @@ import userStore from "@/store/userStore";
 import axios, { type AxiosRequestConfig, type AxiosError, type AxiosResponse } from "axios";
 import { toast } from "sonner";
 import type { Result } from "#/api";
-import { ResultEnum } from "#/enum";
+import { ResultStuts } from "#/enum";
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -23,8 +23,7 @@ axiosInstance.interceptors.response.use(
 	(res: AxiosResponse<Result<any>>) => {
 		if (!res.data) throw new Error(t("sys.api.apiRequestFailed"));
 		const { status, data, message } = res.data;
-		const hasSuccess = Reflect.has(res.data, "status") && status === ResultEnum.SUCCESS;
-		if (hasSuccess) {
+		if (status === ResultStuts.SUCCESS) {
 			return data;
 		}
 		throw new Error(message || t("sys.api.apiRequestFailed"));
