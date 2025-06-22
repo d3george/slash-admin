@@ -1,0 +1,78 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Guidelines for Current Project Tech Stack and Structure
+globs: 
+alwaysApply: true
+---
+
+# Project Specification
+
+## Tech Stack
+
+### Frontend Frameworks & Build Tools
+*   **[React](mdc:https:/react.dev) (v19)**: The core UI framework for the project.
+*   **[Vite](mdc:https:/s.dev)**: A build tool for dement and bundling, providing a fast dev servmized build output.
+*   **[TypeScript](https://www.typesc**: The primary development language, addchecking to JavaScript.
+
+### UI & Styling
+*  SS](https://tailwindcss.com)**: A utility framework for rapidly building custom user interf  **[Vanilla-extract](mdc:https:/vanilct.style)**: For writing zeles in TypeScript.
+*   **[Framer Motion](mdc:httpr.com/motion)**: A powerful animatireating fluid animations in Re
+*   **[shadcn/ui](mdc:https:/ui.shadcn.com)**: Provides a set of reusable componon top of Radix UI and Tailwind CSS.Iconify](https://iconify.design)**: For using v icon sets within the project.
+
+### State t
+*   **[Zustand](mdc:https:/zustand-demo.pmnd.rs)**: bal state management library.
+*   **[TanStaery (React Query)](mdc:https:/tanstack.com/query/latest)**: For managing server state, handling data fetching, caching, and synchronization.
+
+### Routing
+*   **[React Router](mdc:https:/reactrouter.com)**: For handling in-app navigation and routing.
+
+### Forms
+*   **[React Hook Form](mdc:https:/react-hook-form.com)**: For building high-performance, flexible, and easy-to-use forms.
+*   **[Zod](mdc:https:/zod.dev)**: A TypeScript-first schema declaration and validation library, often used with React Hook Form.
+
+### Data Visualization
+*   **[ApexCharts](mdc:https:/apexcharts.com)**: For creating interactive charts and data visualizations.
+
+### Internationalization
+*   **[i18next](mdc:https:/www.i18next.com)**: A powerful internationalization framework for multi-language support.
+
+### Dev Tools & Code Quality
+*   **[Biome](mdc:https:/biomejs.dev)**: A high-performance code formatter and linter to ensure consistent code style and quality.
+*   **[Lefthook](mdc:https:/github.com/evilmartians/lefthook)**: A Git hooks manager for automatically running scripts (e.g., lint, test) before commits.
+*   **[Mock Service Worker (MSW)](mdc:https:/mswjs.io)**: For intercepting requests and returning mock data in the dev environment, enabling frontend-only development and testing.
+*   **[pnpm](mdc:https:/pnpm.io)**: As the package manager.
+
+## Project Structure
+```
+├─ public/
+│  └─ mockServiceWorker.js      # MSW startup script (auto-generated service worker script)
+├─ src/                         # Core source code
+│  ├─ _mock/                    # Mock API data and handlers
+│  ├─ api/                      # API request services
+│  ├─ assets/                   # Static assets (images, icons)
+│  ├─ components/               # Global reusable components
+│  ├─ hooks/                    # Custom React Hooks
+│  ├─ layouts/                  # Page layout components
+│  ├─ locales/                  # Internationalization (i18n) language packs
+│  ├─ pages/                    # Page components (corresponding to routes)
+│  ├─ routes/                   # Routing configuration
+│  ├─ store/                    # Global state management (Zustand)
+│  ├─ theme/                    # Theme and style configuration
+│  ├─ types/                    # Global TypeScript type definitions
+│  ├─ ui/                       # Base UI components (shadcn/ui)
+│  ├─ utils/                    # Utility functions
+│  ├─ App.tsx                   # Root application component
+│  └─ main.tsx                  # Application entry point
+├─ .env                         # Environment variables file 
+├─ .env.development             # Development environment variables 
+├─ .env.production              # Production environment variables 
+├─ package.json                 # Project dependencies and scripts
+├─ vite.config.ts                # Vite configuration file
+├─ tailwind.config.ts            # Tailwind CSS configuration file
+├─ tsconfig.ts                   # TypeScript configuration file
+└─ biome.json                   # Biome formatter/linter configuration
+```
