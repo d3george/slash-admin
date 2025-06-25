@@ -1,5 +1,6 @@
 import Character3 from "@/assets/images/characters/character_3.png";
 import { Icon } from "@/components/icon";
+import { GLOBAL_CONFIG } from "@/global-config";
 import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
 
@@ -15,11 +16,8 @@ export default function BannerCard() {
 					<h4>Welcome back 👋 </h4>
 					<h4>{username}</h4>
 				</div>
-				<div
-					style={{ color: themeVars.colors.palette.primary.dark }}
-					className="mx-auto mb-6 mt-4 max-w-sm text-sm opacity-80 md:mx-0"
-				>
-					Welcome to join the Discord channel to discuss everything about Slash Admin, or you can visite my blog:
+				<div style={{ color: themeVars.colors.palette.primary.dark }} className="mx-auto mb-6 mt-4 max-w-sm text-sm opacity-80 md:mx-0">
+					Welcome to join the Discord channel to discuss everything about {GLOBAL_CONFIG.appName}, or you can visite my blog:
 					<div>
 						<a
 							href="https://blog.slashspaces.com"
@@ -131,109 +129,42 @@ function BannerSvg() {
 			<path fill="url(#paint5_linear_1_51)" d="M151.154 76h-41.55l12.645 7.727L151.154 76z" />
 			<path fill="url(#paint6_linear_1_51)" d="M151.154 76l-26.668 12.332 4.501 15.715L151.154 76z" />
 			<path fill="url(#paint7_linear_1_51)" d="M117.435 95.279l7.051-6.947L151.154 76 117.435 95.28z" />
-			<path
-				fill={themeVars.colors.palette.primary.dark}
-				d="M117.435 95.279l7.051-6.947L151.154 76l-28.905 7.727-4.814 11.552z"
-			/>
+			<path fill={themeVars.colors.palette.primary.dark} d="M117.435 95.279l7.051-6.947L151.154 76l-28.905 7.727-4.814 11.552z" />
 			<defs>
-				<filter
-					id="filter0_f_1_51"
-					width="101.56"
-					height="100.65"
-					x="232.807"
-					y="109.722"
-					colorInterpolationFilters="sRGB"
-					filterUnits="userSpaceOnUse"
-				>
+				<filter id="filter0_f_1_51" width="101.56" height="100.65" x="232.807" y="109.722" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
 					<feFlood floodOpacity="0" result="BackgroundImageFix" />
 					<feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
 					<feGaussianBlur result="effect1_foregroundBlur_1_51" stdDeviation="10" />
 				</filter>
-				<linearGradient
-					id="paint0_linear_1_51"
-					x1="47.397"
-					x2="47.397"
-					y1="107.95"
-					y2="281.395"
-					gradientUnits="userSpaceOnUse"
-				>
+				<linearGradient id="paint0_linear_1_51" x1="47.397" x2="47.397" y1="107.95" y2="281.395" gradientUnits="userSpaceOnUse">
 					<stop stopColor={themeVars.colors.palette.primary.light} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.dark} />
 				</linearGradient>
-				<linearGradient
-					id="paint1_linear_1_51"
-					x1="248.43"
-					x2="248.43"
-					y1="128.061"
-					y2="169.533"
-					gradientUnits="userSpaceOnUse"
-				>
+				<linearGradient id="paint1_linear_1_51" x1="248.43" x2="248.43" y1="128.061" y2="169.533" gradientUnits="userSpaceOnUse">
 					<stop stopColor={themeVars.colors.palette.primary.light} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.dark} />
 				</linearGradient>
-				<linearGradient
-					id="paint2_linear_1_51"
-					x1="248.43"
-					x2="248.43"
-					y1="128.061"
-					y2="169.533"
-					gradientUnits="userSpaceOnUse"
-				>
+				<linearGradient id="paint2_linear_1_51" x1="248.43" x2="248.43" y1="128.061" y2="169.533" gradientUnits="userSpaceOnUse">
 					<stop stopColor={themeVars.colors.palette.primary.light} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.dark} />
 				</linearGradient>
-				<linearGradient
-					id="paint3_linear_1_51"
-					x1="248.43"
-					x2="248.43"
-					y1="128.061"
-					y2="169.533"
-					gradientUnits="userSpaceOnUse"
-				>
+				<linearGradient id="paint3_linear_1_51" x1="248.43" x2="248.43" y1="128.061" y2="169.533" gradientUnits="userSpaceOnUse">
 					<stop stopColor={themeVars.colors.palette.primary.light} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.dark} />
 				</linearGradient>
-				<linearGradient
-					id="paint4_linear_1_51"
-					x1="248.43"
-					x2="248.43"
-					y1="128.061"
-					y2="169.533"
-					gradientUnits="userSpaceOnUse"
-				>
+				<linearGradient id="paint4_linear_1_51" x1="248.43" x2="248.43" y1="128.061" y2="169.533" gradientUnits="userSpaceOnUse">
 					<stop stopColor={themeVars.colors.palette.primary.light} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.dark} />
 				</linearGradient>
-				<linearGradient
-					id="paint5_linear_1_51"
-					x1="109.604"
-					x2="109.604"
-					y1="76"
-					y2="104.047"
-					gradientUnits="userSpaceOnUse"
-				>
+				<linearGradient id="paint5_linear_1_51" x1="109.604" x2="109.604" y1="76" y2="104.047" gradientUnits="userSpaceOnUse">
 					<stop stopColor={themeVars.colors.palette.primary.light} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.dark} />
 				</linearGradient>
-				<linearGradient
-					id="paint6_linear_1_51"
-					x1="109.604"
-					x2="109.604"
-					y1="76"
-					y2="104.047"
-					gradientUnits="userSpaceOnUse"
-				>
+				<linearGradient id="paint6_linear_1_51" x1="109.604" x2="109.604" y1="76" y2="104.047" gradientUnits="userSpaceOnUse">
 					<stop stopColor={themeVars.colors.palette.primary.light} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.dark} />
 				</linearGradient>
-				<linearGradient
-					id="paint7_linear_1_51"
-					x1="109.604"
-					x2="109.604"
-					y1="76"
-					y2="104.047"
-					gradientUnits="userSpaceOnUse"
-				>
+				<linearGradient id="paint7_linear_1_51" x1="109.604" x2="109.604" y1="76" y2="104.047" gradientUnits="userSpaceOnUse">
 					<stop stopColor={themeVars.colors.palette.primary.light} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.dark} />
 				</linearGradient>

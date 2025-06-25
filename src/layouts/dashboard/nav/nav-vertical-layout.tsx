@@ -1,6 +1,7 @@
 import Logo from "@/components/logo";
 import { NavMini, NavVertical } from "@/components/nav";
 import type { NavProps } from "@/components/nav/types";
+import { GLOBAL_CONFIG } from "@/global-config";
 import { useSettings } from "@/store/settingStore";
 import { ThemeLayout } from "@/types/enum";
 import { ScrollArea } from "@/ui/scroll-area";
@@ -29,7 +30,7 @@ export function NavVerticalLayout({ data, className }: Props) {
 			>
 				<div className="flex items-center gap-2">
 					<Logo />
-					{themeLayout !== ThemeLayout.Mini && <span className="text-xl font-bold text-primary">Slash Admin</span>}
+					{themeLayout !== ThemeLayout.Mini && <span className="text-xl font-bold">{GLOBAL_CONFIG.appName}</span>}
 				</div>
 			</div>
 

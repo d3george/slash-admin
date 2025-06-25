@@ -1,14 +1,9 @@
+import { GLOBAL_CONFIG } from "@/global-config";
 import { useRouter } from "@/routes/hooks";
 import { type Dispatch, type SetStateAction, useCallback } from "react";
 import type { KeepAliveTab } from "../types";
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
-
-export function useTabOperations(
-	tabs: KeepAliveTab[],
-	setTabs: Dispatch<SetStateAction<KeepAliveTab[]>>,
-	activeTabRoutePath: string,
-) {
+export function useTabOperations(tabs: KeepAliveTab[], setTabs: Dispatch<SetStateAction<KeepAliveTab[]>>, activeTabRoutePath: string) {
 	const { push } = useRouter();
 
 	const closeTab = useCallback(
@@ -43,7 +38,7 @@ export function useTabOperations(
 
 	const closeAll = useCallback(() => {
 		setTabs([]);
-		push(HOMEPAGE);
+		push(GLOBAL_CONFIG.homepage);
 	}, [push, setTabs]);
 
 	const closeLeft = useCallback(

@@ -6,6 +6,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { MotionLazy } from "./components/animate/motion-lazy";
 import { RouteLoadingProgress } from "./components/loading";
 import Toast from "./components/toast";
+import { GLOBAL_CONFIG } from "./global-config";
 import { AntdAdapter } from "./theme/adapter/antd.adapter";
 import { ThemeProvider } from "./theme/theme-provider";
 
@@ -27,7 +28,7 @@ function App({ children }: { children: React.ReactNode }) {
 				<ThemeProvider adapters={[AntdAdapter]}>
 					<VercelAnalytics debug={import.meta.env.PROD} />
 					<Helmet>
-						<title>Slash Admin</title>
+						<title>{GLOBAL_CONFIG.appName}</title>
 						<link rel="icon" href={Logo} />
 					</Helmet>
 					<Toast />

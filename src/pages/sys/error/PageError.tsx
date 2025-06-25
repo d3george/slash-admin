@@ -1,6 +1,7 @@
 import Character5 from "@/assets/images/characters/character_5.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
+import { GLOBAL_CONFIG } from "@/global-config";
 import { useRouter } from "@/routes/hooks";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
@@ -9,14 +10,12 @@ import { m } from "motion/react";
 import type { FallbackProps } from "react-error-boundary";
 import { Helmet } from "react-helmet-async";
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
-
 export default function PageError({ error, resetErrorBoundary }: FallbackProps) {
 	const { replace } = useRouter();
 
 	const goHome = () => {
 		resetErrorBoundary();
-		replace(HOMEPAGE);
+		replace(GLOBAL_CONFIG.homepage);
 	};
 	return (
 		<div>
@@ -69,10 +68,7 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 								fill="#C4CDD5"
 								d="M186.797 136.682a1.812 1.812 0 01-.525 1.378l-1.858 1.858 16.887 16.893a2.174 2.174 0 01-3.074 3.074l-16.886-16.892-1.859 1.859a1.803 1.803 0 01-2.685-.157l-7.916-9.615a1.8 1.8 0 01.14-2.392l5.091-5.093a1.8 1.8 0 012.392-.14l9.612 7.917c.404.32.651.797.681 1.31zM209.727 165.24l5.441 5.443a2.174 2.174 0 01-3.074 3.075l-5.441-5.443a2.175 2.175 0 013.074-3.075z"
 							/>
-							<path
-								fill="#F4F6F8"
-								d="M209.727 165.24l5.441 5.443a2.176 2.176 0 010 3.075l-8.515-8.518a2.172 2.172 0 013.074 0z"
-							/>
+							<path fill="#F4F6F8" d="M209.727 165.24l5.441 5.443a2.176 2.176 0 010 3.075l-8.515-8.518a2.172 2.172 0 013.074 0z" />
 							<path
 								fill="url(#paint0_linear_1_160)"
 								d="M238.581 194.781l-2.399 2.399c-3.425 3.431-9.046 3.315-12.32-.318l-16.564-18.475a2.176 2.176 0 01.081-2.989l9.309-9.313a2.174 2.174 0 012.978-.091l18.552 16.422.004.004c3.646 3.243 3.812 8.907.359 12.361z"
@@ -104,10 +100,7 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 								d="M249.707 290.362v3.307c0 .846-.436 1.545-1.012 1.621l-51.668 4.676a3.684 3.684 0 01-1.148-.024v-17.813l6.148-.749 4.889.703 2.886-.552 6.598 1.917 33.307 6.914z"
 								opacity="0.3"
 							/>
-							<path
-								fill="url(#paint4_linear_1_160)"
-								d="M209.803 281.53l-50.89 6.74 36.707 6.904c.445.115.909.142 1.366.08l52.72-4.892-39.903-8.832z"
-							/>
+							<path fill="url(#paint4_linear_1_160)" d="M209.803 281.53l-50.89 6.74 36.707 6.904c.445.115.909.142 1.366.08l52.72-4.892-39.903-8.832z" />
 							<path
 								fill="url(#paint5_linear_1_160)"
 								d="M228.459 287.623c0 2.42-7.627 4.302-18.157 4.79-2.657.121-5.499.156-8.447.088-14.491-.333-26.135-3.025-26.135-6.005a.81.81 0 01.02-.214h-.02l.06-.143a.834.834 0 01.054-.139l3.342-8.724 4.037-10.526 5.652-14.753 4.325-11.293 5.381-14.042c.673-1.758 1.922-2.851 3.269-2.851.183-.001.364.019.542.059 1.138.248 2.153 1.272 2.737 2.795l5.427 14.14 4.337 11.441 5.715 15.05 4.106 10.813.065.006 3.42 8.787c.147.239.27.479.27.721z"
@@ -125,82 +118,33 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 							<path fill="#FFAB00" d="M126.108 103.182a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
 							<path fill="#36B37E" d="M134.108 103.182a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
 							<defs>
-								<linearGradient
-									id="paint0_linear_1_160"
-									x1="166.881"
-									x2="166.881"
-									y1="125.454"
-									y2="199.671"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint0_linear_1_160" x1="166.881" x2="166.881" y1="125.454" y2="199.671" gradientUnits="userSpaceOnUse">
 									<stop stopColor={themeVars.colors.palette.primary.darker} />
 									<stop offset="1" stopColor={themeVars.colors.palette.primary.darker} />
 								</linearGradient>
-								<linearGradient
-									id="paint1_linear_1_160"
-									x1="166.881"
-									x2="166.881"
-									y1="125.454"
-									y2="199.671"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint1_linear_1_160" x1="166.881" x2="166.881" y1="125.454" y2="199.671" gradientUnits="userSpaceOnUse">
 									<stop stopColor={themeVars.colors.palette.primary.darker} />
 									<stop offset="1" stopColor={themeVars.colors.palette.primary.darker} />
 								</linearGradient>
-								<linearGradient
-									id="paint2_linear_1_160"
-									x1="158.912"
-									x2="249.709"
-									y1="290.69"
-									y2="290.69"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint2_linear_1_160" x1="158.912" x2="249.709" y1="290.69" y2="290.69" gradientUnits="userSpaceOnUse">
 									<stop stopColor="#FFC444" />
 									<stop offset="1" stopColor="#F36F56" />
 								</linearGradient>
-								<linearGradient
-									id="paint3_linear_1_160"
-									x1="226.725"
-									x2="225.966"
-									y1="290.498"
-									y2="292.586"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint3_linear_1_160" x1="226.725" x2="225.966" y1="290.498" y2="292.586" gradientUnits="userSpaceOnUse">
 									<stop stopColor="#FFC444" />
 									<stop offset="0.59" stopColor="#F8924F" />
 									<stop offset="1" stopColor="#F36F56" />
 								</linearGradient>
-								<linearGradient
-									id="paint4_linear_1_160"
-									x1="210.87"
-									x2="210.566"
-									y1="288.399"
-									y2="289.237"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint4_linear_1_160" x1="210.87" x2="210.566" y1="288.399" y2="289.237" gradientUnits="userSpaceOnUse">
 									<stop stopColor="#FFC444" />
 									<stop offset="0.59" stopColor="#F8924F" />
 									<stop offset="1" stopColor="#F36F56" />
 								</linearGradient>
-								<linearGradient
-									id="paint5_linear_1_160"
-									x1="202.974"
-									x2="199.672"
-									y1="204.073"
-									y2="311.415"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint5_linear_1_160" x1="202.974" x2="199.672" y1="204.073" y2="311.415" gradientUnits="userSpaceOnUse">
 									<stop stopColor="#FFC444" />
 									<stop offset="1" stopColor="#F36F56" />
 								</linearGradient>
-								<linearGradient
-									id="paint6_linear_1_160"
-									x1="175.72"
-									x2="210.394"
-									y1="258.172"
-									y2="258.172"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint6_linear_1_160" x1="175.72" x2="210.394" y1="258.172" y2="258.172" gradientUnits="userSpaceOnUse">
 									<stop stopColor="#FFC444" />
 									<stop offset="1" stopColor="#F36F56" />
 								</linearGradient>

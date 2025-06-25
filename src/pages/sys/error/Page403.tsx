@@ -1,14 +1,13 @@
 import Character4 from "@/assets/images/characters/character_4.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
+import { GLOBAL_CONFIG } from "@/global-config";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
 import { Text, Title } from "@/ui/typography";
 import { m } from "motion/react";
 import { Helmet } from "react-helmet-async";
 import { NavLink } from "react-router";
-
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export default function Page403() {
 	return (
@@ -79,14 +78,7 @@ export default function Page403() {
 								d="M169.245 261h-11.3v-66.6c0-4.5-1.5-5.6-5.6-5.6-5.3.3-13.8-1.4-17.1 4l-55 68.3c-2.7 3.3-1.8 8.8-2 12.8 0 4.1 1.5 5.6 5.6 5.6h54.7v21.7c-.9 7.9 9.1 5.2 13.7 5.6 4.1 0 5.6-1.5 5.6-5.6v-21.7h11.4c4.4 0 5.6-1.5 5.6-5.6-.3-4.8 2-13.8-5.6-12.9zm-30.8 0h-36l36-44.4V261zm263.9 12.1c1.9 44.8-78.7 46-78 1.2h19.3c-.8 15.3 18.3 21.4 30.1 15.5 12.7-6 12.3-29.1-1-34-5.6-2.8-16.6-2-23.1-2.1v-15.1c6.3-.2 17.6.9 22.7-2.3 11.6-5.5 11.9-25.4.9-31.4-10.8-5.9-29 .1-28.2 14.5h-19.4c-.5-28.1 35.4-38.5 57-28.2 23.4 9 24.1 45.5-.2 54.6 12.3 3.9 20.1 14.6 19.9 27.3z"
 							/>
 							<defs>
-								<linearGradient
-									id="paint0_linear_1_129"
-									x1="78.245"
-									x2="78.245"
-									y1="187.309"
-									y2="307.306"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint0_linear_1_129" x1="78.245" x2="78.245" y1="187.309" y2="307.306" gradientUnits="userSpaceOnUse">
 									<stop stopColor={themeVars.colors.palette.primary.default} />
 									<stop offset="1" stopColor={themeVars.colors.palette.primary.default} />
 								</linearGradient>
@@ -94,7 +86,7 @@ export default function Page403() {
 						</svg>
 					</m.div>
 
-					<NavLink to={HOMEPAGE}>
+					<NavLink to={GLOBAL_CONFIG.homepage}>
 						<Button size="lg">Go to Home</Button>
 					</NavLink>
 				</MotionContainer>

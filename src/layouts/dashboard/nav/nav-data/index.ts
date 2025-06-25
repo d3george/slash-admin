@@ -1,12 +1,12 @@
 import type { NavItemDataProps } from "@/components/nav/types";
+import { GLOBAL_CONFIG } from "@/global-config";
 import { useUserPermissions } from "@/store/userStore";
 import { checkAny } from "@/utils";
 import { useMemo } from "react";
 import { backendNavData } from "./nav-data-backend";
 import { frontendNavData } from "./nav-data-frontend";
 
-const { VITE_APP_ROUTER_MODE: ROUTER_MODE } = import.meta.env;
-const navData = ROUTER_MODE === "backend" ? backendNavData : frontendNavData;
+const navData = GLOBAL_CONFIG.routerMode === "backend" ? backendNavData : frontendNavData;
 
 /**
  * 递归处理导航数据，过滤掉没有权限的项目

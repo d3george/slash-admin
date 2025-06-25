@@ -1,4 +1,5 @@
 import { LineLoading } from "@/components/loading";
+import { GLOBAL_CONFIG } from "@/global-config";
 import DashboardLayout from "@/layouts/dashboard";
 import LoginAuthGuard from "@/routes/components/login-auth-guard";
 import { Suspense } from "react";
@@ -6,10 +7,8 @@ import { Navigate, type RouteObject } from "react-router";
 import { backendDashboardRoutes } from "./backend";
 import { frontendDashboardRoutes } from "./frontend";
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE, VITE_APP_ROUTER_MODE: ROUTER_MODE } = import.meta.env;
-
 const getRoutes = (): RouteObject[] => {
-	if (ROUTER_MODE === "frontend") {
+	if (GLOBAL_CONFIG.routerMode === "frontend") {
 		return frontendDashboardRoutes;
 	}
 	return backendDashboardRoutes;
@@ -24,6 +23,6 @@ export const dashboardRoutes: RouteObject[] = [
 				</Suspense>
 			</LoginAuthGuard>
 		),
-		children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...getRoutes()],
+		children: [{ index: true, element: <Navigate to={GLOBAL_CONFIG.homepage} replace /> }, ...getRoutes()],
 	},
 ];

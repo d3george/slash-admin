@@ -8,15 +8,14 @@ import App from "./App";
 import { worker } from "./_mock";
 import menuService from "./api/services/menuService";
 import { registerLocalIcons } from "./components/icon";
+import { GLOBAL_CONFIG } from "./global-config";
 import PageError from "./pages/sys/error/PageError";
 import { routesSection } from "./routes/sections";
 import { urlJoin } from "./utils";
 
-const { VITE_APP_BASE_PATH = "/", VITE_APP_ROUTER_MODE } = import.meta.env;
-
 await registerLocalIcons();
-await worker.start({ onUnhandledRequest: "bypass", serviceWorker: { url: urlJoin(VITE_APP_BASE_PATH, "mockServiceWorker.js") } });
-if (VITE_APP_ROUTER_MODE === "backend") {
+await worker.start({ onUnhandledRequest: "bypass", serviceWorker: { url: urlJoin(GLOBAL_CONFIG.basePath, "mockServiceWorker.js") } });
+if (GLOBAL_CONFIG.routerMode === "backend") {
 	await menuService.getMenuList();
 }
 
@@ -33,7 +32,7 @@ const router = createBrowserRouter(
 		},
 	],
 	{
-		basename: VITE_APP_BASE_PATH,
+		basename: GLOBAL_CONFIG.basePath,
 	},
 );
 

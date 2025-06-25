@@ -1,6 +1,7 @@
 import CyanBlur from "@/assets/images/background/cyan-blur.png";
 import RedBlur from "@/assets/images/background/red-blur.png";
 import { Icon } from "@/components/icon";
+import { GLOBAL_CONFIG } from "@/global-config";
 import { themeVars } from "@/theme/theme.css";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
@@ -49,10 +50,7 @@ export default function NoticeButton() {
 					</SheetHeader>
 					<NoticeTab />
 					<SheetFooter className="border-t">
-						<div
-							style={{ color: themeVars.colors.text.primary }}
-							className="flex h-10 w-full items-center justify-center font-semibold"
-						>
+						<div style={{ color: themeVars.colors.text.primary }} className="flex h-10 w-full items-center justify-center font-semibold">
 							View All
 						</div>
 					</SheetFooter>
@@ -107,7 +105,7 @@ function NoticeTab() {
 					<div>
 						<span className="font-medium">{faker.person.fullName()}</span>
 						<span className="text-xs font-light"> mentioned you in</span>
-						<span className="font-medium">Slash Admin</span>
+						<span className="font-medium">{GLOBAL_CONFIG.appName}</span>
 					</div>
 					<span className="text-xs font-light opacity-60">1 days ago</span>
 					<div className="mt-2">

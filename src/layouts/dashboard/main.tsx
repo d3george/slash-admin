@@ -1,5 +1,6 @@
 import { AuthGuard } from "@/components/auth/auth-guard";
 import { LineLoading } from "@/components/loading";
+import { GLOBAL_CONFIG } from "@/global-config";
 import Page403 from "@/pages/sys/error/Page403";
 import { useSettings } from "@/store/settingStore";
 import { ThemeLayout } from "@/types/enum";
@@ -12,8 +13,6 @@ import { Outlet, useLocation } from "react-router";
 import { backendNavData } from "./nav/nav-data/nav-data-backend";
 import { frontendNavData } from "./nav/nav-data/nav-data-frontend";
 
-const { VITE_APP_ROUTER_MODE: ROUTER_MODE } = import.meta.env;
-
 /**
  * find auth by path
  * @param path
@@ -24,7 +23,7 @@ function findAuthByPath(path: string): string[] {
 	return foundItem?.auth || [];
 }
 
-const navData = ROUTER_MODE === "frontend" ? clone(frontendNavData) : backendNavData;
+const navData = GLOBAL_CONFIG.routerMode === "frontend" ? clone(frontendNavData) : backendNavData;
 const allItems = navData.reduce((acc: any[], group) => {
 	const flattenedItems = flattenTrees(group.items);
 	return concat(acc, flattenedItems);

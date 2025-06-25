@@ -1,14 +1,13 @@
 import Character8 from "@/assets/images/characters/character_8.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
+import { GLOBAL_CONFIG } from "@/global-config";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
 import { Text, Title } from "@/ui/typography";
 import { m } from "motion/react";
 import { Helmet } from "react-helmet-async";
 import { NavLink } from "react-router";
-
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export default function Page500() {
 	return (
@@ -121,7 +120,7 @@ export default function Page500() {
 						</svg>
 					</m.div>
 
-					<NavLink to={HOMEPAGE}>
+					<NavLink to={GLOBAL_CONFIG.homepage}>
 						<Button size="lg">Go to Home</Button>
 					</NavLink>
 				</MotionContainer>

@@ -1,3 +1,4 @@
+import { GLOBAL_CONFIG } from "@/global-config";
 import { t } from "@/locales/i18n";
 import userStore from "@/store/userStore";
 import axios, { type AxiosRequestConfig, type AxiosError, type AxiosResponse } from "axios";
@@ -6,7 +7,7 @@ import type { Result } from "#/api";
 import { ResultStuts } from "#/enum";
 
 const axiosInstance = axios.create({
-	baseURL: import.meta.env.VITE_APP_BASE_API,
+	baseURL: GLOBAL_CONFIG.baseApi,
 	timeout: 50000,
 	headers: { "Content-Type": "application/json;charset=utf-8" },
 });

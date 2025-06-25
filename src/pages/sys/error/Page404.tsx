@@ -1,14 +1,13 @@
 import Character6 from "@/assets/images/characters/character_6.png";
 import MotionContainer from "@/components/animate/motion-container";
 import { varBounce } from "@/components/animate/variants/bounce";
+import { GLOBAL_CONFIG } from "@/global-config";
 import { themeVars } from "@/theme/theme.css";
 import { Button } from "@/ui/button";
 import { Text, Title } from "@/ui/typography";
 import { m } from "motion/react";
 import { Helmet } from "react-helmet-async";
 import { NavLink } from "react-router";
-
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export default function Page404() {
 	return (
@@ -27,8 +26,7 @@ export default function Page404() {
 
 					<m.div variants={varBounce().in}>
 						<Text variant="caption" color="secondary" className="text-center">
-							Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be sure to check
-							your spelling.
+							Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be sure to check your spelling.
 						</Text>
 					</m.div>
 
@@ -71,14 +69,7 @@ export default function Page404() {
 								opacity="0.08"
 							/>
 							<defs>
-								<linearGradient
-									id="paint0_linear_1_119"
-									x1="78.3"
-									x2="78.3"
-									y1="187.77"
-									y2="305.935"
-									gradientUnits="userSpaceOnUse"
-								>
+								<linearGradient id="paint0_linear_1_119" x1="78.3" x2="78.3" y1="187.77" y2="305.935" gradientUnits="userSpaceOnUse">
 									<stop stopColor={themeVars.colors.palette.primary.default} />
 									<stop offset="1" stopColor={themeVars.colors.palette.primary.default} stopOpacity="0" />
 								</linearGradient>
@@ -86,7 +77,7 @@ export default function Page404() {
 						</svg>
 					</m.div>
 
-					<NavLink to={HOMEPAGE}>
+					<NavLink to={GLOBAL_CONFIG.homepage}>
 						<Button size="lg">Go to Home</Button>
 					</NavLink>
 				</MotionContainer>
