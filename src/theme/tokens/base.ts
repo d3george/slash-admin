@@ -58,6 +58,7 @@ export const baseThemeTokens = {
 	},
 	zIndex: {
 		appBar: "10", // z-index of the navigation bar at the top of the application
+		nav: "20", // z-index of the navigation bar at the top of the application
 		drawer: "50", // z-index of the drawer/navigation menu
 		modal: "50", // z-index of the modal/dialog
 		snackbar: "50", // z-index of the notification/toast/alert/message
