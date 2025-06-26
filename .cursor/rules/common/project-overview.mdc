@@ -16,15 +16,18 @@ alwaysApply: true
 ### Frontend Frameworks & Build Tools
 *   **[React](mdc:https:/react.dev) (v19)**: The core UI framework for the project.
 *   **[Vite](mdc:https:/s.dev)**: A build tool for dement and bundling, providing a fast dev servmized build output.
-*   **[TypeScript](https://www.typesc**: The primary development language, addchecking to JavaScript.
+*   **[TypeScript](mdc:https:/www.typesc)**: The primary development language, addchecking to JavaScript.
 
 ### UI & Styling
-*  SS](https://tailwindcss.com)**: A utility framework for rapidly building custom user interf  **[Vanilla-extract](mdc:https:/vanilct.style)**: For writing zeles in TypeScript.
-*   **[Framer Motion](mdc:httpr.com/motion)**: A powerful animatireating fluid animations in Re
-*   **[shadcn/ui](mdc:https:/ui.shadcn.com)**: Provides a set of reusable componon top of Radix UI and Tailwind CSS.Iconify](https://iconify.design)**: For using v icon sets within the project.
+*   **[Tailwind CSS](mdc:https:/tailwindcss.com)**: A utility-first CSS framework for rapidly building custom user interfaces.
+*   **[Vanilla-extract](mdc:https:/vanilla-extract.style)**: For writing zero-runtime, type-safe CSS styles in TypeScript 
+*   **[Framer Motion](mdc:https:/www.framer.com/motion)**: A powerion library for creating fluid animations in React.
+*   **[shadcn/ui](mdc:https:/ui.shadcn.com)**: Provides a set of reusable components built on top of Radix UI and Tailwind CSS.
+*   **[Iconify](mdc:https:/iconify.design)**: For using various icon sets within the project.
 
-### State t
-*   **[Zustand](mdc:https:/zustand-demo.pmnd.rs)**: bal state management library.
+
+### State Management
+*   **[Zustand](mdc:https:/zustand-demo.pmnd.rs)**: A lightweight and fast global state management library.
 *   **[TanStaery (React Query)](mdc:https:/tanstack.com/query/latest)**: For managing server state, handling data fetching, caching, and synchronization.
 
 ### Routing
