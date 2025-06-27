@@ -11,7 +11,7 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 
 	const goHome = () => {
 		resetErrorBoundary();
-		replace(GLOBAL_CONFIG.homepage);
+		replace(GLOBAL_CONFIG.defaultRoute);
 	};
 
 	const svg = (

@@ -23,6 +23,6 @@ export const dashboardRoutes: RouteObject[] = [
 				</Suspense>
 			</LoginAuthGuard>
 		),
-		children: [{ index: true, element: <Navigate to={GLOBAL_CONFIG.homepage} replace /> }, ...getRoutes()],
+		children: [{ index: true, element: <Navigate to={GLOBAL_CONFIG.defaultRoute} replace /> }, ...getRoutes()],
 	},
 ];

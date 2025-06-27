@@ -38,7 +38,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 		setLoading(true);
 		try {
 			await signIn(values);
-			navigatge(GLOBAL_CONFIG.homepage, { replace: true });
+			navigatge(GLOBAL_CONFIG.defaultRoute, { replace: true });
 			toast.success("Sign in success!", {
 				closeButton: true,
 			});

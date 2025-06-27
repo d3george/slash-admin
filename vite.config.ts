@@ -7,7 +7,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), "");
-	const base = env.VITE_APP_BASE_PATH || "/";
+	const base = env.VITE_APP_PUBLIC_PATH || "/";
 	const isProduction = mode === "production";
 
 	return {

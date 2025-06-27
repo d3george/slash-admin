@@ -7,7 +7,7 @@ import type { Result } from "#/api";
 import { ResultStuts } from "#/enum";
 
 const axiosInstance = axios.create({
-	baseURL: GLOBAL_CONFIG.baseApi,
+	baseURL: GLOBAL_CONFIG.apiBaseUrl,
 	timeout: 50000,
 	headers: { "Content-Type": "application/json;charset=utf-8" },
 });

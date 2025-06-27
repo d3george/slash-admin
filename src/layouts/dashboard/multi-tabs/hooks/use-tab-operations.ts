@@ -38,7 +38,7 @@ export function useTabOperations(tabs: KeepAliveTab[], setTabs: Dispatch<SetStat
 
 	const closeAll = useCallback(() => {
 		setTabs([]);
-		push(GLOBAL_CONFIG.homepage);
+		push(GLOBAL_CONFIG.defaultRoute);
 	}, [push, setTabs]);
 
 	const closeLeft = useCallback(

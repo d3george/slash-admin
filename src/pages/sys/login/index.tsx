@@ -16,7 +16,7 @@ function LoginPage() {
 	const token = useUserToken();
 
 	if (token.accessToken) {
-		return <Navigate to={GLOBAL_CONFIG.homepage} replace />;
+		return <Navigate to={GLOBAL_CONFIG.defaultRoute} replace />;
 	}
 
 	return (

@@ -21,5 +21,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# vite 打包分析产物
+# env
+.env
+
+# vite build stats
 stats.html
