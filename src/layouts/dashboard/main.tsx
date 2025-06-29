@@ -3,7 +3,6 @@ import { LineLoading } from "@/components/loading";
 import { GLOBAL_CONFIG } from "@/global-config";
 import Page403 from "@/pages/sys/error/Page403";
 import { useSettings } from "@/store/settingStore";
-import { ThemeLayout } from "@/types/enum";
 import { ScrollArea } from "@/ui/scroll-area";
 import { cn } from "@/utils";
 import { flattenTrees } from "@/utils/tree";
@@ -30,18 +29,13 @@ const allItems = navData.reduce((acc: any[], group) => {
 }, []);
 
 const Main = () => {
-	const { themeStretch, themeLayout } = useSettings();
+	const { themeStretch } = useSettings();
 
 	const { pathname } = useLocation();
 	const currentNavAuth = findAuthByPath(pathname);
 
-	const heightClass =
-		themeLayout === ThemeLayout.Horizontal
-			? "h-[calc(100vh-var(--layout-header-height)-var(--layout-nav-height-horizontal)-10px)]"
-			: "h-[calc(100vh-var(--layout-header-height))]";
-
 	return (
-		<ScrollArea className={cn("flex w-full grow ", heightClass)}>
+		<ScrollArea className={cn("flex w-full grow")}>
 			<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
 				<main
 					data-slot="slash-layout-main"
