@@ -140,8 +140,10 @@ export default function PermissionModal({ title, show, formValue, onOk, onCancel
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Parent</FormLabel>
-									<FormControl>
+									<FormControl asChild={false} id="tree12312312">
 										<TreeSelect
+											getPopupContainer={() => document.getElementById("tree12312312") as any}
+											style={{ width: "100%" }}
 											fieldNames={{
 												label: "name",
 												value: "id",
@@ -185,8 +187,10 @@ export default function PermissionModal({ title, show, formValue, onOk, onCancel
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Component</FormLabel>
-										<FormControl>
+										<FormControl asChild={false} id="com123">
 											<AutoComplete
+												getPopupContainer={() => document.getElementById("tree12312312") as any}
+												style={{ width: "100%" }}
 												options={compOptions}
 												filterOption={(input, option) => ((option?.label || "") as string).toLowerCase().includes(input.toLowerCase())}
 												value={field.value || ""}
