@@ -35,25 +35,25 @@ const Main = () => {
 	const { pathname } = useLocation();
 	const currentNavAuth = findAuthByPath(pathname);
 
+	const heightClass =
+		themeLayout === ThemeLayout.Horizontal
+			? "h-[calc(100vh-var(--layout-header-height)-var(--layout-nav-height-horizontal)-10px)]"
+			: "h-[calc(100vh-var(--layout-header-height))]";
+
 	return (
-		<ScrollArea
-			data-slot="slash-layout-main"
-			className={cn("flex w-full grow bg-background p-2", {
-				"h-[calc(100vh-var(--layout-header-height))]": themeLayout !== ThemeLayout.Horizontal,
-				"h-[calc(100vh-var(--layout-header-height)-var(--layout-nav-height-horizontal)-10px)]": themeLayout === ThemeLayout.Horizontal,
-			})}
-		>
-			<Suspense fallback={<LineLoading />}>
-				<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
-					<main
-						className={cn("w-full h-full mx-auto", {
-							"xl:max-w-screen-xl": !themeStretch,
-						})}
-					>
+		<ScrollArea className={cn("flex w-full grow ", heightClass)}>
+			<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
+				<main
+					data-slot="slash-layout-main"
+					className={cn("w-full h-full mx-auto p-2", {
+						"xl:max-w-screen-xl": !themeStretch,
+					})}
+				>
+					<Suspense fallback={<LineLoading />}>
 						<Outlet />
-					</main>
-				</AuthGuard>
-			</Suspense>
+					</Suspense>
+				</main>
+			</AuthGuard>
 		</ScrollArea>
 	);
 };
