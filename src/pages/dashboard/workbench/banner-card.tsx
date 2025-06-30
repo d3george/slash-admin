@@ -1,3 +1,4 @@
+import bgImg from "@/assets/images/background/img-dropbox-bg.svg";
 import Character3 from "@/assets/images/characters/character_3.png";
 import { Icon } from "@/components/icon";
 import { GLOBAL_CONFIG } from "@/global-config";
@@ -13,7 +14,7 @@ export default function BannerCard() {
 		left: 0,
 		right: 0,
 		bottom: 0,
-		backgroundImage: "url(/src/assets/images/background/img-dropbox-bg.svg)",
+		backgroundImage: `url(${bgImg})`,
 		backgroundSize: "100%",
 		backgroundPosition: "bottom right",
 		backgroundRepeat: "no-repeat",
