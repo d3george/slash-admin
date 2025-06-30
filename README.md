@@ -1,7 +1,7 @@
 <div align="center"> 
 <br> 
 <br>
-<img src="./src/assets/images/logo.png" height="140" />
+<img src="./src/assets/icons/ic-logo.svg" height="140" />
 <h3> Slash Admin </h3>
   <p>
     <p style="font-size: 14px">

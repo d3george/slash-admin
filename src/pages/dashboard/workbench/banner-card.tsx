@@ -1,56 +1,59 @@
 import Character3 from "@/assets/images/characters/character_3.png";
 import { Icon } from "@/components/icon";
 import { GLOBAL_CONFIG } from "@/global-config";
-import { useUserInfo } from "@/store/userStore";
 import { themeVars } from "@/theme/theme.css";
+import { Button } from "@/ui/button";
+import { Text, Title } from "@/ui/typography";
+import type { CSSProperties } from "react";
 
 export default function BannerCard() {
-	const { username } = useUserInfo();
-
-	const bg = `linear-gradient(135deg, rgba(${themeVars.colors.palette.primary.lightChannel}/ .2), rgba(${themeVars.colors.palette.primary.defaultChannel}/ .2)) ${themeVars.colors.common.white}`;
-
+	const bgStyle: CSSProperties = {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundImage: "url(/src/assets/images/background/img-dropbox-bg.svg)",
+		backgroundSize: "100%",
+		backgroundPosition: "bottom right",
+		backgroundRepeat: "no-repeat",
+		opacity: 0.5,
+	};
 	return (
-		<div className="rounded-2xl p-7 flex flex-col md:flex-row" style={{ background: bg }}>
-			<div className="flex-1 text-center md:text-left">
-				<div className="mt-4 text-lg font-semibold md:text-xl" style={{ color: themeVars.colors.palette.primary.dark }}>
-					<h4>Welcome back 👋 </h4>
-					<h4>{username}</h4>
-				</div>
-				<div style={{ color: themeVars.colors.palette.primary.dark }} className="mx-auto mb-6 mt-4 max-w-sm text-sm opacity-80 md:mx-0">
-					Welcome to join the Discord channel to discuss everything about {GLOBAL_CONFIG.appName}, or you can visite my blog:
-					<div>
-						<a
-							href="https://blog.slashspaces.com"
-							target="_blank"
-							className="text-base opacity-80"
-							style={{ color: themeVars.colors.palette.primary.dark }}
-							rel="noreferrer"
-						>
-							👉 https://blog.slashspaces.com
-						</a>
+		<div className="bg-primary relative">
+			<div className="p-6 z-2 relative">
+				<div className="grid grid-cols-2 gap-4">
+					<div className="col-span-2 md:col-span-1">
+						<div className="flex flex-col gap-4">
+							<Title as="h2" className="text-white">
+								Explore Redesigned {GLOBAL_CONFIG.appName}
+							</Title>
+							<Text className="text-white">
+								The Brand new User Interface with power of Shadcn/ui Components. Explore the Endless possibilities with {GLOBAL_CONFIG.appName}.
+							</Text>
+
+							<Button variant="outline" className="w-fit bg-white text-black" onClick={() => window.open("https://discord.gg/fXemAXVNDa")}>
+								<Icon icon="carbon:logo-discord" size={24} />
+								<span className="ml-2 font-black">Join Discord</span>
+							</Button>
+						</div>
+					</div>
+
+					<div className="col-span-2 md:col-span-1">
+						<div className="w-full flex items-center justify-end">
+							<BannerSvg />
+						</div>
 					</div>
 				</div>
-				<button
-					type="button"
-					className="font-mediumtext-black m-auto flex items-center justify-center rounded-lg px-2 py-1 shadow-none md:m-0"
-					style={{ backgroundColor: themeVars.colors.palette.primary.default, color: themeVars.colors.common.white }}
-					onClick={() => window.open("https://discord.gg/fXemAXVNDa")}
-				>
-					<Icon icon="carbon:logo-discord" size={24} />
-					<span className="ml-2 font-black">Join Discord</span>
-				</button>
 			</div>
-
-			<div className="!md:max-w-[320px] mx-auto max-w-[270px]! flex-none items-center justify-center ">
-				<BannerSvg />
-			</div>
+			<div style={bgStyle} className="z-1" />
 		</div>
 	);
 }
 
 function BannerSvg() {
 	return (
-		<svg viewBox="0 0 480 360" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+		<svg viewBox="0 0 480 360" className="h-full w-full max-w-[240px]" xmlns="http://www.w3.org/2000/svg">
 			<title>Banner</title>
 			<defs>
 				<linearGradient id="BG" x1="19.496%" x2="77.479%" y1="71.822%" y2="16.69%">

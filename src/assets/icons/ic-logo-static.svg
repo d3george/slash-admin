@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="61" height="38" viewBox="0 0 61 38" fill="none">
   <defs>
     <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="var(--colors-palette-primary-light)" />
-      <stop offset="100%" stop-color="var(--colors-palette-primary-default)" />
+      <stop offset="0%" stop-color="" />
+      <stop offset="100%" stop-color="" />
     </linearGradient>
   </defs>
   <rect x="12.9901" y="7" width="13.7518" height="26.7397" rx="6.87592" transform="rotate(29.0647 12.9901 7)"

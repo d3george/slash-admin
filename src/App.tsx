@@ -1,4 +1,4 @@
-import Logo from "@/assets/images/logo.png";
+import Logo from "@/assets/icons/ic-logo-static.svg";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/react-query";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";

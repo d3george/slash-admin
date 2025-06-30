@@ -6,7 +6,7 @@ export function LineLoading() {
 	const { themeMode } = useSettings();
 
 	return (
-		<div className="flex h-full w-full flex-col items-center justify-center">
+		<div className="flex h-full min-h-screen w-full flex-col items-center justify-center">
 			<div
 				className="relative h-1.5 w-96 overflow-hidden rounded"
 				style={{

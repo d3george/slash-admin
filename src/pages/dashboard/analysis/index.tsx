@@ -246,9 +246,9 @@ export default function Analysis() {
 				</div>
 			</Card>
 
-			<div className="flex flex-col 2xl:grid grid-cols-4 gap-4">
+			<div className="flex flex-col xl:grid grid-cols-4 gap-4">
 				{/* Web analytic 主图表卡片 */}
-				<Card className="col-span-4 2xl:col-span-3">
+				<Card className="col-span-4 xl:col-span-3">
 					<CardHeader className="flex flex-row items-center justify-between pb-2">
 						<CardTitle>
 							<Title as="h3" className="text-lg">
@@ -288,8 +288,8 @@ export default function Analysis() {
 				</Card>
 
 				{/* 右侧三小卡 */}
-				<div className="2xl:col-span-1 h-full">
-					<div className="flex flex-col 2xl:flex-col xl:flex-row gap-4 h-full">
+				<div className="xl:col-span-1 h-full">
+					<div className="flex flex-col xl:flex-col md:flex-row gap-4 h-full">
 						<Card className="flex-1">
 							<CardHeader className="flex flex-row items-center justify-between pb-2">
 								<CardTitle>
