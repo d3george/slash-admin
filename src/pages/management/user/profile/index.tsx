@@ -1,9 +1,10 @@
-import CoverImage from "@/assets/images/cover/cover_4.jpg";
+import bannerImage from "@/assets/images/background/banner-1.png";
 import { Icon } from "@/components/icon";
 import { useUserInfo } from "@/store/userStore";
-import { themeVars } from "@/theme/theme.css";
-import { Card } from "@/ui/card";
-import { type CSSProperties, useState } from "react";
+import { Avatar, AvatarImage } from "@/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
+import { Text } from "@/ui/typography";
+import type { CSSProperties } from "react";
 import ConnectionsTab from "./connections-tab";
 import ProfileTab from "./profile-tab";
 import ProjectsTab from "./projects-tab";
@@ -11,12 +12,13 @@ import TeamsTab from "./teams-tab";
 
 function UserProfile() {
 	const { avatar, username } = useUserInfo();
-	const [currentTabIndex, setcurrentTabIndex] = useState(0);
 
 	const bgStyle: CSSProperties = {
-		background: `url(${CoverImage})`,
+		position: "absolute",
+		inset: 0,
+		background: `url(${bannerImage})`,
 		backgroundSize: "cover",
-		backgroundPosition: "center",
+		backgroundPosition: "50%",
 		backgroundRepeat: "no-repeat",
 	};
 
@@ -44,40 +46,34 @@ function UserProfile() {
 	];
 
 	return (
-		<div>
-			<Card className="relative mb-6 h-[300px] flex-col rounded-2xl p-0! gap-0">
-				<div style={bgStyle} className="h-full w-full">
-					<div className="flex flex-col items-center justify-center pt-12 md:absolute md:bottom-6 md:left-6 md:flex-row md:pt-0">
-						<img src={avatar} className="h-16 w-16 rounded-full md:h-32 md:w-32" alt="" />
-						<div className="ml-6 mt-6 flex flex-col justify-center md:mt-0">
-							<span className="mb-2 text-2xl font-medium text-common-white">{username}</span>
-							<span className="text-center text-text-secondary md:text-left">TS FullStack</span>
-						</div>
+		<Tabs defaultValue={tabs[0].title} className="w-full z-10">
+			<div className="relative flex flex-col justify-center items-center gap-4 p-4">
+				<div style={bgStyle} className="h-full w-full z-1" />
+				<div className="flex flex-col items-center justify-center">
+					<Avatar className="h-24 w-24">
+						<AvatarImage src={avatar} className="rounded-full" />
+					</Avatar>
+					<div className="flex flex-col justify-center items-center gap-2">
+						<Text variant="body1">{username}</Text>
+						<Text variant="body2">TS FullStack</Text>
 					</div>
 				</div>
-				<div className="z-10 min-h-[48px] w-full">
-					<div className="mx-6 flex h-full justify-center md:justify-end">
-						{tabs.map((tab, index) => (
-							<button
-								onClick={() => setcurrentTabIndex(index)}
-								key={tab.title}
-								type="button"
-								style={{
-									marginRight: index >= tabs.length - 1 ? "0px" : "40px",
-									opacity: index === currentTabIndex ? 1 : 0.5,
-									borderBottom:
-										index === currentTabIndex ? `2px solid ${themeVars.colors.palette.primary.default}` : "",
-								}}
-							>
-								{tab.icon}
-								{tab.title}
-							</button>
-						))}
-					</div>
-				</div>
-			</Card>
-			<div>{tabs[currentTabIndex].content}</div>
-		</div>
+				<TabsList className="z-5">
+					{tabs.map((tab) => (
+						<TabsTrigger key={tab.title} value={tab.title}>
+							{tab.icon}
+							{tab.title}
+						</TabsTrigger>
+					))}
+				</TabsList>
+			</div>
+
+			{tabs.map((tab) => (
+				<TabsContent key={tab.title} value={tab.title}>
+					{tab.content}
+				</TabsContent>
+			))}
+		</Tabs>
 	);
 }
 

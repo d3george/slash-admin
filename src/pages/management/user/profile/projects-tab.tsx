@@ -1,9 +1,11 @@
 import { fakeAvatars } from "@/_mock/utils";
+import { AvatarGroup } from "@/components/avatar-group";
 import { Icon } from "@/components/icon";
 import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent } from "@/ui/card";
+import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
 import dayjs from "dayjs";
 
@@ -14,7 +16,7 @@ export default function ProjectsTab() {
 			name: "Admin Template",
 			client: faker.person.fullName(),
 			desc: "Time is our most valuable asset, that is why we want to help you save it by creating…",
-			members: fakeAvatars(15),
+			members: fakeAvatars(5),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 236,
@@ -27,7 +29,7 @@ export default function ProjectsTab() {
 			name: "App Design",
 			desc: "App design combines the user interface (UI) and user experience (UX).  ",
 			client: faker.person.fullName(),
-			members: fakeAvatars(27),
+			members: fakeAvatars(7),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 236,
@@ -40,7 +42,7 @@ export default function ProjectsTab() {
 			name: "Figma Dashboard",
 			desc: "Use this template to organize your design project. Some of the key features are… ",
 			client: faker.person.fullName(),
-			members: fakeAvatars(32),
+			members: fakeAvatars(3),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 236,
@@ -53,7 +55,7 @@ export default function ProjectsTab() {
 			name: "Create Website",
 			desc: "Your domain name should reflect your products or services so that your...  ",
 			client: faker.person.fullName(),
-			members: fakeAvatars(221),
+			members: fakeAvatars(11),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 236,
@@ -66,7 +68,7 @@ export default function ProjectsTab() {
 			name: "Logo Design",
 			desc: "Premium logo designs created by top logo designers. Create the branding of business.  ",
 			client: faker.person.fullName(),
-			members: fakeAvatars(125),
+			members: fakeAvatars(5),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 232,
@@ -84,8 +86,12 @@ export default function ProjectsTab() {
 							{item.icon}
 
 							<div className="flex flex-col">
-								<span className="ml-4 text-xl opacity-70">{item.name}</span>
-								<span className="text-md ml-4 opacity-50">Client: {item.client}</span>
+								<Text variant="body1" className="ml-4">
+									{item.name}
+								</Text>
+								<Text variant="caption" className="ml-4">
+									Client: {item.client}
+								</Text>
 							</div>
 
 							<div className="ml-auto flex opacity-70">
@@ -97,15 +103,19 @@ export default function ProjectsTab() {
 
 						<main className="mt-4 w-full">
 							<div className="my-2 flex justify-between">
-								<span>
+								<Text variant="body1">
 									Start Date:
-									<span className="ml-2 opacity-50">{item.startDate.format("DD/MM/YYYY")}</span>
-								</span>
+									<Text variant="caption" className="ml-2">
+										{item.startDate.format("DD/MM/YYYY")}
+									</Text>
+								</Text>
 
-								<span>
+								<Text variant="body1">
 									Deadline:
-									<span className="ml-2 opacity-50">{item.deadline.format("DD/MM/YYYY")}</span>
-								</span>
+									<Text variant="caption" className="ml-2">
+										{item.deadline.format("DD/MM/YYYY")}
+									</Text>
+								</Text>
 							</div>
 							<span className="opacity-70">{item.desc}</span>
 						</main>
@@ -113,21 +123,28 @@ export default function ProjectsTab() {
 						<footer className="flex w-full  flex-col items-center">
 							<div className="mb-4 flex w-full justify-between">
 								<span>
-									All Hours:
-									<span className="ml-2 opacity-50">{item.allHours}</span>
+									<Text variant="body1">All Hours:</Text>
+									<Text variant="caption" className="ml-2">
+										{item.allHours}
+									</Text>
 								</span>
 
 								<Badge variant="warning">{item.deadline.diff(dayjs(), "day")} days left</Badge>
 							</div>
 							<div className="flex w-full ">
-								{item.members.map((memberAvatar) => (
-									<Avatar key={memberAvatar}>
-										<AvatarImage src={memberAvatar} />
-									</Avatar>
-								))}
+								<AvatarGroup max={3}>
+									{item.members.map((memberAvatar) => (
+										<Avatar key={memberAvatar}>
+											<AvatarImage src={memberAvatar} />
+										</Avatar>
+									))}
+								</AvatarGroup>
+
 								<div className="ml-auto flex items-center opacity-50">
 									<Icon icon="solar:chat-round-line-linear" size={24} />
-									<span className="ml-2">{item.messages}</span>
+									<Text variant="subTitle2" className="ml-2">
+										{item.messages}
+									</Text>
 								</div>
 							</div>
 						</footer>

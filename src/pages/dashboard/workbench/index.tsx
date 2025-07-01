@@ -1,3 +1,8 @@
+import avatar1 from "@/assets/images/avatars/avatar-1.png";
+import avatar2 from "@/assets/images/avatars/avatar-2.png";
+import avatar3 from "@/assets/images/avatars/avatar-3.png";
+import avatar4 from "@/assets/images/avatars/avatar-4.png";
+import avatar5 from "@/assets/images/avatars/avatar-5.png";
 import { Chart, useChart } from "@/components/chart";
 import Icon from "@/components/icon/icon";
 import { GLOBAL_CONFIG } from "@/global-config";
@@ -63,6 +68,13 @@ const projectTasks = [
 	{ label: "Figma Auto Layout", color: "#10b981" },
 ];
 
+const projectUsers = [
+	{ avatar: avatar1, name: "John Doe" },
+	{ avatar: avatar2, name: "Jane Doe" },
+	{ avatar: avatar3, name: "John Smith" },
+	{ avatar: avatar4, name: "Jane Smith" },
+	{ avatar: avatar5, name: "John Doe" },
+];
 const transactions = [
 	{ icon: "mdi:spotify", name: "Spotify Music", id: "#T11032", amount: 10000, time: "06:30 pm", status: "up" },
 	{ icon: "mdi:medium", name: "Medium", id: "#T11032", amount: -26, time: "08:30 pm", status: "down" },
@@ -226,9 +238,9 @@ export default function Workbench() {
 						{GLOBAL_CONFIG.appName}
 					</Text>
 					<div className="flex -space-x-2 mb-2">
-						{[1, 2, 3, 4, 5].map((i) => (
-							<Avatar key={i} className="inline-block w-8 h-8 rounded-full border-2 border-border">
-								<AvatarImage src={`/src/assets/images/avatars/avatar_${i}.png`} />
+						{projectUsers.map((user) => (
+							<Avatar key={user.name} className="inline-block w-8 h-8 rounded-full">
+								<AvatarImage src={user.avatar} />
 							</Avatar>
 						))}
 					</div>

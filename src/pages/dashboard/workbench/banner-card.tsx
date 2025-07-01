@@ -1,4 +1,4 @@
-import bgImg from "@/assets/images/background/img-dropbox-bg.svg";
+import bgImg from "@/assets/images/background/banner-1.png";
 import Character3 from "@/assets/images/characters/character_3.png";
 import { Icon } from "@/components/icon";
 import { GLOBAL_CONFIG } from "@/global-config";
@@ -18,7 +18,7 @@ export default function BannerCard() {
 		// ! https://vite.dev/guide/assets.html
 		backgroundImage: `url("${bgImg}")`,
 		backgroundSize: "100%",
-		backgroundPosition: "bottom right",
+		backgroundPosition: "50%",
 		backgroundRepeat: "no-repeat",
 		opacity: 0.5,
 	};
