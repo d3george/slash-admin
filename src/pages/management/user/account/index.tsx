@@ -6,7 +6,7 @@ import SecurityTab from "./security-tab";
 
 function UserAccount() {
 	return (
-		<Tabs defaultValue="1" className="w-full">
+		<Tabs defaultValue="1" orientation="vertical">
 			<TabsList>
 				<TabsTrigger value="1">
 					<div className="flex items-center">

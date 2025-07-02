@@ -6,6 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "@/ui/form";
 import { Input } from "@/ui/input";
 import { Switch } from "@/ui/switch";
 import { Textarea } from "@/ui/textarea";
+import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -40,19 +41,21 @@ export default function GeneralTab() {
 
 	return (
 		<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-			<div className="flex-1">
-				<Card className="flex-col px-6! pb-10! pt-20!">
+			<div className="col-span-1">
+				<Card className="flex-col items-center px-6! pb-10! pt-20!">
 					<UploadAvatar defaultAvatar={avatar} />
 
-					<div className="flex items-center py-6 gap-2">
-						<div>Public Profile</div>
+					<div className="flex items-center py-6 gap-2 w-40">
+						<Text variant="body1">Public Profile</Text>
 						<Switch />
 					</div>
 
-					<Button variant="destructive">Delete User</Button>
+					<Button variant="destructive" className="w-40">
+						Delete User
+					</Button>
 				</Card>
 			</div>
-			<div className="flex-2">
+			<div className="col-span-1">
 				<Card>
 					<CardContent>
 						<Form {...form}>
@@ -129,6 +132,8 @@ export default function GeneralTab() {
 										</FormItem>
 									)}
 								/>
+							</div>
+							<div className="mt-4">
 								<FormField
 									control={form.control}
 									name="about"
@@ -144,7 +149,7 @@ export default function GeneralTab() {
 							</div>
 						</Form>
 					</CardContent>
-					<CardFooter>
+					<CardFooter className="flex justify-end">
 						<Button onClick={handleClick}>Save Changes</Button>
 					</CardFooter>
 				</Card>
