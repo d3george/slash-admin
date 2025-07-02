@@ -3,7 +3,6 @@ import { LineLoading } from "@/components/loading";
 import { GLOBAL_CONFIG } from "@/global-config";
 import Page403 from "@/pages/sys/error/Page403";
 import { useSettings } from "@/store/settingStore";
-import { ScrollArea } from "@/ui/scroll-area";
 import { cn } from "@/utils";
 import { flattenTrees } from "@/utils/tree";
 import { clone, concat } from "ramda";
@@ -35,20 +34,18 @@ const Main = () => {
 	const currentNavAuth = findAuthByPath(pathname);
 
 	return (
-		<ScrollArea className={cn("flex w-full grow")} type="auto">
-			<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
-				<main
-					data-slot="slash-layout-main"
-					className={cn("w-full h-full mx-auto p-2", {
-						"xl:max-w-screen-xl": !themeStretch,
-					})}
-				>
-					<Suspense fallback={<LineLoading />}>
-						<Outlet />
-					</Suspense>
-				</main>
-			</AuthGuard>
-		</ScrollArea>
+		<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
+			<main
+				data-slot="slash-layout-main"
+				className={cn("w-full h-full mx-auto p-4", {
+					"xl:max-w-screen-xl": !themeStretch,
+				})}
+			>
+				<Suspense fallback={<LineLoading />}>
+					<Outlet />
+				</Suspense>
+			</main>
+		</AuthGuard>
 	);
 };
 

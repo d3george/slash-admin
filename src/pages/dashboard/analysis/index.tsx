@@ -218,7 +218,7 @@ export default function Analysis() {
 	return (
 		<div className="flex flex-col gap-4">
 			{/* summary 区块 */}
-			<Card className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-none shadow-none">
+			<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-none shadow-none">
 				<div>
 					<Title as="h4" className="text-xl mb-1">
 						Analysis overview
@@ -228,7 +228,7 @@ export default function Analysis() {
 					</Text>
 				</div>
 				<div className="flex items-center gap-2">
-					<Text variant="body2" className="text-muted-foreground mr-2">
+					<Text variant="body2" className="text-muted-foreground">
 						Show by:
 					</Text>
 					<Select value={timeType} onValueChange={(v) => setTimeType(v as any)}>
@@ -244,7 +244,7 @@ export default function Analysis() {
 						</SelectContent>
 					</Select>
 				</div>
-			</Card>
+			</div>
 
 			<div className="flex flex-col xl:grid grid-cols-4 gap-4">
 				{/* Web analytic 主图表卡片 */}

@@ -1,6 +1,8 @@
 import Logo from "@/components/logo";
 import { down, useMediaQuery } from "@/hooks";
 import { useSettings } from "@/store/settingStore";
+import { ScrollArea } from "@/ui/scroll-area";
+import { cn } from "@/utils";
 import { ThemeLayout } from "#/enum";
 import Header from "./header";
 import Main from "./main";
@@ -20,8 +22,10 @@ function MobileLayout() {
 	const navData = useFilteredNavData();
 	return (
 		<div className="flex flex-col">
-			<Header leftSlot={<NavMobileLayout data={navData} />} />
-			<Main />
+			<ScrollArea className={cn("flex w-full h-screen")} style={{ scrollbarGutter: "stable" }}>
+				<Header leftSlot={<NavMobileLayout data={navData} />} />
+				<Main />
+			</ScrollArea>
 		</div>
 	);
 }
@@ -37,9 +41,11 @@ function PcHorizontalLayout() {
 	const navData = useFilteredNavData();
 	return (
 		<div data-slot="slash-layout-content" className="w-full h-screen flex flex-col transition-all duration-300 ease-in-out">
-			<Header leftSlot={<Logo />} />
-			<NavHorizontalLayout data={navData} />
-			<Main />
+			<ScrollArea className={cn("flex w-full h-screen")} style={{ scrollbarGutter: "stable" }}>
+				<Header leftSlot={<Logo />} />
+				<NavHorizontalLayout data={navData} />
+				<Main />
+			</ScrollArea>
 		</div>
 	);
 }
@@ -56,13 +62,15 @@ function PcVerticalLayout() {
 			<NavVerticalLayout data={navData} />
 			<div
 				data-slot="slash-layout-content"
-				className="w-full flex flex-col transition-[padding] duration-300 ease-in-out"
+				className="w-full h-full flex flex-col transition-[padding] duration-300 ease-in-out"
 				style={{
 					paddingLeft: contentPaddingLeft,
 				}}
 			>
-				<Header />
-				<Main />
+				<ScrollArea className={cn("flex h-screen w-full")} type="always" style={{ scrollbarGutter: "stable" }}>
+					<Header />
+					<Main />
+				</ScrollArea>
 			</div>
 		</>
 	);

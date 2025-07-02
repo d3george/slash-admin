@@ -63,5 +63,6 @@ export const baseThemeTokens = {
 		modal: "50", // z-index of the modal/dialog
 		snackbar: "50", // z-index of the notification/toast/alert/message
 		tooltip: "50", // z-index of the tooltip
+		scrollbar: "100", // z-index of the scrollbar
 	},
 };

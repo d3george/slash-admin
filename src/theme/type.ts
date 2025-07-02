@@ -186,6 +186,7 @@ export const themeTokens = {
 		modal: null,
 		snackbar: null,
 		tooltip: null,
+		scrollbar: null,
 	},
 };
 

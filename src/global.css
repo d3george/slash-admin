@@ -133,23 +133,12 @@
   --sidebar-ring: var(--colors-palette-primary-default);
 }
 
-::-webkit-scrollbar {
-  width: 5px
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--sidebar);
-  border-radius: 5px;
-}
-
-
 /* slash layout */
 :root{
-  scrollbar-gutter: stable;
+  /* scrollbar-gutter: stable; */
+  height: 100%;
+  overflow: hidden; /* 禁止全局滚动条 */
+
   --layout-nav-width: 260px;
   --layout-nav-width-mini: 88px;
   --layout-nav-height-horizontal: 48px;
