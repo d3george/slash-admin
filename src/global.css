@@ -135,10 +135,6 @@
 
 /* slash layout */
 :root{
-  /* scrollbar-gutter: stable; */
-  height: 100%;
-  overflow: hidden; /* 禁止全局滚动条 */
-
   --layout-nav-width: 260px;
   --layout-nav-width-mini: 88px;
   --layout-nav-height-horizontal: 48px;

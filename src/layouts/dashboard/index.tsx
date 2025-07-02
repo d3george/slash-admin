@@ -21,12 +21,10 @@ export default function DashboardLayout() {
 function MobileLayout() {
 	const navData = useFilteredNavData();
 	return (
-		<div className="flex flex-col">
-			<ScrollArea className={cn("flex w-full h-screen")} style={{ scrollbarGutter: "stable" }}>
-				<Header leftSlot={<NavMobileLayout data={navData} />} />
-				<Main />
-			</ScrollArea>
-		</div>
+		<ScrollArea className={cn("flex w-full h-screen")} style={{ scrollbarGutter: "stable" }}>
+			<Header leftSlot={<NavMobileLayout data={navData} />} />
+			<Main />
+		</ScrollArea>
 	);
 }
 
