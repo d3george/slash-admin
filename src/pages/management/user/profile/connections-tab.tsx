@@ -2,6 +2,7 @@ import { Icon } from "@/components/icon";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card } from "@/ui/card";
+import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
 
 export default function ConnectionsTab() {
@@ -73,8 +74,12 @@ export default function ConnectionsTab() {
 				<Card className="w-full flex-col items-center" key={item.name}>
 					<img alt="" src={item.avatar} className="h-20 w-20 rounded-full" />
 
-					<span className="mt-4 text-xl font-semibold opacity-60">{item.name}</span>
-					<span className="opacity-50">{item.title}</span>
+					<Text variant="body1" className="mt-4 font-semibold">
+						{item.name}
+					</Text>
+					<Text variant="body2" className="opacity-50">
+						{item.title}
+					</Text>
 
 					<div className="mt-4 flex gap-4">
 						{item.tags.map((tag) => (
@@ -86,23 +91,37 @@ export default function ConnectionsTab() {
 
 					<div className="mt-4 flex gap-4">
 						<div className="[ flex flex-col  items-center">
-							<span className="text-xl font-semibold">{item.projects}</span>
-							<span className="opacity-60">Projects</span>
+							<Text variant="body1" className="text-xl font-semibold">
+								{item.projects}
+							</Text>
+							<Text variant="body2" className="opacity-60">
+								Projects
+							</Text>
 						</div>
 						<div className="[ flex flex-col  items-center">
-							<span className="text-xl font-semibold">{item.tasks}</span>
-							<span className="opacity-60">Tasks</span>
+							<Text variant="body1" className="text-xl font-semibold">
+								{item.tasks}
+							</Text>
+							<Text variant="body2" className="opacity-60">
+								Tasks
+							</Text>
 						</div>
 						<div className="[ flex flex-col  items-center">
-							<span className="text-xl font-semibold">{item.connections}</span>
-							<span className="opacity-60">Tasks</span>
+							<Text variant="body1" className="text-xl font-semibold">
+								{item.connections}
+							</Text>
+							<Text variant="body2" className="opacity-60">
+								Tasks
+							</Text>
 						</div>
 					</div>
 
 					<div className="mt-4 flex">
 						<Button variant={item.connected ? "default" : "outline"}>
 							<Icon icon="ri:user-add-line" size={14} />
-							<span className="ml-2">CONNECTED</span>
+							<Text variant="body2" className="ml-2">
+								CONNECTED
+							</Text>
 						</Button>
 					</div>
 				</Card>

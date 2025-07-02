@@ -143,17 +143,13 @@
 
 ::-webkit-scrollbar-thumb {
   background: var(--sidebar);
-  border-radius: 5px
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--sidebar) transparent;
+  border-radius: 5px;
 }
 
 
 /* slash layout */
 :root{
+  scrollbar-gutter: stable;
   --layout-nav-width: 260px;
   --layout-nav-width-mini: 88px;
   --layout-nav-height-horizontal: 48px;

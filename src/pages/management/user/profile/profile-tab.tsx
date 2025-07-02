@@ -194,104 +194,100 @@ export default function ProfileTab() {
 	];
 
 	return (
-		<>
-			<div className="flex flex-col md:flex-row gap-4">
-				<div className="flex-1">
-					<Card>
-						<CardHeader>
-							<CardTitle>About</CardTitle>
-							<CardDescription>{faker.lorem.paragraph()}</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<div className="flex flex-col gap-4">
-								{AboutItems.map((item) => (
-									<div className="flex" key={item.label}>
-										<div className="mr-2">{item.icon}</div>
-										<div className="mr-2">{item.label}:</div>
-										<div className="opacity-50">{item.val}</div>
-									</div>
-								))}
-							</div>
-						</CardContent>
-					</Card>
-				</div>
+		<div className="flex flex-col gap-4">
+			<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+				<Card className="col-span-1">
+					<CardHeader>
+						<CardTitle>About</CardTitle>
+						<CardDescription>{faker.lorem.paragraph()}</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<div className="flex flex-col gap-4">
+							{AboutItems.map((item) => (
+								<div className="flex" key={item.label}>
+									<div className="mr-2">{item.icon}</div>
+									<div className="mr-2">{item.label}:</div>
+									<div className="opacity-50">{item.val}</div>
+								</div>
+							))}
+						</div>
+					</CardContent>
+				</Card>
 
-				<div className="flex-2">
-					<Card>
-						<CardHeader>
-							<CardTitle>Activity Timeline</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<Timeline
-								className="mt-4! w-full"
-								items={[
-									{
-										color: themeVars.colors.palette.error.default,
-										children: (
-											<div className="flex flex-col">
-												<div className="flex items-center justify-between">
-													<Text>8 Invoices have been paid</Text>
-													<div className="opacity-50">Wednesday</div>
-												</div>
-												<Text variant="caption" color="secondary">
-													Invoices have been paid to the company.
-												</Text>
+				<Card className="col-span-1 md:col-span-2">
+					<CardHeader>
+						<CardTitle>Activity Timeline</CardTitle>
+					</CardHeader>
+					<CardContent>
+						<Timeline
+							className="mt-4! w-full"
+							items={[
+								{
+									color: themeVars.colors.palette.error.default,
+									children: (
+										<div className="flex flex-col">
+											<div className="flex items-center justify-between">
+												<Text>8 Invoices have been paid</Text>
+												<div className="opacity-50">Wednesday</div>
+											</div>
+											<Text variant="caption" color="secondary">
+												Invoices have been paid to the company.
+											</Text>
 
-												<div className="mt-2 flex items-center gap-2">
-													<Icon icon="local:file-pdf" size={30} />
-													<span className="font-medium opacity-60">invoice.pdf</span>
-												</div>
+											<div className="mt-2 flex items-center gap-2">
+												<Icon icon="local:file-pdf" size={30} />
+												<span className="font-medium opacity-60">invoice.pdf</span>
 											</div>
-										),
-									},
-									{
-										color: themeVars.colors.palette.primary.default,
-										children: (
-											<div className="flex flex-col">
-												<div className="flex items-center justify-between">
-													<Text>Create a new project for client 😎</Text>
-													<div className="opacity-50">April, 18</div>
-												</div>
-												<Text variant="caption" color="secondary">
-													Invoices have been paid to the company.
-												</Text>
-												<div className="mt-2 flex items-center gap-2">
-													<img alt="" src={faker.image.avatarGitHub()} className="h-8 w-8 rounded-full" />
-													<span className="font-medium opacity-60">{faker.person.fullName()} (client)</span>
-												</div>
+										</div>
+									),
+								},
+								{
+									color: themeVars.colors.palette.primary.default,
+									children: (
+										<div className="flex flex-col">
+											<div className="flex items-center justify-between">
+												<Text>Create a new project for client 😎</Text>
+												<div className="opacity-50">April, 18</div>
 											</div>
-										),
-									},
-									{
-										color: themeVars.colors.palette.info.default,
-										children: (
-											<div className="flex flex-col">
-												<div className="flex items-center justify-between">
-													<Text>Order #37745 from September</Text>
-													<div className="opacity-50">January, 10</div>
-												</div>
-												<Text variant="caption" color="secondary">
-													Invoices have been paid to the company.
-												</Text>
+											<Text variant="caption" color="secondary">
+												Invoices have been paid to the company.
+											</Text>
+											<div className="mt-2 flex items-center gap-2">
+												<img alt="" src={faker.image.avatarGitHub()} className="h-8 w-8 rounded-full" />
+												<span className="font-medium opacity-60">{faker.person.fullName()} (client)</span>
 											</div>
-										),
-									},
-									{
-										color: themeVars.colors.palette.warning.default,
-										children: (
-											<div className="flex flex-col">
-												<div className="flex items-center justify-between">
-													<Text>Public Meeting</Text>
-													<div className="opacity-50">September, 30</div>
-												</div>
+										</div>
+									),
+								},
+								{
+									color: themeVars.colors.palette.info.default,
+									children: (
+										<div className="flex flex-col">
+											<div className="flex items-center justify-between">
+												<Text>Order #37745 from September</Text>
+												<div className="opacity-50">January, 10</div>
 											</div>
-										),
-									},
-								]}
-							/>
-						</CardContent>
-					</Card>
-				</div>
+											<Text variant="caption" color="secondary">
+												Invoices have been paid to the company.
+											</Text>
+										</div>
+									),
+								},
+								{
+									color: themeVars.colors.palette.warning.default,
+									children: (
+										<div className="flex flex-col">
+											<div className="flex items-center justify-between">
+												<Text>Public Meeting</Text>
+												<div className="opacity-50">September, 30</div>
+											</div>
+										</div>
+									),
+								},
+							]}
+						/>
+					</CardContent>
+				</Card>
 			</div>
 			<div className="flex flex-col md:flex-row gap-4">
 				<div className="flex-1">
@@ -320,11 +316,7 @@ export default function ProfileTab() {
 												border: item.connected ? "" : `1px solid ${themeVars.colors.palette.primary.default}`,
 											}}
 										>
-											<Icon
-												icon="tdesign:user"
-												color={item.connected ? "#fff" : themeVars.colors.palette.primary.default}
-												size={20}
-											/>
+											<Icon icon="tdesign:user" color={item.connected ? "#fff" : themeVars.colors.palette.primary.default} size={20} />
 										</div>
 									</div>
 								))}
@@ -371,6 +363,6 @@ export default function ProfileTab() {
 					</Card>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

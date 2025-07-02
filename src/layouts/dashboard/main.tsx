@@ -35,7 +35,7 @@ const Main = () => {
 	const currentNavAuth = findAuthByPath(pathname);
 
 	return (
-		<ScrollArea className={cn("flex w-full grow")}>
+		<ScrollArea className={cn("flex w-full grow")} type="auto">
 			<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
 				<main
 					data-slot="slash-layout-main"
