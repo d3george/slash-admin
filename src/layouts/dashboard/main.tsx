@@ -37,9 +37,13 @@ const Main = () => {
 		<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
 			<main
 				data-slot="slash-layout-main"
-				className={cn("w-full h-full mx-auto p-4", {
+				className={cn("h-full mx-auto p-4 transition-[max-width] duration-300  ease-in-out", {
+					"max-w-full w-full": themeStretch,
 					"xl:max-w-screen-xl": !themeStretch,
 				})}
+				style={{
+					willChange: "max-width",
+				}}
 			>
 				<Suspense fallback={<LineLoading />}>
 					<Outlet />

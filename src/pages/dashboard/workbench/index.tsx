@@ -110,6 +110,7 @@ export default function Workbench() {
 		dataLabels: { enabled: false },
 		plotOptions: { pie: { donut: { size: "70%" } } },
 	});
+
 	return (
 		<div className="flex flex-col gap-4 w-full">
 			<BannerCard />
