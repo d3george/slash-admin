@@ -102,20 +102,27 @@ function FormLabel({
   )
 }
 
-function FormControl({ ...props }: React.ComponentProps<typeof SlotPrimitive.Slot>) {
+function FormControl({ asChild = true, ...props }: React.ComponentProps<typeof SlotPrimitive.Slot> & { asChild?: boolean }) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
-  return (
+  const commonProps = {
+    'data-slot': 'form-control',
+    id: formItemId,
+    'aria-describedby': !error
+      ? `${formDescriptionId}`
+      : `${formDescriptionId} ${formMessageId}`,
+    'aria-invalid': !!error
+  }
+
+  return asChild ? (
     <SlotPrimitive.Slot
-      data-slot="form-control"
-      id={formItemId}
-      aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
-      aria-invalid={!!error}
+      {...commonProps}
       {...props}
+    />
+  ) : (
+    <div
+      {...commonProps}
+      {...props as React.HTMLAttributes<HTMLDivElement>}
     />
   )
 }
