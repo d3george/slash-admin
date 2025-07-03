@@ -21,7 +21,7 @@ export default function DashboardLayout() {
 function MobileLayout() {
 	const navData = useFilteredNavData();
 	return (
-		<ScrollArea className={cn("flex w-full h-screen")} style={{ scrollbarGutter: "stable" }}>
+		<ScrollArea className={cn("flex w-full h-screen")}>
 			<Header leftSlot={<NavMobileLayout data={navData} />} />
 			<Main />
 		</ScrollArea>
@@ -39,7 +39,7 @@ function PcHorizontalLayout() {
 	const navData = useFilteredNavData();
 	return (
 		<div data-slot="slash-layout-content" className="w-full h-screen flex flex-col transition-all duration-300 ease-in-out">
-			<ScrollArea className={cn("flex w-full h-screen")} style={{ scrollbarGutter: "stable" }}>
+			<ScrollArea className={cn("flex w-full h-screen")}>
 				<Header leftSlot={<Logo />} />
 				<NavHorizontalLayout data={navData} />
 				<Main />
@@ -65,7 +65,7 @@ function PcVerticalLayout() {
 					paddingLeft: contentPaddingLeft,
 				}}
 			>
-				<ScrollArea className={cn("flex h-screen w-full")} type="always" style={{ scrollbarGutter: "stable" }}>
+				<ScrollArea className={cn("flex h-screen w-full")}>
 					<Header />
 					<Main />
 				</ScrollArea>
