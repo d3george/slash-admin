@@ -69,11 +69,11 @@ const projectTasks = [
 ];
 
 const projectUsers = [
-	{ avatar: avatar1, name: "John Doe" },
-	{ avatar: avatar2, name: "Jane Doe" },
-	{ avatar: avatar3, name: "John Smith" },
-	{ avatar: avatar4, name: "Jane Smith" },
-	{ avatar: avatar5, name: "John Doe" },
+	{ avatar: avatar1, name: "John" },
+	{ avatar: avatar2, name: "Wiliam" },
+	{ avatar: avatar3, name: "Kevin" },
+	{ avatar: avatar4, name: "Maciej" },
+	{ avatar: avatar5, name: "Kamil" },
 ];
 const transactions = [
 	{ icon: "mdi:spotify", name: "Spotify Music", id: "#T11032", amount: 10000, time: "06:30 pm", status: "up" },

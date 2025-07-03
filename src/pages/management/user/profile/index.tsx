@@ -1,9 +1,10 @@
 import bannerImage from "@/assets/images/background/banner-1.png";
 import { Icon } from "@/components/icon";
 import { useUserInfo } from "@/store/userStore";
+import { themeVars } from "@/theme/theme.css";
 import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
-import { Text } from "@/ui/typography";
+import { Text, Title } from "@/ui/typography";
 import type { CSSProperties } from "react";
 import ConnectionsTab from "./connections-tab";
 import ProfileTab from "./profile-tab";
@@ -49,12 +50,17 @@ function UserProfile() {
 		<Tabs defaultValue={tabs[0].title} className="w-full z-10">
 			<div className="relative flex flex-col justify-center items-center gap-4 p-4">
 				<div style={bgStyle} className="h-full w-full z-1" />
-				<div className="flex flex-col items-center justify-center">
+				<div className="flex flex-col items-center justify-center gap-2">
 					<Avatar className="h-24 w-24">
 						<AvatarImage src={avatar} className="rounded-full" />
 					</Avatar>
 					<div className="flex flex-col justify-center items-center gap-2">
-						<Text variant="body1">{username}</Text>
+						<div className="flex items-center gap-2">
+							<Title as="h5" className="text-xl">
+								{username}
+							</Title>
+							<Icon icon="heroicons:check-badge-solid" size={20} color={themeVars.colors.palette.primary.default} />
+						</div>
 						<Text variant="body2">TS FullStack</Text>
 					</div>
 				</div>

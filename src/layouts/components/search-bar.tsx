@@ -97,12 +97,12 @@ const SearchBar = () => {
 
 	return (
 		<>
-			<Button variant="ghost" className="bg-secondary px-2 rounded-lg" size="sm" onClick={() => setOpen(true)}>
+			<Button variant="ghost" className="bg-action-selected px-2 rounded-lg" size="sm" onClick={() => setOpen(true)}>
 				<div className="flex items-center justify-center gap-4">
 					<Icon icon="local:ic-search" size="20" />
-					<kbd className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
-						<span>⌘</span>
-						<span className="text-xs">K</span>
+					<kbd className="flex items-center justify-center rounded-md bg-primary/80 text-common-white px-1.5 py-0.5 text-sm font-semibold">
+						<Icon icon="qlementine-icons:key-cmd-16" />
+						<span>K</span>
 					</kbd>
 				</div>
 			</Button>
