@@ -11,11 +11,21 @@ export default function Iframe({ src = "" }: Props) {
 		setIsLoading(false);
 	};
 
+	const handleError = () => {
+		setIsLoading(false);
+	};
+
 	return (
-		<div className="h-full w-full relative">
+		<div className="h-full w-full relative flex flex-col items-center justify-center grow-1">
 			{isLoading && <LineLoading />}
 
-			<iframe src={src} title="iframe-page" className="h-full w-full" onLoad={handleLoad} />
+			<iframe
+				src={src}
+				title="iframe-page"
+				className="h-full w-full grow-1"
+				onLoad={handleLoad}
+				onError={handleError}
+			/>
 		</div>
 	);
 }

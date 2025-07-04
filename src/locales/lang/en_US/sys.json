@@ -143,14 +143,14 @@
 			"family": "Family",
 			"font": "Font",
 			"fullscreen": "FullScreen",
-			"layout": "Theme Layout",
-			"mode": "Theme Mode",
+			"layout": "Layout",
+			"mode": "Mode",
 			"multiTab": "Multi Tab",
 			"page": "Page",
-			"presetThemes": "Preset Themes",
+			"presetThemes": "Presets",
 			"size": "Size",
 			"stretch": "Stretch",
-			"stretchTip": "Only available at large resolutions > 1600px (xl)",
+			"stretchTip": "Only available when the screen width is greater than 1280px (xl)",
 			"title": "Settings"
 		},
 		"tab": {

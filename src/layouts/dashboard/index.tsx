@@ -10,7 +10,7 @@ export default function DashboardLayout() {
 	const isMobile = useMediaQuery(down("md"));
 
 	return (
-		<div data-slot="slash-layout-root" className="w-full bg-background">
+		<div data-slot="slash-layout-root" className="w-full min-h-screen bg-background">
 			{isMobile ? <MobileLayout /> : <PcLayout />}
 		</div>
 	);
@@ -20,6 +20,7 @@ function MobileLayout() {
 	const navData = useFilteredNavData();
 	return (
 		<>
+			{/* Sticky Header */}
 			<Header leftSlot={<NavMobileLayout data={navData} />} />
 			<Main />
 		</>
@@ -36,11 +37,14 @@ function PcLayout() {
 function PcHorizontalLayout() {
 	const navData = useFilteredNavData();
 	return (
-		<div data-slot="slash-layout-content" className="w-full h-screen flex flex-col transition-all duration-300 ease-in-out">
+		<>
+			{/* Sticky Header */}
 			<Header leftSlot={<Logo />} />
+			{/* Sticky Nav */}
 			<NavHorizontalLayout data={navData} />
+
 			<Main />
-		</div>
+		</>
 	);
 }
 
@@ -49,16 +53,18 @@ function PcVerticalLayout() {
 	const { themeLayout } = settings;
 	const navData = useFilteredNavData();
 
-	const contentPaddingLeft = themeLayout === ThemeLayout.Vertical ? "var(--layout-nav-width)" : "var(--layout-nav-width-mini)";
+	const mainPaddingLeft =
+		themeLayout === ThemeLayout.Vertical ? "var(--layout-nav-width)" : "var(--layout-nav-width-mini)";
 
 	return (
 		<>
+			{/* Fixed Header */}
 			<NavVerticalLayout data={navData} />
+
 			<div
-				data-slot="slash-layout-content"
-				className="w-full h-full flex flex-col transition-[padding] duration-300 ease-in-out"
+				className="relative w-full min-h-screen flex flex-col transition-[padding] duration-300 ease-in-out"
 				style={{
-					paddingLeft: contentPaddingLeft,
+					paddingLeft: mainPaddingLeft,
 				}}
 			>
 				<Header />
