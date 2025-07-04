@@ -1,8 +1,6 @@
-import { LineLoading } from "@/components/loading";
 import { GLOBAL_CONFIG } from "@/global-config";
 import DashboardLayout from "@/layouts/dashboard";
 import LoginAuthGuard from "@/routes/components/login-auth-guard";
-import { Suspense } from "react";
 import { Navigate, type RouteObject } from "react-router";
 import { backendDashboardRoutes } from "./backend";
 import { frontendDashboardRoutes } from "./frontend";
@@ -18,9 +16,7 @@ export const dashboardRoutes: RouteObject[] = [
 	{
 		element: (
 			<LoginAuthGuard>
-				<Suspense fallback={<LineLoading />}>
-					<DashboardLayout />
-				</Suspense>
+				<DashboardLayout />
 			</LoginAuthGuard>
 		),
 		children: [{ index: true, element: <Navigate to={GLOBAL_CONFIG.defaultRoute} replace /> }, ...getRoutes()],

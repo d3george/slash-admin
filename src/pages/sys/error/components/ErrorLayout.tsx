@@ -36,7 +36,7 @@ export default function ErrorLayout({
 					<title>{helmetTitle}</title>
 				</Helmet>
 			)}
-			<div className="m-auto max-w-[400px] flex h-screen items-center justify-center">
+			<div className="m-auto max-w-[400px] flex items-center justify-center h-full">
 				<MotionContainer className="flex flex-col items-center justify-center px-2 w-full gap-2">
 					<m.div variants={varBounce().in}>
 						<Title as="h2" className="text-center">

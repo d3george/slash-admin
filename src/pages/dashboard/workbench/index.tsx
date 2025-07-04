@@ -296,9 +296,9 @@ export default function Workbench() {
 					</div>
 					<div className="flex items-center justify-between mt-4 gap-2">
 						<Button variant="outline" className="flex-1">
-							View all Transaction History
+							View all
 						</Button>
-						<Button className="flex-1">Create new Transaction</Button>
+						<Button className="flex-1">Create new</Button>
 					</div>
 				</Card>
 				<Card className="flex flex-col p-6">

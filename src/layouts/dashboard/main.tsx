@@ -7,7 +7,7 @@ import { cn } from "@/utils";
 import { flattenTrees } from "@/utils/tree";
 import { clone, concat } from "ramda";
 import { Suspense } from "react";
-import { Outlet, useLocation } from "react-router";
+import { Outlet, ScrollRestoration, useLocation } from "react-router";
 import { backendNavData } from "./nav/nav-data/nav-data-backend";
 import { frontendNavData } from "./nav/nav-data/nav-data-frontend";
 
@@ -37,8 +37,8 @@ const Main = () => {
 		<AuthGuard checkAny={currentNavAuth} fallback={<Page403 />}>
 			<main
 				data-slot="slash-layout-main"
-				className={cn("h-full mx-auto p-4 transition-[max-width] duration-300  ease-in-out", {
-					"max-w-full w-full": themeStretch,
+				className={cn("w-full h-full mx-auto p-4 transition-[max-width] duration-300  ease-in-out", {
+					"max-w-full": themeStretch,
 					"xl:max-w-screen-xl": !themeStretch,
 				})}
 				style={{
@@ -47,6 +47,7 @@ const Main = () => {
 			>
 				<Suspense fallback={<LineLoading />}>
 					<Outlet />
+					<ScrollRestoration />
 				</Suspense>
 			</main>
 		</AuthGuard>

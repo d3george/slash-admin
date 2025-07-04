@@ -1,8 +1,6 @@
 import Logo from "@/components/logo";
 import { down, useMediaQuery } from "@/hooks";
 import { useSettings } from "@/store/settingStore";
-import { ScrollArea } from "@/ui/scroll-area";
-import { cn } from "@/utils";
 import { ThemeLayout } from "#/enum";
 import Header from "./header";
 import Main from "./main";
@@ -12,7 +10,7 @@ export default function DashboardLayout() {
 	const isMobile = useMediaQuery(down("md"));
 
 	return (
-		<div data-slot="slash-layout-root" className="w-full min-h-svh bg-background">
+		<div data-slot="slash-layout-root" className="w-full bg-background">
 			{isMobile ? <MobileLayout /> : <PcLayout />}
 		</div>
 	);
@@ -21,10 +19,10 @@ export default function DashboardLayout() {
 function MobileLayout() {
 	const navData = useFilteredNavData();
 	return (
-		<ScrollArea className={cn("flex w-full h-screen")}>
+		<>
 			<Header leftSlot={<NavMobileLayout data={navData} />} />
 			<Main />
-		</ScrollArea>
+		</>
 	);
 }
 
@@ -39,11 +37,9 @@ function PcHorizontalLayout() {
 	const navData = useFilteredNavData();
 	return (
 		<div data-slot="slash-layout-content" className="w-full h-screen flex flex-col transition-all duration-300 ease-in-out">
-			<ScrollArea className={cn("flex w-full h-screen")}>
-				<Header leftSlot={<Logo />} />
-				<NavHorizontalLayout data={navData} />
-				<Main />
-			</ScrollArea>
+			<Header leftSlot={<Logo />} />
+			<NavHorizontalLayout data={navData} />
+			<Main />
 		</div>
 	);
 }
@@ -65,10 +61,8 @@ function PcVerticalLayout() {
 					paddingLeft: contentPaddingLeft,
 				}}
 			>
-				<ScrollArea className={cn("flex h-screen w-full")}>
-					<Header />
-					<Main />
-				</ScrollArea>
+				<Header />
+				<Main />
 			</div>
 		</>
 	);
