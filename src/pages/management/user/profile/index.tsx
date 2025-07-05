@@ -47,7 +47,7 @@ function UserProfile() {
 	];
 
 	return (
-		<Tabs defaultValue={tabs[0].title} className="w-full z-10">
+		<Tabs defaultValue={tabs[0].title} className="w-full">
 			<div className="relative flex flex-col justify-center items-center gap-4 p-4">
 				<div style={bgStyle} className="h-full w-full z-1" />
 				<div className="flex flex-col items-center justify-center gap-2 z-2">

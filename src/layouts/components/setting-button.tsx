@@ -48,7 +48,8 @@ export default function SettingButton() {
 		}
 	};
 
-	const layoutBackground = (layout: ThemeLayout) => (themeLayout === layout ? themeVars.colors.palette.primary.light : themeVars.colors.palette.gray[500]);
+	const layoutBackground = (layout: ThemeLayout) =>
+		themeLayout === layout ? themeVars.colors.palette.primary.light : themeVars.colors.palette.gray[500];
 
 	return (
 		<Sheet modal={false}>
@@ -57,7 +58,7 @@ export default function SettingButton() {
 					<Icon icon="local:ic-setting" size={24} />
 				</Button>
 			</SheetTrigger>
-			<SheetContent style={sheetContentBgStyle} className="gap-0">
+			<SheetContent style={sheetContentBgStyle} className="gap-0" onOpenAutoFocus={(e) => e.preventDefault()}>
 				<SheetHeader className="flex flex-row items-center justify-between px-6 py-4 shrink-0">
 					<SheetTitle>{t("sys.settings.title")}</SheetTitle>
 					<SheetDescription />
@@ -68,11 +69,25 @@ export default function SettingButton() {
 						<div className="flex flex-col gap-2">
 							<Text variant="subTitle1">{t("sys.settings.mode")}</Text>
 							<div className="flex flex-row gap-4">
-								<Card onClick={() => updateSettings({ themeMode: ThemeMode.Light })} className="flex flex-1 h-20 cursor-pointer items-center justify-center">
-									<Icon icon="local:ic-settings-mode-sun" size="24" color={themeMode === ThemeMode.Light ? themeVars.colors.palette.primary.default : ""} />
+								<Card
+									onClick={() => updateSettings({ themeMode: ThemeMode.Light })}
+									className="flex flex-1 h-20 cursor-pointer items-center justify-center"
+								>
+									<Icon
+										icon="local:ic-settings-mode-sun"
+										size="24"
+										color={themeMode === ThemeMode.Light ? themeVars.colors.palette.primary.default : ""}
+									/>
 								</Card>
-								<Card onClick={() => updateSettings({ themeMode: ThemeMode.Dark })} className="flex flex-1 h-20 cursor-pointer items-center justify-center">
-									<Icon icon="local:ic-settings-mode-moon" size="24" color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ""} />
+								<Card
+									onClick={() => updateSettings({ themeMode: ThemeMode.Dark })}
+									className="flex flex-1 h-20 cursor-pointer items-center justify-center"
+								>
+									<Icon
+										icon="local:ic-settings-mode-moon"
+										size="24"
+										color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ""}
+									/>
 								</Card>
 							</div>
 						</div>
@@ -83,7 +98,10 @@ export default function SettingButton() {
 
 							<div className="grid grid-cols-3 gap-4">
 								{/* vertical */}
-								<Card onClick={() => updateSettings({ themeLayout: ThemeLayout.Vertical })} className="flex h-16 cursor-pointer flex-1 flex-row p-0 gap-1">
+								<Card
+									onClick={() => updateSettings({ themeLayout: ThemeLayout.Vertical })}
+									className="flex h-16 cursor-pointer flex-1 flex-row p-0 gap-1"
+								>
 									<div className="flex h-full w-5 flex-col gap-1 p-1">
 										<div
 											className="h-2 w-2 shrink-0 rounded"
@@ -105,9 +123,15 @@ export default function SettingButton() {
 										/>
 									</div>
 									<div className="h-full w-full flex-1 grow p-1 flex flex-col gap-1">
-										<div className="w-full h-1.5 rounded opacity-20" style={{ background: layoutBackground(ThemeLayout.Vertical) }} />
 										<div
-											className={cn("flex-1 w-full rounded opacity-20 mx-auto transition-all duration-300 ease-in-out", !themeStretch && "w-10")}
+											className="w-full h-1.5 rounded opacity-20"
+											style={{ background: layoutBackground(ThemeLayout.Vertical) }}
+										/>
+										<div
+											className={cn(
+												"flex-1 w-full rounded opacity-20 mx-auto transition-all duration-300 ease-in-out",
+												!themeStretch && "w-10",
+											)}
 											style={{
 												background: layoutBackground(ThemeLayout.Vertical),
 											}}
@@ -116,16 +140,34 @@ export default function SettingButton() {
 								</Card>
 
 								{/* mini */}
-								<Card onClick={() => updateSettings({ themeLayout: ThemeLayout.Mini })} className="h-16 cursor-pointer flex-1 p-0 gap-0 flex-row">
+								<Card
+									onClick={() => updateSettings({ themeLayout: ThemeLayout.Mini })}
+									className="h-16 cursor-pointer flex-1 p-0 gap-0 flex-row"
+								>
 									<div className="flex h-full w-3 gap-1 p-1 items-center flex-0 flex-col">
-										<div className="h-2 w-2 shrink-0 rounded" style={{ background: layoutBackground(ThemeLayout.Mini) }} />
-										<div className="h-1 w-full shrink-0 rounded opacity-50" style={{ background: layoutBackground(ThemeLayout.Mini) }} />
-										<div className="h-1 w-full shrink-0 rounde opacity-20" style={{ background: layoutBackground(ThemeLayout.Mini) }} />
+										<div
+											className="h-2 w-2 shrink-0 rounded"
+											style={{ background: layoutBackground(ThemeLayout.Mini) }}
+										/>
+										<div
+											className="h-1 w-full shrink-0 rounded opacity-50"
+											style={{ background: layoutBackground(ThemeLayout.Mini) }}
+										/>
+										<div
+											className="h-1 w-full shrink-0 rounde opacity-20"
+											style={{ background: layoutBackground(ThemeLayout.Mini) }}
+										/>
 									</div>
 									<div className="h-full w-full flex-1 grow p-1 flex flex-col gap-1">
-										<div className="w-full h-1.5 rounded opacity-20" style={{ background: layoutBackground(ThemeLayout.Mini) }} />
 										<div
-											className={cn("flex-1 w-full rounded opacity-20 mx-auto transition-all duration-300 ease-in-out", !themeStretch && "w-10")}
+											className="w-full h-1.5 rounded opacity-20"
+											style={{ background: layoutBackground(ThemeLayout.Mini) }}
+										/>
+										<div
+											className={cn(
+												"flex-1 w-full rounded opacity-20 mx-auto transition-all duration-300 ease-in-out",
+												!themeStretch && "w-10",
+											)}
 											style={{
 												background: layoutBackground(ThemeLayout.Mini),
 											}}
@@ -134,7 +176,10 @@ export default function SettingButton() {
 								</Card>
 
 								{/* horizontal */}
-								<Card onClick={() => updateSettings({ themeLayout: ThemeLayout.Horizontal })} className="flex h-16 cursor-pointer flex-1 p-0 gap-0">
+								<Card
+									onClick={() => updateSettings({ themeLayout: ThemeLayout.Horizontal })}
+									className="flex h-16 cursor-pointer flex-1 p-0 gap-0"
+								>
 									<div className="flex h-full w-full gap-1 p-1 items-center flex-0">
 										<div
 											className="h-2 w-2 shrink-0 rounded"
@@ -155,10 +200,16 @@ export default function SettingButton() {
 											}}
 										/>
 									</div>
-									<div className="h-1.5 rounded opacity-20 mx-1" style={{ background: layoutBackground(ThemeLayout.Horizontal) }} />
+									<div
+										className="h-1.5 rounded opacity-20 mx-1"
+										style={{ background: layoutBackground(ThemeLayout.Horizontal) }}
+									/>
 									<div className="h-full w-full flex-1 grow p-1 flex flex-col gap-1">
 										<div
-											className={cn("h-full w-full rounded opacity-20 mx-auto transition-all duration-300 ease-in-out", !themeStretch && "w-10")}
+											className={cn(
+												"h-full w-full rounded opacity-20 mx-auto transition-all duration-300 ease-in-out",
+												!themeStretch && "w-10",
+											)}
 											style={{
 												background: layoutBackground(ThemeLayout.Horizontal),
 											}}
@@ -174,7 +225,10 @@ export default function SettingButton() {
 									</TooltipTrigger>
 									<TooltipContent>{t("sys.settings.stretchTip")}</TooltipContent>
 								</Tooltip>
-								<Switch checked={themeStretch} onCheckedChange={(checked) => updateSettings({ themeStretch: checked })} />
+								<Switch
+									checked={themeStretch}
+									onCheckedChange={(checked) => updateSettings({ themeStretch: checked })}
+								/>
 							</div>
 						</div>
 
@@ -232,7 +286,13 @@ export default function SettingButton() {
 							</div>
 
 							<Text variant="subTitle2">{t("sys.settings.size")}</Text>
-							<Slider min={12} max={20} step={1} defaultValue={[fontSize]} onValueChange={(value) => updateSettings({ fontSize: value[0] })} />
+							<Slider
+								min={12}
+								max={20}
+								step={1}
+								defaultValue={[fontSize]}
+								onValueChange={(value) => updateSettings({ fontSize: value[0] })}
+							/>
 						</div>
 
 						{/* Page config */}
@@ -258,8 +318,15 @@ export default function SettingButton() {
 					</div>
 				</ScrollArea>
 				<SheetFooter className="px-6 py-4 border border-t shrink-0">
-					<Button variant="outline" className="w-full border-dashed text-text-primary hover:border-primary hover:text-primary" onClick={toggleFullScreen}>
-						<div className="flex items-center justify-center" aria-label={isFullscreen ? t("sys.settings.exitFullscreen") : t("sys.settings.fullscreen")}>
+					<Button
+						variant="outline"
+						className="w-full border-dashed text-text-primary hover:border-primary hover:text-primary"
+						onClick={toggleFullScreen}
+					>
+						<div
+							className="flex items-center justify-center"
+							aria-label={isFullscreen ? t("sys.settings.exitFullscreen") : t("sys.settings.fullscreen")}
+						>
 							{isFullscreen ? (
 								<>
 									<Icon icon="local:ic-settings-exit-fullscreen" />

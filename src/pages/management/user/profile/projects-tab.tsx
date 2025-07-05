@@ -132,7 +132,7 @@ export default function ProjectsTab() {
 								<Badge variant="warning">{item.deadline.diff(dayjs(), "day")} days left</Badge>
 							</div>
 							<div className="flex w-full ">
-								<AvatarGroup max={3}>
+								<AvatarGroup max={{ count: 3 }} size="small">
 									{item.members.map((memberAvatar) => (
 										<Avatar key={memberAvatar}>
 											<AvatarImage src={memberAvatar} />

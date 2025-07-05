@@ -21,15 +21,15 @@ const badgeVariants = cva(
 				error: "border-transparent bg-error/20 text-error-dark [a&]:hover:bg-error/10 focus-visible:ring-error/20 dark:focus-visible:ring-error/40 dark:text-error-light",
 				outline: "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
       },
-      overlay: {
-        circle: "rounded-full min-w-5 h-5",
+      shape: {
+        circle: "rounded-full w-5 h-5 p-0",
         square: "rounded-md",
         dot: "rounded-full w-2 h-2 p-0",
       },
     },
     defaultVariants: {
       variant: "default",
-      overlay: "square",
+      shape: "square",
     },
   }
 )
@@ -37,7 +37,7 @@ const badgeVariants = cva(
 function Badge({
   className,
   variant,
-  overlay,
+  shape,
   asChild = false,
   ...props
 }: React.ComponentProps<"span"> &
@@ -47,7 +47,7 @@ function Badge({
   return (
     <Comp
       data-slot="badge"
-      className={cn(badgeVariants({ variant, overlay }), className)}
+      className={cn(badgeVariants({ variant, shape }), className)}
       {...props}
     />
   )
