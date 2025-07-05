@@ -6,14 +6,15 @@ import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/ui/sheet";
+import { ScrollArea } from "@/ui/scroll-area";
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
 import { type CSSProperties, useState } from "react";
 
 export default function NoticeButton() {
-	const [drawerOpen, setDrawerOpen] = useState(false);
+	const [drawerOpen, setDrawerOpen] = useState(true);
 	const [count, setCount] = useState(4);
 
 	const style: CSSProperties = {
@@ -25,43 +26,43 @@ export default function NoticeButton() {
 	};
 
 	return (
-		<div>
-			<div className="relative">
-				<Button variant="ghost" size="icon" className="rounded-full" onClick={() => setDrawerOpen(true)}>
-					<Icon icon="solar:bell-bing-bold-duotone" size={24} />
-				</Button>
-				<Badge variant="destructive" shape="circle" className="absolute -right-2 -top-2">
-					{count}
-				</Badge>
-			</div>
-			<Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
-				<SheetContent side="right" className="sm:max-w-md p-0 [&>button]:hidden" style={style}>
-					<SheetHeader className="flex flex-row items-center justify-between px-6 py-4">
-						<SheetTitle>Notifications</SheetTitle>
-						<Button
-							variant="ghost"
-							size="icon"
-							className="rounded-full text-primary"
-							onClick={() => {
-								setCount(0);
-								setDrawerOpen(false);
-							}}
-						>
-							<Icon icon="solar:check-read-broken" size={20} />
-						</Button>
-					</SheetHeader>
+		<Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
+			<SheetTrigger>
+				<div className="relative">
+					<Button variant="ghost" size="icon" className="rounded-full" onClick={() => setDrawerOpen(true)}>
+						<Icon icon="solar:bell-bing-bold-duotone" size={24} />
+					</Button>
+					<Badge variant="destructive" shape="circle" className="absolute -right-2 -top-2">
+						{count}
+					</Badge>
+				</div>
+			</SheetTrigger>
+			<SheetContent side="right" className="sm:max-w-md p-0 [&>button]:hidden flex flex-col" style={style}>
+				<SheetHeader className="flex flex-row items-center justify-between p-4 h-16 shrink-0">
+					<SheetTitle>Notifications</SheetTitle>
+					<Button
+						variant="ghost"
+						size="icon"
+						className="rounded-full text-primary"
+						onClick={() => {
+							setCount(0);
+							setDrawerOpen(false);
+						}}
+					>
+						<Icon icon="solar:check-read-broken" size={20} />
+					</Button>
+				</SheetHeader>
+				<div className="px-4 flex-1 overflow-hidden">
 					<NoticeTab />
-					<SheetFooter className="border-t">
-						<div className="flex h-16 w-full items-center justify-between px-6">
-							<Button variant="outline" className="flex-1 mr-2">
-								Archive all
-							</Button>
-							<Button className="flex-1 ml-2">Mark all as read</Button>
-						</div>
-					</SheetFooter>
-				</SheetContent>
-			</Sheet>
-		</div>
+				</div>
+				<SheetFooter className="flex flex-row h-16 w-full items-center justify-between p-4 shrink-0">
+					<Button variant="outline" className="flex-1 mr-2">
+						Archive all
+					</Button>
+					<Button className="flex-1 ml-2">Mark all as read</Button>
+				</SheetFooter>
+			</SheetContent>
+		</Sheet>
 	);
 }
 
@@ -590,35 +591,39 @@ function NoticeTab() {
 	};
 
 	return (
-		<div className="flex flex-col px-4 h-full">
-			<Tabs defaultValue="all" className="w-full">
-				<TabsList className="gap-2 w-full flex justify-between items-center">
-					<TabsTrigger value="all" className="flex items-center gap-1">
-						<span>All</span>
-						<Badge variant="default">{allNotifications.length}</Badge>
-					</TabsTrigger>
-					<TabsTrigger value="inbox" className="flex items-center gap-1">
-						<span>Inbox</span>
-						<Badge variant="info">{inboxNotifications.length}</Badge>
-					</TabsTrigger>
-					<TabsTrigger value="team" className="flex items-center gap-1">
-						<span>Team</span>
-						<Badge variant="success">{teamNotifications.length}</Badge>
-					</TabsTrigger>
-				</TabsList>
+		<Tabs defaultValue="all" className="w-full h-full flex flex-col">
+			<TabsList className="gap-2 w-full flex justify-between items-center shrink-0">
+				<TabsTrigger value="all" className="flex items-center gap-1">
+					<span>All</span>
+					<Badge variant="default">{allNotifications.length}</Badge>
+				</TabsTrigger>
+				<TabsTrigger value="inbox" className="flex items-center gap-1">
+					<span>Inbox</span>
+					<Badge variant="info">{inboxNotifications.length}</Badge>
+				</TabsTrigger>
+				<TabsTrigger value="team" className="flex items-center gap-1">
+					<span>Team</span>
+					<Badge variant="success">{teamNotifications.length}</Badge>
+				</TabsTrigger>
+			</TabsList>
 
-				<TabsContent value="all" className="mt-0">
+			<TabsContent value="all" className="flex-1 overflow-hidden">
+				<ScrollArea className="h-full">
 					<div className="space-y-0">{allNotifications.map(renderNotification)}</div>
-				</TabsContent>
+				</ScrollArea>
+			</TabsContent>
 
-				<TabsContent value="inbox" className="mt-0">
+			<TabsContent value="inbox" className="flex-1 overflow-hidden">
+				<ScrollArea className="h-full">
 					<div className="space-y-0">{inboxNotifications.map(renderNotification)}</div>
-				</TabsContent>
+				</ScrollArea>
+			</TabsContent>
 
-				<TabsContent value="team" className="mt-0">
+			<TabsContent value="team" className="flex-1 overflow-hidden">
+				<ScrollArea className="h-full">
 					<div className="space-y-0">{teamNotifications.map(renderNotification)}</div>
-				</TabsContent>
-			</Tabs>
-		</div>
+				</ScrollArea>
+			</TabsContent>
+		</Tabs>
 	);
 }
