@@ -1,4 +1,4 @@
-import Character6 from "@/assets/images/characters/character_6.png";
+import Character from "@/assets/images/characters/character_1.png";
 import { themeVars } from "@/theme/theme.css";
 import ErrorLayout from "./components/ErrorLayout";
 
@@ -20,7 +20,7 @@ export default function Page404() {
 				opacity="0.2"
 			/>
 			{/* character */}
-			<image href={Character6} height="300" x="205" y="30" />
+			<image href={Character} height="300" x="205" y="30" />
 			{/* sun */}
 			<path fill="#FFAB00" d="M111.1 141.2c58.7-1 58.6-88.3 0-89.2-58.6 1-58.6 88.3 0 89.2z" opacity="0.12" />
 			{/* sun */}
@@ -42,7 +42,14 @@ export default function Page404() {
 				opacity="0.08"
 			/>
 			<defs>
-				<linearGradient id="paint0_linear_1_119" x1="78.3" x2="78.3" y1="187.77" y2="305.935" gradientUnits="userSpaceOnUse">
+				<linearGradient
+					id="paint0_linear_1_119"
+					x1="78.3"
+					x2="78.3"
+					y1="187.77"
+					y2="305.935"
+					gradientUnits="userSpaceOnUse"
+				>
 					<stop stopColor={themeVars.colors.palette.primary.default} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.default} stopOpacity="0" />
 				</linearGradient>
@@ -51,9 +58,9 @@ export default function Page404() {
 	);
 	return (
 		<ErrorLayout
-			title="Sorry, Page Not Found!"
+			title="Oops! Page not found!"
 			helmetTitle="404 Page Not Found!"
-			desc="Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be sure to check your spelling."
+			desc="The page you’re looking for doesn’t exist or has been moved."
 			svg={svg}
 		/>
 	);

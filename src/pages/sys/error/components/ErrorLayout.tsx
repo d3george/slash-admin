@@ -45,7 +45,7 @@ export default function ErrorLayout({
 					</m.div>
 					{desc && (
 						<m.div variants={varBounce().in}>
-							<Text variant="caption" color="secondary" align="center">
+							<Text variant="subTitle1" color="secondary" align="center">
 								{desc}
 							</Text>
 						</m.div>
@@ -57,7 +57,9 @@ export default function ErrorLayout({
 						slots.footer
 					) : (
 						<NavLink to={homePath} className="mt-4 w-full flex justify-center">
-							<Button size="lg">{buttonText}</Button>
+							<Button size="lg" variant="contrast">
+								{buttonText}
+							</Button>
 						</NavLink>
 					)}
 				</MotionContainer>

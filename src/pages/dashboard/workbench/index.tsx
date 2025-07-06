@@ -111,6 +111,8 @@ export default function Workbench() {
 		plotOptions: { pie: { donut: { size: "70%" } } },
 	});
 
+	// throw new Error("test error"); // 注释掉直接抛错，改用演示组件
+
 	return (
 		<div className="flex flex-col gap-4 w-full">
 			<BannerCard />
@@ -131,8 +133,14 @@ export default function Workbench() {
 								<Title as="h3" className="text-2xl font-bold">
 									{stat.value}
 								</Title>
-								<span className={`text-xs flex items-center gap-1 font-bold ${stat.percent > 0 ? "text-green-500" : stat.percent < 0 ? "text-red-500" : ""}`}>
-									{stat.percent > 0 ? <Icon icon="mdi:arrow-up" size={16} /> : stat.percent < 0 ? <Icon icon="mdi:arrow-down" size={16} /> : null}
+								<span
+									className={`text-xs flex items-center gap-1 font-bold ${stat.percent > 0 ? "text-green-500" : stat.percent < 0 ? "text-red-500" : ""}`}
+								>
+									{stat.percent > 0 ? (
+										<Icon icon="mdi:arrow-up" size={16} />
+									) : stat.percent < 0 ? (
+										<Icon icon="mdi:arrow-down" size={16} />
+									) : null}
 									{stat.percent !== 0 ? `${Math.abs(stat.percent)}%` : stat.label === "Total Task" ? "New" : null}
 								</span>
 							</div>
@@ -260,7 +268,12 @@ export default function Workbench() {
 						</Text>
 						<div className="flex gap-2">
 							{["All Transaction", "Success", "Pending"].map((tab) => (
-								<Button key={tab} size="sm" variant={activeTab === tab ? "default" : "ghost"} onClick={() => setActiveTab(tab)}>
+								<Button
+									key={tab}
+									size="sm"
+									variant={activeTab === tab ? "default" : "ghost"}
+									onClick={() => setActiveTab(tab)}
+								>
 									{tab}
 								</Button>
 							))}
@@ -285,7 +298,11 @@ export default function Workbench() {
 										</td>
 										<td className="py-2 text-right">
 											<span className={`text-xs font-bold ${tx.status === "up" ? "text-green-500" : "text-red-500"}`}>
-												{tx.status === "up" ? <Icon icon="mdi:arrow-up" size={14} /> : <Icon icon="mdi:arrow-down" size={14} />}{" "}
+												{tx.status === "up" ? (
+													<Icon icon="mdi:arrow-up" size={14} />
+												) : (
+													<Icon icon="mdi:arrow-down" size={14} />
+												)}{" "}
 												{tx.status === "up" ? "+" : "-"}10.6%
 											</span>
 										</td>
@@ -311,7 +328,10 @@ export default function Workbench() {
 							{totalIncome.details.map((item, i) => (
 								<div key={item.label} className="flex items-center justify-between mb-2">
 									<div className="flex items-center gap-2">
-										<span className={"inline-block w-3 h-3 rounded-full"} style={{ background: ["#3b82f6", "#f59e42", "#10b981", "#6366f1"][i] }} />
+										<span
+											className={"inline-block w-3 h-3 rounded-full"}
+											style={{ background: ["#3b82f6", "#f59e42", "#10b981", "#6366f1"][i] }}
+										/>
 										<Text variant="body2">{item.label}</Text>
 									</div>
 									<span className="font-bold">${item.value.toLocaleString()}</span>

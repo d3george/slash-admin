@@ -55,7 +55,6 @@
 		"react-apexcharts": "^1.5.0",
 		"react-day-picker": "8.10.1",
 		"react-dom": "^19.1.0",
-		"react-error-boundary": "^4.1.2",
 		"react-helmet-async": "^2.0.5",
 		"react-hook-form": "^7.56.1",
 		"react-i18next": "^13.5.0",

@@ -1,4 +1,4 @@
-import Character8 from "@/assets/images/characters/character_8.png";
+import Character from "@/assets/images/characters/character_6.png";
 import { themeVars } from "@/theme/theme.css";
 import ErrorLayout from "./components/ErrorLayout";
 
@@ -18,7 +18,7 @@ export default function Page500() {
 				d="M0 198.78c0 41.458 14.945 79.236 39.539 107.786 28.214 32.765 69.128 53.365 114.734 53.434a148.44 148.44 0 0056.495-11.036c9.051-3.699 19.182-3.274 27.948 1.107a75.779 75.779 0 0033.957 8.01c5.023 0 9.942-.494 14.7-1.433 13.58-2.67 25.94-8.99 36.09-17.94 6.378-5.627 14.547-8.456 22.897-8.446h.142c27.589 0 53.215-8.732 74.492-23.696 19.021-13.36 34.554-31.696 44.904-53.224C474.92 234.58 480 213.388 480 190.958c0-76.93-59.774-139.305-133.498-139.305-7.516 0-14.88.663-22.063 1.899C305.418 21.42 271.355 0 232.499 0a103.651 103.651 0 00-45.88 10.661c-13.24 6.487-25.011 15.705-34.64 26.939-32.698.544-62.931 11.69-87.676 30.291C25.351 97.155 0 144.882 0 198.781z"
 				opacity="0.2"
 			/>
-			<image href={Character8} height="300" x="340" y="30" />
+			<image href={Character} height="300" x="200" y="30" />
 			<path
 				fill={themeVars.colors.palette.primary.darker}
 				d="M292.4 266.4h-7.3v-.6h6.7v-59.6h-25.7V118h-23.6v-.6h24.2v88.2h25.7v60.8zM146 164.5h-.6v-21.1h16.5v-19h.6v19.7H146v20.4z"
@@ -44,13 +44,19 @@ export default function Page500() {
 				fill={themeVars.colors.palette.primary.default}
 				d="M277.8 242.2h-24.9c-4 0-7.3 3.3-7.3 7.3v33.2c0 4 3.3 7.3 7.3 7.3h24.9c4 0 7.3-3.3 7.3-7.3v-33.2c0-4-3.3-7.3-7.3-7.3z"
 			/>
-			<path fill="url(#paint0_linear_1_140)" d="M278 145h-22c-4.4 0-8 3.6-8 8v22.8c0 4.4 3.6 8 8 8h22c4.4 0 8-3.6 8-8V153c0-4.4-3.6-8-8-8z" />
+			<path
+				fill="url(#paint0_linear_1_140)"
+				d="M278 145h-22c-4.4 0-8 3.6-8 8v22.8c0 4.4 3.6 8 8 8h22c4.4 0 8-3.6 8-8V153c0-4.4-3.6-8-8-8z"
+			/>
 			<path
 				fill={themeVars.colors.palette.primary.default}
 				d="M126 129.7h-22.4c-1.7 0-3 1.3-3 3v32.8c0 1.7 1.3 3 3 3H126c1.7 0 3-1.3 3-3v-32.8c0-1.7-1.4-3-3-3z"
 				opacity="0.08"
 			/>
-			<path fill="#fff" d="M119.1 135.9H96.6c-1.7 0-3 1.3-3 3v32.8c0 1.7 1.3 3 3 3H119c1.7 0 3-1.3 3-3v-32.8c.1-1.6-1.3-3-2.9-3z" />
+			<path
+				fill="#fff"
+				d="M119.1 135.9H96.6c-1.7 0-3 1.3-3 3v32.8c0 1.7 1.3 3 3 3H119c1.7 0 3-1.3 3-3v-32.8c.1-1.6-1.3-3-2.9-3z"
+			/>
 			<path
 				fill={themeVars.colors.palette.primary.default}
 				d="M119.1 135.9H96.6c-1.7 0-3 1.3-3 3v32.8c0 1.7 1.3 3 3 3H119c1.7 0 3-1.3 3-3v-32.8c.1-1.6-1.3-3-2.9-3z"
@@ -81,7 +87,14 @@ export default function Page500() {
 				d="M264.4 267.7c.5-1.8-.8-3.7-1.2-5.5-.1-.3-.1-.7 0-1 .2-1.5 1.5-2.6 3-2.6s2.8 1.1 3 2.6c.1.3 0 .7 0 1-.3 1.8-1.6 3.8-1.1 5.6l.4 1.3c.5 1.5-.7 3.1-2.3 3.1-1.6 0-2.7-1.5-2.3-3l.5-1.5zM258 158.8l9.2-4.8 8.8 4.8s-1.6 11.8-8.6 15.2c0 0-8.6-3.3-9.4-15.2z"
 			/>
 			<defs>
-				<linearGradient id="paint0_linear_1_140" x1="277.574" x2="255.652" y1="143.24" y2="187.057" gradientUnits="userSpaceOnUse">
+				<linearGradient
+					id="paint0_linear_1_140"
+					x1="277.574"
+					x2="255.652"
+					y1="143.24"
+					y2="187.057"
+					gradientUnits="userSpaceOnUse"
+				>
 					<stop stopColor={themeVars.colors.palette.primary.default} />
 					<stop offset="1" stopColor={themeVars.colors.palette.primary.default} />
 				</linearGradient>
@@ -93,6 +106,11 @@ export default function Page500() {
 		</svg>
 	);
 	return (
-		<ErrorLayout title="500 Internal Server Error!" helmetTitle="500 Internal Server Error!" desc="There was an error, please try again later." svg={svg} />
+		<ErrorLayout
+			title="Internal Server Error!"
+			helmetTitle="500 Internal Server Error!"
+			desc="Sorry for the inconvenience."
+			svg={svg}
+		/>
 	);
 }
