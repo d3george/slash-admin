@@ -219,6 +219,60 @@ const dashboardData = {
 	},
 };
 
+const gisData = {
+	mapViewProps: {
+		center: [-138, 30],
+		zoom: 2,
+	} as __esri.MapViewProperties,
+	layerProps: {
+		url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.csv",
+		title: "Magnitude 2.5+ earthquakes from the last week",
+		copyright: "USGS Earthquakes",
+		popupTemplate: { title: "{place}", content: "Magnitude {mag} {type} hit {place} on {time}." },
+		renderer: {
+			type: "heatmap",
+			colorStops: [
+				{ color: "rgba(63, 40, 102, 0)", ratio: 0 },
+				{ color: "#472b77", ratio: 0.083 },
+				{ color: "#4e2d87", ratio: 0.166 },
+				{ color: "#563098", ratio: 0.249 },
+				{ color: "#5d32a8", ratio: 0.332 },
+				{ color: "#6735be", ratio: 0.415 },
+				{ color: "#7139d4", ratio: 0.498 },
+				{ color: "#7b3ce9", ratio: 0.581 },
+				{ color: "#853fff", ratio: 0.664 },
+				{ color: "#a46fbf", ratio: 0.747 },
+				{ color: "#c29f80", ratio: 0.83 },
+				{ color: "#e0cf40", ratio: 0.913 },
+				{ color: "#ffff00", ratio: 1 },
+			],
+			maxDensity: 0.01,
+			minDensity: 0,
+		},
+		labelsVisible: true,
+		labelingInfo: [
+			{
+				symbol: {
+					type: "text", // autocasts as new TextSymbol()
+					color: "white",
+					font: {
+						family: "Noto Sans",
+						size: 8,
+					},
+					haloColor: "#472b77",
+					haloSize: 0.75,
+				},
+				labelPlacement: "center-center",
+				labelExpressionInfo: {
+					expression: "Text($feature.mag, '#.0')",
+				},
+				where: "mag > 5",
+			},
+		],
+	} as __esri.CSVLayerProperties,
+	legend: true,
+};
+
 // ---------------------- 组件区 ----------------------
 function Trend({ value }: { value: number }) {
 	const trendClass = value > 0 ? "text-success" : value < 0 ? "text-error" : "text-muted-foreground";
@@ -614,7 +668,7 @@ export default function Analysis() {
 						</CardAction>
 					</CardHeader>
 					<CardContent className="h-100">
-						<ArcMap />
+						<ArcMap {...gisData} />
 					</CardContent>
 				</Card>
 			</div>
