@@ -1,10 +1,5 @@
 ---
-description: 
-globs: 
-alwaysApply: false
----
----
-description: 
+description: How to process a task list
 globs: 
 alwaysApply: false
 ---

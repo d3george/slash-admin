@@ -1,9 +1,4 @@
 ---
-description: 
-globs: 
-alwaysApply: true
----
----
 description: Guidelines for Current Project Tech Stack and Structure
 globs: 
 alwaysApply: true

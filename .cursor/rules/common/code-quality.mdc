@@ -1,9 +1,4 @@
 ---
-description: 
-globs: 
-alwaysApply: true
----
----
 description: Code Quality Guidelines
 globs: 
 alwaysApply: true
