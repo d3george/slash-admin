@@ -14,7 +14,8 @@ import { Switch } from "@/ui/switch";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/ui/tooltip";
 import { Text } from "@/ui/typography";
 import { cn } from "@/utils";
-import { type CSSProperties, useState } from "react";
+import { type CSSProperties, useCallback, useEffect, useState } from "react";
+
 import { useTranslation } from "react-i18next";
 import screenfull from "screenfull";
 import { type ThemeColorPresets, ThemeLayout, ThemeMode } from "#/enum";
@@ -37,17 +38,41 @@ export default function SettingButton() {
 		backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
 		backgroundPosition: "right top, left bottom",
-		backgroundSize: "50, 50%",
+		backgroundSize: "50%, 50%",
 	};
 
 	const [isFullscreen, setIsFullscreen] = useState(screenfull.isFullscreen);
 	const toggleFullScreen = () => {
 		if (screenfull.isEnabled) {
 			screenfull.toggle();
-			setIsFullscreen(!isFullscreen);
 		}
 	};
+	const handleKeyDown = useCallback((event: KeyboardEvent) => {
+		if (event.key === "Escape" && screenfull.isEnabled && screenfull.isFullscreen) {
+			setIsFullscreen(false);
+		}
+	}, []);
 
+	useEffect(() => {
+		const onFullscreenChange = () => {
+			if (screenfull.isEnabled) {
+				setIsFullscreen(screenfull.isFullscreen);
+			}
+		};
+
+		if (screenfull.isEnabled) {
+			screenfull.on("change", onFullscreenChange);
+		}
+
+		window.addEventListener("keydown", handleKeyDown);
+
+		return () => {
+			if (screenfull.isEnabled) {
+				screenfull.off("change", onFullscreenChange);
+			}
+			window.removeEventListener("keydown", handleKeyDown);
+		};
+	}, [handleKeyDown]);
 	const layoutBackground = (layout: ThemeLayout) =>
 		themeLayout === layout ? themeVars.colors.palette.primary.light : themeVars.colors.palette.gray[500];
 
