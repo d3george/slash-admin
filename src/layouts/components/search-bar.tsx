@@ -70,10 +70,10 @@ const SearchBar = () => {
 		return items;
 	}, [navData]);
 
-	const searchResult = useMemo(() => {
-		const query = searchQuery.toLowerCase();
-		return flattenedItems.filter((item) => t(item.label).toLowerCase().includes(query) || item.key.toLowerCase().includes(query));
-	}, [searchQuery, t, flattenedItems]);
+	// const searchResult = useMemo(() => {
+	// 	const query = searchQuery.toLowerCase();
+	// 	return flattenedItems.filter((item) => t(item.label).toLowerCase().includes(query) || item.key.toLowerCase().includes(query));
+	// }, [searchQuery, t, flattenedItems]);
 
 	useEffect(() => {
 		const down = (e: KeyboardEvent) => {
@@ -112,7 +112,7 @@ const SearchBar = () => {
 				<ScrollArea className="h-[400px]">
 					<CommandEmpty>No results found.</CommandEmpty>
 					<CommandGroup heading="Navigations">
-						{searchResult.map(({ key, label }) => (
+						{flattenedItems.map(({ key, label }) => (
 							<CommandItem key={key} onSelect={() => handleSelect(key)} className="flex flex-col items-start">
 								<div className="font-medium">
 									<HighlightText text={t(label)} query={searchQuery} />
