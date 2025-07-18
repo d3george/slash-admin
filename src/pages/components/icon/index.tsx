@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/ui/
 export default function IconPage() {
 	return (
 		<>
-			<Card title="Iconify Icons">
+			<Card title="Iconify Icons" className="mb-4">
 				<CardHeader>
 					<CardTitle>Iconify Icons</CardTitle>
 					<CardDescription>
