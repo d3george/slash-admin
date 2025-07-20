@@ -1,7 +1,7 @@
 <div align="center"> 
 <br> 
 <br>
-<img src="./src/assets/icons/ic-logo.svg" height="140" />
+<img src="./src/assets/icons/ic-logo-badge.svg" height="140" />
 <h3> Slash Admin </h3>
   <p>
     <p style="font-size: 14px">
@@ -30,11 +30,10 @@
 ## Preview
 + https://admin.slashspaces.com/
 
-|![login.png](https://d3george.github.io/github-static/slash-admin/login.png)|![login_dark.png](https://d3george.github.io/github-static/slash-admin/login_dark.png)
+|![login.png](https://d3george.github.io/github-static/slash-admin/sa-web-light.jpeg)|![login_dark.png](https://d3george.github.io/github-static/slash-admin/sa-web-dark.jpeg)
 | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
-|![analysis.png](https://d3george.github.io/github-static/slash-admin/analysis.png)|![workbench.png](https://d3george.github.io/github-static/slash-admin/workbench.png)
+|![analysis.png](https://d3george.github.io/github-static/slash-admin/sa-mobile-light.jpeg)|![workbench.png](https://d3george.github.io/github-static/slash-admin/sa-mobile-dark.jpeg)
 | | 
-|![analysis.png](https://d3george.github.io/github-static/slash-admin/mobile.png)|![workbench.png](https://d3george.github.io/github-static/slash-admin/mobile_dark.png)
 
 ## Features
 

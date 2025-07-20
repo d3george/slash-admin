@@ -34,5 +34,6 @@
   },
   "[jsonc]": {
     "editor.defaultFormatter": "biomejs.biome"
-  }
+  },
+  "svg.preview.background": "dark-transparent"
 }
