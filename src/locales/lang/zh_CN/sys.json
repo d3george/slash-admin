@@ -61,6 +61,8 @@
 			"diffPwd": "两次输入密码不一致",
 
 			"userName": "账号",
+			"firstName": "firstName",
+			"lastName": "lastName",
 			"password": "密码",
 			"confirmPassword": "确认密码",
 			"email": "邮箱",
