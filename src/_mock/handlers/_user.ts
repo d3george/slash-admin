@@ -1,5 +1,5 @@
 import { UserApi } from "@/api/services/userService";
-import { ResultStuts } from "@/types/enum";
+import { ResultStatus } from "@/types/enum";
 import { convertFlatToTree } from "@/utils/tree";
 import { faker } from "@faker-js/faker";
 import { http, HttpResponse } from "msw";
@@ -20,7 +20,9 @@ const signIn = http.post(`/api${UserApi.SignIn}`, async ({ request }) => {
 	const { password: _, ...userWithoutPassword } = user;
 
 	// user role
-	const roles = DB_USER_ROLE.filter((item) => item.userId === user.id).map((item) => DB_ROLE.find((role) => role.id === item.roleId));
+	const roles = DB_USER_ROLE.filter((item) => item.userId === user.id).map((item) =>
+		DB_ROLE.find((role) => role.id === item.roleId),
+	);
 
 	// user permissions
 	const permissions = DB_ROLE_PERMISSION.filter((item) => roles.some((role) => role?.id === item.roleId)).map((item) =>
@@ -30,7 +32,7 @@ const signIn = http.post(`/api${UserApi.SignIn}`, async ({ request }) => {
 	const menu = convertFlatToTree(DB_MENU);
 
 	return HttpResponse.json({
-		status: ResultStuts.SUCCESS,
+		status: ResultStatus.SUCCESS,
 		message: "",
 		data: {
 			user: { ...userWithoutPassword, roles, permissions, menu },
