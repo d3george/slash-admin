@@ -4,7 +4,7 @@ import userStore from "@/store/userStore";
 import axios, { type AxiosRequestConfig, type AxiosError, type AxiosResponse } from "axios";
 import { toast } from "sonner";
 import type { Result } from "#/api";
-import { ResultStuts } from "#/enum";
+import { ResultStatus } from "#/enum";
 
 const axiosInstance = axios.create({
 	baseURL: GLOBAL_CONFIG.apiBaseUrl,
@@ -24,7 +24,7 @@ axiosInstance.interceptors.response.use(
 	(res: AxiosResponse<Result<any>>) => {
 		if (!res.data) throw new Error(t("sys.api.apiRequestFailed"));
 		const { status, data, message } = res.data;
-		if (status === ResultStuts.SUCCESS) {
+		if (status === ResultStatus.SUCCESS) {
 			return data;
 		}
 		throw new Error(message || t("sys.api.apiRequestFailed"));
