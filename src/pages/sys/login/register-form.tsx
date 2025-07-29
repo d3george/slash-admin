@@ -8,6 +8,14 @@ import { useTranslation } from "react-i18next";
 import { ReturnButton } from "./components/ReturnButton";
 import { LoginStateEnum, useLoginStateContext } from "./providers/login-provider";
 
+interface FormValues {
+	email: string;
+	password: string;
+	firstName: string;
+	lastName: string;
+	confirmPassword: string;
+}
+
 function RegisterForm() {
 	const { t } = useTranslation();
 	const { loginState, backToLogin } = useLoginStateContext();
@@ -16,18 +24,20 @@ function RegisterForm() {
 		mutationFn: userService.signup,
 	});
 
-	const form = useForm({
+	const form = useForm<FormValues>({
 		defaultValues: {
-			username: "",
+			firstName: "",
+			lastName: "",
 			email: "",
 			password: "",
 			confirmPassword: "",
 		},
 	});
 
-	const onFinish = async (values: any) => {
+	const onFinish = async (values: FormValues) => {
 		console.log("Received values of form: ", values);
-		await signUpMutation.mutateAsync(values);
+		const { confirmPassword, ...rest } = values;
+		await signUpMutation.mutateAsync(rest);
 		backToLogin();
 	};
 
@@ -42,12 +52,26 @@ function RegisterForm() {
 
 				<FormField
 					control={form.control}
-					name="username"
+					name="firstName"
 					rules={{ required: t("sys.login.accountPlaceholder") }}
 					render={({ field }) => (
 						<FormItem>
 							<FormControl>
-								<Input placeholder={t("sys.login.userName")} {...field} />
+								<Input placeholder={t("sys.login.firstName")} {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				<FormField
+					control={form.control}
+					name="lastName"
+					rules={{ required: t("sys.login.accountPlaceholder") }}
+					render={({ field }) => (
+						<FormItem>
+							<FormControl>
+								<Input placeholder={t("sys.login.lastname")} {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>

@@ -7,14 +7,17 @@ export interface SignInReq {
 	password: string;
 }
 
-export interface SignUpReq extends SignInReq {
+export interface SignUpReq {
 	email: string;
+	password: string;
+	firstName: string;
+	lastName: string;
 }
 export type SignInRes = UserToken & { user: UserInfo };
 
 export enum UserApi {
 	SignIn = "/auth/signin",
-	SignUp = "/auth/signup",
+	SignUp = "/auth/register",
 	Logout = "/auth/logout",
 	Refresh = "/auth/refresh",
 	User = "/user",
