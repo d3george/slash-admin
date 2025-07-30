@@ -39,7 +39,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 		try {
 			await signIn(values);
 			navigatge(GLOBAL_CONFIG.defaultRoute, { replace: true });
-			toast.success("Sign in success!", {
+			toast.success(t("sys.login.loginSuccessTitle"), {
 				closeButton: true,
 			});
 		} finally {
@@ -89,8 +89,15 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					{/* 记住我/忘记密码 */}
 					<div className="flex flex-row justify-between">
 						<div className="flex items-center space-x-2">
-							<Checkbox id="remember" checked={remember} onCheckedChange={(checked) => setRemember(checked === "indeterminate" ? false : checked)} />
-							<label htmlFor="remember" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+							<Checkbox
+								id="remember"
+								checked={remember}
+								onCheckedChange={(checked) => setRemember(checked === "indeterminate" ? false : checked)}
+							/>
+							<label
+								htmlFor="remember"
+								className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+							>
 								{t("sys.login.rememberMe")}
 							</label>
 						</div>
