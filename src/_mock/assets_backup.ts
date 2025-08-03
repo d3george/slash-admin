@@ -1,6 +1,6 @@
-import { faker } from "@faker-js/faker";
 import type { Menu, Permission, Role, User } from "#/entity";
 import { PermissionType } from "#/enum";
+import { faker } from "@faker-js/faker";
 
 const { GROUP, MENU, CATALOGUE } = PermissionType;
 
@@ -44,7 +44,14 @@ export const DB_MENU: Menu[] = [
 		type: CATALOGUE,
 		path: "/management",
 	},
-	{ id: "management_user", parentId: "management", name: "sys.nav.user.index", code: "management:user", type: CATALOGUE, path: "/management/user" },
+	{
+		id: "management_user",
+		parentId: "management",
+		name: "sys.nav.user.index",
+		code: "management:user",
+		type: CATALOGUE,
+		path: "/management/user",
+	},
 	{
 		id: "management_user_profile",
 		parentId: "management_user",
@@ -63,7 +70,14 @@ export const DB_MENU: Menu[] = [
 		path: "management/user/account",
 		component: "/pages/management/user/account",
 	},
-	{ id: "management_system", parentId: "management", name: "sys.nav.system.index", code: "management:system", type: CATALOGUE, path: "management/system" },
+	{
+		id: "management_system",
+		parentId: "management",
+		name: "sys.nav.system.index",
+		code: "management:system",
+		type: CATALOGUE,
+		path: "management/system",
+	},
 	{
 		id: "management_system_user",
 		parentId: "management_system",
@@ -155,10 +169,42 @@ export const DB_MENU: Menu[] = [
 		component: "/pages/menu-level/menu-level-1b/menu-level-2b/menu-level-3b",
 	},
 	// erros
-	{ id: "error", parentId: "group_pages", name: "sys.nav.error.index", code: "error", icon: "bxs:error-alt", type: CATALOGUE, path: "/error" },
-	{ id: "error_403", parentId: "error", name: "sys.nav.error.403", code: "error:403", type: MENU, path: "/error/403", component: "/pages/sys/error/Page403" },
-	{ id: "error_404", parentId: "error", name: "sys.nav.error.404", code: "error:404", type: MENU, path: "/error/404", component: "/pages/sys/error/Page404" },
-	{ id: "error_500", parentId: "error", name: "sys.nav.error.500", code: "error:500", type: MENU, path: "/error/500", component: "/pages/sys/error/Page500" },
+	{
+		id: "error",
+		parentId: "group_pages",
+		name: "sys.nav.error.index",
+		code: "error",
+		icon: "bxs:error-alt",
+		type: CATALOGUE,
+		path: "/error",
+	},
+	{
+		id: "error_403",
+		parentId: "error",
+		name: "sys.nav.error.403",
+		code: "error:403",
+		type: MENU,
+		path: "/error/403",
+		component: "/pages/sys/error/Page403",
+	},
+	{
+		id: "error_404",
+		parentId: "error",
+		name: "sys.nav.error.404",
+		code: "error:404",
+		type: MENU,
+		path: "/error/404",
+		component: "/pages/sys/error/Page404",
+	},
+	{
+		id: "error_500",
+		parentId: "error",
+		name: "sys.nav.error.500",
+		code: "error:500",
+		type: MENU,
+		path: "/error/500",
+		component: "/pages/sys/error/Page500",
+	},
 
 	// group_ui
 	// components
@@ -319,8 +365,25 @@ export const DB_MENU: Menu[] = [
 		disabled: true,
 		component: "/pages/sys/others/disabled",
 	},
-	{ id: "label", parentId: "group_others", name: "sys.nav.label", code: "label", icon: "local:ic-label", type: MENU, path: "#label", info: "New" },
-	{ id: "link", parentId: "group_others", name: "sys.nav.link", code: "link", icon: "local:ic-external", type: CATALOGUE, path: "/link" },
+	{
+		id: "label",
+		parentId: "group_others",
+		name: "sys.nav.label",
+		code: "label",
+		icon: "local:ic-label",
+		type: MENU,
+		path: "#label",
+		info: "New",
+	},
+	{
+		id: "link",
+		parentId: "group_others",
+		name: "sys.nav.link",
+		code: "link",
+		icon: "local:ic-external",
+		type: CATALOGUE,
+		path: "/link",
+	},
 	{
 		id: "link_external",
 		parentId: "link",
@@ -354,9 +417,27 @@ export const DB_MENU: Menu[] = [
 ];
 
 export const DB_USER: User[] = [
-	{ id: "user_admin_id", username: "admin", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "admin@slash.com" },
-	{ id: "user_test_id", username: "test", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "test@slash.com" },
-	{ id: "user_guest_id", username: "guest", password: "demo1234", avatar: faker.image.avatarGitHub(), email: "guest@slash.com" },
+	{
+		id: "user_admin_id",
+		username: "admin",
+		password: "password!",
+		avatar: faker.image.avatarGitHub(),
+		email: "admin@slash.com",
+	},
+	{
+		id: "user_test_id",
+		username: "test",
+		password: "password!",
+		avatar: faker.image.avatarGitHub(),
+		email: "test@slash.com",
+	},
+	{
+		id: "user_guest_id",
+		username: "guest",
+		password: "password!",
+		avatar: faker.image.avatarGitHub(),
+		email: "guest@slash.com",
+	},
 ];
 
 export const DB_ROLE: Role[] = [

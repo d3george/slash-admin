@@ -27,8 +27,8 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 
 	const form = useForm<SignInReq>({
 		defaultValues: {
-			username: DB_USER[0].username,
-			password: DB_USER[0].password,
+			email: "",
+			password: "",
 		},
 	});
 
@@ -58,13 +58,13 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 
 					<FormField
 						control={form.control}
-						name="username"
+						name="email"
 						rules={{ required: t("sys.login.accountPlaceholder") }}
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t("sys.login.userName")}</FormLabel>
+								<FormLabel>{t("sys.login.email")}</FormLabel>
 								<FormControl>
-									<Input placeholder={DB_USER.map((user) => user.username).join("/")} {...field} />
+									<Input {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -89,8 +89,15 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					{/* 记住我/忘记密码 */}
 					<div className="flex flex-row justify-between">
 						<div className="flex items-center space-x-2">
-							<Checkbox id="remember" checked={remember} onCheckedChange={(checked) => setRemember(checked === "indeterminate" ? false : checked)} />
-							<label htmlFor="remember" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+							<Checkbox
+								id="remember"
+								checked={remember}
+								onCheckedChange={(checked) => setRemember(checked === "indeterminate" ? false : checked)}
+							/>
+							<label
+								htmlFor="remember"
+								className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+							>
 								{t("sys.login.rememberMe")}
 							</label>
 						</div>
@@ -100,7 +107,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					</div>
 
 					{/* 登录按钮 */}
-					<Button type="submit" className="w-full">
+					<Button type="submit" className="w-full cursor-pointer">
 						{loading && <Loader2 className="animate-spin mr-2" />}
 						{t("sys.login.loginButton")}
 					</Button>

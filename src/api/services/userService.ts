@@ -3,7 +3,7 @@ import apiClient from "../apiClient";
 import type { UserInfo, UserToken } from "#/entity";
 
 export interface SignInReq {
-	username: string;
+	email: string;
 	password: string;
 }
 
@@ -16,7 +16,7 @@ export interface SignUpReq {
 export type SignInRes = UserToken & { user: UserInfo };
 
 export enum UserApi {
-	SignIn = "/auth/signin",
+	SignIn = "/auth/login",
 	SignUp = "/auth/register",
 	Logout = "/auth/logout",
 	Refresh = "/auth/refresh",
