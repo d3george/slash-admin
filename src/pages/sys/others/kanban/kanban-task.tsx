@@ -2,6 +2,7 @@ import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
 import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
+import { Card } from "@/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
 import { Sheet, SheetContent, SheetHeader } from "@/ui/sheet";
 import { useSortable } from "@dnd-kit/sortable";
@@ -27,18 +28,41 @@ function KanbanTask({ id, task, isDragging }: Props) {
 		transition,
 	};
 
-	const { title, comments = [], attachments = [], priority, assignee } = task;
+	const { title, impression, comments = [], attachments = [], priority, assignee, patientDesc } = task;
 
 	return (
 		<>
 			<Container ref={setNodeRef} style={style} {...attributes} {...listeners} $isDragging={!!isDragging}>
 				<div>
-					{attachments.length > 0 && <img src={attachments[0]} alt="" className="mb-4 rounded-md" />}
-					<div onClick={() => setDrawerOpen(true)}>
+					<Card onClick={() => setDrawerOpen(true)}>
 						<div className="flex justify-end">
 							<TaskPrioritySvg taskPriority={priority} />
 						</div>
-						<div>{title}</div>
+						<div>
+							患者信息：
+							<br />
+							{title}
+						</div>
+						<br />
+						<div>
+							影像所见：
+							<br />
+							{impression}
+						</div>
+						<br />
+						<div>
+							临床简要：
+							<br />
+							{patientDesc}
+						</div>
+						<div>
+							<Button className="mt-4 justify-between items-center w-full flex">打开影像</Button>
+						</div>
+						{/* <div>
+							<Button className="mt-4 justify-between items-center w-full flex">
+								添加笔记
+							</Button>
+						</div> */}
 						<div className="mt-4 flex items-center justify-between">
 							<div className="flex items-center text-base text-gray-600">
 								<Icon icon="uim:comment-dots" size={16} className="mr-1" />
@@ -49,7 +73,7 @@ function KanbanTask({ id, task, isDragging }: Props) {
 							</div>
 
 							{assignee?.length && (
-								<div className="flex gap-2 -space-x-4">
+								<div className="flex gap-2">
 									{assignee.slice(0, 3).map((url) => (
 										<Avatar key={url}>
 											<AvatarImage src={url} />
@@ -58,12 +82,12 @@ function KanbanTask({ id, task, isDragging }: Props) {
 								</div>
 							)}
 						</div>
-					</div>
+					</Card>
 				</div>
 			</Container>
 
 			<Sheet open={drawerOpen} modal={false} onOpenChange={setDrawerOpen}>
-				<SheetContent className="w-[420px] p-0 [&>button]:hidden pointer-events-auto">
+				<SheetContent className="w-[420px] p-1 [&>button]:hidden pointer-events-auto">
 					<SheetHeader>
 						<div className="flex items-center justify-between">
 							<div>

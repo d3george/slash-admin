@@ -34,6 +34,16 @@ export type Task = {
 	description?: string;
 	comments?: TaskComment[];
 	attachments?: string[];
+	pid: string;
+	cid: string;
+	age: number;
+	gender: string;
+	studyDate: string;
+	impression: string;
+	results: string;
+	clinicalResults: string;
+	history: string;
+	patientDesc: string;
 };
 export type Tasks = Record<string, Task>;
 

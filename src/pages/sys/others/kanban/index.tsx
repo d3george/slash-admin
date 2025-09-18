@@ -19,6 +19,7 @@ import KanbanColumn from "./kanban-column";
 import KanbanTask from "./kanban-task";
 import { initialData } from "./task-utils";
 import type { Column, Columns, DndDataType, Task, Tasks } from "./types";
+import BannerCard from "./banner-card";
 
 export default function Kanban() {
 	const [state, setState] = useState(initialData);
@@ -235,6 +236,10 @@ export default function Kanban() {
 
 	return (
 		<ScrollArea type="hover">
+			<div className="flex w-full gap-4 p-1 mb-4 rounded-md">
+				<BannerCard />
+			</div>
+
 			<div className="flex w-full">
 				<DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
 					<div className="flex h-full items-start gap-6 p-1">
@@ -293,7 +298,7 @@ export default function Kanban() {
 							className="inline-flex! w-full! items-center justify-center text-xs! font-semibold!"
 						>
 							<Icon icon="carbon:add" size={20} />
-							<div>Add Column</div>
+							<div>添加病例/总结</div>
 						</Button>
 					)}
 				</div>

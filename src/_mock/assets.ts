@@ -459,7 +459,7 @@ const OTHERS_PERMISSION = [
 		type: PermissionType.MENU,
 		route: "label",
 		newFeature: true,
-		component: "/sys/others/blank.tsx",
+		component: "/sys/others/case/index.tsx",
 	},
 	{
 		id: "5733704222120995",
@@ -501,7 +501,7 @@ const OTHERS_PERMISSION = [
 		icon: "local:ic-blank",
 		type: PermissionType.MENU,
 		route: "blank",
-		component: "/sys/others/blank.tsx",
+		component: "/sys/others/case/index.tsx",
 	},
 ];
 

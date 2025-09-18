@@ -36,6 +36,21 @@ export interface Permission_Old {
 	children?: Permission_Old[];
 }
 
+export interface CaseInfo {
+	id: string;
+	pid: string;
+	cid: string;
+	age: number;
+	gender: string;
+	studyDate: string;
+	impression: string;
+	results: string;
+	clinicalResults: string;
+	history: string;
+	patientDesc: string;
+	status: BasicStatus;
+}
+
 export interface Role_Old {
 	id: string;
 	name: string;
@@ -82,7 +97,9 @@ export interface Menu extends CommonOptions, MenuMetaInfo {
 	type: PermissionType;
 }
 
-export type MenuMetaInfo = Partial<Pick<NavItemDataProps, "path" | "icon" | "caption" | "info" | "disabled" | "auth" | "hidden">> & {
+export type MenuMetaInfo = Partial<
+	Pick<NavItemDataProps, "path" | "icon" | "caption" | "info" | "disabled" | "auth" | "hidden">
+> & {
 	externalLink?: URL;
 	component?: string;
 };

@@ -5,12 +5,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Input } from "@/ui/input";
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { faker } from "@faker-js/faker";
 import { type CSSProperties, useRef, useState } from "react";
 import { useEvent } from "react-use";
 import { ThemeMode } from "#/enum";
 import KanbanTask from "./kanban-task";
-import { type Column, type Task, TaskPriority } from "./types";
+import type { Column, Task } from "./types";
 
 type Props = {
 	id: string;
@@ -24,16 +23,7 @@ type Props = {
 	isDragging?: boolean;
 };
 
-export default function KanbanColumn({
-	id,
-	column,
-	tasks,
-	createTask,
-	clearColumn,
-	deleteColumn,
-	renameColumn,
-	isDragging,
-}: Props) {
+export default function KanbanColumn({ id, column, tasks, renameColumn, isDragging }: Props) {
 	const { themeMode } = useSettings();
 	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
@@ -53,17 +43,17 @@ export default function KanbanColumn({
 			label: (
 				<div
 					className="flex items-center text-gray"
-					onClick={() => {
-						setRenamingTask(true);
-					}}
-					onKeyDown={(e) => {
-						if (e.key === "Enter") {
-							setRenamingTask(true);
-						}
-					}}
+					// onClick={() => {
+					// 	setRenamingTask(true);
+					// }}
+					// onKeyDown={(e) => {
+					// 	if (e.key === "Enter") {
+					// 		setRenamingTask(true);
+					// 	}
+					// }}
 				>
 					<Icon icon="solar:pen-bold" />
-					<span className="ml-2">rename</span>
+					<span className="ml-2">编辑笔记</span>
 				</div>
 			),
 		},
@@ -72,15 +62,15 @@ export default function KanbanColumn({
 			label: (
 				<div
 					className="flex items-center text-gray"
-					onClick={() => clearColumn(column.id)}
-					onKeyDown={(e) => {
-						if (e.key === "Enter") {
-							clearColumn(column.id);
-						}
-					}}
+					// onClick={() => clearColumn(column.id)}
+					// onKeyDown={(e) => {
+					// 	if (e.key === "Enter") {
+					// 		clearColumn(column.id);
+					// 	}
+					// }}
 				>
 					<Icon icon="solar:eraser-bold" />
-					<span className="ml-2">clear</span>
+					<span className="ml-2">清空笔记</span>
 				</div>
 			),
 		},
@@ -89,15 +79,15 @@ export default function KanbanColumn({
 			label: (
 				<div
 					className="flex items-center text-warning"
-					onClick={() => deleteColumn(column.id)}
-					onKeyDown={(e) => {
-						if (e.key === "Enter") {
-							deleteColumn(column.id);
-						}
-					}}
+					// onClick={() => deleteColumn(column.id)}
+					// onKeyDown={(e) => {
+					// 	if (e.key === "Enter") {
+					// 		deleteColumn(column.id);
+					// 	}
+					// }}
 				>
 					<Icon icon="solar:trash-bin-trash-bold" />
-					<span className="ml-2">delete</span>
+					<span className="ml-2">删除病例</span>
 				</div>
 			),
 		},
@@ -107,15 +97,15 @@ export default function KanbanColumn({
 	const addTaskInputRef = useRef<HTMLInputElement>(null);
 	const handleClickOutside = (event: MouseEvent) => {
 		if (addTaskInputRef.current && !addTaskInputRef.current.contains(event.target as Node)) {
-			const addTaskInputVal = addTaskInputRef.current.value;
-			if (addTaskInputVal) {
-				createTask(column.id, {
-					id: faker.string.uuid(),
-					title: addTaskInputVal,
-					reporter: faker.image.avatarGitHub(),
-					priority: faker.helpers.enumValue(TaskPriority),
-				});
-			}
+			// const addTaskInputVal = addTaskInputRef.current.value;
+			// // if (addTaskInputVal) {
+			// // 	createTask(column.id, {
+			// // 		id: faker.string.uuid(),
+			// // 		title: addTaskInputVal,
+			// // 		reporter: faker.image.avatarGitHub(),
+			// // 		priority: faker.helpers.enumValue(TaskPriority),
+			// // 	});
+			// // }
 			setAddingTask(false);
 		}
 
@@ -178,7 +168,7 @@ export default function KanbanColumn({
 
 			<footer className="w-[248px]">
 				{addingTask ? (
-					<Input ref={addTaskInputRef} placeholder="Task Name" autoFocus />
+					<Input ref={addTaskInputRef} placeholder="笔记内容" autoFocus />
 				) : (
 					<Button
 						onClick={(e) => {
@@ -188,7 +178,7 @@ export default function KanbanColumn({
 						className="flex! items-center justify-center text-xs! font-medium! w-full"
 					>
 						<Icon icon="carbon:add" size={20} />
-						<span>Add Task</span>
+						<span>添加笔记</span>
 					</Button>
 				)}
 			</footer>

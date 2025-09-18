@@ -102,7 +102,7 @@ export function getFrontendDashboardRoutes(): RouteObject[] {
 		},
 		{ path: "calendar", element: Component("/pages/sys/others/calendar") },
 		{ path: "kanban", element: Component("/pages/sys/others/kanban") },
-		{ path: "blank", element: Component("/pages/sys/others/blank") },
+		{ path: "case", element: Component("/pages/sys/others/case") },
 	];
 	return frontendDashboardRoutes;
 }

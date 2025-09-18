@@ -84,14 +84,15 @@
 			"closeRight": "关闭右侧标签页"
 		},
 		"nav": {
-			"dashboard": "仪表板",
+			"dashboard": "读片会管理",
 			"pages": "页面",
 			"others": "其他",
 			"ui": "UI",
 			"custom_ui_components": "自定义UI组件",
-			"workbench": "工作台",
-			"analysis": "分析",
-			"management": "管理",
+			"workbench": "我的空间",
+			"analysis": "会议总览",
+			"management": "人员与权限",
+			"range_meeting": "预约排期",
 			"user": {
 				"index": "用户",
 				"profile": "个人资料",
@@ -138,8 +139,11 @@
 			"external_link": "外链",
 			"iframe": "内嵌",
 			"blank": "空白",
-			"calendar": "日历",
-			"kanban": "看板",
+			"case": "病例库",
+			"case_management": "病例管理",
+			"department_management": "科室管理",
+			"calendar": "会议管理",
+			"kanban": "内容看板",
 			"permission": "权限",
 			"permission.page_test": "页面鉴权测试",
 			"error": {

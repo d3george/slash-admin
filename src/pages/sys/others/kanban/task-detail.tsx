@@ -2,9 +2,6 @@ import { Icon } from "@/components/icon";
 import { themeVars } from "@/theme/theme.css";
 import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Badge } from "@/ui/badge";
-import { Button } from "@/ui/button";
-import { Calendar } from "@/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import { Textarea } from "@/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/ui/toggle-group";
 import { Text, Title } from "@/ui/typography";
@@ -16,7 +13,7 @@ type Props = {
 	task: Task;
 };
 export default function TaskDetail({ task }: Props) {
-	const { title, reporter, assignee = [], tags = [], date, priority, description, attachments, comments = [] } = task;
+	const { title, tags = [], priority, comments = [], pid, cid, studyDate, impression, results } = task;
 	return (
 		<>
 			<Container>
@@ -24,24 +21,17 @@ export default function TaskDetail({ task }: Props) {
 					<Title as="h4">{title}</Title>
 				</div>
 				<div className="item">
-					<div className="label">Reporter</div>
-					<Avatar>
-						<AvatarImage src={reporter} alt="@shadcn" />
-					</Avatar>
-				</div>
-				<div className="item">
-					<div className="label">Assignee</div>
-
-					<div className="flex gap-2">
-						{assignee.map((item) => (
-							<Avatar key={item}>
-								<AvatarImage src={item} alt="@shadcn" />
-							</Avatar>
-						))}
+					<div className="label">影像号</div>
+					<div className="label">
+						{pid}-{cid}
 					</div>
 				</div>
 				<div className="item">
-					<div className="label">Tag</div>
+					<div className="label">检查日期</div>
+					<div className="label">{studyDate}</div>
+				</div>
+				<div className="item">
+					<div className="label">标签/亚专业</div>
 					<div className="flex gap-2 flex-wrap">
 						{tags.map((tag) => (
 							<Badge key={tag} variant="info">
@@ -50,21 +40,8 @@ export default function TaskDetail({ task }: Props) {
 						))}
 					</div>
 				</div>
-
 				<div className="item">
-					<div className="label">Due Date</div>
-					<Popover>
-						<PopoverTrigger asChild>
-							<Button variant={"outline"}>{date ? dayjs(date).format("DD/MM/YYYY") : <span>Pick a date</span>}</Button>
-						</PopoverTrigger>
-						<PopoverContent className="w-auto p-0">
-							<Calendar mode="single" selected={date} initialFocus />
-						</PopoverContent>
-					</Popover>
-				</div>
-
-				<div className="item">
-					<div className="label">Priority</div>
+					<div className="label">等级</div>
 					<ToggleGroup type="single" defaultValue={priority}>
 						<ToggleGroupItem value={TaskPriority.HIGH}>
 							<Icon icon="local:ic-rise" size={20} color={themeVars.colors.palette.warning.default} />
@@ -89,18 +66,21 @@ export default function TaskDetail({ task }: Props) {
 				</div>
 
 				<div className="item">
-					<div className="label">Description</div>
-					<Textarea defaultValue={description} />
+					<div className="label">影像所见</div>
+					<Textarea defaultValue={impression} />
 				</div>
-
 				<div className="item">
+					<div className="label">影像结论</div>
+					<Textarea defaultValue={results} />
+				</div>
+				{/* <div className="item">
 					<div className="label">Attachments</div>
 					<div className="flex gap-2 flex-wrap">
 						{attachments?.map((item) => (
 							<img key={item} src={item} width={62} height={62} className="rounded-lg" alt="" />
 						))}
 					</div>
-				</div>
+				</div> */}
 			</Container>
 			{/* comments */}
 			<div

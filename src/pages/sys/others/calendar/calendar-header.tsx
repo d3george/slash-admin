@@ -29,25 +29,25 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 		() => [
 			{
 				key: "1",
-				label: "Month",
+				label: "月视图",
 				view: "dayGridMonth",
 				icon: <Icon icon="mdi:calendar-month-outline" size={18} />,
 			},
 			{
 				key: "2",
-				label: "Week",
+				label: "周视图",
 				view: "timeGridWeek",
 				icon: <Icon icon="mdi:calendar-weekend-outline" size={18} />,
 			},
 			{
 				key: "3",
-				label: "Day",
+				label: "当天详情",
 				view: "timeGridDay",
 				icon: <Icon icon="mdi:calendar-today-outline" size={18} />,
 			},
 			{
 				key: "4",
-				label: "List",
+				label: "事件列表",
 				view: "listWeek",
 				icon: <Icon icon="mdi:view-agenda-outline" size={18} />,
 			},
@@ -100,18 +100,18 @@ export default function CalendarHeader({ now, view, onMove, onCreate, onViewType
 				<Button variant="ghost" size="icon" onClick={() => onMove("prev")}>
 					<Icon icon="solar:alt-arrow-left-outline" size={20} />
 				</Button>
-				<span className="mx-2 text-base font-bold">{dayjs(now).format("DD MMM YYYY")}</span>
+				<span className="mx-2 text-base font-bold">{dayjs(now).format("YYYY/MM/DD")}</span>
 				<Button variant="ghost" size="icon" onClick={() => onMove("next")}>
 					<Icon icon="solar:alt-arrow-right-outline" size={20} />
 				</Button>
 			</div>
 
 			<div className="flex items-center">
-				<Button onClick={() => onMove("today")}>Today</Button>
+				<Button onClick={() => onMove("today")}>今天</Button>
 				<Button className="ml-2" onClick={() => onCreate()}>
 					<div className=" flex items-center justify-center">
 						<Icon icon="material-symbols:add" size={24} />
-						New Event
+						预约会议
 					</div>
 				</Button>
 			</div>

@@ -1,4 +1,4 @@
-import PlaceholderImg from "@/assets/images/background/placeholder.svg";
+import PlaceholderImg from "@/assets/images/background/login-bg2.png";
 import LocalePicker from "@/components/locale-picker";
 import Logo from "@/components/logo";
 import { GLOBAL_CONFIG } from "@/global-config";
@@ -11,6 +11,7 @@ import { LoginProvider } from "./providers/login-provider";
 import QrCodeFrom from "./qrcode-form";
 import RegisterForm from "./register-form";
 import ResetForm from "./reset-form";
+import Orb from "./components/Orb";
 
 function LoginPage() {
 	const token = useUserToken();
@@ -28,7 +29,10 @@ function LoginPage() {
 						<span>{GLOBAL_CONFIG.appName}</span>
 					</div>
 				</div>
-				<div className="flex flex-1 items-center justify-center">
+				<div style={{ width: "100%", position: "relative" }}>
+					<Orb hoverIntensity={0.9} rotateOnHover={true} hue={0} forceHoverState={false}></Orb>
+				</div>
+				<div className="flex flex-1 items-center justify-center z-10">
 					<div className="w-full max-w-xs">
 						<LoginProvider>
 							<LoginForm />
@@ -42,7 +46,11 @@ function LoginPage() {
 			</div>
 
 			<div className="relative hidden bg-background-paper lg:block">
-				<img src={PlaceholderImg} alt="placeholder img" className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.5] dark:grayscale" />
+				<img
+					src={PlaceholderImg}
+					alt="placeholder img"
+					className="absolute inset-0 h-full w-full object-cover dark:brightness-[1] dark:grayscale"
+				/>
 			</div>
 
 			<div className="absolute right-2 top-0 flex flex-row">

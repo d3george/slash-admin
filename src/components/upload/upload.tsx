@@ -27,11 +27,11 @@ export function Upload({ thumbnail = false, ...other }: Props) {
 						<UploadIllustration />
 					</p>
 					<div>
-						<h5 className="mt-4">Drop or Select file</h5>
+						<h5 className="mt-4">拖拽或选择文件</h5>
 						<p className="text-sm text-gray-500">
-							Drop files here or click
-							<span className="mx-2 text-primary underline">browse</span>
-							thorough your machine
+							拖拽或选择点击
+							<span className="mx-2 text-primary underline">浏览</span>
+							本地文件进行上传
 						</p>
 					</div>
 				</div>
