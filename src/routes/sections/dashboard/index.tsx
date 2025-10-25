@@ -15,9 +15,9 @@ const getRoutes = (): RouteObject[] => {
 export const dashboardRoutes: RouteObject[] = [
 	{
 		element: (
-			<LoginAuthGuard>
+			// <LoginAuthGuard>
 				<DashboardLayout />
-			</LoginAuthGuard>
+			// </LoginAuthGuard>
 		),
 		children: [{ index: true, element: <Navigate to={GLOBAL_CONFIG.defaultRoute} replace /> }, ...getRoutes()],
 	},

@@ -64,9 +64,17 @@ const filterNavData = (permissions: string[]) => {
  * Hook to get filtered navigation data based on user permissions
  * @returns Filtered navigation data
  */
+
+/** 
+ * Раскомментировать при восстановлении страницы авторизации
 export const useFilteredNavData = () => {
 	const permissions = useUserPermissions();
 	const permissionCodes = useMemo(() => permissions.map((p) => p.code), [permissions]);
 	const filteredNavData = useMemo(() => filterNavData(permissionCodes), [permissionCodes]);
 	return filteredNavData;
+};
+ */
+export const useFilteredNavData = () => {
+	const navData = GLOBAL_CONFIG.routerMode === "backend" ? backendNavData : frontendNavData;
+	return navData;
 };
