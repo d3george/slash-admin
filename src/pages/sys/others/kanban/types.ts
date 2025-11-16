@@ -16,6 +16,11 @@ export enum TaskTag {
 	QA = "QA",
 }
 
+export enum DndItemType {
+	Column = "column",
+	Task = "task",
+}
+
 export type TaskComment = {
 	username: string;
 	avatar: string;
