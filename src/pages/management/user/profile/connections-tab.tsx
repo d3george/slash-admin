@@ -90,7 +90,7 @@ export default function ConnectionsTab() {
 					</div>
 
 					<div className="mt-4 flex gap-4">
-						<div className="[ flex flex-col  items-center">
+						<div className="flex flex-col items-center">
 							<Text variant="body1" className="text-xl font-semibold">
 								{item.projects}
 							</Text>
@@ -98,7 +98,7 @@ export default function ConnectionsTab() {
 								Projects
 							</Text>
 						</div>
-						<div className="[ flex flex-col  items-center">
+						<div className="flex flex-col items-center">
 							<Text variant="body1" className="text-xl font-semibold">
 								{item.tasks}
 							</Text>
@@ -106,12 +106,12 @@ export default function ConnectionsTab() {
 								Tasks
 							</Text>
 						</div>
-						<div className="[ flex flex-col  items-center">
+						<div className="flex flex-col items-center">
 							<Text variant="body1" className="text-xl font-semibold">
 								{item.connections}
 							</Text>
 							<Text variant="body2" className="opacity-60">
-								Tasks
+								connections
 							</Text>
 						</div>
 					</div>
