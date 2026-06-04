@@ -4,15 +4,15 @@ import { Switch } from "@/ui/switch";
 type Props = {
 	isText: boolean;
 	isMulti: boolean;
-	onChnageText: (isText: boolean) => void;
+	onChangeText: (isText: boolean) => void;
 	onChangeMulti: (isMulti: boolean) => void;
 	onRefresh: VoidFunction;
 };
-export default function Toolbar({ isText, isMulti, onChnageText, onChangeMulti, onRefresh }: Props) {
+export default function Toolbar({ isText, isMulti, onChangeText, onChangeMulti, onRefresh }: Props) {
 	return (
 		<div className="mb-4 flex items-center justify-between">
 			<div>
-				<Switch checked={isText} onCheckedChange={onChnageText} />
+				<Switch checked={isText} onCheckedChange={onChangeText} />
 				<span className="ml-2">Text Object</span>
 			</div>
 			{isText ? null : (
