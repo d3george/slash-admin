@@ -1,10 +1,10 @@
+import { m } from "motion/react";
+import { repeat } from "ramda";
+import { useMemo } from "react";
 import Cover3 from "@/assets/images/cover/cover_3.jpg";
 import MotionContainer from "@/components/animate/motion-container";
 import { getVariant } from "@/components/animate/variants";
 import { themeVars } from "@/theme/theme.css";
-import { m } from "motion/react";
-import { repeat } from "ramda";
-import { useMemo } from "react";
 
 const TEXT = "SlashAdmin";
 type Props = {
@@ -23,7 +23,7 @@ export default function ContainerView({ isText, variant, isMulti }: Props) {
 			style={{ backgroundColor: themeVars.colors.background.neutral }}
 		>
 			{isText ? (
-				<MotionContainer className="flex h-[480px] items-center justify-center font-bold md:text-6xl">
+				<MotionContainer key="text" className="flex h-[480px] items-center justify-center font-bold md:text-6xl">
 					{TEXT.split("").map((letter) => (
 						<m.div key={letter} variants={varients}>
 							{letter}
@@ -31,10 +31,14 @@ export default function ContainerView({ isText, variant, isMulti }: Props) {
 					))}
 				</MotionContainer>
 			) : (
-				<MotionContainer className="flex flex-col items-center justify-center gap-6">
-					{imgs.map((img) => (
+				<MotionContainer
+					key={isMulti ? "multi-image" : "single-image"}
+					className="flex flex-col items-center justify-center gap-6"
+				>
+					{imgs.map((img, index) => (
 						<m.img
-							key={img}
+							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+							key={index}
 							src={img}
 							style={{
 								objectFit: "cover",

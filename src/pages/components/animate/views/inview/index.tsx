@@ -83,12 +83,22 @@ export default function Inview() {
 		setSelectedVariant(defaultValue.selectedVariant);
 	};
 
+	/**
+	 * Text Object Toggle
+	 */
+	const handleTextToggle = (checked: boolean) => {
+		setIsText(checked);
+		if (checked) {
+			setIsMulti(false);
+		}
+	};
+
 	return (
 		<Card>
 			<CardHeader>
 				<Toolbar
 					isText={isText}
-					onChnageText={() => setIsText(!isText)}
+					onChangeText={handleTextToggle}
 					isMulti={isMulti}
 					onChangeMulti={() => setIsMulti(!isMulti)}
 					onRefresh={onRefresh}
