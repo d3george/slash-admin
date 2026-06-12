@@ -1,7 +1,6 @@
-import { themeVars } from "@/theme/theme.css";
 import styled from "styled-components";
-
 import { ThemeMode } from "#/enum";
+import { themeVars } from "@/theme/theme.css";
 
 export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
   width: 100%;
@@ -107,7 +106,7 @@ export const StyledCalendar = styled.div<{ $themeMode: ThemeMode }>`
     .fc-list {
       .fc-list-day {
         th {
-          z-index: 100;
+          z-index: 1;
         }
       }
       .fc-list-day-text,
