@@ -1,14 +1,14 @@
-import { Icon } from "@/components/icon";
-import { useSettings } from "@/store/settingStore";
-import { Button } from "@/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/ui/dropdown-menu";
-import { Input } from "@/ui/input";
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { faker } from "@faker-js/faker";
 import { type CSSProperties, useRef, useState } from "react";
 import { useEvent } from "react-use";
 import { ThemeMode } from "#/enum";
+import { Icon } from "@/components/icon";
+import { useSettings } from "@/store/settingStore";
+import { Button } from "@/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/ui/dropdown-menu";
+import { Input } from "@/ui/input";
 import KanbanTask from "./kanban-task";
 import { type Column, type Task, TaskPriority } from "./types";
 
@@ -47,62 +47,6 @@ export default function KanbanColumn({
 		opacity: isDragging ? 0.5 : 1,
 	};
 
-	const items = [
-		{
-			key: "1",
-			label: (
-				<div
-					className="flex items-center text-gray"
-					onClick={() => {
-						setRenamingTask(true);
-					}}
-					onKeyDown={(e) => {
-						if (e.key === "Enter") {
-							setRenamingTask(true);
-						}
-					}}
-				>
-					<Icon icon="solar:pen-bold" />
-					<span className="ml-2">rename</span>
-				</div>
-			),
-		},
-		{
-			key: "2",
-			label: (
-				<div
-					className="flex items-center text-gray"
-					onClick={() => clearColumn(column.id)}
-					onKeyDown={(e) => {
-						if (e.key === "Enter") {
-							clearColumn(column.id);
-						}
-					}}
-				>
-					<Icon icon="solar:eraser-bold" />
-					<span className="ml-2">clear</span>
-				</div>
-			),
-		},
-		{
-			key: "3",
-			label: (
-				<div
-					className="flex items-center text-warning"
-					onClick={() => deleteColumn(column.id)}
-					onKeyDown={(e) => {
-						if (e.key === "Enter") {
-							deleteColumn(column.id);
-						}
-					}}
-				>
-					<Icon icon="solar:trash-bin-trash-bold" />
-					<span className="ml-2">delete</span>
-				</div>
-			),
-		},
-	];
-
 	const [addingTask, setAddingTask] = useState(false);
 	const addTaskInputRef = useRef<HTMLInputElement>(null);
 	const handleClickOutside = (event: MouseEvent) => {
@@ -119,26 +63,22 @@ export default function KanbanColumn({
 			setAddingTask(false);
 		}
 
-		if (renameTaskInputRef.current && !renameTaskInputRef.current.contains(event.target as Node)) {
-			const renameInputVal = renameTaskInputRef.current.value;
+		if (renameColumnInputRef.current && !renameColumnInputRef.current.contains(event.target as Node)) {
+			const renameInputVal = renameColumnInputRef.current.value;
 			if (renameInputVal) {
 				renameColumn({
 					...column,
 					title: renameInputVal,
 				});
 			}
-			setRenamingTask(false);
+			setRenamingColumn(false);
 		}
 	};
 	useEvent("click", handleClickOutside);
 
-	const [renamingTask, setRenamingTask] = useState(false);
-	const renameTaskInputRef = useRef<HTMLInputElement>(null);
-	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const handleMenuItemClick = (menuInfo: any) => {
-		setDropdownOpen(false);
-		menuInfo.domEvent.stopPropagation();
-	};
+	const [renamingColumn, setRenamingColumn] = useState(false);
+	const renameColumnInputRef = useRef<HTMLInputElement>(null);
+
 	return (
 		<div ref={setNodeRef} style={style}>
 			<header
@@ -146,24 +86,42 @@ export default function KanbanColumn({
 				{...listeners}
 				className="mb-4 flex select-none items-center justify-between text-base font-semibold"
 			>
-				{renamingTask ? <Input ref={renameTaskInputRef} autoFocus /> : column.title}
-				<DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+				{renamingColumn ? <Input ref={renameColumnInputRef} autoFocus /> : column.title}
+				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant="ghost" size="icon" className="text-gray!">
 							<Icon icon="dashicons:ellipsis" />
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align="end">
-						{items?.map((item) => {
-							if (item && "key" in item && "label" in item) {
-								return (
-									<DropdownMenuItem key={item.key} onClick={() => handleMenuItemClick({ key: item.key })}>
-										{item.label}
-									</DropdownMenuItem>
-								);
-							}
-							return null;
-						})}
+						<DropdownMenuItem
+							onClick={(event) => {
+								event.stopPropagation();
+								setRenamingColumn(true);
+							}}
+						>
+							<Icon icon="solar:pen-bold" />
+							<span className="ml-2">rename</span>
+						</DropdownMenuItem>
+						<DropdownMenuItem
+							onClick={(event) => {
+								event.stopPropagation();
+								clearColumn(column.id);
+							}}
+						>
+							<Icon icon="solar:eraser-bold" />
+							<span className="ml-2">clear</span>
+						</DropdownMenuItem>
+						<DropdownMenuItem
+							variant="destructive"
+							onClick={(event) => {
+								event.stopPropagation();
+								deleteColumn(column.id);
+							}}
+						>
+							<Icon icon="solar:trash-bin-trash-bold" />
+							<span className="ml-2">delete</span>
+						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</header>
