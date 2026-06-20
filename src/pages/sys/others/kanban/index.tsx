@@ -1,7 +1,3 @@
-import { Icon } from "@/components/icon";
-import { Button } from "@/ui/button";
-import { Input } from "@/ui/input";
-import { ScrollArea, ScrollBar } from "@/ui/scroll-area";
 import {
 	DndContext,
 	type DragEndEvent,
@@ -11,19 +7,24 @@ import {
 	useSensor,
 	useSensors,
 } from "@dnd-kit/core";
-import { SortableContext, arrayMove, horizontalListSortingStrategy } from "@dnd-kit/sortable";
+import { arrayMove, horizontalListSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 import { faker } from "@faker-js/faker";
 import { useRef, useState } from "react";
 import { useEvent } from "react-use";
+import { Icon } from "@/components/icon";
+import { Button } from "@/ui/button";
+import { Input } from "@/ui/input";
+import { ScrollArea, ScrollBar } from "@/ui/scroll-area";
 import KanbanColumn from "./kanban-column";
 import KanbanTask from "./kanban-task";
 import { initialData } from "./task-utils";
 import type { Column, Columns, DndDataType, Task, Tasks } from "./types";
+import { DndItemType } from "./types";
 
 export default function Kanban() {
 	const [state, setState] = useState(initialData);
 	const [activeId, setActiveId] = useState<string | null>(null);
-	const [activeType, setActiveType] = useState<"column" | "task" | null>(null);
+	const [activeType, setActiveType] = useState<DndItemType | null>(null);
 	const [addingColumn, setAddingColumn] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -38,8 +39,7 @@ export default function Kanban() {
 	const handleDragStart = (event: DragStartEvent) => {
 		const { active } = event;
 		setActiveId(active.id as string);
-		// 通过判断 id 格式来确定拖拽类型
-		setActiveType(active.id.toString().startsWith("task-") ? "task" : "column");
+		setActiveType(active.id.toString().startsWith("task-") ? DndItemType.Task : DndItemType.Column);
 	};
 
 	const handleDragEnd = (event: DragEndEvent) => {
@@ -52,7 +52,7 @@ export default function Kanban() {
 		}
 
 		if (active.id !== over.id) {
-			if (activeType === "column") {
+			if (activeType === DndItemType.Column) {
 				// 处理列的拖拽
 				const oldIndex = state.columnOrder.indexOf(active.id as string);
 				const newIndex = state.columnOrder.indexOf(over.id as string);
@@ -139,30 +139,34 @@ export default function Kanban() {
 	useEvent("click", handleClickOutside);
 
 	const createColumn = (column: Column) => {
+		const id = column.id.startsWith("column-") ? column.id : `column-${column.id}`;
+		const nextColumn: Column = { ...column, id };
 		const newState: DndDataType = {
 			...state,
 			columns: {
 				...state.columns,
-				[column.id]: column,
+				[id]: nextColumn,
 			},
-			columnOrder: [...state.columnOrder, column.id],
+			columnOrder: [...state.columnOrder, id],
 		};
 		setState(newState);
 	};
 
 	const createTask = (columnId: string, task: Task) => {
 		const column = state.columns[columnId];
+		const id = task.id.startsWith("task-") ? task.id : `task-${task.id}`;
+		const nextTask: Task = { ...task, id };
 		const newState: DndDataType = {
 			...state,
 			tasks: {
 				...state.tasks,
-				[task.id]: task,
+				[id]: nextTask,
 			},
 			columns: {
 				...state.columns,
 				[columnId]: {
 					...column,
-					taskIds: [...column.taskIds, task.id],
+					taskIds: [...column.taskIds, id],
 				},
 			},
 		};
@@ -260,7 +264,7 @@ export default function Kanban() {
 						</SortableContext>
 
 						<DragOverlay>
-							{activeId && activeType === "column" ? (
+							{activeId && activeType === DndItemType.Column ? (
 								<KanbanColumn
 									id={activeId}
 									index={state.columnOrder.indexOf(activeId)}
@@ -273,7 +277,7 @@ export default function Kanban() {
 									isDragging
 								/>
 							) : null}
-							{activeId && activeType === "task" ? (
+							{activeId && activeType === DndItemType.Task ? (
 								<KanbanTask id={activeId} task={state.tasks[activeId]} isDragging />
 							) : null}
 						</DragOverlay>
