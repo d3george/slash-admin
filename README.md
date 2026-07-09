@@ -17,6 +17,9 @@
     <br />
     <br />
     <a href="https://trendshift.io/repositories/6387" target="_blank"><img src="https://trendshift.io/api/badge/repositories/6387" alt="d3george%2Fslash-admin | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+    <br />
+    <br />
+    <a href="https://dashboard.pandastack.io/deploy?repo=d3george/slash-admin&type=static&buildCmd=pnpm%20build&outputDir=dist"><img src="https://dashboard.pandastack.io/deploy-button.svg" alt="Deploy to PandaStack" height="36" /></a>
 </div>
 
 **English** | [中文](./README.zh-CN.md)
