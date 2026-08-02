@@ -3,6 +3,7 @@
 		"target": "ESNext",
 		"module": "ESNext",
 		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"types": ["node"],
 		"useDefineForClassFields": true,
 		"skipLibCheck": true,
 		"allowJs": true,
@@ -17,7 +18,7 @@
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"esModuleInterop": true,
-
+		"ignoreDeprecations": "5.0",
 		"strict": true,
 		"strictNullChecks": true,
 		"noImplicitAny": true,
@@ -26,12 +27,11 @@
 		"noFallthroughCasesInSwitch": true,
 		"useUnknownInCatchVariables": false,
 
-		"baseUrl": ".",
 		"paths": {
-			"@/*": ["src/*"],
-			"#/*": ["src/types/*"]
+			"@/*": ["./src/*"],
+			"#/*": ["./src/types/*"]
 		}
 	},
-	"include": ["src", "src/types", "tailwind.config.ts"],
+	"include": ["src", "src/types", "tailwind.config.ts", "playwright.config.ts", "tests"],
 	"exclude": ["node_modules", "dist"]
 }
