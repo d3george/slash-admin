@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test("shows the login page", async ({ page }) => {
 	await page.goto("/auth/login");
@@ -27,5 +27,5 @@ test("shows error message with invalid credentials", async ({ page }) => {
 	await page.getByLabel(/Password/i).fill("123");
 	await page.getByRole("button", { name: /^Sign in$/i }).click();
 
-	await expect(page.getByText(/Invalid username or password/i)).toBeVisible();
+	await expect(page.getByText(/Incorrect username or password\./i)).toBeVisible();
 });
