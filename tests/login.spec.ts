@@ -19,3 +19,13 @@ test("can login with valid credentials", async ({ page }) => {
 	await expect(page).toHaveURL("/workbench");
 	await expect(page.getByRole("heading", { name: /Explore Redesigned Slash Admin/i })).toBeVisible();
 });
+
+test("shows error message with invalid credentials", async ({ page }) => {
+	await page.goto("/auth/login");
+
+	await page.getByLabel(/Username/i).fill("a123");
+	await page.getByLabel(/Password/i).fill("123");
+	await page.getByRole("button", { name: /^Sign in$/i }).click();
+
+	await expect(page.getByText(/Invalid username or password/i)).toBeVisible();
+});
